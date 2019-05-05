@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<!-- <title>Insert title here</title> -->
+</head>
+		<!-- css -->
+		<link rel="stylesheet" href="../../plugins/layui/css/layui.css" media="all" />
+		<link rel="stylesheet" href="../../css/global.css" media="all">
+		<link rel="stylesheet" href="../../plugins/font-awesome/css/font-awesome.min.css">
+		<link rel="stylesheet" href="../../css/table.css" />
+
+		<!-- JS -->
+		<script type="text/javascript" src="../../plugins/layui/layui.js"></script>
+		<script src="../../jqery/jquery.js"></script>
+		<script type="text/javascript" src="../../../commons/base.js"></script>
+		<script type="text/javascript" src="../../js/application/application_manage.js"></script>
+		
+<body>
+	<div style="margin: 15px;">
+	
+		<div class="layui-form-item">
+			<label class="layui-form-label" style="width:200px">申请单编号</label>
+			<div class="layui-input-inline" style="width:300px">
+				<input type="text" id="applicationId"  autocomplete="off" class="layui-input" readonly>
+			</div>
+		</div>
+	
+		<div class="layui-form-item">
+			<label class="layui-form-label" style="width:200px">借款编号</label>
+			<div class="layui-input-inline" style="width:300px">
+				<input type="text"   autocomplete="off" class="layui-input" readonly>
+			</div>
+		</div>
+
+		<div class="layui-form-item">
+			<label class="layui-form-label" style="width:200px">平台用户编号</label>
+			<div class="layui-input-inline" style="width:300px">
+				<input type="text"   autocomplete="off" class="layui-input" readonly>
+			</div>
+		</div>
+
+		<div class="layui-form-item">
+			<label class="layui-form-label" style="width:200px">APP申请编号</label>
+			<div class="layui-input-inline" style="width:300px">
+				<input type="text"   autocomplete="off" class="layui-input" readonly>
+			</div>
+		</div>
+
+		<div class="layui-form-item">
+			<label class="layui-form-label" style="width:200px">用户姓名</label>
+			<div class="layui-input-inline" style="width:300px">
+				<input type="text"   autocomplete="off" class="layui-input" readonly>
+			</div>
+		</div>
+
+		<div class="layui-form-item">
+			<label class="layui-form-label" style="width:200px">用户手机号</label>
+			<div class="layui-input-inline" style="width:300px">
+				<input type="text"   autocomplete="off" class="layui-input" readonly>
+			</div>
+		</div>
+
+		<div class="layui-form-item">
+			<label class="layui-form-label" style="width:200px">身份证号</label>
+			<div class="layui-input-inline" style="width:300px">
+				<input type="text"   autocomplete="off" class="layui-input" readonly>
+			</div>
+		</div>
+
+		<div class="layui-form-item">
+			<label class="layui-form-label" style="width:200px">证件类型</label>
+			<div class="layui-input-inline" style="width:300px">
+				<input type="text"   autocomplete="off" class="layui-input" readonly>（1.身份证 2.护照 3.其他）
+			</div>
+		</div>
+
+		<div class="layui-form-item">
+			<label class="layui-form-label" style="width:200px">授信分数</label>
+			<div class="layui-input-inline" style="width:300px">
+				<input type="text"   autocomplete="off" class="layui-input" readonly>
+			</div>
+		</div>
+
+		<div class="layui-form-item">
+			<label class="layui-form-label" style="width:200px">授信额度</label>
+			<div class="layui-input-inline" style="width:300px">
+				<input type="text"   autocomplete="off" class="layui-input" readonly>
+			</div>
+		</div>
+
+		<div class="layui-form-item">
+			<label class="layui-form-label" style="width:200px">审批状态</label>
+			<div class="layui-input-inline" style="width:300px">
+				<input type="text"   autocomplete="off" class="layui-input" readonly>（1-待审批、2-审批通过、3-审批未通过、4-待人工确认）
+				<input type="hidden"   autocomplete="off" class="layui-input" readonly>
+			</div>
+		</div>
+
+		<div class="layui-form-item">
+			<label class="layui-form-label" style="width:200px">审核时间</label>
+			<div class="layui-input-inline" style="width:300px">
+				<input type="text"   autocomplete="off" class="layui-input" readonly>
+			</div>
+		</div>
+		
+		<div class="layui-form-item">
+			<label class="layui-form-label" style="width:200px">审批人用户编号</label>
+			<div class="layui-input-inline" style="width:300px">
+				<input type="text"   autocomplete="off" class="layui-input" readonly>
+			</div>
+		</div>
+
+		<div class="layui-form-item">
+			<label class="layui-form-label" style="width:200px">步骤标识</label>
+			<div class="layui-input-inline" style="width:300px">
+				<input type="text"   autocomplete="off" class="layui-input" readonly>（1：芝麻评分、2：芝麻欺诈、3：同盾、4：蜜蜂、5：蜜罐）
+			</div>
+		</div>
+
+		<div class="layui-form-item">
+			<label class="layui-form-label" style="width:200px">外部系统交互标识</label>
+			<div class="layui-input-inline" style="width:300px">
+				<input type="text"   autocomplete="off" class="layui-input" readonly>（0-未推送App、1-已推送APP、2：已推送大数据、3：已接收大数据消息）
+			</div>
+		</div>
+		
+		<div class="layui-form-item">
+			<label class="layui-form-label" style="width:200px">是否同步大数据</label>
+			<div class="layui-input-inline" style="width:300px">
+				<input type="text"  autocomplete="off" class="layui-input" readonly>（ 0-否、1-是 ）
+			</div>
+		</div>
+		
+		<div class="layui-form-item">
+			<label class="layui-form-label" style="width:200px">借款用户公网IP</label>
+			<div class="layui-input-inline" style="width:300px">
+				<input type="text"   autocomplete="off" class="layui-input" readonly>
+			</div>
+		</div>
+
+		<div class="layui-form-item">
+			<label class="layui-form-label" style="width:200px">申请来源</label>
+			<div class="layui-input-inline" style="width:300px">
+				<input type="text"   autocomplete="off" class="layui-input" readonly>（0—Android；1—IOS）
+			</div>
+		</div>
+
+		<div class="layui-form-item">
+			<label class="layui-form-label" style="width:200px">同盾black_box</label>
+			<div class="layui-input-inline" style="width:300px">
+					<input type="hidden"   autocomplete="off" class="layui-input" readonly>
+					<textarea rows="4" cols="56"   readonly></textarea>
+			</div>
+		</div>
+
+		<div class="layui-form-item">
+			<label class="layui-form-label" style="width:200px">聚信立用户token</label>
+			<div class="layui-input-inline" style="width:300px">
+				<input type="text"   autocomplete="off" class="layui-input" readonly>
+			</div>
+		</div>
+
+		<div class="layui-form-item">
+			<label class="layui-form-label" style="width:200px">同盾reportId</label>
+			<div class="layui-input-inline" style="width:300px">
+				<input type="text"   autocomplete="off" class="layui-input" readonly>
+			</div>
+		</div>
+
+		<div class="layui-form-item">
+			<label class="layui-form-label" style="width:200px">芝麻用户标识</label>
+			<div class="layui-input-inline" style="width:300px">
+				<input type="text"   autocomplete="off" class="layui-input" readonly>
+			</div>
+		</div>
+
+		<div class="layui-form-item">
+			<label class="layui-form-label" style="width:200px">创建时间</label>
+			<div class="layui-input-inline" style="width:300px">
+				<input type="text"   autocomplete="off" class="layui-input" readonly>
+			</div>
+		</div>
+
+		<div class="layui-form-item">
+			<label class="layui-form-label" style="width:200px">修改时间</label>
+			<div class="layui-input-inline" style="width:300px">
+				<input type="text"   autocomplete="off" class="layui-input" readonly>
+			</div>
+		</div>
+
+		<div class="layui-form-item">
+			<label class="layui-form-label" style="width:200px">禁止项编号</label>
+			<div class="layui-input-inline" style="width:300px">
+				<input type="text"   autocomplete="off" class="layui-input" readonly>
+			</div>
+		</div>
+		<div class="layui-form-item">
+			<label class="layui-form-label" style="width:200px">备注</label>
+			<div class="layui-input-inline" style="width:300px">
+				<input type="text"   autocomplete="off" class="layui-input" readonly>
+			</div>
+		</div>
+		<div class="layui-form-item">
+			<label class="layui-form-label" style="width:200px">预期借款额度</label>
+			<div class="layui-input-inline" style="width:300px">
+				<input type="text"   autocomplete="off" class="layui-input" readonly>
+			</div>
+		</div>
+		<div class="layui-form-item">
+			<label class="layui-form-label" style="width:200px">周期</label>
+			<div class="layui-input-inline" style="width:300px">
+				<input type="text"   autocomplete="off" class="layui-input" readonly>
+			</div>
+		</div>
+		
+		<div class="layui-form-item">
+			<label class="layui-form-label" style="width:200px">决策树ID</label>
+			<div class="layui-input-inline" style="width:300px">
+				<input type="text"   autocomplete="off" class="layui-input" readonly>
+			</div>
+		</div>
+		
+		<div class="layui-form-item">
+			<label class="layui-form-label" style="width:200px">禁止项模板主键ID</label>
+			<div class="layui-input-inline" style="width:300px">
+				<input type="text"   autocomplete="off" class="layui-input" readonly>
+			</div>
+		</div>
+		<div class="layui-form-item">
+			<label class="layui-form-label" style="width:200px">欺诈项模板主键ID</label>
+			<div class="layui-input-inline" style="width:300px">
+				<input type="text"   autocomplete="off" class="layui-input" readonly>
+			</div>
+		</div>
+		<div class="layui-form-item">
+			<label class="layui-form-label" style="width:200px">评分项模板主键ID</label>
+			<div class="layui-input-inline" style="width:300px">
+				<input type="text"   autocomplete="off" class="layui-input" readonly>
+			</div>
+		</div>
+		
+		<!-- <div class="layui-form-item">
+			<label class="layui-form-label" style="width:200px">评分小类编号</label>
+			<div class="layui-input-inline" style="width:300px">
+				<input type="text"   autocomplete="off" class="layui-input" readonly>
+			</div>
+		</div>	
+		
+		<div class="layui-form-item">
+			<label class="layui-form-label" style="width:200px">葫芦Token</label>
+			<div class="layui-input-inline" style="width:300px">
+				<input type="text"   autocomplete="off" class="layui-input" readonly>
+			</div>
+		</div> -->
+		
+		<div class="layui-form-item">
+			<label class="layui-form-label" style="width:200px">客户标识</label>
+			<div class="layui-input-inline" style="width:300px">
+				<input type="text"   autocomplete="off" class="layui-input" readonly>
+			</div>
+		</div>
+		
+			<div class="layui-form-item">
+			<label class="layui-form-label" style="width:200px">app渠道标识</label>
+			<div class="layui-input-inline" style="width:300px">
+				<input type="text"   autocomplete="off" class="layui-input" readonly>
+			</div>
+		</div>
+		
+		
+		
+		<div class="layui-form-item">
+			<label class="layui-form-label" style="width:200px">失败次数</label>
+			<div class="layui-input-inline" style="width:300px">
+				<input type="text"   autocomplete="off" class="layui-input" readonly>
+			</div>
+		</div>
+		<div class="layui-form-item">
+			<label class="layui-form-label" style="width:200px">模板分发时间</label>
+			<div class="layui-input-inline" style="width:300px">
+				<input type="text"   autocomplete="off" class="layui-input" readonly>
+			</div>
+		</div>
+		<div class="layui-form-item">
+			<label class="layui-form-label" style="width:200px">步骤处理异常描述</label>
+			<div class="layui-input-inline" style="width:300px">
+				<input type="hidden"   autocomplete="off" class="layui-input" readonly>
+				<textarea rows="4" cols="56" readonly></textarea>
+			</div>
+		</div>
+		
+		<div class="layui-form-item">
+			<label class="layui-form-label" style="width:200px">审批结果<font color="red">* </font></label>
+			<div class="layui-input-inline" style="width:300px">
+				<textarea rows="4" cols="56" id="auditResult" ></textarea>
+			</div>
+		</div>
+		<button class="layui-btn"  id="save_bt" onclick="save()"  style="margin-left: 320px;" >保存</button>
+ 		<button class="layui-btn layui-btn-normal"  id="closeIframe" onclick="closeIfrname()" >关闭</button> 
+	</div>
+</body>
+</html>

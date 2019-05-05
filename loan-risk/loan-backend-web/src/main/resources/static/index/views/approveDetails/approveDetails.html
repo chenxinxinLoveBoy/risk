@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>案件分配详情页面</title>
+
+		<link rel="stylesheet" href="../../css/global.css" media="all"/>
+		<link rel="stylesheet" href="../../plugins/font-awesome/css/font-awesome.min.css" media="all"/>
+
+		<link rel="stylesheet" href="../../plugins/layui/css/layui.css" media="all" />
+		<link rel="stylesheet" href="../../css/approve_detail.css"/>
+
+		<!-- js -->
+		<script type="text/javascript" src="../../jqery/jquery.js"></script>
+		<script type="text/javascript" src="../../echarts/echarts.common.min.js"></script>
+		<script type="text/javascript" src="../../../commons/base.js"></script>
+		<script type="text/javascript" src="../../plugins/layui/layui.js"></script>
+
+		<script type="text/javascript" src="../../js/approveDetails/approveDetails.js?v=1231211"></script>
+
+		<script language="javascript" src="https://webapi.amap.com/maps?v=2.0&key=caaa086bdf5666322fba3baf5a6a2c03"></script>
+	</head>
+
+	<body>
+		<input type="hidden" id="js-hidden-customerId" name="customerId" value="">
+		<input type="hidden" id="js-hidden-applicationId" name="applicationId" value="">
+		<input type="hidden" id="js-hidden-platformCustomerId" name="platformCustomerId"value="">
+		<input type="hidden" id="js-hidden-platformId" name="platformId" value="">
+		<input type="hidden" id="js-hidden-certCode1" name="certCode1" value="">
+		<input type="hidden" id="js-hidden-username" name="username" value="">
+		<input type="hidden" id="js-hidden-appName" name="appName" value="">
+		<input type="hidden" id="js-hidden-certType" name="certType" value="">
+		<input type="hidden" id="js-hidden-phone" name="phone" value="">
+		<input type="hidden" id="js-hidden-customerEmail" name="customerEmail" value="">
+
+		<input type="hidden" id="tnetcheckNoAbnormal" name="tnetcheckNoAbnormal" value="">
+		<input type="hidden" id="tisCallPhone" name="tisCallPhone" value="">
+		<input type="hidden" id="remark" name="remark" value="">
+
+		<input type="hidden" id="js-hidden-companyName" name="companyName" value="">
+		<input type="hidden" id="js-hidden-applyphone" name="applyphone" value="">
+
+
+		<div class="mg10">
+			<div style="height: 50px; line-height: 50px; background: #fff; padding-left: 20px;">案件编号：
+				<span style="margin-right: 15px;" id="js-appSerialNumber">-----</span>
+				<a href="javascript:;" id="js-btn-external-site" style="padding: 5px 10px; border-radius: 5px; border: 1px solid #31b8f7; color: #fff; background: #31B8F7;">外部网址</a>
+				<a href="javascript:;" id="js-btn-system-log" style="padding: 5px 10px; border-radius: 5px; border: 1px solid #31b8f7; color: #fff; background: #31B8F7;">系统日志</a>
+			</div>
+			<!-- 基本信息 -->
+			<div class="bfff mgt20 mgb20">
+				<div class="size16 public_title">
+					<img src="../../images/approve_details/base_info.png">基本信息
+				</div>
+				<div class="basic_content">
+					<div class="fl basic_c_left mgauto" style="padding-top:30px;">
+						<a href="javascript:;" >
+							<img id="js-avatar" src="../../images/approve_details/default_icon.png" alt="头像" class="mgtb20 basic_c_photo" />
+						</a>
+						<button id="js-pic-certificate" class="tc ffff b31B8F7 size14 basic_c_btn" style="margin-top:10%;">点击查看身份照片</button>
+					</div>
+					<div class="fl basic_c_right mgauto">
+						<h1 class="mgb10">
+							<span id="js-name" class="f333 mgr20" style="font-size: 18px;">-----</span>
+							<span id="js-old-customer" class="f31B8F7 size14 mgr20" style="border:1px solid #31b8f7; padding:3px 5px; display: none;">老客户</span>
+							<!--<span class="f31B8F7 size14" style="border:1px solid #31b8f7; padding:3px 5px;">历史借款次数3次</span>-->
+						</h1>
+						<!--<h2 class="f31B8F7">-&#45;&#45;&#45;&#45;</h2>-->
+						<div class="wd pd10 basic_c_r_meagess" style="border-bottom:1px solid #f0f0f0; padding-bottom:15px;">
+							<ul>
+								<li>
+									<span>Sexuality/性别</span>
+									<span id="js-gender">-----</span>
+								</li>
+								<li>
+									<span>Marital/婚姻状况</span>
+									<span id="js-ifMarriage">-----</span>
+								</li>
+								<li>
+									<span>ID CARD/身份证号</span>
+									<span id="js-certCode">-----</span>
+								</li>
+								<li>
+									<span>Age/年龄</span>
+									<span id="js-age">-----</span>
+								</li>
+								<li>
+									<span>Term/有限期限</span>
+									<span id="js-expirationDate">-----</span>
+								</li>
+								<li>
+									<span>Ethnic/民族</span>
+									<span id="js-nation">-----</span>
+								</li>
+								<li>
+									<span>Department/发证机关</span>
+									<span id="js-issueInstitution">-----</span>
+								</li>
+								<li>
+									<span>Phone/申请手机</span>
+									<span id="js-applyphone">-----</span>
+								</li>
+								<li>
+									<span>Education/自填学历</span>
+									<span id="js-educationId">-----</span>
+								</li>
+
+								<li>
+									<span>提交申请时间</span>
+									<span id="js-applyTime">-----</span>
+								</li>
+								<li>
+									<span>手机号码归属地</span>
+									<span id="js-phoneAddress">-----</span>
+								</li>
+
+								<li>
+									<span>号码使用时长</span>
+									<span id="js-sjhmsc">-----</span>
+								</li>
+								<li>
+									<span>IP归属地</span>
+									<span id="js-ipAddress">-----</span>
+								</li>
+								<li>
+									<span>手机入网使用时长</span>
+									<span id="js-phone-net-in-time">-----</span>
+								</li>
+								<li style="width: 100%;">
+									<span style="width: 20%;">ID Adress / 证件地址</span>
+									<span id="js-registeredAddress">-----</span>
+								</li>
+								<li style="width: 100%;">
+									<span style="width: 20%;">LBS/手机定位地址</span>
+									<span id="js-gprsAdress">-----</span>
+								</li>
+								<li style="width: 100%;">
+									<span style="width: 20%;">身份证号码归属地</span>
+									<span  id="js-sfzAddress" title="-----">-----</span>
+								</li>
+								<div class="clear"></div>
+							</ul>
+						</div>
+						<div class="basic_c_right_meagess pd10">
+							<ul>
+								<li>
+									<p>最近一次登陆时间</p>
+									<span id="js-latestLoginTime">暂无数据</span>
+								</li>
+								<li>
+									<p>手机品牌</p>
+									<span id="js-cellphon-brand">暂无数据</span>
+								</li>
+								<li>
+									<p>APP版本</p>
+									<span id="js-appId">暂无数据</span>
+								</li>
+								<div class="clear"></div>
+							</ul>
+						</div>
+					</div>
+					<div class="clear"></div>
+				</div>
+			</div>
+
+			<!-- 联系人信息 -->
+			<div class="bfff mgt20 mgb20">
+				<div class="size16 public_title">
+					<img src="../../images/approve_details/linknam_info.png">联系人信息
+				</div>
+				<div class="table_content">
+					<div class="layui-form">
+						<table class="layui-table admin-table" style="word-break: keep-all;overflow:auto;">
+							<thead>
+								<tr>
+									<th>紧急联系人</th>
+									<th>关系</th>
+									<th>联系电话</th>
+									<th>号码归属地</th>
+									<th>联系记录</th>
+								</tr>
+							</thead>
+							<tbody id="js-linkman">
+								<tr>
+									<td colspan="5" style="text-align: center;">暂无记录</td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+				</div>
+			</div>
+
+			<!-- 同盾多头 -->
+			<div class="bfff mgt20 mgb20">
+				<div class="size16 public_title">
+					<img src="../../images/approve_details/tong_dun_duo_tou.png">同盾多头(各维度关联多平台)
+				</div>
+				<div class="table_content">
+					<div class="layui-form">
+						<table class="layui-table admin-table" style="word-break: keep-all;overflow:auto;">
+							<thead>
+								<tr>
+									<th style="width: 15%;">维度名称</th>
+									<th style="width: 10%;">多头多次</th>
+									<th>描述</th>
+								</tr>
+							</thead>
+							<tbody id="js-platformDimensionDetail">
+								<tr>
+									<td colspan="3" style="text-align: center;">暂无记录</td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+				</div>
+			</div>
+
+			<!--   工作信息      -->
+			<div class="mgt20 mgb20" style="height: 534px;">
+				<div class="bfff fl" style="width: 49%;">
+					<div class="size16 public_title">
+						<img src="../../images/approve_details/job_info.png">工作信息
+					</div>
+					<div class="work_message pdlr20">
+						<ul>
+							<li>
+								<p class="f333" id="js-companyName">-----</p>
+								<span>自填公司</span>
+							</li>
+							<li>
+								<p class="f31B8F7" id="js-companyIndustry">-----</p>
+								<span>从事行业</span>
+							</li>
+							<li>
+								<p class="fgreen" id="js-workingYear">-----年</p>
+								<span>推算工作年限</span>
+							</li>
+							<li>
+								<p class="ff93">暂无数据</p>
+								<span>预测薪资</span>
+							</li>
+						</ul>
+					</div>
+				</div>
+				<div class="bfff fr" style="width: 49%; height: 100%;">
+					<div class="size16 public_title">
+						<img src="../../images/approve_details/data_report.png">
+						数据报表列表
+						<p>
+							<a href="javascript:;" id="js-data-report-pre">&lt;</a>
+							<span id="js-data-report-page-show">1/1</span>
+							<a href="javascript:;" id="js-data-report-next">&gt;</a>
+						</p>
+					</div>
+					<div class="pdlr20 dataList_li">
+						<ul id="js-data-report" data-current-page-no="1">
+							<li>
+								<a href="javascript:;" style="display: flex;" id="js-credit_risk_rating">
+									<img src="../../images/approve_details/credit_risk_rating.png" class="dataList_icon"/>
+									<div>
+										信用风险评分报告
+										<img src="../../images/approve_details/right_icon.png" alt="right icon" />
+									</div>
+								</a>
+							</li>
+							
+							<li>
+								<a href="javascript:;" style="display: flex;" id="js-data-report-91">
+									<img src="../../images/approve_details/data_91.png" class="dataList_icon"/>
+									<div>
+										91征信报告
+										<img src="../../images/approve_details/right_icon.png" alt="right icon" />
+									</div>
+								</a>
+							</li>
+							<li>
+								<a href="javascript:;" style="display: flex;" id="js-data-operators">
+									<img src="../../images/approve_details/data_operators.png" class="dataList_icon"/>
+									<div>
+										运营商报告
+										<img src="../../images/approve_details/right_icon.png" alt="right icon" />
+									</div>
+								</a>
+							</li>
+							<li>
+								<a href="javascript:;" style="display: flex;" id="js-data-shanghai-credit">
+									<img src="../../images/approve_details/data_shanghai_zixin.png" class="dataList_icon"/>
+									<div>
+										上海资信
+										<img src="../../images/approve_details/right_icon.png" alt="right icon" />
+									</div>
+								</a>
+							</li>
+							<li>
+								<a href="javascript:;" style="display: flex;" id="js-data-tong-dun">
+									<img src="../../images/approve_details/data_tongdun.png" class="dataList_icon"/>
+									<div>
+										同盾报告
+										<img src="../../images/approve_details/right_icon.png" alt="right icon" />
+									</div>
+								</a>
+							</li>
+							<li>
+								<a href="javascript:;" style="display: flex;" id="js-data-yi-ji-fu">
+									<img src="../../images/approve_details/data_yi_ji_fu.png" class="dataList_icon"/>
+									<div>
+										易极付报告
+										<img src="../../images/approve_details/right_icon.png" alt="right icon" />
+									</div>
+								</a>
+							</li>
+							<li>
+								<a href="javascript:;" style="display: flex;" id="js-data-call-record">
+									<img src="../../images/approve_details/data_tel_records.png" class="dataList_icon"/>
+									<div>
+										通话记录
+										<img src="../../images/approve_details/right_icon.png" alt="right icon" />
+									</div>
+								</a>
+							</li>
+							<li>
+								<a href="javascript:;" style="display: flex;" id="js-data-address-book">
+									<img src="../../images/approve_details/data_linkman.png" class="dataList_icon"/>
+									<div>
+										通讯录
+										<img src="../../images/approve_details/right_icon.png" alt="right icon" />
+									</div>
+								</a>
+							</li>
+						</ul>
+					</div>
+				</div>
+				<div class="clear"></div>
+			</div>
+			<div class="mgt20 mgb20">
+				<div class="bfff fl" style="width: 49%;">
+					<div class="size16 public_title">
+						<img src="../../images/approve_details/sys_audit.png">处理结果
+					</div>
+					<div id="js-echarts" class="work_message pdlr20" style="height: 450px; padding-top: 10px;">
+					</div>
+				</div>
+				<div class="bfff fr" style="width: 49%;">
+					<div class="size16 public_title">
+						<img src="../../images/approve_details/manual_check.png">人工审核
+					</div>
+					<div class="pdlr20 basic_table">
+						<form class="layui-form">
+							<div class="layui-form-item">
+								<label class="layui-form-label">审核结果</label>
+								<div class="layui-input-block" id="js-auditStatus-text">
+									<input name="auditStatus" value="2" title="通过" type="radio" lay-filter="lay-filter-auditStatus"/>
+									<input name="auditStatus" value="3" title="拒绝" type="radio" lay-filter="lay-filter-auditStatus"/>
+								</div>
+							</div>
+
+							<div class="layui-form-item">
+								<label class="layui-form-label">人工授信额度</label>
+								<div class="layui-input-block">
+									<input type="text" id="js-rgCreditMoney" name="title" lay-verify="title" autocomplete="off" placeholder="请输入标题" class="layui-input">
+								</div>
+							</div>
+
+							<div class="layui-form-item">
+								<label class="layui-form-label">拒绝原因</label>
+								<div class="layui-input-block">
+									<a id="js-btn-refuse-reason" href="javascript:;" style="width: 150px; height: 30px; line-height: 32px; border-radius: 50px; border: 1px solid #31B8F7; display: block; text-align: center; color: #31B8F7;">+&nbsp;&nbsp;&nbsp;拒绝原因</a>
+								</div>
+							</div>
+
+							<div class="layui-form-item">
+								<label class="layui-form-label">已拒绝原因</label>
+								<div class="layui-input-block">
+									<input id="js-refuse-name" readonly="readonly" type="text" name="title" lay-verify="title" autocomplete="off" placeholder="请输入标题" class="layui-input"/>
+									<input id="js-hidden-refuse-code" type="hidden" name="title" />
+								</div>
+							</div>
+
+							<div class="layui-form-item layui-form-text">
+								<label class="layui-form-label">备注</label>
+								<div class="layui-input-block">
+									<textarea id="js-rgAuditingRemark" placeholder="请输入内容" class="layui-textarea"></textarea>
+								</div>
+							</div>
+
+							<div class="layui-form-item" id="js-btn-option" style="display: none;">
+								<div class="layui-input-block">
+									<a id="js-submit" class="layui-btn" lay-submit="" lay-filter="demo1">提交</a>
+									<a id="js-sendMessage" class="layui-btn" lay-submit="" lay-filter="demo1">短信提醒</a>
+									<a id="js-add-blacklist" class="layui-btn" lay-submit="" lay-filter="demo1">加入黑名单</a>
+									<a id="js-return-case-pool" class="layui-btn" lay-filter="demo1">退回案件池</a>
+								</div>
+							</div>
+						</form>
+					</div>
+				</div>
+				<div class="clear"></div>
+			</div>
+		</div>
+	</body>
+</html>
+

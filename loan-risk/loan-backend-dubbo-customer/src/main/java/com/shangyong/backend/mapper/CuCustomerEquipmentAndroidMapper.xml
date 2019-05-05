@@ -1,0 +1,337 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.shangyong.backend.dao.CuCustomerEquipmentAndroidDao">
+
+	<resultMap type="com.shangyong.backend.entity.CuCustomerEquipmentAndroid" id="cuCustomerEquipmentAndroidMap">
+		<id property="equipmentId" column="equipment_id" javaType="java.lang.String"></id>
+		<result property="customerId" column="customer_id" javaType="java.lang.String"></result>
+		<result property="appName" column="app_name" javaType="java.lang.Integer"></result>
+		<result property="baseStationInfo" column="base_station_info" javaType="java.lang.String"></result>
+		<result property="sumRamStorage" column="sum_ram_storage" javaType="java.lang.String"></result>
+		<result property="availableRamStorage" column="available_ram_storage" javaType="java.lang.String"></result>
+		<result property="sumRomStorage" column="sum_rom_storage" javaType="java.lang.String"></result>
+		<result property="availableRomStorage" column="available_rom_storage" javaType="java.lang.String"></result>
+		<result property="gateway" column="gateway" javaType="java.lang.String"></result>
+		<result property="host" column="host" javaType="java.lang.String"></result>
+		<result property="imei" column="imei" javaType="java.lang.String"></result>
+		<result property="display" column="display" javaType="java.lang.String"></result>
+		<result property="sessionId" column="session_id" javaType="java.lang.String"></result>
+		<result property="roName" column="ro_name" javaType="java.lang.String"></result>
+		<result property="cpuBogoMips" column="cpu_bogo_mips" javaType="java.lang.String"></result>
+		<result property="roDevice" column="ro_device" javaType="java.lang.String"></result>
+		<result property="deviceId" column="device_id" javaType="java.lang.String"></result>
+		<result property="brand" column="brand" javaType="java.lang.String"></result>
+		<result property="carrier" column="carrier" javaType="java.lang.String"></result>
+		<result property="gprsIp" column="gprs_ip" javaType="java.lang.String"></result>
+		<result property="deviceName" column="device_name" javaType="java.lang.String"></result>
+		<result property="hardware" column="hardware" javaType="java.lang.String"></result>
+		<result property="model" column="model" javaType="java.lang.String"></result>
+		<result property="product" column="product" javaType="java.lang.String"></result>
+		<result property="mcc" column="mcc" javaType="java.lang.String"></result>
+		<result property="mnc" column="mnc" javaType="java.lang.String"></result>
+		<result property="tags" column="tags" javaType="java.lang.String"></result>
+		<result property="wifiMac" column="wifi_mac" javaType="java.lang.String"></result>
+		<result property="tdid" column="tdid" javaType="java.lang.String"></result>
+		<result property="roModel" column="ro_model" javaType="java.lang.String"></result>
+		<result property="wifiIp" column="wifi_ip" javaType="java.lang.String"></result>
+		<result property="phoneNum" column="phone_num" javaType="java.lang.String"></result>
+		<result property="language" column="language" javaType="java.lang.String"></result>
+		<result property="isRoot" column="is_root" javaType="java.lang.Boolean"></result>
+		<result property="udid" column="udid" javaType="java.lang.String"></result>
+		<result property="dnsAddress" column="dns_address" javaType="java.lang.String"></result>
+		<result property="timeZone" column="time_zone" javaType="java.lang.String"></result>
+		<result property="realIp" column="real_ip" javaType="java.lang.String"></result>
+		<result property="ipPosition" column="ip_position" javaType="java.lang.String"></result>
+		<result property="vpnAddress" column="vpn_address" javaType="java.lang.String"></result>
+		<result property="bootTime" column="boot_time" javaType="java.lang.String"></result>
+		<result property="proxyAdressPort" column="proxy_adress_port" javaType="java.lang.String"></result>
+		<result property="sdkEdition" column="sdk_edition" javaType="java.lang.String"></result>
+		<result property="fmEdition" column="fm_edition" javaType="java.lang.String"></result>
+		<result property="electricity" column="electricity" javaType="java.lang.String"></result>
+		<result property="musicHash" column="music_hash" javaType="java.lang.String"></result>
+		<result property="networkProviderCode" column="network_provider_code" javaType="java.lang.String"></result>
+		<result property="isoCountryCode" column="iso_country_code" javaType="java.lang.String"></result>
+		<result property="firmEdition" column="firm_edition" javaType="java.lang.String"></result>
+		<result property="cpuModel" column="cpu_model" javaType="java.lang.String"></result>
+		<result property="cpuSerialNum" column="cpu_serial_num" javaType="java.lang.String"></result>
+		<result property="simSerialNum" column="sim_serial_num" javaType="java.lang.String"></result>
+		<result property="cpuHardware" column="cpu_hardware" javaType="java.lang.String"></result>
+		<result property="phoneModel" column="phone_model" javaType="java.lang.String"></result>
+		<result property="bluetoothMac" column="bluetooth_mac" javaType="java.lang.String"></result>
+		<result property="voiceMailboxNum" column="voice_mailbox_num" javaType="java.lang.String"></result>
+		<result property="deviceParam" column="device_param" javaType="java.lang.String"></result>
+		<result property="batteryStatus" column="battery_status" javaType="java.lang.String"></result>
+		<result property="equipmentSerialNum" column="equipment_serial_num" javaType="java.lang.String"></result>
+		<result property="basebandEdition" column="baseband_edition" javaType="java.lang.String"></result>
+		<result property="browserUa" column="browser_ua" javaType="java.lang.String"></result>
+		<result property="electricityAvailable" column="electricity_available" javaType="java.lang.Boolean"></result>
+		<result property="moveCountryCode" column="move_country_code" javaType="java.lang.String"></result>
+		<result property="moveNetworkCode" column="move_network_code" javaType="java.lang.String"></result>
+		<result property="bootReachCurrent" column="boot_reach_current" javaType="java.lang.Integer"></result>
+		<result property="bootNoDormancy" column="boot_no_dormancy" javaType="java.lang.Integer"></result>
+		<result property="screenLong" column="screen_long" javaType="java.lang.Integer"></result>
+		<result property="screenWide" column="screen_wide" javaType="java.lang.Integer"></result>
+		<result property="createTime" column="create_time" javaType="java.lang.String"></result>
+		<result property="modifyTime" column="modify_time" javaType="java.lang.String"></result>
+	</resultMap>
+
+	<!-- 通用查询结果列-->
+	<sql id="Base_Column_List">
+equipment_id,	customer_id,	app_name,	base_station_info,	sum_ram_storage,	available_ram_storage,	sum_rom_storage,	available_rom_storage,	gateway,	host,	imei,	display,	session_id,	ro_name,	cpu_bogo_mips,	ro_device,	device_id,	brand,	carrier,	gprs_ip,	device_name,	hardware,	model,	product,	mcc,	mnc,	tags,	wifi_mac,	tdid,	ro_model,	wifi_ip,	phone_num,	language,	is_root,	udid,	dns_address,	time_zone,	real_ip,	ip_position,	vpn_address,	boot_time,	proxy_adress_port,	sdk_edition,	fm_edition,	electricity,	music_hash,	network_provider_code,	iso_country_code,	firm_edition,	cpu_model,	cpu_serial_num,	sim_serial_num,	cpu_hardware,	phone_model,	bluetooth_mac,	voice_mailbox_num,	device_param,	battery_status,	equipment_serial_num,	baseband_edition,	browser_ua,	electricity_available,	move_country_code,	move_network_code,	boot_reach_current,	boot_no_dormancy,	screen_long,	screen_wide,	create_time,	modify_time
+	</sql>
+
+	<select id="findCuCustomerEquipmentAndroid" resultMap="cuCustomerEquipmentAndroidMap" parameterType="com.shangyong.backend.entity.CuCustomerEquipmentAndroid">
+		 SELECT
+		 <include refid="Base_Column_List" />
+		 FROM cu_customer_equipment_android
+		 WHERE app_name = #{appName} and customer_id = #{customerId} and device_id = #{deviceId}
+	</select>
+
+	<!-- 查询（根据主键ID查询） -->
+	<select id="getEntityById" resultMap="cuCustomerEquipmentAndroidMap" parameterType="java.lang.String">
+		 SELECT
+		 <include refid="Base_Column_List" />
+		 FROM cu_customer_equipment_android
+		 WHERE equipment_id = #{equipmentId}
+	</select>
+
+	<!-- 查询（根据主键ID查询） -->
+	<select id="findAll" resultMap="cuCustomerEquipmentAndroidMap" parameterType="java.lang.String">
+		 SELECT
+		 <include refid="Base_Column_List" />
+		 FROM cu_customer_equipment_android
+		 WHERE equipment_id = #{equipmentId}
+	</select>
+
+	<!--删除：根据主键ID删除-->
+	<delete id="deleteEntity" parameterType="java.lang.String">
+		 DELETE FROM cu_customer_equipment_android
+		 WHERE equipment_id = #{equipmentId}
+	</delete>
+
+	<!-- 添加 -->
+	<insert id="saveEntity" parameterType="com.shangyong.backend.entity.CuCustomerEquipmentAndroid">
+		 INSERT INTO cu_customer_equipment_android
+ 		(equipment_id,customer_id,app_name,base_station_info,sum_ram_storage,available_ram_storage,sum_rom_storage,available_rom_storage,gateway,host,imei,display,session_id,ro_name,cpu_bogo_mips,ro_device,device_id,brand,carrier,gprs_ip,device_name,hardware,model,product,mcc,mnc,tags,wifi_mac,tdid,ro_model,wifi_ip,phone_num,language,is_root,udid,dns_address,time_zone,real_ip,ip_position,vpn_address,boot_time,proxy_adress_port,sdk_edition,fm_edition,electricity,music_hash,network_provider_code,iso_country_code,firm_edition,cpu_model,cpu_serial_num,sim_serial_num,cpu_hardware,phone_model,bluetooth_mac,voice_mailbox_num,device_param,battery_status,equipment_serial_num,baseband_edition,browser_ua,electricity_available,move_country_code,move_network_code,boot_reach_current,boot_no_dormancy,screen_long,screen_wide,create_time,modify_time) 
+		 VALUES 
+ 		(#{equipmentId},#{customerId},#{appName},#{baseStationInfo},#{sumRamStorage},#{availableRamStorage},#{sumRomStorage},#{availableRomStorage},#{gateway},#{host},#{imei},#{display},#{sessionId},#{roName},#{cpuBogoMips},#{roDevice},#{deviceId},#{brand},#{carrier},#{gprsIp},#{deviceName},#{hardware},#{model},#{product},#{mcc},#{mnc},#{tags},#{wifiMac},#{tdid},#{roModel},#{wifiIp},#{phoneNum},#{language},#{isRoot},#{udid},#{dnsAddress},#{timeZone},#{realIp},#{ipPosition},#{vpnAddress},#{bootTime},#{proxyAdressPort},#{sdkEdition},#{fmEdition},#{electricity},#{musicHash},#{networkProviderCode},#{isoCountryCode},#{firmEdition},#{cpuModel},#{cpuSerialNum},#{simSerialNum},#{cpuHardware},#{phoneModel},#{bluetoothMac},#{voiceMailboxNum},#{deviceParam},#{batteryStatus},#{equipmentSerialNum},#{basebandEdition},#{browserUa},#{electricityAvailable},#{moveCountryCode},#{moveNetworkCode},#{bootReachCurrent},#{bootNoDormancy},#{screenLong},#{screenWide},now(),#{modifyTime})
+	</insert>
+
+	<!-- 修 改-->
+	<update id="updateEntity" parameterType="com.shangyong.backend.entity.CuCustomerEquipmentAndroid">
+		 UPDATE cu_customer_equipment_android
+ 		 <set> 
+			<if test="customerId != null">
+				 customer_id = #{customerId},
+			</if>
+			<if test="appName != null">
+				 app_name = #{appName},
+			</if>
+			<if test="baseStationInfo != null">
+				 base_station_info = #{baseStationInfo},
+			</if>
+			<if test="sumRamStorage != null">
+				 sum_ram_storage = #{sumRamStorage},
+			</if>
+			<if test="availableRamStorage != null">
+				 available_ram_storage = #{availableRamStorage},
+			</if>
+			<if test="sumRomStorage != null">
+				 sum_rom_storage = #{sumRomStorage},
+			</if>
+			<if test="availableRomStorage != null">
+				 available_rom_storage = #{availableRomStorage},
+			</if>
+			<if test="gateway != null">
+				 gateway = #{gateway},
+			</if>
+			<if test="host != null">
+				 host = #{host},
+			</if>
+			<if test="imei != null">
+				 imei = #{imei},
+			</if>
+			<if test="display != null">
+				 display = #{display},
+			</if>
+			<if test="sessionId != null">
+				 session_id = #{sessionId},
+			</if>
+			<if test="roName != null">
+				 ro_name = #{roName},
+			</if>
+			<if test="cpuBogoMips != null">
+				 cpu_bogo_mips = #{cpuBogoMips},
+			</if>
+			<if test="roDevice != null">
+				 ro_device = #{roDevice},
+			</if>
+			<if test="deviceId != null">
+				 device_id = #{deviceId},
+			</if>
+			<if test="brand != null">
+				 brand = #{brand},
+			</if>
+			<if test="carrier != null">
+				 carrier = #{carrier},
+			</if>
+			<if test="gprsIp != null">
+				 gprs_ip = #{gprsIp},
+			</if>
+			<if test="deviceName != null">
+				 device_name = #{deviceName},
+			</if>
+			<if test="hardware != null">
+				 hardware = #{hardware},
+			</if>
+			<if test="model != null">
+				 model = #{model},
+			</if>
+			<if test="product != null">
+				 product = #{product},
+			</if>
+			<if test="mcc != null">
+				 mcc = #{mcc},
+			</if>
+			<if test="mnc != null">
+				 mnc = #{mnc},
+			</if>
+			<if test="tags != null">
+				 tags = #{tags},
+			</if>
+			<if test="wifiMac != null">
+				 wifi_mac = #{wifiMac},
+			</if>
+			<if test="tdid != null">
+				 tdid = #{tdid},
+			</if>
+			<if test="roModel != null">
+				 ro_model = #{roModel},
+			</if>
+			<if test="wifiIp != null">
+				 wifi_ip = #{wifiIp},
+			</if>
+			<if test="phoneNum != null">
+				 phone_num = #{phoneNum},
+			</if>
+			<if test="language != null">
+				 language = #{language},
+			</if>
+			<if test="isRoot != null">
+				 is_root = #{isRoot},
+			</if>
+			<if test="udid != null">
+				 udid = #{udid},
+			</if>
+			<if test="dnsAddress != null">
+				 dns_address = #{dnsAddress},
+			</if>
+			<if test="timeZone != null">
+				 time_zone = #{timeZone},
+			</if>
+			<if test="realIp != null">
+				 real_ip = #{realIp},
+			</if>
+			<if test="ipPosition != null">
+				 ip_position = #{ipPosition},
+			</if>
+			<if test="vpnAddress != null">
+				 vpn_address = #{vpnAddress},
+			</if>
+			<if test="bootTime != null">
+				 boot_time = #{bootTime},
+			</if>
+			<if test="proxyAdressPort != null">
+				 proxy_adress_port = #{proxyAdressPort},
+			</if>
+			<if test="sdkEdition != null">
+				 sdk_edition = #{sdkEdition},
+			</if>
+			<if test="fmEdition != null">
+				 fm_edition = #{fmEdition},
+			</if>
+			<if test="electricity != null">
+				 electricity = #{electricity},
+			</if>
+			<if test="musicHash != null">
+				 music_hash = #{musicHash},
+			</if>
+			<if test="networkProviderCode != null">
+				 network_provider_code = #{networkProviderCode},
+			</if>
+			<if test="isoCountryCode != null">
+				 iso_country_code = #{isoCountryCode},
+			</if>
+			<if test="firmEdition != null">
+				 firm_edition = #{firmEdition},
+			</if>
+			<if test="cpuModel != null">
+				 cpu_model = #{cpuModel},
+			</if>
+			<if test="cpuSerialNum != null">
+				 cpu_serial_num = #{cpuSerialNum},
+			</if>
+			<if test="simSerialNum != null">
+				 sim_serial_num = #{simSerialNum},
+			</if>
+			<if test="cpuHardware != null">
+				 cpu_hardware = #{cpuHardware},
+			</if>
+			<if test="phoneModel != null">
+				 phone_model = #{phoneModel},
+			</if>
+			<if test="bluetoothMac != null">
+				 bluetooth_mac = #{bluetoothMac},
+			</if>
+			<if test="voiceMailboxNum != null">
+				 voice_mailbox_num = #{voiceMailboxNum},
+			</if>
+			<if test="deviceParam != null">
+				 device_param = #{deviceParam},
+			</if>
+			<if test="batteryStatus != null">
+				 battery_status = #{batteryStatus},
+			</if>
+			<if test="equipmentSerialNum != null">
+				 equipment_serial_num = #{equipmentSerialNum},
+			</if>
+			<if test="basebandEdition != null">
+				 baseband_edition = #{basebandEdition},
+			</if>
+			<if test="browserUa != null">
+				 browser_ua = #{browserUa},
+			</if>
+			<if test="electricityAvailable != null">
+				 electricity_available = #{electricityAvailable},
+			</if>
+			<if test="moveCountryCode != null">
+				 move_country_code = #{moveCountryCode},
+			</if>
+			<if test="moveNetworkCode != null">
+				 move_network_code = #{moveNetworkCode},
+			</if>
+			<if test="bootReachCurrent != null">
+				 boot_reach_current = #{bootReachCurrent},
+			</if>
+			<if test="bootNoDormancy != null">
+				 boot_no_dormancy = #{bootNoDormancy},
+			</if>
+			<if test="screenLong != null">
+				 screen_long = #{screenLong},
+			</if>
+			<if test="screenWide != null">
+				 screen_wide = #{screenWide},
+			</if>
+			<if test="createTime != null">
+				 create_time = #{createTime},
+			</if>
+			<if test="modifyTime != null">
+				 modify_time = #{modifyTime},
+			</if>
+
+ 		 </set>
+		 WHERE equipment_id = #{equipmentId}
+	</update>
+
+</mapper>

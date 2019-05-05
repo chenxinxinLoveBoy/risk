@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+<meta charset="UTF-8">
+<title>宜信报告信息</title>
+<link rel="stylesheet" href="../../plugins/layui/css/layui.css"
+	media="all" />
+<link rel="stylesheet" href="../../css/global.css" media="all">
+<link rel="stylesheet"
+	href="../../plugins/font-awesome/css/font-awesome.min.css">
+<!-- <link rel="stylesheet" href="../../css/table.css" /> -->
+</head>
+<body>
+	<div class="admin-main">
+		<legend style="margin-left: 44.5%;">宜信查询</legend>
+		<table class="layui-table">
+			<thead>
+				<tr>
+					<th>查询申请单</th>
+					<th>流水号</th>
+					<th>致诚信用分</th>
+					<th>违约概率</th>
+					<th>其他机构查询次数</th>
+					<th>其他查询机构数</th>
+					<th>本次机构查询次数</th>
+					<th>创建时间</th>
+					<th>修改时间</th>
+					<th>备注信息</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<td id="buApplicationId_Data" align="center"></td>
+					<td id="flowId"></td>
+					<td id="zcCreditScore"></td>
+					<td id="contractBreakRate"></td>
+					<td id="timesByOtherOrg"></td>
+					<td id="otherOrgCount"></td>
+					<td id="timesByCurrentOrg"></td>
+					<td id="createTime"></td>
+					<td id="modifyTime"></td>
+					<td id="remark"></td>
+				</tr>
+			</tbody>
+		</table>
+		<hr/>
+		<legend style="margin-left: 44.5%;">宜信借款记录</legend>
+		<br/>
+		<!-- 宜信借款记录表 -->
+		<fieldset class="layui-elem-field"> 
+				<div class="layui-field-box layui-form">
+					<table class="layui-table admin-table">
+						<thead>
+							<tr> 
+								<th>提供查询的机构代码</th>
+								<th>被查询人姓名</th>
+								<th>被查询人身份证号</th>
+								<th>借款时间</th>
+								<th>借款期数</th>
+								<th>借款金额</th>
+								<th>还款状态</th>
+								<th>借款类型</th>
+								<th>逾期金额</th>
+								<th>逾期情况</th>
+								<th>历史逾期总次数</th>
+								<th>创建时间</th>
+								<th>备注信息</th>
+							</tr>
+						</thead>
+						<tbody id="content">
+						</tbody>
+					</table>
+					<label>共<font color='red' id="count_page_number"></font>条记录</label>
+					<div id="paged" class="page" style="display:inline-block;">
+					</div>
+				</div>
+			</fieldset> 
+		<hr/>
+		<legend style="margin-left: 44.5%;">宜信被查询历史</legend>
+		<iframe id="history"  name="toppage" width="100%" height="580px"  marginwidth=0 marginheight=0 frameborder="no" border="0"  src="" ></iframe>
+		<hr/> 
+		<legend style="margin-left: 44.5%;">宜信风险项记录</legend>
+		<hr/> 
+		<iframe class="layui-elem-field" id="risk" name="toppage" width="100%" height="600px" marginwidth=0 marginheight=0 frameborder="no" border="0"  src="" ></iframe>
+	<!-- js -->
+	<script src="../../jqery/jquery.js"></script>
+	<script src="../../../commons/base.js"></script>
+	<script type="text/javascript" src="../../plugins/layui/layui.js"></script>
+	<script type="text/javascript" src="../../js/customerManager/yxReport.js"></script>
+	
+	<!--模板-->
+	<script type="text/html" id="tpl_history">
+			{{# layui.each(d.list, function(index, item){ 
+			if(item==null||item=='undefined') return;
+			var buApplicationId = item.buApplicationId; 
+			var orgName = item.orgName; 
+			var time = item.time.substring(0,19); 
+			var orgType = item.orgType; 
+			var queryReason = item.queryReason; 
+			var createTime = item.createTime.substring(0,19);
+			var remark = item.remark; 
+ 			}}	
+			<tr>
+				<td>{{ buApplicationId }}</td>
+				<td>{{ orgName }}</td>
+				<td>{{ time }}</td> 
+				<td>{{ orgType }}</td> 
+				<td>{{ queryReason }}</td>
+				<td>{{ createTime }}</td>
+				<td>{{ remark }}</td>
+			</tr>
+			{{# }); }}
+		</script>
+	
+	
+	<!--模板-->
+	<script type="text/html" id="tpl">
+			{{# layui.each(d.list, function(index, item){
+			if(item==null||item=='undefined') return; 
+			var orgName = item.orgName; 
+			var name = item.name; 
+			var certNo = item.certNo; 
+			var loanDate = item.loanDate; 
+			var periods = item.periods; 
+			var loanAmount = item.loanAmount;
+			var loanStatucCode = item.loanStatucCode; 
+			var loanTypeCode = item.loanTypeCode; 
+			var overdueAmount = item.overdueAmount; 
+			var overdueStatus = item.overdueStatus; 
+			var overdueTotal = item.overdueTotal; 
+			var remark = item.remark; 
+			var time = item.createTime;  
+			var createTime = time.substring(0,19); 
+			if(loanStatucCode=='301'){
+				loanStatucCode='正常';
+			}else if(loanStatucCode=='302'){
+				loanStatucCode='逾期';
+			}else if(loanStatucCode=='303'){
+				loanStatucCode='结清';
+			}
+			if(overdueStatus=='m1'){
+				overdueStatus='逾期1期';
+			}else if(overdueStatus=='m2'){
+				overdueStatus='逾期2期';
+			}else if(overdueStatus=='m3'){
+				overdueStatus='逾期3期';
+			}else if(overdueStatus=='m4'){
+				overdueStatus='逾期4期';
+			}else if(overdueStatus=='m5'){
+				overdueStatus='逾期5期';
+			}else if(overdueStatus=='m6'){
+				overdueStatus='逾期6期';
+			}else if(overdueStatus=='m6+'){
+				overdueStatus='逾期6期以上';
+			} 
+}}
+			<tr>
+				<td>{{ orgName }}</td>
+				<td>{{ name }}</td>
+				<td>{{ certNo }}</td> 
+				<td>{{ loanDate }}</td> 
+				<td>{{ periods }}</td>
+				<td>{{ loanAmount }}</td>
+				<td>{{ loanStatucCode }}</td>
+				<td>{{ loanTypeCode }}</td>
+				<td>{{ overdueAmount }}</td>
+				<td>{{ overdueStatus }}</td> 
+				<td>{{ overdueTotal }}</td> 
+				<td>{{ createTime }}</td>
+				<td>{{ remark }}</td>
+			</tr>
+			{{# }); }}
+		</script>
+</body>
+
+</html>

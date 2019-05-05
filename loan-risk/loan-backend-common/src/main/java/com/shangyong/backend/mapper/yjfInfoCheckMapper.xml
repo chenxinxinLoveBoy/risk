@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.shangyong.backend.dao.yjf.YjfInfoCheckDao">
+
+	<resultMap type="com.shangyong.backend.entity.yjf.YjfInfoCheck" id="yjfInfoCheckMap">
+		<id property="yjfInfoId" column="yjf_info_id" javaType="java.lang.String"></id>
+		<result property="buApplicationId" column="bu_application_id" javaType="java.lang.String"></result>
+		<result property="sign" column="sign" javaType="java.lang.String"></result>
+		<result property="protocol" column="protocol" javaType="java.lang.String"></result>
+		<result property="orderNo" column="orderNo" javaType="java.lang.String"></result>
+		<result property="signType" column="signType" javaType="java.lang.String"></result>
+		<result property="service" column="service" javaType="java.lang.String"></result>
+		<result property="resultCode" column="resultCode" javaType="java.lang.String"></result>
+		<result property="partnerId" column="partnerId" javaType="java.lang.String"></result>
+		<result property="resultMessage" column="resultMessage" javaType="java.lang.String"></result>
+		<result property="blackListTypeDesc" column="blackListTypeDesc" javaType="java.lang.String"></result>
+		<result property="blackListType" column="blackListType" javaType="java.lang.String"></result>
+		<result property="success" column="success" javaType="java.lang.String"></result>
+		<result property="userType" column="userType" javaType="java.lang.String"></result>
+		<result property="version" column="version" javaType="java.lang.String"></result>
+		<result property="state" column="state" javaType="java.lang.String"></result>
+		<result property="remark" column="remark" javaType="java.lang.String"></result>
+		<result property="createTime" column="create_time" javaType="java.lang.String"></result>
+		<result property="createMan" column="create_man" javaType="java.lang.String"></result>
+		<result property="modifyTime" column="modify_time" javaType="java.lang.String"></result>
+		<result property="modifyMan" column="modify_man" javaType="java.lang.String"></result>
+	</resultMap>
+
+	<!-- 通用查询结果列-->
+	<sql id="Base_Column_List">
+yjf_info_id,	bu_application_id,	sign,	protocol,	orderNo,	signType,	service,	resultCode,	partnerId,	resultMessage,blackListTypeDesc,blackListType,	success,	userType,	version,	state,	remark,	create_time,	create_man,	modify_time,	modify_man
+	</sql>
+
+	<!-- 查询（根据buApplicationId查询） -->
+	<select id="queryByAId" resultMap="yjfInfoCheckMap" parameterType="java.lang.String">
+		 SELECT
+		 <include refid="Base_Column_List" />
+		 FROM yjf_info_check
+		 WHERE bu_application_id = #{buApplicationId}
+		 LIMIT 1
+	</select>
+	<!-- 查询（根据主键ID查询） -->
+	<select id="getEntityById" resultMap="yjfInfoCheckMap" parameterType="java.lang.String">
+		 SELECT
+		 <include refid="Base_Column_List" />
+		 FROM yjf_info_check
+		 WHERE yjf_info_id = #{yjfInfoId}
+	</select>
+
+	<!-- 查询（根据主键ID查询） -->
+	<select id="findAll" resultMap="yjfInfoCheckMap" parameterType="java.lang.String">
+		 SELECT
+		 <include refid="Base_Column_List" />
+		 FROM yjf_info_check
+		 WHERE yjf_info_id = #{yjfInfoId}
+	</select>
+
+	<!--删除：根据主键ID删除-->
+	<delete id="deleteEntity" parameterType="java.lang.String">
+		 DELETE FROM yjf_info_check
+		 WHERE yjf_info_id = #{yjfInfoId}
+	</delete>
+
+	<!-- 添加 -->
+	<insert id="saveEntity" parameterType="com.shangyong.backend.entity.yjf.YjfInfoCheck">
+		 INSERT INTO yjf_info_check
+ 		(yjf_info_id,bu_application_id,sign,protocol,orderNo,signType,service,resultCode,partnerId,resultMessage,blackListTypeDesc,blackListType,success,userType,version,state,remark,create_time,create_man,modify_time,modify_man) 
+		 VALUES 
+ 		(#{yjfInfoId},#{buApplicationId},#{sign},#{protocol},#{orderNo},#{signType},#{service},#{resultCode},#{partnerId},#{resultMessage},#{blackListTypeDesc},#{blackListType},#{success},#{userType},#{version},#{state},#{remark},#{createTime},#{createMan},#{modifyTime},#{modifyMan}) 
+	</insert>
+
+	<!-- 修 改-->
+	<update id="updateEntity" parameterType="com.shangyong.backend.entity.yjf.YjfInfoCheck">
+		 UPDATE yjf_info_check
+ 		 <set> 
+			<if test="buApplicationId != null">
+				 bu_application_id = #{buApplicationId},
+			</if>
+			<if test="sign != null">
+				 sign = #{sign},
+			</if>
+			<if test="protocol != null">
+				 protocol = #{protocol},
+			</if>
+			<if test="orderNo != null">
+				 orderNo = #{orderNo},
+			</if>
+			<if test="signType != null">
+				 signType = #{signType},
+			</if>
+			<if test="service != null">
+				 service = #{service},
+			</if>
+			<if test="resultCode != null">
+				 resultCode = #{resultCode},
+			</if>
+			<if test="partnerId != null">
+				 partnerId = #{partnerId},
+			</if>
+			<if test="resultMessage != null">
+				 resultMessage = #{resultMessage},
+			</if>
+			<if test="success != null">
+				 success = #{success},
+			</if>
+			<if test="userType != null">
+				 userType = #{userType},
+			</if>
+			<if test="version != null">
+				 version = #{version},
+			</if>
+			<if test="state != null">
+				 state = #{state},
+			</if>
+			<if test="remark != null">
+				 remark = #{remark},
+			</if>
+			<if test="createTime != null">
+				 create_time = #{createTime},
+			</if>
+			<if test="createMan != null">
+				 create_man = #{createMan},
+			</if>
+			<if test="modifyTime != null">
+				 modify_time = #{modifyTime},
+			</if>
+			<if test="modifyMan != null">
+				 modify_man = #{modifyMan},
+			</if>
+
+ 		 </set>
+		 WHERE yjf_info_id = #{yjfInfoId}
+	</update>
+
+</mapper>

@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.shangyong.backend.dao.CuAppInfoDao"> 
+	<resultMap type="com.shangyong.backend.entity.CuAppInfo" id="cuAppInfoMap">
+		<id property="appInfoId" column="app_info_id" javaType="java.lang.String"></id>
+		<result property="appName" column="app_name" javaType="java.lang.Integer"></result>
+		<result property="customerId" column="customer_id" javaType="java.lang.String"></result>
+		<result property="launcherName" column="launcher_name" javaType="java.lang.String"></result>
+		<result property="packageName" column="package_name" javaType="java.lang.String"></result>
+		<result property="versionName" column="version_name" javaType="java.lang.String"></result>
+		<result property="versionCode" column="version_code" javaType="java.lang.String"></result>
+		<result property="isSystemApp" column="is_system_app" javaType="java.lang.Integer"></result>
+		<result property="lastUpdateTime" column="lastUpdate_time" javaType="java.lang.String"></result>
+		<result property="createTime" column="create_time" javaType="java.lang.String"></result>
+		<result property="modifyTime" column="modify_time" javaType="java.lang.String"></result>
+	</resultMap>
+
+	<!-- 通用查询结果列-->
+	<sql id="Base_Column_List">
+	app_info_id,	app_name,	customer_id,	launcher_name,	package_name,	version_name,	version_code,	is_system_app,	lastUpdate_time,	create_time,	modify_time
+	</sql>
+
+	<!-- 查询（根据主键ID查询） -->
+	<select id="getEntityById" resultMap="cuAppInfoMap" parameterType="com.shangyong.backend.entity.CuAppInfo">
+		 SELECT
+		 <include refid="Base_Column_List" />
+		 FROM cu_app_info
+		 WHERE customer_id = #{customerId}
+		 AND app_name =#{appName}
+		 order by  create_time desc 
+   		LIMIT #{pageIndex},#{pageSize}
+	</select>
+ 
+ 	<!-- 统计 -->
+  	<select id="listAllCount" resultType="java.lang.Integer">
+  		select 
+  			count(1)
+  		from cu_app_info
+  		WHERE customer_id = #{customerId}
+  		AND app_name =#{appName}
+  	</select>
+ 
+</mapper>

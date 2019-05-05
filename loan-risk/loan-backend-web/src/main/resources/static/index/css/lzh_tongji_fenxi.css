@@ -1,0 +1,198 @@
+.lz_login {
+	width: 100%;
+	height: 100%;
+}
+
+.beg-layout-container .beg-layout-header .beg-layout-logo {
+	width: 200px;
+	height: 60px;
+	text-align: center;
+	line-height: 0px;
+}
+
+.beg-layout-container .beg-layout-header {
+	background-color: #31B8F7;
+	position: fixed;
+	width: 100%;
+	min-width: 800px;
+	border-bottom: 5px solid #31B8F7;
+}
+
+.beg-layout-header .beg-layout-menu .beg-layout-nav .layui-nav-item a {
+	font-family: PingFangSC-Semibold;
+	font-size: 16px;
+	/* color: #0D6289; */
+	letter-spacing: 0;
+	font-weight: bold;
+}
+
+.fa {
+	display: inline-block;
+	font: normal normal normal 14px/1 FontAwesome;
+	font-size: inherit;
+	text-rendering: auto;
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+	margin-right: 5px;
+}
+
+.fa-navicon:before, .fa-reorder:before, .fa-bars:before {
+	background-image: url("images/login/kg_btn.png");
+	background-size: 100% 100%;
+}
+
+.beg-layout-header .beg-layout-panel .beg-layout-nav a {
+	font-family:å¾®è½¯é›…é»‘;
+	font-size: 14px;
+	color: #0D6289;
+	letter-spacing: 0;
+}
+.beg-layout-container .beg-layout-side {
+    background-color: #263545;
+    color: #FFFFFF;
+    top: 60px;
+}
+.menu_icon{
+	width: 100%;
+	height: 100%;
+}
+.beg-layout-container .beg-layout-header .beg-layout-side-toggle {
+    position: absolute;
+    cursor: pointer;
+    z-index: 19940201;
+    left: 185px;
+    color: white;
+    text-align: center;
+    width: 29px;
+    height: 33px;
+    line-height: 30px;
+    top: 25%;
+    background-color:transparent;
+}
+.beg-layout-container .beg-layout-header .beg-layout-side-toggle:hover {
+    background-color:transparent;
+}
+.beg-layout-header .beg-layout-menu .beg-layout-nav .layui-nav-item a:hover {
+    color: #FFFFFF;
+    background-color:transparent;
+}
+.beg-layout-header .beg-layout-menu .beg-layout-nav .layui-this {
+    color: #FFFFFF;
+    background-color:transparent;
+}
+.beg-layout-header .beg-layout-menu .beg-layout-nav .layui-this:after, .beg-layout-header .layui-nav-bar {
+    background-color:transparent;
+}
+.layui-nav-tree .layui-nav-child dd.layui-this, .layui-nav-tree .layui-this, .layui-nav-tree .layui-this>a, .layui-nav-tree .layui-this>a:hover {
+    background-color: #202D3B;
+    color: #fff;
+}
+.layui-tab-brief>.layui-tab-more li.layui-this:after, .layui-tab-brief>.layui-tab-title .layui-this:after {
+    border: none;
+    border-radius: 0;
+    border-bottom: 3px solid #4DC1F8;
+}
+.layui-nav .layui-nav-more {
+    content: '';
+    width: 0;
+    height: 0;
+    border-style: solid dashed dashed;
+    border-color: #393d49 transparent transparent;
+    overflow: hidden;
+    cursor: pointer;
+    transition: all .2s;
+    -webkit-transition: all .2s;
+    position: absolute;
+    top: 28px;
+    right: 3px;
+    border-width: 6px;
+}
+.layui-nav .layui-nav-mored, .layui-nav-itemed .layui-nav-more {
+    top: 22px;
+    border-style: dashed dashed solid;
+    border-color: transparent transparent #393d49;
+}
+.layui-nav {
+	font-family:Î¢ÈíÑÅºÚ;
+    position: relative;
+    background-color:transparent;
+    color: #c2c2c2;
+    border-radius: 2px;
+    font-size: 0;
+    box-sizing: border-box!important;
+}
+.layui-nav-itemed>a, .layui-nav-tree .layui-nav-title a, .layui-nav-tree .layui-nav-title a:hover {
+    background-color: #202D3B!important;
+    color: #fff!important;
+}
+.layui-nav-item span{
+	display: none;
+}
+.beg-layout-container .beg-layout-body {
+    top: 60px;
+    height: auto;
+    background: #F2F2F2;
+}
+body {
+    background: #ffffff;
+    border-radius: 10px;
+}
+.layui-elem-quote {
+    background-color: #ffffff;
+}
+.layui-nav-child dd.layui-this {
+    background-color: #31B8F7;
+    color: #fff;
+}
+.layui-input-block .layui-input{
+    display: block;
+    width:58%;
+    padding-left: 10px;
+}
+.layui-form-item .layui-input-inline {
+    float: left;
+    width: 50%;
+    margin-right: 10px;
+}
+/* .layui-form-label{
+	line-height: 35px;
+}
+*/
+#add{
+	position: absolute;
+    top: 2%;
+}
+#search{
+   border-radius: 3px;
+   width:110px;
+   margin-left: 2%;
+}
+.layui-form-select .layui-input {
+    padding-right: 0px;
+    cursor: pointer;
+    margin-left:0%;
+}
+.layui-form-item {
+    margin-bottom:0px;
+    clear: both;
+}
+.layui-form-select dl dd.layui-this {
+    background-color: #31B8F7;
+    color: #fff;
+}
+.layui-form-label {
+   width: 110px;
+}
+.layui-form{
+   margin-top: 2%;
+}
+.layui-inline {
+    line-height: 20px;
+}
+.layui-field-box{
+	 margin-top: 0%;
+}
+.layui-form-item .layui-inline {
+    margin-bottom: 15px;
+    margin-right: 10px;
+}

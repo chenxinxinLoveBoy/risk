@@ -1,0 +1,164 @@
+﻿<!DOCTYPE html>
+<html>
+
+<head>
+<meta charset="UTF-8">
+<title>平台客户资料</title>
+<link rel="stylesheet" href="../../plugins/layui/css/layui.css"
+	media="all" />
+<link rel="stylesheet" href="../../css/global.css" media="all">
+<link rel="stylesheet"
+	href="../../plugins/font-awesome/css/font-awesome.min.css">
+<link rel="stylesheet" href="../../css/table.css" />
+<link rel="stylesheet" href="../../css/lzh_xy_shenghe.css" media="all" />
+</head>
+
+<body>
+	<div class="admin-main">
+
+		<blockquote class="layui-elem-quote">
+			<!-- 查询条件 -->
+			<form action="" class="layui-form" >
+				<div class="layui-inline">
+			      <label class="layui-form-label" style="width: auto;">平台用户编号：</label>
+			      <div class="layui-input-inline">
+			        <input name="platformCustomerId" lay-verify="platformCustomerId" id="platformCustomerId" autocomplete="off" class="layui-input" >
+			      </div>
+			    </div>
+			    <div class="layui-inline">
+			      <label class="layui-form-label" style="width: auto;">APP应用客户编号：</label>
+			      <div class="layui-input-inline">
+			        <input name="customerId" lay-verify="customerId" id="customerId" autocomplete="off" class="layui-input" >
+			      </div>
+			    </div>
+			    <div class="layui-inline" >
+				  <label class="layui-form-label" style="width: 100px;">app平台</label>
+			      <div class="layui-input-inline" style="width:160px;">
+				      <select name="appName" id = "appName" class="layui-input" lay-search="">
+				        <option value="00">全部</option>
+				        <option value="1">洪澄</option>
+				        <option value="2">速贷</option>
+				      </select>
+			      </div>
+			    </div>
+			    <div class="layui-inline">
+			      <label class="layui-form-label">姓名：</label>
+			      <div class="layui-input-inline">
+			        <input name="name" lay-verify="name" id="name" autocomplete="off" class="layui-input" >
+			      </div>
+			    </div>
+			    <div class="layui-inline">
+			      <label class="layui-form-label">手机号：</label>
+			      <div class="layui-input-inline">
+			        <input name="phoneNum" lay-verify="phoneNum" id="phoneNum" autocomplete="off" class="layui-input" >
+			      </div>
+			    </div>
+			    <br><br>
+			     <div class="layui-inline">
+			      <label class="layui-form-label">身份证号：</label>
+			      <div class="layui-input-inline">
+			        <input name="certCode" lay-verify="certCode" id="certCode" autocomplete="off" class="layui-input" >
+			      </div>
+			    </div>
+			    <div class="layui-inline">
+			      <label class="layui-form-label" style="width: 120px;"> 开始时间：</label>
+			      <div class="layui-input-inline">
+			        <input name="startTime" lay-verify="startTime" id="startTime" autocomplete="off" class="layui-input" >
+			      </div>
+			    </div>
+			    <div class="layui-inline">
+			      <label class="layui-form-label" style="width: auto;">结束时间：</label>
+			      <div class="layui-input-inline">
+			        <input name="endTime" lay-verify=endTime id="endTime" autocomplete="off" class="layui-input" >
+			      </div>
+			    </div>
+					<a href="javascript:;" class="layui-btn layui-btn-small" id="search">
+						<i class="layui-icon">&#xe615;</i> 搜索
+					</a>
+				</form>
+		</blockquote>
+			
+		<fieldset class="layui-elem-field">
+			<br>
+				<a href="#" class="layui-btn layui-btn-small" id="getuserInfo" style="margin-left: 18px" >
+						<i class="layui-icon" aria-hidden="true" >&#xe63c;</i>用户信息详情
+			 	</a>
+			 	<!-- <a href="#" class="layui-btn layui-btn-small" id="phoneList" style="margin-left: 18px" >
+						<i class="layui-icon" aria-hidden="true" >&#xe63c;</i>手机应用列表
+			 	</a>  -->
+			 	<a href="#" class="layui-btn layui-btn-small" id="phoneAddress" style="margin-left: 18px" >
+						<i class="layui-icon" aria-hidden="true" >&#xe63c;</i>通讯录列表
+			 	</a>
+			 	<a href="#" class="layui-btn layui-btn-small" id="callList" style="margin-left: 18px" >
+						<i class="layui-icon" aria-hidden="true" >&#xe63c;</i>通话记录
+			 	</a> 
+			 	<!--
+			 	<a href="#" class="layui-btn layui-btn-small" id="messageList" style="margin-left: 18px" >
+						<i class="layui-icon" aria-hidden="true" >&#xe63c;</i>短信记录
+			 	</a> 
+			 	<a href="#" class="layui-btn layui-btn-small" id="IosEquipmentInfo" style="margin-left: 18px" >
+						<i class="layui-icon" aria-hidden="true" >&#xe63c;</i>IOS设备信息
+			 	</a>
+			 	<a href="#" class="layui-btn layui-btn-small" id="androidEquipmentInfo" style="margin-left: 18px" >
+						<i class="layui-icon" aria-hidden="true" >&#xe63c;</i>安卓设备信息
+			 	</a> -->
+				<br>
+			<legend>数据列表</legend>
+			<div class="layui-field-box layui-form">
+				<table class="layui-table admin-table"  style="word-break: keep-all;overflow:auto;">
+					<thead>
+						<tr>
+						<th style="width: 30px;"><input type="checkbox" lay-filter="allselector" lay-skin="primary" id="check"></th>
+							<th>平台用户编号</th>
+							<th>APP应用客户编号</th>
+							<th>姓名</th>
+							<th>手机号</th>
+							<th>证件号</th>
+							<th>平台名称</th>
+<!-- 							<th>性别</th> -->
+							<th>创建时间</th> 
+						</tr>
+					</thead>
+					<tbody id="content">
+					</tbody>
+				</table>
+			</div>
+		</fieldset>
+		<div class="admin-table-page">
+				<label style="position: absolute;left: 20px;top:11px">共<font color='red' id="count_page_number"></font>条记录</label>
+				<div id="paged" class="page" style="padding-left:120px;">
+				</div>
+		</div>
+	</div> 
+	<!--模板-->
+	<script type="text/html" id="tpl">
+			{{# layui.each(d.list, function(index, item){ }}
+			<tr>
+				<td><input type="checkbox" lay-skin="primary" data-cid="{{ item.customerId }}" data-app="{{ item.appName }}" data-id="{{ item.platformCustomerId }}" data-name="{{ item.name }}"></td> 
+	            <td>{{ item.platformCustomerId }}</td>
+                <td>{{ item.customerId }}</td>
+				<td>{{ item.name }}</td>
+                <td>{{ item.phoneNum }}</td>
+                <td>{{ item.certCode }}</td> 
+                {{# if(item.appName == '1'){ }}
+				<td>洪澄</td>
+				{{# } else if(item.appName == '2')  { }}
+				<td>速贷</td>
+                {{# } else   { }}
+                <td></td>
+				{{# } }} 
+				<td>{{ item.createTime.substring(0, 19)}}</td> 
+			</tr>
+			{{# }); }}
+		</script>
+<!-- <a href="javascript:;" data-id="{{ item.platformCustomerId }}" data-opt="find" class="layui-btn layui-btn-normal layui-btn-mini">用户信息详情</a> -->
+	<!-- js -->
+	<script src="../../jqery/jquery.js"></script>
+	<script src="../../../commons/base.js"></script>
+	<script type="text/javascript" src="../../plugins/layui/layui.js"></script>
+	<script type="text/javascript" src="../../js/customerManager/customerInfoList.js"></script>
+	<!-- 日期控件 -->
+	<script language="javascript" type="text/javascript" src="../../My97DatePicker/WdatePicker.js"></script>
+</body>
+
+</html>

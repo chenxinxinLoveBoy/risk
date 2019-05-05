@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.shangyong.backend.dao.bqsrep.BqsRepServiceInfoServiceDao">
+
+	<resultMap type="com.shangyong.backend.entity.bqsrep.BqsRepServiceInfo" id="bqsRepServiceInfoinfoMap">
+		<id property="bqsServiceInfoId" column="bqs_service_info_id" javaType="java.lang.String"></id>
+		<result property="bqsPetitionerId" column="bqs_petitioner_id" javaType="java.lang.String"></result>
+		<result property="connectCount" column="connect_count" javaType="java.lang.String"></result>
+		<result property="month" column="month" javaType="java.lang.String"></result>
+		<result property="seviceType" column="sevice_type" javaType="java.lang.String"></result>
+		<result property="serviceName" column="service_name" javaType="java.lang.String"></result>
+	</resultMap>
+
+	<!-- 通用查询结果列-->
+	<sql id="Base_Column_List">
+	bqs_service_info_id,	bqs_petitioner_id,	connect_count,	month,	sevice_type,	service_name
+	</sql>
+
+	<!-- 查询（根据主键ID查询） -->
+	<select id="getEntityById" resultMap="bqsRepServiceInfoinfoMap" parameterType="java.lang.String">
+		 SELECT
+		 <include refid="Base_Column_List" />
+		 FROM bqs_rep_service_info
+		 WHERE bqs_service_info_id = #{bqsServiceInfoId}
+	</select>
+
+	<!-- 查询（根据主键ID查询） -->
+	<select id="getAll" resultMap="bqsRepServiceInfoinfoMap" parameterType="java.lang.String">
+		 SELECT
+		 <include refid="Base_Column_List" />
+		 FROM bqs_rep_service_info
+	</select>
+
+	<!--删除：根据主键ID删除-->
+	<delete id="deleteEntity" parameterType="java.lang.String">
+		 DELETE FROM bqs_rep_service_info
+		 WHERE bqs_service_info_id = #{bqsServiceInfoId}
+	</delete>
+
+	<!-- 添加 -->
+	<insert id="saveEntity" parameterType="com.shangyong.backend.entity.bqsrep.BqsRepServiceInfo">
+		 INSERT INTO bqs_rep_service_info
+ 		(bqs_service_info_id,bqs_petitioner_id,connect_count,month,sevice_type,service_name) 
+		 VALUES 
+ 		(#{bqsServiceInfoId},#{bqsPetitionerId},#{connectCount},#{month},#{seviceType},#{serviceName}) 
+	</insert>
+		<!-- 批量插入 -->
+	<insert id="saveAllEntity" parameterType="java.util.List">
+		  INSERT INTO bqs_rep_service_info
+ 		(bqs_service_info_id,bqs_petitioner_id,connect_count,month,sevice_type,service_name) 
+		 VALUES 
+ 	    <foreach collection="list" item="item" index="index" separator="," > 
+ 		(#{item.bqsServiceInfoId},#{item.bqsPetitionerId},#{item.connectCount},#{item.month},#{item.seviceType},#{item.serviceName}) 
+ 		</foreach>
+	</insert>
+
+	<!-- 修 改-->
+	<update id="updateEntity" parameterType="com.shangyong.backend.entity.bqsrep.BqsRepServiceInfo">
+		 UPDATE bqs_rep_service_info
+ 		 <set> 
+			<if test="bqsPetitionerId != null">
+				 bqs_petitioner_id = #{bqsPetitionerId},
+			</if>
+			<if test="connectCount != null">
+				 connect_count = #{connectCount},
+			</if>
+			<if test="month != null">
+				 month = #{month},
+			</if>
+			<if test="seviceType != null">
+				 sevice_type = #{seviceType},
+			</if>
+			<if test="serviceName != null">
+				 service_name = #{serviceName},
+			</if>
+
+ 		 </set>
+		 WHERE bqs_service_info_id = #{bqsServiceInfoId}
+	</update>
+
+</mapper>

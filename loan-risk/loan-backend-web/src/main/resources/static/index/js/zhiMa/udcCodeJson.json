@@ -1,0 +1,528 @@
+{
+    "udcObject": [
+        {
+            "udc_name": "(40000,∞)",
+            "udc_code": "M14"
+        },
+        {
+            "udc_name": "(30000,40000]",
+            "udc_code": "M13"
+        },
+        {
+            "udc_name": "(25000,30000]",
+            "udc_code": "M12"
+        },
+        {
+            "udc_name": "(20000,25000]",
+            "udc_code": "M11"
+        },
+        {
+            "udc_name": "(15000,20000]",
+            "udc_code": "M10"
+        },
+        {
+            "udc_name": "(10000,15000]",
+            "udc_code": "M09"
+        },
+        {
+            "udc_name": "(8000,10000]",
+            "udc_code": "M08"
+        },
+        {
+            "udc_name": "(6000,8000]",
+            "udc_code": "M07"
+        },
+        {
+            "udc_name": "(4000,6000]",
+            "udc_code": "M06"
+        },
+        {
+            "udc_name": "(3000,4000]",
+            "udc_code": "M05"
+        },
+        {
+            "udc_name": "(2000,3000]",
+            "udc_code": "M04"
+        },
+        {
+            "udc_name": "(1000,2000]",
+            "udc_code": "M03"
+        },
+        {
+            "udc_name": "(500,1000]",
+            "udc_code": "M02"
+        },
+        {
+            "udc_name": "(0,500]",
+            "udc_code": "M01"
+        },
+        {
+            "udc_name": "逾期180天以上",
+            "udc_code": "AI003007"
+        },
+        {
+            "udc_name": "逾期151-180天",
+            "udc_code": "AI003006"
+        },
+        {
+            "udc_name": "逾期121-150天",
+            "udc_code": "AI003005"
+        },
+        {
+            "udc_name": "逾期91-120天",
+            "udc_code": "AI003004"
+        },
+        {
+            "udc_name": "逾期61-90天",
+            "udc_code": "AI003003"
+        },
+        {
+            "udc_name": "逾期31-60天",
+            "udc_code": "AI003002"
+        },
+        {
+            "udc_name": "逾期1-30天",
+            "udc_code": "AI003001"
+        },
+        {
+            "udc_name": "保证保险出险（注：一般为保证保险对应的标的债项发生违约，如赊销业务的保证保险，通常为用户不按时支付赊",
+            "udc_code": "AI003"
+        },
+        {
+            "udc_name": "保险行业",
+            "udc_code": "AI"
+        },
+        {
+            "udc_name": "欠费91天以上 因欠费被停机91天及以上，一般被认定为恶意拆机",
+            "udc_code": "AH001004"
+        },
+        {
+            "udc_name": "欠费61-90天 因欠费被停机61-90天",
+            "udc_code": "AH001003"
+        },
+        {
+            "udc_name": "欠费31-60天 因欠费被停机31-60天",
+            "udc_code": "AH001002"
+        },
+        {
+            "udc_name": "欠费1-30天 因欠费被停机1-30天",
+            "udc_code": "AH001001"
+        },
+        {
+            "udc_name": "违约欠费",
+            "udc_code": "AH001"
+        },
+        {
+            "udc_name": "运营商",
+            "udc_code": "AH"
+        },
+        {
+            "udc_name": "失联被强制解约 （因逃租等行为，房东认为与租客失联强制与租客解约等）",
+            "udc_code": "AG005002"
+        },
+        {
+            "udc_name": "违约被清退 因违约行为，比如欠缴房租，继而被房东强制清退 ）",
+            "udc_code": "AG005001"
+        },
+        {
+            "udc_name": "非正常解约",
+            "udc_code": "AG005"
+        },
+        {
+            "udc_name": "擅自转租 （擅自转租整个房屋，或部分房间）",
+            "udc_code": "AG004005"
+        },
+        {
+            "udc_name": "扰民被投诉 （比如制造噪音，被邻居投诉）",
+            "udc_code": "AG004004"
+        },
+        {
+            "udc_name": "屋内非法活动 （比如在房屋内吸毒）",
+            "udc_code": "AG004003"
+        },
+        {
+            "udc_name": "拆改房屋结构 （擅自拆改房屋固定结构，比如墙身等）",
+            "udc_code": "AG004002"
+        },
+        {
+            "udc_name": "改变房屋用途（擅自改变房屋用途，比如民宅改为商用）",
+            "udc_code": "AG004001"
+        },
+        {
+            "udc_name": "租客其它违约",
+            "udc_code": "AG004"
+        },
+        {
+            "udc_name": "租客违约拒赔 （欠缴合同约定的违约金，比如滞纳金、提前解约罚金、财物损毁罚金等）",
+            "udc_code": "AG003001"
+        },
+        {
+            "udc_name": "租客违约拒赔",
+            "udc_code": "AG003"
+        },
+        {
+            "udc_name": "租客杂费逾期 （除房租外，欠缴合同约定应付的款项 ，比如保洁费、水电媒费用等",
+            "udc_code": "AG002001"
+        },
+        {
+            "udc_name": "租客杂费逾期",
+            "udc_code": "AG002"
+        },
+        {
+            "udc_name": "租客房租逾期",
+            "udc_code": "AG001001"
+        },
+        {
+            "udc_name": "租客房租逾期",
+            "udc_code": "AG001"
+        },
+        {
+            "udc_name": "租房行业",
+            "udc_code": "AG"
+        },
+        {
+            "udc_name": "卖家套现（卖家为客户提供套现的服务）",
+            "udc_code": "AF004001"
+        },
+        {
+            "udc_name": "卖家套现",
+            "udc_code": "AF004"
+        },
+        {
+            "udc_name": "涉嫌售假（涉嫌商家销售假货）",
+            "udc_code": "AF003001"
+        },
+        {
+            "udc_name": "涉嫌售假",
+            "udc_code": "AF003"
+        },
+        {
+            "udc_name": "恶意差评（买家对所卖商品进行恶意差评，并以此要求商家给予经济补偿）",
+            "udc_code": "AF002001"
+        },
+        {
+            "udc_name": "恶意差评",
+            "udc_code": "AF002"
+        },
+        {
+            "udc_name": "炒信（一般表现为虚假购买商品，使得商品销量虚高误导普通消费者）",
+            "udc_code": "AF001001"
+        },
+        {
+            "udc_name": "虚假交易",
+            "udc_code": "AF001"
+        },
+        {
+            "udc_name": "电商行业",
+            "udc_code": "AF"
+        },
+        {
+            "udc_name": "逾期180天以上",
+            "udc_code": "AE001009"
+        },
+        {
+            "udc_name": "逾期150-180天",
+            "udc_code": "AE001008"
+        },
+        {
+            "udc_name": "逾期121-150天",
+            "udc_code": "AE001007"
+        },
+        {
+            "udc_name": "逾期91-120天",
+            "udc_code": "AE001006"
+        },
+        {
+            "udc_name": "逾期61-90天",
+            "udc_code": "AE001005"
+        },
+        {
+            "udc_name": "逾期31-60天",
+            "udc_code": "AE001004"
+        },
+        {
+            "udc_name": "逾期15-30天",
+            "udc_code": "AE001003"
+        },
+        {
+            "udc_name": "逾期8-14天",
+            "udc_code": "AE001002"
+        },
+        {
+            "udc_name": "逾期1-7天",
+            "udc_code": "AE001001"
+        },
+        {
+            "udc_name": "逾期未支付",
+            "udc_code": "AE001"
+        },
+        {
+            "udc_name": "酒店行业",
+            "udc_code": "AE"
+        },
+        {
+            "udc_name": "超期180天以上",
+            "udc_code": "AD003009"
+        },
+        {
+            "udc_name": "超期151-180天",
+            "udc_code": "AD003008"
+        },
+        {
+            "udc_name": "超期121-150天",
+            "udc_code": "AD003007"
+        },
+        {
+            "udc_name": "超期91-120天",
+            "udc_code": "AD003006"
+        },
+        {
+            "udc_name": "超期61-90天",
+            "udc_code": "AD003005"
+        },
+        {
+            "udc_name": "超期31-60天",
+            "udc_code": "AD003004"
+        },
+        {
+            "udc_name": "超期15-30天",
+            "udc_code": "AD003003"
+        },
+        {
+            "udc_name": "超期8-14天",
+            "udc_code": "AD003002"
+        },
+        {
+            "udc_name": "超期1-7天",
+            "udc_code": "AD003001"
+        },
+        {
+            "udc_name": "违章未处理",
+            "udc_code": "AD003"
+        },
+        {
+            "udc_name": "超期180天以上",
+            "udc_code": "AD002009"
+        },
+        {
+            "udc_name": "超期151-180天",
+            "udc_code": "AD002008"
+        },
+        {
+            "udc_name": "超期121-150天",
+            "udc_code": "AD002007"
+        },
+        {
+            "udc_name": "超期91-120天",
+            "udc_code": "AD002006"
+        },
+        {
+            "udc_name": "超期61-90天",
+            "udc_code": "AD002005"
+        },
+        {
+            "udc_name": "超期31-60天",
+            "udc_code": "AD002004"
+        },
+        {
+            "udc_name": "超期15-30天",
+            "udc_code": "AD002003"
+        },
+        {
+            "udc_name": "超期8-14天",
+            "udc_code": "AD002002"
+        },
+        {
+            "udc_name": "超期1-7天",
+            "udc_code": "AD002001"
+        },
+        {
+            "udc_name": "超期未还车",
+            "udc_code": "AD002"
+        },
+        {
+            "udc_name": "逾期180天以上",
+            "udc_code": "AD001009"
+        },
+        {
+            "udc_name": "逾期151-180天",
+            "udc_code": "AD001008"
+        },
+        {
+            "udc_name": "逾期121-150天",
+            "udc_code": "AD001007"
+        },
+        {
+            "udc_name": "逾期91-120天",
+            "udc_code": "AD001006"
+        },
+        {
+            "udc_name": "逾期61-90天",
+            "udc_code": "AD001005"
+        },
+        {
+            "udc_name": "逾期31-60天",
+            "udc_code": "AD001004"
+        },
+        {
+            "udc_name": "逾期15-30天",
+            "udc_code": "AD001003"
+        },
+        {
+            "udc_name": "逾期8-14天",
+            "udc_code": "AD001002"
+        },
+        {
+            "udc_name": "逾期1-7天",
+            "udc_code": "AD001001"
+        },
+        {
+            "udc_name": "逾期未支付",
+            "udc_code": "AD001"
+        },
+        {
+            "udc_name": "租车行业",
+            "udc_code": "AD"
+        },
+        {
+            "udc_name": "营销作弊名单（在营销活动中有明显作弊行为的人）",
+            "udc_code": "AC007001"
+        },
+        {
+            "udc_name": "案件库黑名单",
+            "udc_code": "AC007"
+        },
+        {
+            "udc_name": "骗赔（有骗取支付公司赔偿金行为的人）",
+            "udc_code": "AC005001"
+        },
+        {
+            "udc_name": "骗赔",
+            "udc_code": "AC005"
+        },
+        {
+            "udc_name": "盗用支出/盗用者同伙（有盗用他人账号进行支付，使他人账号收到资损行为的人）",
+            "udc_code": "AC004001"
+        },
+        {
+            "udc_name": "盗用支出/盗用者同伙",
+            "udc_code": "AC004"
+        },
+        {
+            "udc_name": "盗用操作/盗用者同伙（有盗用他人账号进行操作（未产生资损）行为的人）",
+            "udc_code": "AC003001"
+        },
+        {
+            "udc_name": "盗用操作/盗用者同伙",
+            "udc_code": "AC003"
+        },
+        {
+            "udc_name": "欺诈者/欺诈同伙（有欺诈或者伙同他人进行欺诈行为的人）",
+            "udc_code": "AC002001"
+        },
+        {
+            "udc_name": "欺诈者/欺诈同伙",
+            "udc_code": "AC002"
+        },
+        {
+            "udc_name": "盗卡者/盗卡者同伙（有盗用或者伙同他人盗用借记卡、信用卡行为的人）",
+            "udc_code": "AC001001"
+        },
+        {
+            "udc_name": "盗卡者/盗卡者同伙",
+            "udc_code": "AC001"
+        },
+        {
+            "udc_name": "金融支付类",
+            "udc_code": "AC"
+        },
+        {
+            "udc_name": "被执行人",
+            "udc_code": "AB001002"
+        },
+        {
+            "udc_name": "失信被执行人（俗称“老赖名单”）",
+            "udc_code": "AB001001"
+        },
+        {
+            "udc_name": "被执行人",
+            "udc_code": "AB001"
+        },
+        {
+            "udc_name": "公检法",
+            "udc_code": "AB"
+        },
+        {
+            "udc_name": "严重逾期且套现（通过交易类平台，套现且长期未还款）",
+            "udc_code": "AA002001"
+        },
+        {
+            "udc_name": "套现",
+            "udc_code": "AA002"
+        },
+        {
+            "udc_name": "逾期6期以上",
+            "udc_code": "AA001016"
+        },
+        {
+            "udc_name": "逾期6期",
+            "udc_code": "AA001015"
+        },
+        {
+            "udc_name": "逾期5期",
+            "udc_code": "AA001014"
+        },
+        {
+            "udc_name": "逾期4期",
+            "udc_code": "AA001013"
+        },
+        {
+            "udc_name": "逾期3期",
+            "udc_code": "AA001012"
+        },
+        {
+            "udc_name": "逾期2期",
+            "udc_code": "AA001011"
+        },
+        {
+            "udc_name": "逾期1期",
+            "udc_code": "AA001010"
+        },
+        {
+            "udc_name": "逾期180天以上",
+            "udc_code": "AA001007"
+        },
+        {
+            "udc_name": "逾期151-180天",
+            "udc_code": "AA001006"
+        },
+        {
+            "udc_name": "逾期121-150天",
+            "udc_code": "AA001005"
+        },
+        {
+            "udc_name": "逾期91-120天",
+            "udc_code": "AA001004"
+        },
+        {
+            "udc_name": "逾期61-90天",
+            "udc_code": "AA001003"
+        },
+        {
+            "udc_name": "逾期31-60天",
+            "udc_code": "AA001002"
+        },
+        {
+            "udc_name": "逾期1-30天",
+            "udc_code": "AA001001"
+        },
+        {
+            "udc_name": "借贷逾期",
+            "udc_code": "AA001"
+        },
+        {
+            "udc_name": "金融信贷类",
+            "udc_code": "AA"
+        }
+    ]
+}

@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.shangyong.backend.dao.tdReport.TdReportCompletenessMonthDao">
+
+	<resultMap type="com.shangyong.backend.entity.tdReport.TdReportCompletenessMonth" id="tdReportCompletenessMonthMap">
+		<id property="completenessMonthId" column="completeness_month_id" javaType="java.lang.String"></id>
+		<result property="applicationId" column="application_id" javaType="java.lang.String"></result>
+		<result property="month" column="month" javaType="java.lang.String"></result>
+		<result property="isCallDataComplete" column="is_call_data_complete" javaType="java.lang.String"></result>
+		<result property="isMsgDataComplete" column="is_msg_data_complete" javaType="java.lang.String"></result>
+		<result property="isConsumeDataComplete" column="is_consume_data_complete" javaType="java.lang.String"></result>
+		<result property="createTime" column="create_time" javaType="java.lang.String"></result>
+		<result property="createMan" column="create_man" javaType="java.lang.String"></result>
+		<result property="modifyTime" column="modify_time" javaType="java.lang.String"></result>
+		<result property="modifyMan" column="modify_man" javaType="java.lang.String"></result>
+		<result property="remark" column="remark" javaType="java.lang.String"></result>
+	</resultMap>
+
+	<!-- 通用查询结果列-->
+	<sql id="Base_Column_List">
+completeness_month_id,	application_id,	month,	is_call_data_complete,	is_msg_data_complete,	is_consume_data_complete,	create_time,	create_man,	modify_time,	modify_man,	remark
+	</sql>
+
+	<!-- 查询（根据主键ID查询） -->
+	<select id="getEntityById" resultMap="tdReportCompletenessMonthMap" parameterType="java.lang.String">
+		 SELECT
+		 <include refid="Base_Column_List" />
+		 FROM td_report_completeness_month
+		 WHERE completeness_month_id = #{completenessMonthId}
+	</select>
+
+	<!-- 查询（根据主键ID查询） -->
+	<select id="findAll" resultMap="tdReportCompletenessMonthMap" parameterType="java.lang.String">
+		 SELECT
+		 <include refid="Base_Column_List" />
+		 FROM td_report_completeness_month
+		 WHERE completeness_month_id = #{completenessMonthId}
+	</select>
+
+	<!--删除：根据主键ID删除-->
+	<delete id="deleteEntity" parameterType="java.lang.String">
+		 DELETE FROM td_report_completeness_month
+		 WHERE completeness_month_id = #{completenessMonthId}
+	</delete>
+
+	<!-- 添加 -->
+	<insert id="saveEntity" parameterType="com.shangyong.backend.entity.tdReport.TdReportCompletenessMonth">
+		 INSERT INTO td_report_completeness_month
+ 		(completeness_month_id,application_id,month,is_call_data_complete,is_msg_data_complete,is_consume_data_complete,create_time,create_man,modify_time,modify_man,remark) 
+		 VALUES 
+ 		(#{completenessMonthId},#{applicationId},#{month},#{isCallDataComplete},#{isMsgDataComplete},#{isConsumeDataComplete},#{createTime},#{createMan},#{modifyTime},#{modifyMan},#{remark}) 
+	</insert>
+	<!-- 批量插入 -->
+	<insert id="saveAllEntity" parameterType="java.util.List">
+		  INSERT INTO td_report_completeness_month
+ 		(completeness_month_id,application_id,month,is_call_data_complete,is_msg_data_complete,is_consume_data_complete,create_time,create_man,modify_time,modify_man,remark) 
+		 VALUES 
+ 	    <foreach collection="list" item="item" index="index" separator="," >  
+ 		(#{item.completenessMonthId},#{item.applicationId},#{item.month},#{item.isCallDataComplete},#{item.isMsgDataComplete},#{item.isConsumeDataComplete},#{item.createTime},#{item.createMan},#{item.modifyTime},#{item.modifyMan},#{item.remark}) 
+	    </foreach>
+	</insert>
+
+	<!-- 修 改-->
+	<update id="updateEntity" parameterType="com.shangyong.backend.entity.tdReport.TdReportCompletenessMonth">
+		 UPDATE td_report_completeness_month
+ 		 <set> 
+			<if test="applicationId != null">
+				 application_id = #{applicationId},
+			</if>
+			<if test="month != null">
+				 month = #{month},
+			</if>
+			<if test="isCallDataComplete != null">
+				 is_call_data_complete = #{isCallDataComplete},
+			</if>
+			<if test="isMsgDataComplete != null">
+				 is_msg_data_complete = #{isMsgDataComplete},
+			</if>
+			<if test="isConsumeDataComplete != null">
+				 is_consume_data_complete = #{isConsumeDataComplete},
+			</if>
+			<if test="createTime != null">
+				 create_time = #{createTime},
+			</if>
+			<if test="createMan != null">
+				 create_man = #{createMan},
+			</if>
+			<if test="modifyTime != null">
+				 modify_time = #{modifyTime},
+			</if>
+			<if test="modifyMan != null">
+				 modify_man = #{modifyMan},
+			</if>
+			<if test="remark != null">
+				 remark = #{remark},
+			</if>
+
+ 		 </set>
+		 WHERE completeness_month_id = #{completenessMonthId}
+	</update>
+
+</mapper>

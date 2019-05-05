@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.shangyong.backend.dao.TdApplicationDao">
+
+	<resultMap type="com.shangyong.backend.entity.TdApplication" id="tdApplicationMap">
+		<id property="applicationId" column="application_id" javaType="java.lang.String"></id>
+		<result property="name" column="name" javaType="java.lang.String"></result>
+		<result property="certCode" column="cert_code" javaType="java.lang.String"></result>
+		<result property="phoneNum" column="phone_num" javaType="java.lang.String"></result>
+		<result property="loanIp" column="loan_ip" javaType="java.lang.String"></result>
+		<result property="createTime" column="create_time" javaType="java.lang.String"></result>
+		<result property="taskId" column="task_id" javaType="java.lang.String"></result>
+	</resultMap>
+
+	<!-- 通用查询结果列-->
+	<sql id="Base_Column_List">
+application_id,	name,	cert_code,	phone_num,	loan_ip,	create_time,	task_id
+	</sql>
+
+	<!-- 查询（根据主键ID查询） -->
+	<select id="getEntityById" resultMap="tdApplicationMap" parameterType="java.lang.String">
+		 SELECT
+		 <include refid="Base_Column_List" />
+		 FROM td_application
+		 WHERE application_id = #{applicationId}
+	</select>
+
+	<!-- 查询（根据主键ID查询） -->
+	<select id="findAll" resultMap="tdApplicationMap">
+		 SELECT
+		 <include refid="Base_Column_List" />
+		 FROM td_application
+	</select>
+
+	<!--删除：根据主键ID删除-->
+	<delete id="deleteEntity" parameterType="java.lang.String">
+		 DELETE FROM td_application
+		 WHERE application_id = #{applicationId}
+	</delete>
+
+	<!-- 添加 -->
+	<insert id="saveEntity" parameterType="com.shangyong.backend.entity.TdApplication">
+		 INSERT INTO td_application
+ 		(application_id,name,cert_code,phone_num,loan_ip,create_time,task_id) 
+		 VALUES 
+ 		(#{applicationId},#{name},#{certCode},#{phoneNum},#{loanIp},#{createTime},#{taskId}) 
+	</insert>
+
+	<!-- 修 改-->
+	<update id="updateEntity" parameterType="com.shangyong.backend.entity.TdApplication">
+		 UPDATE td_application
+ 		 <set> 
+			<if test="name != null">
+				 name = #{name},
+			</if>
+			<if test="certCode != null">
+				 cert_code = #{certCode},
+			</if>
+			<if test="phoneNum != null">
+				 phone_num = #{phoneNum},
+			</if>
+			<if test="loanIp != null">
+				 loan_ip = #{loanIp},
+			</if>
+			<if test="createTime != null">
+				 create_time = #{createTime},
+			</if>
+			<if test="taskId != null">
+				 task_id = #{taskId},
+			</if>
+
+ 		 </set>
+		 WHERE application_id = #{applicationId}
+	</update>
+
+</mapper>

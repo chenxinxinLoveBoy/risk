@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.shangyong.backend.dao.BoOrderformDao">
+
+	<resultMap type="com.shangyong.backend.entity.BoOrderform" id="boOrderforminfoMap">
+		<id property="boOrderformId" column="bo_orderform_id" javaType="java.lang.String"></id>
+		<result property="platformId" column="platform_id" javaType="java.lang.String"></result>
+		<result property="useId" column="use_id" javaType="java.lang.String"></result>
+		<result property="applicationId" column="application_id" javaType="java.lang.String"></result>
+		<result property="customerId" column="customer_id" javaType="java.lang.String"></result>
+		<result property="name" column="name" javaType="java.lang.String"></result>
+		<result property="certType" column="cert_type" javaType="java.lang.String"></result>
+		<result property="certCode" column="cert_code" javaType="java.lang.String"></result>
+		<result property="phoneNum" column="phone_num" javaType="java.lang.String"></result>
+		<result property="finaProductId" column="fina_product_id" javaType="java.lang.String"></result>
+		<result property="orderTime" column="order_time" javaType="java.lang.String"></result>
+		<result property="productQuota" column="product_quota" javaType="java.lang.String"></result>
+		<result property="realQuota" column="real_quota" javaType="java.lang.String"></result>
+		<result property="days" column="days" javaType="java.lang.Integer"></result>
+		<result property="productRate" column="product_rate" javaType="java.lang.String"></result>
+		<result property="inquiryFee" column="inquiry_fee" javaType="java.lang.String"></result>
+		<result property="managementCost" column="management_cost" javaType="java.lang.String"></result>
+		<result property="sumRenewalMoney" column="sum_renewal_money" javaType="java.lang.String"></result>
+		<result property="renewalNum" column="renewal_num" javaType="java.lang.Integer"></result>
+		<result property="sumLoanInterest" column="sum_loan_interest" javaType="java.lang.String"></result>
+		<result property="originalRepayDate" column="original_repay_date" javaType="java.lang.String"></result>
+		<result property="newRepayDate" column="new_repay_date" javaType="java.lang.String"></result>
+		<result property="actualRepayDate" column="actual_repay_date" javaType="java.lang.String"></result>
+		<result property="repayMoney" column="repay_money" javaType="java.lang.String"></result>
+		<result property="rpSumMoney" column="rp_sum_money" javaType="java.lang.String"></result>
+		<result property="sumDelayMoney" column="sum_delay_money" javaType="java.lang.String"></result>
+		<result property="delayDays" column="delay_days" javaType="java.lang.Integer"></result>
+		<result property="repayType" column="repay_type" javaType="java.lang.String"></result>
+		<result property="overdueMark" column="overdue_mark" javaType="java.lang.String"></result>
+		<result property="state" column="state" javaType="java.lang.String"></result>
+		<result property="createTime" column="create_time" javaType="java.lang.String"></result>
+		<result property="createMan" column="create_man" javaType="java.lang.String"></result>
+		<result property="modifyTime" column="modify_time" javaType="java.lang.String"></result>
+		<result property="modifyMan" column="modify_man" javaType="java.lang.String"></result>
+		<result property="remark" column="remark" javaType="java.lang.String"></result>
+		<result property="appName" column="app_name" javaType="java.lang.String"></result>
+	</resultMap>
+
+
+	<!-- 通用查询结果列-->
+	<sql id="Base_Column_List">
+		 bo_orderform_id,	platform_id,	use_id,	application_id,	customer_id,	name,	cert_type,	cert_code,	phone_num,	fina_product_id,	order_time,	product_quota,	real_quota,	days,	product_rate,	inquiry_fee,	management_cost,	sum_renewal_money,	renewal_num,	sum_loan_interest,	original_repay_date,	new_repay_date,	actual_repay_date,	repay_money,	rp_sum_money,	sum_delay_money,	delay_days,	repay_type,	overdue_mark,	state,	create_time,	create_man,	modify_time,	modify_man,	remark
+	</sql>
+
+	<!-- 查询（根据主键ID查询） -->
+	<!-- <select id="getEntityById" resultType="boOrderforminfoMap" parameterType="java.lang.String">
+		 SELECT
+		 <include refid="Base_Column_List" />
+		 FROM bu_bo_orderform
+		 WHERE bo_orderform_id = #{boOrderformId}
+	</select>-->
+
+	<!-- 查询 -->
+	<select id="findAll" resultMap="boOrderforminfoMap" parameterType="com.shangyong.backend.entity.BoOrderform">
+		 SELECT '闪贷' as app_name, 
+			<include refid="Base_Column_List" />
+		 FROM bu_bo_orderform
+		<where> 
+	    <if test="boOrderformId != '' and boOrderformId != null" >
+	    	bo_orderform_id = #{boOrderformId}
+	    </if>
+	    <if test="certCode != '' and certCode != null" >
+	    	and cert_code = #{certCode}
+	    </if>
+	    <if test="startTime != '' and startTime != null" >
+	    	<![CDATA[ and order_time >= #{startTime} ]]>
+	    </if>
+	    <if test="endTime != '' and endTime != null" >
+	    	<![CDATA[ and order_time <= #{endTime} ]]>
+	    </if>
+	    <if test="days == 2" >
+	    	and days = 7
+	    </if>
+	    <if test="days == 3" >
+	    	and days = 14
+	    </if>
+	    <if test="productQuota == 1" >
+	    	<![CDATA[ and product_quota < 1000]]>
+	    </if>
+	    <if test="productQuota == 2" >
+	    	<![CDATA[ and product_quota >= 1000 and product_quota <= 5000]]>
+	    </if>
+	    <if test="state != '' and state != null" >
+	    	and state = #{state}
+	    </if>
+	    <if test="overdueMark != '' and overdueMark != null" >
+	    	and overdue_mark = #{overdueMark}
+	    </if>
+	    </where>
+	    order by bo_orderform_id desc 
+	    LIMIT #{pageIndex},#{pageSize}
+	</select>
+	
+	<!-- 查询count -->
+	<select id="findAllCount" resultType="java.lang.Integer" parameterType="com.shangyong.backend.entity.BoOrderform">
+		 SELECT
+			count(1)
+		 FROM bu_bo_orderform
+		 <where> 
+	    <if test="boOrderformId != '' and boOrderformId != null" >
+	    	bo_orderform_id = #{boOrderformId}
+	    </if>
+	    <if test="certCode != '' and certCode != null" >
+	    	and cert_code = #{certCode}
+	    </if>
+	    <if test="startTime != '' and startTime != null" >
+	    	<![CDATA[ and order_time >= #{startTime} ]]>
+	    </if>
+	    <if test="endTime != '' and endTime != null" >
+	    	<![CDATA[ and order_time <= #{endTime} ]]>
+	    </if>
+	    <if test="days == 2" >
+	    	and days = 7
+	    </if>
+	    <if test="days == 3" >
+	    	and days = 14
+	    </if>
+	    <if test="productQuota == 1" >
+	    	<![CDATA[ and product_quota < 1000]]>
+	    </if>
+	    <if test="productQuota == 2" >
+	    	<![CDATA[ and product_quota >= 1000 and product_quota <= 5000]]>
+	    </if>
+	    <if test="state != '' and state != null" >
+	    	and state = #{state}
+	    </if>
+	    <if test="overdueMark != '' and overdueMark != null" >
+	    	and overdue_mark = #{overdueMark}
+	    </if>
+	    </where>
+	</select>
+	
+		<!-- 添加 -->
+	<insert id="saveEntity" parameterType="com.shangyong.backend.entity.BoOrderform">
+		 INSERT INTO bu_bo_orderform
+ 		(bo_orderform_id,platform_id,use_id,application_id,customer_id,name,cert_type,cert_code,phone_num,fina_product_id,order_time,product_quota,real_quota,days,product_rate,inquiry_fee,management_cost,sum_renewal_money,renewal_num,sum_loan_interest,original_repay_date,new_repay_date,actual_repay_date,repay_money,rp_sum_money,sum_delay_money,delay_days,repay_type,overdue_mark,state,create_time,create_man,modify_time,modify_man) 
+		 VALUES 
+ 		(#{boOrderformId},#{platformId},#{useId},#{applicationId},#{customerId},#{name},#{certType},#{certCode},#{phoneNum},#{finaProductId},now(),#{productQuota},#{realQuota},#{days},#{productRate},#{inquiryFee},#{managementCost},#{sumRenewalMoney},#{renewalNum},#{sumLoanInterest},#{originalRepayDate},#{newRepayDate},#{actualRepayDate},#{repayMoney},#{rpSumMoney},#{sumDelayMoney},#{delayDays},#{repayType},#{overdueMark},#{state},now(),'tt',now(),'tt') 
+	</insert>
+
+</mapper>

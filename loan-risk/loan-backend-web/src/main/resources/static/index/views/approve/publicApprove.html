@@ -1,0 +1,165 @@
+ <!DOCTYPE html>
+<html> 
+	<head>
+		<meta charset="UTF-8">
+		<title>公共案件池</title>
+		<link rel="stylesheet" href="../../plugins/layui/css/layui.css" media="all">
+		<link rel="stylesheet" href="../../css/global.css" media="all">
+		<link rel="stylesheet" href="../../plugins/font-awesome/css/font-awesome.min.css">
+		<link rel="stylesheet" href="../../css/table.css" /> 
+		<link rel="stylesheet" href="../../css/lzh_xy_gl.css" media="all" />
+		<!-- js -->
+		<script src="../../jqery/jquery.js"></script>
+		<script src="../../../commons/base.js"></script>
+		<script type="text/javascript" src="../../plugins/layui/layui.js"></script>
+		<script type="text/javascript" src="../../js/approve/publicApprove.js"></script>
+	</head> 
+	<body>
+		<div class="admin-main">  
+		<blockquote class="layui-elem-quote">
+			      <div class="layui-inline">
+				  <label>案件状态:</label>
+			      <div class="layui-input-inline">
+				      <select name="ycNumber" id = "ycNumber" class="layui-input" lay-search="" style="width: 160px; display:inline;">
+				        <option value="0" >全部 </option>
+				        <option value="1">正常</option>
+				        <option value="2">异常</option>
+				        <option value="3">异类</option>
+				      </select> 
+			      </div>
+			      </div>
+			    <div class="layui-inline">
+			      <label class="layui-form-label" style="width: auto;">进入案件池原因：</label>
+			      <div class="layui-input-inline">
+			        <input name="errorDescription" lay-verify="errorDescription" id="errorDescription" autocomplete="off" placeholder="支持模糊查询" class="layui-input" >
+			      </div>
+			    </div>
+				<div class="layui-inline">
+			      <label class="layui-form-label" style="width: 100px">进入时间</label>
+			      <div class="layui-input-inline">
+			      <input name="startTime"  lay-verify="startTime" id="startTime" autocomplete="off" class="layui-input"  style="width: 160px; display:inline;">
+			      &nbsp;至&nbsp;
+			      <input name="endTime"  lay-verify="endTime" id="endTime" autocomplete="off" class="layui-input"  style="width: 160px; display:inline;">
+			      </div>
+			    </div> 
+			    <a href="javascript:;" class="layui-btn layui-btn-small" id="search" style="width: 66px">
+						<i class="layui-icon">&#xe615;</i> 搜索
+				    </a>
+			 	<br>  
+		</blockquote>
+			<fieldset class="layui-elem-field">
+				<legend>公共案件列表</legend>
+				<br>
+				<p>
+			 	  <div class="layui-inline">
+				    <label class="layui-form-label" style="width: auto;">当日<span style="color:#F00">正常</span>总案件数：</label>
+				    <label name="ajCount" id="ajCount"  class="layui-form-label" style="width: auto;"></label>
+				</div> 
+				<div class="layui-inline">
+				    <label class="layui-form-label" style="width: auto;">当日<span style="color:#F00">已处理正常</span>案件数：</label>
+				    <label name="ajClCount" id="ajClCount"  class="layui-form-label" style="width: auto;"></label>
+				    <label class="layui-form-label" style="width: auto;">当日<span style="color:#F00">未处理正常</span>案件数：</label>
+				    <label name="ajUntrCount" id="ajUntrCount"  class="layui-form-label" style="width: auto;"></label>
+					<label class="layui-form-label" style="width: auto;">历史<span style="color:#F00">未处理</span>案件数：</label>
+				    <label name="historicalSurplusCount" id="historicalSurplusCount"  class="layui-form-label" style="width: auto;"></label>
+				</div>
+				</p>
+				<p>
+			 	  <div class="layui-inline">
+				    <label class="layui-form-label" style="width: auto;">当日<span style="color:#F00">异常</span>总案件数：</label>
+				    <label name="ycCount" id="ycCount"  class="layui-form-label" style="width: auto;"></label>
+				</div> 
+				<div class="layui-inline">
+					 <label class="layui-form-label" style="width: auto;">当日<span style="color:#F00">异常已处理</span>案件数：</label>
+				    <label name="ycClCount" id="ycClCount"  class="layui-form-label" style="width: auto;"></label>
+				    <label class="layui-form-label" style="width: auto;">当日<span style="color:#F00">异常未处理</span>案件数：</label>
+				    <label name="ycUntrCount" id="ycUntrCount"  class="layui-form-label" style="width: auto;"></label>
+				</div>
+				</p>
+				<p>
+			 	  <div class="layui-inline">
+				    <label class="layui-form-label" style="width: auto;">当日<span style="color:#F00">异类</span>总案件数：</label>
+				    <label name="ylCount" id="ylCount"  class="layui-form-label" style="width: auto;"></label>
+				</div> 
+				<div class="layui-inline">
+					 <label class="layui-form-label" style="width: auto;">当日<span style="color:#F00">异类已处理</span>案件数：</label>
+				    <label name="ylClCount" id="ylClCount"  class="layui-form-label" style="width: auto;"></label>
+				    <label class="layui-form-label" style="width: auto;">当日<span style="color:#F00">异类未处理</span>案件数：</label>
+				    <label name="ylUntrCount" id="ylUntrCount"  class="layui-form-label" style="width: auto;"></label>
+				</div>
+				</p>
+				<br></br>
+				<p>
+				<a href="#" class="layui-btn layui-btn-small" id="getSelected" onclick="getSelected()" style="margin-left: 18px" >
+						<i class="fa fa-shopping-cart" aria-hidden="true" ></i>批量取件
+			 	</a> 
+			 		<a href="#" class="layui-btn layui-btn-small" id="shuaxin" onclick="shuaxin()" style="margin-left: 18px" >刷新数据
+			 	</a> 
+			 	</p>
+				
+				 
+				<div class="layui-field-box layui-form">
+					<table class="layui-table admin-table"  style="word-break: keep-all;overflow:auto;">
+						<thead>
+							<tr>
+							<th style="width: 30px;"><input type="checkbox" lay-filter="allselector" lay-skin="primary" id="check"></th>
+								<th>序号</th>
+								<th>案件编号</th>
+								<th>姓名</th>
+								<th>身份证</th>
+								<th>手机号码 </th>
+								<th>案件状态 </th>
+								<th>进入案件池原因 </th>
+								<th>申请日期</th> 
+								<th>系统审批金额</th>
+								<th>操作</th> 
+							</tr>
+						</thead>
+						<tbody id="content">
+						</tbody>
+					</table>
+					<label>共<font color='red' id="count_page_number"></font>条记录</label>
+					<div id="paged" class="page" style="display:inline-block;">
+					</div>
+				</div>
+			</fieldset>
+		</div>
+		
+		<!--模板-->
+		<script type="text/html" id="tpl">
+			{{# layui.each(d.list, function(index, item){ 
+				var errorDescription = item.errorDescription;
+				var ycNumber = item.ycNumber;
+				if(ycNumber.length==0 && errorDescription.length == 0){
+					ycNumber='正常';
+				}else if(ycNumber==1 || ycNumber==2 || ycNumber==3){
+					ycNumber='异类';
+				}else if(ycNumber.length ==0 && errorDescription.length != 0){
+					ycNumber='异常';
+					
+				}
+
+
+			}}
+			<tr>
+				<td><input type="checkbox" lay-skin="primary"  data-id="{{ item.applicationId }}" data-number="{{ item.appSerialNumber }}"></td>
+				<td>{{ index+1 }}</td>
+				<td>{{ item.appSerialNumber }}</td>
+				<td>{{ item.name }}</td>
+				<td>{{ item.certCode }}</td>
+				<td>{{ item.phoneNum }}</td>
+				<td>{{ ycNumber}}</td>
+				<td>
+					<div title="{{errorDescription}}" style="width:251px;overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">
+						{{errorDescription}}
+					</div>
+				</td>  
+				<td style="white-space: nowrap;">{{ item.createTime.substring(0,19) }}</td> 
+				<td>{{ item.creditMoney == '' ? '0.00' :item.creditMoney}}</td>
+				<td><a href="javascript:;" data-id="{{ item.applicationId }}" data-appumber="{{ item.appSerialNumber }}" data-opt="find" class="layui-btn layui-btn-mini">取件</a></td> 
+				   
+			</tr>
+			{{# }); }}
+		</script> 
+	</body>
+</html>

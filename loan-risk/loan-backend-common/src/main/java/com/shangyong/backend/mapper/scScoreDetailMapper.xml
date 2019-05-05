@@ -1,0 +1,246 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.shangyong.backend.dao.ScScoreDetailDao">
+
+	<resultMap type="com.shangyong.backend.entity.ScScoreDetail" id="scScoreDetailMap">
+		<id property="scoreDetailId" column="score_detail_id" javaType="java.lang.String"></id>
+		<result property="applicationId" column="application_id" javaType="java.lang.String"></result>
+		<result property="scoreBigId" column="score_big_id" javaType="java.lang.String"></result>
+		<result property="scoreSmallId" column="score_small_id" javaType="java.lang.String"></result>
+		<result property="scoreRuleName" column="score_rule_name" javaType="java.lang.String"></result>
+		<result property="score" column="score" javaType="java.lang.String"></result>
+		<result property="createTime" column="create_time" javaType="java.lang.String"></result>
+		<result property="remark" column="remark" javaType="java.lang.String"></result>
+	</resultMap>
+
+   <resultMap type="com.shangyong.backend.entity.ScoreDetailStatistics" id="scoreDetailStatisticsMap">
+ 		<result property="name" column="name" javaType="java.lang.String"></result>
+ 		<result property="count" column="count" javaType="java.lang.Integer"></result>
+ 		 <result property="scoreName" column="scoreName" javaType="java.lang.String"></result>
+ 		 <result property="scoreSmallCode" column="scoreSmallCode" javaType="java.lang.String"></result>
+ 		 <result property="scoreBigCode" column="scoreBigCode" javaType="java.lang.String"></result>
+ 		 <result property="value" column="value" javaType="java.lang.Integer"></result>
+ 		 <result property="scoreSmallId" column="score_small_id" javaType="java.lang.String"></result>
+ 		 <result property="tplName" column="tpl_name" javaType="java.lang.String"></result>
+ 		 <result property="scoreTplId" column="score_tpl_id"></result>
+	</resultMap>
+
+
+	<!-- 通用查询结果列-->
+	<sql id="Base_Column_List">
+score_detail_id,	application_id,	score_big_id,	score_small_id,	score_rule_name,	score,	create_time,	remark
+	</sql>
+
+	<!-- 查询（根据主键ID查询） -->
+	<select id="getEntityById" resultMap="scScoreDetailMap" parameterType="java.lang.String">
+		 SELECT
+		 <include refid="Base_Column_List" />
+		 FROM sc_score_detail
+		 WHERE score_detail_id = #{scoreDetailId}
+	</select>
+
+	<!-- 查询（根据主键ID查询） -->
+	<select id="getEntity" resultMap="scScoreDetailMap" parameterType="com.shangyong.backend.entity.ScScoreDetail">
+		 SELECT
+		 <include refid="Base_Column_List" />
+		 FROM sc_score_detail
+		 <where>
+		 		<if test="applicationId != null">
+		 			and application_id = #{applicationId}
+		 		</if>
+		 		<if test="scoreBigId != null">
+		 			and score_big_id = #{scoreBigId}
+		 		</if>
+		 		<if test="scoreSmallId != null">
+		 			and score_small_id = #{scoreSmallId}
+		 		</if>
+		 </where>
+	</select>
+
+	<!-- 查询（根据主键ID查询） -->
+	<select id="findAll" resultMap="scScoreDetailMap" parameterType="java.lang.String">
+		 SELECT
+		 a.score_detail_id,	a.application_id,	a.score_big_id,	a.score_small_id,	a.score_rule_name,	a.score,	a.create_time,	a.remark
+		 FROM sc_score_detail a, bu_application b 
+		 where a.application_id = b.application_id
+   		 <if test="applicationId != null and applicationId != ''">
+		 	and b.application_id = #{applicationId}
+ 		</if>
+	    <if test="applicationBuId != null and applicationBuId != ''">
+		 	and b.application_bu_id = #{applicationBuId}
+ 		</if>
+	</select>
+
+	<!--删除：根据主键ID删除-->
+	<delete id="deleteEntity" parameterType="java.lang.String">
+		 DELETE FROM sc_score_detail
+		 WHERE score_detail_id = #{scoreDetailId}
+	</delete>
+
+	<!--删除：根据主键ID删除-->
+	<delete id="deleteByAppIdAndBigCode" parameterType="com.shangyong.backend.entity.ScScoreDetail">
+		 DELETE FROM sc_score_detail
+		 WHERE  application_id = #{applicationId} and  score_big_id = #{scoreBigId}
+	</delete>
+
+	<!-- 添加 -->
+	<insert id="saveEntity" parameterType="com.shangyong.backend.entity.ScScoreDetail">
+		 INSERT INTO sc_score_detail
+ 		(score_detail_id,application_id,score_big_id,score_small_id,score_rule_name,score,create_time,remark) 
+		 VALUES 
+ 		(#{scoreDetailId},#{applicationId},#{scoreBigId},#{scoreSmallId},#{scoreRuleName},#{score},#{createTime},#{remark}) 
+	</insert>
+
+	<!-- 修 改-->
+	<update id="updateByAppIdAndBigCode" parameterType="com.shangyong.backend.entity.ScScoreDetail">
+		 UPDATE sc_score_detail
+ 		 <set> 
+			<if test="scoreSmallId != null">
+				 score_small_id = #{scoreSmallId},
+			</if>
+			<if test="scoreRuleName != null">
+				 score_rule_name = #{scoreRuleName},
+			</if>
+			<if test="score != null">
+				 score = #{score},
+			</if>
+			<if test="createTime != null">
+				 create_time = #{createTime},
+			</if>
+			<if test="remark != null">
+				 remark = #{remark},
+			</if>
+ 		 </set>
+		 WHERE  application_id = #{applicationId} and  score_big_id = #{scoreBigId}
+		 
+	</update>
+	<!-- 查询所有分数 （匹配申请单编号） -->
+	<select id="findAllScore" resultType="java.lang.String" parameterType="java.lang.String">
+		 SELECT sum(score) FROM sc_score_detail where application_id = #{id}
+	</select>
+
+
+	<!--统计评分大表中规则名称及出现次数 -->
+	<select id="getBigStatistics" resultMap="scoreDetailStatisticsMap" parameterType="java.lang.String">
+		select count(a.score_big_id) as count,b.score_name as name ,b.score_big_code as scoreBigCode 
+		 from sc_score_big b
+		left join sc_score_detail a on a.score_big_id=b.score_big_id
+		<where>
+			<if test="beginTime != '' and beginTime != null" >
+	    	    <![CDATA[ and a.create_time >= #{beginTime} ]]>
+	         </if>
+	   	     <if test="endTime != '' and endTime != null" >
+	    	    <![CDATA[ and a.create_time <= #{endTime} ]]>
+	         </if>
+		</where>
+		GROUP BY b.score_big_id order by count  DESC ,scoreBigCode
+		LIMIT #{pageIndex},#{pageSize}
+	</select>
+
+
+	<!--统计评分大表中规则名称及出现次数的总条数 -->
+	<select id="getBigStatisticsCount" resultType="java.lang.Integer" parameterType="java.lang.String">
+		select COUNT(1) from (
+		select count(a.score_big_id) as
+		count,b.score_name as name,b.score_big_code as scoreBigCode 
+		from sc_score_big b
+		left join sc_score_detail a on
+		a.score_big_id=b.score_big_id
+		<where>
+			<if test="beginTime != '' and beginTime != null" >
+	    	    <![CDATA[ and a.create_time >= #{beginTime} ]]>
+	         </if>
+	   	     <if test="endTime != '' and endTime != null" >
+	    	    <![CDATA[ and a.create_time <= #{endTime} ]]>
+	         </if>
+		</where>
+		GROUP BY b.score_big_id ) c
+	</select>
+
+
+	<!--统计评分小表中规则名称及出现次数 -->
+	<select id="getSmallStatistics"  resultMap="scoreDetailStatisticsMap" parameterType="java.lang.String">
+		select count(b.score_small_id) as count,a.score_rule_name as name ,c.score_name  as scoreName  ,a.score_small_code as scoreSmallCode  ,a.score_small_id as scoreSmallId,d.score_tpl_name as tplName
+		  from sc_score_small a
+		left join sc_score_detail b on a.score_small_id= b.score_small_id 
+		left join  sc_score_big c   on a.score_big_id=c.score_big_id  
+        left join  sc_score_tpl d   on a.score_tpl_id=d.score_tpl_id  
+		<where>
+		 <if test="scoreTplId != '' and scoreTplId != null" >
+	    	       a.score_tpl_id = #{scoreTplId} 
+	         </if>
+			 <if test="beginTime != '' and beginTime != null" >
+	    	    <![CDATA[ and b.create_time >= #{beginTime} ]]>
+	         </if>
+	   	     <if test="endTime != '' and endTime != null" >
+	    	    <![CDATA[ and b.create_time <= #{endTime} ]]>
+	         </if>
+		</where>
+		GROUP BY a.score_small_id order by  count DESC , scoreSmallCode 
+		LIMIT #{pageIndex},#{pageSize}
+	</select>
+
+
+	<!--统计评分小表中规则名称及出现次数的总条数 -->
+	<select id="getSmallStatisticsCount" resultType="java.lang.Integer"  parameterType="java.lang.String">
+		select COUNT(1) from (
+		select count(b.score_small_id) as
+		count,a.score_rule_name as name ,c.score_name  as scoreName  ,a.score_small_code as scoreSmallCode ,d.score_tpl_name as tplName
+		from 
+		sc_score_small a
+		left join sc_score_detail b on a.score_small_id=b.score_small_id 
+		left join  sc_score_big c   on a.score_big_id=c.score_big_id  
+        left join  sc_score_tpl d   on a.score_tpl_id=d.score_tpl_id  
+		<where>
+		   <if test="scoreTplId != '' and scoreTplId != null" >
+	    	       a.score_tpl_id = #{scoreTplId} 
+	         </if>
+			 <if test="beginTime != '' and beginTime != null" >
+	    	    <![CDATA[ and b.create_time >= #{beginTime} ]]>
+	         </if>
+	   	     <if test="endTime != '' and endTime != null" >
+	    	    <![CDATA[ and b.create_time <= #{endTime} ]]>
+	         </if>
+		</where>
+		GROUP BY a.score_small_id ) c
+	</select>
+	
+	
+	<!--统计评分大表中规则名称及出现次数（柱形图） -->
+	<select id="getBigStatisticsHistogram" resultMap="scoreDetailStatisticsMap" parameterType="java.lang.String">
+		select count(a.score_big_id) as count,b.score_name as name ,b.score_big_code as scoreBigCode 
+		 from sc_score_big b
+		left join sc_score_detail a on a.score_big_id=b.score_big_id
+		<where>
+			 <if test="beginTime != '' and beginTime != null" >
+	    	    <![CDATA[ and a.create_time >= #{beginTime} ]]>
+	         </if>
+	   	     <if test="endTime != '' and endTime != null" >
+	    	    <![CDATA[ and a.create_time <= #{endTime}]]>
+	         </if>
+		</where>
+		GROUP BY b.score_big_id order by count  
+	</select>
+
+	<!--统计评分小表中规则名称及出现次数（饼形图） -->
+	<select id="getSmallStatisticsPie"  resultMap="scoreDetailStatisticsMap" parameterType="java.lang.String">
+		select count(b.score_small_id) as count,count(b.score_small_id) as value,a.score_rule_name as name ,c.score_name  as scoreName  ,a.score_small_code as scoreSmallCode 
+		  from sc_score_small a
+		left join sc_score_detail b on a.score_small_id= b.score_small_id 
+		left join  sc_score_big c   on a.score_big_id=c.score_big_id  
+		<where>
+		    <if test="scoreTplId != '' and scoreTplId != null" >
+	    	       a.score_tpl_id = #{scoreTplId} 
+	         </if>
+			 <if test="beginTime != '' and beginTime != null" >
+	    	    <![CDATA[ and b.create_time >= #{beginTime} ]]>
+	         </if>
+	   	     <if test="endTime != '' and endTime != null" >
+	    	    <![CDATA[ and b.create_time <= #{endTime} ]]>
+	         </if>
+		</where>
+		GROUP BY a.score_small_id order by  count DESC
+ 	</select>
+
+</mapper>

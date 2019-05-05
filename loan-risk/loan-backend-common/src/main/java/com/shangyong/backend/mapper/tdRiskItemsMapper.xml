@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.shangyong.backend.dao.td.TdRiskItemsServiceDao">
+
+	<resultMap type="com.shangyong.backend.entity.td.TdRiskItems" id="tdRiskItemsinfoMap">
+		<id property="tdRiskItemsId" column="td_risk_items_id" javaType="java.lang.String"></id>
+		<result property="tdAntiFraudId" column="td_anti_fraud_id" javaType="java.lang.String"></result>
+		<result property="ruleId" column="rule_id" javaType="java.lang.String"></result>
+		<result property="score" column="score" javaType="java.lang.String"></result>
+		<result property="decision" column="decision" javaType="java.lang.String"></result>
+		<result property="riskName" column="risk_name" javaType="java.lang.String"></result>
+		<result property="riskType" column="risk_type" javaType="java.lang.String"></result>
+	</resultMap>
+	<resultMap type="com.shangyong.backend.entity.td.vo.TdRiskItemCount" id="tdRiskItemCount">
+		<id property="ruleId" column="ruleId" javaType="java.lang.String"></id>
+		<result property="riskName" column="riskName" javaType="java.lang.String"></result>
+		<result property="state" column="state" javaType="java.lang.String"></result>
+		<result property="number" column="number" javaType="java.lang.String"></result>
+		<result property="startTime" column="startTime" javaType="java.lang.String"></result>
+		<result property="endTime" column="endTime" javaType="java.lang.String"></result>
+	</resultMap>
+
+	<!-- 通用查询结果列-->
+	<sql id="Base_Column_List">
+	td_risk_items_id,	td_anti_fraud_id,	rule_id,	score,	decision,	risk_name,	risk_type
+	</sql>
+
+	<!-- 查询（根据主键ID查询） -->
+	<select id="getEntityById" resultMap="tdRiskItemsinfoMap" parameterType="java.lang.String">
+		 SELECT
+		 <include refid="Base_Column_List" />
+		 FROM td_risk_items
+		 WHERE td_risk_items_id = #{tdRiskItemsId}
+	</select>
+	<!-- 查询（根据tdAntiFraudId查询） -->
+	<select id="queryById" resultMap="tdRiskItemsinfoMap" parameterType="java.lang.String">
+		 SELECT
+		 <include refid="Base_Column_List" />
+		 FROM td_risk_items
+		 WHERE td_anti_fraud_id = #{tdAntiFraudId}
+	</select>
+
+	<!-- 查询（根据主键ID查询） -->
+	<select id="getAll" resultMap="tdRiskItemsinfoMap" parameterType="java.lang.String">
+		 SELECT
+		 <include refid="Base_Column_List" />
+		 FROM td_risk_items
+	</select>
+		<!-- 查询（查询规则命中次数） -->
+	<select id="queryTdResultCount" resultType="com.shangyong.backend.entity.td.vo.TdRiskItemCount" parameterType="com.shangyong.backend.entity.td.vo.TdRiskItemCount">
+		 SELECT
+		 r.rule_id as ruleId,r.risk_name as riskName,count(r.risk_name) as number
+		 FROM td_risk_items r 
+		 LEFT JOIN td_anti_fraud t 
+		 ON r.td_anti_fraud_id = t.td_anti_fraud_id 
+		 <where>
+		 	<if test="startTime != '' and startTime != null" >
+	    	    <![CDATA[ and t.create_time >= #{startTime} ]]>
+	         </if>
+	   	     <if test="endTime != '' and endTime != null" >
+	    	    <![CDATA[ and t.create_time <= #{endTime} ]]>
+	         </if>
+	         <if test="riskName != null and riskName != ''">
+				AND risk_name LIKE CONCAT('%', #{riskName}, '%')
+			</if>
+			<if test="ruleId != null and ruleId != ''">
+				AND rule_id = #{ruleId}
+			</if>
+		 </where>
+		 GROUP BY r.rule_id
+	</select>
+	
+
+	<!--删除：根据主键ID删除-->
+	<delete id="deleteEntity" parameterType="java.lang.String">
+		 DELETE FROM td_risk_items
+		 WHERE td_risk_items_id = #{tdRiskItemsId}
+	</delete>
+
+	<!-- 添加 -->
+	<insert id="saveEntity" parameterType="com.shangyong.backend.entity.td.TdRiskItems">
+		 INSERT INTO td_risk_items
+ 		(td_risk_items_id,td_anti_fraud_id,rule_id,score,decision,risk_name,risk_type) 
+		 VALUES 
+ 		(#{tdRiskItemsId},#{tdAntiFraudId},#{ruleId},#{score},#{decision},#{riskName},#{riskType}) 
+	</insert>
+
+	<!-- 修 改-->
+	<update id="updateEntity" parameterType="com.shangyong.backend.entity.td.TdRiskItems">
+		 UPDATE td_risk_items
+ 		 <set> 
+			<if test="tdAntiFraudId != null">
+				 td_anti_fraud_id = #{tdAntiFraudId},
+			</if>
+			<if test="ruleId != null">
+				 rule_id = #{ruleId},
+			</if>
+			<if test="score != null">
+				 score = #{score},
+			</if>
+			<if test="decision != null">
+				 decision = #{decision},
+			</if>
+			<if test="riskName != null">
+				 risk_name = #{riskName},
+			</if>
+			<if test="riskType != null">
+				 risk_type = #{riskType},
+			</if>
+
+ 		 </set>
+		 WHERE td_risk_items_id = #{tdRiskItemsId}
+	</update>
+
+</mapper>

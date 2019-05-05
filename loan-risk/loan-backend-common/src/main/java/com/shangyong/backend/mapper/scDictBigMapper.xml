@@ -1,0 +1,173 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.shangyong.backend.dao.ScDictBigDao">
+
+	<resultMap type="com.shangyong.backend.entity.ScDictBig" id="scDictBiginfoMap">
+		<id property="id" column="id" javaType="java.lang.Integer"></id>
+		<result property="dicBigCode" column="dic_big_code" javaType="java.lang.String"></result>
+		<result property="dicBigValue" column="dic_big_value" javaType="java.lang.String"></result>
+		<result property="dicBigStaues" column="dic_big_staues" javaType="java.lang.String"></result>
+		<result property="createMan" column="create_man" javaType="java.lang.String"></result>
+		<result property="modifyMan" column="modify_man" javaType="java.lang.String"></result>
+		<result property="createTime" column="create_time" javaType="java.lang.String"></result>
+		<result property="modifyTime" column="modify_time" javaType="java.lang.String"></result>
+		<result property="version" column="version" javaType="java.lang.Integer"></result>
+	 
+	</resultMap>
+
+	<!-- 通用查询结果列-->
+	<sql id="Base_Column_List">
+		id as id,
+		dic_big_code as dicBigCode,
+		dic_big_value as dicBigValue,
+		dic_big_staues as dicBigStaues,
+		create_man as createMan,
+		modify_man as modifyMan,	
+		create_time as createTime,
+		modify_time as modifyTime,
+		version as version
+	</sql> 
+
+
+	<!-- 查询 -->
+	<select id="getAll"  resultType="java.util.Map" parameterType="java.lang.Integer">
+		 SELECT 
+		 	t.id as id,	
+		 	t.dic_big_code as dicBigCode,
+			t.dic_big_value as dicBigValue,
+			t.dic_big_staues as dicBigStaues,
+			s.id  as smsid,
+			s.dic_small_code as dicSmallCode,
+			s.dic_small_value as dicSmallValue,
+			s.dic_small_staues as dicSmallStaues
+		 FROM sc_dict_big t left join sc_dict_small s on
+		  t.id = s.dict_big_id
+		  where t.id = #{dictBigId}    
+	</select>
+ 	
+ 	<!-- 统计 -->
+  	<select id="listAllCount" resultType="java.lang.Integer">
+  		select 
+  			count(1)
+  		from sc_dict_big t
+  		 <where>
+ 			<if test="dicBigValue != null and dicBigValue !='' ">
+  				 instr(t.dic_big_value, #{dicBigValue}) > 0
+  			</if>
+			</where>
+  		 order by t.create_time desc 
+  	</select>
+ 
+	 <!-- 统计字典名称-->
+	  <select id="getCountDicBigCode" parameterType="com.shangyong.backend.entity.ScDictBig" resultType="java.lang.Integer">
+	  	select count(1) from sc_dict_big t
+			where t.dic_big_code = #{dicBigCode}
+	  </select>
+ 
+	 <!-- 查询-->
+	<select id="listViewAll" resultType="com.shangyong.backend.entity.ScDictBig" parameterType="java.lang.String">
+		 SELECT 
+		  <include refid="Base_Column_List" />
+		 FROM sc_dict_big t  
+		  <where>
+ 			<if test="dicBigValue != null and dicBigValue !='' ">
+  				 instr(t.dic_big_value, #{dicBigValue}) > 0
+  			</if>  
+			</where>
+		 order by t.create_time desc 
+   		 LIMIT #{pageIndex},#{pageSize}
+	</select>
+	 
+ 	 <!-- 保存, 返回自增长id -->
+  	<insert id="save" parameterType="com.shangyong.backend.entity.ScDictBig" 
+  			useGeneratedKeys="true" keyProperty="id">
+			    insert into sc_dict_big (
+			    dic_big_code, 
+			    dic_big_value, 
+			    dic_big_staues, 
+			    create_man,  
+			    modify_man, 
+			    create_time,
+			    modify_time,
+			    version )
+			    values (
+			    #{dicBigCode},
+			    #{dicBigValue}, 
+			    #{dicBigStaues},
+			    #{createMan},
+			    #{modifyMan}, 
+			    now(), 
+			    now(),
+			    #{version} 
+			    )
+			  </insert>
+			  
+			  
+			   <!-- 修改 -->
+  <update id="update" parameterType="com.shangyong.backend.entity.ScDictBig" >
+    update sc_dict_big
+    <set > 
+      <if test="dicBigCode != null" >
+        dic_big_code = #{dicBigCode},
+      </if>
+      
+      <if test="dicBigValue != null" >
+        dic_big_value  = #{dicBigValue},
+      </if>
+      
+      <if test="dicBigStaues != null" >
+        dic_big_staues  = #{dicBigStaues},
+      </if>
+      
+      <if test="createMan != null" >
+        create_man  = #{createMan},
+      </if>
+      
+      <if test="modifyMan != null" >
+        modify_man  = #{modifyMan},
+      </if>
+      
+        modify_time = now(),
+      <if test="version != null" >
+        version = #{version}
+      </if>
+       
+    </set>
+    where id = #{id}
+  </update> 
+  
+   <!-- 根据id获取对象信息 -->
+   <select id="getObjectById" parameterType="com.shangyong.backend.entity.ScDictBig" resultType="com.shangyong.backend.entity.ScDictBig">
+	select  
+		<include refid="Base_Column_List"></include> 
+	from sc_dict_big t
+	<where>  
+	<if test="id != null and id != ''">
+			  t.id = #{id}
+	</if>
+	<if test="dicBigValue != null and dicBigValue !=''">
+			  t.dic_big_value = #{dicBigValue}
+	</if>
+	</where>
+   </select>
+  
+  
+     <!--  删除 -->
+  	<delete id="delete" parameterType="com.shangyong.backend.entity.ScDictBig" >
+    	delete sc_dict_big,
+    	sc_dict_small 
+    	from sc_dict_big, 
+    	sc_dict_small 
+    	where 
+    	sc_dict_big.id = sc_dict_small.dict_big_id
+    	and sc_dict_big.id = #{id}
+ 	 </delete>
+ 	 
+  	<select id="queryByBigCode" resultMap="scDictBiginfoMap" parameterType="java.lang.String">
+		 SELECT
+		 <include refid="Base_Column_List" />
+		 FROM sc_dict_big t
+		 WHERE t.dic_big_code = #{dicBigCode}
+	</select>
+</mapper>

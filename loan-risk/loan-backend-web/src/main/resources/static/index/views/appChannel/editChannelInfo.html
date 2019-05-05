@@ -1,0 +1,38 @@
+﻿<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<META HTTP-EQUIV="pragma" CONTENT="no-cache">
+		<META HTTP-EQUIV="Cache-Control" CONTENT="no-cache, must-revalidate">
+		<META HTTP-EQUIV="expires" CONTENT="0">
+		<link rel="stylesheet" href="../../plugins/layui/css/layui.css" media="all" />
+		<link rel="stylesheet" href="../../css/global.css" media="all">
+		<link rel="stylesheet" href="../../plugins/font-awesome/css/font-awesome.min.css">
+		<link rel="stylesheet" href="../../css/table.css" />
+		<!-- js -->
+		
+		<script src="../../jqery/jquery.js"></script>
+		<script src="../../../commons/base.js"></script>
+		<script type="text/javascript" src="../../plugins/layui/layui.js"></script>
+		<script type="text/javascript" src="../../js/appChannel/editChannelInfo.js"></script>
+	</head>
+
+	<body>
+		<div style="margin: 15px;">
+	 
+		<div class="layui-form-item">
+			<label class="layui-form-label">大类名称</label>
+			<div class="layui-input-block"> 
+				<input id="dicBigValue" type="text" name="dicBigValue"   class="layui-input" >
+			</div>
+		</div> 
+  		<div class="layui-form-item">
+			<label class="layui-form-label">备注</label>
+			<div class="layui-input-block"> 
+				<input id="bigRemark" type="text" name="bigRemark"   class="layui-input" >
+			</div>
+		</div> 
+		<input type="button" class="layui-btn" value="保存" onclick="save()" id="save_bt" style="margin-top: 30px;margin-left: 248px;" />
+		<button class="layui-btn layui-btn-normal" id="closeIframe" onclick="closeIfrname()" style="margin-left: 70px;margin-top: 29px;" >取消</button>
+</body>
+</html>

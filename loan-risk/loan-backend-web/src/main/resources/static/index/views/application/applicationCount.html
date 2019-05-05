@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+<meta charset="UTF-8">
+<title>洪澄评分与授信额度定义</title>
+<link rel="stylesheet" href="../../plugins/layui/css/layui.css"
+	media="all" />
+<link rel="stylesheet" href="../../css/global.css" media="all">
+<link rel="stylesheet"
+	href="../../plugins/font-awesome/css/font-awesome.min.css">
+<link rel="stylesheet" href="../../css/table.css" />
+ <link rel="stylesheet" href="../../css/lzh_tongji_fenxi.css" media="all" />
+</head>
+
+<body>
+	<div class="admin-main">
+
+		<blockquote class="layui-elem-quote">
+			<!-- 查询条件 -->
+			<form action="" class="layui-form" style="margin-top: 0px;">
+				<div class="layui-inline">
+			      <label class="layui-form-label"> 开始时间：</label>
+			      <div class="layui-input-inline">
+			        <input name="startTime" lay-verify="startTime" id="startTime" autocomplete="off" class="layui-input" >
+			      </div>
+			    </div>
+			    <div class="layui-inline">
+			      <label class="layui-form-label">结束时间：</label>
+			      <div class="layui-input-inline">
+			        <input name="endTime" lay-verify=endTime id="endTime" autocomplete="off" class="layui-input" >
+			      </div>
+			    </div>
+		    	<div class="layui-inline">
+				  <label class="layui-form-label">审核步骤</label>
+			      <div class="layui-input-inline">
+				      <select name="isStep" id = "isStep" class="layui-input" lay-search="">
+				        <option value="00"> 全部 </option>
+				        <option value="0">待处理</option>
+				        <option value="1">同盾设备信息</option>
+				        <option value="2">同盾反欺诈</option>
+				        <option value="3">白骑士资信云报告</option>
+				        <option value="4">极光黑名单</option>
+				        <option value="5">腾讯反欺诈</option>
+				        <option value="6">91征信查询（多头借贷）</option>
+				        <option value="7">91回调</option>
+				         <option value="8">易极付黑名单</option>
+				        <option value="98">规则引擎模板分发</option>
+				        <option value="99">潘多拉拒绝名单</option>
+				        <option value="100">客户授信</option>
+				      </select> 
+			      </div>
+			    </div>
+		    	<div class="layui-inline">
+				  <label class="layui-form-label">app平台</label>
+			      <div class="layui-input-inline">
+				      <select name="appName" id = "appName" class="layui-input" lay-search="">
+				        <option value="00">全部</option>
+				        <option value="1">洪澄</option>
+				        <option value="2">速贷</option>
+				      </select> 
+			      </div>
+			    </div>
+			    
+			    <div class="layui-inline">
+				  <label class="layui-form-label">客户标识</label>
+			      <div class="layui-input-inline">
+				      <select name="appLevel" id = "appLevel" class="layui-input">
+				        <option value="00">全部</option>
+				        <option value="0">新客户</option>
+				        <option value="1">老客户</option>
+				      </select> 
+			      </div>
+			    </div>
+			    
+			    <br><br>
+			    
+		    	<div class="layui-inline">
+				  <label class="layui-form-label">平台类型</label>
+			      <div class="layui-input-inline">
+				      <select name="source" id = "source" class="layui-input">
+				        <option value="00">全部</option>
+				        <option value="0">Android</option>
+				        <option value="1">IOS</option>
+				      </select> 
+			      </div>
+			    </div>
+			    
+				 <div class="layui-inline" >
+					<label class="layui-form-label">决策树列表</label>
+					<div class="layui-input-inline" id="decisionTreeId" lay-search="">
+					</div>
+				</div>
+
+				<div class="layui-inline" >
+					<label class="layui-form-label">模板名称：</label>
+					<div class="layui-input-inline" id="tplIdContent"  lay-search="">
+					</div>
+				</div>
+		    
+					<a href="javascript:;" class="layui-btn layui-btn-small" id="search" style="margin-left:15px;">
+						<i class="layui-icon">&#xe615;</i> 搜索
+					</a>
+
+					<a href="javascript:;" class="layui-btn layui-btn-small" id="statics">
+						<i class="layui-icon">&#xe608;</i> 查看统计图
+					</a>
+					</form>
+		</blockquote>
+		
+		<fieldset class="layui-elem-field">
+			<legend>数据列表</legend><br>
+			<div class="layui-inline">
+			    <label class="layui-form-label" style="width: 120px;"> 总认证次数：</label>
+			    <label name="sum" id="sum"  class="layui-form-label" style="width: 120px;"></label>
+			</div>
+			<div class="layui-inline">
+				<label class="layui-form-label" style="width: 120px;"> 审核通过数：</label>
+			    <label name="pass" id="pass"  class="layui-form-label" style="width: 80px;"></label>
+			</div>
+			<div class="layui-inline">
+			    <label class="layui-form-label" style="width: 120px;"> 审核未通过数：</label>
+			    <label name="notPass" id="notPass"  class="layui-form-label" style="width: 80px;"></label>
+			</div>
+			<div class="layui-inline">
+			    <label class="layui-form-label" style="width: 120px;"> 待审核数：</label>
+			    <label name="unAudited" id="unAudited"  class="layui-form-label" style="width: 80px;"></label>
+			</div>
+			<br><br>
+			<div class="layui-inline">
+			    <label class="layui-form-label" style="width: 120px;"> 总认证人数：</label>
+			    <label name="sum_certcode" id="sum_certcode"  class="layui-form-label" style="width: 120px;"></label>
+			</div>
+			<div class="layui-inline">
+				<label class="layui-form-label" style="width: 120px;"> 审核通过人数：</label>
+			    <label name="pass_certcode" id="pass_certcode"  class="layui-form-label" style="width: 80px;"></label>
+			</div>
+			<div class="layui-inline">
+			    <label class="layui-form-label" style="width: 120px;"> 审核未通过人数：</label>
+			    <label name="notPass_certcode" id="notPass_certcode"  class="layui-form-label" style="width: 80px;"></label>
+			</div>
+			<div class="layui-inline">
+			    <label class="layui-form-label" style="width: 120px;"> 待审核人数：</label>
+			    <label name="unAudited_certcode" id="unAudited_certcode"  class="layui-form-label" style="width: 80px;"></label>
+			</div>
+			<br><br>
+			<div class="layui-inline">
+			    <label class="layui-form-label" style="width: 120px;"> 总授信额度：</label>
+			    <label name="unAuditedRate" id="totalCreditMoney"  class="layui-form-label" style="width: 120px;"></label>
+			</div>
+			<div class="layui-inline">
+			    <label class="layui-form-label" style="width: 120px;"> 审核通过率：</label>
+			    <label name="passRate" id="passRate"  class="layui-form-label" style="width: 80px;"></label>
+			</div>
+			<div class="layui-inline">
+			    <label class="layui-form-label" style="width: 120px;"> 审核未通过率：</label>
+			    <label name="notPassRate" id="notPassRate"  class="layui-form-label" style="width: 80px;"></label>
+			</div>
+			<div class="layui-inline">
+			    <label class="layui-form-label" style="width: 120px;"> 待审核率：</label>
+			    <label name="unAuditedRate" id="unAuditedRate"  class="layui-form-label" style="width: 80px;"></label>
+			</div>
+			<br><br>
+			<div class="layui-inline">
+			    <label class="layui-form-label" style="width: 120px;"> 实时通过率：</label>
+			    <label name="realTimeRate" id="realTimeRate"  class="layui-form-label" style="width: 120px;"></label>
+			</div>
+			<br><br>
+			
+			<div class="layui-field-box layui-form">
+				<table class="layui-table admin-table"  style="word-break: keep-all;overflow:auto;">
+					<thead>
+						<tr>
+							<th style="width:80px;">序号</th>
+							<th style="width:80px;">app平台</th>
+							<th style="width:80px;">申请来源</th>
+							<th>审核步骤</th>
+							<th style="width:160px;">决策树名称</th>
+							<th style="width:160px;">模板名称</th>
+							<th>命中规则code</th>
+							<th>调整规则时间</th>
+							<th>命中规则描述</th>
+							<th>命中次数</th>
+							<th>命中人数</th>
+							<th>操作</th>
+						</tr>
+					</thead>
+					<tbody id="content">
+					</tbody>
+				</table>
+				<label>共<font color='red' id="count_page_number"></font>条记录</label>
+				<div id="paged" class="page" style="display:inline-block;">
+				</div>
+			</div>
+		</fieldset>
+	</div>
+	<!--模板-->
+	<script type="text/html" id="tpl">
+			{{# layui.each(d.list, function(index, item){
+				var creditType = "";
+				if(item.creditType == "01"){
+					creditType = "同盾";
+				}else if(item.creditType == "02"){
+					creditType = "白骑士";
+				}else if(item.creditType == "03"){
+					creditType = "极光";
+				}else if(item.creditType == "04"){
+					creditType = "91征信";
+				}else if(item.creditType == "05"){
+					creditType = "腾讯云";
+				}else if(item.creditType == "13"){
+					creditType = "网洪";
+				}
+
+
+
+				var stepName = "";
+				if(item.isStep == "0"){
+					stepName = "待处理";
+				}else if(item.isStep == "1"){
+					stepName = "同盾设备信息";
+				}else if(item.isStep == "2"){
+					stepName = "同盾反欺诈";
+				}else if(item.isStep == "3"){
+					stepName = "白骑士资信云报告";
+				}else if(item.isStep == "4"){
+					stepName = "极光黑名单";
+				}else if(item.isStep == "5"){
+					stepName = "腾讯反欺诈";
+				}else if(item.isStep == "6"){
+					stepName = "91征信查询（多头借贷）";
+				}else if(item.isStep == "7"){
+					stepName = "91回调";
+				}else if(item.isStep == "8"){
+					stepName = "易极付黑名单";
+				}else if(item.isStep == "98"){
+					stepName = "规则引擎模板分发";
+				}else if(item.isStep == "99"){
+					stepName = "潘多拉拒绝名单";
+				}else if(item.isStep == "100"){
+					stepName = "客户授信";
+				}
+
+				var sourceName = "";
+				if(item.source == "0"){
+					sourceName = "Android";
+				}else if(item.source == "1"){
+					sourceName = "IOS";
+				}
+
+				var appName = "";
+				if(item.appName == "1"){
+					appName = "洪澄";
+				}else if(item.appName == "2"){
+					appName = "速贷";
+				}
+
+				var modifyTime = "";
+				if(item.modifyTime.length>=18){
+					modifyTime = item.modifyTime.substring(0,19);
+				}
+
+				var banControlTplName = banTplNames[item.banControlTplId];
+				var decisionTreeName = treeNames[item.decisionTreeId];
+			}}
+			<tr>
+				<td>{{ index + 1 }}</td>
+				<td>{{ appName }}</td>
+				<td>{{ sourceName }}</td>
+				<td>{{ stepName }}</td>
+				<td>{{ decisionTreeName }}</td>
+				<td>{{ banControlTplName }}</td>
+                <td>{{ item.banCode }}</td>
+				<td>{{ modifyTime }}</td>
+                <td>{{ item.auditResult }}</td>
+				<td>{{ item.count }}</td>
+				<td>{{ item.certCount }}</td>
+				<td style="white-space: nowrap;">
+					<a href="javascript:;" data-id="{{ item.source }}" data-step="{{ item.isStep}}" data-appName="{{ item.appName}}"  data-appLevel="{{ item.appLevel}}" data-rule="{{ item.banCode}}" data-tplId="{{ item.banControlTplId}}"  data-tree="{{ item.decisionTreeId}}"  data-result="{{ item.auditResult}}" data-opt="find" class="layui-btn layui-btn-mini">命中客户清单</a>
+					<a href="javascript:;" data-id="{{ modifyTime }}" data-opt="time" class="layui-btn layui-btn-mini">设为规则时间</a>
+			{{# if(item.creditType == "01"){ }}
+					<a href="javascript:;" data-id="{{ item.source }}" data-rule="{{ item.banCode}}"  data-result="{{ item.auditResult}}" data-opt="td" class="layui-btn layui-btn-mini">同盾命中统计</a>
+			{{# } }}
+				</td>
+			</tr>
+			{{# }); }}
+		</script>
+
+	<!-- js -->
+	<script src="../../jqery/jquery.js"></script>
+	<script src="../../../commons/base.js"></script>
+	<script type="text/javascript" src="../../plugins/layui/layui.js"></script>
+	<script type="text/javascript" src="../../js/application/applicationCount.js?t=Math.randon()"></script>
+</body>
+
+</html>

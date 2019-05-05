@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.shangyong.backend.dao.OverdueListInfoDao">
+
+	<resultMap type="com.shangyong.backend.entity.OverdueListInfo" id="overdueListInfoMap">
+		<id property="overdueListInfoId" column="overdue_list_info_id" javaType="java.lang.String"></id>
+		<result property="overdueCntId" column="overdue_cnt_id" javaType="java.lang.String"></result>
+		<result property="applicationId" column="application_id" javaType="java.lang.String"></result>
+		<result property="pType" column="p_type" javaType="java.lang.String"></result>
+		<result property="overdueStartTime" column="overdue_start_time" javaType="java.lang.String"></result>
+		<result property="overdueDay" column="overdue_day" javaType="java.lang.Integer"></result>
+		<result property="overdueAmt" column="overdue_amt" javaType="java.lang.String"></result>
+		<result property="platformType" column="platform_type" javaType="java.lang.String"></result>
+		<result property="createTime" column="create_time" javaType="java.lang.String"></result>
+		<result property="modifyTime" column="modify_time" javaType="java.lang.String"></result>
+	</resultMap>
+
+	<!-- 通用查询结果列-->
+	<sql id="Base_Column_List">
+overdue_list_info_id,	overdue_cnt_id,	application_id,	p_type,	overdue_start_time,	overdue_day,	overdue_amt,	platform_type,	create_time,	modify_time
+	</sql>
+
+	<!-- 添加 -->
+	<insert id="saveAllEntity">
+		 INSERT INTO overdue_list_info
+ 		(overdue_list_info_id,overdue_cnt_id,application_id,p_type,overdue_start_time,overdue_day,overdue_amt,platform_type,create_time,modify_time) 
+		 VALUES
+ 		<foreach collection="list" item="item" index="index" separator="," >
+ 			(#{item.overdueListInfoId},#{item.overdueCntId},#{item.applicationId},#{item.pType},#{item.overdueStartTime},#{item.overdueDay},#{item.overdueAmt},#{item.platformType},#{item.createTime},#{item.modifyTime}) 
+		</foreach>
+	</insert>
+	
+	<!-- 查询（根据根据applicationId查询） -->
+	<select id="findEntityByApplicationId" resultMap="overdueListInfoMap" parameterType="java.lang.String">
+		 SELECT
+		 <include refid="Base_Column_List" />
+		 FROM overdue_list_info
+		 WHERE application_id = #{applicationId}
+	</select>
+</mapper>

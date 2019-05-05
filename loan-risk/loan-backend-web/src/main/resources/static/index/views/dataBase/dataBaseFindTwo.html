@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<link rel="stylesheet" href="../../plugins/layui/css/layui.css" media="all" />
+		<link rel="stylesheet" href="../../css/global.css" media="all">
+		<link rel="stylesheet" href="../../plugins/font-awesome/css/font-awesome.min.css">
+		<link rel="stylesheet" href="../../css/table.css" />
+		<link rel="stylesheet" href="../../css/lzh_xy_gl.css" media="all" />
+		<!-- js -->
+		<script src="../../jqery/jquery.js"></script>
+		<script src="../../../commons/base.js"></script>
+		<script type="text/javascript" src="../../plugins/layui/layui.js"></script>
+		<script type="text/javascript" src="../../js/dataBase/dataBaseFindTwo.js"></script>
+	</head> 
+	<body>
+		<div class="admin-main"> 
+			<blockquote class="layui-elem-quote"> 
+				<!-- 查询条件 -->
+				<div class="layui-inline">
+			      <label class="layui-form-label" style="width: auto;">数据库名称：</label>
+			      <div class="layui-input-inline">
+			        <input name="tableSchema" lay-verify="tableSchema" autocomplete="off" value="risk"  onfocus="if(value =='risk){value ==''}" onblur="if (value ==''){value='risk}" class="layui-input"  id="tableSchema" >
+			      </div>
+			    </div>
+			    
+				<div class="layui-inline">
+			      <label class="layui-form-label">表名称：</label>
+			      <div class="layui-input-inline">
+			        <input name="tableName" lay-verify="tableName" autocomplete="off" placeholder="支持模糊查询" class="layui-input"  id="tableName" >
+			      </div>
+			    </div>
+			    &nbsp;
+					<a href="javascript:;" class="layui-btn layui-btn-small" id="search" onclick="sel()">
+						<i class="layui-icon">&#xe615;</i> 搜索
+					</a>
+			</blockquote>
+			<fieldset class="layui-elem-field">
+				<legend>数据列表</legend>
+				<div class="layui-field-box layui-form">
+					<table class="layui-table admin-table"  style="word-break: keep-all;overflow:auto;"  id="tabid">
+						<thead>
+							<tr>   
+								<th>实例名</th>
+								<th>表名</th>
+								<th>是否唯一</th> 
+ 								<th>索引实例</th>
+								<th>索引名</th> 
+								<th>索引顺序</th>
+								<th>字段名</th>
+								<th>是否为空</th>
+								<th>索引类型</th>
+							</tr>
+						</thead>
+						<tbody id="content">
+						</tbody>
+					</table>
+				</div>
+			</fieldset>
+		</div>
+		<!--模板-->
+ 		<script type="text/html" id="tpl">
+			{{# layui.each(d.list, function(index, item){   }}
+			<tr>   
+				<td>{{ item.TABLE_SCHEMA }}</td>
+				<td>{{ item.TABLE_NAME }}</td>
+				<td>{{ item.NON_UNIQU }}</td> 
+				<td >{{ item.INDEX_SCHEMA }}</td>
+				<td>{{ item.INDEX_NAME }}</td> 
+				<td>{{ item.SEQ_IN_INDEX }}</td>
+ 				<td>{{ item.COLUMN_NAME }}</td>
+				<td>{{ item.NULLABLE }}</td>
+				<td>{{ item.INDEX_TYPE }}</td>
+			</tr>
+			{{# }); }}
+		</script>
+		 
+	</body> 
+</html>

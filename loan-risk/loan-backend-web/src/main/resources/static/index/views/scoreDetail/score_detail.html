@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title>AllBillManage</title>
+		<META HTTP-EQUIV="pragma" CONTENT="no-cache">
+		<META HTTP-EQUIV="Cache-Control" CONTENT="no-cache, must-revalidate">
+		<META HTTP-EQUIV="expires" CONTENT="0">
+		<link rel="stylesheet" href="../../plugins/layui/css/layui.css" media="all">
+		<link rel="stylesheet" href="../../css/global.css" media="all">
+		<link rel="stylesheet" href="../../plugins/font-awesome/css/font-awesome.min.css">
+		<link rel="stylesheet" href="../../css/table.css" />
+		<link rel="stylesheet" href="../../css/lzh_xy_shenghe.css" media="all" />
+	</head>
+	
+	<body>
+		<div class="admin-main">
+				<blockquote class="layui-elem-quote">
+				
+				<!-- 查询条件 -->
+				<div class="layui-inline">
+			      <label class="layui-form-label">申请单编号</label>
+			      <div class="layui-input-inline">
+			        <input name="applicationId" lay-verify="applicationId" id="applicationId" autocomplete="off" class="layui-input" >
+			      </div>
+			    </div>
+				<div class="layui-inline">
+			      <label class="layui-form-label">借款编号</label>
+			      <div class="layui-input-inline">
+			        <input name="applicationId" lay-verify="applicationBuId" id="applicationBuId" autocomplete="off" class="layui-input" >
+			      </div>
+			    </div>
+			    <a href="javascript:;" class="layui-btn layui-btn-small" id="search">
+					<i class="layui-icon">&#xe615;</i> 搜索
+				</a>
+			</blockquote>
+			
+			<fieldset class="layui-elem-field">
+				<legend>借款申请列表</legend>
+				<br>
+				<div class="layui-field-box layui-form">
+					<table class="layui-table admin-table"  style="word-break: keep-all;overflow:auto;">
+						<thead>
+							<tr>
+								<th>申请单编号</th>
+								<th>评分大类序号</th>
+								<th>评分小类序号</th>
+								<th>评分小类编号</th>
+								<th>评分规则明细</th>
+								<th>评分分值</th>
+								<th>评分时间</th>
+							</tr>
+						</thead>
+						<tbody id="content">
+						</tbody>
+					</table>
+				</div>
+			</fieldset>
+			<div class="admin-table-page">
+				<label style="position: absolute;left: 20px;top:11px">共<font color='red' id="count_page_number"></font>条记录</label>
+			</div>
+		</div>
+		
+		<!--模板-->
+		<script type="text/html" id="tpl">
+			{{# var totalScore = 0; }}
+			{{# layui.each(d.list, function(index, item){ }}
+			<tr>
+				<td>{{ item.applicationId }}</td>
+				<td>{{ item.scoreBigId }}</td>
+				<td>{{ item.scoreSmallId }}</td>
+				<td>{{ item.remark }}</td>
+				<td>{{ item.scoreRuleName }}</td>
+				<td>{{ item.score }}</td>
+				<td>{{ item.createTime }}</td>
+			</tr>
+			{{# totalScore=parseFloat(totalScore)+parseFloat(item.score) }}
+			{{# }); }}
+			<tr>
+				<td colspan=5>总分:</td>
+				<td>{{ totalScore }}</td>
+				<td>&nbsp;</td>
+			</tr>
+		</script>
+
+		
+		<!-- js -->
+		<script src="../../jqery/jquery.js"></script>
+		<script src="../../../commons/base.js"></script>
+		<script type="text/javascript" src="../../plugins/layui/layui.js"></script>
+		<script type="text/javascript" src="../../js/scoreDetail/score_detail.js"></script>
+	</body>
+</html>

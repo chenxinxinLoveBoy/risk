@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.shangyong.backend.dao.ScScoreSmallHisDao">
+
+	<resultMap type="com.shangyong.backend.entity.ScScoreSmall" id="scScoreSmallHisinfoMap">
+	 <id property="smallHisId" column="small_his_id" javaType="java.lang.Integer"></id>
+ 		<result property="scoreSmallId" column="score_small_id" javaType="java.lang.Integer"></result>
+		<result property="scoreBigId" column="score_big_id" javaType="java.lang.Integer"></result>
+		<result property="scoreRuleName" column="score_rule_name" javaType="java.lang.String"></result>
+		<result property="scoreSmallCode" column="score_small_code" javaType="java.lang.String"></result>
+		<result property="ruleScoreValue" column="rule_score_value" javaType="java.lang.String"></result>
+		<result property="score" column="score" javaType="java.lang.String"></result>
+		<result property="ruleComparisonType" column="rule_comparison_type" javaType="java.lang.String"></result>
+		<result property="validateRule" column="validate_rule" javaType="java.lang.String"></result>
+		<result property="state" column="state" javaType="java.lang.String"></result>
+		<result property="version" column="version" javaType="java.lang.Integer"></result>
+		<result property="createTime" column="create_time" javaType="java.lang.String"></result>
+		<result property="createMan" column="create_man" javaType="java.lang.String"></result>
+		<result property="modifyTime" column="modify_time" javaType="java.lang.String"></result>
+		<result property="modifyMan" column="modify_man" javaType="java.lang.String"></result>
+		<result property="remark" column="remark" javaType="java.lang.String"></result>
+		<result property="createName" column="create_name" javaType="java.lang.String"></result>
+		<result property="modifyName" column="modify_name" javaType="java.lang.String"></result>
+		<result property="percent" column="percent" javaType="java.lang.String"></result>
+		<result property="scoreTplId" column="score_tpl_id" ></result>
+	</resultMap>
+
+	<!-- 添加 -->
+	<insert id="saveEntity" parameterType="com.shangyong.backend.entity.ScScoreSmall">
+		 INSERT INTO sc_score_small_his
+ 		(score_small_id,score_big_id,score_rule_name,score_small_code,rule_score_value,score,rule_comparison_type,validate_rule,state,version,create_time,create_man,modify_time,modify_man,remark,create_name,modify_name ,record_newtime ,score_tpl_id, percent) 
+		 VALUES 
+ 		(#{scoreSmallId},#{scoreBigId},#{scoreRuleName},#{scoreSmallCode},#{ruleScoreValue},#{score},#{ruleComparisonType},#{validateRule},#{state},#{version},#{createTime},#{createMan},#{modifyTime},#{modifyMan},#{remark},#{createName},#{modifyName},NOW(),#{scoreTplId},#{percent}) 
+	</insert>
+
+	<!-- 通用查询结果列-->
+	<sql id="Base_Column_List">
+small_his_id,score_small_id,	score_big_id,	score_rule_name,	score_small_code,	rule_score_value,	score,	rule_comparison_type,	validate_rule,	state,	version,	create_time,	create_man,	modify_time,	modify_man,	remark,create_name,modify_name,score_tpl_id, percent 
+	</sql>
+
+	<!-- 查询（根据主键ID查询） -->
+	<select id="selectByPrimaryKey" resultMap="scScoreSmallHisinfoMap" parameterType="java.lang.Integer">
+		 SELECT
+		 <include refid="Base_Column_List" />
+		 FROM sc_score_small_his
+		 WHERE small_his_id = #{smallHisId}
+	</select>
+	
+	<!-- 根据对象查询list列表 -->
+	<select id="getAll" resultMap="scScoreSmallHisinfoMap" parameterType="com.shangyong.backend.entity.ScScoreSmall">
+		 SELECT
+		 <include refid="Base_Column_List" />
+		 FROM sc_score_small_his
+		  <where>
+ 			<if test="scoreBigId != null and scoreBigId != '' ">
+				  score_big_id = #{scoreBigId}
+			</if>
+			<if test="scoreSmallId != null and scoreSmallId != '' ">
+				and score_small_id = #{scoreSmallId}
+			</if>
+			<if test="scoreSmallCode != null and scoreSmallCode != '' ">
+				and score_small_code = #{scoreSmallCode}
+			</if>
+			<if test="scoreRuleName != null and scoreRuleName != '' ">
+				and score_rule_name = #{scoreRuleName}
+			</if>
+			<!-- 状态 -->
+			<if test="state != null and state != ''">
+				and state = #{state}
+			</if>
+			<if test="startTimeInterval != null and startTimeInterval != '' ">
+				and <![CDATA[ record_newtime > #{startTimeInterval}  ]]>
+			</if>
+			<if test="endTimeInterval != null and endTimeInterval != '' ">
+				and <![CDATA[ record_newtime < #{endTimeInterval} ]]>
+			</if>
+		</where>
+		order by modify_time DESC
+		<if test="pageIndex != -1">
+			LIMIT #{pageIndex},#{pageSize}
+		</if>
+	</select>
+
+<!-- 查询  -->
+	<select id="listAllCount" resultType="java.lang.Integer">
+		 SELECT count(1)  
+ 		 FROM sc_score_small_his
+		  <where>
+ 			<if test="scoreBigId != null and scoreBigId != '' ">
+				  score_big_id = #{scoreBigId}
+			</if>
+			<if test="scoreSmallId != null and scoreSmallId != '' ">
+				and score_small_id = #{scoreSmallId}
+			</if>
+			<if test="scoreSmallCode != null and scoreSmallCode != '' ">
+				and score_small_code = #{scoreSmallCode}
+			</if>
+			<if test="scoreRuleName != null and scoreRuleName != '' ">
+				and score_rule_name = #{scoreRuleName}
+			</if>
+			<if test="startTimeInterval != null and startTimeInterval != '' ">
+				and <![CDATA[ record_newtime > #{startTimeInterval}  ]]>
+			</if>
+			<if test="endTimeInterval != null and endTimeInterval != '' ">
+				and <![CDATA[ record_newtime < #{endTimeInterval} ]]>
+			</if>
+		</where>
+ 	</select>
+
+</mapper>

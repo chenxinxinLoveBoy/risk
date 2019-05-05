@@ -1,0 +1,126 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+<META HTTP-EQUIV="pragma" CONTENT="no-cache">
+<META HTTP-EQUIV="Cache-Control" CONTENT="no-cache, must-revalidate">
+<META HTTP-EQUIV="expires" CONTENT="0">
+<meta charset="UTF-8">
+<link rel="stylesheet" href="../../plugins/layui/css/layui.css"
+	media="all" />
+<link rel="stylesheet" href="../../css/global.css" media="all">
+<link rel="stylesheet"
+	href="../../plugins/font-awesome/css/font-awesome.min.css">
+<link rel="stylesheet" href="../../css/table.css" />
+<!-- js -->
+
+<script src="../../jqery/jquery.js"></script>
+<script src="../../../commons/base.js"></script>
+<script type="text/javascript" src="../../plugins/layui/layui.js"></script>
+<script type="text/javascript" src="../../js/scDecisionTree/scDecisionTree_add.js"></script>
+ <script language="javascript" type="text/javascript" src="../../My97DatePicker/WdatePicker.js"></script>
+</head>
+
+<body>
+	<div style="margin: 30px;">
+	<form class="layui-form" id="userForms" >
+	<input type="hidden" id="version" value=" ">
+	<input type="hidden" id="operation" value="">
+		<div class="layui-form-item">
+			<label class="layui-form-label"  style="width:150px">名称</label>
+			<div class="layui-input-block">
+			<input id="decisionTreeId" type="hidden" name="decisionTreeId"  autocomplete="off" class="layui-input" >
+				<input id="version" type="hidden" name="version"  autocomplete="off" class="layui-input" />
+  				<input id="decisionTreeName" type="text" name="decisionTreeName" placeholder="名称 "  style="width:200px"   autocomplete="off" class="layui-input"  >
+			</div>
+		</div>
+		<div class="layui-form-item">
+			<label class="layui-form-label"  style="width:150px">业务编号</label>
+			<div class="layui-input-block"   >
+				<input id="decisionTreeCode" type="text" name="decisionTreeCode" placeholder="业务编号"  style="width:200px" onkeyup="this.value=this.value.replace(/\D/g,'')"   class="layui-input">
+			</div>
+		</div>
+
+		<div class="layui-form-item">
+		  <label class="layui-form-label" style="width: 150px;">　禁止项模板名称 </label>
+	      <div class="layui-input-inline" id="tplContent3" style="width:200px;">
+	      </div>
+	    </div>
+			    
+		<div class="layui-form-item">
+		  <label class="layui-form-label" style="width: 150px;">　欺诈项模板名称 </label>
+	      <div class="layui-input-inline" id="tplContent2" style="width:200px;">
+	      </div>
+	    </div>
+			    
+		<div class="layui-form-item">
+		  <label class="layui-form-label" style="width: 150px;">　评分项模板名称 </label>
+	      <div class="layui-input-inline" id="tplContent1" style="width:200px;">
+	      </div>
+	    </div>
+	    
+	     <div class="layui-form-item">
+          <label class="layui-form-label" style="width: 150px;">　MQ交换机 </label>
+          <div class="layui-input-inline" id="exchanges" style="width:200px;">
+          </div>
+        </div>
+
+		<div class="layui-form-item">
+		    <label class="layui-form-label"  style="width:150px">执行类型</label>
+		    <div class="layui-input-block"  style="width:200px">
+		    	<input name="executeType"  checked="checked" value="1" title="按时段执行" type="radio"    lay-filter="radio_filter1" id="executeType" />
+		    </div>
+		  </div>
+		  
+		 
+		<div class="layui-form-item" id="date">
+			<label class="layui-form-label" style="width:150px">生效时间</label>
+			<div class="layui-input-block">
+				<input id="startTime" type="text" name="startTime" lay-verify="startTime" placeholder="模板生效时间" style="width:200px" class="layui-input">
+			</div>
+		</div>
+		
+		<div class="layui-form-item" id="date2">
+			<label class="layui-form-label" style="width:150px">失效时间</label>
+			<div class="layui-input-block">
+				<input id="endTime" type="text" name="endTime"  lay-verify="endTime" placeholder="模板失效时间" style="width:200px" class="layui-input">
+			</div>
+		</div>
+		<div class="layui-form-item">
+		    <label class="layui-form-label" style="width:150px">状态</label>
+		    <div class="layui-input-block" >
+		    	<input name="state" value="01" title="有效" type="radio"    lay-filter="radio_filter" id="state" />
+		    	<input name="state" value="02" title="失效" type="radio"    lay-filter="radio_filter" id="state2" />
+		    </div>
+		 </div> 
+		 
+		 <div class="layui-form-item" id="status_implementType">
+			<label class="layui-form-label" style="width:150px">实施类型</label>
+			<div class="layui-input-inline" style="width:200px">
+			        <select name="implementType" lay-filter="implementType"  lay-search="" id="select_implementType" lay-verify="implementType" >
+			          <option value="00">直接选择</option>
+				          <option value="01">大数据</option>
+			        </select>
+			</div>
+ 		 </div>
+		    
+	 	<div class="layui-form-item">
+			<label class="layui-form-label" style="width:150px">权重(百分比)</label>
+			<div class="layui-input-block"  >
+				<input id="tplPercent" type="text" name="tplPercent" placeholder="请输入正整数" style="width:200px;display:inline;"  onkeyup="this.value=this.value.replace(/\D/g,'')" class="layui-input">%
+			</div>
+		</div>
+		
+		<div class="layui-form-item">
+			<label class="layui-form-label" style="width:150px">优先级</label>
+			<div class="layui-input-block">
+				<input id="level" type="text" name="level" placeholder="请输入正整数"  style="width:200px" onkeyup="this.value=this.value.replace(/\D/g,'')" class="layui-input">
+			</div>
+		</div>
+  
+		<div class="layui-form-item"  style="margin-left: 15%">
+		<button lay-submit lay-filter="save"  class="layui-btn" id="save_bt" >保存</button> 
+		</div> 
+</form> 
+</div>
+</body>
+</html>

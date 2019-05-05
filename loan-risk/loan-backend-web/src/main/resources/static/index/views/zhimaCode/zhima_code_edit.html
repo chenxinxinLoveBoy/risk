@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<!-- <title>Insert title here</title> -->
+</head>
+		<!-- css -->
+		<link rel="stylesheet" href="../../plugins/layui/css/layui.css" media="all" />
+		<link rel="stylesheet" href="../../css/global.css" media="all">
+		<link rel="stylesheet" href="../../plugins/font-awesome/css/font-awesome.min.css">
+		<link rel="stylesheet" href="../../css/table.css" />
+
+		<!-- JS -->
+		<script type="text/javascript" src="../../plugins/layui/layui.js"></script>
+		<script src="../../jqery/jquery.js"></script>
+		<script type="text/javascript" src="../../../commons/base.js"></script>
+		<script type="text/javascript" src="../../js/zhimaCode/zhima_code_edit.js"></script>
+		
+		
+<body>
+	<div style="margin: 15px;">
+	<form class="layui-form" id="userForms" >	 
+		<div class="layui-form-item">
+			<label class="layui-form-label">信用代码</label>
+			<div class="layui-input-inline">
+				<input id="code" type="text" name="code"  lay-verify="code"  placeholder="信用代码"  class="layui-input" >
+			</div>
+			<div class="layui-form-mid layui-word-aux"><font color='red'>*</font></div>
+		</div>
+		
+		<div class="layui-form-item">
+			<label class="layui-form-label">中文说明</label>
+			<div class="layui-input-inline">
+				<input id="explain" type="text" name="explain"  lay-verify="explain"  placeholder="中文说明"  class="layui-input" >
+			</div>
+			<div class="layui-form-mid layui-word-aux"><font color='red'>*</font></div>
+		</div>
+		
+		<div class="layui-form-item">
+			<label class="layui-form-label">备注</label>
+			<div class="layui-input-block">
+				<input id="remark" type="text" name="remark"  lay-verify="remark"  placeholder="备注" autocomplete="off" class="layui-input">
+			</div>
+		</div>
+		<input id="hidden" type="hidden"   class="layui-input" >
+		<button lay-submit lay-filter="save"  class="layui-btn" id="save_bt"  style="margin-top: 45px;margin-left: 218px;">保存</button>
+		<button class="layui-btn layui-btn-normal" id="off_bt" onclick="closeIfrname()" style="margin-left: 70px;margin-top: 46px;">取消</button>
+		
+	</form>
+</div>
+</body>
+</html>

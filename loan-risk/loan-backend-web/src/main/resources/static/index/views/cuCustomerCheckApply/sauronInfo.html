@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+<meta charset="UTF-8">
+<title>索伦报告信息</title>
+<link rel="stylesheet" href="../../plugins/layui/css/layui.css"
+	media="all" />
+<link rel="stylesheet" href="../../css/global.css" media="all">
+<link rel="stylesheet"
+	href="../../plugins/font-awesome/css/font-awesome.min.css">
+<!-- <link rel="stylesheet" href="../../css/table.css" /> -->
+</head>
+<body>
+	<div class="admin-main">
+		<div class="layui-elem-field" style="background:#e2e2e2"> 
+			<legend style="margin-left: 1%;margin-top:1%;margin-bottom:1%"><i class="layui-icon" style="font-size: 25px;">&#xe63c;</i>
+				<font size="5" >&nbsp基本信息</font><br/><font size="2" >根据身份证等信息进行基本分析</font>
+			</legend>
+		</div>
+		<table class="layui-table admin-table">
+			<tbody>
+				<tr>
+					<td width="20%" align="left">年龄</td>
+					<td id="age" width="30%"></td>
+					<td width="30%" align="left">性别</td>
+					<td id="gender" width="20%"></td>
+				</tr>
+				<tr>
+					<td align="left">生日日期</td>
+					<td id="birthday"></td>
+					<td align="left">身份证是否是有效身份证</td>
+					<td id="idcardValidate"></td>
+				</tr>
+				<tr>
+					<td align="left">身份证户籍省份</td>
+					<td id="idcardProvince"></td>
+					<td align="left">身份证户籍城市</td>
+					<td id="idcardCity"></td>
+				</tr>
+				<tr>
+					<td align="left">身份证户籍地区</td>
+					<td id="idcardRegion"></td>
+					<td align="left">手机运营商</td>
+					<td id="phoneOperator"></td>
+				</tr>
+				<tr>
+					<td align="left">手机归属地省份</td>
+					<td id="phoneProvince"></td>
+					<td align="left">手机归属地城市</td>
+					<td id="phoneCity"></td>
+				</tr>
+				<tr>
+					<td align="left">身份证号记录天数</td>
+					<td id="recordIdcardDays"></td>
+					<td align="left">手机号记录天数</td>
+					<td id="recordPhoneDays"></td>
+				</tr>
+				<tr>
+					<td align="left">身份证最近出现时间</td>
+					<td id="lastAppearIdcard"></td>
+					<td align="left">手机号最近出现时间</td>
+					<td id="lastAppearPhone"></td>
+				</tr>
+				<tr>
+					<td align="left">关联身份证数量</td>
+					<td id="usedIdcardsCnt"></td>
+					<td align="left">关联手机号数量</td>
+					<td id="usedPhonesCnt"></td>
+				</tr>
+			</tbody>
+		</table>
+		<div class="layui-elem-field" style="background:#e2e2e2;margin-top:1%;"> 
+			<legend style="margin-left: 1%;margin-top:1%;margin-bottom:1%"><i class="layui-icon" style="font-size: 25px;">&#xe63c;</i>
+				<font size="5" >&nbsp社交风险点</font><br/><font size="2" >根据社交网络进行分析</font>
+			</legend>
+		</div>
+		<table class="layui-table admin-table" style="margin-left: 0%;" >
+			<tbody>
+				<tr>
+					<td width="30%" align="left">葫芦分</td>
+					<td id="snScore" width="30%"></td>
+					<td width="30%" align="left">直接联系人</td>
+					<td id="snOrder1ContactsCnt" width="10%"></td>
+				<tr>
+				<tr>
+					<td align="left">直接联系人在黑名单中数量(直接黑人)</td>
+					<td id="snOrder1BlacklistContactsCnt" width="30%"></td>
+					<td width="30%" align="left">间接联系人在黑名单中数量(间接黑人)</td>
+					<td id="snOrder2BlacklistContactsCnt"></td>
+				</tr>
+				<tr>
+					<td align="left">认识间接黑人的直接联系人个数</td>
+					<td id="snOrder2BlacklistRoutersCnt"></td>
+					<td align="left">认识间接黑人的直接联系人比例</td>
+					<td id="snOrder2BlacklistRoutersPct"></td>
+				</tr>
+			</tbody>
+		</table>
+		<div class="layui-elem-field" style="background:#e2e2e2;margin-top:1%;"> 
+			<legend style="margin-left: 1%;margin-top:1%;margin-bottom:1%"><i class="layui-icon" style="font-size: 25px;">&#xe63c;</i>
+				<font size="5" >&nbsp黑名单</font><br/><font size="2" >根据网贷、法院、银行黑名单匹配分析</font>
+			</legend>
+		</div>
+		<table class="layui-table admin-table">
+			<tbody>
+				<tr>
+					<td width="40%" align="left">身份证是否命中黑名单</td>
+					<td id="idcardInBlacklist" width="10%"></td>
+					<td width="40%" align="left">手机号是否命中黑名单</td>
+					<td id="phoneInBlacklist" width="10%"></td>
+				<tr>
+				<tr>
+					<td align="left">是否命中法院黑名单</td>
+					<td id="inCourtBlacklist" ></td>
+					<td align="left">是否命中网贷黑名单</td>
+					<td id="inP2pBlacklist"></td>
+				</tr>
+				<tr>
+					<td align="left">是否命中银行黑名单</td>
+					<td id="inBankBlacklist" colspan="3"></td>
+				</tr>
+				<tr>
+					<td align="left">最近该手机号出现在黑名单中时间</td>
+					<td id="lastAppearIdcardInBlacklist"></td>
+					<td align="left">最近该身份证出现在黑名单中时间</td>
+					<td id="lastAppearPhoneInBlacklist"></td>
+				</tr>
+			</tbody>
+		</table>
+		<div class="layui-elem-field" style="background:#e2e2e2;margin-top:1%;"> 
+			<legend style="margin-left: 1%;margin-top:1%;margin-bottom:1%"><i class="layui-icon" style="font-size: 25px;">&#xe63c;</i>
+				<font size="5" >&nbsp历史类型</font><br/><font size="2" >根据查询记录分析</font>
+			</legend>
+		</div>
+		<table class="layui-table admin-table">
+			<tbody>
+				<tr>
+					<td width="40%" align="left">线上消费分期出现次数</td>
+					<td id="onlineInstallmentCnt" width="10%"></td>
+					<td width="40%" align="left">线下消费分期出现次数</td>
+					<td id="offlineInstallmentCnt" width="10%"></td>
+				<tr>
+				<tr>
+					<td align="left">信用卡代换出现次数</td>
+					<td id="creditCardRepaymentCnt" ></td>
+					<td align="left">小额快速贷出现次数</td>
+					<td id="paydayLoanCnt"></td>
+				</tr>
+				<tr>
+					<td align="left">线上现金贷出现次数</td>
+					<td id="onlineCashLoanCnt" ></td>
+					<td align="left">线下现金贷出现次数</td>
+					<td id="offlineCashLoanCnt" ></td>
+				</tr>
+				<tr>
+					<td align="left">其他</td>
+					<td id="othersCnt" colspan="3"></td>
+				</tr>
+			</tbody>
+		</table>
+		<div class="layui-elem-field" style="background:#e2e2e2;margin-top:1%;"> 
+			<legend style="margin-left: 1%;margin-top:1%;margin-bottom:1%"><i class="layui-icon" style="font-size: 25px;">&#xe63c;</i>
+				<font size="5" >&nbsp查询历史</font><br/><font size="2" >根据查询记录分析</font>
+			</legend>
+		</div>
+		<table class="layui-table admin-table">
+			<tbody>
+				<tr>
+					<td width="40%" align="left">历史查询总次数</td>
+					<td id="searchCnt" width="10%"></td>
+					<td width="40%" align="left">历史查询总机构数</td>
+					<td id="orgCnt" width="10%"></td>
+				<tr>
+				<tr>
+					<td align="left">最近7天查询次数</td>
+					<td id="searchCntRecent7Days" ></td>
+					<td align="left">最近7天查询机构数</td>
+					<td id="orgCntRecent7Days"></td>
+				</tr>
+				<tr>
+					<td align="left">最近14天查询次数</td>
+					<td id="searchCntRecent14Days" ></td>
+					<td align="left">最近14天查询机构数</td>
+					<td id="orgCntRecent14Days" ></td>
+				</tr>
+				<tr>
+					<td align="left">最近30天查询次数</td>
+					<td id="searchCntRecent30Days" ></td>
+					<td align="left">最近30天查询机构数</td>
+					<td id="orgCntRecent30Days" ></td>
+				</tr>
+				<tr>
+					<td align="left">最近60天查询次数</td>
+					<td id="searchCntRecent60Days" ></td>
+					<td align="left">最近60天查询机构数</td>
+					<td id="orgCntRecent60Days" ></td>
+				</tr>
+				<tr>
+					<td align="left">最近90天查询次数</td>
+					<td id="searchCntRecent90Days" ></td>
+					<td  align="left">最近90天查询机构数</td>
+					<td id="orgCntRecent90Days" ></td>
+				</tr>
+				<tr>
+					<td align="left">最近180天查询次数</td>
+					<td id="searchCntRecent180Days" ></td>
+					<td align="left">最近180天查询机构数</td>
+					<td id="orgCntRecent180Days" ></td>
+				</tr>
+			</tbody>
+		</table>
+	<hr/>
+	<!-- js -->
+	<script src="../../jqery/jquery.js"></script>
+	<script src="../../../commons/base.js"></script>
+	<script type="text/javascript" src="../../plugins/layui/layui.js"></script>
+ 	<script type="text/javascript" src="../../js/cuCustomerCheckApply/sauronInfo_test.js"></script>
+</body>
+
+</html>

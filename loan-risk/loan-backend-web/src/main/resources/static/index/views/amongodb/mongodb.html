@@ -1,0 +1,41 @@
+﻿<!DOCTYPE html>
+<html>
+	<head>
+	<base target="_Self">
+		<meta charset="UTF-8">
+		<title>mongodb容错池</title>
+		<link rel="stylesheet" href="../../plugins/layui/css/layui.css" media="all" />
+		<link rel="stylesheet" href="../../css/global.css" media="all">
+		<link rel="stylesheet" href="../../plugins/font-awesome/css/font-awesome.min.css">
+		<link rel="stylesheet" href="../../css/table.css" />
+		<script type="text/javascript" src="../../plugins/layui/layui.js"></script>
+		<!-- js -->
+		<script src="../../jqery/jquery.js"></script>
+		<script src="../../../commons/base.js"></script>
+		<!-- 日期控件 -->
+	    <script type="text/javascript" src="../../js/amongodb/mongodb.js"></script>
+	    <link rel="stylesheet" href="../../css/lzh_login.css" media="all" />
+	</head>
+	<body> 
+			<fieldset class="layui-elem-field">
+				<legend>mongodb待处理信息</legend><br />
+			 	<a href="#" class="layui-btn layui-btn-small" onclick="findMessage('app')" style="margin-left: 18px" >客户app应用列表</a>
+			 	<a href="#" class="layui-btn layui-btn-small" onclick="findMessage('directories')" style="margin-left: 18px" >客户手机通讯录</a>
+			 	<a href="#" class="layui-btn layui-btn-small" onclick="findMessage('callRecord')" style="margin-left: 18px" >客户通话记录</a>
+			 	<a href="#" class="layui-btn layui-btn-small" onclick="findMessage('fewMessage')" style="margin-left: 18px" >客户短信通信</a>
+				<div class="layui-field-box layui-form">
+					<table class="layui-table admin-table" id="customerMessage">
+						<thead>
+							<tr> 
+								<th>ID</th>
+								<th>创建时间</th>
+								<th>操作</th>
+							</tr>
+						</thead>
+						<tbody id="content">
+						</tbody>
+					</table>
+				</div>
+			</fieldset> 
+	</body>
+</html>

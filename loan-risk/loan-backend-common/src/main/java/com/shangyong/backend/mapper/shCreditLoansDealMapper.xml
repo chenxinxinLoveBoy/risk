@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.shangyong.backend.dao.sh.ShCreditLoansDealDao">
+
+	<resultMap type="com.shangyong.backend.entity.sh.ShCreditLoansDeal" id="shCreditLoansDealMap">
+		<id property="shCreditDealId" column="sh_credit_deal_id" javaType="java.lang.String"></id>
+		<result property="applicationId" column="application_id" javaType="java.lang.String"></result>
+		<result property="loansNumber" column="loans_number" javaType="java.lang.String"></result>
+		<result property="loansTemps" column="loans_temps" javaType="java.lang.String"></result>
+		<result property="maxLimit" column="max_limit" javaType="java.lang.String"></result>
+		<result property="loansTotal" column="loans_total" javaType="java.lang.String"></result>
+		<result property="loansBalance" column="loans_balance" javaType="java.lang.String"></result>
+		<result property="appointRefundMonth" column="appoint_refund_month" javaType="java.lang.String"></result>
+		<result property="overdueAllMoney" column="overdue_all_money" javaType="java.lang.String"></result>
+		<result property="maxOverdueMoney" column="max_overdue_money" javaType="java.lang.String"></result>
+		<result property="maxOverdueNumber" column="max_overdue_number" javaType="java.lang.String"></result>
+		<result property="createTime" column="create_time" javaType="java.lang.String"></result>
+		<result property="createMan" column="create_man" javaType="java.lang.String"></result>
+		<result property="modifyTime" column="modify_time" javaType="java.lang.String"></result>
+		<result property="modifyMan" column="modify_man" javaType="java.lang.String"></result>
+		<result property="remark" column="remark" javaType="java.lang.String"></result>
+	</resultMap>
+
+	<!-- 通用查询结果列-->
+	<sql id="Base_Column_List">
+sh_credit_deal_id,	application_id,	loans_number,	loans_temps,	max_limit,	loans_total,	loans_balance,	appoint_refund_month,	overdue_all_money,	max_overdue_money,	max_overdue_number,	create_time,	create_man,	modify_time,	modify_man,	remark
+	</sql>
+
+	<!-- 查询（根据主键ID查询） -->
+	<select id="getEntityById" resultMap="shCreditLoansDealMap" parameterType="java.lang.String">
+		 SELECT
+		 <include refid="Base_Column_List" />
+		 FROM sh_credit_loans_deal
+		 WHERE sh_credit_deal_id = #{shCreditDealId}
+	</select>
+	<!-- 查询（根据ApplicationId查询） -->
+	<select id="queryByApplicationId" resultMap="shCreditLoansDealMap" parameterType="java.lang.String">
+		 SELECT
+		 <include refid="Base_Column_List" />
+		 FROM sh_credit_loans_deal
+		 WHERE application_id = #{applicationId}
+	</select>
+
+	<!-- 查询（根据主键ID查询） -->
+	<select id="findAll" resultMap="shCreditLoansDealMap" parameterType="java.lang.String">
+		 SELECT
+		 <include refid="Base_Column_List" />
+		 FROM sh_credit_loans_deal
+		 WHERE sh_credit_deal_id = #{shCreditDealId}
+	</select>
+
+	<!--删除：根据主键ID删除-->
+	<delete id="deleteEntity" parameterType="java.lang.String">
+		 DELETE FROM sh_credit_loans_deal
+		 WHERE sh_credit_deal_id = #{shCreditDealId}
+	</delete>
+
+	<!-- 添加 -->
+	<insert id="saveEntity" parameterType="com.shangyong.backend.entity.sh.ShCreditLoansDeal">
+		 INSERT INTO sh_credit_loans_deal
+ 		(sh_credit_deal_id,application_id,loans_number,loans_temps,max_limit,loans_total,loans_balance,appoint_refund_month,overdue_all_money,max_overdue_money,max_overdue_number,create_time,create_man,modify_time,modify_man,remark) 
+		 VALUES 
+ 		(#{shCreditDealId},#{applicationId},#{loansNumber},#{loansTemps},#{maxLimit},#{loansTotal},#{loansBalance},#{appointRefundMonth},#{overdueAllMoney},#{maxOverdueMoney},#{maxOverdueNumber},#{createTime},#{createMan},#{modifyTime},#{modifyMan},#{remark}) 
+	</insert>
+
+	<!-- 修 改-->
+	<update id="updateEntity" parameterType="com.shangyong.backend.entity.sh.ShCreditLoansDeal">
+		 UPDATE sh_credit_loans_deal
+ 		 <set> 
+			<if test="applicationId != null">
+				 application_id = #{applicationId},
+			</if>
+			<if test="loansNumber != null">
+				 loans_number = #{loansNumber},
+			</if>
+			<if test="loansTemps != null">
+				 loans_temps = #{loansTemps},
+			</if>
+			<if test="maxLimit != null">
+				 max_limit = #{maxLimit},
+			</if>
+			<if test="loansTotal != null">
+				 loans_total = #{loansTotal},
+			</if>
+			<if test="loansBalance != null">
+				 loans_balance = #{loansBalance},
+			</if>
+			<if test="appointRefundMonth != null">
+				 appoint_refund_month = #{appointRefundMonth},
+			</if>
+			<if test="overdueAllMoney != null">
+				 overdue_all_money = #{overdueAllMoney},
+			</if>
+			<if test="maxOverdueMoney != null">
+				 max_overdue_money = #{maxOverdueMoney},
+			</if>
+			<if test="maxOverdueNumber != null">
+				 max_overdue_number = #{maxOverdueNumber},
+			</if>
+			<if test="createTime != null">
+				 create_time = #{createTime},
+			</if>
+			<if test="createMan != null">
+				 create_man = #{createMan},
+			</if>
+			<if test="modifyTime != null">
+				 modify_time = #{modifyTime},
+			</if>
+			<if test="modifyMan != null">
+				 modify_man = #{modifyMan},
+			</if>
+			<if test="remark != null">
+				 remark = #{remark},
+			</if>
+
+ 		 </set>
+		 WHERE sh_credit_deal_id = #{shCreditDealId}
+	</update>
+
+</mapper>

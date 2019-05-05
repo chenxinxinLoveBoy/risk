@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<META HTTP-EQUIV="pragma" CONTENT="no-cache">
+		<META HTTP-EQUIV="Cache-Control" CONTENT="no-cache, must-revalidate">
+		<META HTTP-EQUIV="expires" CONTENT="0">
+		<link rel="stylesheet" href="../../plugins/layui/css/layui.css" media="all" />
+		<link rel="stylesheet" href="../../css/global.css" media="all">
+		<link rel="stylesheet" href="../../plugins/font-awesome/css/font-awesome.min.css">
+		<link rel="stylesheet" href="../../css/table.css" />
+		<!-- js -->
+		<script type="text/javascript" src="../../plugins/layui/layui.js"></script>
+		<script src="../../jqery/jquery.js"></script>
+		<script src="../../../commons/base.js"></script>
+		<script type="text/javascript" src="../../js/cuCustomerCheckApply/cuCustomerCheckApplyInfoList.js"></script>
+
+	<body>
+		<div class="admin-main"> 
+		<!-- <blockquote class="layui-elem-quote">
+				 <form class="layui-form" action="">
+				查询条件
+				<div class="layui-inline">
+			      <label class="layui-form-label">XX名称：</label>
+			      <div class="layui-input-inline">
+			        <input name="dicBigValue"   autocomplete="off" class="layui-input"  id="dicBigValue" >
+			      </div>
+			    </div> 
+			    
+				<div class="layui-inline">
+				<a href="javascript:;" class="layui-btn layui-btn-small" id="search">
+				<i class="layui-icon">&#xe615;</i>搜索
+				</a>
+				</div>
+				</form>
+			</blockquote> -->
+			<fieldset class="layui-elem-field">
+				<div class="layui-field-box layui-form">
+					<table class="layui-table admin-table">
+						<thead>
+							<tr> 
+								<th>数据测试单号</th>
+								<th>征信机构</th> 
+								<th>处理状态</th>
+								<th>异常信息描述</th>
+								<th>创建时间</th> 
+								<th>修改时间</th>  
+								<th>备注</th>
+							</tr>
+						</thead>
+						<tbody id="content">
+						</tbody>
+					</table>
+					<label>共<font color='red' id="count_page_number"></font>条记录</label>
+					<div id="paged" class="page" style="display:inline-block;">
+					</div>
+				</div>
+			</fieldset>
+		
+		</div> 
+	</head>
+		
+		
+		<!--模板-->
+		<script type="text/html" id="tpl">
+			{{# layui.each(d.list, function(index, item){
+				var taskType=item.taskType;
+				var status=item.applyState;		
+				if(taskType == "05001"){
+					taskType="聚信立蜜罐";
+				}else if(taskType == "07001"){
+					taskType="91征信";
+				}else if(taskType == "08001"){
+					taskType="白骑士";
+				}else if(taskType == "09001"){
+					taskType="宜信";
+				}else if(taskType == "12001"){
+					taskType="小视科技(银行)";
+				}else if(taskType == "12002"){
+					taskType="小视科技(网贷)";
+				}else if(taskType == "11001"){
+					taskType="葫芦";
+				}else if(taskType == "02001"){
+					taskType="芝麻信用欺诈关注清单";
+				};
+				if(status == '1'){
+					status="待处理";
+				}else if(status == '2'){
+					status="处理成功";
+				}else if(status == '3'){
+					status="处理失败";
+				}
+				 
+ 			}}	
+			<tr>
+				<td>{{ item.customerCheckApplyId }}</td>
+				<td>{{ taskType }}</td>
+				<td>{{ status }}</td>	
+				<td>
+				{{# if(item.errorInfo != null && item.errorInfo != ''){ }}
+						<a href="javascript:;" data-id="{{ item.errorInfo }}" data-tasktype="{{ item.taskType }}"  data-opt="find" class="layui-btn layui-btn-normal layui-btn-mini">查看异常详细信息</a>
+				{{# }else{ }}
+						{{ item.errorInfo }}
+				{{# } }} 
+				</td>
+				<td>{{ item.createTime.substring(0,19)}}</td>
+				<td>{{ item.modifyTime.substring(0,19)}}</td>	
+				<td>{{ item.remark }}</td>	
+			</tr>
+			{{# }); }}
+	</body>
+</html>

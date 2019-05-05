@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.shangyong.backend.dao.tdReport.TdReportBehaviorAnalysisDao">
+
+	<resultMap type="com.shangyong.backend.entity.tdReport.TdReportBehaviorAnalysis" id="tdReportBehaviorAnalysisMap">
+		<id property="behaviorAnalysisId" column="behavior_analysis_id" javaType="java.lang.String"></id>
+		<result property="applicationId" column="application_id" javaType="java.lang.String"></result>
+		<result property="call110Analysis6month" column="call_110_analysis_6month" javaType="java.lang.String"></result>
+		<result property="call120Analysis6month" column="call_120_analysis_6month" javaType="java.lang.String"></result>
+		<result property="callMacauAnalysis6month" column="call_macau_analysis_6month" javaType="java.lang.String"></result>
+		<result property="callLawyerAnalysis6month" column="call_lawyer_analysis_6month" javaType="java.lang.String"></result>
+		<result property="callCourtAnalysis6month" column="call_court_analysis_6month" javaType="java.lang.String"></result>
+		<result property="loanContactAnalysis6month" column="loan_contact_analysis_6month" javaType="java.lang.String"></result>
+		<result property="collectionContactAnalysis6month" column="collection_contact_analysis_6month" javaType="java.lang.String"></result>
+		<result property="mobileNetAgeAnalysis" column="mobile_net_age_analysis" javaType="java.lang.String"></result>
+		<result property="mutualNumberAnalysis6month" column="mutual_number_analysis_6month" javaType="java.lang.String"></result>
+		<result property="lateNightAnalysis6month" column="late_night_analysis_6month" javaType="java.lang.String"></result>
+		<result property="mobileSilenceAnalysis6month" column="mobile_silence_analysis_6month" javaType="java.lang.String"></result>
+		<result property="emergencyContact1Analysis6month" column="emergency_contact1_analysis_6month" javaType="java.lang.String"></result>
+		<result property="emergencyContact2Analysis6month" column="emergency_contact2_analysis_6month" javaType="java.lang.String"></result>
+		<result property="emergencyContact3Analysis6month" column="emergency_contact3_analysis_6month" javaType="java.lang.String"></result>
+		<result property="emergencyContact4Analysis6month" column="emergency_contact4_analysis_6month" javaType="java.lang.String"></result>
+		<result property="emergencyContact5Analysis6month" column="emergency_contact5_analysis_6month" javaType="java.lang.String"></result>
+		<result property="createTime" column="create_time" javaType="java.lang.String"></result>
+		<result property="createMan" column="create_man" javaType="java.lang.String"></result>
+		<result property="modifyTime" column="modify_time" javaType="java.lang.String"></result>
+		<result property="modifyMan" column="modify_man" javaType="java.lang.String"></result>
+		<result property="remark" column="remark" javaType="java.lang.String"></result>
+	</resultMap>
+
+	<!-- 通用查询结果列-->
+	<sql id="Base_Column_List">
+behavior_analysis_id,	application_id,	call_110_analysis_6month,	call_120_analysis_6month,	call_macau_analysis_6month,	call_lawyer_analysis_6month,	call_court_analysis_6month,	loan_contact_analysis_6month,	collection_contact_analysis_6month,	mobile_net_age_analysis,	mutual_number_analysis_6month,	late_night_analysis_6month,	mobile_silence_analysis_6month,	emergency_contact1_analysis_6month,	emergency_contact2_analysis_6month,	emergency_contact3_analysis_6month,	emergency_contact4_analysis_6month,	emergency_contact5_analysis_6month,	create_time,	create_man,	modify_time,	modify_man,	remark
+	</sql>
+
+	<!-- 查询（根据主键ID查询） -->
+	<select id="getEntityById" resultMap="tdReportBehaviorAnalysisMap" parameterType="java.lang.String">
+		 SELECT
+		 <include refid="Base_Column_List" />
+		 FROM td_report_behavior_analysis
+		 WHERE behavior_analysis_id = #{behaviorAnalysisId}
+	</select>
+
+	<!-- 查询（根据主键ID查询） -->
+	<select id="findAll" resultMap="tdReportBehaviorAnalysisMap" parameterType="java.lang.String">
+		 SELECT
+		 <include refid="Base_Column_List" />
+		 FROM td_report_behavior_analysis
+		 WHERE behavior_analysis_id = #{behaviorAnalysisId}
+	</select>
+
+	<!--删除：根据主键ID删除-->
+	<delete id="deleteEntity" parameterType="java.lang.String">
+		 DELETE FROM td_report_behavior_analysis
+		 WHERE behavior_analysis_id = #{behaviorAnalysisId}
+	</delete>
+
+	<!-- 添加 -->
+	<insert id="saveEntity" parameterType="com.shangyong.backend.entity.tdReport.TdReportBehaviorAnalysis">
+		 INSERT INTO td_report_behavior_analysis
+ 		(behavior_analysis_id,application_id,call_110_analysis_6month,call_120_analysis_6month,call_macau_analysis_6month,call_lawyer_analysis_6month,call_court_analysis_6month,loan_contact_analysis_6month,collection_contact_analysis_6month,mobile_net_age_analysis,mutual_number_analysis_6month,late_night_analysis_6month,mobile_silence_analysis_6month,emergency_contact1_analysis_6month,emergency_contact2_analysis_6month,emergency_contact3_analysis_6month,emergency_contact4_analysis_6month,emergency_contact5_analysis_6month,create_time,create_man,modify_time,modify_man,remark) 
+		 VALUES 
+ 		(#{behaviorAnalysisId},#{applicationId},#{call110Analysis6month},#{call120Analysis6month},#{callMacauAnalysis6month},#{callLawyerAnalysis6month},#{callCourtAnalysis6month},#{loanContactAnalysis6month},#{collectionContactAnalysis6month},#{mobileNetAgeAnalysis},#{mutualNumberAnalysis6month},#{lateNightAnalysis6month},#{mobileSilenceAnalysis6month},#{emergencyContact1Analysis6month},#{emergencyContact2Analysis6month},#{emergencyContact3Analysis6month},#{emergencyContact4Analysis6month},#{emergencyContact5Analysis6month},#{createTime},#{createMan},#{modifyTime},#{modifyMan},#{remark}) 
+	</insert>
+
+	<!-- 修 改-->
+	<update id="updateEntity" parameterType="com.shangyong.backend.entity.tdReport.TdReportBehaviorAnalysis">
+		 UPDATE td_report_behavior_analysis
+ 		 <set> 
+			<if test="applicationId != null">
+				 application_id = #{applicationId},
+			</if>
+			<if test="call110Analysis6month != null">
+				 call_110_analysis_6month = #{call110Analysis6month},
+			</if>
+			<if test="call120Analysis6month != null">
+				 call_120_analysis_6month = #{call120Analysis6month},
+			</if>
+			<if test="callMacauAnalysis6month != null">
+				 call_macau_analysis_6month = #{callMacauAnalysis6month},
+			</if>
+			<if test="callLawyerAnalysis6month != null">
+				 call_lawyer_analysis_6month = #{callLawyerAnalysis6month},
+			</if>
+			<if test="callCourtAnalysis6month != null">
+				 call_court_analysis_6month = #{callCourtAnalysis6month},
+			</if>
+			<if test="loanContactAnalysis6month != null">
+				 loan_contact_analysis_6month = #{loanContactAnalysis6month},
+			</if>
+			<if test="collectionContactAnalysis6month != null">
+				 collection_contact_analysis_6month = #{collectionContactAnalysis6month},
+			</if>
+			<if test="mobileNetAgeAnalysis != null">
+				 mobile_net_age_analysis = #{mobileNetAgeAnalysis},
+			</if>
+			<if test="mutualNumberAnalysis6month != null">
+				 mutual_number_analysis_6month = #{mutualNumberAnalysis6month},
+			</if>
+			<if test="lateNightAnalysis6month != null">
+				 late_night_analysis_6month = #{lateNightAnalysis6month},
+			</if>
+			<if test="mobileSilenceAnalysis6month != null">
+				 mobile_silence_analysis_6month = #{mobileSilenceAnalysis6month},
+			</if>
+			<if test="emergencyContact1Analysis6month != null">
+				 emergency_contact1_analysis_6month = #{emergencyContact1Analysis6month},
+			</if>
+			<if test="emergencyContact2Analysis6month != null">
+				 emergency_contact2_analysis_6month = #{emergencyContact2Analysis6month},
+			</if>
+			<if test="emergencyContact3Analysis6month != null">
+				 emergency_contact3_analysis_6month = #{emergencyContact3Analysis6month},
+			</if>
+			<if test="emergencyContact4Analysis6month != null">
+				 emergency_contact4_analysis_6month = #{emergencyContact4Analysis6month},
+			</if>
+			<if test="emergencyContact5Analysis6month != null">
+				 emergency_contact5_analysis_6month = #{emergencyContact5Analysis6month},
+			</if>
+			<if test="createTime != null">
+				 create_time = #{createTime},
+			</if>
+			<if test="createMan != null">
+				 create_man = #{createMan},
+			</if>
+			<if test="modifyTime != null">
+				 modify_time = #{modifyTime},
+			</if>
+			<if test="modifyMan != null">
+				 modify_man = #{modifyMan},
+			</if>
+			<if test="remark != null">
+				 remark = #{remark},
+			</if>
+
+ 		 </set>
+		 WHERE behavior_analysis_id = #{behaviorAnalysisId}
+	</update>
+
+</mapper>

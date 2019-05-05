@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+<meta charset="UTF-8">
+<title>聚信立-蜜罐详情信息</title>
+<link rel="stylesheet" href="../../plugins/layui/css/layui.css"
+	media="all" />
+<link rel="stylesheet" href="../../css/global.css" media="all">
+<link rel="stylesheet"
+	href="../../plugins/font-awesome/css/font-awesome.min.css">
+<link rel="stylesheet" href="../../css/table.css" />
+</head>
+<body>
+ 	<div class="admin-main"><!-- 
+		<fieldset class="layui-elem-field"> -->
+			<div style="font-size: 20px;" >
+			  编号：     	<span id="user_useId"></span>  
+			</div>
+			<div class="layui-field-box layui-form">
+				<table class="layui-table"> 
+					<tbody id="report_content">
+					      <tr>
+							<td  rowspan=10>基本信息</td>
+						</tr>
+						
+						<tr>
+							<td colspan=2>姓名</td>
+							<td colspan=3>&nbsp;</td>
+						</tr>
+						
+						<tr>
+							<td colspan=2>身份证号码有效</td>
+							<td colspan=3>&nbsp;</td>
+						</tr>
+						<tr>
+							<td colspan=2>身份证归属地</td>
+							<td colspan=3>&nbsp;</td>
+						</tr>
+						
+						<tr>
+							<td colspan=2>手机号码归属地</td>
+							<td colspan=3>&nbsp;</td>
+						</tr>
+						
+						<tr>
+							<td colspan=2>手机所属运营商</td>
+							<td colspan=3>&nbsp;</td>
+						</tr>
+						
+						<tr>
+							<td colspan=2>身份证号码</td>
+							<td colspan=3>&nbsp;</td>
+						</tr>
+						
+						<tr>
+							<td colspan=2>手机号码</td>
+							<td colspan=3>&nbsp;</td>
+						</tr>
+						
+						<tr>
+							<td colspan=2>年龄</td>
+							<td colspan=3>&nbsp;</td>
+						</tr>
+						
+						<tr>
+							<td colspan=2>性别</td>
+							<td colspan=3>&nbsp;</td>
+						</tr> 
+						
+						<tr> 
+						<td rowspan=6>注册信息</td> 
+						<td  colspan=2>注册App数量</td> 
+						<td colspan=3 >&nbsp;</td>
+						</tr> 
+						 
+						 <tr> 
+						<td rowspan=5>注册App统计</td> 
+						<td colspan=2>App类型</td> 
+						<td colspan=3>注册数量</td> 
+						 </tr>
+						  
+						<tr> 
+						<td colspan=2>&nbsp;</td> 
+						<td colspan=3>&nbsp;</td> 
+						</tr>
+						 
+						 <tr> 
+						<td colspan=2>&nbsp;</td> 
+						<td colspan=3>&nbsp;</td> 
+						 </tr> 
+						 
+						  <tr> 
+						<td colspan=2>&nbsp;</td> 
+						<td colspan=3>&nbsp;</td> 
+						     </tr>   
+						  <tr>
+						   </tr>
+						      
+						<tr>
+						<td rowspan=17>黑名单信息</td> 
+						<td colspan=2 >黑中介分数</td> 
+						<td colspan=3  > (分数区间为0-100，10分以下为高危人群）</td>
+						</tr>
+						
+						<tr>
+						<td colspan=2 >直接联系人在黑名单数量</td> 
+						<td colspan=3 >（直接联系人：和被查询号码有通话记录）</td>
+						</tr>
+						 
+						<tr>
+						<td colspan=2 >直接联系人总数</td> 
+						<td colspan=3 >（直接联系人：和被查询号码有通话记录）</td>
+						</tr>
+						 
+						<tr>
+						<td  colspan=2>间接联系人在黑名单数量</td> 
+						<td colspan=3  >（间接联系人：和被查询号码的直接联系人有通话记录）</td>
+						</tr> 
+						
+						<tr>
+						<td colspan=2 >引起黑名单的直接联系人数量</td> 
+						<td colspan=3  >（直接联系人有和黑名单用户的通话记录的号码数量）</td>
+						</tr>
+						
+						<tr>
+						<td colspan=2 >引起黑名单的直接联系人占比</td> 
+						<td  colspan=3 >（直接联系人有和黑名单用户的通讯记录的号码数量在直接联系人数量中的百分比）</td>
+						</tr>
+						
+						<tr>
+						<td colspan=2 >被标记的黑名单分类</td> 
+						<td colspan=3  >&nbsp;</td>
+						</tr>
+						
+						<tr>
+						<td colspan=2 >手机和姓名是否在黑名单</td> 
+						<td colspan=3  >&nbsp;</td>
+						</tr>
+						
+						<tr>
+						<td colspan=2 >身份证姓名黑名单更新时间</td> 
+						<td colspan=3 >&nbsp;</td>
+						</tr>
+						
+						
+						<tr>
+						<td colspan=2 >身份证和姓名是否在黑名单</td> 
+						<td  colspan=3 >&nbsp;</td>
+						</tr>
+						
+						<tr>
+						<td colspan=2 >姓名和电话黑名单更新信息</td> 
+						<td  colspan=3>&nbsp;</td>
+						</tr>
+						
+						 <tr> 
+						<td  rowspan=6>黑名单详细信息</td>
+						<td colspan=2>名称</td> 
+						<td colspan=2>内容</td> 
+						 </tr> 
+						<tr> 
+						<td colspan=2> 地址</td> 
+						<td colspan=2>&nbsp;</td> 
+						     </tr> 
+						         <tr> 
+						<td colspan=2>累计借入本金</td> 
+						<td colspan=3 >&nbsp;</td> 
+						     </tr> 
+						         <tr> 
+						<td colspan=2>性别</td> 
+						<td colspan=3>&nbsp;</td> 
+						     </tr> 
+						      <tr> 
+						<td colspan=2>累计已还金额</td> 
+						<td colspan=3 >&nbsp;</td> 
+						     </tr> 
+						      <tr> 
+						<td colspan=2>最大逾期天数</td> 
+						<td colspan=3>&nbsp;</td> 
+						     </tr>
+						     
+						<tr>
+						<td colspan=2>查询统计信息</td> 
+						<td colspan=2 >机构查询统计</td>
+						<td colspan=3>0（被多少机构查询过—已去重）</td>
+						</tr>
+			
+						<tr>
+							<td rowspan=5 >机构查询历史</td>
+						</tr>
+						
+						<tr>
+							<td colspan=2>查询日期</td>
+							<td colspan=2>机构类型</td>
+							<td colspan=2>是否是本机构查询</td>
+						</tr>
+						
+						<tr>
+							<td colspan=2>&nbsp;</td>
+							<td colspan=2>&nbsp;</td>
+							<td  colspan=2>&nbsp;</td>
+						</tr>
+						
+						 <tr>
+						 	<td colspan=2 >&nbsp;</td>
+							<td colspan=2>&nbsp;</td>
+							<td colspan=2 >&nbsp;</td>
+						</tr>
+						
+						<tr>
+						 	<td colspan=2>&nbsp;</td>
+							<td colspan=2>&nbsp;</td>
+							<td colspan=2>&nbsp;</td>
+						</tr>
+						<tr></tr> 
+						
+					<tr>
+						<td rowspan=9>手机存疑</td> 
+						<td rowspan=2 >使用过此手机的其他姓名</td> 
+						<td colspan=2>最后使用时间</td>
+						<td colspan=2>姓名</td>
+						</tr>
+						
+						<tr>
+						<td colspan=2>&nbsp;</td>
+						<td colspan=2>&nbsp;</td>
+						</tr>
+						
+						<tr>
+						<td rowspan=3 >使用过此手机的其他身份证</td> 
+						<td colspan=2>最后使用时间</td>
+						<td colspan=2>身份证号</td>
+						</tr>
+						
+						<tr>
+						<td colspan=2> &nbsp;</td>
+						<td colspan=2>&nbsp;</td>
+						</tr>
+						
+						<tr>
+						<td colspan=2>&nbsp;</td>
+						<td colspan=2>&nbsp;</td>
+						</tr>
+						
+						<tr>
+						<td rowspan=3 >提供数据的机构类型</td> 
+						<td colspan=2 >最后使用时间</td>
+						<td colspan=2>机构类型</td>
+						</tr>
+						
+						<tr>
+						<td colspan=2>&nbsp;</td>
+						<td colspan=2>&nbsp;</td>
+						</tr>
+						
+						<tr>
+						<td colspan=2>&nbsp;</td>
+						<td colspan=2>&nbsp;</td>
+						</tr> 
+						
+						<tr></tr>
+						<tr>
+						<td rowspan=9>身份证存疑</td> 
+						<td rowspan=3 >使用过此身份证的其他姓名</td> 
+						<td colspan=2>最后使用时间</td>
+						<td colspan=2>用户名称</td>
+						</tr>
+						
+						<tr>
+						<td colspan=2>&nbsp;</td>
+						<td colspan=2>&nbsp;</td>
+						</tr>
+						
+						<tr>
+						<td colspan=2>&nbsp;</td>
+						<td colspan=2>&nbsp;</td>
+						</tr>
+						
+						<tr>
+						<td rowspan=3 >使用过此身份证的其他手机</td> 
+						<td>最后使用时间</td>
+						<td >手机号码</td>
+						<td >运营商名称</td>
+						<td >归属地</td>
+						</tr>
+						
+						<tr>
+						<td>&nbsp;</td>
+						<td>&nbsp;</td>
+						<td>&nbsp;</td>
+						<td>&nbsp;</td>
+						</tr>
+						
+						<tr>
+						<td>&nbsp;</td>
+						<td>&nbsp;</td>
+						<td>&nbsp;</td>
+						<td>&nbsp;</td>
+						</tr>
+						
+						<tr>
+						<td rowspan=3 >提供数据的机构类型</td> 
+						<td colspan=2>最后使用时间</td>
+						<td colspan=2>机构类型</td>
+						</tr>
+						
+						<tr>
+						<td colspan=2>&nbsp;</td>
+						<td colspan=2>&nbsp;</td>
+						</tr>
+						
+						<tr>
+						<td colspan=2>&nbsp;</td>
+						<td colspan=2>&nbsp;</td>
+						</tr>
+						
+					</tbody>
+				</table>
+			</div> 
+		<!--</fieldset> -->
+	</div>
+	
+	<!-- js -->
+	<script src="../../jqery/jquery.js"></script>
+	<script src="../../../commons/base.js"></script>
+	<script type="text/javascript" src="../../plugins/layui/layui.js"></script>
+	<script type="text/javascript" src="../../js/cuCustomerCheckApply/jxlMGInfo_JsonReport.js"></script>
+</body>
+
+</html>

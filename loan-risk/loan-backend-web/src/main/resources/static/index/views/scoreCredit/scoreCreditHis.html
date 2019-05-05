@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+<meta charset="UTF-8">
+<META HTTP-EQUIV="pragma" CONTENT="no-cache">
+<META HTTP-EQUIV="Cache-Control" CONTENT="no-cache, must-revalidate">
+<META HTTP-EQUIV="expires" CONTENT="0">
+<title>洪澄评分与授信额度定义</title>
+<link rel="stylesheet" href="../../plugins/layui/css/layui.css"
+	media="all" />
+<link rel="stylesheet" href="../../css/global.css" media="all">
+<link rel="stylesheet"
+	href="../../plugins/font-awesome/css/font-awesome.min.css">
+<link rel="stylesheet" href="../../css/table.css" />
+<link rel="stylesheet" href="../../css/lzh_xy_gl.css" media="all" />
+</head>
+
+<body>
+	<div class="admin-main">
+
+		<blockquote class="layui-elem-quote">
+		 <form action="" class="layui-form" style="margin-top: 0px;">
+			<!-- 查询条件 -->
+				<div class="layui-inline">
+			      <label class="layui-form-label" style="width: auto;"> 评分与授信额度序号：</label>
+			      <div class="layui-input-inline">
+			        <input name="scoreCreditId" lay-verify="scoreCreditId" id="scoreCreditId" autocomplete="off" class="layui-input" >
+			      </div>
+			    </div>
+				<div class="layui-inline">
+			      <label class="layui-form-label" style="width: auto;"> 分数值：</label>
+			      <div class="layui-input-inline">
+			        <input name="score" lay-verify="score" id="score" autocomplete="off" class="layui-input" >
+			      </div>
+			    </div>
+			    <div class="layui-inline">
+			      <label class="layui-form-label" style="width: auto;">授信额度：</label>
+			      <div class="layui-input-inline">
+			        <input name="creditMoney" lay-verify=creditMoney id="creditMoney" autocomplete="off" class="layui-input" >
+			      </div>
+			    </div>
+			    
+			     <div class="layui-inline">
+				  <label class="layui-form-label" style="width: 100px;">　模板名称： </label>
+			      <div class="layui-input-inline" id="tplContent" style="width:160px;">
+			      </div>
+			    </div>
+			    <br/><br/>
+		    	<div class="layui-inline">
+			      <label class="layui-form-label" style="width: auto;">时间区间：</label>
+			      <div class="layui-input-inline">
+			      <input name="startTime"  lay-verify="startTime" id="startTime" autocomplete="off" class="layui-input"  style="width: auto; display:inline;">
+			      &nbsp;至&nbsp;
+			      <input name="endTime"  lay-verify="endTime" id="endTime" autocomplete="off" class="layui-input"  style="width: auto; display:inline;">
+			      </div>
+			    </div>
+			    &nbsp;
+					<a href="javascript:;" class="layui-btn layui-btn-small" id="search">
+						<i class="layui-icon">&#xe615;</i> 搜索
+					</a>
+			</form>
+		</blockquote>
+		
+		<fieldset class="layui-elem-field">
+			<legend>数据列表</legend>
+			<div class="layui-field-box layui-form">
+				<table class="layui-table admin-table"  style="word-break: keep-all;overflow:auto;">
+					<thead>
+						<tr>
+						<th>模板名称</th>
+							<th>序号</th>
+							<th>评分与授信额度序号</th>
+							<th>分数最小值</th>
+							<th>分数最大值</th>
+							<th>授信额度值</th>
+								<th>提升授信额度值</th>
+							<th>状态</th>
+							<th>版本编号</th>
+							<th>创建人姓名</th>
+							<th>修改人姓名</th>
+							<th>创建时间</th>
+							<th>修改时间</th>
+ 							<th>备注</th>
+						</tr>
+					</thead>
+					<tbody id="content">
+					</tbody>
+				</table>
+			</div>
+		</fieldset>
+            <div class="admin-table-page">
+				<label style="position: absolute;left: 20px;top:11px">共<font color='red' id="count_page_number"></font>条记录</label>
+				<div id="paged" class="page" style="padding-left:120px;">
+				</div>
+			</div>
+	</div>
+	<!--模板-->
+	<script type="text/html" id="tpl">
+			{{# layui.each(d.list, function(index, item){ }}
+			<tr>
+     <td>{{ item.scoreTplName }}</td>
+				<td>{{ index + 1 }}</td>
+				<td>{{ item.scoreCreditId }}</td>
+                <td>{{ item.scoreMin }}</td>
+				<td>{{ item.scoreMax }}</td>
+				<td>{{ item.creditMoney }}</td>
+<td>{{ item.promoteCreditMoney }}</td>
+				{{# if(item.state == '01'){ }}
+				<td>正常</td>
+                {{# } else if(item.state == '02') { }}
+                <td>失效</td>
+				{{# } else  { }}
+				<td></td>
+				{{# } }}
+				<td>{{ item.version }}</td>
+				<td>{{ item.createName}}</td>
+                <td>{{ item.modifyName }}</td>
+ 				<td>{{ item.createTime.substring(0, 19) }}</td>
+                <td>{{ item.modifyTime.substring(0, 19) }}</td>
+				<td>{{ item.remark }}</td>
+			</tr>
+			{{# }); }}
+		</script>
+
+	<!-- js -->
+	<script src="../../jqery/jquery.js"></script>
+	<script src="../../../commons/base.js"></script>
+	<script type="text/javascript" src="../../plugins/layui/layui.js"></script>
+	<script type="text/javascript" src="../../js/scoreCredit/scoreCreditHis.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,106 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<META HTTP-EQUIV="pragma" CONTENT="no-cache">
+<META HTTP-EQUIV="Cache-Control" CONTENT="no-cache, must-revalidate">
+<META HTTP-EQUIV="expires" CONTENT="0">
+<link rel="stylesheet" href="../../plugins/layui/css/layui.css"
+	media="all" />
+<link rel="stylesheet" href="../../css/global.css" media="all">
+<link rel="stylesheet"
+	href="../../plugins/font-awesome/css/font-awesome.min.css">
+<link rel="stylesheet" href="../../css/table.css" />
+<!-- js -->
+
+<script src="../../jqery/jquery.js"></script>
+<script src="../../../commons/base.js"></script>
+<script type="text/javascript" src="../../plugins/layui/layui.js"></script>
+<script type="text/javascript" src="../../js/template/template_add.js"></script>
+</head>
+
+<body>
+	<div style="margin: 30px;">
+	<form class="layui-form" id="userForms" >
+	<input type="hidden" id="version" value=" ">
+	<input type="hidden" id="operation" value="">
+		<div class="layui-form-item">
+			<label class="layui-form-label" style="width:150px">禁止项模板名称</label>
+			<div class="layui-input-block">
+				<input id="banTplName" type="text" name="banTplName" placeholder="禁止项模板名称 "    style="width:200px"  autocomplete="off" class="layui-input"  >
+			</div>
+		</div>
+		<div class="layui-form-item">
+			<label class="layui-form-label" style="width:150px">禁止项模板业务编号</label>
+			<div class="layui-input-block"  >
+				<input id="banTplCode" type="text" name="banTplCode" placeholder="禁止项模板业务编号" onkeyup="this.value=this.value.replace(/\D/g,'')" style="width:200px"   class="layui-input">
+			</div>
+		</div>
+
+		<div class="layui-form-item">
+		    <label class="layui-form-label" style="width:150px">执行类型</label>
+		    <div class="layui-input-block" style="width:200px">
+		    	<input name="executeType" checked="checked" value="1" title="按时段执行" type="radio"    lay-filter="radio_filter1" id="executeType" />
+<!-- 		    	input name="executeType" value="2" title="按特定日期执行" type="radio"    lay-filter="radio_filter1" id="executeType2" /> -->
+		    </div>
+		  </div>
+		  
+		 
+		<div class="layui-form-item" id="date">
+			<label class="layui-form-label" style="width:150px">模板生效时间</label>
+			<div class="layui-input-block">
+				<input id="startTime" type="text" name="startTime" lay-verify="startTime" placeholder="模板生效时间" style="width:300px" class="layui-input">
+			</div>
+		</div>
+		
+		<div class="layui-form-item" id="date2">
+			<label class="layui-form-label" style="width:150px">模板失效时间</label>
+			<div class="layui-input-block">
+				<input id="endTime" type="text" name="endTime"  lay-verify="endTime" placeholder="模板失效时间" style="width:300px" class="layui-input">
+			</div>
+		</div>
+<!-- 		<div class="layui-form-item" id="date3"> -->
+<!-- 			<label class="layui-form-label" style="width:150px">模板生效时间段</label> -->
+<!-- 			<div class="layui-input-block"> -->
+<!-- 				<input id="startTimehms" type="text" name="startTimehms" lay-verify="startTime" placeholder="模板生效时间段" style="width:300px"onfocus="WdatePicker({skin:'whyGreen',dateFmt:'HH:mm:ss'})" -->
+<!-- 				 class="layui-input"> -->
+<!-- 			</div> -->
+<!-- 		</div> -->
+		
+<!-- 		<div class="layui-form-item" id="date4"> -->
+<!-- 			<label class="layui-form-label" style="width:150px">模板失效时间段</label> -->
+<!-- 			<div class="layui-input-block"> -->
+<!-- 				<input id="endTimehms" type="text" name="endTime1"  lay-verify="endTimehms" placeholder="模板失效时间段" style="width:300px" onfocus="WdatePicker({skin:'whyGreen',dateFmt:'HH:mm:ss'})" -->
+<!-- 				class="layui-input"> -->
+<!-- 			</div> -->
+<!-- 		</div>   -->
+		 
+		<div class="layui-form-item">
+		    <label class="layui-form-label" style="width:150px">模板状态</label>
+		    <div class="layui-input-block" style="width:300px">
+		    	<input name="state" value="01" title="有效" type="radio"    lay-filter="radio_filter" id="state" />
+		    	<input name="state" value="02" title="失效" type="radio"    lay-filter="radio_filter" id="state2" />
+		    </div>
+		 </div> 
+		    
+<!-- 	 	<div class="layui-form-item"> -->
+<!-- 			<label class="layui-form-label" style="width:150px">模板权重(百分比)</label> -->
+<!-- 			<div class="layui-input-block"> -->
+<!-- 				<input id="tplPercent" type="text" name="tplPercent" placeholder="请输入1到 100之间的正整数" style="width:200px;display:inline;" class="layui-input">% -->
+<!-- 			</div> -->
+<!-- 		</div> -->
+		
+<!-- 		<div class="layui-form-item"> -->
+<!-- 			<label class="layui-form-label" style="width:150px">优先级</label> -->
+<!-- 			<div class="layui-input-block"> -->
+<!-- 				<input id="level" type="text" name="level" placeholder="请输入正整数" style="width:200px" class="layui-input"> -->
+<!-- 			</div> -->
+<!-- 		</div> -->
+  
+		<div class="layui-form-item"  style="margin-left: 15%">
+		<button lay-submit lay-filter="save"  class="layui-btn" id="save_bt" >保存</button> 
+		</div> 
+</form> 
+</div>
+</body>
+</html>

@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>借款申请步骤统计</title>
+    <link rel="stylesheet" href="../../plugins/layui/css/layui.css"
+          media="all"/>
+    <link rel="stylesheet" href="../../css/global.css" media="all">
+    <link rel="stylesheet"
+          href="../../plugins/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="../../css/table.css"/>
+    <link rel="stylesheet" href="../../css/lzh_tongji_fenxi.css" media="all" />
+</head>
+
+<body>
+<div class="admin-main">
+
+    <blockquote class="layui-elem-quote">
+        <form class="layui-form" style="margin-top: 0px;">
+            <div class="layui-form-item">
+                <div class="layui-inline">
+                    <label class="layui-form-label" style="width: 100px">是否同步大数据</label>
+                    <div class="layui-input-inline">
+                        <select name="isHbaseSyn" id="isHbaseSyn" class="layui-input" lay-search="">
+                            <option value="">全部</option>
+                            <option value="1">是</option>
+                            <option value="0">否</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="layui-inline">
+                    <label class="layui-form-label" style="width: 75px;">客户标识</label>
+                    <div class="layui-input-inline">
+                        <select name="appLevel" id="appLevel" lay-filter="select" lay-search="">
+                            <option value="">全部</option>
+                            <option value="0">新客户</option>
+                            <option value="1">老客户</option>
+                        </select>
+                    </div>
+                </div>
+                <!-- 查询条件 -->
+                <div class="layui-inline">
+                    <label class="layui-form-label" style="width: 75px;"> 创建时间</label>
+                    <div class="layui-input-inline" style="width: 394px;">
+                        <input name="startTime" lay-verify="required" id="startTime" autocomplete="off"
+                               class="layui-input" style="width: 180px; display:inline;" required>&nbsp;至&nbsp;
+                        <input name="endTime" lay-verify=required id="endTime" autocomplete="off" class="layui-input"
+                               style="width: 180px; display:inline;" required>
+                    </div>
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <div class="layui-inline">
+                    <label class="layui-form-label" style="width: 100px;">决策树列表</label>
+                    <div class="layui-input-inline" id="decisionTreeId">
+                    </div>
+                </div>
+                <!--<div class="layui-inline">-->
+                <!--<label class="layui-form-label" style="width: 100px;">外部系统标识</label>-->
+                <!--<div class="layui-input-inline">-->
+                <!--<select name="isPushApp" id="isPushApp" class="layui-input">-->
+                <!--<option value="">全部</option>-->
+                <!--&lt;!&ndash;<option value="0">未推送App</option>&ndash;&gt;-->
+                <!--&lt;!&ndash;<option value="1">已推送APP</option>&ndash;&gt;-->
+                <!--<option value="2">已推送大数据</option>-->
+                <!--<option value="3">已接收大数据消息</option>-->
+                <!--</select>-->
+                <!--</div>-->
+                <!--</div>-->
+                <div class="layui-inline">
+                    <label class="layui-form-label" style="width: 75px;">平台类型</label>
+                    <div class="layui-input-inline">
+                        <select name="source" id="source" class="layui-input" lay-search="">
+                            <option value="">全部</option>
+                            <option value="0">Android</option>
+                            <option value="1">IOS</option>
+                        </select>
+                    </div>
+                </div>
+                <button class="layui-btn layui-btn-small" lay-submit lay-filter="from"><i
+                        class="layui-icon">&#xe615;</i> 搜索
+                </button>
+                <button type="reset" class="layui-btn layui-btn-small">重置条件</button>
+            </div>
+        </form>
+    </blockquote>
+
+    <fieldset class="layui-elem-field">
+        <legend>数据列表</legend>
+        <br>
+        <div class="layui-inline">
+            <label class="layui-form-label" style="width: 120px;"> 总认证次数：</label>
+            <label name="sum" id="sum" class="layui-form-label" style="width: 120px;"></label>
+        </div>
+        <div class="layui-inline">
+            <label class="layui-form-label" style="width: 120px;"> 审核通过数：</label>
+            <label name="pass" id="pass" class="layui-form-label" style="width: 80px;"></label>
+        </div>
+        <div class="layui-inline">
+            <label class="layui-form-label" style="width: 120px;"> 审核未通过数：</label>
+            <label name="notPass" id="notPass" class="layui-form-label" style="width: 80px;"></label>
+        </div>
+        <div class="layui-inline">
+            <label class="layui-form-label" style="width: 120px;"> 待审核数：</label>
+            <label name="unAudited" id="unAudited" class="layui-form-label" style="width: 80px;"></label>
+        </div>
+        <br><br>
+        <div class="layui-inline">
+            <label class="layui-form-label" style="width: 120px;"> 总认证人数：</label>
+            <label name="sum_certcode" id="sum_certcode" class="layui-form-label" style="width: 120px;"></label>
+        </div>
+        <div class="layui-inline">
+            <label class="layui-form-label" style="width: 120px;"> 审核通过人数：</label>
+            <label name="pass_certcode" id="pass_certcode" class="layui-form-label" style="width: 80px;"></label>
+        </div>
+        <div class="layui-inline">
+            <label class="layui-form-label" style="width: 120px;"> 审核未通过人数：</label>
+            <label name="notPass_certcode" id="notPass_certcode" class="layui-form-label" style="width: 80px;"></label>
+        </div>
+        <div class="layui-inline">
+            <label class="layui-form-label" style="width: 120px;"> 待审核人数：</label>
+            <label name="unAudited_certcode" id="unAudited_certcode" class="layui-form-label"
+                   style="width: 80px;"></label>
+        </div>
+        <br><br>
+        <div class="layui-inline">
+            <label class="layui-form-label" style="width: 120px;"> 总授信额度：</label>
+            <label name="unAuditedRate" id="totalCreditMoney" class="layui-form-label" style="width: 120px;"></label>
+        </div>
+        <div class="layui-inline">
+            <label class="layui-form-label" style="width: 120px;"> 审核通过率：</label>
+            <label name="passRate" id="passRate" class="layui-form-label" style="width: 80px;"></label>
+        </div>
+        <div class="layui-inline">
+            <label class="layui-form-label" style="width: 120px;"> 审核未通过率：</label>
+            <label name="notPassRate" id="notPassRate" class="layui-form-label" style="width: 80px;"></label>
+        </div>
+        <div class="layui-inline">
+            <label class="layui-form-label" style="width: 120px;"> 待审核率：</label>
+            <label name="unAuditedRate" id="unAuditedRate" class="layui-form-label" style="width: 80px;"></label>
+        </div>
+        <br><br>
+        <div class="layui-inline">
+            <label class="layui-form-label" style="width: 120px;"> 待大数据审核：</label>
+            <label name="countHbasePendingeview" id="countHbasePendingeview" class="layui-form-label"
+                   style="width: 120px;"></label>
+        </div>
+        <div class="layui-inline">
+            <label class="layui-form-label" style="width: 120px;"> 待人工审核：</label>
+            <label name="countToBeAuditedManually" id="countToBeAuditedManually" class="layui-form-label"
+                   style="width: 80px;"></label>
+        </div>
+        <div class="layui-inline">
+            <label class="layui-form-label" style="width: 120px;"> 未推送app：</label>
+            <label name="countNumber" id="countNumber" class="layui-form-label"
+                   style="width: 80px;"></label>
+        </div>
+        <br><br>
+
+        <div class="layui-inline">
+            <label class="layui-form-label" style="width: 800px;text-align: left;color: red;margin-left: 14px;">
+                注:<br>
+                1.待大数据审核,待人工审核,未推送ap会被创建时间影响统计结果<br>
+                2.步骤标识（0：待处理、1：同盾设备信息、2：同盾反欺诈、3：白骑士资信云报告、4：极光黑名单、5：腾讯反欺诈、6：91征信查询（多头借贷）、7：91回调、8:易极付黑名单、98：规则引擎模板分发、99：潘多拉拒绝名单、100：客户授信）
+            </label>
+        </div>
+        <div class="layui-field-box layui-form">
+            <table class="layui-table admin-table" style="word-break: keep-all;overflow:auto;">
+                <thead>
+                <tr>
+                    <th style="width:80px;">序号</th>
+                    <th>步骤号</th>
+                    <th>步骤</th>
+                    <th>待审批数</th>
+                    <th>待审批异常数</th>
+                </tr>
+                </thead>
+                <tbody id="content">
+                </tbody>
+            </table>
+        </div>
+    </fieldset>
+</div>
+
+<!--模板-->
+<script type="text/html" id="tpl">
+    {{# var count = 0 }}
+    {{# var countDetail = 0 }}
+    {{# layui.each(d.list, function(index, item){ }}
+
+    {{# count = count + Number(item.count) }}
+    {{# countDetail = countDetail + Number(item.countDetail) }}
+    <tr>
+        <td>{{ index + 1 }}</td>
+        <td>{{ item.isStep }}</td>
+        <td>
+            {{# if(item.isStep == "0"){ }}
+            待处理
+            {{# } }}
+            {{# if(item.isStep == "1"){ }}
+            同盾设备信息
+            {{# } }}
+            {{# if(item.isStep == "2"){ }}
+            同盾反欺诈
+            {{# } }}
+            {{# if(item.isStep == "3"){ }}
+            白骑士资信云报告
+            {{# } }}
+            {{# if(item.isStep == "4"){ }}
+            极光黑名单
+            {{# } }}
+            {{# if(item.isStep == "5"){ }}
+           腾讯反欺诈
+            {{# } }}
+            {{# if(item.isStep == "6"){ }}
+    91征信查询（多头借贷）
+            {{# } }}
+            {{# if(item.isStep == "7"){ }}
+    91回调
+            {{# } }}
+            {{# if(item.isStep == "8"){ }}
+            易极付黑名单
+            {{# } }}
+			{{# if(item.isStep == "98"){ }}
+            规则引擎模板分发
+            {{# } }}
+            {{# if(item.isStep == "99"){ }}
+            潘多拉拒绝名单
+            {{# } }}
+            {{# if(item.isStep == "100"){ }}
+            客户授信
+            {{# } }}
+        </td>
+        <td>{{ item.count }}</td>
+        <td>{{ item.countDetail }}</td>
+    </tr>
+    {{#  if(d.list.length == index+1){ }}
+    <tr>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td>总计：{{ count }}</td>
+        <td>总计：{{ countDetail }}</td>
+    </tr>
+    {{#  } }}
+    {{# }); }}
+
+</script>
+
+<!-- js -->
+<script src="../../jqery/jquery.js"></script>
+<script src="../../../commons/base.js"></script>
+<script type="text/javascript" src="../../plugins/layui/layui.js"></script>
+<script type="text/javascript" src="../../js/technicapplication/countStep.js?t=Math.randon()"></script>
+</body>
+
+</html>

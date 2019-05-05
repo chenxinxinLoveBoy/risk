@@ -1,0 +1,107 @@
+﻿<!DOCTYPE html>
+<html>
+
+<head>
+<meta charset="UTF-8">
+<title>mongo查询</title>
+<link rel="stylesheet" href="../../plugins/layui/css/layui.css"
+	media="all" />
+<link rel="stylesheet" href="../../css/global.css" media="all">
+<link rel="stylesheet"
+	href="../../plugins/font-awesome/css/font-awesome.min.css">
+<link rel="stylesheet" href="../../css/table.css" />
+ <link rel="stylesheet" href="../../css/lzh_login.css" media="all">
+	<!-- js -->
+	<script src="../../jqery/jquery.js"></script>
+	<script src="../../../commons/base.js"></script>
+	<script type="text/javascript" src="../../plugins/layui/layui.js"></script>
+	<script type="text/javascript" src="../../js/amongodb/findMongodb.js"></script>
+	<style type="text/css">
+    .layui-inline {
+		margin-top:0%;
+	}
+    </style>
+</head>
+
+<body>
+	<div class="admin-main"> 
+			<blockquote class="layui-elem-quote"> 
+				<!-- 查询条件 -->
+			<form action="" class="layui-form" >
+			    <div class="layui-inline">
+			      <label class="layui-form-label" style="width: auto;">名称：</label>
+			      <div class="layui-input-inline">
+			        <input name="mongodbName"   placeholder="名称" id="mongodbName"  autocomplete="off" class="layui-input" >
+			      </div>
+			    </div>
+			    
+			     <div class="layui-inline" >
+					<label class="layui-form-label" style="width: auto;">查询时间类型：</label>
+					<div class="layui-input-inline">
+					        <select name="timeType" lay-filter="timeType" class="layui-input" lay-search="" id="timeType" lay-verify="timeType" autocomplete="off">
+					          <option value="00">--请选择--</option>
+					          <option value="01">Date</option>
+					          <option value="02">Long</option>
+ 					        </select>
+					</div>
+				</div> 
+			    
+			    <div class="layui-inline">
+				  <label class="layui-form-label" >时间:</label>
+		          <div class="layui-input-inline">
+			      <input name="startTime"  lay-verify="startTime" id="startTime" autocomplete="off" class="layui-input"  style="width: 200px; display:inline;">
+			      &nbsp;<span>-</span>&nbsp;
+			      <input name="endTime"  lay-verify="endTime" id="endTime" autocomplete="off" class="layui-input"  style="width: 200px; display:inline;">
+			      </div>
+		        </div>
+			    
+			    <div class="layui-inline">
+					<a href="javascript:;" class="layui-btn layui-btn-small"  onclick="add()">
+					<i class="layui-icon">&#xe615;</i>新增查询条件 </a>
+				</div>
+			
+			    <div class="layui-inline">
+					<a href="javascript:;" class="layui-btn layui-btn-small"  onclick="sel()">
+					<i class="layui-icon">&#xe615;</i>搜索 </a>
+				</div>
+ 			    
+			    <div  id="divId">
+<!-- 				<div class="layui-inline"> -->
+<!-- 			      <label class="layui-form-label" style="width: auto;">key：</label> -->
+<!-- 			      <div class="layui-input-inline"> -->
+<!-- 			        <input name="key"   placeholder="key" id="key"  autocomplete="off" class="layui-input" > -->
+<!-- 			      </div> -->
+<!-- 			    </div> -->
+			    
+<!-- 			    <div class="layui-inline"> -->
+<!-- 			      <label class="layui-form-label" style="width: auto;">value：</label> -->
+<!-- 			      <div class="layui-input-inline"> -->
+<!-- 			        <input name="value"   placeholder="value " id="value"  autocomplete="off" class="layui-input" > -->
+<!-- 			      </div> -->
+<!-- 			    </div> -->
+			    </div>
+			  
+			</form> 
+		</blockquote>
+			 
+		
+		<fieldset class="layui-elem-field">
+			<legend>mongo查询列表</legend>
+			<div class="layui-field-box layui-form">
+					<table class="layui-table admin-table" id="customerMessage">
+						<thead>
+							<tr> 
+								<th>ID</th>
+								<th>创建时间</th>
+							</tr>
+						</thead>
+						<tbody id="content">
+						</tbody>
+					</table>
+				</div>
+		</fieldset> 
+
+</div> 
+</body>
+
+</html>

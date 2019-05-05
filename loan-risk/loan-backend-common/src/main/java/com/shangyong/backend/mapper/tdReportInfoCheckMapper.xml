@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.shangyong.backend.dao.tdReport.TdReportInfoCheckDao">
+
+	<resultMap type="com.shangyong.backend.entity.tdReport.TdReportInfoCheck" id="tdReportInfoCheckMap">
+		<id property="infoCheckId" column="info_check_id" javaType="java.lang.String"></id>
+		<result property="applicationId" column="application_id" javaType="java.lang.String"></result>
+		<result property="isMobileStatusActive" column="is_mobile_status_active" javaType="java.lang.String"></result>
+		<result property="isIdentityCodeValid" column="is_identity_code_valid" javaType="java.lang.String"></result>
+		<result property="isIdentityCodeReliable" column="is_identity_code_reliable" javaType="java.lang.String"></result>
+		<result property="isNetAgeOver3month" column="is_net_age_over_3month" javaType="java.lang.String"></result>
+		<result property="isContact1Called6month" column="is_contact1_called_6month" javaType="java.lang.String"></result>
+		<result property="isContact2Called6month" column="is_contact2_called_6month" javaType="java.lang.String"></result>
+		<result property="isContact3Called6month" column="is_contact3_called_6month" javaType="java.lang.String"></result>
+		<result property="isContact4Called6month" column="is_contact4_called_6month" javaType="java.lang.String"></result>
+		<result property="isContact5Called6month" column="is_contact5_called_6month" javaType="java.lang.String"></result>
+		<result property="isHomeTelCalled6month" column="is_home_tel_called_6month" javaType="java.lang.String"></result>
+		<result property="isWorkTelCalled6month" column="is_work_tel_called_6month" javaType="java.lang.String"></result>
+		<result property="isNetAddrCallAddr1month" column="is_net_addr_call_addr_1month" javaType="java.lang.String"></result>
+		<result property="isNetAddrCallAddr3month" column="is_net_addr_call_addr_3month" javaType="java.lang.String"></result>
+		<result property="isNetAddrCallAddr6month" column="is_net_addr_call_addr_6month" javaType="java.lang.String"></result>
+		<result property="baseInfoScore" column="base_info_score" javaType="java.lang.String"></result>
+		<result property="callInfoScore" column="call_info_score" javaType="java.lang.String"></result>
+		<result property="riskContactInfoScore" column="risk_contact_info_score" javaType="java.lang.String"></result>
+		<result property="billInfoScore" column="bill_info_score" javaType="java.lang.String"></result>
+		<result property="totalScore" column="total_score" javaType="java.lang.String"></result>
+		<result property="createTime" column="create_time" javaType="java.lang.String"></result>
+		<result property="createMan" column="create_man" javaType="java.lang.String"></result>
+		<result property="modifyTime" column="modify_time" javaType="java.lang.String"></result>
+		<result property="modifyMan" column="modify_man" javaType="java.lang.String"></result>
+		<result property="remark" column="remark" javaType="java.lang.String"></result>
+	</resultMap>
+
+	<!-- 通用查询结果列-->
+	<sql id="Base_Column_List">
+info_check_id,	application_id,	is_mobile_status_active,	is_identity_code_valid,	is_identity_code_reliable,	is_net_age_over_3month,	is_contact1_called_6month,	is_contact2_called_6month,	is_contact3_called_6month,	is_contact4_called_6month,	is_contact5_called_6month,	is_home_tel_called_6month,	is_work_tel_called_6month,	is_net_addr_call_addr_1month,	is_net_addr_call_addr_3month,	is_net_addr_call_addr_6month,	base_info_score,	call_info_score,	risk_contact_info_score,	bill_info_score,	total_score,	create_time,	create_man,	modify_time,	modify_man,	remark
+	</sql>
+
+	<!-- 查询（根据主键ID查询） -->
+	<select id="getEntityById" resultMap="tdReportInfoCheckMap" parameterType="java.lang.String">
+		 SELECT
+		 <include refid="Base_Column_List" />
+		 FROM td_report_info_check
+		 WHERE info_check_id = #{infoCheckId}
+	</select>
+
+	<!-- 查询（根据主键ID查询） -->
+	<select id="findAll" resultMap="tdReportInfoCheckMap" parameterType="java.lang.String">
+		 SELECT
+		 <include refid="Base_Column_List" />
+		 FROM td_report_info_check
+		 WHERE info_check_id = #{infoCheckId}
+	</select>
+
+	<!--删除：根据主键ID删除-->
+	<delete id="deleteEntity" parameterType="java.lang.String">
+		 DELETE FROM td_report_info_check
+		 WHERE info_check_id = #{infoCheckId}
+	</delete>
+
+	<!-- 添加 -->
+	<insert id="saveEntity" parameterType="com.shangyong.backend.entity.tdReport.TdReportInfoCheck">
+		 INSERT INTO td_report_info_check
+ 		(info_check_id,application_id,is_mobile_status_active,is_identity_code_valid,is_identity_code_reliable,is_net_age_over_3month,is_contact1_called_6month,is_contact2_called_6month,is_contact3_called_6month,is_contact4_called_6month,is_contact5_called_6month,is_home_tel_called_6month,is_work_tel_called_6month,is_net_addr_call_addr_1month,is_net_addr_call_addr_3month,is_net_addr_call_addr_6month,base_info_score,call_info_score,risk_contact_info_score,bill_info_score,total_score,create_time,create_man,modify_time,modify_man,remark) 
+		 VALUES 
+ 		(#{infoCheckId},#{applicationId},#{isMobileStatusActive},#{isIdentityCodeValid},#{isIdentityCodeReliable},#{isNetAgeOver3month},#{isContact1Called6month},#{isContact2Called6month},#{isContact3Called6month},#{isContact4Called6month},#{isContact5Called6month},#{isHomeTelCalled6month},#{isWorkTelCalled6month},#{isNetAddrCallAddr1month},#{isNetAddrCallAddr3month},#{isNetAddrCallAddr6month},#{baseInfoScore},#{callInfoScore},#{riskContactInfoScore},#{billInfoScore},#{totalScore},#{createTime},#{createMan},#{modifyTime},#{modifyMan},#{remark}) 
+	</insert>
+
+	<!-- 修 改-->
+	<update id="updateEntity" parameterType="com.shangyong.backend.entity.tdReport.TdReportInfoCheck">
+		 UPDATE td_report_info_check
+ 		 <set> 
+			<if test="applicationId != null">
+				 application_id = #{applicationId},
+			</if>
+			<if test="isMobileStatusActive != null">
+				 is_mobile_status_active = #{isMobileStatusActive},
+			</if>
+			<if test="isIdentityCodeValid != null">
+				 is_identity_code_valid = #{isIdentityCodeValid},
+			</if>
+			<if test="isIdentityCodeReliable != null">
+				 is_identity_code_reliable = #{isIdentityCodeReliable},
+			</if>
+			<if test="isNetAgeOver3month != null">
+				 is_net_age_over_3month = #{isNetAgeOver3month},
+			</if>
+			<if test="isContact1Called6month != null">
+				 is_contact1_called_6month = #{isContact1Called6month},
+			</if>
+			<if test="isContact2Called6month != null">
+				 is_contact2_called_6month = #{isContact2Called6month},
+			</if>
+			<if test="isContact3Called6month != null">
+				 is_contact3_called_6month = #{isContact3Called6month},
+			</if>
+			<if test="isContact4Called6month != null">
+				 is_contact4_called_6month = #{isContact4Called6month},
+			</if>
+			<if test="isContact5Called6month != null">
+				 is_contact5_called_6month = #{isContact5Called6month},
+			</if>
+			<if test="isHomeTelCalled6month != null">
+				 is_home_tel_called_6month = #{isHomeTelCalled6month},
+			</if>
+			<if test="isWorkTelCalled6month != null">
+				 is_work_tel_called_6month = #{isWorkTelCalled6month},
+			</if>
+			<if test="isNetAddrCallAddr1month != null">
+				 is_net_addr_call_addr_1month = #{isNetAddrCallAddr1month},
+			</if>
+			<if test="isNetAddrCallAddr3month != null">
+				 is_net_addr_call_addr_3month = #{isNetAddrCallAddr3month},
+			</if>
+			<if test="isNetAddrCallAddr6month != null">
+				 is_net_addr_call_addr_6month = #{isNetAddrCallAddr6month},
+			</if>
+			<if test="baseInfoScore != null">
+				 base_info_score = #{baseInfoScore},
+			</if>
+			<if test="callInfoScore != null">
+				 call_info_score = #{callInfoScore},
+			</if>
+			<if test="riskContactInfoScore != null">
+				 risk_contact_info_score = #{riskContactInfoScore},
+			</if>
+			<if test="billInfoScore != null">
+				 bill_info_score = #{billInfoScore},
+			</if>
+			<if test="totalScore != null">
+				 total_score = #{totalScore},
+			</if>
+			<if test="createTime != null">
+				 create_time = #{createTime},
+			</if>
+			<if test="createMan != null">
+				 create_man = #{createMan},
+			</if>
+			<if test="modifyTime != null">
+				 modify_time = #{modifyTime},
+			</if>
+			<if test="modifyMan != null">
+				 modify_man = #{modifyMan},
+			</if>
+			<if test="remark != null">
+				 remark = #{remark},
+			</if>
+
+ 		 </set>
+		 WHERE info_check_id = #{infoCheckId}
+	</update>
+
+</mapper>

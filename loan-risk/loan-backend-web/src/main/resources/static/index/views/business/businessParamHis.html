@@ -1,0 +1,182 @@
+﻿<!DOCTYPE html>
+<html>
+
+<head>
+<meta charset="UTF-8">
+<title>系统参数配置历史查询</title>
+<link rel="stylesheet" href="../../plugins/layui/css/layui.css"
+	media="all" />
+<link rel="stylesheet" href="../../css/global.css" media="all">
+<link rel="stylesheet"
+	href="../../plugins/font-awesome/css/font-awesome.min.css">
+<link rel="stylesheet" href="../../css/table.css" />
+ <link rel="stylesheet" href="../../css/lzh_xy_gl.css" media="all" />
+ <style type="text/css">
+ .layui-form-label {
+    width: 80px;
+}
+ </style>
+</head>
+
+<body>
+	<div class="admin-main">
+		<blockquote class="layui-elem-quote">
+		 <form action="" class="layui-form" style="margin-top: 0px;">
+			<!-- 查询条件 -->
+			    <div class="layui-inline">
+			      <label class="layui-form-label">参数编号：</label>
+			      <div class="layui-input-inline">
+			        <input name="paramValue" lay-verify="paramValue" id="paramValue" autocomplete="off" class="layui-input" >
+			      </div>
+			    </div>
+			     <div class="layui-inline">
+			      <label class="layui-form-label">参数名称：</label>
+			      <div class="layui-input-inline">
+			        <input name="paramName" lay-verify="paramName" id="paramName" autocomplete="off" class="layui-input" >
+			      </div>
+			    </div>
+			     <div class="layui-inline" >
+					<label class="layui-form-label" style="width: auto;">状态：</label>
+					<div class="layui-input-inline" lay-search="">
+					        <select name="statue" lay-filter="statue" class="layui-input" lay-search="" id="statue" lay-verify="state" autocomplete="off">
+					          <option value="">--请选择--</option>
+					          <option value="01">生效</option>
+					          <option value="02">失效</option>
+					        </select>
+					</div>
+				</div>
+				
+				  <div class="layui-inline">
+			      <label class="layui-form-label">开始时间：</label>
+			      <div class="layui-input-inline">
+			        <input name="beginTime"  lay-verify="beginTime"  id="beginTime" autocomplete="off" class="layui-input" >
+			      </div>
+			     </div>
+			     
+			     <div class="layui-inline">
+			      <label class="layui-form-label">结束时间：</label>
+			      <div class="layui-input-inline">
+			        <input name="endTime"  lay-verify="endTime"  id="endTime" autocomplete="off" class="layui-input" >
+			      </div>
+			    </div>
+			    
+					<a href="javascript:;" class="layui-btn layui-btn-small" id="search">
+						<i class="layui-icon">&#xe615;</i> 搜索
+					</a>
+				</form>
+		</blockquote>
+		
+		<fieldset class="layui-elem-field">
+			<legend>数据列表</legend>
+			<div class="layui-field-box layui-form">
+				<table class="layui-table admin-table"  style="word-break: keep-all;overflow:auto;">
+					<thead>
+						<tr>
+							<th>参数序号</th>
+							<th>参数编号</th>
+							<th>参数名称</th>
+							<th>参数1名称</th>
+							<th>参数值1</th>
+							<th>参数2名称</th>
+							<th>参数值2</th>
+							<th>参数3名称</th>
+							<th>参数值3</th>
+							<th>参数4名称</th>
+							<th>参数值4</th>
+							<th>参数5名称</th>
+							<th>参数值5</th>
+							<th>状态</th>
+							<th>创建时间</th>
+							<th>创建人</th>
+							<th>修改人</th>
+							<th>修改时间</th>
+							<th>版本号</th>
+							<th>备注</th>
+							<th>操作</th>
+						</tr>
+					</thead>
+					<tbody id="content">
+					</tbody>
+				</table>
+					<label>共<font color='red' id="count_page_number"></font>条记录</label>
+					<div id="paged" class="page" style="display:inline-block;">
+					</div>
+			</div>
+		</fieldset>
+	</div>
+	<!--模板-->
+	<script type="text/html" id="tpl">
+			{{# layui.each(d.list, function(index, item){ }}
+			<tr>
+				<td>{{ item.business_param_id }}</td>
+                <td>{{ item.paramValue }}</td>
+				<td>{{ item.paramName }}</td>
+
+                <td>{{ item.paramNameOne}}</td>
+                {{# if(item.paramValueOne!=null&&item.paramValueOne.length >19 ){ }}
+				<td>{{ item.paramValueOne.substring(0, 19)+"..."}}</td>
+				{{# } else  { }}
+				<td>{{ item.paramValueOne }}</td>
+				{{# } }}
+
+				 
+                <td>{{ item.paramNameTwo }}</td>
+                {{# if(item.paramValueTwo!=null&&item.paramValueTwo.length >19 ){ }}
+				<td>{{ item.paramValueTwo.substring(0, 19)+"..."}}</td>
+				{{# } else  { }}
+				<td>{{ item.paramValueTwo }}</td>
+				{{# } }}
+				 
+                <td>{{ item.paramNameThree }}</td>
+                {{# if(item.paramValueThree!=null&&item.paramValueThree.length >19 ){ }}
+				<td>{{ item.paramValueThree.substring(0, 19)+"..."}}</td>
+				{{# } else  { }}
+				<td>{{ item.paramValueThree }}</td>
+				{{# } }}
+
+ 				<td>{{ item.paramNameFour }}</td>
+                {{# if(item.paramValueFour!=null&&item.paramValueFour.length >19 ){ }}
+				<td>{{ item.paramValueFour.substring(0, 19)+"..."}}</td>
+				{{# } else  { }}
+				<td>{{ item.paramValueFour }}</td>
+				{{# } }}
+
+                <td>{{ item.paramNameFive }}</td>
+                {{# if(item.paramValueFive!=null&&item.paramValueFive.length >19 ){ }}
+				<td>{{ item.paramValueFive.substring(0, 19)+"..."}}</td>
+				{{# } else  { }}
+				<td>{{ item.paramValueFive }}</td>
+				{{# } }}
+				 
+			    
+	            {{# if(item.statue == '01'){ }}
+				<td>生效</td>
+                {{# } else if(item.statue == '02') { }}
+                <td>失效</td>
+				{{# } else  { }}
+				<td></td>
+				{{# } }}
+
+ 				<td>{{ item.createTime.substring(0, 19) }}</td>
+				<td>{{ item.createMan}}</td>
+                <td>{{ item.modifyMan }}</td>
+                <td>{{ item.modifyTime.substring(0, 19) }}</td>
+				<td>{{ item.version }}</td>
+				<td>{{ item.remark }}</td>
+				<td>
+ 					<a href="javascript:;" data-id="{{ item.paramHisId }}" data-opt="edit" class="layui-btn layui-btn-mini">预览</a>
+ 				</td>
+			</tr>
+			{{# }); }}
+		</script>
+
+	<!-- js -->
+	<script src="../../jqery/jquery.js"></script>
+	<script src="../../../commons/base.js"></script>
+	<script type="text/javascript" src="../../plugins/layui/layui.js"></script>
+	<script type="text/javascript" src="../../js/business/businessParamHis.js"></script>
+	<!-- 日期控件 -->
+	<script language="javascript" type="text/javascript" src="../../My97DatePicker/WdatePicker.js"></script>
+</body>
+
+</html>

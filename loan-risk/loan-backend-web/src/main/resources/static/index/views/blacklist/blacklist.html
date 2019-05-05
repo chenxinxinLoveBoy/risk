@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html>
+	<head>
+	<META HTTP-EQUIV="pragma" CONTENT="no-cache">
+	<META HTTP-EQUIV="Cache-Control" CONTENT="no-cache, must-revalidate">
+	<META HTTP-EQUIV="expires" CONTENT="0">
+	<base target="_Self">
+		<meta charset="UTF-8">
+		<title>被拒名单列表</title>
+		<link rel="stylesheet" href="../../plugins/layui/css/layui.css" media="all" />
+		<link rel="stylesheet" href="../../css/global.css" media="all">
+		<link rel="stylesheet" href="../../plugins/font-awesome/css/font-awesome.min.css">
+		<link rel="stylesheet" href="../../css/table.css" />
+		<script type="text/javascript" src="../../plugins/layui/layui.js"></script>
+		<!-- js -->
+		<script src="../../jqery/jquery.js"></script>
+		<script src="../../../commons/base.js"></script>
+		<!-- 日期控件 -->
+	   <script type="text/javascript" src="../../js/blacklist/blacklist.js"></script>
+	   <link rel="stylesheet" href="../../css/lzh_xy_shenghe.css" media="all" />
+	</head>
+	<body>
+		<div class="admin-main">
+			<blockquote class="layui-elem-quote"> 
+				<!-- 查询条件 -->
+			<form action="" class="layui-form" >
+			    <div class="layui-inline">
+			      <label class="layui-form-label" style="width: 100px;">用户身份证号</label>
+			      <div class="layui-input-inline">
+			       <input id="certCode" type="text" name="certCode" placeholder="请输入用户身份证号" maxlength="18" onKeyUp="value=value.replace(/[\W]/g,'')" autocomplete="off" class="layui-input">
+			      </div>
+			    </div>
+			    
+			    <div class="layui-inline">
+			      <label class="layui-form-label" style="width: 100px;">用户姓名</label>
+			      <div class="layui-input-inline">
+			       <input id="name" type="text" name="name" placeholder="用户姓名" maxlength="25"  autocomplete="off" class="layui-input" onkeyup="this.value=this.value.replace(/\s+/g,'')" >
+			      </div>
+			    </div>
+			    
+			    
+			    <div class="layui-inline">
+			      <label class="layui-form-label" style="width: 100px;">用户手机号</label>
+			      <div class="layui-input-inline">
+			       <input id="phoneNum" type="text" name="phoneNum" placeholder="用户手机号" maxlength="11" onkeyup="this.value=this.value.replace(/\D/g,'')"  onafterpaste="this.value=this.value.replace(/\D/g,'')"  autocomplete="off" class="layui-input">
+			      </div>
+			    </div>
+			    <div class="layui-inline">
+			       <label class="layui-form-label">征信机构</label>
+				     <div class="layui-input-inline" id="divDel">
+				      <select name="rejectType" id="rejectType" class="layui-input" lay-search="">
+				          <option value="00" selected="selected">全部</option>
+				          <option value="01">同盾</option>
+				          <option value="02">白骑士</option>
+				          <option value="03">极光</option>
+				          <option value="04">91征信</option>
+				          <option value="05">腾讯云</option>
+				          <option value="06">易极付</option>
+				          <option value="13">网洪</option>
+				       </select> 
+			      </div>
+			    </div>
+			   <!-- <div class="layui-inline">
+					<a href="javascript:;" class="layui-btn layui-btn-small"  onclick="del()">
+					<i class="layui-icon">&#xe640;</i>删除
+				</a>
+				</div> -->
+				&nbsp;&nbsp;&nbsp;&nbsp;
+				<div class="layui-inline">
+					<a href="javascript:;" class="layui-btn layui-btn-small"  onclick="sel()">
+					<i class="layui-icon">&#xe615;</i>搜索
+				</a>
+				</div>
+				&nbsp;&nbsp;&nbsp;&nbsp;
+				<div class="layui-inline">
+					<a href="javascript:;" class="layui-btn layui-btn-small"  onclick="reset()">
+					<i class="layui-icon">&#xe642;</i>重置
+				</a>
+				</div>
+				&nbsp;&nbsp;&nbsp;&nbsp;
+				<!-- <div class="layui-inline">
+					<a href="javascript:;" class="layui-btn layui-btn-small"  onclick="refreshRedis()">
+					<i class="layui-icon">&#xe642;</i>刷新Redis
+				</a>
+				</div> -->
+				<br/>
+				<br/>
+				 <div class="layui-inline">
+			       <label class="layui-form-label" style="width:100px">数据来源</label>
+				     <div class="layui-input-inline" id="divDel2" style="width:155px">
+				      <select name="dsSource" id="dsSource" class="layui-input" >
+				          <option value="00" selected="selected">全部</option>
+				          <option value="01">洪澄贷前审核</option>
+				          <option value="02">洪澄贷后监控</option>
+				          <option value="03">APP同步</option>
+				          <option value="04">手工添加</option>
+				          <option value="05">大数据添加</option>
+				       </select> 
+			      	</div>
+			    </div> 
+				<div class="layui-inline">
+			      <label class="layui-form-label" style="width: 100px;">日期</label>
+			      <div class="layui-input-inline">
+			      <input name="startTime"  lay-verify="startTime" id="startTime" autocomplete="off" class="layui-input"  style="width: 155px; display:inline;">
+			      <div class="layui-inline" style="width:30px;" align="center">&nbsp;至&nbsp;</div>
+			      <input name="endTime"  lay-verify="endTime" id="endTime" autocomplete="off" class="layui-input"  style="width: 155px; display:inline;">
+			      </div>
+			    </div>
+			    <!-- <div class="layui-inline">
+			      <label class="layui-form-label" style="width: 170px;">发生原因：</label>
+			      <div class="layui-input-inline">
+			       <input id="raiseReason" type="text" name="raiseReason" placeholder="黑名单代码" maxlength="25"  autocomplete="off" class="layui-input" onkeyup="this.value=this.value.replace(/\s+/g,'')" >
+			      </div>
+			    </div> -->
+			    <div class="layui-inline"><lable id="listAllSum" style="margin-left:140px"></lable><!-- margin-left:40px  -->
+			    </div>
+			</form>
+		</blockquote> 
+		
+		</div>
+			<fieldset class="layui-elem-field">
+				<!--  <legend>同盾拒绝名单列表</legend>   -->
+				<div class="layui-field-box layui-form" style="width:2000px">
+					<table class="layui-table admin-table">
+						<thead>
+							<tr> 
+								<th style="width: 30px;">
+								<input type="checkbox" lay-filter="allselector" lay-skin="primary"></th>
+								<th>APP平台</th>
+								<!-- <th>APP应用客户编号</th> -->
+								<th>用户身份证号</th>
+								<th>流水编号</th>
+								<th>用户姓名</th>
+								<th>用户手机号</th>
+								<th>征信机构名称</th>
+								<th>数据来源</th>
+								<th>设备ID</th>
+								<th>备注</th>
+								<th>创建时间</th> 
+							</tr>
+						</thead>
+						<tbody id="content">
+						</tbody>
+					</table>
+					<label>共<font color='red' id="count_page_number"></font>条记录</label>
+					<div id="paged" class="page" style="display:inline-block;">
+					</div>
+				</div>
+			</fieldset> 
+		<!--模板-->
+		<script type="text/html" id="tpl">
+			{{# layui.each(d.list, function(index, item){
+			var rejectFlag = item.rejectFlag; 
+			var rejectType = item.rejectType; 		
+			var appName = item.appName; 
+			var time = item.createTime;  
+			var createTime = time.substring(0,19);
+			var id = item.blacklistId;
+			var remark = item.remark; 
+			if(appName == 1){
+				appName='洪澄';
+			};
+			if(appName == 2){
+				appName='洪澄';
+			};
+			if(rejectType == '01'){
+				rejectType = '同盾';
+			};
+			if(rejectType == '02'){
+				rejectType = '白骑士';
+			};	
+			if(rejectType == '03'){
+				rejectType = '极光';
+			};
+			if(rejectType == '04'){
+				rejectType = '91征信';
+			};
+			if(rejectType == '05'){
+				rejectType = '腾讯云';
+			};
+			if(rejectType == '06'){
+				rejectType = '易极付';
+			};
+			if(rejectType == '13'){
+				rejectType = '网洪';
+			};
+			if(rejectType == '22'){
+				rejectType = '人工审核';
+			};
+		
+
+
+			var dsSource = item.dsSource;
+			if(dsSource == '01'){
+				dsSource='洪澄贷前审核';
+				};
+			if(dsSource == '02'){
+				dsSource='洪澄贷后监控';
+				};
+			if(dsSource == '03'){
+				dsSource='APP同步';
+				};
+			if(dsSource == '04'){
+				dsSource='手工添加';
+				};
+ 			}}	
+			<tr>
+				<td><input type="checkbox" lay-skin="primary" data-did="{{ item.blacklistId}}"></td>
+				<td>{{ appName }}</td>
+				
+				<td>{{ item.certCode }}</td> 
+				<td>{{ item.sNumber }}</td> 
+				<td>
+					<a href="javascript:;" data-id="{{ item.platformId }}" data-name="{{ item.name }}" data-opt="find" class="layui-btn layui-btn-normal layui-btn-mini " >{{ item.name }}</a>
+     			</td>
+				<td>{{ item.phoneNum }}</td>
+				<td>{{ rejectType }}</td> 
+				<td>{{ dsSource }}</td>
+				<td>{{ item.deviceId }}</td>
+				<td>{{ remark }}</td>
+				<td>{{ createTime }}</td> 
+			</tr>
+			{{# }); }}
+		</script>
+	</body>
+</html>

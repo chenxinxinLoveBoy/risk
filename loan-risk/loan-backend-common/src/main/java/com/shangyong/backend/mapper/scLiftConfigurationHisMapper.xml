@@ -1,0 +1,202 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.shangyong.backend.dao.ScLiftConfigurationHisDao">
+
+	<resultMap type="com.shangyong.backend.entity.ScLiftConfigurationHis" id="scLiftConfigurationHisMap">
+		<id property="scLiftConfigurationHisId" column="sc_lift_configuration_his_id" javaType="java.lang.Integer"></id>
+		<result property="scLiftConfigurationId" column="sc_lift_configuration_id" javaType="java.lang.Integer"></result>
+		<result property="channelName" column="channel_name" javaType="java.lang.String"></result>
+		<result property="appLevel" column="app_level" javaType="java.lang.Integer"></result>
+		<result property="creditMoney" column="credit_money" javaType="java.lang.String"></result>
+		<result property="isAccumulationFund" column="is_accumulation_fund" javaType="java.lang.Integer"></result>
+		<result property="isSocialSecurity" column="is_social_security" javaType="java.lang.Integer"></result>
+		<result property="repaymentTimes" column="repayment_times" javaType="java.lang.Integer"></result>
+		<result property="todayTimes" column="today_times" javaType="java.lang.Integer"></result>
+		<result property="percentageOfLift" column="percentage_of_lift" javaType="java.lang.String"></result>
+		<result property="percentageOfLiftMantissa" column="percentage_of_lift_Mantissa" javaType="java.lang.Integer"></result>
+		<result property="version" column="version" javaType="java.lang.Integer"></result>
+		<result property="createTime" column="create_time" javaType="java.lang.String"></result>
+		<result property="createMan" column="create_man" javaType="java.lang.String"></result>
+		<result property="createName" column="create_name" javaType="java.lang.String"></result>
+		<result property="modifyTime" column="modify_time" javaType="java.lang.String"></result>
+		<result property="modifyMan" column="modify_man" javaType="java.lang.String"></result>
+		<result property="modifyName" column="modify_name" javaType="java.lang.String"></result>
+		<result property="remark" column="remark" javaType="java.lang.String"></result>
+		<result property="recordNewtime" column="record_newtime" javaType="java.lang.String"></result>
+		<result property="state" column="state" javaType="java.lang.String"></result>
+		<result property="mateName" column="mate_name" javaType="java.lang.String"></result>
+		<result property="matePhone" column="mate_phone" javaType="java.lang.String"></result>
+		<result property="mateCertCode" column="mate_cert_code" javaType="java.lang.String"></result>
+	</resultMap>
+
+	<!-- 通用查询结果列-->
+	<sql id="Base_Column_List">
+sc_lift_configuration_his_id,mate_name,	mate_phone,mate_cert_code,state,sc_lift_configuration_id,	channel_name,	app_level,	credit_money,	is_accumulation_fund,	is_social_security,	repayment_times,	today_times,	percentage_of_lift,	percentage_of_lift_Mantissa,	version,	create_time,	create_man,	create_name,	modify_time,	modify_man,	modify_name,	remark,	record_newtime
+	</sql>
+
+	<!-- 查询（根据主键ID查询） -->
+	<select id="getEntityById" resultMap="scLiftConfigurationHisMap" parameterType="java.lang.Integer">
+		 SELECT
+		 <include refid="Base_Column_List" />
+		 FROM sc_lift_configuration_his
+		 WHERE sc_lift_configuration_his_id = #{scLiftConfigurationHisId}
+	</select>
+
+		<!-- 查询（根据主键ID查询） -->
+	<select id="findAll" resultMap="scLiftConfigurationHisMap" parameterType="com.shangyong.backend.entity.ScLiftConfigurationHis">
+		 SELECT
+		 <include refid="Base_Column_List" />
+		 FROM sc_lift_configuration_his
+		 <where>
+		  <if test="scLiftConfigurationId != null">
+				 sc_lift_configuration_id = #{scLiftConfigurationId}
+			</if>
+		 	<if test="appLevel != null">
+				 and  app_level = #{appLevel}
+			</if>
+			<if test="channelName != null and channelName != ''">
+				and  instr(channel_name, #{channelName}) > 0 
+			</if>
+			 <if test="beginTime1 != '' and beginTime1 != null" >
+	    	    <![CDATA[ and record_newtime >= #{beginTime1} ]]>
+	         </if>
+	   	     <if test="endTime1 != '' and endTime1 != null" >
+	    	    <![CDATA[ and record_newtime <= #{endTime1} ]]>
+	         </if> 
+	         <if test="state != null  and state != ''">
+				and state = #{state}
+			</if>
+		 </where>
+		 	 ORDER BY modify_time DESC
+			LIMIT #{pageIndex},#{pageSize} 
+	</select>
+
+	<!-- 查询  -->
+	<select id="listAllCount" resultType="java.lang.Integer" parameterType="com.shangyong.backend.entity.ScLiftConfigurationHis">
+		SELECT
+			COUNT(1)
+		 FROM sc_lift_configuration_his
+		 <where>
+		  <if test="scLiftConfigurationId != null">
+				 sc_lift_configuration_id = #{scLiftConfigurationId}
+			</if>
+		   <if test="appLevel != null">
+				and app_level = #{appLevel}
+			</if>
+			<if test="channelName != null and channelName != ''">
+				and  instr(channel_name, #{channelName}) > 0 
+			</if>
+			 <if test="beginTime1 != '' and beginTime1 != null" >
+	    	    <![CDATA[ and record_newtime >= #{beginTime1} ]]>
+	         </if>
+	   	     <if test="endTime1 != '' and endTime1 != null" >
+	    	    <![CDATA[ and record_newtime <= #{endTime1} ]]>
+	         </if>  
+	         <if test="state != null  and state != ''">
+				and state = #{state}
+			</if>
+		 </where>  
+	</select>
+
+
+<!-- 添加 -->
+	<insert id="insert" parameterType="com.shangyong.backend.entity.ScLiftConfiguration">
+      INSERT INTO sc_lift_configuration_his
+ 		(sc_lift_configuration_id,mate_name,mate_phone,mate_cert_code,state,channel_name,app_level,credit_money,is_accumulation_fund,is_social_security,repayment_times,today_times,percentage_of_lift,percentage_of_lift_Mantissa,version,create_time,create_man,create_name,modify_time,modify_man,modify_name,remark) 
+		 VALUES 
+ 		(#{scLiftConfigurationId},#{mateName},#{matePhone},#{mateCertCode},#{state},#{channelName},#{appLevel},#{creditMoney},#{isAccumulationFund},#{isSocialSecurity},#{repaymentTimes},#{todayTimes},#{percentageOfLift},#{percentageOfLiftMantissa},#{version},#{createTime},#{createMan},#{createName},#{modifyTime},#{modifyMan},#{modifyName},#{remark}) 
+ 	</insert>
+
+	<!--删除：根据主键ID删除-->
+	<delete id="deleteEntity" parameterType="java.lang.Integer">
+		 DELETE FROM sc_lift_configuration_his
+		 WHERE sc_lift_configuration_his_id = #{scLiftConfigurationHisId}
+	</delete>
+
+	<!-- 添加 -->
+	<insert id="saveEntity" parameterType="com.shangyong.backend.entity.ScLiftConfigurationHis">
+		 INSERT INTO sc_lift_configuration_his
+ 		(sc_lift_configuration_his_id,mate_name,mate_phone,mate_cert_code,state,sc_lift_configuration_id,channel_name,app_level,credit_money,is_accumulation_fund,is_social_security,repayment_times,today_times,percentage_of_lift,percentage_of_lift_Mantissa,version,create_time,create_man,create_name,modify_time,modify_man,modify_name,remark,record_newtime) 
+		 VALUES 
+ 		(#{scLiftConfigurationHisId},#{mateName},#{matePhone},#{mateCertCode},#{state},#{scLiftConfigurationId},#{channelName},#{appLevel},#{creditMoney},#{isAccumulationFund},#{isSocialSecurity},#{repaymentTimes},#{todayTimes},#{percentageOfLift},#{percentageOfLiftMantissa},#{version},#{createTime},#{createMan},#{createName},#{modifyTime},#{modifyMan},#{modifyName},#{remark},#{recordNewtime}) 
+	</insert>
+
+	<!-- 修 改-->
+	<update id="updateEntity" parameterType="com.shangyong.backend.entity.ScLiftConfigurationHis">
+		 UPDATE sc_lift_configuration_his
+ 		 <set> 
+			<if test="scLiftConfigurationId != null">
+				 sc_lift_configuration_id = #{scLiftConfigurationId},
+			</if>
+			<if test="channelName != null">
+				 channel_name = #{channelName},
+			</if>
+			<if test="appLevel != null">
+				 app_level = #{appLevel},
+			</if>
+			<if test="creditMoney != null">
+				 credit_money = #{creditMoney},
+			</if>
+			<if test="isAccumulationFund != null">
+				 is_accumulation_fund = #{isAccumulationFund},
+			</if>
+			<if test="isSocialSecurity != null">
+				 is_social_security = #{isSocialSecurity},
+			</if>
+			<if test="repaymentTimes != null">
+				 repayment_times = #{repaymentTimes},
+			</if>
+			<if test="todayTimes != null">
+				 today_times = #{todayTimes},
+			</if>
+			<if test="percentageOfLift != null">
+				 percentage_of_lift = #{percentageOfLift},
+			</if>
+			<if test="percentageOfLiftMantissa != null">
+				 percentage_of_lift_Mantissa = #{percentageOfLiftMantissa},
+			</if>
+			<if test="version != null">
+				 version = #{version},
+			</if>
+			<if test="createTime != null">
+				 create_time = #{createTime},
+			</if>
+			<if test="createMan != null">
+				 create_man = #{createMan},
+			</if>
+			<if test="createName != null">
+				 create_name = #{createName},
+			</if>
+			<if test="modifyTime != null">
+				 modify_time = #{modifyTime},
+			</if>
+			<if test="modifyMan != null">
+				 modify_man = #{modifyMan},
+			</if>
+			<if test="modifyName != null">
+				 modify_name = #{modifyName},
+			</if>
+			<if test="remark != null">
+				 remark = #{remark},
+			</if>
+			<if test="recordNewtime != null">
+				 record_newtime = #{recordNewtime},
+			</if>
+			<if test="state != null">
+				 state = #{state},
+			</if>
+			<if test="mateName != null">
+				 mate_name = #{mateName},
+			</if>
+			<if test="matePhone != null">
+				 mate_phone = #{matePhone},
+			</if>
+			<if test="mateCertCode != null">
+				 mate_cert_code = #{mateCertCode}
+			</if>
+ 		 </set>
+		 WHERE sc_lift_configuration_his_id = #{scLiftConfigurationHisId}
+	</update>
+
+</mapper>

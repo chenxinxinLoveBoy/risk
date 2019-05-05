@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.shangyong.backend.dao.bqsrep.BqsRepPetitionerServiceDao">
+
+	<resultMap type="com.shangyong.backend.entity.bqsrep.BqsRepPetitioner" id="bqsRepPetitionerinfoMap">
+		<id property="bqsPetitionerId" column="bqs_petitioner_id" javaType="java.lang.String"></id>
+		<result property="applicationId" column="application_id" javaType="java.lang.String"></result>
+		<result property="reportSn" column="report_sn" javaType="java.lang.String"></result>
+		<result property="reportTime" column="report_time" javaType="java.lang.String"></result>
+		<result property="name" column="name" javaType="java.lang.String"></result>
+		<result property="certNo" column="cert_no" javaType="java.lang.String"></result>
+		<result property="mobile" column="mobile" javaType="java.lang.String"></result>
+		<result property="mobileBelongTo" column="mobile_belong_to" javaType="java.lang.String"></result>
+		<result property="mobileMnoType" column="mobile_mno_type" javaType="java.lang.String"></result>
+		<result property="gender" column="gender" javaType="java.lang.String"></result>
+		<result property="constellation" column="constellation" javaType="java.lang.String"></result>
+		<result property="age" column="age" javaType="java.lang.String"></result>
+		<result property="birthAddress" column="birth_address" javaType="java.lang.String"></result>
+		<result property="bar" column="bar" javaType="java.lang.String"></result>
+		<result property="createTime" column="create_time" javaType="java.lang.String"></result>
+		<result property="modifyTime" column="modify_time" javaType="java.lang.String"></result>
+		<result property="createMan" column="create_man" javaType="java.lang.String"></result>
+		<result property="modifyMan" column="modify_man" javaType="java.lang.String"></result>
+	</resultMap>
+
+	<!-- 通用查询结果列-->
+	<sql id="Base_Column_List">
+	bqs_petitioner_id,	application_id,	report_sn,	report_time,	name,	cert_no,	mobile,	mobile_belong_to,	mobile_mno_type,	gender,	constellation,	age,	birth_address,	bar,	create_time,	modify_time,	create_man,	modify_man
+	</sql>
+
+	<!-- 查询（根据主键ID查询） -->
+	<select id="getEntityById" resultMap="bqsRepPetitionerinfoMap" parameterType="java.lang.String">
+		 SELECT
+		 <include refid="Base_Column_List" />
+		 FROM bqs_rep_petitioner
+		 WHERE bqs_petitioner_id = #{bqsPetitionerId}
+	</select>
+	
+	<!-- 查询（根据applicationId查询） -->
+	<select id="queryById" resultMap="bqsRepPetitionerinfoMap" parameterType="java.lang.String">
+		 SELECT
+		 <include refid="Base_Column_List" />
+		  FROM bqs_rep_petitioner
+		 WHERE application_id = #{applicationId}
+	</select>
+		<!-- 查询（根据phone查询） -->
+	<select id="phoneAdress" resultType="java.lang.String" parameterType="java.lang.String">
+		 SELECT
+		 mobile_belong_to
+		  FROM bqs_rep_petitioner
+		 WHERE mobile = #{mobile} limit 1
+	</select>
+
+	<!-- 查询（根据主键ID查询） -->
+	<select id="getAll" resultMap="bqsRepPetitionerinfoMap" parameterType="java.lang.String">
+		 SELECT
+		 <include refid="Base_Column_List" />
+		 FROM bqs_rep_petitioner
+	</select>
+
+	<!--删除：根据主键ID删除-->
+	<delete id="deleteEntity" parameterType="java.lang.String">
+		 DELETE FROM bqs_rep_petitioner
+		 WHERE bqs_petitioner_id = #{bqsPetitionerId}
+	</delete>
+
+	<!-- 添加 -->
+	<insert id="saveEntity" parameterType="com.shangyong.backend.entity.bqsrep.BqsRepPetitioner">
+		 INSERT INTO bqs_rep_petitioner
+ 		(bqs_petitioner_id,application_id,report_sn,report_time,name,cert_no,mobile,mobile_belong_to,mobile_mno_type,gender,constellation,age,birth_address,bar,create_time,modify_time,create_man,modify_man) 
+		 VALUES 
+ 		(#{bqsPetitionerId},#{applicationId},#{reportSn},#{reportTime},#{name},#{certNo},#{mobile},#{mobileBelongTo},#{mobileMnoType},#{gender},#{constellation},#{age},#{birthAddress},#{bar},#{createTime},#{modifyTime},#{createMan},#{modifyMan}) 
+	</insert>
+
+	<!-- 修 改-->
+	<update id="updateEntity" parameterType="com.shangyong.backend.entity.bqsrep.BqsRepPetitioner">
+		 UPDATE bqs_rep_petitioner
+ 		 <set> 
+			<if test="applicationId != null">
+				 application_id = #{applicationId},
+			</if>
+			<if test="reportSn != null">
+				 report_sn = #{reportSn},
+			</if>
+			<if test="reportTime != null">
+				 report_time = #{reportTime},
+			</if>
+			<if test="name != null">
+				 name = #{name},
+			</if>
+			<if test="certNo != null">
+				 cert_no = #{certNo},
+			</if>
+			<if test="mobile != null">
+				 mobile = #{mobile},
+			</if>
+			<if test="mobileBelongTo != null">
+				 mobile_belong_to = #{mobileBelongTo},
+			</if>
+			<if test="mobileMnoType != null">
+				 mobile_mno_type = #{mobileMnoType},
+			</if>
+			<if test="gender != null">
+				 gender = #{gender},
+			</if>
+			<if test="constellation != null">
+				 constellation = #{constellation},
+			</if>
+			<if test="age != null">
+				 age = #{age},
+			</if>
+			<if test="birthAddress != null">
+				 birth_address = #{birthAddress},
+			</if>
+			<if test="bar != null">
+				 bar = #{bar},
+			</if>
+			<if test="createTime != null">
+				 create_time = #{createTime},
+			</if>
+			<if test="modifyTime != null">
+				 modify_time = #{modifyTime},
+			</if>
+			<if test="createMan != null">
+				 create_man = #{createMan},
+			</if>
+			<if test="modifyMan != null">
+				 modify_man = #{modifyMan},
+			</if>
+
+ 		 </set>
+		 WHERE bqs_petitioner_id = #{bqsPetitionerId}
+	</update>
+
+</mapper>

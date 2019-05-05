@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.shangyong.backend.dao.td.TdFrequencyDetailServiceDao">
+
+	<resultMap type="com.shangyong.backend.entity.td.TdFrequencyDetail" id="tdFrequencyDetailinfoMap">
+		<id property="tdFrequencyDetailId" column="td_frequency_detail_id" javaType="java.lang.String"></id>
+		<result property="tdRiskItemsId" column="td_risk_items_id" javaType="java.lang.String"></result>
+		<result property="data" column="data" javaType="java.lang.String"></result>
+		<result property="detail" column="detail" javaType="java.lang.String"></result>
+	</resultMap>
+
+	<!-- 通用查询结果列-->
+	<sql id="Base_Column_List">
+	td_frequency_detail_id,	td_risk_items_id,	data,	detail
+	</sql>
+
+	<!-- 查询（根据主键ID查询） -->
+	<select id="getEntityById" resultMap="tdFrequencyDetailinfoMap" parameterType="java.lang.String">
+		 SELECT
+		 <include refid="Base_Column_List" />
+		 FROM td_frequency_detail
+		 WHERE td_frequency_detail_id = #{tdFrequencyDetailId}
+	</select>
+
+	<!-- 查询（根据主键ID查询） -->
+	<select id="getAll" resultMap="tdFrequencyDetailinfoMap" parameterType="java.lang.String">
+		 SELECT
+		 <include refid="Base_Column_List" />
+		 FROM td_frequency_detail
+	</select>
+
+	<!--删除：根据主键ID删除-->
+	<delete id="deleteEntity" parameterType="java.lang.String">
+		 DELETE FROM td_frequency_detail
+		 WHERE td_frequency_detail_id = #{tdFrequencyDetailId}
+	</delete>
+
+	<!-- 添加 -->
+	<insert id="saveEntity" parameterType="com.shangyong.backend.entity.td.TdFrequencyDetail">
+		 INSERT INTO td_frequency_detail
+ 		(td_frequency_detail_id,td_risk_items_id,data,detail) 
+		 VALUES 
+ 		(#{tdFrequencyDetailId},#{tdRiskItemsId},#{data},#{detail}) 
+	</insert>
+
+	<!-- 修 改-->
+	<update id="updateEntity" parameterType="com.shangyong.backend.entity.td.TdFrequencyDetail">
+		 UPDATE td_frequency_detail
+ 		 <set> 
+			<if test="tdRiskItemsId != null">
+				 td_risk_items_id = #{tdRiskItemsId},
+			</if>
+			<if test="data != null">
+				 data = #{data},
+			</if>
+			<if test="detail != null">
+				 detail = #{detail},
+			</if>
+
+ 		 </set>
+		 WHERE td_frequency_detail_id = #{tdFrequencyDetailId}
+	</update>
+
+</mapper>

@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+<meta charset="UTF-8">
+<title>同盾详情信息</title>
+<link rel="stylesheet" href="../../plugins/layui/css/layui.css"
+	media="all" />
+<link rel="stylesheet" href="../../css/global.css" media="all">
+<link rel="stylesheet"
+	href="../../plugins/font-awesome/css/font-awesome.min.css">
+<!-- <link rel="stylesheet" href="../../css/table.css" /> -->
+</head>
+<body>
+	<input type="button" onclick="showDataBase()" value="查询数据库" class="layui-btn layui-btn-small"/>
+	<input type="button" onclick="shouwAliyun()" value="查询阿里云" class="layui-btn layui-btn-small"/>
+	<div class="admin-main">
+		<div style="font-size: 20px;" id="dev_id">
+			审核报告编号:&nbsp;<span id="report_id"></span> 
+			<span style="margin: 230px;"></span>
+			报告生成时间:&nbsp;<span id="repord_date"></span>
+		</div>
+		<span style="margin-right: 20px"></span>
+		<div style="font-size: 20px;">
+		申请编号:&nbsp;<span id="app_id"></span>
+		</div>
+		<table class="layui-table"> 
+					<tbody id="user_score">
+					    <tr>
+							<th>分数</th>
+							<th>建议</th>
+						</tr>
+					    <tr>
+							<td><font></font></td>
+							<td><font></font></td>
+						</tr>
+					</tbody>
+				</table>
+			<div style="height: 10px"></div>
+		<fieldset class="layui-elem-field" >
+		<!-- <legend style="margin-left:40%">账户基本信息 </legend>
+			<div class="layui-field-box layui-form">
+				<table class="layui-table"> 
+					<tbody id="user_custinfo">
+					    <tr>
+							<th>申请借款日期</th>
+							<th>姓名</th>
+							<th>手机号码</th>
+							<th>身份证号</th>
+						</tr>
+						<tr>
+							<td><font></font></td>
+							<td><font></font></td>
+							<td><font></font></td>
+							<td><font></font></td>
+						</tr>
+					</tbody>
+				</table>
+			</div> -->
+			<legend  style="margin-left:40%">归属地解析 </legend>
+				<table class="layui-table"> 
+					<tbody id="user_address">
+					    <tr>
+							<th>身份证所属地</th>
+							<th>手机所属地</th>
+							<th>IP所属地</th>
+							<th>wifi所属地</th>
+							<th>基站所属地</th>
+							<th>银行卡所属地</th>
+						</tr>
+						<tr>
+							<td><font></font></td>
+							<td><font></font></td>
+							<td><font></font></td>
+							<td><font></font></td>
+							<td><font></font></td>
+							<td><font></font></td>
+						</tr>
+					</tbody>
+				</table>
+			<legend  style="margin-left:40%">贷前风险情况-个人基本信息核查 </legend>
+				<table class="layui-table"> 
+					<tbody id="loan_userinfo">
+					    <tr>
+							<th style="width: 300px;">检查项</th>
+							<th style="width：50px;">风险等级</th>
+							<th style="width：450px;">备注</th>
+						</tr>
+					</tbody>
+				</table>
+			
+			<legend  style="margin-left:40%">贷前风险情况-不良信息扫描 </legend>
+				<table class="layui-table"> 
+					<tbody id="loan_blxx">
+					    <tr>
+							<th style="width: 300px;">检查项</th>
+							<th style="width：50px;">风险等级</th>
+							<th style="width：450px;">备注</th>
+						</tr>
+						
+					</tbody>
+				</table>
+			<legend  style="margin-left:40%">贷前风险情况-多平台借贷申请检测</legend>
+			
+				<table class="layui-table"> 
+					<tbody id="loan_dpt">
+					    <tr>
+							<th style="width: 300px;">检查项</th>
+							<th style="width：50px;">风险等级</th>
+							<th style="width：450px;">备注</th>
+						</tr>
+						
+					</tbody>
+				</table>
+			<legend  style="margin-left:40%">贷前风险情况-客户行为检测</legend>
+				<table class="layui-table"> 
+					<tbody id="loan_khxw">
+					    <tr>
+							<th style="width: 300px;">检查项</th>
+							<th style="width：50px;">风险等级</th>
+							<th style="width：450px;">备注</th>
+						</tr>
+					</tbody>
+				</table>
+		
+			<div style="font-size: 20px;" id="dev_court"></div>
+			
+		</fieldset>
+		<div class="admin-table-page">
+			<div id="paged" class="page"></div>
+		</div>
+	</div>
+	<!-- js -->
+	<script src="../../jqery/jquery.js"></script>
+	<script src="../../../commons/base.js"></script>
+	<script type="text/javascript" src="../../plugins/layui/layui.js"></script>
+	<script type="text/javascript" src="../../js/customerManager/tdInfo_JsonReport.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,217 @@
+﻿<!DOCTYPE html>
+<html>
+
+<head>
+<meta charset="UTF-8">
+<title>提额配置列历史表</title>
+<link rel="stylesheet" href="../../plugins/layui/css/layui.css"
+	media="all" />
+<link rel="stylesheet" href="../../css/global.css" media="all">
+<link rel="stylesheet"
+	href="../../plugins/font-awesome/css/font-awesome.min.css">
+<link rel="stylesheet" href="../../css/table.css" />
+<link rel="stylesheet" href="../../css/lzh_xy_gl.css" media="all" />
+	<!-- js -->
+	<script src="../../jqery/jquery.js"></script>
+	<script src="../../../commons/base.js"></script>
+	<script type="text/javascript" src="../../plugins/layui/layui.js"></script>
+	<script type="text/javascript" src="../../js/scLiftConfiguration/scLiftConfigurationHis.js"></script>
+</head>
+
+<body>
+	<div class="admin-main"> 
+			<blockquote class="layui-elem-quote"> 
+				<!-- 查询条件 -->
+			<form action="" class="layui-form" style="margin-top: 0px;">
+			
+			<!-- 查询条件 -->
+			<div class="layui-inline">
+			      <label class="layui-form-label">提额配置编号：</label>
+			      <div class="layui-input-inline">
+			        <input name="scLiftConfigurationId"   placeholder="提额配置编号" id="scLiftConfigurationId"  autocomplete="off" class="layui-input" >
+			      </div>
+			    </div>
+			
+			    
+			      <div class="layui-inline" >
+					<label class="layui-form-label">客户类型：</label>
+					<div class="layui-input-inline">
+					        <select name="appLevel" lay-filter="appLevel" class="layui-input" lay-search="" id="appLevel" lay-verify="appLevel" autocomplete="off">
+					          <option value="00">--请选择--</option>
+					          <option value="0">新客户</option>
+				              <option value="1">老客户</option> 
+					        </select>
+					</div>
+				</div>
+			    
+			       <div class="layui-inline" >
+					<label class="layui-form-label">状态：</label>
+					<div class="layui-input-inline">
+					        <select name="state" lay-filter="state" class="layui-input" lay-search="" id="state" lay-verify="state" autocomplete="off">
+					          <option value="00">--请选择--</option>
+					          <option value="01">有效</option>
+				              <option value="02">失效</option> 
+					        </select>
+					</div>
+				</div>
+			    
+			    <br></br>
+			    
+				<div class="layui-inline">
+			      <label class="layui-form-label">大类渠道名称：</label>
+			      <div class="layui-input-inline">
+			        <input name="channelName"   placeholder="大类渠道名称 " id="channelName"  autocomplete="off" class="layui-input" >
+			      </div>
+			    </div>
+			    
+			       <div class="layui-inline">
+			      <label class="layui-form-label">开始时间：</label>
+			      <div class="layui-input-inline">
+			        <input name="beginTime"  lay-verify="beginTime"  id="beginTime" autocomplete="off" class="layui-input" >
+			      </div>
+			     </div>
+			     
+			     <div class="layui-inline">
+			      <label class="layui-form-label">结束时间：</label>
+			      <div class="layui-input-inline">
+			        <input name="endTime"  lay-verify="endTime"  id="endTime" autocomplete="off" class="layui-input" >
+			      </div>
+			    </div>
+			    <div class="layui-inline">
+					<a href="javascript:;" class="layui-btn layui-btn-small"  onclick="sel()">
+					<i class="layui-icon">&#xe615;</i>搜索 </a>
+				</div>
+			</form> 
+		</blockquote>
+		</div> 	 
+		
+		<fieldset class="layui-elem-field">
+			<legend>提额配置历史列表</legend>
+			<div class="layui-field-box layui-form">
+				<table class="layui-table admin-table"  style="word-break: keep-all;overflow:auto;">
+					<thead>
+						<tr>  
+						 <th>提额配置编号</th>
+						    <th>大类渠道名称</th>
+ 							<th>用户类型</th>
+							<th>授信额度</th>
+							<th>是否有公积金</th>
+							<th>是否有社保</th> 
+							<th>按时还款次数</th>
+							<th>当天借当天还次数(小于等于)</th>  
+							<th>提额百分比</th>  
+							<th>提额尾数</th>  
+ 							<th>状态</th>  
+ 							<th>是否匹配姓名</th>  
+ 							<th>是否匹配手机号</th>  
+ 							<th>是否匹配证件号码</th>  
+							<th>版本编号</th>  
+ 							<th>创建时间</th>
+							<th>创建人姓名</th>
+							<th>修改时间</th>
+							<th>修改人姓名</th>
+ 						</tr>
+					</thead>
+					<tbody id="content">
+					</tbody>
+				</table>
+					<label>共<font color='red' id="count_page_number"></font>条记录</label>
+					<div id="paged" class="page" style="display:inline-block;">
+					</div>
+			</div>
+		</fieldset> 
+	<!--模板-->
+	<script type="text/html" id="tpl">
+			{{# layui.each(d.list, function(index, item){
+ 				var appLevel = item.appLevel;
+				var isAccumulationFund = item.isAccumulationFund; 
+	            var isSocialSecurity = item.isSocialSecurity;
+				if(appLevel == '0'){
+					appLevel = '新客户';
+				}else if(appLevel == '1'){
+					appLevel = '老客户';
+				}else{
+					appLevel = '';
+                    };
+
+				if(isAccumulationFund == '0'){
+					isAccumulationFund = '否';
+				}else if(isAccumulationFund == '1'){
+					isAccumulationFund = '是';
+				}else{
+					isAccumulationFund = '';
+                 };
+
+				if(isSocialSecurity == '0'){
+					isSocialSecurity = '否';
+				}else if(isSocialSecurity == '1'){
+					isSocialSecurity = '是';
+				}else{
+					isSocialSecurity = '';
+                 };
+
+				var percentageOfLift = parseFloat((item.percentageOfLift*100).toPrecision(12));
+  				var sta = item.state;
+				if(sta == '01'){
+					sta = '有效';
+				}else if(sta == '02'){
+					sta = '失效';
+				}else{
+					sta = '';
+                    };
+
+				var mateName = item.mateName;
+				if(mateName == '0'){
+					mateName = '否';
+				}else if(mateName == '1'){
+					mateName = '是';
+				}else{
+					mateName = '';
+                 };
+
+				var matePhone = item.matePhone;
+				if(matePhone == '0'){
+					matePhone = '否';
+				}else if(matePhone == '1'){
+					matePhone = '是';
+				}else{
+					matePhone = '';
+                 };
+
+				var mateCertCode = item.mateCertCode;
+				if(mateCertCode == '0'){
+					mateCertCode = '否';
+				}else if(mateCertCode == '1'){
+					mateCertCode = '是';
+				}else{
+					mateCertCode = '';
+                 };
+
+			}}
+			<tr>
+				<td>{{ item.scLiftConfigurationId }} </td>
+                <td>{{ item.channelName }} </td>
+ 				<td>{{ appLevel }} </td>
+				<td>{{ item.creditMoney  }} </td>
+ 				<td>{{ isAccumulationFund  }} </td> 
+				<td>{{ isSocialSecurity  }} </td> 
+				<td>{{ item.repaymentTimes }}  </td>  
+				<td>{{ item.todayTimes }}  </td>  
+				<td>{{ percentageOfLift}}  %</td>  
+				<td>{{ item.percentageOfLiftMantissa }}  </td>  
+				<td>{{ sta  }} </td> 
+				<td>{{ mateName  }} </td> 
+				<td>{{ matePhone  }} </td> 
+				<td>{{ mateCertCode  }} </td> 
+				<td>{{ item.version }}  </td>  
+				<td style="white-space: nowrap;">{{ item.createTime.substring(0,19)  }}  </td>
+				<td >{{ item.createName  }}  </td>
+				<td style="white-space: nowrap;">{{ item.modifyTime.substring(0,19)  }} </td>
+				<td>{{ item.modifyName  }}  </td>
+			</tr>
+			{{# }); }}
+		</script>
+
+</body>
+
+</html>

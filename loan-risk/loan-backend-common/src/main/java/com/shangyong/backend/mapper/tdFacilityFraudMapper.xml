@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.shangyong.backend.dao.tdf.TdFacilityFraudServiceDao">
+
+	<resultMap type="com.shangyong.backend.entity.tdf.TdFacilityFraud" id="tdFacilityFraudinfoMap">
+		<id property="tdFacilityFraudId" column="td_facility_fraud_id" javaType="java.lang.String"></id>
+		<result property="buApplicationId" column="bu_application_id" javaType="java.lang.String"></result>
+		<result property="success" column="success" javaType="java.lang.String"></result>
+		<result property="reasonCode" column="reason_code" javaType="java.lang.String"></result>
+		<result property="seqId" column="seq_id" javaType="java.lang.String"></result>
+		<result property="spendTime" column="spend_time" javaType="java.lang.String"></result>
+		<result property="finalDecision" column="final_decision" javaType="java.lang.String"></result>
+		<result property="finalScore" column="final_score" javaType="java.lang.String"></result>
+		<result property="policySetName" column="policy_set_name" javaType="java.lang.String"></result>
+		<result property="policyName" column="policy_name" javaType="java.lang.String"></result>
+		<result property="riskType" column="risk_type" javaType="java.lang.String"></result>
+		<result property="state" column="state" javaType="java.lang.String"></result>
+		<result property="createTime" column="create_time" javaType="java.lang.String"></result>
+		<result property="createMan" column="create_man" javaType="java.lang.String"></result>
+		<result property="modifyTime" column="modify_time" javaType="java.lang.String"></result>
+		<result property="modifyMan" column="modify_man" javaType="java.lang.String"></result>
+		<result property="remark" column="remark" javaType="java.lang.String"></result>
+	</resultMap>
+
+	<!-- 通用查询结果列-->
+	<sql id="Base_Column_List">
+	td_facility_fraud_id,	bu_application_id,	success,	reason_code,	seq_id,	spend_time,	final_decision,	final_score,	policy_set_name,	policy_name,	risk_type,	state,	create_time,	create_man,	modify_time,	modify_man,	remark
+	</sql>
+
+	<!-- 查询（根据主键ID查询） -->
+	<select id="getEntityById" resultMap="tdFacilityFraudinfoMap" parameterType="java.lang.String">
+		 SELECT
+		 <include refid="Base_Column_List" />
+		 FROM td_facility_fraud
+		 WHERE td_facility_fraud_id = #{tdFacilityFraudId}
+	</select>
+
+	<!-- 查询（根据主键ID查询） -->
+	<select id="getAll" resultMap="tdFacilityFraudinfoMap" parameterType="java.lang.String">
+		 SELECT
+		 <include refid="Base_Column_List" />
+		 FROM td_facility_fraud
+	</select>
+
+	<!--删除：根据主键ID删除-->
+	<delete id="deleteEntity" parameterType="java.lang.String">
+		 DELETE FROM td_facility_fraud
+		 WHERE td_facility_fraud_id = #{tdFacilityFraudId}
+	</delete>
+
+	<!-- 添加 -->
+	<insert id="saveEntity" parameterType="com.shangyong.backend.entity.tdf.TdFacilityFraud">
+		 INSERT INTO td_facility_fraud
+ 		(td_facility_fraud_id,bu_application_id,success,reason_code,seq_id,spend_time,final_decision,final_score,policy_set_name,policy_name,risk_type,state,create_time,create_man,modify_time,modify_man,remark) 
+		 VALUES 
+ 		(#{tdFacilityFraudId},#{buApplicationId},#{success},#{reasonCode},#{seqId},#{spendTime},#{finalDecision},#{finalScore},#{policySetName},#{policyName},#{riskType},#{state},#{createTime},#{createMan},#{modifyTime},#{modifyMan},#{remark}) 
+	</insert>
+
+	<!-- 修 改-->
+	<update id="updateEntity" parameterType="com.shangyong.backend.entity.tdf.TdFacilityFraud">
+		 UPDATE td_facility_fraud
+ 		 <set> 
+			<if test="buApplicationId != null">
+				 bu_application_id = #{buApplicationId},
+			</if>
+			<if test="success != null">
+				 success = #{success},
+			</if>
+			<if test="reasonCode != null">
+				 reason_code = #{reasonCode},
+			</if>
+			<if test="seqId != null">
+				 seq_id = #{seqId},
+			</if>
+			<if test="spendTime != null">
+				 spend_time = #{spendTime},
+			</if>
+			<if test="finalDecision != null">
+				 final_decision = #{finalDecision},
+			</if>
+			<if test="finalScore != null">
+				 final_score = #{finalScore},
+			</if>
+			<if test="policySetName != null">
+				 policy_set_name = #{policySetName},
+			</if>
+			<if test="policyName != null">
+				 policy_name = #{policyName},
+			</if>
+			<if test="riskType != null">
+				 risk_type = #{riskType},
+			</if>
+			<if test="state != null">
+				 state = #{state},
+			</if>
+			<if test="createTime != null">
+				 create_time = #{createTime},
+			</if>
+			<if test="createMan != null">
+				 create_man = #{createMan},
+			</if>
+			<if test="modifyTime != null">
+				 modify_time = #{modifyTime},
+			</if>
+			<if test="modifyMan != null">
+				 modify_man = #{modifyMan},
+			</if>
+			<if test="remark != null">
+				 remark = #{remark},
+			</if>
+
+ 		 </set>
+		 WHERE td_facility_fraud_id = #{tdFacilityFraudId}
+	</update>
+
+</mapper>

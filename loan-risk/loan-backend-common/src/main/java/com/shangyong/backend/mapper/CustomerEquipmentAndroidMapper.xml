@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.shangyong.backend.dao.approval.CustomerEquipmentAndroidDao">
+
+	<resultMap type="com.shangyong.backend.entity.approval.CustomerEquipmentAndroid" id="cuCustomerEquipmentAndroidMap">
+		<id property="equipmentId" column="equipment_id" javaType="java.lang.String"></id>
+		<result property="customerId" column="customer_id" javaType="java.lang.String"></result>
+		<result property="appName" column="app_name" javaType="java.lang.Integer"></result>
+		<result property="baseStationInfo" column="base_station_info" javaType="java.lang.String"></result>
+		<result property="sumRamStorage" column="sum_ram_storage" javaType="java.lang.String"></result>
+		<result property="availableRamStorage" column="available_ram_storage" javaType="java.lang.String"></result>
+		<result property="sumRomStorage" column="sum_rom_storage" javaType="java.lang.String"></result>
+		<result property="availableRomStorage" column="available_rom_storage" javaType="java.lang.String"></result>
+		<result property="gateway" column="gateway" javaType="java.lang.String"></result>
+		<result property="host" column="host" javaType="java.lang.String"></result>
+		<result property="imei" column="imei" javaType="java.lang.String"></result>
+		<result property="display" column="display" javaType="java.lang.String"></result>
+		<result property="sessionId" column="session_id" javaType="java.lang.String"></result>
+		<result property="roName" column="ro_name" javaType="java.lang.String"></result>
+		<result property="cpuBogoMips" column="cpu_bogo_mips" javaType="java.lang.String"></result>
+		<result property="roDevice" column="ro_device" javaType="java.lang.String"></result>
+		<result property="deviceId" column="device_id" javaType="java.lang.String"></result>
+		<result property="brand" column="brand" javaType="java.lang.String"></result>
+		<result property="carrier" column="carrier" javaType="java.lang.String"></result>
+		<result property="gprsIp" column="gprs_ip" javaType="java.lang.String"></result>
+		<result property="deviceName" column="device_name" javaType="java.lang.String"></result>
+		<result property="hardware" column="hardware" javaType="java.lang.String"></result>
+		<result property="model" column="model" javaType="java.lang.String"></result>
+		<result property="product" column="product" javaType="java.lang.String"></result>
+		<result property="mcc" column="mcc" javaType="java.lang.String"></result>
+		<result property="mnc" column="mnc" javaType="java.lang.String"></result>
+		<result property="tags" column="tags" javaType="java.lang.String"></result>
+		<result property="wifiMac" column="wifi_mac" javaType="java.lang.String"></result>
+		<result property="tdid" column="tdid" javaType="java.lang.String"></result>
+		<result property="roModel" column="ro_model" javaType="java.lang.String"></result>
+		<result property="wifiIp" column="wifi_ip" javaType="java.lang.String"></result>
+		<result property="phoneNum" column="phone_num" javaType="java.lang.String"></result>
+		<result property="language" column="language" javaType="java.lang.String"></result>
+		<result property="isRoot" column="is_root" javaType="java.lang.Boolean"></result>
+		<result property="udid" column="udid" javaType="java.lang.String"></result>
+		<result property="dnsAddress" column="dns_address" javaType="java.lang.String"></result>
+		<result property="timeZone" column="time_zone" javaType="java.lang.String"></result>
+		<result property="realIp" column="real_ip" javaType="java.lang.String"></result>
+		<result property="ipPosition" column="ip_position" javaType="java.lang.String"></result>
+		<result property="vpnAddress" column="vpn_address" javaType="java.lang.String"></result>
+		<result property="bootTime" column="boot_time" javaType="java.lang.String"></result>
+		<result property="proxyAdressPort" column="proxy_adress_port" javaType="java.lang.String"></result>
+		<result property="sdkEdition" column="sdk_edition" javaType="java.lang.String"></result>
+		<result property="fmEdition" column="fm_edition" javaType="java.lang.String"></result>
+		<result property="electricity" column="electricity" javaType="java.lang.String"></result>
+		<result property="musicHash" column="music_hash" javaType="java.lang.String"></result>
+		<result property="networkProviderCode" column="network_provider_code" javaType="java.lang.String"></result>
+		<result property="isoCountryCode" column="iso_country_code" javaType="java.lang.String"></result>
+		<result property="firmEdition" column="firm_edition" javaType="java.lang.String"></result>
+		<result property="cpuModel" column="cpu_model" javaType="java.lang.String"></result>
+		<result property="cpuSerialNum" column="cpu_serial_num" javaType="java.lang.String"></result>
+		<result property="simSerialNum" column="sim_serial_num" javaType="java.lang.String"></result>
+		<result property="cpuHardware" column="cpu_hardware" javaType="java.lang.String"></result>
+		<result property="phoneModel" column="phone_model" javaType="java.lang.String"></result>
+		<result property="bluetoothMac" column="bluetooth_mac" javaType="java.lang.String"></result>
+		<result property="voiceMailboxNum" column="voice_mailbox_num" javaType="java.lang.String"></result>
+		<result property="deviceParam" column="device_param" javaType="java.lang.String"></result>
+		<result property="batteryStatus" column="battery_status" javaType="java.lang.String"></result>
+		<result property="equipmentSerialNum" column="equipment_serial_num" javaType="java.lang.String"></result>
+		<result property="basebandEdition" column="baseband_edition" javaType="java.lang.String"></result>
+		<result property="browserUa" column="browser_ua" javaType="java.lang.String"></result>
+		<result property="electricityAvailable" column="electricity_available" javaType="java.lang.Boolean"></result>
+		<result property="moveCountryCode" column="move_country_code" javaType="java.lang.String"></result>
+		<result property="moveNetworkCode" column="move_network_code" javaType="java.lang.String"></result>
+		<result property="bootReachCurrent" column="boot_reach_current" javaType="java.lang.Integer"></result>
+		<result property="bootNoDormancy" column="boot_no_dormancy" javaType="java.lang.Integer"></result>
+		<result property="screenLong" column="screen_long" javaType="java.lang.Integer"></result>
+		<result property="screenWide" column="screen_wide" javaType="java.lang.Integer"></result>
+		<result property="createTime" column="create_time" javaType="java.lang.String"></result>
+		<result property="modifyTime" column="modify_time" javaType="java.lang.String"></result>
+	</resultMap>
+
+	<resultMap type="com.shangyong.backend.entity.approval.CustomerEquipmentAndroid" id="customerEquipmentAndroidMap">
+		<result property="brand" column="brand" javaType="java.lang.String"></result>
+		<result property="gprsIp" column="gprs_ip" javaType="java.lang.String"></result>
+		<result property="createTime" column="create_time" javaType="java.lang.String"></result>
+	</resultMap>
+
+	<!-- 通用查询结果列-->
+	<sql id="Base_Column_List">
+equipment_id,	customer_id,	app_name,	base_station_info,	sum_ram_storage,	available_ram_storage,	sum_rom_storage,	available_rom_storage,	gateway,	host,	imei,	display,	session_id,	ro_name,	cpu_bogo_mips,	ro_device,	device_id,	brand,	carrier,	gprs_ip,	device_name,	hardware,	model,	product,	mcc,	mnc,	tags,	wifi_mac,	tdid,	ro_model,	wifi_ip,	phone_num,	language,	is_root,	udid,	dns_address,	time_zone,	real_ip,	ip_position,	vpn_address,	boot_time,	proxy_adress_port,	sdk_edition,	fm_edition,	electricity,	music_hash,	network_provider_code,	iso_country_code,	firm_edition,	cpu_model,	cpu_serial_num,	sim_serial_num,	cpu_hardware,	phone_model,	bluetooth_mac,	voice_mailbox_num,	device_param,	battery_status,	equipment_serial_num,	baseband_edition,	browser_ua,	electricity_available,	move_country_code,	move_network_code,	boot_reach_current,	boot_no_dormancy,	screen_long,	screen_wide,	create_time,	modify_time
+	</sql>
+
+	<select id="findEquipmentNameAndroid" resultMap="cuCustomerEquipmentAndroidMap" parameterType="java.lang.String">
+		 SELECT
+		 <include refid="Base_Column_List" />
+		 FROM cu_customer_equipment_android
+		 WHERE customer_id = #{customerId} ORDER BY create_time ASC LIMIT 1
+	</select>
+
+	<!-- 统计 -->
+  	<select id="listAllCount" resultType="java.lang.Integer">
+  		select 
+  			count(1)
+  		from cu_customer_equipment_android 
+		WHERE customer_id = #{customerId}
+  	</select>
+
+	<!-- 查询最早的设备信息（根据APP客户编号customer_id查询gprs_ip,create_time,equipment_type） -->
+	<select id="findFirstOneByCustomerId" resultMap="customerEquipmentAndroidMap" parameterType="java.lang.String">
+		 SELECT
+		 gprs_ip,   create_time,    brand
+		 FROM cu_customer_equipment_android
+		 WHERE customer_id = #{customerId} and app_name = #{appName} ORDER BY create_time ASC LIMIT 1
+	</select>
+
+	<!-- 查询（根据APP客户编号customer_id查询） -->
+	<select id="findAllByCustomerId" resultMap="cuCustomerEquipmentAndroidMap" parameterType="java.lang.String">
+		 SELECT
+		 <include refid="Base_Column_List" />
+		 FROM cu_customer_equipment_android
+		 WHERE customer_id = #{customerId} and app_name = #{appName} ORDER BY create_time ASC
+	</select>
+	
+	<!-- 查询（根据APP客户编号device_id查询） -->
+	<select id="findAllByDeviceId" resultMap="cuCustomerEquipmentAndroidMap">
+		 SELECT
+		 <include refid="Base_Column_List" />
+		 FROM cu_customer_equipment_android
+		 WHERE device_id 
+		 <foreach collection="deviceId" item="deviceId" open="in (" close=")" separator=",">
+			#{deviceId}
+		</foreach> 
+	</select>
+	<!-- 查询（根据APP客户编号customer_id查询） -->
+	<select id="findListById" resultMap="cuCustomerEquipmentAndroidMap" parameterType="java.lang.String">
+		 SELECT
+		 <include refid="Base_Column_List" />
+		 FROM cu_customer_equipment_android
+		 WHERE customer_id = #{customerId} ORDER BY create_time ASC
+	</select>
+	<!-- 查询（根据记录序号equipment_id查询） -->
+	<select id="findEntityById" resultMap="cuCustomerEquipmentAndroidMap" parameterType="java.lang.String">
+		 SELECT
+		 <include refid="Base_Column_List" />
+		 FROM cu_customer_equipment_android
+		 WHERE equipment_id = #{equipmentId}
+	</select>
+	
+	<!-- 去除重复查询 -->
+	<select id="findByCustomerId" resultType="com.shangyong.backend.entity.approval.CustomerEquipmentAndroid" parameterType="java.lang.String">
+		 SELECT
+		 <!--  count(DISTINCT(t.device_id)) count, -->
+		  t.device_id AS deviceId,
+		  t.customer_id AS customerId
+		 FROM cu_customer_equipment_android t
+		 WHERE t.customer_id = #{customerId} and t.app_name = #{appName} ORDER BY t.create_time ASC
+	</select> 
+</mapper>

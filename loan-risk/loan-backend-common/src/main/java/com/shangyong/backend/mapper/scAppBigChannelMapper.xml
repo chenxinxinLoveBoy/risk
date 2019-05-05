@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.shangyong.backend.dao.ScAppBigChannelDao">
+
+	<resultMap type="com.shangyong.backend.entity.ScAppBigChannel" id="scAppBigChannelMap">
+		<id property="channelBigId" column="channel_big_id" javaType="java.lang.Integer"></id>
+		<result property="channelBigName" column="channel_big_name" javaType="java.lang.String"></result>
+		<result property="createTime" column="create_time" javaType="java.lang.String"></result>
+		<result property="createMan" column="create_man" javaType="java.lang.String"></result>
+		<result property="modifyTime" column="modify_time" javaType="java.lang.String"></result>
+		<result property="modifyMan" column="modify_man" javaType="java.lang.String"></result>
+		<result property="remark" column="remark" javaType="java.lang.String"></result>
+	</resultMap>
+
+	<!-- 通用查询结果列-->
+	<sql id="Base_Column_List">
+		channel_big_id,	channel_big_name,	create_time,	create_man,	modify_time,	modify_man,	remark
+	</sql>
+
+	<!-- 查询（根据主键ID查询） -->
+	<select id="getEntityById" resultMap="scAppBigChannelMap" parameterType="java.lang.String">
+		 SELECT
+		 <include refid="Base_Column_List" />
+		 FROM sc_app_big_channel
+		 WHERE channel_big_id = #{channelBigId}
+	</select>
+
+	<!-- 查询（根据主键ID查询） -->
+	<select id="findAll" resultMap="scAppBigChannelMap" parameterType="java.lang.Integer">
+		 SELECT
+		 <include refid="Base_Column_List" />
+		 FROM sc_app_big_channel
+		 WHERE channel_big_id = #{channelBigId}
+	</select>
+
+	<!--删除：根据主键ID删除-->
+	<delete id="deleteEntity" parameterType="java.lang.Integer">
+		 DELETE FROM sc_app_big_channel
+		 WHERE channel_big_id = #{channelBigId}
+	</delete>
+
+	<!-- 添加 -->
+	<insert id="saveEntity" parameterType="com.shangyong.backend.entity.ScAppBigChannel" useGeneratedKeys="true" keyProperty="channelBigId">
+		 INSERT INTO sc_app_big_channel
+ 		(channel_big_id,channel_big_name,create_time,create_man,modify_time,modify_man,remark) 
+		 VALUES 
+ 		(#{channelBigId},#{channelBigName},#{createTime},#{createMan},#{modifyTime},#{modifyMan},#{remark}) 
+	</insert>
+
+	<!-- 修 改-->
+	<update id="updateEntity" parameterType="com.shangyong.backend.entity.ScAppBigChannel">
+		 UPDATE sc_app_big_channel
+ 		 <set> 
+			<if test="channelBigName != null">
+				 channel_big_name = #{channelBigName},
+			</if>
+			<if test="createTime != null">
+				 create_time = #{createTime},
+			</if>
+			<if test="createMan != null">
+				 create_man = #{createMan},
+			</if>
+			<if test="modifyTime != null">
+				 modify_time = #{modifyTime},
+			</if>
+			<if test="modifyMan != null">
+				 modify_man = #{modifyMan},
+			</if>
+			<if test="remark != null">
+				 remark = #{remark},
+			</if>
+
+ 		 </set>
+		 WHERE channel_big_id = #{channelBigId}
+	</update>
+	
+	<!-- 查询（根据大类名称查询） -->
+	<select id="findAllByBigName" resultMap="scAppBigChannelMap" parameterType="com.shangyong.backend.entity.ScAppBigChannel">
+		 SELECT
+		 <include refid="Base_Column_List" />
+		 FROM sc_app_big_channel
+		 <where>  
+		    <if test="channelBigName != null and channelBigName != '' ">
+				channel_big_name = #{channelBigName}
+				
+		   </if>
+  		</where>
+  		order by create_time desc 
+   		LIMIT #{pageIndex},#{pageSize}
+	</select>
+	
+	<!-- 统计 -->
+  	<select id="queryAllCountByBigName" resultType="java.lang.Integer" parameterType="com.shangyong.backend.entity.ScAppBigChannel">
+  		SELECT
+		 count(1)
+		 FROM sc_app_big_channel
+		 <where>  
+		    <if test="channelBigName != null and channelBigName != '' ">
+				channel_big_name = #{channelBigName}
+		   </if>
+  		</where>
+  	</select>
+</mapper>

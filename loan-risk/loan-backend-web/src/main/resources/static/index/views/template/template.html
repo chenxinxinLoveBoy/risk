@@ -1,0 +1,148 @@
+﻿<!DOCTYPE html>
+<html>
+
+<head>
+<meta charset="UTF-8">
+<META HTTP-EQUIV="pragma" CONTENT="no-cache">
+<META HTTP-EQUIV="Cache-Control" CONTENT="no-cache, must-revalidate">
+<META HTTP-EQUIV="expires" CONTENT="0">
+<title>禁止项模板列表</title>
+<link rel="stylesheet" href="../../plugins/layui/css/layui.css"
+	media="all" />
+<link rel="stylesheet" href="../../css/global.css" media="all">
+<link rel="stylesheet"
+	href="../../plugins/font-awesome/css/font-awesome.min.css">
+<link rel="stylesheet" href="../../css/table.css" />
+<link rel="stylesheet" href="../../css/lzh_xy_gl.css" media="all" />
+	<!-- js -->
+	<script src="../../jqery/jquery.js"></script>
+	<script src="../../../commons/base.js"></script>
+	<script type="text/javascript" src="../../plugins/layui/layui.js"></script>
+	<script type="text/javascript" src="../../js/template/template.js"></script>
+</head>
+
+<body>
+	<div class="admin-main"> 
+			<blockquote class="layui-elem-quote"> 
+				<!-- 查询条件 -->
+			<form action="" class="layui-form" >
+			<a href="javascript:;" class="layui-btn layui-btn-small" id="add" onclick="add()">
+				<i class="layui-icon">&#xe608;</i> 新增模板
+			</a>
+			
+			<!-- 查询条件 -->
+				<div class="layui-inline">
+			      <label class="layui-form-label" style="width: auto;">模板名称：</label>
+			      <div class="layui-input-inline">
+			        <input name="banTplName"   placeholder="模板名称 " id="banTplName"  autocomplete="off" class="layui-input" >
+			      </div>
+			    </div>
+			    
+			    <div class="layui-inline">
+			      <label class="layui-form-label" style="width: auto;">模板业务编号：</label>
+			      <div class="layui-input-inline">
+			        <input name="banTplCode"   id="banTplCode" placeholder="模板业务编号"  onkeyup="this.value=this.value.replace(/\D/g,'')"  autocomplete="off" class="layui-input" >
+			      </div>
+			    </div> 
+			    
+			    <div class="layui-inline">
+			       <label class="layui-form-label">模板状态</label>
+				     <div class="layui-input-inline">
+				      <select name="state" id="state" class="layui-input" lay-search="">
+				     	  <option value="00">全部</option>
+				          <option value="01">有效</option>
+				          <option value="02">失效</option> 
+				       </select> 
+			      </div>
+			    </div>
+			  	
+			    <div class="layui-inline">
+					<a href="javascript:;" class="layui-btn layui-btn-small"  onclick="sel()">
+					<i class="layui-icon">&#xe615;</i>搜索 </a>
+				</div>
+			</form> 
+		</blockquote>
+		</div> 	 
+		
+		<fieldset class="layui-elem-field">
+			<legend>禁止项模板列表</legend>
+			<div class="layui-field-box layui-form">
+				<table class="layui-table admin-table"  style="word-break: keep-all;overflow:auto;">
+					<thead>
+						<tr>  
+							<th>禁止项模板序号</th>
+							<th>禁止项模板业务编号</th>
+							<th>禁止项模板名称</th>
+							<th>生效时间</th>
+							<th>失效时间</th> 
+							<th>模板状态</th>  
+<!-- 							<th>模板比例</th>   -->
+<!-- 							<th>模板优先级</th>   -->
+ 							<th>模板创建时间</th>
+							<th>创建人姓名</th>
+							<th>修改时间</th>
+							<th>修改人姓名</th>
+							<th>操作</th>
+						</tr>
+					</thead>
+					<tbody id="content">
+					</tbody>
+				</table>
+					<label>共<font color='red' id="count_page_number"></font>条记录</label>
+					<div id="paged" class="page" style="display:inline-block;">
+					</div>
+			</div>
+		</fieldset> 
+	<!--模板-->
+<!-- 	var percent = parseFloat((item.tplPercent*100).toPrecision(12)); -->
+	
+<!-- 	<td>{{ percent }}% </td>  -->
+<!-- 	<td>{{ item.level  }} </td>  -->
+	
+<!-- 	<a href="javascript:;" data-id="{{ item.banControlTplId }}" data-state="{{ item.state }}" data-level="{{ item.level }}" data-percent="{{ item.tplPercent }}" data-version="{{ item.version }}" data-opt="update" class="layui-btn layui-btn-mini">修改状态</a>		 -->
+	
+	<script type="text/html" id="tpl">
+			{{# layui.each(d.list, function(index, item){
+ 				var code = item.banTplCode;
+				var sta = item.state;
+				if(sta == '01'){
+					sta = '有效';
+				};
+				if(sta == '02'){
+					sta = '失效';
+				};
+
+				var startTime = item.startTime;
+				var endTime = item.endTime;
+				if(item.executeType == 1){
+					startTime = item.startTime.substring(10,19) ;
+					endTime = item.endTime.substring(10,19) ;
+				}
+			}}
+			<tr>
+				<td>{{ item.banControlTplId }} </td>
+				<td>{{ code }} </td>
+				<td>{{ item.banTplName  }} </td>
+				<td style="white-space: nowrap;">{{ startTime }} </td>
+				<td style="white-space: nowrap;">{{ endTime  }} </td> 
+				<td>{{ sta  }} </td> 
+				
+				<td style="white-space: nowrap;">{{ item.createTime.substring(0,19)  }}  </td>
+				<td >{{ item.createName  }}  </td>
+				<td style="white-space: nowrap;">{{ item.modifyTime.substring(0,19)  }} </td>
+				<td>{{ item.modifyName  }}  </td>
+				<td style="white-space: nowrap;">  
+					<a href="javascript:;" data-id="{{ item.banControlTplId }}" data-name="{{ item.banTplName }}" data-opt="look" class="layui-btn layui-btn-mini">已关联禁止项</a>
+			{{# if(item.banControlTplId != 1){ }}
+					<a href="javascript:;" data-id="{{ item.banControlTplId }}" data-name="{{ item.banTplName }}" data-opt="find"  class="layui-btn layui-btn-mini">添加禁止项</a>
+					<a href="javascript:;" data-id="{{ item.banControlTplId }}" data-opt="edit" data-id="{{ item.banControlTplId }}" class="layui-btn layui-btn-mini">编辑</a>  
+					<a href="javascript:;" data-id="{{ item.banControlTplId }}" data-state="{{ item.state }}"  data-version="{{ item.version }}" data-opt="update" class="layui-btn layui-btn-mini">修改状态</a>		
+				</td> 
+			{{# } }}
+			</tr>
+			{{# }); }}
+		</script>
+
+</body>
+
+</html>

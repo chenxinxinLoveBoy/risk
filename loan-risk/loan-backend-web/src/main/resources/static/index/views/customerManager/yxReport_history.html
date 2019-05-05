@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+<meta charset="UTF-8">
+<title>宜信报告信息</title>
+<link rel="stylesheet" href="../../plugins/layui/css/layui.css"
+	media="all" />
+<link rel="stylesheet" href="../../css/global.css" media="all">
+<link rel="stylesheet"
+	href="../../plugins/font-awesome/css/font-awesome.min.css">
+<!-- <link rel="stylesheet" href="../../css/table.css" /> -->
+</head>
+<body>
+	<div class="admin-main">
+		<!-- 宜信被查询历史 -->
+		<fieldset class="layui-elem-field"> 
+				<div class="layui-field-box layui-form">
+					<table class="layui-table admin-table">
+						<thead>
+							<tr> 
+								<th>查询申请单</th>
+								<th>提供查询的机构代码</th>
+								<th>查询时间</th>
+								<th>机构类型 </th>
+								<th>查询原因</th>
+								<th>创建时间</th>
+								<th>备注信息</th>
+							</tr>
+						</thead>
+						<tbody id="content">
+						</tbody>
+					</table>
+					<label>共<font color='red' id="count_page_number"></font>条记录</label>
+					<div id="paged" class="page" style="display:inline-block;">
+					</div>
+				</div>
+			</fieldset> 
+	<script src="../../jqery/jquery.js"></script>
+	<script src="../../../commons/base.js"></script>
+	<script type="text/javascript" src="../../plugins/layui/layui.js"></script>
+	<script type="text/javascript" src="../../js/customerManager/yxReport_history.js"></script>
+	<!--模板-->
+	<script type="text/html" id="tpl">
+			{{# layui.each(d.list, function(index, item){
+			if(item==null||item=='undefined') return; 
+			var buApplicationId = item.buApplicationId; 
+			var orgName = item.orgName; 
+			var time = item.time.substring(0,19); 
+			var orgType = item.orgType; 
+			var queryReason = item.queryReason; 
+			var createTime = item.createTime.substring(0,19);
+			var remark = item.remark; 
+			if(orgType=='1110') orgType='P2P';
+			if(orgType=='1111') orgType='P2P-车贷';
+			if(orgType=='1112') orgType='P2P-房贷';
+			if(orgType=='1120') orgType='非持牌消费';
+			if(orgType=='1121') orgType='非持牌消费-小额现金贷';
+			if(orgType=='1122') orgType='非持牌消费-消费分期';
+			if(orgType=='1130') orgType='持牌消费金融';
+			if(orgType=='1140') orgType='银行';
+			if(orgType=='1150') orgType='融资租赁';
+			if(orgType=='1003') orgType='小贷';
+			if(orgType=='1160') orgType='典当';
+			if(orgType=='1170') orgType='担保';
+			if(queryReason=='10') queryReason='贷款审核';
+			if(queryReason=='11') queryReason='贷后管理';
+			if(queryReason=='12') queryReason='信用卡审批';
+			if(queryReason=='13') queryReason='担保资格查询';
+			if(queryReason=='14') queryReason='保前审查';
+ 			}}	
+			<tr>
+				<td>{{ buApplicationId }}</td>
+				<td>{{ orgName }}</td>
+				<td>{{ time }}</td> 
+				<td>{{ orgType }}</td> 
+				<td>{{ queryReason }}</td>
+				<td>{{ createTime }}</td>
+				<td>{{ remark }}</td>
+			</tr>
+			{{# }); }}
+		</script>
+</body>
+
+</html>

@@ -1,0 +1,90 @@
+﻿<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<link rel="stylesheet" href="../../plugins/layui/css/layui.css" media="all" />
+		<link rel="stylesheet" href="../../css/global.css" media="all">
+		<link rel="stylesheet" href="../../plugins/font-awesome/css/font-awesome.min.css">
+		<link rel="stylesheet" href="../../css/table.css" />
+		<!-- js -->
+		<script src="../../jqery/jquery.js"></script>
+		<script src="../../../commons/base.js"></script>
+		<script type="text/javascript" src="../../plugins/layui/layui.js"></script>
+		<script type="text/javascript" src="../../js/dictionary/dictInfoList.js"></script>
+	</head>
+
+	<body>
+		<div class="admin-main"> 
+		 <form class="layui-form" action="">
+		 <input type="hidden" id="sid" name="sid" >
+				<a href="javascript:;" class="layui-btn layui-btn-small" id="add" onclick="add()">
+					<i class="layui-icon">&#xe608;</i> 添加小类字典
+				</a>
+				</form>
+			<fieldset class="layui-elem-field">
+				<div class="layui-field-box layui-form">
+					<table class="layui-table admin-table">
+						<thead>
+							<tr> 			 
+  								<th>小类字典编号</th>
+								<th>小类字典名称 </th> 
+								<th>小类字典状态</th>
+								<th>操作</th>
+								 
+							</tr>
+						</thead>
+						<tbody id="content">
+						</tbody>
+					</table>
+					<label>共<font color='red' id="count_page_number"></font>条记录</label>
+					<div id="paged" class="page" style="display:inline-block;">
+					</div>
+				</div>
+			</fieldset>
+		</div>
+		<!--模板-->
+		<script type="text/html" id="tpl">
+			{{# layui.each(d.list, function(index, item){  
+			var sta = item.dicBigStaues; 
+			var samsta = item.dicSmallStaues;	
+			var dicSmallCode = item.dicSmallCode;
+			var dicSmallValue =	item.dicSmallValue;
+			var dicSmallStaues = item.dicSmallStaues;
+			var sid = item.dictBigId;  
+			$("#sid").val(sid);  
+			if(dicSmallCode ==	'' || dicSmallCode==null){
+				item.dicSmallCode =''
+			}
+			if(dicSmallValue ==	'' || dicSmallValue==null){
+				item.dicSmallValue =''
+			}
+			if(dicSmallStaues ==	'' || dicSmallStaues==null){
+				item.dicSmallStaues = ''
+			}
+				if(sta == 1 ){
+				item.dicBigStaues ='正常';
+				};
+				if(sta == 2){
+				item.dicBigStaues ='停用';
+				};
+				if(samsta == 1 ){
+				item.dicSmallStaues ='正常';
+				};
+				if(samsta == 2 ){
+				item.dicSmallStaues ='停用';
+				};
+ 			}};
+			
+			<tr>
+				<td>{{ 	item.dicSmallCode}}</td>	
+				<td>{{ 	item.dicSmallValue}}</td>
+				<td>{{  item.dicSmallStaues}}</td>
+				<td> 
+					
+					<a href="javascript:;" data-id="{{ item.id }}" data-opt="edit" class="layui-btn layui-btn-mini  ">编辑</a>					 
+				</td>
+			</tr>
+			{{# }); }}
+		</script>
+	</body>
+</html>

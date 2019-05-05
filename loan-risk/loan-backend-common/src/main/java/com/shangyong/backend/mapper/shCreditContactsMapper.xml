@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.shangyong.backend.dao.sh.ShCreditContactsDao">
+
+	<resultMap type="com.shangyong.backend.entity.sh.ShCreditContacts" id="shCreditContactsMap">
+		<id property="shCreditContactsId" column="sh_credit_contacts_id" javaType="java.lang.String"></id>
+		<result property="applicationId" column="application_id" javaType="java.lang.String"></result>
+		<result property="contactsName" column="contacts_name" javaType="java.lang.String"></result>
+		<result property="contactsRelation" column="contacts_relation" javaType="java.lang.String"></result>
+		<result property="contactsNumber" column="contacts_number" javaType="java.lang.String"></result>
+		<result property="contactsTime" column="contacts_time" javaType="java.lang.String"></result>
+		<result property="contactsType" column="contacts_type" javaType="java.lang.String"></result>
+		<result property="createTime" column="create_time" javaType="java.lang.String"></result>
+		<result property="createMan" column="create_man" javaType="java.lang.String"></result>
+		<result property="modifyTime" column="modify_time" javaType="java.lang.String"></result>
+		<result property="modifyMan" column="modify_man" javaType="java.lang.String"></result>
+		<result property="remark" column="remark" javaType="java.lang.String"></result>
+	</resultMap>
+
+	<!-- 通用查询结果列-->
+	<sql id="Base_Column_List">
+sh_credit_contacts_id,	application_id,	contacts_name,	contacts_relation,	contacts_number,	contacts_time,	contacts_type,	create_time,	create_man,	modify_time,	modify_man,	remark
+	</sql>
+
+	<!-- 查询（根据主键ID查询） -->
+	<select id="getEntityById" resultMap="shCreditContactsMap" parameterType="java.lang.String">
+		 SELECT
+		 <include refid="Base_Column_List" />
+		 FROM sh_credit_contacts
+		 WHERE sh_credit_contacts_id = #{shCreditContactsId}
+	</select>
+	<!-- 查询（根据ApplicationId查询） -->
+	<select id="queryByApplicationId" resultMap="shCreditContactsMap" parameterType="java.lang.String">
+		 SELECT
+		 <include refid="Base_Column_List" />
+		 FROM sh_credit_contacts
+		 WHERE application_id = #{applicationId}
+	</select>
+
+	<!-- 查询（根据主键ID查询） -->
+	<select id="findAll" resultMap="shCreditContactsMap" parameterType="java.lang.String">
+		 SELECT
+		 <include refid="Base_Column_List" />
+		 FROM sh_credit_contacts
+		 WHERE sh_credit_contacts_id = #{shCreditContactsId}
+	</select>
+
+	<!--删除：根据主键ID删除-->
+	<delete id="deleteEntity" parameterType="java.lang.String">
+		 DELETE FROM sh_credit_contacts
+		 WHERE sh_credit_contacts_id = #{shCreditContactsId}
+	</delete>
+
+	<!-- 添加 -->
+	<insert id="saveEntity" parameterType="com.shangyong.backend.entity.sh.ShCreditContacts">
+		 INSERT INTO sh_credit_contacts
+ 		(sh_credit_contacts_id,application_id,contacts_name,contacts_relation,contacts_number,contacts_time,contacts_type,create_time,create_man,modify_time,modify_man,remark) 
+		 VALUES 
+ 		(#{shCreditContactsId},#{applicationId},#{contactsName},#{contactsRelation},#{contactsNumber},#{contactsTime},#{contactsType},#{createTime},#{createMan},#{modifyTime},#{modifyMan},#{remark}) 
+	</insert>
+		<!-- 批量插入 -->
+	<insert id="saveAllEntity" parameterType="java.util.List">
+		  INSERT INTO sh_credit_contacts
+ 		(sh_credit_contacts_id,application_id,contacts_name,contacts_relation,contacts_number,contacts_time,contacts_type,create_time,create_man,modify_time,modify_man,remark) 
+		 VALUES  
+ 	    <foreach collection="list" item="item" index="index" separator="," >  
+ 		(#{item.shCreditContactsId},#{item.applicationId},#{item.contactsName},#{item.contactsRelation},#{item.contactsNumber},#{item.contactsTime},#{item.contactsType},#{item.createTime},#{item.createMan},#{item.modifyTime},#{item.modifyMan},#{item.remark}) 
+	    </foreach>
+	</insert>
+
+	<!-- 修 改-->
+	<update id="updateEntity" parameterType="com.shangyong.backend.entity.sh.ShCreditContacts">
+		 UPDATE sh_credit_contacts
+ 		 <set> 
+			<if test="applicationId != null">
+				 application_id = #{applicationId},
+			</if>
+			<if test="contactsName != null">
+				 contacts_name = #{contactsName},
+			</if>
+			<if test="contactsRelation != null">
+				 contacts_relation = #{contactsRelation},
+			</if>
+			<if test="contactsNumber != null">
+				 contacts_number = #{contactsNumber},
+			</if>
+			<if test="contactsTime != null">
+				 contacts_time = #{contactsTime},
+			</if>
+			<if test="contactsType != null">
+				 contacts_type = #{contactsType},
+			</if>
+			<if test="createTime != null">
+				 create_time = #{createTime},
+			</if>
+			<if test="createMan != null">
+				 create_man = #{createMan},
+			</if>
+			<if test="modifyTime != null">
+				 modify_time = #{modifyTime},
+			</if>
+			<if test="modifyMan != null">
+				 modify_man = #{modifyMan},
+			</if>
+			<if test="remark != null">
+				 remark = #{remark},
+			</if>
+
+ 		 </set>
+		 WHERE sh_credit_contacts_id = #{shCreditContactsId}
+	</update>
+
+</mapper>

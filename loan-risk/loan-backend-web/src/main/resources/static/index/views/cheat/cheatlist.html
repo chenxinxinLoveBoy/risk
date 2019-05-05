@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title>单笔申请用户欺诈分明细</title>
+		<link rel="stylesheet" href="../../plugins/layui/css/layui.css" media="all">
+		<link rel="stylesheet" href="../../css/global.css" media="all">
+		<link rel="stylesheet" href="../../plugins/font-awesome/css/font-awesome.min.css">
+		<link rel="stylesheet" href="../../css/table.css" />
+		 <link rel="stylesheet" href="../../css/lzh_xy_shenghe.css" media="all" />
+		<!-- js -->
+		<script src="../../jqery/jquery.js"></script>
+		<script src="../../../commons/base.js"></script>
+		<script type="text/javascript" src="../../plugins/layui/layui.js"></script>
+		<script type="text/javascript" src="../../js/cheat/chectlist.js"></script>
+	</head>
+	
+	<body>
+		<div class="admin-main">
+				<blockquote class="layui-elem-quote"> 
+				<!-- 查询条件 -->
+				<div class="layui-inline">
+			      <label class="layui-form-label">申请单编号</label>
+			      <div class="layui-input-inline">
+			        <input name="applicationId" lay-verify="applicationId" id="applicationId" autocomplete="off"  class="layui-input" >
+			      </div>
+			    </div>
+			    
+				<div class="layui-inline">
+			      <label class="layui-form-label">借款编号</label>
+			      <div class="layui-input-inline">
+			        <input name="applicationBuId" lay-verify="applicationBuId" id="applicationBuId" onkeyup="this.value=this.value.replace(/\D/g,'')"  onafterpaste="this.value=this.value.replace(/\D/g,'')"   autocomplete="off" class="layui-input" >
+			      </div>
+			    </div> 
+			    
+			    <a href="javascript:;" class="layui-btn layui-btn-small" id="search" onclick="sel()">
+					<i class="layui-icon">&#xe615;</i> 搜索
+				</a>
+			</blockquote>
+			
+			<fieldset class="layui-elem-field">
+				<legend>欺诈分明细列表</legend>
+				<br>
+				<div class="layui-field-box layui-form">
+					<table class="layui-table admin-table"  style="word-break: keep-all;overflow:auto;">
+						<thead>
+							<tr>
+								<th>评分明细编号</th>
+								<th>申请单编号</th>
+								<th>规则序号</th>
+								<th>欺诈评分项规则名称</th>
+								<th>评分分值</th>
+								<th>创建时间</th>
+								<th>备注</th>
+								<!-- <th>操作</th> -->
+							</tr>
+						</thead>
+						<tbody id="content">
+						</tbody>
+					</table> 
+				</div>
+			</fieldset>
+			<!-- <div class="admin-table-page">
+				<label style="position: absolute;left: 20px;top:11px">共<font color='red' id="count_page_number"></font>条记录</label>
+			</div> -->
+		</div>
+		
+		<!--模板-->
+		<script type="text/html" id="tpl"> 
+			{{# var totalScore = 0; }}
+			{{# layui.each(d.list, function(index, item){ }}
+			<tr>
+				<td>{{ item.fraudScoreDetailId }}</td>
+				<td>{{ item.applicationId }}</td>
+				<td>{{ item.fraudRuleId }}</td>
+				<td>{{ item.ruleName }}</td>
+				<td>{{ item.score }}</td>
+				<td>{{ item.createTime.substring(0,19) }}</td>
+				<td>{{ item.remark }}</td> 
+			</tr> 
+			{{# totalScore = parseFloat(totalScore) + parseFloat(item.score) }}
+			{{# }); }} 
+			<tr>
+				<td colspan=4>总分:</td>
+				<td>{{ totalScore }}</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+			</tr>
+		</script>
+	</body>
+</html>

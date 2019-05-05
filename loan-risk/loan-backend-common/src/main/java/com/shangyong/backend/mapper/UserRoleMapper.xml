@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.shangyong.backend.dao.UserRoleDao" >
+  <resultMap id="BaseResultMap" type="com.shangyong.backend.entity.UserRole" >
+    <id column="User_role_id" property="userRoleId" jdbcType="INTEGER" />
+    <result column="U_id" property="uId" jdbcType="INTEGER" />
+    <result column="R_id" property="rId" jdbcType="INTEGER" />
+  </resultMap>
+  
+ <!-- 公用查询字段 -->
+  <sql id="Base_Column_List" >
+    User_role_id, U_id, R_id
+  </sql>
+  
+  
+  <!-- 根据user_id 查询当前用户的角色 -->
+  <select id="getEntityByUserId" resultType="com.shangyong.backend.bo.UserRoleBo" parameterType="com.shangyong.backend.bo.UserRoleBo" >
+    select c.role_name as roleName, b.user_id as uId , b.role_id as rId
+    from sc_user a
+	inner join sc_user_role b on a.user_id = b.user_id
+	inner join sc_role c on c.role_id = b.role_id
+	where a.user_id = #{uId}
+  </select>
+  
+  <!-- 删除 -->
+  <delete id="deleteEntity" parameterType="com.shangyong.backend.bo.UserRoleBo" >
+    delete from sc_user_role
+    where  user_id = #{uId}
+  </delete>
+  
+  
+  <!-- 根据roleId删除 -->
+  <delete id="deleteById" parameterType="java.lang.Integer" >
+    delete from sc_user_role
+    where  role_id = #{roleId} 
+  </delete>
+   
+  
+  <!-- 新增 -->
+  <insert id="saveEntity" parameterType="com.shangyong.backend.bo.UserRoleBo" >
+    insert into sc_user_role (user_id, role_id
+      )
+    values (#{uId,jdbcType=INTEGER}, #{rId,jdbcType=INTEGER}
+      )
+  </insert>
+   
+  <select id="countByExample" parameterType="com.shangyong.backend.bo.UserRoleBo" resultType="java.lang.Integer" >
+    select count(*) from sc_user_role
+  
+  </select>
+  
+   
+</mapper>

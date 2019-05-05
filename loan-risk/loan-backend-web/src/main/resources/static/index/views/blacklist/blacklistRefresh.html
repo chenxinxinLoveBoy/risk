@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+	<head>
+	<META HTTP-EQUIV="pragma" CONTENT="no-cache">
+	<META HTTP-EQUIV="Cache-Control" CONTENT="no-cache, must-revalidate">
+	<META HTTP-EQUIV="expires" CONTENT="0">
+	<base target="_Self">
+		<meta charset="UTF-8">
+		<title>黑名单刷新Redis</title>
+		<link rel="stylesheet" href="../../plugins/layui/css/layui.css" media="all" />
+		<link rel="stylesheet" href="../../css/global.css" media="all">
+		<link rel="stylesheet" href="../../plugins/font-awesome/css/font-awesome.min.css">
+		<link rel="stylesheet" href="../../css/table.css" />
+		<script type="text/javascript" src="../../plugins/layui/layui.js"></script>
+		<!-- js -->
+		<script src="../../jqery/jquery.js"></script>
+		<script src="../../../commons/base.js"></script>
+		<!-- 日期控件 -->
+	   <script type="text/javascript" src="../../js/blacklist/blacklistRefresh.js"></script>
+	   <link rel="stylesheet" href="../../css/lzh_xy_shenghe.css" media="all" />
+	</head>
+	<body>
+		<div class="admin-main">
+			<blockquote class="layui-elem-quote"> 
+				<!-- 查询条件 -->
+			<form action="" class="layui-form" >
+				<div class="layui-inline">
+			      <label class="layui-form-label" style="width: 100px;">日期</label>
+			      <div class="layui-input-inline">
+			      <input name="startTime"  lay-verify="startTime" id="startTime" autocomplete="off" class="layui-input"  style="width: 155px; display:inline;">
+			      <div class="layui-inline" style="width:30px;" align="center">&nbsp;至&nbsp;</div>
+			      <input name="endTime"  lay-verify="endTime" id="endTime" autocomplete="off" class="layui-input"  style="width: 155px; display:inline;">
+			      </div>
+			    </div>
+				&nbsp;&nbsp;&nbsp;&nbsp;
+				<div class="layui-inline">
+					<a href="javascript:;" class="layui-btn layui-btn-small"  onclick="refreshRedis()">
+						<i class="layui-icon">&#xe642;</i>刷新Redis
+					</a>
+				</div>
+				&nbsp;&nbsp;&nbsp;&nbsp;
+				<div class="layui-inline">
+			       <label class="layui-form-label" id="refreshStatus" style="width:150px"></label>
+			    </div>
+			</form>
+		</blockquote> 
+		</div>
+	</body>
+</html>

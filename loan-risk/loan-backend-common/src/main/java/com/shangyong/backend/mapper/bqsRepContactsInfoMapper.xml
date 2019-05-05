@@ -1,0 +1,173 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.shangyong.backend.dao.bqsrep.BqsRepContactsInfoServiceDao">
+
+	<resultMap type="com.shangyong.backend.entity.bqsrep.BqsRepContactsInfo" id="bqsRepContactsInfoinfoMap">
+		<id property="bqsRepContactsInfoId" column="bqs_rep_contacts_info_id" javaType="java.lang.String"></id>
+		<result property="bqsPetitionerId" column="bqs_petitioner_id" javaType="java.lang.String"></result>
+		<result property="name" column="name" javaType="java.lang.String"></result>
+		<result property="relation" column="relation" javaType="java.lang.String"></result>
+		<result property="mobile" column="mobile" javaType="java.lang.String"></result>
+		<result property="belongTo" column="belongTo" javaType="java.lang.String"></result>
+		<result property="latestConnectTime" column="latest_connect_time" javaType="java.lang.String"></result>
+		<result property="firstConnectTime" column="first_connect_time" javaType="java.lang.String"></result>
+		<result property="threeDaysConnectOrder" column="three_days_connect_order" javaType="java.lang.String"></result>
+		<result property="threeDaysConnectCount" column="three_days_connect_count" javaType="java.lang.String"></result>
+		<result property="threeDaysConnectDuration" column="three_days_connect_duration" javaType="java.lang.String"></result>
+		<result property="sevenDaysConnectOrder" column="seven_days_connect_order" javaType="java.lang.String"></result>
+		<result property="sevenDaysConnectCount" column="seven_days_connect_count" javaType="java.lang.String"></result>
+		<result property="sevenDaysConnectDuration" column="seven_days_connect_duration" javaType="java.lang.String"></result>
+		<result property="thirtyDaysConnectOrder" column="thirty_days_connect_order" javaType="java.lang.String"></result>
+		<result property="thirtyDaysConnectCount" column="thirty_days_connect_count" javaType="java.lang.String"></result>
+		<result property="thirtyDaysConnectDuration" column="thirty_days_connect_duration" javaType="java.lang.String"></result>
+		<result property="connectOrder" column="connect_order" javaType="java.lang.String"></result>
+		<result property="connectCount" column="connect_count" javaType="java.lang.String"></result>
+		<result property="connectDuration" column="connect_duration" javaType="java.lang.String"></result>
+		<result property="callInCount" column="call_in_count" javaType="java.lang.String"></result>
+		<result property="callInTime" column="call_in_time" javaType="java.lang.String"></result>
+		<result property="callOutCount" column="call_out_count" javaType="java.lang.String"></result>
+		<result property="callOutTime" column="call_out_time" javaType="java.lang.String"></result>
+		<result property="smsCount" column="sms_count" javaType="java.lang.String"></result>
+		<result property="asEbReceiverCount" column="as_eb_receiver_count" javaType="java.lang.String"></result>
+		<result property="asEbReceiverCostMoney" column="as_eb_receiver_cost_money" javaType="java.lang.String"></result>
+	</resultMap>
+
+	<!-- 通用查询结果列-->
+	<sql id="Base_Column_List">
+	bqs_rep_contacts_info_id,	bqs_petitioner_id,	name,	relation,	mobile,	belongTo,	latest_connect_time,	first_connect_time,	three_days_connect_order,	three_days_connect_count,	three_days_connect_duration,	seven_days_connect_order,	seven_days_connect_count,	seven_days_connect_duration,	thirty_days_connect_order,	thirty_days_connect_count,	thirty_days_connect_duration,	connect_order,	connect_count,	connect_duration,	call_in_count,	call_in_time,	call_out_count,	call_out_time,	sms_count,	as_eb_receiver_count,	as_eb_receiver_cost_money
+	</sql>
+
+	<!-- 查询（根据主键ID查询） -->
+	<select id="getEntityById" resultMap="bqsRepContactsInfoinfoMap" parameterType="java.lang.String">
+		 SELECT
+		 <include refid="Base_Column_List" />
+		 FROM bqs_rep_contacts_info
+		 WHERE bqs_rep_contacts_info_id = #{bqsRepContactsInfoId}
+	</select>
+	
+	<!-- 查询（根据主键bqsPetitionerId查询） -->
+	<select id="queryListById" resultMap="bqsRepContactsInfoinfoMap" parameterType="java.lang.String">
+		 SELECT
+		 <include refid="Base_Column_List" />
+		 FROM bqs_rep_contacts_info
+		 WHERE bqs_petitioner_id = #{bqsPetitionerId}
+	</select>
+
+	<!-- 查询（根据主键ID查询） -->
+	<select id="getAll" resultMap="bqsRepContactsInfoinfoMap" parameterType="java.lang.String">
+		 SELECT
+		 <include refid="Base_Column_List" />
+		 FROM bqs_rep_contacts_info
+	</select>
+
+	<!--删除：根据主键ID删除-->
+	<delete id="deleteEntity" parameterType="java.lang.String">
+		 DELETE FROM bqs_rep_contacts_info
+		 WHERE bqs_rep_contacts_info_id = #{bqsRepContactsInfoId}
+	</delete>
+
+	<!-- 添加 -->
+	<insert id="saveEntity" parameterType="com.shangyong.backend.entity.bqsrep.BqsRepContactsInfo">
+		 INSERT INTO bqs_rep_contacts_info
+ 		(bqs_rep_contacts_info_id,bqs_petitioner_id,name,relation,mobile,belongTo,latest_connect_time,first_connect_time,three_days_connect_order,three_days_connect_count,three_days_connect_duration,seven_days_connect_order,seven_days_connect_count,seven_days_connect_duration,thirty_days_connect_order,thirty_days_connect_count,thirty_days_connect_duration,connect_order,connect_count,connect_duration,call_in_count,call_in_time,call_out_count,call_out_time,sms_count,as_eb_receiver_count,as_eb_receiver_cost_money) 
+		 VALUES 
+ 		(#{bqsRepContactsInfoId},#{bqsPetitionerId},#{name},#{relation},#{mobile},#{belongTo},#{latestConnectTime},#{firstConnectTime},#{threeDaysConnectOrder},#{threeDaysConnectCount},#{threeDaysConnectDuration},#{sevenDaysConnectOrder},#{sevenDaysConnectCount},#{sevenDaysConnectDuration},#{thirtyDaysConnectOrder},#{thirtyDaysConnectCount},#{thirtyDaysConnectDuration},#{connectOrder},#{connectCount},#{connectDuration},#{callInCount},#{callInTime},#{callOutCount},#{callOutTime},#{smsCount},#{asEbReceiverCount},#{asEbReceiverCostMoney}) 
+	</insert>
+	<!-- 批量插入 -->
+	<insert id="saveAllEntity" parameterType="java.util.List">
+		  INSERT INTO bqs_rep_contacts_info
+ 		(bqs_rep_contacts_info_id,bqs_petitioner_id,name,relation,mobile,belongTo,latest_connect_time,first_connect_time,three_days_connect_order,three_days_connect_count,three_days_connect_duration,seven_days_connect_order,seven_days_connect_count,seven_days_connect_duration,thirty_days_connect_order,thirty_days_connect_count,thirty_days_connect_duration,connect_order,connect_count,connect_duration,call_in_count,call_in_time,call_out_count,call_out_time,sms_count,as_eb_receiver_count,as_eb_receiver_cost_money) 
+		 VALUES
+ 	    <foreach collection="list" item="item" index="index" separator="," > 
+ 	    (#{item.bqsRepContactsInfoId},#{item.bqsPetitionerId},#{item.name},#{item.relation},#{item.mobile},#{item.belongTo},#{item.latestConnectTime},#{item.firstConnectTime},#{item.threeDaysConnectOrder},#{item.threeDaysConnectCount},#{item.threeDaysConnectDuration},#{item.sevenDaysConnectOrder},#{item.sevenDaysConnectCount},#{item.sevenDaysConnectDuration},#{item.thirtyDaysConnectOrder},#{item.thirtyDaysConnectCount},#{item.thirtyDaysConnectDuration},#{item.connectOrder},#{item.connectCount},#{item.connectDuration},#{item.callInCount},#{item.callInTime},#{item.callOutCount},#{item.callOutTime},#{item.smsCount},#{item.asEbReceiverCount},#{item.asEbReceiverCostMoney}) 
+	    </foreach>
+	</insert>
+	<!-- 修 改-->
+	<update id="updateEntity" parameterType="com.shangyong.backend.entity.bqsrep.BqsRepContactsInfo">
+		 UPDATE bqs_rep_contacts_info
+ 		 <set> 
+			<if test="bqsPetitionerId != null">
+				 bqs_petitioner_id = #{bqsPetitionerId},
+			</if>
+			<if test="name != null">
+				 name = #{name},
+			</if>
+			<if test="relation != null">
+				 relation = #{relation},
+			</if>
+			<if test="mobile != null">
+				 mobile = #{mobile},
+			</if>
+			<if test="belongTo != null">
+				 belongTo = #{belongTo},
+			</if>
+			<if test="latestConnectTime != null">
+				 latest_connect_time = #{latestConnectTime},
+			</if>
+			<if test="firstConnectTime != null">
+				 first_connect_time = #{firstConnectTime},
+			</if>
+			<if test="threeDaysConnectOrder != null">
+				 three_days_connect_order = #{threeDaysConnectOrder},
+			</if>
+			<if test="threeDaysConnectCount != null">
+				 three_days_connect_count = #{threeDaysConnectCount},
+			</if>
+			<if test="threeDaysConnectDuration != null">
+				 three_days_connect_duration = #{threeDaysConnectDuration},
+			</if>
+			<if test="sevenDaysConnectOrder != null">
+				 seven_days_connect_order = #{sevenDaysConnectOrder},
+			</if>
+			<if test="sevenDaysConnectCount != null">
+				 seven_days_connect_count = #{sevenDaysConnectCount},
+			</if>
+			<if test="sevenDaysConnectDuration != null">
+				 seven_days_connect_duration = #{sevenDaysConnectDuration},
+			</if>
+			<if test="thirtyDaysConnectOrder != null">
+				 thirty_days_connect_order = #{thirtyDaysConnectOrder},
+			</if>
+			<if test="thirtyDaysConnectCount != null">
+				 thirty_days_connect_count = #{thirtyDaysConnectCount},
+			</if>
+			<if test="thirtyDaysConnectDuration != null">
+				 thirty_days_connect_duration = #{thirtyDaysConnectDuration},
+			</if>
+			<if test="connectOrder != null">
+				 connect_order = #{connectOrder},
+			</if>
+			<if test="connectCount != null">
+				 connect_count = #{connectCount},
+			</if>
+			<if test="connectDuration != null">
+				 connect_duration = #{connectDuration},
+			</if>
+			<if test="callInCount != null">
+				 call_in_count = #{callInCount},
+			</if>
+			<if test="callInTime != null">
+				 call_in_time = #{callInTime},
+			</if>
+			<if test="callOutCount != null">
+				 call_out_count = #{callOutCount},
+			</if>
+			<if test="callOutTime != null">
+				 call_out_time = #{callOutTime},
+			</if>
+			<if test="smsCount != null">
+				 sms_count = #{smsCount},
+			</if>
+			<if test="asEbReceiverCount != null">
+				 as_eb_receiver_count = #{asEbReceiverCount},
+			</if>
+			<if test="asEbReceiverCostMoney != null">
+				 as_eb_receiver_cost_money = #{asEbReceiverCostMoney},
+			</if>
+
+ 		 </set>
+		 WHERE bqs_rep_contacts_info_id = #{bqsRepContactsInfoId}
+	</update>
+
+</mapper>

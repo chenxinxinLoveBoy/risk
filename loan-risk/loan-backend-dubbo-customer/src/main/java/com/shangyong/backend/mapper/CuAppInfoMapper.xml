@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.shangyong.backend.dao.CuAppInfoDao">
+
+	<resultMap type="com.shangyong.backend.entity.CuAppInfo" id="cuAppInfoMap">
+		<id property="appInfoId" column="app_info_id" javaType="java.lang.String"></id>
+		<result property="appName" column="app_name" javaType="java.lang.Integer"></result>
+		<result property="customerId" column="customer_id" javaType="java.lang.String"></result>
+		<result property="launcherName" column="launcher_name" javaType="java.lang.String"></result>
+		<result property="packageName" column="package_name" javaType="java.lang.String"></result>
+		<result property="versionName" column="version_name" javaType="java.lang.String"></result>
+		<result property="versionCode" column="version_code" javaType="java.lang.String"></result>
+		<result property="isSystemApp" column="is_system_app" javaType="java.lang.Integer"></result>
+		<result property="lastUpdateTime" column="lastUpdate_time" javaType="java.lang.String"></result>
+		<result property="createTime" column="create_time" javaType="java.lang.String"></result>
+		<result property="modifyTime" column="modify_time" javaType="java.lang.String"></result>
+	</resultMap>
+
+	<!-- 通用查询结果列-->
+	<sql id="Base_Column_List">
+app_info_id,	app_name,	customer_id,	launcher_name,	package_name,	version_name,	version_code,	is_system_app,	lastUpdate_time,	create_time,	modify_time
+	</sql>
+	
+	<!-- 批量添加 -->
+	<insert id="saveAllEntity">
+		 INSERT INTO cu_app_info
+ 		(app_info_id,app_name,customer_id,launcher_name,package_name,version_name,version_code,is_system_app,lastUpdate_time,create_time,modify_time) 
+		 VALUES 
+ 	    <foreach collection="list" item="item" index="index" separator="," >  
+ 		(#{item.appInfoId},#{item.appName},#{item.customerId},#{item.launcherName},#{item.packageName},#{item.versionName},#{item.versionCode},#{item.isSystemApp},#{item.lastUpdateTime},now(),#{item.modifyTime})
+	    </foreach>  
+	</insert>
+	
+	<!-- 查询（根据根据customerId和appName查询） -->
+	<select id="findAppInfo" resultMap="cuAppInfoMap" parameterType="com.shangyong.backend.entity.CuAppInfo">
+		 SELECT
+		 <include refid="Base_Column_List" />
+		 FROM cu_app_info
+		 WHERE app_name = #{appName} and customer_id = #{customerId}
+	</select>
+
+	<!-- 查询（根据主键ID查询） -->
+	<select id="getEntityById" resultMap="cuAppInfoMap" parameterType="java.lang.String">
+		 SELECT
+		 <include refid="Base_Column_List" />
+		 FROM cu_app_info
+		 WHERE app_info_id = #{appInfoId}
+	</select>
+
+	<!-- 查询（根据主键ID查询） -->
+	<select id="findAll" resultMap="cuAppInfoMap" parameterType="java.lang.String">
+		 SELECT
+		 <include refid="Base_Column_List" />
+		 FROM cu_app_info
+		 WHERE app_info_id = #{appInfoId}
+	</select>
+
+	<!--删除：根据主键ID删除-->
+	<delete id="deleteEntity" parameterType="java.lang.String">
+		 DELETE FROM cu_app_info
+		 WHERE app_info_id = #{appInfoId}
+	</delete>
+
+	<!-- 添加 -->
+	<insert id="saveEntity" parameterType="com.shangyong.backend.entity.CuAppInfo">
+		 INSERT INTO cu_app_info
+ 		(app_info_id,app_name,customer_id,launcher_name,package_name,version_name,version_code,is_system_app,lastUpdate_time,create_time,modify_time) 
+		 VALUES 
+ 		(#{appInfoId},#{appName},#{customerId},#{launcherName},#{packageName},#{versionName},#{versionCode},#{isSystemApp},#{lastUpdateTime},#{createTime},#{modifyTime}) 
+	</insert>
+
+	<!-- 修 改-->
+	<update id="updateEntity" parameterType="com.shangyong.backend.entity.CuAppInfo">
+		 UPDATE cu_app_info
+ 		 <set> 
+			<if test="appName != null">
+				 app_name = #{appName},
+			</if>
+			<if test="customerId != null">
+				 customer_id = #{customerId},
+			</if>
+			<if test="launcherName != null">
+				 launcher_name = #{launcherName},
+			</if>
+			<if test="packageName != null">
+				 package_name = #{packageName},
+			</if>
+			<if test="versionName != null">
+				 version_name = #{versionName},
+			</if>
+			<if test="versionCode != null">
+				 version_code = #{versionCode},
+			</if>
+			<if test="isSystemApp != null">
+				 is_system_app = #{isSystemApp},
+			</if>
+			<if test="lastUpdateTime != null">
+				 lastUpdate_time = #{lastUpdateTime},
+			</if>
+			<if test="createTime != null">
+				 create_time = #{createTime},
+			</if>
+			<if test="modifyTime != null">
+				 modify_time = #{modifyTime},
+			</if>
+
+ 		 </set>
+		 WHERE app_info_id = #{appInfoId}
+	</update>
+
+</mapper>

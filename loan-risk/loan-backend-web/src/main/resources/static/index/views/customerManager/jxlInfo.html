@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+<meta charset="UTF-8">
+<title>聚信立详情信息</title>
+<link rel="stylesheet" href="../../plugins/layui/css/layui.css"
+	media="all" />
+<link rel="stylesheet" href="../../css/global.css" media="all">
+<link rel="stylesheet"
+	href="../../plugins/font-awesome/css/font-awesome.min.css">
+<!-- <link rel="stylesheet" href="../../css/table.css" /> -->
+<link rel="stylesheet" href="../../css/lzh_login.css" media="all" />
+</head>
+<body>
+	<input type="button" onclick="showDataBase()" value="查询数据库" class="layui-btn layui-btn-small"/>
+	<input type="button" onclick="showAliyun()" value="查询阿里云" class="layui-btn layui-btn-small"/>
+	<div class="admin-main">
+			<div style="font-size: 20px;" >
+			  编号：     	<span id="user_useId"></span>  
+			 报告时间：  <span id="user_date"></span> 
+			 <!--报告版本：  <span id="user_version"></span>  -->
+			</div>
+			<fieldset class="layui-elem-field">
+
+			<div class="layui-field-box layui-form">
+			<legend style="margin-left:45%">用户申请表检测</legend>
+				<table class="layui-table"> 
+					<tbody id="user_check">
+					    <tr>
+							<td style="width: 340px">姓名</td>
+							<td >&nbsp;</td>
+						</tr>
+						<tr>
+							<td>身份证</td>
+							<td >&nbsp;</td>
+						</tr>
+						<tr>
+							<td>性别</td>
+							<td>&nbsp;</td>
+						</tr>
+						<tr>
+							<td>年龄</td>
+							<td>&nbsp;</td>
+						</tr>
+						<tr>
+							<td>籍贯</td>
+							<td>&nbsp;</td>
+						</tr>
+						<tr>
+							<td>手机号码</td>
+							<td>&nbsp;</td>
+						</tr>
+						<tr>
+							<td>居住地址</td>
+							<td>&nbsp;</td>
+						</tr>
+						<tr>
+							<td>联系人</td>
+							<td>&nbsp;</td>
+						</tr>
+						<tr>
+							<td>联系人</td>
+							<td>&nbsp;</td>
+						</tr>
+						<tr>
+							<td>淘宝账号</td>
+							<td>&nbsp;</td>
+						</tr>
+						<tr>
+							<td>京东账号</td>
+							<td>&nbsp;</td>
+						</tr>
+					</tbody>
+				</table>
+			<legend style="margin-left:45%">用户信息检测 联系人数据</legend>
+				<table class="layui-table" >
+					<tbody id="user_check_contact" style="white-space: nowrap;">
+					    <tr>
+							<td width="335px" rowspan=10>用户查询信息</td> 
+						</tr>
+						<tr>
+							<td colspan=2>查询过该用户的相关企业数量</td>
+							<td width="680px"><font></font></td>
+						</tr>
+						<tr>
+							<td colspan=2>查询过该用户的相关企业类型</td>
+							<td><font></font></td>
+						</tr>
+						<tr>
+							<td colspan=2>身份证组何过的其他姓名</td>
+							<td><font></font></td>
+						</tr>
+						<tr>
+							<td colspan=2>身份证组合过其他电话</td>
+							<td><font></font></td>
+						</tr>
+						<tr>
+							<td colspan=2>电话号码组合过其他姓名</td>
+							<td><font></font></td>
+						</tr>
+						<tr>
+							<td colspan=2>电话号码组合过其他身份证</td>
+							<td><font></font></td>
+						</tr>
+						<tr>
+							<td colspan=2>电话号码注册过的相关企业数量</td>
+							<td><font></font></td>
+						</tr>
+						<tr>
+							<td colspan=2>电话号码注册过的相关企业类型</td>
+							<td><font></font></td>
+						</tr>
+						<tr>
+							<td colspan=2>电话号码出现过的公开网站</td>
+							<td><font></font></td>
+						</tr>
+					</tbody>
+				</table>
+			<legend style="margin-left:45%">用户行为检测 黑名单</legend>
+				<table class="layui-table"> 
+					<tbody id="user_check_black" style="white-space: nowrap;">
+					    <tr>
+							<td width="335px" rowspan=7>黑名单信息</td>
+						</tr>
+						<tr>
+							<td colspan=2>黑中介分数</td>
+							<td width="680px" ><font></font>(分数范围0-100，参考分为10，分数越低关系越紧密)</td>
+						</tr>
+						<tr>
+							<td colspan=2>直接联系人中黑名单人数</td>
+							<td><font></font> (直接联系人：和被查询号码有通话记录)</td>
+						</tr>
+						<tr>
+							<td colspan=2>中间联系人中黑名单人数</td>
+							<td><font></font>(间接联系人：和被查询号码的直接联系人有通话记录)</td>
+						</tr>
+						<tr>
+							<td colspan=2>直接联系人人数</td>
+							<td><font></font>(直接联系人：和被查询号码有通话记录)</td>
+						</tr>
+						<tr>
+							<td colspan=2>引起黑名单的直接联系人数量</td>
+							<td><font></font> (直接联系人有和黑名单用户的通讯记录的号码数量)</td>
+						</tr>
+						<tr>
+							<td colspan=2>直接联系人中引起间接黑名单占比</td>
+							<td><font></font>(直接联系人有和黑名单用户的通讯记录的号码数量在直接联系人数量中的百分比)</td>
+						</tr>
+					</tbody>
+				</table>
+			<legend style="margin-left:45%">用户行为检测</legend>
+				<table class="layui-table"> 
+					<tbody id="user_behavior">
+					    <tr>
+							<th>检查项</th>
+							<th>结果</th>
+							<th>依据</th>
+						</tr>
+					</tbody>
+				</table>
+			<legend style="margin-left:45%">运营商消费数据</legend>
+				<table class="layui-table"> 
+					<tbody id="user_cell_behavior">
+					    <tr>
+							<th>运营商</th>
+							<th>号码</th>
+							<th>归属地</th>
+							<th>月份</th>
+							<th>呼叫次数</th>
+							<th>主叫次数</th>
+							<th>主叫时间（分钟）</th>
+							<th>被叫次数</th>
+							<th>被叫时间（分钟）</th>
+							<th>短信数量</th>
+							<th>流量（MB）</th>
+							<th>话费消费(元)</th>
+						</tr>
+					</tbody>
+				</table>
+			<legend style="margin-left:45%">联系人区域汇总</legend>
+				<table class="layui-table"> 
+					<tbody id="user_area">
+					    <tr>
+							<th>地区</th>
+							<th>号码次数</th>
+							<th>呼入次数</th>
+							<th>呼出次数</th>
+							<th>呼入时间（分钟）</th>
+							<th>呼出时间（分钟）</th>
+							<th>呼入次数百分比</th>
+							<th>呼出次数百分比</th>
+							<th>呼入时间百分比</th>
+							<th>呼出时间百分比</th>
+						</tr>
+					</tbody>
+				</table>
+			<legend style="margin-left:45%">运营商数据分析</legend>
+				<table class="layui-table"> 
+					<tbody id="user_phone_data">
+					    <tr>
+							<th>号码</th>
+							<th>互联网标识</th>
+							<th>需求类型</th>
+							<th>归属地</th>
+							<th>联系次数</th>
+							<th>联系时间（分）</th>
+							<th>主叫次数</th>
+							<th>被叫次数</th>
+						</tr>
+					</tbody>
+				</table>
+			<legend style="margin-left:45%">联系人和地址信息</legend>
+				<table class="layui-table"> 
+					<tbody id="user_contact">
+					    <tr>
+							<th>联系人</th>
+							<th>最早联系时间</th>
+							<th>最晚联系时间</th>
+							<th>联系电话</th>
+							<th>近半年通话（分）</th>
+						</tr>
+					</tbody>
+				</table>
+			<legend style="margin-left:45%">地址信息</legend>
+				<table class="layui-table"> 
+					<tbody id="user_address">
+					    <tr>
+							<th>地址</th>
+							<th>消费总金额(元)</th>
+							<th>收货人姓名</th>
+							<th>收货人手机</th>
+						</tr>
+					</tbody>
+				</table>
+			<legend style="margin-left:45%">电商数据分析</legend>
+				<table class="layui-table"> 
+					<tbody id="user_ebusiness">
+					    <tr>
+							<th>月份</th>
+							<th>全部消费笔数</th>
+							<th>全部消费金额（元）</th>
+							<th>品类分析</th>
+						</tr>
+					</tbody>
+				</table>
+			<legend style="margin-left:45%">出行数据分析</legend>
+				<table class="layui-table"> 
+					<tbody id="user_trip">
+					    <tr>
+							<th>时间段</th>
+							<th>出发时间</th>
+							<th>回程时间</th>
+							<th>出发地</th>
+							<th>目的地</th>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</fieldset>
+		<div class="admin-table-page">
+			<div id="paged" class="page"></div>
+		</div>
+	</div>
+
+	<!-- js -->
+	<script src="../../jqery/jquery.js"></script>
+	<script src="../../../commons/base.js"></script>
+	<script type="text/javascript" src="../../plugins/layui/layui.js"></script>
+	<script type="text/javascript" src="../../js/customerManager/jxlInfo_JsonReport.js"></script>
+</body>
+
+</html>

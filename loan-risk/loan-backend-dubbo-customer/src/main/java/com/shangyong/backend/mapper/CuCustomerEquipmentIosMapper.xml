@@ -1,0 +1,252 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.shangyong.backend.dao.CuCustomerEquipmentIosDao">
+
+	<resultMap type="com.shangyong.backend.entity.CuCustomerEquipmentIos" id="cuCustomerEquipmentIosMap">
+		<id property="equipmentId" column="equipment_id" javaType="java.lang.String"></id>
+		<result property="customerId" column="customer_id" javaType="java.lang.String"></result>
+		<result property="appName" column="app_name" javaType="java.lang.Integer"></result>
+		<result property="sdkEdition" column="sdk_edition" javaType="java.lang.String"></result>
+		<result property="fingerprintTokenId" column="fingerprint_token_id" javaType="java.lang.String"></result>
+		<result property="deviceId" column="device_id" javaType="java.lang.String"></result>
+		<result property="idfa" column="idfa" javaType="java.lang.String"></result>
+		<result property="idfv" column="idfv" javaType="java.lang.String"></result>
+		<result property="uuid" column="uuid" javaType="java.lang.String"></result>
+		<result property="bootTime" column="boot_time" javaType="java.lang.String"></result>
+		<result property="sumRamStorage" column="sum_ram_storage" javaType="java.lang.String"></result>
+		<result property="availableRamStorage" column="available_ram_storage" javaType="java.lang.String"></result>
+		<result property="sumRomStorage" column="sum_rom_storage" javaType="java.lang.String"></result>
+		<result property="availableRomStorage" column="available_rom_storage" javaType="java.lang.String"></result>
+		<result property="screenBrightness" column="screen_brightness" javaType="java.lang.String"></result>
+		<result property="batteryState" column="battery_state" javaType="java.lang.String"></result>
+		<result property="cellularNetworkIp" column="cellular_network_ip" javaType="java.lang.String"></result>
+		<result property="wifiIp" column="wifi_ip" javaType="java.lang.String"></result>
+		<result property="wifiMask" column="wifi_mask" javaType="java.lang.String"></result>
+		<result property="vpnAddress" column="vpn_address" javaType="java.lang.String"></result>
+		<result property="vpnMask" column="vpn_mask" javaType="java.lang.String"></result>
+		<result property="macAddress" column="mac_address" javaType="java.lang.String"></result>
+		<result property="networkType" column="network_type" javaType="java.lang.String"></result>
+		<result property="wifiName" column="wifi_name" javaType="java.lang.String"></result>
+		<result property="wifiBssid" column="wifi_bssid" javaType="java.lang.String"></result>
+		<result property="agentType" column="agent_type" javaType="java.lang.String"></result>
+		<result property="agentAddress" column="agent_address" javaType="java.lang.String"></result>
+		<result property="dnsAddress" column="dns_address" javaType="java.lang.String"></result>
+		<result property="isRoot" column="is_root" javaType="java.lang.Boolean"></result>
+		<result property="equipmentType" column="equipment_type" javaType="java.lang.String"></result>
+		<result property="systemEdition" column="system_edition" javaType="java.lang.String"></result>
+		<result property="equipmentName" column="equipment_name" javaType="java.lang.String"></result>
+		<result property="operator" column="operator" javaType="java.lang.String"></result>
+		<result property="countryCode" column="country_code" javaType="java.lang.String"></result>
+		<result property="moveCountryCode" column="move_country_code" javaType="java.lang.String"></result>
+		<result property="moveNetworkCode" column="move_network_code" javaType="java.lang.String"></result>
+		<result property="bundleId" column="bundle_id" javaType="java.lang.String"></result>
+		<result property="language" column="language" javaType="java.lang.String"></result>
+		<result property="realIp" column="real_ip" javaType="java.lang.String"></result>
+		<result property="ipPosition" column="ip_position" javaType="java.lang.String"></result>
+		<result property="openUdid" column="open_udid" javaType="java.lang.String"></result>
+		<result property="cpuNum" column="cpu_num" javaType="java.lang.Integer"></result>
+		<result property="cpuSubType" column="cpu_sub_type" javaType="java.lang.String"></result>
+		<result property="ipAddress" column="ip_address" javaType="java.lang.String"></result>
+		<result property="breakFlag" column="break_flag" javaType="java.lang.String"></result>
+		<result property="cpuModel" column="cpu_model" javaType="java.lang.String"></result>
+		<result property="createTime" column="create_time" javaType="java.lang.String"></result>
+		<result property="modifyTime" column="modify_time" javaType="java.lang.String"></result>
+		<result property="gprsIp" column="gprs_ip" javaType="java.lang.String"></result>
+	</resultMap>
+
+	<!-- 通用查询结果列-->
+	<sql id="Base_Column_List">
+equipment_id,	customer_id,	app_name,	sdk_edition,	fingerprint_token_id,	device_id,	idfa,	idfv,	uuid,	boot_time,	sum_ram_storage,	available_ram_storage,	sum_rom_storage,	available_rom_storage,	screen_brightness,	battery_state,	cellular_network_ip,	wifi_ip,	wifi_mask,	vpn_address,	vpn_mask,	mac_address,	network_type,	wifi_name,	wifi_bssid,	agent_type,	agent_address,	dns_address,	is_root,	equipment_type,	system_edition,	equipment_name,	operator,	country_code,	move_country_code,	move_network_code,	bundle_id,	language,	real_ip,	ip_position,	open_udid,	cpu_num,	cpu_sub_type,	ip_address,	break_flag,	cpu_model,	create_time,	modify_time,	gprs_ip
+	</sql>
+
+	<select id="findCuCustomerEquipmentIos" resultMap="cuCustomerEquipmentIosMap" parameterType="com.shangyong.backend.entity.CuCustomerEquipmentIos">
+		 SELECT
+		 <include refid="Base_Column_List" />
+		 FROM cu_customer_equipment_ios
+		 WHERE app_name = #{appName} and customer_id = #{customerId} and device_id = #{deviceId}
+	</select>
+
+	<!-- 查询（根据主键ID查询） -->
+	<select id="getEntityById" resultMap="cuCustomerEquipmentIosMap" parameterType="java.lang.String">
+		 SELECT
+		 <include refid="Base_Column_List" />
+		 FROM cu_customer_equipment_ios
+		 WHERE equipment_id = #{equipmentId}
+	</select>
+
+	<!-- 查询（根据主键ID查询） -->
+	<select id="findAll" resultMap="cuCustomerEquipmentIosMap" parameterType="java.lang.String">
+		 SELECT
+		 <include refid="Base_Column_List" />
+		 FROM cu_customer_equipment_ios
+		 WHERE equipment_id = #{equipmentId}
+	</select>
+
+	<!--删除：根据主键ID删除-->
+	<delete id="deleteEntity" parameterType="java.lang.String">
+		 DELETE FROM cu_customer_equipment_ios
+		 WHERE equipment_id = #{equipmentId}
+	</delete>
+
+	<!-- 添加 -->
+	<insert id="saveEntity" parameterType="com.shangyong.backend.entity.CuCustomerEquipmentIos">
+		 INSERT INTO cu_customer_equipment_ios
+ 		(equipment_id,customer_id,app_name,sdk_edition,fingerprint_token_id,device_id,idfa,idfv,uuid,boot_time,sum_ram_storage,available_ram_storage,sum_rom_storage,available_rom_storage,screen_brightness,battery_state,cellular_network_ip,wifi_ip,wifi_mask,vpn_address,vpn_mask,mac_address,network_type,wifi_name,wifi_bssid,agent_type,agent_address,dns_address,is_root,equipment_type,system_edition,equipment_name,operator,country_code,move_country_code,move_network_code,bundle_id,language,real_ip,ip_position,open_udid,cpu_num,cpu_sub_type,ip_address,break_flag,cpu_model,create_time,modify_time,gprs_ip) 
+		 VALUES 
+ 		(#{equipmentId},#{customerId},#{appName},#{sdkEdition},#{fingerprintTokenId},#{deviceId},#{idfa},#{idfv},#{uuid},#{bootTime},#{sumRamStorage},#{availableRamStorage},#{sumRomStorage},#{availableRomStorage},#{screenBrightness},#{batteryState},#{cellularNetworkIp},#{wifiIp},#{wifiMask},#{vpnAddress},#{vpnMask},#{macAddress},#{networkType},#{wifiName},#{wifiBssid},#{agentType},#{agentAddress},#{dnsAddress},#{isRoot},#{equipmentType},#{systemEdition},#{equipmentName},#{operator},#{countryCode},#{moveCountryCode},#{moveNetworkCode},#{bundleId},#{language},#{realIp},#{ipPosition},#{openUdid},#{cpuNum},#{cpuSubType},#{ipAddress},#{breakFlag},#{cpuModel},now(),#{modifyTime},#{gprsIp})
+	</insert>
+
+	<!-- 修 改-->
+	<update id="updateEntity" parameterType="com.shangyong.backend.entity.CuCustomerEquipmentIos">
+		 UPDATE cu_customer_equipment_ios
+ 		 <set> 
+			<if test="customerId != null">
+				 customer_id = #{customerId},
+			</if>
+			<if test="appName != null">
+				 app_name = #{appName},
+			</if>
+			<if test="sdkEdition != null">
+				 sdk_edition = #{sdkEdition},
+			</if>
+			<if test="fingerprintTokenId != null">
+				 fingerprint_token_id = #{fingerprintTokenId},
+			</if>
+			<if test="deviceId != null">
+				 device_id = #{deviceId},
+			</if>
+			<if test="idfa != null">
+				 idfa = #{idfa},
+			</if>
+			<if test="idfv != null">
+				 idfv = #{idfv},
+			</if>
+			<if test="uuid != null">
+				 uuid = #{uuid},
+			</if>
+			<if test="bootTime != null">
+				 boot_time = #{bootTime},
+			</if>
+			<if test="sumRamStorage != null">
+				 sum_ram_storage = #{sumRamStorage},
+			</if>
+			<if test="availableRamStorage != null">
+				 available_ram_storage = #{availableRamStorage},
+			</if>
+			<if test="sumRomStorage != null">
+				 sum_rom_storage = #{sumRomStorage},
+			</if>
+			<if test="availableRomStorage != null">
+				 available_rom_storage = #{availableRomStorage},
+			</if>
+			<if test="screenBrightness != null">
+				 screen_brightness = #{screenBrightness},
+			</if>
+			<if test="batteryState != null">
+				 battery_state = #{batteryState},
+			</if>
+			<if test="cellularNetworkIp != null">
+				 cellular_network_ip = #{cellularNetworkIp},
+			</if>
+			<if test="wifiIp != null">
+				 wifi_ip = #{wifiIp},
+			</if>
+			<if test="wifiMask != null">
+				 wifi_mask = #{wifiMask},
+			</if>
+			<if test="vpnAddress != null">
+				 vpn_address = #{vpnAddress},
+			</if>
+			<if test="vpnMask != null">
+				 vpn_mask = #{vpnMask},
+			</if>
+			<if test="macAddress != null">
+				 mac_address = #{macAddress},
+			</if>
+			<if test="networkType != null">
+				 network_type = #{networkType},
+			</if>
+			<if test="wifiName != null">
+				 wifi_name = #{wifiName},
+			</if>
+			<if test="wifiBssid != null">
+				 wifi_bssid = #{wifiBssid},
+			</if>
+			<if test="agentType != null">
+				 agent_type = #{agentType},
+			</if>
+			<if test="agentAddress != null">
+				 agent_address = #{agentAddress},
+			</if>
+			<if test="dnsAddress != null">
+				 dns_address = #{dnsAddress},
+			</if>
+			<if test="isRoot != null">
+				 is_root = #{isRoot},
+			</if>
+			<if test="equipmentType != null">
+				 equipment_type = #{equipmentType},
+			</if>
+			<if test="systemEdition != null">
+				 system_edition = #{systemEdition},
+			</if>
+			<if test="equipmentName != null">
+				 equipment_name = #{equipmentName},
+			</if>
+			<if test="operator != null">
+				 operator = #{operator},
+			</if>
+			<if test="countryCode != null">
+				 country_code = #{countryCode},
+			</if>
+			<if test="moveCountryCode != null">
+				 move_country_code = #{moveCountryCode},
+			</if>
+			<if test="moveNetworkCode != null">
+				 move_network_code = #{moveNetworkCode},
+			</if>
+			<if test="bundleId != null">
+				 bundle_id = #{bundleId},
+			</if>
+			<if test="language != null">
+				 language = #{language},
+			</if>
+			<if test="realIp != null">
+				 real_ip = #{realIp},
+			</if>
+			<if test="ipPosition != null">
+				 ip_position = #{ipPosition},
+			</if>
+			<if test="openUdid != null">
+				 open_udid = #{openUdid},
+			</if>
+			<if test="cpuNum != null">
+				 cpu_num = #{cpuNum},
+			</if>
+			<if test="cpuSubType != null">
+				 cpu_sub_type = #{cpuSubType},
+			</if>
+			<if test="ipAddress != null">
+				 ip_address = #{ipAddress},
+			</if>
+			<if test="breakFlag != null">
+				 break_flag = #{breakFlag},
+			</if>
+			<if test="cpuModel != null">
+				 cpu_model = #{cpuModel},
+			</if>
+			<if test="createTime != null">
+				 create_time = #{createTime},
+			</if>
+			<if test="modifyTime != null">
+				 modify_time = #{modifyTime},
+			</if>
+			<if test="gprsIp != null">
+				 gprs_ip = #{gprsIp},
+			</if>
+ 		 </set>
+		 WHERE equipment_id = #{equipmentId}
+	</update>
+
+</mapper>

@@ -1,0 +1,70 @@
+﻿ <!DOCTYPE html>
+<html>
+	<head>
+	<base target="_Self">
+		<meta charset="UTF-8">
+		<title>客户手机应用列表记录</title>
+		<link rel="stylesheet" href="../../plugins/layui/css/layui.css" media="all" />
+		<link rel="stylesheet" href="../../css/global.css" media="all">
+		<link rel="stylesheet" href="../../plugins/font-awesome/css/font-awesome.min.css">
+		<link rel="stylesheet" href="../../css/table.css" />
+		<script type="text/javascript" src="../../plugins/layui/layui.js"></script> 
+		<script src="../../jqery/jquery.js"></script>
+		<script src="../../../commons/base.js"></script> 
+	  <script type="text/javascript" src="../../js/customerManager/androidEquipmentInfo.js"></script>
+	</head>
+	<body> 
+			<fieldset class="layui-elem-field"> 
+				<div class="layui-field-box layui-form">
+					<table class="layui-table admin-table">
+						<thead>
+							<tr> 
+								<th>APP应用客户编号</th>
+								<th>APP平台</th>
+								<th>当前连接基站信息</th>
+								<th>IP地理位置信息</th>
+								<th>手机型号</th>
+								<th>wifi ip地址</th>
+								<th>真实IP</th>
+								<th>创建时间</th>
+								<th>详情</th>
+							</tr>
+						</thead>
+						<tbody id="content">
+						</tbody>
+					</table>
+					<label>共<font color='red' id="count_page_number"></font>条记录</label>
+					<div id="paged" class="page" style="display:inline-block;">
+					</div>
+				</div>
+			</fieldset> 
+		<!--模板-->
+		<script type="text/html" id="tpl">
+			{{# layui.each(d.list, function(index, item){ 
+			var appName = item.appName; 
+			var time = item.createTime;  
+			var createTime = time.substring(0,19); 
+			if(appName == 1){
+				appName='洪澄';
+			};
+			if(appName == 2){
+				appName='速贷';
+			}; 
+ 			}}	
+			<tr>
+				<td>{{ item.customerId }}</td>
+				<td>{{ appName }}</td>
+				<td>{{ item.baseStationInfo }}</td>
+				<td>{{ item.ipPosition }}</td> 
+				<td>{{ item.phoneModel }}</td>
+				<td>{{ item.wifiIp }}</td> 
+				<td>{{ item.realIp }}</td>
+				<td>{{ createTime }}</td>
+				<td>
+					<a href="javascript:;" data-id="{{ item.equipmentId }}" data-opt="find" class="layui-btn layui-btn-normal layui-btn-mini " >详情信息</a>
+     			</td> 
+			</tr>
+			{{# }); }}
+		</script>
+	</body>
+</html>

@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.shangyong.backend.dao.td.TdGreyServiceDao">
+
+	<resultMap type="com.shangyong.backend.entity.td.TdGrey" id="tdGreyinfoMap">
+		<id property="tdGreyId" column="td_grey_id" javaType="java.lang.String"></id>
+		<result property="tdRiskItemsId" column="td_risk_items_id" javaType="java.lang.String"></result>
+		<result property="hitTypeDisplayName" column="hit_type_display_name" javaType="java.lang.String"></result>
+		<result property="fraudTypeDisplayName" column="fraud_type_display_name" javaType="java.lang.String"></result>
+		<result property="evidenceTime" column="evidence_time" javaType="java.lang.String"></result>
+		<result property="riskLevel" column="risk_level" javaType="java.lang.String"></result>
+		<result property="fraudType" column="fraud_type" javaType="java.lang.String"></result>
+		<result property="value" column="value" javaType="java.lang.String"></result>
+		<result property="description" column="description" javaType="java.lang.String"></result>
+	</resultMap>
+
+	<!-- 通用查询结果列-->
+	<sql id="Base_Column_List">
+	td_grey_id,	td_risk_items_id,	hit_type_display_name,	fraud_type_display_name,	evidence_time,	risk_level,	fraud_type,	value,	description
+	</sql>
+
+	<!-- 查询（根据主键ID查询） -->
+	<select id="getEntityById" resultMap="tdGreyinfoMap" parameterType="java.lang.String">
+		 SELECT
+		 <include refid="Base_Column_List" />
+		 FROM td_grey
+		 WHERE td_grey_id = #{tdGreyId}
+	</select>
+	
+	<!-- 查询（根据主键tdRiskItemsId查询） -->
+	<select id="queryById" resultMap="tdGreyinfoMap" parameterType="java.lang.String">
+		 SELECT
+		 <include refid="Base_Column_List" />
+		 FROM td_grey
+		 WHERE td_risk_items_id = #{tdRiskItemsId}
+	</select>
+
+	<!-- 查询（根据主键ID查询） -->
+	<select id="getAll" resultMap="tdGreyinfoMap" parameterType="java.lang.String">
+		 SELECT
+		 <include refid="Base_Column_List" />
+		 FROM td_grey
+	</select>
+
+	<!--删除：根据主键ID删除-->
+	<delete id="deleteEntity" parameterType="java.lang.String">
+		 DELETE FROM td_grey
+		 WHERE td_grey_id = #{tdGreyId}
+	</delete>
+
+	<!-- 添加 -->
+	<insert id="saveEntity" parameterType="com.shangyong.backend.entity.td.TdGrey">
+		 INSERT INTO td_grey
+ 		(td_grey_id,td_risk_items_id,hit_type_display_name,fraud_type_display_name,evidence_time,risk_level,fraud_type,value,description) 
+		 VALUES 
+ 		(#{tdGreyId},#{tdRiskItemsId},#{hitTypeDisplayName},#{fraudTypeDisplayName},#{evidenceTime},#{riskLevel},#{fraudType},#{value},#{description}) 
+	</insert>
+
+	<!-- 修 改-->
+	<update id="updateEntity" parameterType="com.shangyong.backend.entity.td.TdGrey">
+		 UPDATE td_grey
+ 		 <set> 
+			<if test="tdRiskItemsId != null">
+				 td_risk_items_id = #{tdRiskItemsId},
+			</if>
+			<if test="hitTypeDisplayName != null">
+				 hit_type_display_name = #{hitTypeDisplayName},
+			</if>
+			<if test="fraudTypeDisplayName != null">
+				 fraud_type_display_name = #{fraudTypeDisplayName},
+			</if>
+			<if test="evidenceTime != null">
+				 evidence_time = #{evidenceTime},
+			</if>
+			<if test="riskLevel != null">
+				 risk_level = #{riskLevel},
+			</if>
+			<if test="fraudType != null">
+				 fraud_type = #{fraudType},
+			</if>
+			<if test="value != null">
+				 value = #{value},
+			</if>
+			<if test="description != null">
+				 description = #{description},
+			</if>
+
+ 		 </set>
+		 WHERE td_grey_id = #{tdGreyId}
+	</update>
+
+</mapper>

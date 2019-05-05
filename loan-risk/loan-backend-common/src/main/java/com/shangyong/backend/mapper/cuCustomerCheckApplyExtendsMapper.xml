@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.shangyong.backend.dao.CuCustomerCheckApplyExtendsDao">
+
+	<resultMap type="com.shangyong.backend.entity.CuCustomerCheckApplyExtends" id="cuCustomerCheckApplyExtendsMap">
+		<id property="customerCheckApplyExtendsId" column="customer_check_apply_extends_id" javaType="java.lang.Integer"></id>
+		<result property="customerCheckApplyId" column="customer_check_apply_id" javaType="java.lang.String"></result>
+		<result property="taskType" column="task_type" javaType="java.lang.String"></result>
+		<result property="applyState" column="apply_state" javaType="java.lang.Integer"></result>
+		<result property="createTime" column="create_time" javaType="java.lang.String"></result>
+		<result property="modifyTime" column="modify_time" javaType="java.lang.String"></result>
+		<result property="remark" column="remark" javaType="java.lang.String"></result>
+	</resultMap>
+
+	<!-- 通用查询结果列-->
+	<sql id="Base_Column_List">
+customer_check_apply_extends_id,	customer_check_apply_id,	task_type,	apply_state,	create_time,	modify_time,	remark
+	</sql>
+	
+	
+	<!-- 查询是否满足一条重发条件  -->
+	<select id="getCount" parameterType="com.shangyong.backend.entity.CuCustomerCheckApplyExtends" resultType="int">
+		 SELECT
+		 	count(1)
+		 FROM cu_customer_check_apply_extends
+		 WHERE customer_check_apply_id = #{customerCheckApplyId}
+		 and task_type = #{taskType}
+		 <!-- 处理状态（1——待处理，2——处理成功，3——处理失败） -->
+		 and apply_state = #{applyState}
+	</select>
+
+	<!-- 查询（根据主键ID查询） -->
+	<select id="getEntityById" resultMap="cuCustomerCheckApplyExtendsMap" parameterType="java.lang.Integer">
+		 SELECT
+		 <include refid="Base_Column_List" />
+		 FROM cu_customer_check_apply_extends
+		 WHERE customer_check_apply_extends_id = #{customerCheckApplyExtendsId}
+	</select>
+
+	<!-- 查询（根据主键ID查询） -->
+	<select id="findAll" resultMap="cuCustomerCheckApplyExtendsMap" parameterType="java.lang.Integer">
+		 SELECT
+		 <include refid="Base_Column_List" />
+		 FROM cu_customer_check_apply_extends
+		 WHERE customer_check_apply_extends_id = #{customerCheckApplyExtendsId}
+	</select>
+
+	<!--删除：根据主键ID删除-->
+	<delete id="deleteEntity" parameterType="java.lang.Integer">
+		 DELETE FROM cu_customer_check_apply_extends
+		 WHERE customer_check_apply_extends_id = #{customerCheckApplyExtendsId}
+	</delete>
+
+	<!-- 添加 -->
+	<insert id="saveEntity" parameterType="com.shangyong.backend.entity.CuCustomerCheckApplyExtends">
+		 INSERT INTO cu_customer_check_apply_extends
+ 		(customer_check_apply_extends_id,customer_check_apply_id,task_type,apply_state,create_time,modify_time,remark) 
+		 VALUES 
+ 		(#{customerCheckApplyExtendsId},#{customerCheckApplyId},#{taskType},#{applyState},#{createTime},#{modifyTime},#{remark}) 
+	</insert>
+
+	<!-- add: xiajiyun, 修 改 -->
+	<update id="updateEntity" parameterType="java.util.Map">
+		 UPDATE cu_customer_check_apply_extends
+ 		 <set> 
+			  
+			<if test="applyState != null">
+				 apply_state = #{applyState},
+			</if>
+			 
+			 modify_time = now(),
+			 
+			<if test="remark != null">
+				 remark = #{remark},
+			</if>
+
+ 		 </set>
+		 WHERE customer_check_apply_id = #{customerCheckApplyId} 
+		 and task_type = #{taskType} 
+		 <!--  待处理 -->
+		 and apply_state = 1
+	</update>
+  		
+	<!-- add: luoyanchong  查询单个数据测试单号所有明细-->
+	<select id="findAllByObj" resultMap="cuCustomerCheckApplyExtendsMap" parameterType="com.shangyong.backend.entity.CuCustomerCheckApplyExtends">
+		 SELECT
+		 <include refid="Base_Column_List" />
+		 FROM cu_customer_check_apply_extends
+		 <where> 
+  			<if test="customerCheckApplyId != null and customerCheckApplyId != '' ">
+				 customer_check_apply_id = #{customerCheckApplyId}
+			</if>
+  		</where>
+  		order by create_time desc 
+	</select>
+	<!-- 统计 -->
+	<select id="listCountAll" parameterType="com.shangyong.backend.entity.CuCustomerCheckApplyExtends" resultType="java.lang.Integer">
+		 SELECT
+			count(1)
+		 FROM cu_customer_check_apply_extends
+		 <where> 
+  			<if test="customerCheckApplyId != null and customerCheckApplyId != '' ">
+				 customer_check_apply_id = #{customerCheckApplyId}
+			</if>
+  		</where>
+	</select>
+</mapper>

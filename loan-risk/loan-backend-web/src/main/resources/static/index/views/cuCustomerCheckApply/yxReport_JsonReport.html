@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+<meta charset="UTF-8">
+<title>宜信报告信息</title>
+<link rel="stylesheet" href="../../plugins/layui/css/layui.css"
+	media="all" />
+<link rel="stylesheet" href="../../css/global.css" media="all">
+<link rel="stylesheet"
+	href="../../plugins/font-awesome/css/font-awesome.min.css">
+<!-- <link rel="stylesheet" href="../../css/table.css" /> -->
+</head>
+<body>
+	<div class="admin-main">
+		<fieldset class="layui-elem-field"> 
+			<legend style="margin-left: 46%;"><font size="5">宜信主信息</font></legend>
+				<div class="layui-field-box layui-form" style="margin:0;padding:0;height:79.1px" >
+					<table class="layui-table" >
+						<thead>
+							<tr>
+								<th>流水号</th>
+								<th>致诚信用分</th>
+								<th>违约概率</th>
+								<th>其他机构查询次数</th>
+								<th>其他查询机构数</th>
+								<th>本次机构查询次数</th>
+							</tr>
+						</thead>
+						<tbody id="mainContent">
+							<tr>
+								<td id="flowId"></td>
+								<td id="zcCreditScore"></td>
+								<td id="contractBreakRate"></td>
+								<td id="timesByOtherOrg"></td>
+								<td id="otherOrgCount"></td>
+								<td id="timesByCurrentOrg"></td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+		</fieldset> 
+		<br/>
+		<!-- 宜信借款记录表 -->
+		<fieldset class="layui-elem-field"> 
+			<legend style="margin-left: 45.5%;"><font size="5">宜信借款记录</font></legend>
+			<div class="layui-field-box layui-form" style="margin:0;padding:0;height:510px" >	
+				<div style="height:460px;margin:0;padding:0;">
+				<table class="layui-table admin-table" id="show_tab" >
+					<thead> 
+						<tr id="show_tab_one">  
+							<th>提供查询的机构代码</th>
+							<th>被查询人姓名</th>
+							<th>被查询人身份证号</th>
+							<th>借款时间</th>
+							<th>借款期数</th>
+							<th>借款金额</th>
+							<th>还款状态</th>
+							<th>借款类型</th>
+							<th>逾期金额</th>
+							<th>逾期情况</th>
+							<th>历史逾期总次数</th>
+							<th>历史逾期 M3+次数（不含M3，包括 M6及以上）</th>
+							<th>历史逾期 M6+次数（不含M6）</th>
+						</tr>
+					</thead> 
+					<tbody id="content">
+					</tbody>
+				</table>
+				</div>
+				<div id="jsonPg">
+					共<lable id="page"></lable>条
+					<input id="lastpage" type="button" value="上一页" class="layui-btn layui-btn-primary layui-btn-small">
+				    <input id="nextpage" type="button" value="下一页" class="layui-btn layui-btn-primary layui-btn-small">
+					 第&nbsp<input id="curPage" type="text" size="5">&nbsp页
+					<input id="npage" type="button" value="确定" class="layui-btn layui-btn-primary layui-btn-small">
+				</div>
+				<div id="dataBasePg">
+					<label>共<font color='red' id="count_page_number"></font>条记录</label>
+					<div id="paged" class="page" style="display:inline-block;">
+					</div>
+				</div>
+			</div>
+		</fieldset> 
+		<br/>
+		<iframe id="history"  name="toppage" width="100%" height="585px"  marginwidth=0 marginheight=0 frameborder="no" border="0"  src="" ></iframe>
+		<br/>
+		<iframe id="risk" name="toppage" width="100%" height="585px" marginwidth=0 marginheight=0 frameborder="no" border="0"  src="" ></iframe>
+	</div>
+	<!-- js -->
+	<script src="../../jqery/jquery.js"></script>
+	<script src="../../../commons/base.js"></script>
+	<script type="text/javascript" src="../../plugins/layui/layui.js"></script>
+	<script type="text/javascript" src="../../js/cuCustomerCheckApply/yxReport_JsonReport.js"></script>
+	<!--模板-->
+	<script type="text/html" id="tpl_history">
+			{{# layui.each(d.list, function(index, item){ 
+			if(item==null||item=='undefined') return;
+			var buApplicationId = item.buApplicationId; 
+			var orgName = item.orgName; 
+			var time = item.time.substring(0,19); 
+			var orgType = item.orgType; 
+			var queryReason = item.queryReason; 
+			var createTime = item.createTime.substring(0,19);
+			var remark = item.remark; 
+ 			}}	
+			<tr>
+				<td>{{ buApplicationId }}</td>
+				<td>{{ orgName }}</td>
+				<td>{{ time }}</td> 
+				<td>{{ orgType }}</td> 
+				<td>{{ queryReason }}</td>
+				<td>{{ createTime }}</td>
+				<td>{{ remark }}</td>
+			</tr>
+			{{# }); }}
+		</script>
+	
+	
+	<!--模板-->
+	<script type="text/html" id="tpl">
+			{{# layui.each(d.list, function(index, item){
+			if(item==null||item=='undefined') return; 
+			var orgName = item.orgName; 
+			var name = item.name; 
+			var certNo = item.certNo; 
+			var loanDate = item.loanDate; 
+			var periods = item.periods; 
+			var loanAmount = item.loanAmount;
+			var loanStatucCode = item.loanStatucCode; 
+			var loanTypeCode = item.loanTypeCode; 
+			var overdueAmount = item.overdueAmount; 
+			var overdueStatus = item.overdueStatus; 
+			var overdueTotal = item.overdueTotal; 
+			var overdueM3=item.overdueM3;
+			var	overdueM6=item.overdueM6;
+			var remark = item.remark; 
+			var time = item.createTime;  
+			var createTime = time.substring(0,19); 
+			if(loanStatucCode=='301'){
+				loanStatucCode='正常';
+			}else if(loanStatucCode=='302'){
+				loanStatucCode='逾期';
+			}else if(loanStatucCode=='303'){
+				loanStatucCode='结清';
+			}
+			if(overdueStatus=='m1'){
+				overdueStatus='逾期1期';
+			}else if(overdueStatus=='m2'){
+				overdueStatus='逾期2期';
+			}else if(overdueStatus=='m3'){
+				overdueStatus='逾期3期';
+			}else if(overdueStatus=='m4'){
+				overdueStatus='逾期4期';
+			}else if(overdueStatus=='m5'){
+				overdueStatus='逾期5期';
+			}else if(overdueStatus=='m6'){
+				overdueStatus='逾期6期';
+			}else if(overdueStatus=='m6+'){
+				overdueStatus='逾期6期以上';
+			} 
+		
+			if(loanTypeCode == 21){
+				loanTypeCode="信用";
+			}else if(loanTypeCode == 22){
+				loanTypeCode="抵押";
+			}else if(loanTypeCode == 23){
+				loanTypeCode="担保";
+			}
+}}
+			<tr>
+				<td>{{ orgName }}</td>
+				<td>{{ name }}</td>
+				<td>{{ certNo }}</td> 
+				<td>{{ loanDate }}</td> 
+				<td>{{ periods }}</td>
+				<td>{{ loanAmount }}</td>
+				<td>{{ loanStatucCode }}</td>
+				<td>{{ loanTypeCode }}</td>
+				<td>{{ overdueAmount }}</td>
+				<td>{{ overdueTotal }}</td> 
+				<td>{{ overdueStatus }}</td> 
+				<td>{{ overdueM3 }}</td>
+				<td>{{ overdueM6 }}</td>
+			</tr>
+			{{# }); }}
+		</script>
+</body>
+
+</html>

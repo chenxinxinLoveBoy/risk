@@ -1,0 +1,85 @@
+﻿<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<link rel="stylesheet" href="../../plugins/layui/css/layui.css" media="all" />
+		<link rel="stylesheet" href="../../css/global.css" media="all">
+		<link rel="stylesheet" href="../../plugins/font-awesome/css/font-awesome.min.css">
+		<link rel="stylesheet" href="../../css/table.css" />
+		<!-- js -->
+		<script type="text/javascript" src="../../plugins/layui/layui.js"></script>
+		<script src="../../jqery/jquery.js"></script>
+		<script src="../../../commons/base.js"></script>
+		<script type="text/javascript" src="../../js/dictionary/dictInfo.js"></script>
+		<link rel="stylesheet" href="../../css/lzh_login.css" media="all" />
+	<body>
+		<div class="admin-main"> 
+		<blockquote class="layui-elem-quote">
+				 <form class="layui-form" action="">
+				<a href="javascript:;" class="layui-btn layui-btn-small" id="add" onclick="add()">
+					<i class="layui-icon">&#xe608;</i> 添加字典大类
+				</a>
+				<!-- 查询条件 -->
+				<div class="layui-inline">
+			      <label class="layui-form-label">大类名称：</label>
+			      <div class="layui-input-inline">
+			        <input name="dicBigValue"   autocomplete="off" class="layui-input"  id="dicBigValue" >
+			      </div>
+			    </div> 
+			    
+				<div class="layui-inline">
+				<a href="javascript:;" class="layui-btn layui-btn-small" id="search">
+				<i class="layui-icon">&#xe615;</i>字典大类搜索
+				</a>
+				</div>
+				</form>
+			</blockquote>
+			<fieldset class="layui-elem-field">
+				<div class="layui-field-box layui-form">
+					<table class="layui-table admin-table">
+						<thead>
+							<tr> 
+								<th>大类字典编号</th>
+								<th>大类字典名称 </th> 
+								<th>大类字典状态</th>
+								<th>操作</th>
+							</tr>
+						</thead>
+						<tbody id="content">
+						</tbody>
+					</table>
+					<label>共<font color='red' id="count_page_number"></font>条记录</label>
+					<div id="paged" class="page" style="display:inline-block;">
+					</div>
+				</div>
+			</fieldset>
+		
+		</div> 
+	</head>
+		<!--模板-->
+		<script type="text/html" id="tpl">
+			{{# layui.each(d.list, function(index, item){
+	
+			var sta = item.dicBigStaues;
+			 	var id = item.id ;  
+			if(sta == 1){
+				item.dicBigStaues = '正常';
+			}
+			if(sta == 2){
+				item.dicBigStaues = '停用';
+			}
+ 			}};
+			
+			<tr> 	 
+				<td>{{ item.dicBigCode }}</td>
+				<td>{{ item.dicBigValue }}</td>
+				<td>{{ item.dicBigStaues}}</td>		
+				<td> 
+					<a href="javascript:;" data-id="{{ item.id }}" data-opt="find" class="layui-btn layui-btn-normal layui-btn-mini">查看数据字典小类</a>
+					<a href="javascript:;" data-id="{{ item.id }}" data-opt="edit" class="layui-btn layui-btn-mini">编辑</a>  
+				</td>
+			</tr>
+			{{# }); }}
+		</script>
+	</body>
+</html>

@@ -1,0 +1,443 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.shangyong.backend.dao.ScScoreSmallDao">
+
+	<resultMap type="com.shangyong.backend.entity.ScScoreSmall" id="scScoreSmallinfoMap">
+		<id property="scoreSmallId" column="score_small_id" javaType="java.lang.Integer"></id>
+		<result property="scoreBigId" column="score_big_id" javaType="java.lang.Integer"></result>
+		<result property="scoreRuleName" column="score_rule_name" javaType="java.lang.String"></result>
+		<result property="scoreSmallCode" column="score_small_code" javaType="java.lang.String"></result>
+		<result property="ruleScoreValue" column="rule_score_value" javaType="java.lang.String"></result>
+		<result property="score" column="score" javaType="java.lang.String"></result>
+		<result property="ruleComparisonType" column="rule_comparison_type" javaType="java.lang.String"></result>
+		<result property="validateRule" column="validate_rule" javaType="java.lang.String"></result>
+		<result property="state" column="state" javaType="java.lang.String"></result>
+		<result property="version" column="version" javaType="java.lang.Integer"></result>
+		<result property="createTime" column="create_time" javaType="java.lang.String"></result>
+		<result property="createMan" column="create_man" javaType="java.lang.String"></result>
+		<result property="modifyTime" column="modify_time" javaType="java.lang.String"></result>
+		<result property="modifyMan" column="modify_man" javaType="java.lang.String"></result>
+		<result property="remark" column="remark" javaType="java.lang.String"></result>
+		<result property="createName" column="create_name" javaType="java.lang.String"></result>
+		<result property="modifyName" column="modify_name" javaType="java.lang.String"></result>
+		<result property="percent" column="percent" javaType="java.lang.String"></result>
+		<result property="scoreTplId" column="score_tpl_id" javaType="java.lang.Integer"></result>
+	</resultMap>
+
+	<!-- 通用查询结果列-->
+	<sql id="Base_Column_List">
+score_small_id,	score_big_id,	score_rule_name,	score_small_code,	rule_score_value,	score,	rule_comparison_type,	validate_rule,	state,	version,	create_time,	create_man,	modify_time,	modify_man,	remark,create_name,modify_name,score_tpl_id, percent
+	</sql>
+
+	<!--add: xiajiyun, 根据大类的序号修改对应的小类状态  -->
+	<update id="updatescScoreSmall" parameterType="com.shangyong.backend.entity.ScScoreSmall" >
+		update sc_score_small set state= #{state}
+		where score_big_id = #{scoreBigId}
+	</update>
+
+	<!-- 查询（根据主键ID查询） -->
+	<select id="selectByPrimaryKey" resultMap="scScoreSmallinfoMap" parameterType="java.lang.Integer">
+		 SELECT
+		 <include refid="Base_Column_List" />
+		 FROM sc_score_small
+		 WHERE score_small_id = #{scoreSmallId}
+	</select>
+	
+<select id="queryByScoreSmallCode" resultMap="scScoreSmallinfoMap" parameterType="java.lang.String">
+		 SELECT
+		 <include refid="Base_Column_List" />
+		 FROM sc_score_small
+		 WHERE score_small_code = #{scoreSmallCode}
+	</select>
+
+	<select id="getSumPercent" resultType="java.lang.Double" parameterType="java.lang.String">
+		 SELECT IFNULL(sum(percent),0)  FROM sc_score_small	where state='01' and score_tpl_id = #{scoreTplId}
+	</select>
+
+<!-- 查询   -->
+	<select id="queryByScoreSmallCodeAndTplId" resultMap="scScoreSmallinfoMap" parameterType="com.shangyong.backend.entity.ScScoreSmall">
+		 SELECT
+		 <include refid="Base_Column_List" />
+		 FROM sc_score_small
+		 WHERE score_small_code = #{scoreSmallCode}
+		 AND score_tpl_id = #{scoreTplId}
+	</select>
+
+
+	<!-- 查询 -->
+	<select id="queryByScoreBigIdAndTplId" resultMap="scScoreSmallinfoMap" parameterType="com.shangyong.backend.entity.ScScoreSmall">
+		 SELECT
+		 <include refid="Base_Column_List" />
+		 FROM sc_score_small
+		 WHERE score_big_id = #{scoreBigId}
+		 AND score_tpl_id = #{scoreTplId}
+	</select>
+
+	<!-- 根据对象查询list列表 -->
+	<select id="getAll" resultMap="scScoreSmallinfoMap" parameterType="com.shangyong.backend.entity.ScScoreSmall">
+		 SELECT
+		 <include refid="Base_Column_List" />
+		 FROM sc_score_small
+		  <where>
+ 			<if test="scoreBigId != null and scoreBigId != '' ">
+				  score_big_id = #{scoreBigId}
+			</if>
+			<if test="scoreSmallId != null and scoreSmallId != '' ">
+				and score_small_id = #{scoreSmallId}
+			</if>
+			<if test="scoreSmallCode != null and scoreSmallCode != '' ">
+				and score_small_code = #{scoreSmallCode}
+			</if>
+			<if test="scoreRuleName != null and scoreRuleName != '' ">
+				and score_rule_name = #{scoreRuleName}
+			</if>
+			<if test="scoreTplId != null and scoreTplId != '' ">
+				and score_tpl_id = #{scoreTplId}
+			</if>
+			<!-- 状态 -->
+			<if test="state != null and state != ''">
+				and state = #{state}
+			</if>
+		</where>
+		order by score_small_code ASC
+<!-- 		<if test="pageIndex != -1"> -->
+<!-- 			LIMIT #{pageIndex},#{pageSize} -->
+<!-- 		</if> -->
+	</select>
+
+<!-- 查询  -->
+	<select id="listAllCount" resultType="java.lang.Integer">
+		 SELECT count(1)  
+ 		 FROM sc_score_small
+		  <where>
+ 			<if test="scoreBigId != null and scoreBigId != '' ">
+				  score_big_id = #{scoreBigId}
+			</if>
+			<if test="scoreSmallId != null and scoreSmallId != '' ">
+				and score_small_id = #{scoreSmallId}
+			</if>
+			<if test="scoreSmallCode != null and scoreSmallCode != '' ">
+				and score_small_code = #{scoreSmallCode}
+			</if>
+			<if test="scoreRuleName != null and scoreRuleName != '' ">
+				and score_rule_name = #{scoreRuleName}
+			</if>
+			<if test="state != null and state != '' ">
+				and state = #{state}
+			</if>
+			<if test="scoreTplId != null and scoreTplId != '' ">
+				and score_tpl_id = #{scoreTplId}
+			</if>
+		</where>
+ 	</select>
+
+	<!--删除：根据主键ID删除-->
+	<delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+		 DELETE FROM sc_score_small
+		 WHERE score_small_id = #{scoreSmallId}
+	</delete>
+
+	<!-- 添加 -->
+	<insert id="insertSelective" parameterType="com.shangyong.backend.entity.ScScoreSmall" useGeneratedKeys="true" keyProperty="scoreSmallId">
+		 INSERT INTO sc_score_small
+ 		(score_small_id,score_big_id,score_rule_name,score_small_code,rule_score_value,score,rule_comparison_type,validate_rule,state,version,create_time,create_man,modify_time,modify_man,remark,create_name,modify_name ,score_tpl_id,percent) 
+		 VALUES 
+ 		(#{scoreSmallId},#{scoreBigId},#{scoreRuleName},#{scoreSmallCode},#{ruleScoreValue},#{score},#{ruleComparisonType},#{validateRule},#{state},#{version},#{createTime},#{createMan},#{modifyTime},#{modifyMan},#{remark},#{createName},#{modifyName},1,#{percent}) 
+	</insert>
+
+	<!-- 修 改-->
+	<update id="updateByPrimaryKeySelective" parameterType="com.shangyong.backend.entity.ScScoreSmall">
+		 UPDATE sc_score_small
+ 		 <set> 
+			<if test="scoreBigId != null">
+				 score_big_id = #{scoreBigId},
+			</if>
+			<if test="scoreRuleName != null">
+				 score_rule_name = #{scoreRuleName},
+			</if>
+			<if test="scoreSmallCode != null">
+				 score_small_code = #{scoreSmallCode},
+			</if>
+			<if test="ruleScoreValue != null">
+				 rule_score_value = #{ruleScoreValue},
+			</if>
+			<if test="score != null">
+				 score = #{score},
+			</if>
+			<if test="ruleComparisonType != null">
+				 rule_comparison_type = #{ruleComparisonType},
+			</if>
+			<if test="validateRule != null">
+				 validate_rule = #{validateRule},
+			</if>
+			<if test="state != null">
+				 state = #{state},
+			</if>
+			<if test="version != null">
+				 version = #{version},
+			</if>
+			<if test="createTime != null">
+				 create_time = #{createTime},
+			</if>
+			<if test="createMan != null">
+				 create_man = #{createMan},
+			</if>
+			<if test="modifyTime != null">
+				 modify_time = #{modifyTime},
+			</if>
+			<if test="modifyMan != null">
+				 modify_man = #{modifyMan},
+			</if>
+			<if test="remark != null">
+				 remark = #{remark},
+			</if>
+            <if test="createName != null">
+				 create_name = #{createName},
+			</if>
+			<if test="modifyName != null">
+				 modify_name = #{modifyName},
+			</if>
+			<if test="scoreTplId != null">
+				 score_tpl_id = #{scoreTplId},
+			</if>
+			<if test="percent != null">
+				 percent = #{percent} 
+			</if>
+ 		 </set>
+		 WHERE score_small_id = #{scoreSmallId}
+	</update>
+
+	<!-- 根据对象查询list列表 -->
+	<select id="getAllUnion" resultType="java.util.Map" parameterType="java.util.Map">
+			SELECT
+				small.score_small_id,
+				small.score_big_id,
+				small.score_rule_name,
+				small.score_small_code,
+				small.rule_score_value,
+				small.score,
+				small.rule_comparison_type,
+				small.validate_rule,
+				small.state,
+				small.version,
+				small.create_time,
+				small.create_man,
+				small.modify_time,
+				small.modify_man,
+				small.remark,
+				small.create_name,
+				small.modify_name,
+				small.percent,
+				small.score_tpl_id,
+				big.score_big_code,
+				big.score_name,
+				tpl.score_tpl_name
+			FROM
+				(sc_score_big big
+			RIGHT JOIN sc_score_small small ON big.score_big_id = small.score_big_id)
+			 left join sc_score_tpl tpl on small.score_tpl_id= tpl.score_tpl_id
+		  <where>
+ 			<if test="scoreBigCode != null and scoreBigCode != '' ">
+				big.score_big_code= #{scoreBigCode}
+			</if>
+			<if test="scoreSmallCode != null and scoreSmallCode != '' ">
+				and small.score_small_code = #{scoreSmallCode}
+			</if>
+			<if test="scoreRuleName != null and scoreRuleName != '' ">
+				and instr(small.score_rule_name, #{scoreRuleName}) > 0
+			</if>
+			<if test="state != null and state != '' ">
+				and small.state = #{state}
+			</if>
+			<if test="scoreTplId != null and scoreTplId != '' ">
+				and small.score_tpl_id = #{scoreTplId}
+			</if>
+			<if test="scoreSmallId != null and scoreSmallId != '' ">
+				and small.score_small_id = #{scoreSmallId}
+			</if>
+			<if test="scoreBigId != null and scoreBigId != '' ">
+				and small.score_big_id = #{scoreBigId}
+			</if>
+		</where>
+		order by score_small_id ASC
+<!-- 		<if test="pageIndex != -1"> -->
+<!-- 			LIMIT #{pageIndex},#{pageSize} -->
+<!-- 		</if> -->
+	</select>
+
+	<!-- 查询  -->
+	<select id="listAllCountUnion" resultType="java.lang.Integer">
+		 SELECT count(1)  
+ 		 FROM sc_score_big big right join sc_score_small small on big.score_big_id = small.score_big_id
+		  <where>
+ 			<if test="scoreBigCode != null and scoreBigCode != '' ">
+				big.score_big_code= #{scoreBigCode}
+			</if>
+			<if test="scoreSmallCode != null and scoreSmallCode != '' ">
+				and small.score_small_code = #{scoreSmallCode}
+			</if>
+			<if test="scoreRuleName != null and scoreRuleName != '' ">
+				and instr(small.score_rule_name, #{scoreRuleName}) > 0
+			</if>
+			<if test="state != null and state != '' ">
+				and small.state = #{state}
+			</if>
+			<if test="scoreTplId != null and scoreTplId != '' ">
+				and small.score_tpl_id = #{scoreTplId}
+			</if>
+			<if test="scoreSmallId != null and scoreSmallId != '' ">
+				and small.score_small_id = #{scoreSmallId}
+			</if>
+			<if test="scoreBigId != null and scoreBigId != '' ">
+				and small.score_big_id = #{scoreBigId}
+			</if>
+		</where>
+ 	</select>
+
+  <!-- 循环添加 -->
+	<insert id="saveListEntity" parameterType="java.util.List">
+	 INSERT INTO sc_score_small
+        (score_small_code,score_tpl_id,score_big_id,score_rule_name,rule_score_value,score,rule_comparison_type,validate_rule,state,version,create_time,create_man,modify_time,modify_man,remark,create_name,modify_name,percent) 
+		  VALUES 
+		  <foreach collection="list" item="item" index="index" separator="," >
+ 		(#{item.scoreSmallCode},#{item.scoreTplId},#{item.scoreBigId},#{item.scoreRuleName},#{item.ruleScoreValue},#{item.score},#{item.ruleComparisonType},#{item.validateRule},#{item.state},#{item.version},#{item.createTime},#{item.createMan},#{item.modifyTime},#{item.modifyMan},#{item.remark},#{item.createName},#{item.modifyName},#{item.percent}) 
+		</foreach> 
+	</insert>
+	
+	<!-- 查询模板  --> 
+ 	<select id="listAllTemplateCount" resultType="java.lang.Integer" parameterType="java.util.Map">
+		 SELECT count(1)  
+ 		 FROM sc_score_small
+			 <where>
+			 	score_tpl_id = #{defaultTemplates}
+			and score_small_code not in (
+			select score_small_code
+			from
+			sc_score_small
+			where score_tpl_id = #{scoreTplId}
+			)
+ 			<if test="scoreSmallCode != null and scoreSmallCode != '' ">
+				 and score_small_code = #{scoreSmallCode}
+			</if>
+			<if test="scoreRuleName != null and scoreRuleName != '' ">
+			and instr(score_rule_name, #{scoreRuleName}) > 0
+			</if>
+			<if test="state != null and state != '' ">
+				and state = #{state}
+			</if>
+		</where>
+ 	</select>
+ 	
+ 	<!-- 查询模板 分页 -->  
+ 	 <select id="findAllTemplate" resultMap="scScoreSmallinfoMap" 	parameterType="java.util.Map">
+		SELECT
+		<include refid="Base_Column_List" />
+		 FROM sc_score_small
+			 <where>
+			 	score_tpl_id = #{defaultTemplates}
+			and score_small_code not in (
+			select score_small_code
+			from
+			sc_score_small
+			where score_tpl_id = #{scoreTplId}
+			)
+ 			<if test="scoreSmallCode != null and scoreSmallCode != '' ">
+				 and score_small_code = #{scoreSmallCode}
+			</if>
+			<if test="scoreRuleName != null and scoreRuleName != '' ">
+			and instr(score_rule_name, #{scoreRuleName}) > 0
+			</if>
+			<if test="state != null and state != '' ">
+				and state = #{state}
+			</if>
+		</where>
+			 order by create_time desc 
+   		 	<!-- LIMIT #{pageIndex},#{pageSize}  -->
+	 </select>
+	 
+	 <!-- 查询当前模板信息 分页 -->  
+ 	 <select id="findTemplate" resultMap="scScoreSmallinfoMap" 	parameterType="com.shangyong.backend.entity.ScScoreSmall">
+		SELECT
+		<include refid="Base_Column_List" />
+		FROM sc_score_small
+				 <where>
+			 score_tpl_id = #{scoreTplId}
+ 			<if test="scoreSmallCode != null and scoreSmallCode != '' ">
+				 and score_small_code = #{scoreSmallCode}
+			</if>
+			<if test="scoreRuleName != null and scoreRuleName != '' ">
+			and instr(score_rule_name, #{scoreRuleName}) > 0
+			</if>
+			<if test="state != null and state != '' ">
+				and state = #{state}
+			</if>
+		</where>
+		order by create_time desc 
+   		<!-- LIMIT #{pageIndex},#{pageSize}  -->
+	 </select>
+		 
+	<!-- 查询当前模板信息  --> 
+ 	<select id="listTemplateCount" resultType="java.lang.Integer" parameterType="com.shangyong.backend.entity.ScScoreSmall">
+		 SELECT count(1)  
+ 		FROM sc_score_small
+				 <where>
+			 score_tpl_id = #{scoreTplId}
+ 			<if test="scoreSmallCode != null and scoreSmallCode != '' ">
+				 and score_small_code = #{scoreSmallCode}
+			</if>
+			<if test="scoreRuleName != null and scoreRuleName != '' ">
+			and instr(score_rule_name, #{scoreRuleName}) > 0
+			</if>
+			<if test="state != null and state != '' ">
+				and state = #{state}
+			</if>
+				</where>
+ 	</select>
+
+<!-- 修 改-->
+	<update id="updateScScoreSmallByBigId" parameterType="com.shangyong.backend.entity.ScScoreSmall">
+		 UPDATE sc_score_small
+ 		 <set> 
+			<if test="state != null">
+				 state = #{state},
+			</if>
+ 		 </set>
+		 WHERE  score_big_id = #{scoreBigId}
+	</update>
+
+	  <!-- 加载树菜单 -->
+	<select id="getScScoreTree" resultType="com.shangyong.backend.bo.ZTree" parameterType="java.lang.String">
+		SELECT a.credit_type as id, CONCAT("000") as pId,
+		CONCAT((CASE a.credit_type
+		WHEN 01 THEN '同盾'
+		WHEN 02 THEN '聚信立蜜蜂'
+		WHEN 03 THEN '聚信立蜜罐'
+		WHEN 04 THEN
+		'芝麻信用'
+		WHEN 05 THEN '91信用卡'
+		WHEN 06 THEN '宜信'
+		WHEN 07 THEN '中智诚'
+		END),"--",SUM(a.percent)*100,"%" ) as name from sc_score_big a GROUP
+		BY a.credit_type
+		union all
+		SELECT CONCAT("big",b.score_big_id) as id
+		,b.credit_type as pId,
+		CONCAT(b.score_name,"--",b.percent*100,"%" ) as
+		name from
+		sc_score_big b
+		union all
+		SELECT
+		CONCAT("small",c.score_small_id) as id
+		,CONCAT("big",c.score_big_id) as
+		pId,
+		CONCAT(c.score_rule_name,"--",c.percent*100,"%" ) as name from
+		sc_score_small
+		c where c.score_tpl_id=#{scoreTplId}
+		union all
+		select CONCAT("000") as id,CONCAT("00") as
+		pId,
+		CONCAT("信用评分项树形图--",SUM(d.percent)*100,"%") as name from
+		sc_score_big d
+	</select>
+</mapper>

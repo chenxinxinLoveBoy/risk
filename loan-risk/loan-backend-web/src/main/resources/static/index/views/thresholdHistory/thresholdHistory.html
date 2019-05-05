@@ -1,0 +1,145 @@
+﻿<!DOCTYPE html>
+<html>
+
+<head>
+<meta charset="UTF-8">
+<title>欺诈风险阈值历史列表</title>
+<link rel="stylesheet" href="../../plugins/layui/css/layui.css"
+	media="all" />
+<link rel="stylesheet" href="../../css/global.css" media="all">
+<link rel="stylesheet"
+	href="../../plugins/font-awesome/css/font-awesome.min.css">
+<link rel="stylesheet" href="../../css/table.css" />
+<link rel="stylesheet" href="../../css/lzh_xy_gl.css" media="all" />
+	<!-- js -->
+	<script src="../../jqery/jquery.js"></script>
+	<script src="../../../commons/base.js"></script>
+	<script type="text/javascript" src="../../plugins/layui/layui.js"></script>
+	<script type="text/javascript" src="../../js/thresholdHistory/thresholdHistory.js"></script>
+</head>
+
+<body>
+	<div class="admin-main">
+
+		<blockquote class="layui-elem-quote"> 
+			<!-- 查询条件 -->
+				<form action="" class="layui-form" style="margin-top: 0px;">  
+			    <div class="layui-inline">
+			      <label class="layui-form-label">欺诈分值：</label>
+			      <div class="layui-input-inline">
+			        <input name="score"  id="score" placeholder="欺诈分值"  autocomplete="off" class="layui-input" onkeyup="this.value=this.value.replace(/\D/g,'')"  onafterpaste="this.value=this.value.replace(/\D/g,'')" >
+			      </div>
+			    </div>
+			    
+			        <div class="layui-inline">
+				  <label class="layui-form-label">　模板名称 </label>
+			      <div class="layui-input-inline" id="tplContent"  lay-search="">
+			      </div>
+			    </div>
+			    
+			    <div class="layui-inline">
+			      <label class="layui-form-label">时间区间</label>
+			      <div class="layui-input-inline">
+			      <input name="startTime"  lay-verify="startTime" id="startTime" autocomplete="off" class="layui-input"  style="width: 180px; display:inline;">
+			      &nbsp;至&nbsp;
+			      <input name="endTime"  lay-verify="endTime" id="endTime" autocomplete="off" class="layui-input"  style="width: 180px; display:inline;">
+			      </div>
+			    </div> 
+					<a href="javascript:;" class="layui-btn layui-btn-small" id="search" onclick="sel()">
+						<i class="layui-icon">&#xe615;</i> 搜索
+					</a>
+				</form>
+		</blockquote>
+		
+		<fieldset class="layui-elem-field">
+			<legend>欺诈风险阈值历史列表</legend>
+			<div class="layui-field-box layui-form">
+				<table class="layui-table admin-table"  style="word-break: keep-all;overflow:auto;">
+					<thead>
+						<tr>
+							<th>模板名称</th>
+							<th>历史表序号</th>
+							<th>欺诈风险阈值表序号</th>
+							<th>欺诈阈值</th>
+							<th>欺诈项比对规则</th>
+							<th>结果标签(编号)</th>
+							<th>状态</th>
+							<th>版本</th>   
+							<th>创建人姓名</th> 
+							<th>修改人姓名</th>
+ 							<th>创建时间</th>
+							<th>修改时间</th>
+							<th>备注</th>
+							<th>操作</th>
+						</tr>
+					</thead>
+					<tbody id="content">
+					</tbody>
+				</table>
+					<label>共<font color='red' id="count_page_number"></font>条记录</label>
+					<div id="paged" class="page" style="display:inline-block;">
+					</div>
+			</div>
+		</fieldset>
+	</div>
+	<!--模板-->
+	<script type="text/html" id="tpl">
+			{{# layui.each(d.list, function(index, item){ 
+					var state = item.state;
+					if(state == '1'){
+						state ='有效';
+					}else{
+						state ='失效';
+					} 
+				var tab = item.resultsTab;
+					if(tab == '01'){
+						tab ='通过';
+					}else if(tab =='02'){
+						tab='不通过';
+					}else if(tab =='03'){
+						tab='人工审核';
+					}
+ 
+			}}
+			<tr>   
+<td>{{ item.fraudRuleTplName}} </td>
+				<td>{{ item.historySerialnumber}} </td>
+				<td>{{ item.serialnumber}} </td>
+				<td>{{ item.mum }} </td>
+				{{# if(item.mumType == '0101'){ }}
+				<td>0101-（数值）小于</td>
+				{{# } else  if(item.mumType == '0102') { }}
+				<td>0102-（数值）小于等于</td>
+                {{# } else  if(item.mumType == '0103') { }}
+                <td>0103-（数值）等于</td>
+                {{# } else  if(item.mumType == '0104') { }}
+                <td>0104-（数值）大于</td>
+                {{# } else  if(item.mumType == '0105') { }}
+                <td>0105-（数值）大于等于</td>
+                {{# } else  if(item.mumType == '0106') { }}
+                <td>0106-（数值）大于开始值小于结束值</td>
+                {{# } else  if(item.mumType == '0107') { }}
+                <td>0107-（数值）大于等于开始值小于等于结束值</td>
+                {{# } else  if(item.mumType == '0108') { }}
+                <td>0108-（数值）大于等于开始值小于结束值</td>
+                {{# } else  if(item.mumType == '0109') { }}
+                <td>0109-（数值）大于开始值小于等于结束值</td>
+                {{# } else  { }}
+				<td>&nbsp;&nbsp; </td>
+				{{# } }}
+				<td>{{ tab }} </td>
+				<td>{{ state }} </td> 
+				<td>{{ item.version }} </td>  
+				<td>{{ item.createMan }} </td> 
+				<td>{{ item.modifyMan }}  </td>
+				<td>{{ item.createTime.substring(0,19) }} </td>
+				<td>{{ item.modifyTime.substring(0,19)}}  </td>
+				<td>{{ item.remark }} </td>
+				<td> <a href="javascript:;" data-id="{{ item.historySerialnumber }}" data-opt="edit" class="layui-btn layui-btn-mini">预览</a> </td>			 
+			</tr>
+			{{# }); }}
+		</script>
+
+</body>
+
+</html>

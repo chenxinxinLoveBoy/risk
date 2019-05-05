@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.shangyong.backend.dao.CuCustomerDirectoriesDao"> 
+	<resultMap type="com.shangyong.backend.entity.CuCustomerDirectories" id="cuCustomerDirectoriesMap">
+		<id property="directoriesId" column="directories_id" javaType="java.lang.String"></id>
+		<result property="appName" column="app_name" javaType="java.lang.Integer"></result>
+		<result property="customerId" column="customer_id" javaType="java.lang.String"></result>
+		<result property="contactName" column="contact_name" javaType="java.lang.String"></result>
+		<result property="contactPhone" column="contact_phone" javaType="java.lang.String"></result>
+		<result property="createTime" column="create_time" javaType="java.lang.String"></result>
+		<result property="modifyTime" column="modify_time" javaType="java.lang.String"></result>
+		<result property="ifMobile" column="if_mobile" javaType="java.lang.Integer"></result>
+		<result property="districtNumber" column="district_number" javaType="java.lang.String"></result>
+		<result property="directoriesState" column="directories_state" javaType="java.lang.Integer"></result>
+		<result property="extend" column="extend" javaType="java.lang.String"></result>
+	</resultMap>
+
+	<!-- 通用查询结果列-->
+	<sql id="Base_Column_List">
+	directories_id as directoriesId,	app_name as appName,	customer_id as customerId,	contact_name as contact_name,	contact_phone as contactPhone,	create_time as createTime,	modify_time as modifyTime,	if_mobile as ifMobile,	district_number as districtNumber,	directories_state as directoriesState,	extend as extend
+	</sql>
+ 
+	<!-- 查询（根据主键ID查询） -->
+	<select id="getEntityById" resultType="com.shangyong.backend.entity.CuCustomerDirectories" parameterType="java.lang.String">
+		 SELECT
+		directories_id as directoriesId,
+		app_name as appName,	
+		customer_id as customerId,	
+		contact_name as contactName,
+		contact_phone as contactPhone,	
+		create_time as createTime,	
+		modify_time as modifyTime,
+		if_mobile as ifMobile,
+		district_number as districtNumber,
+		directories_state as directoriesState,
+		extend as extend
+		 FROM cu_customer_directories
+		 <where>
+		 <if test="customerId != null and  customerId != '' ">
+		  customer_id = #{customerId}
+		 </if>
+		  <if test="appName != null and  appName != '' ">
+		  and app_name = #{appName}
+		 </if>
+		 </where> 
+		 order by create_time desc 
+   		 LIMIT #{pageIndex},#{pageSize} 
+	</select>
+ 
+ 	<!--统计 -->
+	<select id="listAllCount" resultType="java.lang.Integer" >
+		 SELECT
+		 count(1)
+		 FROM cu_customer_directories
+		<where>
+		 <if test="customerId != null and  customerId != '' ">
+		  customer_id = #{customerId}
+		 </if>
+		  <if test="appName != null and  appName != '' ">
+		  and app_name = #{appName}
+		 </if>
+		 </where>  
+	</select>
+</mapper>

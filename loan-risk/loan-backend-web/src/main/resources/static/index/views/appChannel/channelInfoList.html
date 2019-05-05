@@ -1,0 +1,84 @@
+﻿<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<META HTTP-EQUIV="pragma" CONTENT="no-cache">
+		<META HTTP-EQUIV="Cache-Control" CONTENT="no-cache, must-revalidate">
+		<META HTTP-EQUIV="expires" CONTENT="0">
+		<link rel="stylesheet" href="../../plugins/layui/css/layui.css" media="all" />
+		<link rel="stylesheet" href="../../css/global.css" media="all">
+		<link rel="stylesheet" href="../../plugins/font-awesome/css/font-awesome.min.css">
+		<link rel="stylesheet" href="../../css/table.css" />
+		<!-- js -->
+		<script src="../../jqery/jquery.js"></script>
+		<script src="../../../commons/base.js"></script>
+		<script type="text/javascript" src="../../plugins/layui/layui.js"></script>
+		<script type="text/javascript" src="../../js/appChannel/channelInfoList.js"></script>
+	</head>
+
+	<body>
+		<div class="admin-main"> 
+		 <form class="layui-form" action="">
+		 <input type="hidden" id="bid" name="bid" >
+				<a href="javascript:;" class="layui-btn layui-btn-small" id="add" onclick="add()">
+					<i class="layui-icon">&#xe608;</i> 添加渠道小类
+				</a>
+				<!-- 查询条件 -->
+				<div class="layui-inline">
+			      <label class="layui-form-label">小类名称：</label>
+			      <div class="layui-input-inline">
+			        <input name="smallName"   autocomplete="off" class="layui-input"  id="smallName" >
+			      </div>
+			    </div> 
+			    
+				<div class="layui-inline">
+				<a href="javascript:;" class="layui-btn layui-btn-small" id="searchSmall">
+				<i class="layui-icon">&#xe615;</i>渠道小类搜索
+				</a>
+				</div>
+				</form>
+			<fieldset class="layui-elem-field">
+				<div class="layui-field-box layui-form">
+					<table class="layui-table admin-table">
+						<thead>
+							<tr> 			 
+								<th>渠道小类名称 </th> 
+								<th>创建人</th> 
+								<th>创建时间</th> 
+								<th>修改人</th>
+								<th>修改时间</th>  
+								<th>备注</th>
+								<th>操作</th>
+								 
+							</tr>
+						</thead>
+						<tbody id="content">
+						</tbody>
+					</table>
+					<label>共<font color='red' id="count_page_number"></font>条记录</label>
+					<div id="paged" class="page" style="display:inline-block;">
+					</div>
+				</div>
+			</fieldset>
+		</div>
+		<!--模板-->
+		<script type="text/html" id="tpl">
+			{{# layui.each(d.list, function(index, item){ 
+ 				$("#bid").val(item.channelBigId);
+ 			}};
+			
+			<tr>
+				<td>{{ 	item.channelSmallName}}</td>
+				<td>{{  item.createMan}}</td>
+				<td>{{  item.createTime}}</td>
+				<td>{{  item.modifyMan}}</td>
+				<td>{{  item.modifyTime}}</td>
+				<td>{{  item.remark}}</td>
+				<td> 
+					<a href="javascript:;" data-id="{{ item.channelBigId }}" data-sid="{{ item.channelSmallId }}" data-sname="{{ item.channelSmallName }}" data-remark="{{ item.remark }}" data-opt="edit" class="layui-btn layui-btn-mini  ">编辑</a>					 
+				</td>
+			</tr>
+			{{# }); }}
+		</script>
+	</body>
+</html>

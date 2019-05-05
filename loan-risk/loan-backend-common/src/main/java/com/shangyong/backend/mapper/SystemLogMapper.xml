@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.shangyong.backend.dao.SystemLogDao">
+  <resultMap id="BaseResultMap" type="com.shangyong.backend.entity.SystemLog">
+    <id column="Log_id" jdbcType="INTEGER" property="logId" />
+    <result column="User_id" jdbcType="INTEGER" property="userId" />
+    <result column="User_name" jdbcType="VARCHAR" property="userName" />
+    <result column="Nick_name" jdbcType="VARCHAR" property="nickName" />
+    <result column="Role_name" jdbcType="VARCHAR" property="roleName" />
+    <result column="url" jdbcType="VARCHAR" property="url" />
+    <result column="Opt_time" jdbcType="TIMESTAMP" property="optTime" />
+    <result column="Ip" jdbcType="VARCHAR" property="ip" />
+    <result column="Remark" jdbcType="VARCHAR" property="remark" />
+    <result column="funName" jdbcType="VARCHAR" property="fun_name" />
+    <result column="menuName" jdbcType="VARCHAR" property="menu_name" />
+  </resultMap>
+  
+  <!-- 查询公用字段 -->  
+  <sql id="Base_Column_List">
+    Log_id as logId, User_id as userId, User_name as userName, Nick_name as nickName, Role_name as roleName, url, Opt_time as optTime, Ip as ip, Remark as remark,fun_name as funName,menu_name as menuName
+  </sql>
+  
+  <!--  查询公用条件 -->
+  <sql id="propertitys_sql">
+  	<where>
+    	<!-- 登录帐号 -->
+    	<if test="userName != null and userName != ''">
+    		instr(user_name, #{userName}) > 0
+    	</if>
+    	<!-- 角色名称 -->
+    	<if test="roleName != null and roleName != ''">
+    		and instr(role_name, #{roleName}) >0
+    	</if>
+    	<!--  操作开始日期 -->
+    	<if test="optTimeBigen != null and optTimeBigen != ''">
+			and Opt_time  >= #{optTimeBigen}
+    	</if>
+    	<!--  操作结束日期 -->
+    	<if test="optTimeEnd != null and optTimeEnd != ''">
+			and Opt_time  <![CDATA[<=]]> #{optTimeEnd}
+    	</if>
+<!--     	昵称，URL，IP -->
+    	<if test="content != null and content != ''">
+    		and (instr(Nick_name, #{content}) > 0  or  instr(url, #{content}) > 0 or instr(ip, #{content}) > 0)
+    	</if>
+    </where>
+  </sql>
+   
+  <!-- 查询list列表 -->
+  <select id="findAll" parameterType="com.shangyong.backend.bo.SystemLogBo" resultType="com.shangyong.backend.bo.SystemLogBo">
+    select 
+    	<include refid="Base_Column_List" />
+    from system_log
+    	<include refid="propertitys_sql"></include>
+  		order by opt_time desc 
+  		<if test="pageSize != -1">
+  			limit #{pageIndex}, #{pageSize}
+  		</if>
+  </select>
+  
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from system_log
+    where Log_id = #{logId,jdbcType=INTEGER}
+  </delete>
+  
+ 
+  <!-- 保存 -->
+  <insert id="saveEntity" parameterType="com.shangyong.backend.bo.SystemLogBo">
+    insert into system_log (User_id, User_name, 
+      Nick_name, Role_name, url, 
+      Opt_time, Ip, Remark,fun_name,menu_name
+      )
+    values (#{userId,jdbcType=INTEGER}, #{userName,jdbcType=VARCHAR}, 
+      #{nickName,jdbcType=VARCHAR}, #{roleName,jdbcType=VARCHAR}, #{url,jdbcType=VARCHAR}, 
+      now(), #{ip,jdbcType=VARCHAR}, #{remark,jdbcType=VARCHAR},#{funName,jdbcType=VARCHAR},#{menuName,jdbcType=VARCHAR}
+      )
+  </insert>
+   
+  <!-- 统计 --> 
+  <select id="findAllCount" parameterType="com.shangyong.backend.bo.SystemLogBo" resultType="java.lang.Integer">
+    select count(1) from system_log
+    <include refid="propertitys_sql"></include>
+  </select>
+    
+  <update id="updateByPrimaryKeySelective" parameterType="com.shangyong.backend.bo.SystemLogBo">
+    update system_log
+    <set>
+      <if test="userId != null">
+        User_id = #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="userName != null">
+        User_name = #{userName,jdbcType=VARCHAR},
+      </if>
+      <if test="nickName != null">
+        Nick_name = #{nickName,jdbcType=VARCHAR},
+      </if>
+      <if test="roleName != null">
+        Role_name = #{roleName,jdbcType=VARCHAR},
+      </if>
+      <if test="url != null">
+        url = #{url,jdbcType=VARCHAR},
+      </if>
+      <if test="optTime != null">
+        Opt_time = #{optTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="ip != null">
+        Ip = #{ip,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null">
+        Remark = #{remark,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where Log_id = #{logId,jdbcType=INTEGER}
+  </update>   
+  
+  
+  <select id="getEntityById" parameterType="com.shangyong.backend.bo.SystemLogBo" resultType="com.shangyong.backend.bo.SystemLogBo">
+    select 
+    	Remark as remark
+    from system_log 
+    where 
+    Log_id = #{logId}
+  </select>
+</mapper>

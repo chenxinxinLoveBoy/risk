@@ -1,0 +1,150 @@
+﻿<!DOCTYPE html>
+<html>
+
+<head>
+<meta charset="UTF-8">
+<META HTTP-EQUIV="pragma" CONTENT="no-cache">
+<META HTTP-EQUIV="Cache-Control" CONTENT="no-cache, must-revalidate">
+<META HTTP-EQUIV="expires" CONTENT="0">
+<title>欺诈规则配置模板历史列表</title>
+<link rel="stylesheet" href="../../plugins/layui/css/layui.css"
+	media="all" />
+<link rel="stylesheet" href="../../css/global.css" media="all">
+<link rel="stylesheet"
+	href="../../plugins/font-awesome/css/font-awesome.min.css">
+<link rel="stylesheet" href="../../css/table.css" />
+<link rel="stylesheet" href="../../css/lzh_xy_gl.css" media="all" />
+<!-- js -->
+<script src="../../jqery/jquery.js"></script>
+<script src="../../../commons/base.js"></script>
+<script type="text/javascript" src="../../plugins/layui/layui.js"></script>
+<script type="text/javascript"
+	src="../../js/scFraudRuleTpl/scFraudRuleTplHis.js"></script>
+</head>
+
+<body>
+	<div class="admin-main">
+		<blockquote class="layui-elem-quote">
+			<!-- 查询条件 -->
+			<form action="" class="layui-form" style="margin-top: 0px;">
+				<!-- 查询条件 -->
+				<div class="layui-inline">
+					<label class="layui-form-label" style="width: auto;">模板名称：</label>
+					<div class="layui-input-inline">
+						<input name="fraudRuleTplName" placeholder="模板名称 "
+							id="fraudRuleTplName" autocomplete="off" class="layui-input">
+					</div>
+				</div>
+
+				<div class="layui-inline">
+					<label class="layui-form-label" style="width: auto;">模板业务编号：</label>
+					<div class="layui-input-inline">
+						<input name="fraudRuleTplCode" id="fraudRuleTplCode"
+							placeholder="模板业务编号"
+							onkeyup="this.value=this.value.replace(/\D/g,'')"
+							autocomplete="off" class="layui-input">
+					</div>
+				</div>
+				
+ 				<div class="layui-inline">
+			      <label class="layui-form-label" style="width: auto;">时间区间</label>
+			      <div class="layui-input-inline">
+			      <input name="startTime"  lay-verify="startTime" id="startTime" autocomplete="off" class="layui-input"  style="width: auto; display:inline;">
+			      &nbsp;至&nbsp;
+			      <input name="endTime"  lay-verify="endTime" id="endTime" autocomplete="off" class="layui-input"  style="width: auto; display:inline;">
+			      </div>
+			    </div>
+			    
+				<div class="layui-inline">
+					<label class="layui-form-label" style="width: auto;">模板状态：</label>
+					<div class="layui-input-inline">
+						<select name="state" lay-filter="state" class="layui-input"
+							lay-search="" id="state" lay-verify="state" autocomplete="off">
+							<option value="00">--请选择--</option>
+							<option value="01">有效</option>
+							<option value="02">失效</option>
+						</select>
+					</div>
+				</div>
+
+				<div class="layui-inline">
+					<a href="javascript:;" class="layui-btn layui-btn-small"
+						onclick="sel()"> <i class="layui-icon">&#xe615;</i>搜索
+					</a>
+				</div>
+			</form>
+		</blockquote>
+	</div>
+
+	<fieldset class="layui-elem-field">
+		<legend>欺诈规则配置模板历史数据列表</legend>
+		<div class="layui-field-box layui-form">
+			<table class="layui-table admin-table"
+				style="word-break: keep-all; overflow: auto;">
+				<thead>
+					<tr>
+						<th>模板ID</th>
+						<th>业务编号</th>
+						<th>模板名称</th>
+						<th>生效时间</th>
+						<th>失效时间</th>
+						<th>模板状态</th>
+						<th>模板权重</th>
+						<th>执行类型</th>
+						<th>优先级</th>
+						<th>版本编号</th>
+						<th>创建时间</th>
+						<th>创建人姓名</th>
+						<th>修改时间</th>
+						<th>修改人姓名</th>
+					</tr>
+				</thead>
+				<tbody id="content">
+				</tbody>
+			</table>
+			<label>共<font color='red' id="count_page_number"></font>条记录
+			</label>
+			<div id="paged" class="page" style="display: inline-block;"></div>
+		</div>
+	</fieldset>
+	<!--模板-->
+	<script type="text/html" id="tpl">
+			{{# layui.each(d.list, function(index, item){
+ 				var sta = item.state;
+				if(sta == '01'){
+					sta = '有效';
+				}else if(sta == '02'){
+					sta = '失效';
+				}else{
+					sta = '';
+                };
+
+				var executeType = item.executeType; 
+				if(executeType == '1'){
+					executeType = '按时段执行';
+				}else if(executeType == '2'){
+					executeType = '跨天执行';
+				}else{
+					executeType = '';
+                 };
+			}}
+			<tr>
+				<td>{{ item.fraudRuleTplId }} </td>
+ 				<td>{{ item.fraudRuleTplCode }} </td>
+				<td>{{ item.fraudRuleTplName  }} </td>
+				<td style="white-space: nowrap;">{{ item.startTime.substring(0,19)  }} </td>
+				<td style="white-space: nowrap;">{{ item.endTime.substring(0,19)  }} </td> 
+				<td>{{ sta  }} </td> 
+				<td>{{ item.tplPercent }}  </td>  
+				<td>{{ executeType }}  </td>  
+				<td>{{ item.level }}  </td>  
+				<td>{{ item.version }}  </td>  
+				<td style="white-space: nowrap;">{{ item.createTime.substring(0,19)  }}  </td>
+				<td >{{ item.createName  }}  </td>
+				<td style="white-space: nowrap;">{{ item.modifyTime.substring(0,19)  }} </td>
+				<td>{{ item.modifyName  }}  </td>
+			</tr>
+			{{# }); }}
+		</script>
+</body>
+</html>

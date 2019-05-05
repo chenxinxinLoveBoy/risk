@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.shangyong.backend.dao.sh.ShCreditLoansMessageDao">
+
+	<resultMap type="com.shangyong.backend.entity.sh.ShCreditLoansMessage" id="shCreditLoansMessageMap">
+		<id property="shCreditLoansId" column="sh_credit_loans_id" javaType="java.lang.String"></id>
+		<result property="applicationId" column="application_id" javaType="java.lang.String"></result>
+		<result property="loansName" column="loans_name" javaType="java.lang.String"></result>
+		<result property="loansTemps" column="loans_temps" javaType="java.lang.String"></result>
+		<result property="loansMoney" column="loans_money" javaType="java.lang.String"></result>
+		<result property="loansMonth" column="loans_month" javaType="java.lang.String"></result>
+		<result property="loansType" column="loans_type" javaType="java.lang.String"></result>
+		<result property="loansState" column="loans_state" javaType="java.lang.String"></result>
+		<result property="loansTime" column="loans_time" javaType="java.lang.String"></result>
+		<result property="createTime" column="create_time" javaType="java.lang.String"></result>
+		<result property="createMan" column="create_man" javaType="java.lang.String"></result>
+		<result property="modifyTime" column="modify_time" javaType="java.lang.String"></result>
+		<result property="modifyMan" column="modify_man" javaType="java.lang.String"></result>
+		<result property="remark" column="remark" javaType="java.lang.String"></result>
+	</resultMap>
+
+	<!-- 通用查询结果列-->
+	<sql id="Base_Column_List">
+		sh_credit_loans_id,	application_id,	loans_name,	loans_temps,	loans_money,	loans_month,	loans_type,	loans_state,	loans_time,	create_time,	create_man,	modify_time,	modify_man,	remark
+	</sql>
+
+	<!-- 查询（根据主键ID查询） -->
+	<select id="getEntityById" resultMap="shCreditLoansMessageMap" parameterType="java.lang.String">
+		 SELECT
+		 <include refid="Base_Column_List" />
+		 FROM sh_credit_loans_message
+		 WHERE sh_credit_loans_id = #{shCreditLoansId}
+	</select>
+	<!-- 查询（根据ApplicationId查询） -->
+	<select id="queryByApplicationId" resultMap="shCreditLoansMessageMap" parameterType="java.lang.String">
+		 SELECT
+		 <include refid="Base_Column_List" />
+		 FROM sh_credit_loans_message
+		 WHERE application_id = #{applicationId}
+	</select>
+
+	<!-- 查询（根据主键ID查询） -->
+	<select id="findAll" resultMap="shCreditLoansMessageMap" parameterType="java.lang.String">
+		 SELECT
+		 <include refid="Base_Column_List" />
+		 FROM sh_credit_loans_message
+		 WHERE sh_credit_loans_id = #{shCreditLoansId}
+	</select>
+
+	<!--删除：根据主键ID删除-->
+	<delete id="deleteEntity" parameterType="java.lang.String">
+		 DELETE FROM sh_credit_loans_message
+		 WHERE sh_credit_loans_id = #{shCreditLoansId}
+	</delete>
+
+	<!-- 添加 -->
+	<insert id="saveEntity" parameterType="com.shangyong.backend.entity.sh.ShCreditLoansMessage">
+		 INSERT INTO sh_credit_loans_message
+ 		(sh_credit_loans_id,application_id,loans_name,loans_temps,loans_money,loans_month,loans_type,loans_state,loans_time,create_time,create_man,modify_time,modify_man,remark) 
+		 VALUES 
+ 		(#{shCreditLoansId},#{applicationId},#{loansName},#{loansTemps},#{loansMoney},#{loansMonth},#{loansType},#{loansState},#{loansTime},#{createTime},#{createMan},#{modifyTime},#{modifyMan},#{remark}) 
+	</insert>
+	<!-- 批量插入 -->
+	<insert id="saveAllEntity" parameterType="java.util.List">
+		 INSERT INTO sh_credit_loans_message
+ 		(sh_credit_loans_id,application_id,loans_name,loans_temps,loans_money,loans_month,loans_type,loans_state,loans_time,create_time,create_man,modify_time,modify_man,remark) 
+		 VALUES 
+ 	    <foreach collection="list" item="item" index="index" separator="," >  
+ 		(#{item.shCreditLoansId},#{item.applicationId},#{item.loansName},#{item.loansTemps},#{item.loansMoney},#{item.loansMonth},#{item.loansType},#{item.loansState},#{item.loansTime},#{item.createTime},#{item.createMan},#{item.modifyTime},#{item.modifyMan},#{item.remark}) 
+	    </foreach>
+	</insert>
+
+	<!-- 修 改-->
+	<update id="updateEntity" parameterType="com.shangyong.backend.entity.sh.ShCreditLoansMessage">
+		 UPDATE sh_credit_loans_message
+ 		 <set> 
+			<if test="applicationId != null">
+				 application_id = #{applicationId},
+			</if>
+			<if test="loansName != null">
+				 loans_name = #{loansName},
+			</if>
+			<if test="loansTemps != null">
+				 loans_temps = #{loansTemps},
+			</if>
+			<if test="loansMoney != null">
+				 loans_money = #{loansMoney},
+			</if>
+			<if test="loansMonth != null">
+				 loans_month = #{loansMonth},
+			</if>
+			<if test="loansType != null">
+				 loans_type = #{loansType},
+			</if>
+			<if test="loansState != null">
+				 loans_state = #{loansState},
+			</if>
+			<if test="loansTime != null">
+				 loans_time = #{loansTime},
+			</if>
+			<if test="createTime != null">
+				 create_time = #{createTime},
+			</if>
+			<if test="createMan != null">
+				 create_man = #{createMan},
+			</if>
+			<if test="modifyTime != null">
+				 modify_time = #{modifyTime},
+			</if>
+			<if test="modifyMan != null">
+				 modify_man = #{modifyMan},
+			</if>
+			<if test="remark != null">
+				 remark = #{remark},
+			</if>
+
+ 		 </set>
+		 WHERE sh_credit_loans_id = #{shCreditLoansId}
+	</update>
+
+</mapper>

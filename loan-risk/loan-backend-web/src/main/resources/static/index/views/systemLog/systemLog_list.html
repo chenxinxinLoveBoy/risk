@@ -1,0 +1,126 @@
+﻿<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+<!-- 		<title>Table</title> -->
+		<link rel="stylesheet" href="../../plugins/layui/css/layui.css" media="all" />
+		<link rel="stylesheet" href="../../css/global.css" media="all">
+		<link rel="stylesheet" href="../../plugins/font-awesome/css/font-awesome.min.css">
+		<link rel="stylesheet" href="../../css/table.css" />
+		<link rel="stylesheet" href="../../css/lzh_login.css" media="all" />
+	</head>
+
+	<body>
+		<div class="admin-main">
+		
+
+			<blockquote class="layui-elem-quote">
+
+				<!-- 查询条件 -->
+				<div class="layui-inline">
+			      <label class="layui-form-label">登录帐号：</label>
+			      <div class="layui-input-inline">
+			        <input name="userName" lay-verify="userName" autocomplete="off" placeholder="支持模糊查询" class="layui-input"  id="userName" >
+			      </div>
+			    </div>
+			    
+			    <div class="layui-inline">
+			      <label class="layui-form-label">角色名称：</label>
+			      <div class="layui-input-inline">
+			        <input name="roleName" lay-verify="roleName" autocomplete="off" placeholder="支持模糊查询" class="layui-input"  id="roleName" >
+			      </div>
+			    </div>
+			    
+			     <div class="layui-inline">
+			      <label class="layui-form-label" style="width: auto;">昵称|URL|IP：</label>
+			      <div class="layui-input-inline">
+			        <input name="content" lay-verify="content" autocomplete="off" placeholder="支持模糊查询" class="layui-input"  id="content_id"  >
+			      </div>
+			    </div>
+			    
+			    
+			    <div class="layui-inline">
+			      <label class="layui-form-label">操作时间：</label>
+			      <div class="layui-input-inline">
+			      <input name="optTimeBigen" type="text" onfocus="WdatePicker({dateFmt:'yyyy-MM-dd '})"  lay-verify="optTimeBigen" id="optTimeBigen" autocomplete="off" class="layui-input"  style="width: 180px; display:inline;">
+			      &nbsp;至&nbsp;
+			      <input name="optTimeEnd" type="text" onfocus="WdatePicker({dateFmt:'yyyy-MM-dd HH:mm:ss'})" lay-verify="optTimeEnd" id="optTimeEnd" autocomplete="off" class="layui-input"  style="width: 180px; display:inline;">
+			      </div>
+			    </div>
+			    
+			     
+			    
+					<a href="javascript:;" class="layui-btn layui-btn-small" id="search">
+						<i class="layui-icon">&#xe615;</i> 搜索
+					</a>
+			</blockquote>
+			<fieldset class="layui-elem-field">
+				<legend>数据列表</legend>
+				<div class="layui-field-box layui-form">
+					<table class="layui-table admin-table" style="word-break: keep-all;overflow:auto;" >
+						<thead>
+							<tr>
+								<th style="width: 30px;">
+								<input type="checkbox" lay-filter="allselector" lay-skin="primary"></th>
+								<th>序号</th>
+								<th>用户id</th>
+								<th>登录帐号</th>
+								
+								<th>昵称</th>
+								<th>角色名称</th>
+								<th>操作菜单</th>
+								<th>操作功能</th>
+								<th>操作url</th>
+								
+								<th>操作时间 </th>
+								<th>Ip地址</th>
+								<th>操作</th>
+							</tr>
+						</thead>
+						<tbody id="content">
+						</tbody>
+					</table>
+					<label>共<font color='red' id="count_page_number"></font>条记录</label>
+					<div id="paged" class="page" style="display:inline-block;">
+					</div>
+				</div>
+			</fieldset>
+<!-- 			<div class="admin-table-page"> -->
+<!-- 				<label style="position: absolute;left: 20px;top:11px">共<font color='red' id="count_page_number"></font>条记录</label> -->
+<!-- 				<div id="paged" class="page" style="padding-left:140px;"> -->
+<!-- 				</div> -->
+<!-- 			</div> -->
+			
+		</div>
+		<!--模板-->
+		<script type="text/html" id="tpl">
+			{{# layui.each(d.list, function(index, item){
+}}
+			<tr>
+				<td><input type="checkbox" lay-skin="primary"></td>
+				<td>{{ index+1 }}</td>
+				<td>{{ item.userId }}</td>
+				<td>{{ item.userName }}</td>
+				<td>{{ item.nickName }}</td>
+				<td>{{ item.roleName }}</td>
+				<td>{{ item.menuName }}</td>
+				<td>{{ item.funName }}</td>
+				<td>{{ item.url }}</td>
+				<td>{{ item.optTime }}</td>
+				<td>{{ item.ip }}</td>
+				<td>
+					<a href="javascript:;" data-id="{{ item.logId }}"  data-opt="find" class="layui-btn layui-btn-normal layui-btn-mini">详情</a></td>
+				</tr>
+			{{# }); }}
+		</script>
+		
+		<!-- js -->
+		<script src="../../jqery/jquery.js"></script>
+		<script src="../../../commons/base.js"></script>
+		<script type="text/javascript" src="../../plugins/layui/layui.js"></script>
+		 <script language="javascript" type="text/javascript" src="../../My97DatePicker/WdatePicker.js"></script>
+		<script type="text/javascript" src="../../js/systemLog/systemLog_list.js"></script>
+	</body>
+
+</html>

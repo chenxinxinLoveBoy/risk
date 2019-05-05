@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+<meta charset="UTF-8">
+<title>91征信</title>
+<link rel="stylesheet" href="../../plugins/layui/css/layui.css"
+	media="all">
+<link rel="stylesheet" href="../../css/global.css" media="all">
+<link rel="stylesheet"
+	href="../../plugins/font-awesome/css/font-awesome.min.css">
+<link rel="stylesheet" href="../../css/table.css" />
+<!-- js -->
+<script src="../../jqery/jquery.js"></script>
+<script src="../../../commons/base.js"></script>
+<script type="text/javascript" src="../../plugins/layui/layui.js"></script>
+<script type="text/javascript"
+	src="../../js/approveDetails/91credit.js"></script>
+</head>
+
+<body>
+	<div class="admin-main">
+		<blockquote class="layui-elem-quote">
+			<div class="layui-inline">
+				    <label class="layui-form-label">姓名：</label>
+				    <label name=" " id=" "  class="layui-form-label" style="width: auto;">张三丰</label>
+				</div>
+			<div class="layui-inline">
+				    <label class="layui-form-label">身份证：</label>
+				    <label name=" " id=" "  class="layui-form-label" style="width: auto;">321111111111111111</label>
+				</div>	
+			<div class="layui-inline">
+				    <label class="layui-form-label">记录数：</label>
+				    <label name=" " id=" "  class="layui-form-label" style="width: auto;">3</label>
+				</div>	
+			<div class="layui-inline">
+				    <label class="layui-form-label">被拒数：</label>
+				    <label name=" " id=" "  class="layui-form-label" style="width: auto;">3</label>
+				</div>	
+			<div class="layui-inline">
+				    <label class="layui-form-label">被拒比：</label>
+				    <label name=" " id=" "  class="layui-form-label" style="width: auto;">100%</label>
+				</div>	
+			<div class="layui-inline">
+				    <label class="layui-form-label" style="width: auto;">目前该客户被其他机构查询的次数：</label>
+				    <label name=" " id=" "  class="layui-form-label" style="width: auto;">0</label>
+				</div>				
+ 
+		</blockquote>
+
+		<fieldset class="layui-elem-field">
+				<legend>91征信列表</legend>
+				<br>
+				<div class="layui-field-box layui-form">
+					<table class="layui-table admin-table"  style="word-break: keep-all;overflow:auto;">
+						<thead>
+							<tr>
+								<th>序号</th>
+								<th>借款类型</th>
+								<th>借款状态</th>
+								<th>合同金额</th>
+								<th>合同日期</th>
+								<th>批贷期数</th>
+								<th>还款状态</th>
+								<th>欠款金额</th>
+								<th>公司代码</th> 
+							</tr>
+						</thead>
+						<tbody id="content">
+						</tbody>
+					</table>
+					<label>共<font color='red' id="count_page_number"></font>条记录</label>
+					<div id="paged" class="page" style="display:inline-block;">
+					</div>
+				</div>
+			</fieldset>
+		</div>
+		
+		<!--模板-->
+		<script type="text/html" id="tpl">
+			{{# layui.each(d.list, function(index, item){ }}
+			<tr> 
+			</tr>
+			{{# }); }}
+		</script> 
+	</body>
+</html> 

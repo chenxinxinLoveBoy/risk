@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.shangyong.backend.dao.bqsrep.BqsRepDataSourceServiceDao">
+
+	<resultMap type="com.shangyong.backend.entity.bqsrep.BqsRepDataSource" id="bqsRepDataSourceinfoMap">
+		<id property="bqsDataSourceId" column="bqs_data_source_id" javaType="java.lang.String"></id>
+		<result property="bqsPetitionerId" column="bqs_petitioner_id" javaType="java.lang.String"></result>
+		<result property="source" column="source" javaType="java.lang.String"></result>
+		<result property="sourceType" column="sourceType" javaType="java.lang.String"></result>
+		<result property="storeTime" column="storeTime" javaType="java.lang.String"></result>
+		<result property="sourceTime" column="sourceTime" javaType="java.lang.String"></result>
+		<result property="passRealName" column="passRealName" javaType="java.lang.String"></result>
+		<result property="realNameInfo" column="realNameInfo" javaType="java.lang.String"></result>
+		<result property="equalToPetitioner" column="equalToPetitioner" javaType="java.lang.String"></result>
+	</resultMap>
+
+	<!-- 通用查询结果列-->
+	<sql id="Base_Column_List">
+	bqs_data_source_id,	bqs_petitioner_id,	source,	sourceType,	storeTime,	sourceTime,	passRealName,	realNameInfo,	equalToPetitioner
+	</sql>
+
+	<!-- 查询（根据主键ID查询） -->
+	<select id="getEntityById" resultMap="bqsRepDataSourceinfoMap" parameterType="java.lang.String">
+		 SELECT
+		 <include refid="Base_Column_List" />
+		 FROM bqs_rep_data_source
+		 WHERE bqs_data_source_id = #{bqsDataSourceId}
+	</select>
+	
+	<!-- 查询（根据主键bqsPetitionerId查询） -->
+	<select id="queryListById" resultMap="bqsRepDataSourceinfoMap" parameterType="java.lang.String">
+		 SELECT
+		 <include refid="Base_Column_List" />
+		 FROM bqs_rep_data_source
+		 WHERE bqs_petitioner_id = #{bqsPetitionerId}
+	</select>
+
+	<!-- 查询（根据主键ID查询） -->
+	<select id="getAll" resultMap="bqsRepDataSourceinfoMap" parameterType="java.lang.String">
+		 SELECT
+		 <include refid="Base_Column_List" />
+		 FROM bqs_rep_data_source
+	</select>
+
+	<!--删除：根据主键ID删除-->
+	<delete id="deleteEntity" parameterType="java.lang.String">
+		 DELETE FROM bqs_rep_data_source
+		 WHERE bqs_data_source_id = #{bqsDataSourceId}
+	</delete>
+
+	<!-- 添加 -->
+	<insert id="saveEntity" parameterType="com.shangyong.backend.entity.bqsrep.BqsRepDataSource">
+		 INSERT INTO bqs_rep_data_source
+ 		(bqs_data_source_id,bqs_petitioner_id,source,sourceType,storeTime,sourceTime,passRealName,realNameInfo,equalToPetitioner) 
+		 VALUES 
+ 		(#{bqsDataSourceId},#{bqsPetitionerId},#{source},#{sourceType},#{storeTime},#{sourceTime},#{passRealName},#{realNameInfo},#{equalToPetitioner}) 
+	</insert>
+
+	<!-- 修 改-->
+	<update id="updateEntity" parameterType="com.shangyong.backend.entity.bqsrep.BqsRepDataSource">
+		 UPDATE bqs_rep_data_source
+ 		 <set> 
+			<if test="bqsPetitionerId != null">
+				 bqs_petitioner_id = #{bqsPetitionerId},
+			</if>
+			<if test="source != null">
+				 source = #{source},
+			</if>
+			<if test="sourceType != null">
+				 sourceType = #{sourceType},
+			</if>
+			<if test="storeTime != null">
+				 storeTime = #{storeTime},
+			</if>
+			<if test="sourceTime != null">
+				 sourceTime = #{sourceTime},
+			</if>
+			<if test="passRealName != null">
+				 passRealName = #{passRealName},
+			</if>
+			<if test="realNameInfo != null">
+				 realNameInfo = #{realNameInfo},
+			</if>
+			<if test="equalToPetitioner != null">
+				 equalToPetitioner = #{equalToPetitioner},
+			</if>
+
+ 		 </set>
+		 WHERE bqs_data_source_id = #{bqsDataSourceId}
+	</update>
+
+</mapper>

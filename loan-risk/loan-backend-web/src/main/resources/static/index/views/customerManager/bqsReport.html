@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+<meta charset="UTF-8">
+<title>资信云报告信息</title>
+<link rel="stylesheet" href="../../plugins/layui/css/layui.css"
+	media="all" />
+<link rel="stylesheet" href="../../css/global.css" media="all">
+<link rel="stylesheet"
+	href="../../plugins/font-awesome/css/font-awesome.min.css">
+<link rel="stylesheet" href="../../css/table.css" />
+</head>
+<body>
+	<div class="admin-main">
+		<fieldset class="layui-elem-field">
+			<br>
+			<br>
+			&nbsp;&nbsp;&nbsp;&nbsp;<a href="javascript:getMysqlData();" class="layui-btn layui-btn-small">
+			<i class="layui-icon">&#xe615;</i> Mysql数据查询
+			<a href="javascript:getMongoData();" class="layui-btn layui-btn-small" >
+			<i class="layui-icon">&#xe615;</i> Mongo数据查询
+			</a>
+			
+			<a href="javascript:;" class="layui-btn layui-btn-small" id="bqiReport">
+			<i class="layui-icon">&#xe615;</i> 白骑士资信云报告
+			</a>
+			<a href="javascript:;" class="layui-btn layui-btn-small" id="tdReport">
+			<i class="layui-icon">&#xe615;</i> 数据魔盒资信报告
+			</a>
+			<!-- <legend style="text-align:center">
+				<strong >白骑士资信云报告</strong>
+			</legend> -->
+			<div class="layui-field-box layui-form">
+				<legend  style="margin-left: 36%; margin-bottom: 2%; font-size: 30px; font-weight: bold;">白骑士资信云报告 </legend>
+				<legend  style="margin-left:40%">个人基本信息 </legend>
+				<table class="layui-table">
+					<tbody>
+						<tr>
+							<td>姓名：</td>
+							<td id="pname"></td>
+							<td>身份证：</td>
+							<td id="pcertNo"></td>
+							<td>手机号：</td>
+							<td id="pmobile"></td>
+						</tr>
+						<tr>
+							<td>年龄：</td>
+							<td id="page"></td>
+							<td>籍贯：</td>
+							<td id="pbirthAddress"></td>
+							<td>星座：</td>
+							<td id="pconstellation"></td>
+						</tr>
+						<tr>
+							<td>手机号归属地：</td>
+							<td id="pmobileBelongTo"></td>
+							<td>手机号运营商：</td>
+							<td id="pmobileMnoType"></td>
+							<td>备注：</td>
+							<td id="pbar"></td>
+						</tr>
+					</tbody>
+				</table>
+				<legend  style="margin-left:40%">数据来源 </legend>
+				<table class="layui-table"> 
+					<thead>
+						<tr>
+							<th>数据源</th>
+							<th>获取时间</th>
+							<th>数据源类型</th>
+							<th>数据时间跨度</th>
+							<th>是否实名认证</th>
+							<th>实名信息</th>
+							<th>是否本人</th>
+						</tr>
+					</thead>
+					<tbody id="webDataSources">
+					
+					</tbody>
+				</table>
+				<legend  style="margin-left:40%">分时间段统计 </legend>
+				<table class="layui-table"> 
+					<thead>
+						<tr>
+							<th>时间段</th>
+							<th>主叫次数</th>
+							<th>主叫时间（分）</th>
+							<th>被叫次数</th>
+							<th>被叫时间（分）</th>
+							<th>短信数量</th>
+						</tr>
+					</thead>
+					<tbody id="mnoPeriodUsedInfosNew">
+					
+					</tbody>
+				</table>
+				<legend  style="margin-left:40%">反欺诈云分析 </legend>
+				<table class="layui-table"> 
+					<thead>
+						<tr>
+							<th>检测项目</th>
+							<th>时间跨度</th>
+							<th>结果</th>
+						</tr>
+					</thead>
+					<tbody >
+						<tr>
+							<td>是否多头申请</td>
+							<td>90天</td>
+							<td id="apartnerCount">-</td>	
+						</tr>
+						<tr>
+							<td>手机号关联身份证个数</td>
+							<td>90天</td>
+							<td id="aidcCount">-</td>	
+						</tr>
+						<tr>
+							<td>身份证关联手机号个数</td>
+							<td>90天</td>
+							<td id="aphoneCount">-</td>	
+						</tr>
+						<tr>
+							<td>手机号星网模型大小</td>
+							<td>90天</td>
+							<td id="astarnetCount">-</td>	
+						</tr>
+					</tbody>
+				</table>
+				<legend  style="margin-left:40%">出行轨迹 </legend>
+				<table class="layui-table"> 
+					<thead>
+						<tr>
+							<th>出发地</th>
+							<th>目的地</th>
+							<th>出发时间</th>
+							<th>到达时间</th>
+							<th>离开时间</th>
+							<th>停留时间</th>
+						</tr>
+					</thead>
+					<tbody id="goOutDatas">
+					
+					</tbody>
+				</table>
+				<legend  style="margin-left:40%">高风险名单 </legend>
+				<table class="layui-table"> 
+					<thead>
+						<tr>
+							<th>名单类型</th>
+							<th>击中方式</th>
+							<th>第一级分类</th>
+							<th>第二级分类</th>
+						</tr>
+					</thead>
+					<tbody id="highRiskLists">
+					
+					</tbody>
+				</table>
+				<legend  style="margin-left:40%">紧急(常用)联系人 </legend>
+				<table class="layui-table"> 
+					<thead>
+						<tr>
+							<th>姓名</th>
+							<th>关系</th>
+							<th>手机号</th>
+							<th>归属地</th>
+							<th>最早联系时间</th>
+							<th>最近联系时间</th>
+							<th>近3天通话（次数/时长）</th>
+							<th>近7天通话（次数/时长）</th>
+							<th>近30天通话（次数/时长）</th>
+							<th>近半年通话（次数/时长）</th>
+						</tr>
+					</thead>
+					<tbody id="emergencyContacts">
+					
+					</tbody>
+				</table>
+				<legend  style="margin-left:40%">用户行为 </legend>
+				<table class="layui-table"> 
+					<thead>
+						<tr>
+							<th>项目</th>
+							<th>所属值</th>
+							<th>详细描述</th>
+						</tr>
+					</thead>
+					<tbody id="crossvalidation">
+					
+					</tbody>
+				</table>
+			</div>
+		</fieldset>
+	</div>
+
+	<!-- js -->
+	<script src="../../jqery/jquery.js"></script>
+	<script src="../../../commons/base.js"></script>
+	<script type="text/javascript" src="../../plugins/layui/layui.js"></script>
+	<script type="text/javascript" src="../../js/customerManager/bqsReport.js"></script>
+</body>
+
+</html>

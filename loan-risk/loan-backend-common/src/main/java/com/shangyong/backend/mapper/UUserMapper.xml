@@ -1,0 +1,265 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.shangyong.backend.dao.UUserDao" >
+  <resultMap id="BaseResultMap" type="com.shangyong.backend.entity.UUser" >
+    <id column="user_id" property="userId" jdbcType="INTEGER" />
+    <result column="user_name" property="userName" jdbcType="VARCHAR" />
+    <result column="Nick_name" property="nickName" jdbcType="VARCHAR" />
+    <result column="password" property="password" jdbcType="VARCHAR" />
+    <result column="mobile" property="mobile" jdbcType="VARCHAR" />
+    <result column="state" property="state" jdbcType="INTEGER" />
+    <result column="Create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="Create_man" property="createMan" jdbcType="VARCHAR" />
+    <result column="modify_time" property="modifyTime" jdbcType="TIMESTAMP" />
+    <result column="modify_man" property="modifyMan" jdbcType="VARCHAR" />
+    <result column="Remark" property="remark" jdbcType="VARCHAR" />
+    <result column="user_pic" property="userPic" jdbcType="VARCHAR" />
+    <result column="ip" property="ip" jdbcType="VARCHAR" />
+    <result column="last_login_time" property="lastLoginTime" jdbcType="VARCHAR" />
+    <result column="is_freeze" property="isFreeze" jdbcType="INTEGER" />
+  </resultMap>
+    
+   <!-- 公用查询字段 , 说明：这里去掉了password字段--> 
+  <sql id="Base_Column_List" >
+    user_id as id, user_name as userName, Nick_name as nickName, mobile, state, Create_time as createTime, Create_man as createMan, 
+    modify_time as modifyTime, modify_man as modifyMan, Remark, user_pic as userPic, ip, last_login_time as lastLoginTime, is_freeze as isFreeze
+  </sql>
+  
+  <sql id="sql_propertitys">
+  	<where>
+  		<if test="userName != null and userName != ''">
+    		instr(user_name, #{userName}) > 0
+	    </if>
+	    <if test="id != null">
+	    	and instr(user_id, #{id}) > 0
+	    </if>
+	    <if test="mobile != null and mobile != ''">
+	    	and instr(mobile, #{mobile}) > 0
+	    </if>
+	    <if test="nickName != null and nickName != ''">
+	    	and instr(nick_name, #{nickName}) > 0
+	    </if>
+	    <if test="state != null">
+	    	and state = #{state}
+	    </if>
+<!-- 	     <if test="isFreeze != null"> -->
+<!-- 	    	and is_freeze = #{isFreeze} -->
+<!-- 	    </if> -->
+  	</where>
+  </sql>
+  
+  <sql id="sql_condition">
+  	<where>
+  		<if test="userName != null and userName != ''">
+    		instr(user_name, #{userName}) > 0
+	    </if>
+	    <if test="id != null">
+	    	and instr(user_id, #{id}) > 0
+	    </if>
+	    <if test="mobile != null and mobile != ''">
+	    	and instr(mobile, #{mobile}) > 0
+	    </if>
+	    <if test="nickName != null and nickName != ''">
+	    	and instr(nick_name, #{nickName}) > 0
+	    </if>
+	    <if test="state != null">
+	    	and state = #{state}
+	    </if>
+	    <if test="roleName != null and roleName != ''">
+	    	and instr(role_name, #{roleName}) > 0
+	   </if>
+  	</where>
+  </sql>
+  
+    <!-- 加载用户树菜单 -->
+  <select id="getUserTree" parameterType="com.shangyong.backend.bo.RoleBo" resultType="com.shangyong.backend.bo.ZTree">
+		select
+			a.role_id as id, a.role_id as pId,   b.user_name as name,true as checked, true as  open
+		from sc_user_role a
+		inner join sc_user b on a.user_id = b.user_id 
+		where a.role_id = #{roleId}
+  </select>
+  
+
+	<!-- 统计登录帐号 -->
+  <select id="getCountUserName" parameterType="com.shangyong.backend.bo.UUserBo" resultType="int">
+  	select count(1) from sc_user
+		where user_name = #{userName}
+  </select>
+
+  <!-- 根据map查询 -->
+  <select id="selectByMap"  parameterType="java.util.Map" resultType="com.shangyong.backend.bo.UUserBo">
+	select  
+  		a.user_id as id, a.user_name as userName, a.Nick_name as nickName, a.password, a.mobile, a.state, a.Create_time as createTime, a.Create_man as createMan, 
+    a.modify_time as modifyTime, a.modify_man as modifyMan, a.Remark, a.user_pic as userPic, a.ip, a.last_login_time as lastLoginTime, c.Role_name as roleName, 
+    c.role_id as roleId, a.is_freeze as isFreeze
+  	from sc_user a
+  	left join sc_user_role b on a.user_id = b.user_id
+	left join sc_role c on b.role_id = c.role_id 
+  	where a.user_name = #{userName}
+  	and a.password = #{password}
+  	<!-- 防止脏数据 -->
+  	order by c.role_id desc
+	limit 1
+  </select>
+  
+  
+  <!-- 根据id获取对象信息 -->
+   <select id="getObjectById" parameterType="com.shangyong.backend.bo.UUserBo" resultType="com.shangyong.backend.bo.UUserBo">
+	select  
+		<include refid="Base_Column_List"></include> 
+	from sc_user
+	where user_id = #{id}
+   </select>
+   
+   
+  <!-- 查询所有list --> 
+  <select id="listAll"  resultType="com.shangyong.backend.bo.UUserBo"  parameterType="com.shangyong.backend.bo.UUserBo" >
+    select 
+    <include refid="Base_Column_List" />,d.role_name as roleName
+    from sc_user a LEFT JOIN (SELECT b.role_name,c.user_id as userId from sc_role b INNER JOIN sc_user_role c ON b.role_id=c.role_id WHERE b.state = 1) d ON a.user_id=d.userId
+	<include refid="sql_condition"></include>
+    order by Create_time desc 
+    <if test="isLimit == null">
+    	LIMIT #{pageIndex},#{pageSize}
+    </if>
+  </select>
+  
+  <!--  删除 -->
+  <delete id="delete" parameterType="com.shangyong.backend.bo.UUserBo" >
+    delete from sc_user
+    where user_id = #{id,jdbcType=INTEGER}
+  </delete>
+  
+  <!-- 保存, 返回自增长id -->
+  <insert id="save" parameterType="com.shangyong.backend.bo.UUserBo" 
+  			useGeneratedKeys="true" keyProperty="Id">
+    insert into sc_user (user_name, Nick_name, 
+      password, mobile, state, 
+      Create_time, Create_man, modify_time, 
+      modify_man, Remark, user_pic, ip, last_login_time)
+    values (#{userName,jdbcType=VARCHAR}, #{nickName,jdbcType=VARCHAR}, 
+      #{password,jdbcType=VARCHAR}, #{mobile,jdbcType=VARCHAR}, #{state,jdbcType=INTEGER}, 
+      now(), #{createMan,jdbcType=VARCHAR}, now(), 
+      #{modifyMan,jdbcType=VARCHAR}, #{remark,jdbcType=VARCHAR}, #{userPic}, #{ip}, #{lastLoginTime})
+  </insert>
+   
+  <!-- 统计 --> 
+  <select id="listAllCount" parameterType="com.shangyong.backend.bo.UUserBo" resultType="java.lang.Integer" >
+    select count(1) from sc_user a LEFT JOIN (SELECT b.role_name,c.user_id as userId from sc_role b INNER JOIN sc_user_role c ON b.role_id=c.role_id WHERE b.state = 1) d ON a.user_id=d.userId
+    <include refid="sql_condition"></include>
+  </select>
+  
+   <!-- 修改 -->
+  <update id="update" parameterType="com.shangyong.backend.bo.UUserBo" >
+    update sc_user
+    <set >
+    	<!-- 不能修改登录账号 -->
+<!--       <if test="userName != null" > -->
+<!--         user_name = #{userName,jdbcType=VARCHAR}, -->
+<!--       </if> -->
+      <if test="nickName != null and nickName != '' " >
+        Nick_name = #{nickName,jdbcType=VARCHAR},
+      </if>
+      <if test="password != null and password != ''" >
+        password = #{password,jdbcType=VARCHAR},
+      </if>
+      <if test="mobile != null and mobile != ''" >
+        mobile = #{mobile,jdbcType=VARCHAR},
+      </if>
+      <if test="state != null" >
+        state = #{state,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null" >
+        Create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createMan != null" >
+        Create_man = #{createMan,jdbcType=VARCHAR},
+      </if>
+      
+        modify_time = now(),
+        
+      <if test="modifyMan != null" >
+        modify_man = #{modifyMan,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null" >
+        Remark = #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="userPic != null and userPic != ''">
+      	user_pic = #{userPic},
+      </if>
+      <if test="ip != null and ip != ''">
+      	ip = #{ip},
+      </if>
+      <if test="lastLoginTime != null and lastLoginTime != ''">
+      	last_login_time = #{lastLoginTime},
+      </if>
+    </set>
+    where user_id = #{id,jdbcType=INTEGER}
+  </update> 
+  
+   <!-- 根据id, 手机，姓名 修改 -->
+  <update id="updateByObject" parameterType="com.shangyong.backend.bo.UUserBo" >
+    update sc_user
+    <set >
+    
+      <if test="nickName != null and nickName != '' " >
+        Nick_name = #{nickName,jdbcType=VARCHAR},
+      </if>
+ 
+      <if test="password != null and password != ''" >
+        password = #{password,jdbcType=VARCHAR},
+      </if>
+
+      <if test="state != null" >
+        state = #{state,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null" >
+        Create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createMan != null" >
+        Create_man = #{createMan,jdbcType=VARCHAR},
+      </if>
+      
+        modify_time = now(),
+        
+      <if test="modifyMan != null" >
+        modify_man = #{modifyMan,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null" >
+        Remark = #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="userPic != null and userPic != ''">
+      	user_pic = #{userPic},
+      </if>
+      <if test="ip != null and ip != ''">
+      	ip = #{ip},
+      </if>
+      <if test="lastLoginTime != null and lastLoginTime != ''">
+      	last_login_time = #{lastLoginTime},
+      </if>
+      <if test="mobile != null and mobile != ''">
+      	mobile = #{mobile},
+      </if>
+      
+    </set>
+    where user_id = #{id,jdbcType=INTEGER}
+    <!-- 登录帐号 -->
+    <if test="userName != null and userName != ''">
+    	and   user_name = #{userName,jdbcType=VARCHAR}
+    </if>
+  </update> 
+  
+  <!-- 禁用帐号 -->
+  <update id="disable" parameterType="com.shangyong.backend.bo.UUserBo">
+	update sc_user set state = #{state}
+	where user_id = #{id,jdbcType=INTEGER}
+  </update>
+  
+    <!-- 冻结账户 -->
+  <update id="updateIsFreeze" parameterType="com.shangyong.backend.bo.UUserBo">
+	update sc_user set is_freeze = #{isFreeze}
+	where user_name = #{userName}
+  </update>
+  
+</mapper>

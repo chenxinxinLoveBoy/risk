@@ -1,0 +1,341 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<!-- <title>Insert title here</title> -->
+</head>
+		<!-- css -->
+		<link rel="stylesheet" href="../../plugins/layui/css/layui.css" media="all" />
+		<link rel="stylesheet" href="../../css/global.css" media="all">
+		<link rel="stylesheet" href="../../plugins/font-awesome/css/font-awesome.min.css">
+		<link rel="stylesheet" href="../../css/table.css" />
+
+		<!-- JS -->
+		<script type="text/javascript" src="../../plugins/layui/layui.js"></script>
+		<script src="../../jqery/jquery.js"></script>
+		<script type="text/javascript" src="../../../commons/base.js"></script>
+		<script type="text/javascript" src="../../js/customerManager/androidEquipmentInfo_detail.js"></script>
+		
+<body>
+	<div style="margin: 15px;">
+	
+		<div class="layui-form-item">
+			<label class="layui-form-label" style="width:200px">APP客户编号</label>
+			<div class="layui-input-inline" style="width:300px">
+				<input type="text" id="customerId" name="customerId" value=""  autocomplete="off" class="layui-input" readonly>
+			</div>
+		</div>
+	
+		<div class="layui-form-item">
+			<label class="layui-form-label" style="width:200px">平台</label>
+			<div class="layui-input-inline" style="width:300px">
+				<input type="text" id="appName" name="appName" value="" autocomplete="off" class="layui-input" readonly>
+			</div>
+		</div>
+
+		<div class="layui-form-item">
+			<label class="layui-form-label" style="width:200px">当前连接基站信息</label>
+			<div class="layui-input-inline" style="width:300px">
+				<input type="text" id="baseStationInfo" name="baseStationInfo" value=""  autocomplete="off" class="layui-input" readonly>
+			</div>
+		</div>
+
+		<div class="layui-form-item">
+			<label class="layui-form-label" style="width:200px">网关</label>
+			<div class="layui-input-inline" style="width:300px">
+				<input type="text" id="gateway" name="gateway" value=""  autocomplete="off" class="layui-input" readonly>
+			</div>
+		</div>
+	<div class="layui-form-item">
+			<label class="layui-form-label" style="width:200px">开机时间</label>
+			<div class="layui-input-inline" style="width:300px">
+				<input type="text" id="bootTime" name="bootTime" value=""  autocomplete="off" class="layui-input" readonly>
+			</div>
+		</div>
+		<div class="layui-form-item">
+			<label class="layui-form-label" style="width:200px">总运行内存(总容量)</label>
+			<div class="layui-input-inline" style="width:300px">
+				<input type="text" id="sumRamStorage" name="sumRamStorage" value=""  autocomplete="off" class="layui-input" readonly>
+			</div>
+		</div>
+
+		<div class="layui-form-item">
+			<label class="layui-form-label" style="width:200px">可用运行内存(可用容量)</label>
+			<div class="layui-input-inline" style="width:300px">
+				<input type="text" id="availableRamStorage"  name="availableRamStorage" value="" autocomplete="off" class="layui-input" readonly>
+			</div>
+		</div>
+
+		<div class="layui-form-item">
+			<label class="layui-form-label" style="width:200px">总存储空间</label>
+			<div class="layui-input-inline" style="width:300px">
+				<input type="text" id="sumRomStorage" name="sumRomStorage" value=""  autocomplete="off" class="layui-input" readonly>
+			</div>
+		</div>
+
+		<div class="layui-form-item">
+			<label class="layui-form-label" style="width:200px">可用存储空间</label>
+			<div class="layui-input-inline" style="width:300px">
+				<input type="text" id="availableRomStorage" name="availableRomStorage" value=""  autocomplete="off" class="layui-input" readonly>
+			</div>
+		</div>
+		<div class="layui-form-item">
+			<label class="layui-form-label" style="width:200px">cpu bogoMips值</label>
+			<div class="layui-input-inline" style="width:300px">
+				<input type="text" id="cpuBogoMips" name="cpuBogoMips" value=""  autocomplete="off" class="layui-input" readonly>
+			</div>
+		</div>
+		<div class="layui-form-item">
+			<label class="layui-form-label" style="width:200px">gprs Ip地址</label>
+			<div class="layui-input-inline" style="width:300px">
+				<input type="text" id="gprsIp" name="gprsIp" value=""  autocomplete="off" class="layui-input" readonly>
+			</div>
+		</div>
+		<div class="layui-form-item">
+			<label class="layui-form-label" style="width:200px">wifi mac地址</label>
+			<div class="layui-input-inline" style="width:300px">
+				<input type="text" id="wifiMac" name="wifiMac" value=""  autocomplete="off" class="layui-input" readonly>
+			</div>
+		</div>
+		<div class="layui-form-item">
+			<label class="layui-form-label" style="width:200px">电话号码</label>
+			<div class="layui-input-inline" style="width:300px">
+				<input type="text" id="phoneNum" name="phoneNum" value=""  autocomplete="off" class="layui-input" readonly>
+			</div>
+		</div>
+		<div class="layui-form-item">
+			<label class="layui-form-label" style="width:200px">时区</label>
+			<div class="layui-input-inline" style="width:300px">
+				<input type="text" id="timeZone" name="timeZone" value=""  autocomplete="off" class="layui-input" readonly>
+			</div>
+		</div>
+		<div class="layui-form-item">
+			<label class="layui-form-label" style="width:200px">proxyAdress:port</label>
+			<div class="layui-input-inline" style="width:300px">
+				<input type="text" id="proxyAdressPort" name="proxyAdressPort" value=""  autocomplete="off" class="layui-input" readonly>
+			</div>
+		</div>
+		<div class="layui-form-item">
+			<label class="layui-form-label" style="width:200px">SDK版本</label>
+			<div class="layui-input-inline" style="width:300px">
+				<input type="text" id="sdkEdition" name="sdkEdition" value=""  autocomplete="off" class="layui-input" readonly>
+			</div>
+		</div>
+		<div class="layui-form-item">
+			<label class="layui-form-label" style="width:200px">fm版本</label>
+			<div class="layui-input-inline" style="width:300px">
+				<input type="text" id="fmEdition" name="fmEdition" value=""  autocomplete="off" class="layui-input" readonly>
+			</div>
+		</div>
+		<div class="layui-form-item">
+			<label class="layui-form-label" style="width:200px">电量</label>
+			<div class="layui-input-inline" style="width:300px">
+				<input type="text" id="electricity" name="electricity" value=""  autocomplete="off" class="layui-input" readonly>
+			</div>
+		</div>
+		<div class="layui-form-item">
+			<label class="layui-form-label" style="width:200px">音乐hash</label>
+			<div class="layui-input-inline" style="width:300px">
+				<input type="text" id="musicHash" name="musicHash" value=""  autocomplete="off" class="layui-input" readonly>
+			</div>
+		</div>
+		<div class="layui-form-item">
+			<label class="layui-form-label" style="width:200px">网络提供商编号</label>
+			<div class="layui-input-inline" style="width:300px">
+				<input type="text" id="networkProviderCode" name="networkProviderCode" value=""  autocomplete="off" class="layui-input" readonly>
+			</div>
+		</div>
+		<div class="layui-form-item">
+			<label class="layui-form-label" style="width:200px">iso标准的国家代码</label>
+			<div class="layui-input-inline" style="width:300px">
+				<input type="text" id="isoCountryCode" name="isoCountryCode" value=""  autocomplete="off" class="layui-input" readonly>
+			</div>
+		</div>
+		<div class="layui-form-item">
+			<label class="layui-form-label" style="width:200px">firm版本</label>
+			<div class="layui-input-inline" style="width:300px">
+				<input type="text" id="firmEdition" name="firmEdition" value=""  autocomplete="off" class="layui-input" readonly>
+			</div>
+		</div>
+		<div class="layui-form-item">
+			<label class="layui-form-label" style="width:200px">cpu序列号</label>
+			<div class="layui-input-inline" style="width:300px">
+				<input type="text" id="cpuSerialNum" name="cpuSerialNum" value=""  autocomplete="off" class="layui-input" readonly>
+			</div>
+		</div>
+		<div class="layui-form-item">
+			<label class="layui-form-label" style="width:200px">cpu硬件</label>
+			<div class="layui-input-inline" style="width:300px">
+				<input type="text" id="cpuHardware" name="cpuHardware" value=""  autocomplete="off" class="layui-input" readonly>
+			</div>
+		</div>
+		<div class="layui-form-item">
+			<label class="layui-form-label" style="width:200px">手机型号</label>
+			<div class="layui-input-inline" style="width:300px">
+				<input type="text" id="phoneModel" name="phoneModel" value=""  autocomplete="off" class="layui-input" readonly>
+			</div>
+		</div>
+		<div class="layui-form-item">
+			<label class="layui-form-label" style="width:200px">蓝牙mac地址</label>
+			<div class="layui-input-inline" style="width:300px">
+				<input type="text" id="bluetoothMac" name="bluetoothMac" value=""  autocomplete="off" class="layui-input" readonly>
+			</div>
+		</div>
+		<div class="layui-form-item">
+			<label class="layui-form-label" style="width:200px">语音信箱号码</label>
+			<div class="layui-input-inline" style="width:300px">
+				<input type="text" id="voiceMailboxNum" name="voiceMailboxNum" value=""  autocomplete="off" class="layui-input" readonly>
+			</div>
+		</div>
+		<div class="layui-form-item">
+			<label class="layui-form-label" style="width:200px">设备配置参数</label>
+			<div class="layui-input-inline" style="width:300px">
+				<input type="text" id="deviceParam" name="deviceParam" value=""  autocomplete="off" class="layui-input" readonly>
+			</div>
+		</div>
+		<div class="layui-form-item">
+			<label class="layui-form-label" style="width:200px">电池状态</label>
+			<div class="layui-input-inline" style="width:300px">
+				<input type="text" id="batteryStatus" name="batteryStatus" value=""  autocomplete="off" class="layui-input" readonly>
+			</div>
+		</div>
+		<div class="layui-form-item">
+			<label class="layui-form-label" style="width:200px">设备序列号</label>
+			<div class="layui-input-inline" style="width:300px">
+				<input type="text" id="equipmentSerialNum" name="equipmentSerialNum" value=""  autocomplete="off" class="layui-input" readonly>
+			</div>
+		</div>
+		<div class="layui-form-item">
+			<label class="layui-form-label" style="width:200px">基带版本号</label>
+			<div class="layui-input-inline" style="width:300px">
+				<input type="text" id="basebandEdition" name="basebandEdition" value=""  autocomplete="off" class="layui-input" readonly>
+			</div>
+		</div>
+		<div class="layui-form-item">
+			<label class="layui-form-label" style="width:200px">浏览器ua</label>
+			<div class="layui-input-inline" style="width:300px">
+				<input type="text" id="browserUa" name="browserUa" value=""  autocomplete="off" class="layui-input" readonly>
+			</div>
+		</div>
+		<div class="layui-form-item">
+			<label class="layui-form-label" style="width:200px">电量信息是否可用</label>
+			<div class="layui-input-inline" style="width:300px">
+				<input type="text" id="electricityAvailable" name="electricityAvailable" value=""  autocomplete="off" class="layui-input" readonly>
+			</div>
+		</div>
+		<div class="layui-form-item">
+			<label class="layui-form-label" style="width:200px">从开机到目前的时间包括休眠时间(s)</label>
+			<div class="layui-input-inline" style="width:300px">
+				<input type="text" id="bootReachCurrent" name="bootReachCurrent" value=""  autocomplete="off" class="layui-input" readonly>
+			</div>
+		</div>
+		<div class="layui-form-item">
+			<label class="layui-form-label" style="width:200px">从开机到目前的时间不包括休眠时间</label>
+			<div class="layui-input-inline" style="width:300px">
+				<input type="text" id="bootNoDormancy" name="bootNoDormancy" value=""  autocomplete="off" class="layui-input" readonly>
+			</div>
+		</div>
+		<div class="layui-form-item">
+			<label class="layui-form-label" style="width:200px">屏幕长度</label>
+			<div class="layui-input-inline" style="width:300px">
+				<input type="text" id="screenLong" name="screenLong" value=""  autocomplete="off" class="layui-input" readonly>
+			</div>
+		</div>
+		<div class="layui-form-item">
+			<label class="layui-form-label" style="width:200px">屏幕宽度</label>
+			<div class="layui-input-inline" style="width:300px">
+				<input type="text" id="screenWide" name="screenWide" value=""  autocomplete="off" class="layui-input" readonly>
+			</div>
+		</div>
+		<div class="layui-form-item">
+			<label class="layui-form-label" style="width:200px">屏幕长度</label>
+			<div class="layui-input-inline" style="width:300px">
+				<input type="text" id="screenLong" name="screenLong" value=""  autocomplete="off" class="layui-input" readonly>
+			</div>
+		</div>
+
+		<div class="layui-form-item">
+			<label class="layui-form-label" style="width:200px">wifi ip地址</label>
+			<div class="layui-input-inline" style="width:300px">
+				<input type="text"  id="wifiIp" name="wifiIp" value="" autocomplete="off" class="layui-input" readonly>
+			</div>
+		</div>
+ 
+		<div class="layui-form-item">
+			<label class="layui-form-label" style="width:200px">vpn地址</label>
+			<div class="layui-input-inline" style="width:300px">
+				<input type="text"  id="vpnAddress" name="vpnAddress" value="" autocomplete="off" class="layui-input" readonly>
+			</div>
+		</div>
+
+		<div class="layui-form-item" style="display:none;">
+			<label class="layui-form-label" style="width:200px">dns地址</label>
+			<div class="layui-input-inline" style="width:300px">
+					<input type="text" id="dnsAddress" name="dnsAddress" value=""  autocomplete="off" class="layui-input" readonly>
+					<textarea rows="4" cols="56"   readonly></textarea>
+			</div>
+		</div>
+
+		<div class="layui-form-item"  style="display:none;">
+			<label class="layui-form-label" style="width:200px">是否root/越狱</label>
+			<div class="layui-input-inline" style="width:300px">
+				<input type="text" id="isRoot" name="isRoot" value=""  autocomplete="off" class="layui-input" readonly>
+			</div>
+		</div>
+		<div class="layui-form-item">
+			<label class="layui-form-label" style="width:200px">移动国家码</label>
+			<div class="layui-input-inline" style="width:300px">
+				<input type="text" id="moveCountryCode" name="moveCountryCode" value=""  autocomplete="off" class="layui-input" readonly>
+			</div>
+		</div>
+		
+		<div class="layui-form-item">
+			<label class="layui-form-label" style="width:200px">移动网络码</label>
+			<div class="layui-input-inline" style="width:300px">
+				<input type="text" id="moveNetworkCode" name="moveNetworkCode" value=""  autocomplete="off" class="layui-input" readonly>
+			</div>
+		</div>
+		
+		<div class="layui-form-item">
+			<label class="layui-form-label" style="width:200px">语言</label>
+			<div class="layui-input-inline" style="width:300px">
+				<input type="text" id="language" name="language" value=""  autocomplete="off" class="layui-input" readonly>
+			</div>
+		</div>
+		<div class="layui-form-item">
+			<label class="layui-form-label" style="width:200px">真实IP</label>
+			<div class="layui-input-inline" style="width:300px">
+				<input type="text" id="realIp" name="realIp" value=""  autocomplete="off" class="layui-input" readonly>
+			</div>
+		</div>
+		<div class="layui-form-item">
+			<label class="layui-form-label" style="width:200px">IP地理位置信息</label>
+			<div class="layui-input-inline" style="width:300px">
+				<input type="text" id="ipPosition" name="ipPosition" value=""  autocomplete="off" class="layui-input" readonly>
+			</div>
+		</div>
+		
+		<div class="layui-form-item">
+			<label class="layui-form-label" style="width:200px">cpu型号</label>
+			<div class="layui-input-inline" style="width:300px">
+				<input type="text"  id="cpuModel" name="cpuModel" value="" autocomplete="off" class="layui-input" readonly>
+			</div>
+		</div>
+		
+		<div class="layui-form-item">
+			<label class="layui-form-label" style="width:200px">创建时间</label>
+			<div class="layui-input-inline" style="width:300px">
+				<input type="text" id="createTime" name="createTime" value=""  autocomplete="off" class="layui-input" readonly>
+			</div>
+		</div>
+		<div class="layui-form-item">
+			<label class="layui-form-label" style="width:200px">修改时间</label>
+			<div class="layui-input-inline" style="width:300px">
+				<input type="text"  id="modifyTime" name="modifyTime"   autocomplete="off" class="layui-input"  >
+			</div>
+		</div>
+ 		<button class="layui-btn layui-btn-normal"  id="closeIframe" onclick="closeIfrname()"  style="margin-left: 380px;" >关闭</button>
+
+	</div>
+</body>
+</html>

@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.shangyong.backend.dao.ScFraudRuleBigHisDao">
+
+	<resultMap type="com.shangyong.backend.entity.ScFraudRuleBigHis" id="scFraudRuleBigHisMap">
+		<id property="fraudRuleBigHisId" column="fraud_rule_big_his_id" javaType="java.lang.Integer"></id>
+		<result property="fraudRuleBigId" column="fraud_rule_big_id" javaType="java.lang.Integer"></result>
+		<result property="creditType" column="credit_type" javaType="java.lang.String"></result>
+		<result property="fraudRuleName" column="fraud_rule_name" javaType="java.lang.String"></result>
+		<result property="fraudRuleBigCode" column="fraud_rule_big_code" javaType="java.lang.String"></result>
+		<result property="fraudRuleDetail" column="fraud_rule_detail" javaType="java.lang.String"></result>
+		<result property="state" column="state" javaType="java.lang.String"></result>
+		<result property="version" column="version" javaType="java.lang.Integer"></result>
+		<result property="createTime" column="create_time" javaType="java.lang.String"></result>
+		<result property="createMan" column="create_man" javaType="java.lang.String"></result>
+		<result property="createName" column="create_name" javaType="java.lang.String"></result>
+		<result property="modifyTime" column="modify_time" javaType="java.lang.String"></result>
+		<result property="modifyMan" column="modify_man" javaType="java.lang.String"></result>
+		<result property="modifyName" column="modify_name" javaType="java.lang.String"></result>
+		<result property="remark" column="remark" javaType="java.lang.String"></result> 
+		<result property="percent" column="percent" javaType="java.lang.String"></result>
+	</resultMap>
+
+	<!-- 通用查询结果列-->
+	<sql id="Base_Column_List">
+fraud_rule_big_his_id,	fraud_rule_big_id,	credit_type,	fraud_rule_name,	fraud_rule_big_code,	fraud_rule_detail,	state,	version,	create_time,	create_man,	create_name,	modify_time,	modify_man,	modify_name,	remark,	percent,record_newtime
+	</sql>
+
+	<!-- 查询 -->
+	<select id="getEntityById" resultMap="scFraudRuleBigHisMap" parameterType="java.lang.Integer">
+		 SELECT
+		 <include refid="Base_Column_List" />
+		 FROM sc_fraud_rule_big_his
+		 WHERE fraud_rule_big_his_id = #{fraudRuleBigHisId}
+	</select>
+	
+	<!-- 查询 -->
+	<select id="findAll" resultMap="scFraudRuleBigHisMap" parameterType="com.shangyong.backend.entity.ScFraudRuleBigHis">
+		 SELECT
+		 <include refid="Base_Column_List" />
+		 FROM sc_fraud_rule_big_his
+		 <where>
+ 			<if test="fraudRuleBigCode != null and fraudRuleBigCode != '' ">
+				  fraud_rule_big_code = #{fraudRuleBigCode}
+			</if>
+			<if test="fraudRuleName != null and fraudRuleName != '' ">
+			 instr(fraud_rule_name, #{fraudRuleName}) > 0
+			</if>
+			<if test="creditType != null and creditType != '' ">
+				and credit_type = #{creditType}
+			</if>
+			<if test="fraudRuleBigId != null and fraudRuleBigId != '' ">
+				and fraud_rule_big_id = #{fraudRuleBigId}
+			</if>
+		  </where>
+		  order by modify_time desc 
+	   	  LIMIT #{pageIndex},#{pageSize}
+	</select>
+	
+	<select id="listAllCount" resultType="java.lang.Integer" parameterType="com.shangyong.backend.entity.ScFraudRuleBigHis">
+		 SELECT
+		 count(1)
+		 FROM sc_fraud_rule_big_his
+		 <where>
+ 			<if test="fraudRuleBigCode != null and fraudRuleBigCode != '' ">
+				  fraud_rule_big_code = #{fraudRuleBigCode}
+			</if>
+			<if test="fraudRuleName != null and fraudRuleName != '' ">
+			 instr(fraud_rule_name, #{fraudRuleName}) > 0
+			</if>
+			<if test="creditType != null and creditType != '' ">
+				and credit_type = #{creditType}
+			</if>
+			<if test="fraudRuleBigId != null and fraudRuleBigId != '' ">
+				and fraud_rule_big_id = #{fraudRuleBigId}
+			</if>
+		  </where>
+	</select>
+
+
+	<!--删除：根据主键ID删除-->
+	<delete id="deleteEntity" parameterType="java.lang.Integer">
+		 DELETE FROM sc_fraud_rule_big_his
+		 WHERE fraud_rule_big_his_id = #{fraudRuleBigHisId}
+	</delete>
+
+	<!-- 添加 -->
+	<insert id="saveEntity" parameterType="com.shangyong.backend.entity.ScFraudRuleBigHis">
+		 INSERT INTO sc_fraud_rule_big_his
+ 		(fraud_rule_big_his_id,fraud_rule_big_id,credit_type,fraud_rule_name,fraud_rule_big_code,fraud_rule_detail,state,version,create_time,create_man,create_name,modify_time,modify_man,modify_name,remark,percent) 
+		 VALUES 
+ 		(#{fraudRuleBigHisId},#{fraudRuleBigId},#{creditType},#{fraudRuleName},#{fraudRuleBigCode},#{fraudRuleDetail},#{state},#{version},#{createTime},#{createMan},#{createName},#{modifyTime},#{modifyMan},#{modifyName},#{remark},#{percent}) 
+	</insert>
+
+	<!-- 修 改-->
+	<update id="updateEntity" parameterType="com.shangyong.backend.entity.ScFraudRuleBigHis">
+		 UPDATE sc_fraud_rule_big_his
+ 		 <set> 
+			<if test="fraudRuleBigId != null">
+				 fraud_rule_big_id = #{fraudRuleBigId},
+			</if>
+			<if test="creditType != null">
+				 credit_type = #{creditType},
+			</if>
+			<if test="fraudRuleName != null">
+				 fraud_rule_name = #{fraudRuleName},
+			</if>
+			<if test="fraudRuleBigCode != null">
+				 fraud_rule_big_code = #{fraudRuleBigCode},
+			</if>
+			<if test="fraudRuleDetail != null">
+				 fraud_rule_detail = #{fraudRuleDetail},
+			</if>
+			<if test="state != null">
+				 state = #{state},
+			</if>
+			<if test="version != null">
+				 version = #{version},
+			</if>
+			<if test="createTime != null">
+				 create_time = #{createTime},
+			</if>
+			<if test="createMan != null">
+				 create_man = #{createMan},
+			</if>
+			<if test="createName != null">
+				 create_name = #{createName},
+			</if>
+			<if test="modifyTime != null">
+				 modify_time = #{modifyTime},
+			</if>
+			<if test="modifyMan != null">
+				 modify_man = #{modifyMan},
+			</if>
+			<if test="modifyName != null">
+				 modify_name = #{modifyName},
+			</if>
+			<if test="remark != null">
+				 remark = #{remark},
+			</if>
+			<if test="recordNewtime != null">
+				 record_newtime = #{recordNewtime},
+			</if>
+			<if test="percent != null">
+				 percent = #{percent}
+			</if>
+
+ 		 </set>
+		 WHERE fraud_rule_big_his_id = #{fraudRuleBigHisId}
+	</update>
+
+</mapper>

@@ -1,0 +1,212 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.shangyong.backend.dao.ScLinkmanTypeCountDao">
+
+	<resultMap type="com.shangyong.backend.entity.ScLinkmanTypeCount" id="scLinkmanTypeCountMap">
+		<id property="applicationId" column="application_id"/>
+		<result property="customerId" column="customer_id"/>
+		<result property="linkmanCnt" column="linkman_cnt" />
+		<result property="normalLinkmanCnt" column="normal_linkman_cnt" />
+		<result property="abnormalLinkmanCnt" column="abnormal_linkman_cnt" />
+		<result property="abnormalDaiLinkmanCnt" column="abnormal_dai_linkman_cnt" />
+		<result property="abnormalXinyongkaLinkmanCnt" column="abnormal_xinyongka_linkman_cnt" />
+		<result property="abnormalBankaLinkmanCnt" column="abnormal_banka_linkman_cnt" />
+		<result property="abnormalTieLinkmanCnt" column="abnormal_tie_linkman_cnt" />
+		<result property="abnormalHeihuLinkmanCnt" column="abnormal_heihu_linkman_cnt" />
+		<result property="abnormalKouziLinkmanCnt" column="abnormal_kouzi_linkman_cnt" />
+		<result property="abnormalDuLinkmanCnt" column="abnormal_du_linkman_cnt" />
+		<result property="abnormalJiedaibaoLinkmanCnt" column="abnormal_jiedaibao_linkman_cnt" />
+		<result property="abnormalTaoxianLinkmanCnt" column="abnormal_taoxian_linkman_cnt" />
+		<result property="abnormalTixianLinkmanCnt" column="abnormal_tixian_linkman_cnt" />
+		<result property="abnormalPosLinkmanCnt" column="abnormal_pos_linkman_cnt" />
+		<result property="abnormalCuishouLinkmanCnt" column="abnormal_cuishou_linkman_cnt" />
+		<result property="abnormalQianLinkmanCnt" column="abnormal_qian_linkman_cnt" />
+		<result property="abnormalJiazhengLinkmanCnt" column="abnormal_jiazheng_linkman_cnt" />
+		<result property="abnormalXianjinLinkmanCnt" column="abnormal_xianjin_linkman_cnt" />
+		<result property="alienLinkmanCnt" column="alien_linkman_cnt" />
+		<result property="alienNullnameLinkmanCnt" column="alien_nullname_linkman_cnt" />
+		<result property="alienNumnameLinkmanCnt" column="alien_numname_linkman_cnt" />
+		<result property="alienNullnumLinkmanCnt" column="alien_nullnum_linkman_cnt" />
+		<result property="alienName3LinkmanCnt" column="alien_name3_linkman_cnt" />
+		<result property="alienNum3LinkmanCnt" column="alien_num3_linkman_cnt" />
+		<result property="alienName3LinkmanCnt2" column="alien_name3_linkman_cnt2" />
+		<result property="alienNum3LinkmanCnt2" column="alien_num3_linkman_cnt2" />
+		<result property="alienNum8or12LinkmanCnt" column="alien_num8or12_linkman_cnt" />
+		<result property="createTime" column="create_time" />
+		<result property="createMan" column="create_man" />
+		<result property="modifyTime" column="modify_time" />
+		<result property="modifyMan" column="modify_man" />
+		<result property="remark" column="remark" />
+	</resultMap>
+
+	<!-- 通用查询结果列-->
+	<sql id="Base_Column_List">
+		application_id,	customer_id,	linkman_cnt,	normal_linkman_cnt,	abnormal_linkman_cnt,	abnormal_dai_linkman_cnt,
+		abnormal_xinyongka_linkman_cnt,	abnormal_banka_linkman_cnt,	abnormal_tie_linkman_cnt,	abnormal_heihu_linkman_cnt,
+		abnormal_kouzi_linkman_cnt,	abnormal_du_linkman_cnt,	abnormal_jiedaibao_linkman_cnt,	abnormal_taoxian_linkman_cnt,
+		abnormal_tixian_linkman_cnt,	abnormal_pos_linkman_cnt,	abnormal_cuishou_linkman_cnt,	abnormal_qian_linkman_cnt,
+		abnormal_jiazheng_linkman_cnt,	abnormal_xianjin_linkman_cnt,	alien_linkman_cnt,	alien_nullname_linkman_cnt,
+		alien_numname_linkman_cnt,	alien_nullnum_linkman_cnt,	alien_name3_linkman_cnt,	alien_num3_linkman_cnt,
+		alien_name3_linkman_cnt2,	alien_num3_linkman_cnt2,	alien_num8or12_linkman_cnt,	create_time,
+		create_man,	modify_time,	modify_man,	remark
+	</sql>
+
+	<!-- 查询（根据主键ID查询） -->
+	<select id="getEntityById" resultMap="scLinkmanTypeCountMap" parameterType="java.lang.String">
+		SELECT
+			<include refid="Base_Column_List" />
+		FROM
+			sc_linkman_type_count
+		WHERE
+			application_id = #{applicationId}
+	</select>
+
+	<!-- 查询（根据主键ID查询） -->
+	<select id="findAll" resultMap="scLinkmanTypeCountMap" parameterType="java.lang.String">
+		 SELECT
+		 	<include refid="Base_Column_List" />
+		 FROM
+			sc_linkman_type_count
+		 WHERE
+			application_id = #{applicationId}
+	</select>
+
+	<!--删除：根据主键ID删除-->
+	<delete id="deleteEntity" parameterType="java.lang.String">
+		 DELETE FROM
+		 	sc_linkman_type_count
+		 WHERE
+		 	application_id = #{applicationId}
+	</delete>
+
+	<!-- 添加 -->
+	<insert id="saveEntity" parameterType="com.shangyong.backend.entity.ScLinkmanTypeCount">
+		 INSERT INTO sc_linkman_type_count (
+		 	application_id,customer_id,linkman_cnt,normal_linkman_cnt,abnormal_linkman_cnt,
+			abnormal_dai_linkman_cnt,abnormal_xinyongka_linkman_cnt,abnormal_banka_linkman_cnt,abnormal_tie_linkman_cnt,
+			abnormal_heihu_linkman_cnt,abnormal_kouzi_linkman_cnt,abnormal_du_linkman_cnt,abnormal_jiedaibao_linkman_cnt,
+			abnormal_taoxian_linkman_cnt,abnormal_tixian_linkman_cnt,abnormal_pos_linkman_cnt,abnormal_cuishou_linkman_cnt,
+			abnormal_qian_linkman_cnt,abnormal_jiazheng_linkman_cnt,abnormal_xianjin_linkman_cnt,alien_linkman_cnt,
+			alien_nullname_linkman_cnt,alien_numname_linkman_cnt,alien_nullnum_linkman_cnt,alien_name3_linkman_cnt,
+			alien_num3_linkman_cnt,alien_name3_linkman_cnt2,alien_num3_linkman_cnt2,alien_num8or12_linkman_cnt,create_time,
+			create_man,modify_time,modify_man,remark
+		 ) VALUES  (
+		 	#{applicationId},#{customerId},#{linkmanCnt},#{normalLinkmanCnt},#{abnormalLinkmanCnt},#{abnormalDaiLinkmanCnt},
+		 	#{abnormalXinyongkaLinkmanCnt},#{abnormalBankaLinkmanCnt},#{abnormalTieLinkmanCnt},#{abnormalHeihuLinkmanCnt},
+		 	#{abnormalKouziLinkmanCnt},#{abnormalDuLinkmanCnt},#{abnormalJiedaibaoLinkmanCnt},#{abnormalTaoxianLinkmanCnt},
+		 	#{abnormalTixianLinkmanCnt},#{abnormalPosLinkmanCnt},#{abnormalCuishouLinkmanCnt},#{abnormalQianLinkmanCnt},
+		 	#{abnormalJiazhengLinkmanCnt},#{abnormalXianjinLinkmanCnt},#{alienLinkmanCnt},#{alienNullnameLinkmanCnt},
+		 	#{alienNumnameLinkmanCnt},#{alienNullnumLinkmanCnt},#{alienName3LinkmanCnt},#{alienNum3LinkmanCnt},
+		 	#{alienName3LinkmanCnt2},#{alienNum3LinkmanCnt2},#{alienNum8or12LinkmanCnt},#{createTime},#{createMan},
+		 	#{modifyTime},#{modifyMan},#{remark})
+	</insert>
+
+	<!-- 修 改-->
+	<update id="updateEntity" parameterType="com.shangyong.backend.entity.ScLinkmanTypeCount">
+		 UPDATE sc_linkman_type_count
+ 		 <set> 
+			<if test="customerId != null">
+				 customer_id = #{customerId},
+			</if>
+			<if test="linkmanCnt != null">
+				 linkman_cnt = #{linkmanCnt},
+			</if>
+			<if test="normalLinkmanCnt != null">
+				 normal_linkman_cnt = #{normalLinkmanCnt},
+			</if>
+			<if test="abnormalLinkmanCnt != null">
+				 abnormal_linkman_cnt = #{abnormalLinkmanCnt},
+			</if>
+			<if test="abnormalDaiLinkmanCnt != null">
+				 abnormal_dai_linkman_cnt = #{abnormalDaiLinkmanCnt},
+			</if>
+			<if test="abnormalXinyongkaLinkmanCnt != null">
+				 abnormal_xinyongka_linkman_cnt = #{abnormalXinyongkaLinkmanCnt},
+			</if>
+			<if test="abnormalBankaLinkmanCnt != null">
+				 abnormal_banka_linkman_cnt = #{abnormalBankaLinkmanCnt},
+			</if>
+			<if test="abnormalTieLinkmanCnt != null">
+				 abnormal_tie_linkman_cnt = #{abnormalTieLinkmanCnt},
+			</if>
+			<if test="abnormalHeihuLinkmanCnt != null">
+				 abnormal_heihu_linkman_cnt = #{abnormalHeihuLinkmanCnt},
+			</if>
+			<if test="abnormalKouziLinkmanCnt != null">
+				 abnormal_kouzi_linkman_cnt = #{abnormalKouziLinkmanCnt},
+			</if>
+			<if test="abnormalDuLinkmanCnt != null">
+				 abnormal_du_linkman_cnt = #{abnormalDuLinkmanCnt},
+			</if>
+			<if test="abnormalJiedaibaoLinkmanCnt != null">
+				 abnormal_jiedaibao_linkman_cnt = #{abnormalJiedaibaoLinkmanCnt},
+			</if>
+			<if test="abnormalTaoxianLinkmanCnt != null">
+				 abnormal_taoxian_linkman_cnt = #{abnormalTaoxianLinkmanCnt},
+			</if>
+			<if test="abnormalTixianLinkmanCnt != null">
+				 abnormal_tixian_linkman_cnt = #{abnormalTixianLinkmanCnt},
+			</if>
+			<if test="abnormalPosLinkmanCnt != null">
+				 abnormal_pos_linkman_cnt = #{abnormalPosLinkmanCnt},
+			</if>
+			<if test="abnormalCuishouLinkmanCnt != null">
+				 abnormal_cuishou_linkman_cnt = #{abnormalCuishouLinkmanCnt},
+			</if>
+			<if test="abnormalQianLinkmanCnt != null">
+				 abnormal_qian_linkman_cnt = #{abnormalQianLinkmanCnt},
+			</if>
+			<if test="abnormalJiazhengLinkmanCnt != null">
+				 abnormal_jiazheng_linkman_cnt = #{abnormalJiazhengLinkmanCnt},
+			</if>
+			<if test="abnormalXianjinLinkmanCnt != null">
+				 abnormal_xianjin_linkman_cnt = #{abnormalXianjinLinkmanCnt},
+			</if>
+			<if test="alienLinkmanCnt != null">
+				 alien_linkman_cnt = #{alienLinkmanCnt},
+			</if>
+			<if test="alienNullnameLinkmanCnt != null">
+				 alien_nullname_linkman_cnt = #{alienNullnameLinkmanCnt},
+			</if>
+			<if test="alienNumnameLinkmanCnt != null">
+				 alien_numname_linkman_cnt = #{alienNumnameLinkmanCnt},
+			</if>
+			<if test="alienNullnumLinkmanCnt != null">
+				 alien_nullnum_linkman_cnt = #{alienNullnumLinkmanCnt},
+			</if>
+			<if test="alienName3LinkmanCnt != null">
+				 alien_name3_linkman_cnt = #{alienName3LinkmanCnt},
+			</if>
+			<if test="alienNum3LinkmanCnt != null">
+				 alien_num3_linkman_cnt = #{alienNum3LinkmanCnt},
+			</if>
+			<if test="alienName3LinkmanCnt2 != null">
+				 alien_name3_linkman_cnt2 = #{alienName3LinkmanCnt2},
+			</if>
+			<if test="alienNum3LinkmanCnt2 != null">
+				 alien_num3_linkman_cnt2 = #{alienNum3LinkmanCnt2},
+			</if>
+			<if test="alienNum8or12LinkmanCnt != null">
+				 alien_num8or12_linkman_cnt = #{alienNum8or12LinkmanCnt},
+			</if>
+			<if test="createTime != null">
+				 create_time = #{createTime},
+			</if>
+			<if test="createMan != null">
+				 create_man = #{createMan},
+			</if>
+			<if test="modifyTime != null">
+				 modify_time = #{modifyTime},
+			</if>
+			<if test="modifyMan != null">
+				 modify_man = #{modifyMan},
+			</if>
+			<if test="remark != null">
+				 remark = #{remark},
+			</if>
+ 		 </set>
+		 WHERE application_id = #{applicationId}
+	</update>
+
+</mapper>

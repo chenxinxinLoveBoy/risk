@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+<meta charset="UTF-8">
+<title>极光报告信息</title>
+<link rel="stylesheet" href="../../plugins/layui/css/layui.css"
+	media="all" />
+<link rel="stylesheet" href="../../css/global.css" media="all">
+<link rel="stylesheet"
+	href="../../plugins/font-awesome/css/font-awesome.min.css">
+<link rel="stylesheet" href="../../css/table.css" />
+</head>
+<body>
+	<div class="admin-main">
+		<fieldset class="layui-elem-field">
+			<br>
+			<br>
+			&nbsp;&nbsp;&nbsp;&nbsp;<a href="javascript:getMysqlData();" class="layui-btn layui-btn-small">
+			<i class="layui-icon">&#xe615;</i> Mysql数据查询
+			<a href="javascript:getMongoData();" class="layui-btn layui-btn-small" >
+			<i class="layui-icon">&#xe615;</i> Mongo数据查询
+			</a>
+			<div class="layui-field-box layui-form">
+				<table class="layui-table">
+					<colgroup>
+						<col width="150">
+						<col width="200">
+						<col>
+					</colgroup>
+					<tbody>
+						<tr>
+							<td>逾期分数</td>
+							<td ><font id="overdueScore"></font></td>
+						</tr>
+						<tr>
+							<td>违约分</td>
+							<td><font id="violationScore"></font></td>
+						</tr>
+						<tr>
+							<td>关系风险分数</td>
+							<td><font id="circleScore"></font></td>
+						</tr>
+						<tr>
+							<td>最终风险系数得分</td>
+							<td><font id="finallyRiskScore"></font></td>
+						</tr>
+						<tr>
+							<td>风险描述</td>
+							<td><font id="riskDescription"></font></td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</fieldset>
+	</div>
+
+	<!-- js -->
+	<script src="../../jqery/jquery.js"></script>
+	<script src="../../../commons/base.js"></script>
+	<script type="text/javascript" src="../../plugins/layui/layui.js"></script>
+	<script type="text/javascript" src="../../js/customerManager/jgInfo.js"></script>
+</body>
+
+</html>

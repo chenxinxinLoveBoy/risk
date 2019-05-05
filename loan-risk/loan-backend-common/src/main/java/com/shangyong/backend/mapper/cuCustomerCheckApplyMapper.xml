@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.shangyong.backend.dao.CuCustomerCheckApplyDao">
+
+	<resultMap type="com.shangyong.backend.entity.CuCustomerCheckApply" id="cuCustomerCheckApplyMap">
+		<id property="customerCheckApplyId" column="customer_check_apply_id" javaType="java.lang.String"></id>
+		<result property="customerCheckCodeId" column="customer_check_code_id" javaType="java.lang.String"></result>
+		<result property="name" column="name" javaType="java.lang.String"></result>
+		<result property="certCode" column="cert_code" javaType="java.lang.String"></result>
+		<result property="phoneNum" column="phone_num" javaType="java.lang.String"></result>
+		<result property="banCode" column="ban_code" javaType="java.lang.String"></result>
+		<result property="banDescription" column="ban_description" javaType="java.lang.String"></result>
+		<result property="createTime" column="create_time" javaType="java.lang.String"></result>
+		<result property="modifyTime" column="modify_time" javaType="java.lang.String"></result>
+		<result property="remark" column="remark" javaType="java.lang.String"></result>
+	</resultMap>
+
+	<!-- 通用查询结果列-->
+	<sql id="Base_Column_List">
+customer_check_apply_id,	customer_check_code_id,	name,	cert_code,	phone_num,	ban_code,	ban_description,	create_time,	modify_time,	remark
+	</sql>
+	
+<!--add: xuke 查询信息分页 -->
+	<select id="getAll" resultMap="cuCustomerCheckApplyMap" parameterType="com.shangyong.backend.entity.CuCustomerCheckApply">
+		 SELECT
+		 <include refid="Base_Column_List" />
+		 FROM cu_customer_check_apply
+		 <where>
+		 	<if test="customerCheckApplyId != null and customerCheckApplyId != ''">
+				 customer_check_apply_id = #{customerCheckApplyId}
+			</if>
+			<if test="name != null and name != ''">
+				and  instr(name, #{name}) > 0 
+			</if>
+			<if test="customerCheckCodeId != null and customerCheckCodeId !=''">
+				and customer_check_code_id = #{customerCheckCodeId}
+			</if> 
+			<if test="certCode != null and certCode !=''">
+				and cert_code = #{certCode}
+			</if> 
+			<if test="phoneNum != null and phoneNum !=''">
+				and phone_num = #{phoneNum}
+			</if> 
+			<if test="banCode != null and banCode !=''">
+				and ban_code = #{banCode}
+			</if> 
+		 </where>
+		 ORDER BY create_time DESC   
+ 	</select>
+ 	
+ 	<!-- add:xiajiyun，加载满足一键重发的数据  -->
+<!--  	<select id="list" resultMap="cuCustomerCheckApplyMap" parameterType="com.shangyong.backend.entity.CuCustomerCheckApply"> -->
+<!-- 		 SELECT -->
+<!-- 		 <include refid="Base_Column_List" /> -->
+<!-- 		 FROM cu_customer_check_apply -->
+<!-- 		 <where> -->
+<!-- 		 	<if test="customerCheckApplyId != null and customerCheckApplyId != ''"> -->
+<!-- 				 customer_check_apply_id = #{customerCheckApplyId} -->
+<!-- 			</if> -->
+<!-- 			<if test="name != null and name != ''"> -->
+<!-- 				and  instr(name, #{name}) > 0  -->
+<!-- 			</if> -->
+<!-- 			<if test="customerCheckCodeId != null and customerCheckCodeId !=''"> -->
+<!-- 				and customer_check_code_id = #{customerCheckCodeId} -->
+<!-- 			</if>  -->
+<!-- 			<if test="certCode != null and certCode !=''"> -->
+<!-- 				and cert_code = #{certCode} -->
+<!-- 			</if>  -->
+<!-- 			<if test="phoneNum != null and phoneNum !=''"> -->
+<!-- 				and phone_num = #{phoneNum} -->
+<!-- 			</if>  -->
+<!-- 			<if test="banCode != null and banCode !=''"> -->
+<!-- 				and ban_code = #{banCode} -->
+<!-- 			</if>  -->
+<!-- 		 </where> -->
+<!-- 		 ORDER BY create_time DESC    -->
+<!--  	</select> -->
+ 	
+
+	<!-- add: xiajiyun , 查询（根据主键ID查询） -->
+	<select id="getEntityById" resultType="int" parameterType="java.util.Map">
+		select 
+			count(1)
+		from cu_customer_check_apply a
+		inner join cu_customer_check_apply_extends b
+		on a.customer_check_apply_id = b.customer_check_apply_id
+		where a.customer_check_apply_id = #{customerCheckApplyId}
+		<!-- 状态待处理 -->
+		and b.apply_state = 1
+		and b.task_type = #{taskType}
+		 
+	</select>
+	
+	
+
+	<!-- add xiajiyun: 查询（根据主键ID查询） -->
+	<select id="find" resultMap="cuCustomerCheckApplyMap" parameterType="java.lang.String">
+		 SELECT
+		 <include refid="Base_Column_List" />
+		 FROM cu_customer_check_apply
+		 WHERE customer_check_apply_id = #{customerCheckApplyId}
+	</select>
+
+	<!--删除：根据主键ID删除-->
+	<delete id="deleteEntity" parameterType="java.lang.String">
+		 DELETE FROM cu_customer_check_apply
+		 WHERE customer_check_apply_id = #{customerCheckApplyId}
+	</delete>
+
+	<!-- 添加 -->
+	<insert id="saveEntity" parameterType="com.shangyong.backend.entity.CuCustomerCheckApply">
+		 INSERT INTO cu_customer_check_apply
+ 		(customer_check_apply_id,customer_check_code_id,name,cert_code,phone_num,ban_code,ban_description,create_time,modify_time,remark) 
+		 VALUES 
+ 		(#{customerCheckApplyId},#{customerCheckCodeId},#{name},#{certCode},#{phoneNum},#{banCode},#{banDescription},#{createTime},#{modifyTime},#{remark}) 
+	</insert>
+
+	<!-- add: xiajiyun, 修 改-->
+	<update id="updateEntity" parameterType="java.util.Map">
+		 UPDATE cu_customer_check_apply
+ 		 <set>  
+			<if test="banCode != null">
+				 ban_code = #{banCode},
+			</if>
+			<if test="banDescription != null and banDescription != '' ">
+				 ban_description = #{banDescription},
+			</if>
+			 
+				 modify_time = now(),
+			<if test="remark != null and remark != '' ">
+				 remark = #{remark},
+			</if>
+
+ 		 </set>
+		 WHERE customer_check_apply_id = #{customerCheckApplyId}
+	</update>
+
+</mapper>

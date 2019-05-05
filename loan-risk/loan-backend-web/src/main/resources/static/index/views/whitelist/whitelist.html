@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>白名单列表</title>
+		<link rel="stylesheet" href="../../plugins/layui/css/layui.css" media="all" />
+		<link rel="stylesheet" href="../../css/global.css" media="all">
+		<link rel="stylesheet" href="../../plugins/font-awesome/css/font-awesome.min.css">
+		<link rel="stylesheet" href="../../css/table.css" />
+		 <link rel="stylesheet" href="../../css/lzh_xy_shenghe.css" media="all" />
+		<!-- js --> 　
+		<script src="../../../commons/base.js"></script>
+		<script src="../../plugins/layui/layui.js"></script> 
+		<script src="../../jqery/jquery.js"></script>
+	  	<script type="text/javascript" src="../../js/whitelist/whitelist.js"></script>
+	</head>　
+	<body>
+		<div class="admin-main">
+		<form action="" class="layui-form" >
+			<blockquote class="layui-elem-quote">  
+				<a href="javascript:;" class="layui-btn layui-btn-small"  onclick="add()">
+					<i class="layui-icon">&#xe608;</i> 添加白名单
+				</a>
+				<!-- 查询条件 -->
+				   
+				<div class="layui-inline">
+			      <label class="layui-form-label" style="width: 100px;">用户姓名</label>
+			      <div class="layui-input-inline">
+			      <input id="name" type="text" name="name" placeholder="用户姓名" maxlength="25" autocomplete="off" class="layui-input" onkeyup="this.value=this.value.replace(/\s+/g,'')" >
+			      </div>
+			    </div>
+				   
+			    <div class="layui-inline">
+			      <label class="layui-form-label" style="width: 100px;">用户身份证号</label>
+			      <div class="layui-input-inline">
+			       <input id="certCode" type="text" name="certCode" placeholder="用户身份证号" maxlength="18" onKeyUp="value=value.replace(/[\W]/g,'')" autocomplete="off" class="layui-input">
+			      </div>
+			    </div>
+			     
+			    
+			    <div class="layui-inline">
+			      <label class="layui-form-label" style="width: 100px;">用户手机号</label>
+			      <div class="layui-input-inline">
+			       <input id="phoneNum" type="text" name="phoneNum" placeholder="用户手机号" maxlength="11" onkeyup="this.value=this.value.replace(/\D/g,'')"  onafterpaste="this.value=this.value.replace(/\D/g,'')"  autocomplete="off" class="layui-input">
+			      </div>
+			    </div> 
+			    
+			     <div class="layui-inline">
+			       <label class="layui-form-label">APP平台</label>
+				     <div class="layui-input-inline">
+				      <select name="appName" id="appName" class="layui-input" lay-search=""> 
+				       	  <option value="0">全部</option>
+				          <option value="1">洪澄</option>
+				          <!-- <option value="2">速贷</option>  -->
+				       </select> 
+			      </div>
+			    </div> 
+			    
+			    <div class="layui-inline">
+					<a href="javascript:;" class="layui-btn layui-btn-small"  onclick="query()">
+					<i class="layui-icon">&#xe615;</i>搜索
+				</a>
+				</div> 
+			</blockquote>　
+			</form>
+		</div>
+		
+			<fieldset class="layui-elem-field"> 
+				<div class="layui-field-box layui-form">
+					<table class="layui-table admin-table">
+						<thead>
+							<tr>  
+								<th>APP平台</th>
+								<th>用户姓名</th>
+								<th>用户证件号码</th>
+								<th>证件类型</th>
+								<th>用户手机号</th> 
+								<th>状态</th> 
+								<th>创建时间</th> 
+								<th>操作</th>
+							</tr>
+						</thead>
+						<tbody id="content">
+						</tbody>
+					</table>
+					<label>共<font color='red' id="count_page_number"></font>条记录</label>
+					<div id="paged" class="page" style="display:inline-block;">
+					</div>
+				</div>
+			</fieldset>
+		<!--模板-->
+		<script type="text/html" id="tpl">
+			{{# layui.each(d.list, function(index, item){ 
+				var appName = item.appName;
+				if(appName==1){
+				appName='洪澄';
+				};
+				if(appName==2){
+				appName='速贷';
+				};
+
+				var state = item.state; 
+				if(state=='01'){
+				state='正常';
+				};
+				if(state=='02'){
+				state='失效';
+				};
+
+			var cert = item.certType; 
+				if(cert=='1'){
+				cert='身份证';
+				};
+				if(cert=='2'){
+				cert='护照';
+				};
+				if(cert=='3'){
+				cert='其他';
+				};
+ 
+ 			}} 
+			<tr> 
+				<td>{{ appName }}</td>
+				<td>{{ item.name }}</td>
+				<td>{{ item.certCode }}</td>
+				<td>{{ cert }}</td>
+				<td>{{ item.phoneNum}}</td>
+				<td>{{ state }}</td> 
+				<td>{{ item.createTime.substring(0,19) }}</td> 
+				<td>   
+					<a href="javascript:;" data-id="{{ item.whiteListId }}" data-opt="edit" class="layui-btn layui-btn-mini">编辑</a>
+					<a href="javascript:;" data-id="{{ item.whiteListId }}" data-opt="del" class="layui-btn layui-btn-danger layui-btn-mini">删除</a>					 
+				</td>
+			</tr>
+			{{# }); }}
+		</script>
+	</body>
+</html>

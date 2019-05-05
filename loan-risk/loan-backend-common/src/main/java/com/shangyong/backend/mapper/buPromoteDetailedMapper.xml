@@ -1,0 +1,236 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.shangyong.backend.dao.BuPromoteDetailedDao">
+
+	<resultMap type="com.shangyong.backend.entity.BuPromoteDetailed" id="buPromoteDetailedMap">
+		<id property="promoteDetailedId" column="promote_detailed_id" javaType="java.lang.String"></id>
+		<result property="customerId" column="customer_id" javaType="java.lang.String"></result>
+		<result property="appName" column="app_name" javaType="java.lang.Integer"></result>
+		<result property="taskType" column="task_type" javaType="java.lang.String"></result>
+		<result property="taskId" column="task_id" javaType="java.lang.String"></result>
+		<result property="appChannel" column="app_channel" javaType="java.lang.String"></result>
+		<result property="appLevel" column="app_level" javaType="java.lang.Integer"></result>
+		<result property="refundConut" column="refund_conut" javaType="java.lang.Integer"></result>
+		<result property="dayLoanCount" column="day_loan_count" javaType="java.lang.Integer"></result>
+		<result property="isGongjijin" column="is_gongjijin" javaType="java.lang.Integer"></result>
+		<result property="isShebao" column="is_shebao" javaType="java.lang.Integer"></result>
+		<result property="josnStoragePath" column="josn_storage_path" javaType="java.lang.String"></result>
+		<result property="existingMoney" column="existing_money" javaType="java.lang.String"></result>
+		<result property="increaseMoney" column="increase_money" javaType="java.lang.String"></result>
+		<result property="collectState" column="collect_state" javaType="java.lang.String"></result>
+		<result property="pushType" column="push_type" javaType="java.lang.String"></result>
+		<result property="appSerialNumber" column="app_serial_number" javaType="java.lang.String"></result>
+		<result property="failureTimes" column="failure_times" javaType="java.lang.Integer"></result>
+		<result property="errorDescription" column="error_description" javaType="java.lang.String"></result>
+		<result property="createTime" column="create_time" javaType="java.lang.String"></result>
+		<result property="modifyTime" column="modify_time" javaType="java.lang.String"></result>
+		<result property="remark" column="remark" javaType="java.lang.String"></result>
+		<result property="userName" column="user_name" javaType="java.lang.String"></result>
+		<result property="phone" column="phone" javaType="java.lang.String"></result>
+		<result property="idCard" column="id_card" javaType="java.lang.String"></result>
+	</resultMap>
+
+	<!-- 通用查询结果列-->
+	<sql id="Base_Column_List">
+promote_detailed_id,	customer_id,	app_name,	task_type,	task_id,	app_channel,	app_level,	refund_conut,	day_loan_count,	is_gongjijin,	is_shebao,	josn_storage_path,	existing_money,	increase_money,	collect_state,	push_type,	app_serial_number,	failure_times,	error_description,	create_time,	modify_time,	remark,	user_name,	phone,	id_card
+	</sql>
+
+	<!-- 查询（根据主键ID查询） -->
+	<select id="getEntityById" resultMap="buPromoteDetailedMap" parameterType="java.lang.String">
+		 SELECT
+		 <include refid="Base_Column_List" />
+		 FROM bu_promote_detailed
+		 WHERE promote_detailed_id = #{promoteDetailedId}
+	</select>
+
+	<!-- 查询（根据主键ID查询） -->
+	<select id="findAll" resultMap="buPromoteDetailedMap" parameterType="java.lang.String">
+		 SELECT
+		 <include refid="Base_Column_List" />
+		 FROM bu_promote_detailed
+		 WHERE promote_detailed_id = #{promoteDetailedId}
+	</select>
+
+	<!--删除：根据主键ID删除-->
+	<delete id="deleteEntity" parameterType="java.lang.String">
+		 DELETE FROM bu_promote_detailed
+		 WHERE promote_detailed_id = #{promoteDetailedId}
+	</delete>
+
+	<!-- 添加 -->
+	<insert id="saveEntity" parameterType="com.shangyong.backend.entity.BuPromoteDetailed">
+		 INSERT INTO bu_promote_detailed
+ 		(promote_detailed_id,customer_id,app_name,task_type,task_id,app_channel,app_level,refund_conut,day_loan_count,is_gongjijin,is_shebao,josn_storage_path,existing_money,increase_money,collect_state,push_type,app_serial_number,failure_times,error_description,create_time,modify_time,remark,user_name,phone,id_card) 
+		 VALUES 
+ 		(#{promoteDetailedId},#{customerId},#{appName},#{taskType},#{taskId},#{appChannel},#{appLevel},#{refundConut},#{dayLoanCount},#{isGongjijin},#{isShebao},#{josnStoragePath},#{existingMoney},#{increaseMoney},#{collectState},#{pushType},#{appSerialNumber},#{failureTimes},#{errorDescription},#{createTime},#{modifyTime},#{remark},#{userName},#{phone},#{idCard}) 
+	</insert>
+
+	<!-- 修 改-->
+	<update id="updateEntity" parameterType="com.shangyong.backend.entity.BuPromoteDetailed">
+		 UPDATE bu_promote_detailed
+ 		 <set> 
+			<if test="customerId != null">
+				 customer_id = #{customerId},
+			</if>
+			<if test="appName != null">
+				 app_name = #{appName},
+			</if>
+			<if test="taskType != null">
+				 task_type = #{taskType},
+			</if>
+			<if test="taskId != null">
+				 task_id = #{taskId},
+			</if>
+			<if test="appChannel != null">
+				 app_channel = #{appChannel},
+			</if>
+			<if test="appLevel != null">
+				 app_level = #{appLevel},
+			</if>
+			<if test="refundConut != null">
+				 refund_conut = #{refundConut},
+			</if>
+			<if test="dayLoanCount != null">
+				 day_loan_count = #{dayLoanCount},
+			</if>
+			<if test="isGongjijin != null">
+				 is_gongjijin = #{isGongjijin},
+			</if>
+			<if test="isShebao != null">
+				 is_shebao = #{isShebao},
+			</if>
+			<if test="josnStoragePath != null">
+				 josn_storage_path = #{josnStoragePath},
+			</if>
+			<if test="existingMoney != null">
+				 existing_money = #{existingMoney},
+			</if>
+			<if test="increaseMoney != null">
+				 increase_money = #{increaseMoney},
+			</if>
+			<if test="collectState != null">
+				 collect_state = #{collectState},
+			</if>
+			<if test="pushType != null">
+				 push_type = #{pushType},
+			</if>
+			<if test="appSerialNumber != null">
+				 app_serial_number = #{appSerialNumber},
+			</if>
+			<if test="failureTimes != null">
+				 failure_times = #{failureTimes},
+			</if>
+			<if test="errorDescription != null">
+				 error_description = #{errorDescription},
+			</if>
+			<if test="createTime != null">
+				 create_time = #{createTime},
+			</if>
+			<if test="modifyTime != null">
+				 modify_time = #{modifyTime},
+			</if>
+			<if test="remark != null">
+				 remark = #{remark},
+			</if>
+			<if test="userName != null">
+				 user_name = #{userName},
+			</if>
+			<if test="phone != null">
+				 phone = #{phone},
+			</if>
+			<if test="idCard != null">
+				 id_card = #{idCard},
+			</if>
+
+ 		 </set>
+		 WHERE promote_detailed_id = #{promoteDetailedId}
+	</update>
+	 <!-- 公用查询条件 -->
+  <sql id="propertitys_sql">
+  		<where> 
+  			<if test="customerId != null and customerId != '' ">
+				 customer_id = #{customerId}
+		   </if>
+		   <if test="appSerialNumber != null and appSerialNumber != '' ">
+				and app_serial_number = #{appSerialNumber}
+		   </if>
+		   <if test="appChannel != null and appChannel != '' ">
+				and app_channel = #{appChannel}
+		   </if>
+		   <if test="taskType != null and taskType != '' ">
+				and task_type = #{taskType}
+		   </if>
+		    <if test="pushType != null and pushType != '' ">
+				and push_type = #{pushType}
+		   </if> 
+		   <if test="collectState != null and collectState != ''  ">
+		   		and collect_state = #{collectState}
+		   </if>
+		   <if test="endTime != null and endTime != ''  "> 
+				<![CDATA[ and create_time <= #{endTime} ]]>
+		   </if>
+		   <if test="startTime != null and startTime != ''  "> 
+				<![CDATA[ and create_time >= #{startTime} ]]>
+		   </if>
+		   <if test="userName != null and userName != '' ">
+				and user_name = #{userName}
+			</if>
+			<if test="phone != null and phone != '' ">
+				and phone = #{phone}
+			</if>
+			<if test="idCard != null and idCard != '' ">
+				and id_card = #{idCard}
+			</if>
+  		</where>
+  </sql>
+	<!-- 查询（根据条件查询所有） -->
+	<select id="findAllByObj" resultMap="buPromoteDetailedMap" parameterType="com.shangyong.backend.entity.BuPromoteDetailed">
+		 SELECT
+		 <include refid="Base_Column_List" />
+		 FROM bu_promote_detailed
+		 <include refid="propertitys_sql"></include>
+  		order by create_time desc 
+  		LIMIT #{pageIndex},#{pageSize}
+	</select>
+	
+	
+	<!-- add:xiajiyun 
+		查询（根据条件查询所有）， 异常单子 -->
+	<select id="findAllByIsError" resultMap="buPromoteDetailedMap" parameterType="com.shangyong.backend.entity.BuPromoteDetailed">
+		 SELECT
+		 <include refid="Base_Column_List" />
+		 FROM bu_promote_detailed
+		 <include refid="propertitys_sql"></include>
+  		order by create_time desc 
+	</select>
+	
+	
+	
+	<!-- 统计 -->
+  	<select id="queryAllCount" resultType="java.lang.Integer" parameterType="com.shangyong.backend.entity.BuPromoteDetailed">
+  		SELECT
+		 count(1)
+		 FROM bu_promote_detailed
+		 <include refid="propertitys_sql"></include>
+  	</select>
+  	
+  	<!-- add: xiajiyun
+  		 查询返回所有主键id（根据条件查询所有） -->
+<!-- 	<select id="findAllId" resultType="java.util.Map" parameterType="com.shangyong.backend.entity.BuPromoteDetailed"> -->
+<!-- 		 SELECT -->
+<!-- 		 	promote_detailed_id -->
+<!-- 		 FROM bu_promote_detailed -->
+<!-- 		 <include refid="propertitys_sql"></include> -->
+<!--   		order by create_time desc  -->
+<!-- 	</select> -->
+  	
+  	<select id="getJosnStoragePathBytaskTypeCustomerId" resultMap="buPromoteDetailedMap" parameterType="com.shangyong.backend.entity.BuPromoteDetailed">
+  		SELECT
+		 josn_storage_path
+		 FROM bu_promote_detailed
+		 where
+		 task_type=#{taskType}
+		 and customer_id =#{customerId}
+  	</select>
+</mapper>

@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.shangyong.backend.dao.CuCustomerIceNewDao">
+
+	<resultMap type="com.shangyong.backend.entity.CuCustomerIceNew" id="cuCustomerIceNewMap">
+		<id property="icePersonId" column="ice_person_id" javaType="java.lang.String"></id>
+		<result property="customerId" column="customer_id" javaType="java.lang.String"></result>
+		<result property="iceCode" column="ice_code" javaType="java.lang.Integer"></result>
+		<result property="iceName" column="ice_name" javaType="java.lang.String"></result>
+		<result property="icePhone" column="ice_phone" javaType="java.lang.String"></result>
+		<result property="createTime" column="create_time" javaType="java.lang.String"></result>
+		<result property="createMan" column="create_man" javaType="java.lang.String"></result>
+		<result property="modifyTime" column="modify_time" javaType="java.lang.String"></result>
+		<result property="modifyMan" column="modify_man" javaType="java.lang.String"></result>
+		<result property="remark" column="remark" javaType="java.lang.String"></result>
+	</resultMap>
+
+	<!-- 通用查询结果列-->
+	<sql id="Base_Column_List">
+		ice_person_id,	customer_id,	ice_code,	ice_name,	ice_phone,	create_time,	create_man,	modify_time,	modify_man,	remark
+	</sql>
+
+	<!-- 查询（根据主键ID查询） -->
+	<select id="getEntityById" resultMap="cuCustomerIceNewMap" parameterType="java.lang.String">
+		 SELECT
+		 <include refid="Base_Column_List" />
+		 FROM cu_customer_ice_new
+		 WHERE customer_id = #{customerId}
+	</select>
+
+	<!-- 查询（根据主键ID查询） -->
+	<select id="findAllByCustomerId" resultMap="cuCustomerIceNewMap" parameterType="java.lang.String">
+		 SELECT
+		 <include refid="Base_Column_List" />
+		 FROM sdj_app.cu_customer_ice_new
+		 WHERE customer_id = #{customerId} order by remark
+	</select>
+
+	<!--删除：根据主键ID删除-->
+	<delete id="deleteByCustomerId" parameterType="java.lang.String">
+		 DELETE FROM cu_customer_ice_new
+		 WHERE customer_id = #{customerId}
+	</delete>
+
+	<!-- 添加 -->
+	<insert id="saveEntity" parameterType="com.shangyong.backend.entity.CuCustomerIceNew">
+		 INSERT INTO cu_customer_ice_new
+ 		(ice_person_id,customer_id,ice_code,ice_name,ice_phone,create_time,create_man,modify_time,modify_man,remark) 
+		 VALUES 
+ 		(#{icePersonId},#{customerId},#{iceCode},#{iceName},#{icePhone},#{createTime},#{createMan},#{modifyTime},#{modifyMan},#{remark}) 
+	</insert>
+
+	<!-- 修 改-->
+	<update id="updateEntity" parameterType="com.shangyong.backend.entity.CuCustomerIceNew">
+		 UPDATE cu_customer_ice_new
+ 		 <set> 
+			<if test="customerId != null">
+				 customer_id = #{customerId},
+			</if>
+			<if test="iceCode != null">
+				 ice_code = #{iceCode},
+			</if>
+			<if test="iceName != null">
+				 ice_name = #{iceName},
+			</if>
+			<if test="icePhone != null">
+				 ice_phone = #{icePhone},
+			</if>
+			<if test="createTime != null">
+				 create_time = #{createTime},
+			</if>
+			<if test="createMan != null">
+				 create_man = #{createMan},
+			</if>
+			<if test="modifyTime != null">
+				 modify_time = #{modifyTime},
+			</if>
+			<if test="modifyMan != null">
+				 modify_man = #{modifyMan},
+			</if>
+			<if test="remark != null">
+				 remark = #{remark},
+			</if>
+
+ 		 </set>
+		 WHERE ice_person_id = #{icePersonId}
+	</update>
+
+</mapper>

@@ -1,0 +1,201 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.shangyong.backend.dao.sh.ShCreditDao">
+
+	<resultMap type="com.shangyong.backend.entity.sh.ShCredit" id="shCreditMap">
+		<id property="shCreditId" column="sh_credit_id" javaType="java.lang.String"></id>
+		<result property="applicationId" column="application_id" javaType="java.lang.String"></result>
+		<result property="queryReason" column="query_reason" javaType="java.lang.String"></result>
+		<result property="reportNumber" column="report_number" javaType="java.lang.String"></result>
+		<result property="reportTime" column="report_time" javaType="java.lang.String"></result>
+		<result property="name" column="name" javaType="java.lang.String"></result>
+		<result property="certType" column="cert_type" javaType="java.lang.String"></result>
+		<result property="certCode" column="cert_code" javaType="java.lang.String"></result>
+		<result property="sex" column="sex" javaType="java.lang.String"></result>
+		<result property="birthTime" column="birth_time" javaType="java.lang.String"></result>
+		<result property="marriageDetail" column="marriage_detail" javaType="java.lang.String"></result>
+		<result property="marriageTime" column="marriage_time" javaType="java.lang.String"></result>
+		<result property="education" column="education" javaType="java.lang.String"></result>
+		<result property="educationTime" column="education_time" javaType="java.lang.String"></result>
+		<result property="titleDetail" column="title_detail" javaType="java.lang.String"></result>
+		<result property="titleTime" column="title_time" javaType="java.lang.String"></result>
+		<result property="residencePhone" column="residence_phone" javaType="java.lang.String"></result>
+		<result property="residenceTime" column="residence_time" javaType="java.lang.String"></result>
+		<result property="phoneNumber" column="phone_number" javaType="java.lang.String"></result>
+		<result property="phoneTime" column="phone_time" javaType="java.lang.String"></result>
+		<result property="emailAddress" column="email_address" javaType="java.lang.String"></result>
+		<result property="emailTime" column="email_time" javaType="java.lang.String"></result>
+		<result property="mateName" column="mate_name" javaType="java.lang.String"></result>
+		<result property="mateCertType" column="mate_cert_type" javaType="java.lang.String"></result>
+		<result property="mateCertCode" column="mate_cert_code" javaType="java.lang.String"></result>
+		<result property="mateSex" column="mate_sex" javaType="java.lang.String"></result>
+		<result property="mateBirthTime" column="mate_birth_time" javaType="java.lang.String"></result>
+		<result property="mateWork" column="mate_work" javaType="java.lang.String"></result>
+		<result property="mateWorkTime" column="mate_work_time" javaType="java.lang.String"></result>
+		<result property="matePhone" column="mate_phone" javaType="java.lang.String"></result>
+		<result property="matePhoneTime" column="mate_phone_time" javaType="java.lang.String"></result>
+		<result property="createTime" column="create_time" javaType="java.lang.String"></result>
+		<result property="createMan" column="create_man" javaType="java.lang.String"></result>
+		<result property="modifyTime" column="modify_time" javaType="java.lang.String"></result>
+		<result property="modifyMan" column="modify_man" javaType="java.lang.String"></result>
+		<result property="remark" column="remark" javaType="java.lang.String"></result>
+	</resultMap>
+
+	<!-- 通用查询结果列-->
+	<sql id="Base_Column_List">
+sh_credit_id,	application_id,	query_reason,	report_number,	report_time,	name,	cert_type,	cert_code,	sex,	birth_time,	marriage_detail,	marriage_time,	education,	education_time,	title_detail,	title_time,	residence_phone,	residence_time,	phone_number,	phone_time,	email_address,	email_time,	mate_name,	mate_cert_type,	mate_cert_code,	mate_sex,	mate_birth_time,	mate_work,	mate_work_time,	mate_phone,	mate_phone_time,	create_time,	create_man,	modify_time,	modify_man,	remark
+	</sql>
+
+	<!-- 查询（根据主键ID查询） -->
+	<select id="getEntityById" resultMap="shCreditMap" parameterType="java.lang.String">
+		 SELECT
+		 <include refid="Base_Column_List" />
+		 FROM sh_credit
+		 WHERE sh_credit_id = #{shCreditId}
+	</select>
+	<!-- 查询（根据ApplicationId查询） -->
+	<select id="queryByApplicationId" resultMap="shCreditMap" parameterType="java.lang.String">
+		 SELECT
+		 <include refid="Base_Column_List" />
+		 FROM sh_credit
+		 WHERE application_id = #{applicationId}
+	</select>
+
+	<!-- 查询（根据主键ID查询） -->
+	<select id="findAll" resultMap="shCreditMap" parameterType="java.lang.String">
+		 SELECT
+		 <include refid="Base_Column_List" />
+		 FROM sh_credit
+		 WHERE sh_credit_id = #{shCreditId}
+	</select>
+
+	<!--删除：根据主键ID删除-->
+	<delete id="deleteEntity" parameterType="java.lang.String">
+		 DELETE FROM sh_credit
+		 WHERE sh_credit_id = #{shCreditId}
+	</delete>
+
+	<!-- 添加 -->
+	<insert id="saveEntity" parameterType="com.shangyong.backend.entity.sh.ShCredit">
+		 INSERT INTO sh_credit
+ 		(sh_credit_id,application_id,query_reason,report_number,report_time,name,cert_type,cert_code,sex,birth_time,marriage_detail,marriage_time,education,education_time,title_detail,title_time,residence_phone,residence_time,phone_number,phone_time,email_address,email_time,mate_name,mate_cert_type,mate_cert_code,mate_sex,mate_birth_time,mate_work,mate_work_time,mate_phone,mate_phone_time,create_time,create_man,modify_time,modify_man,remark) 
+		 VALUES 
+ 		(#{shCreditId},#{applicationId},#{queryReason},#{reportNumber},#{reportTime},#{name},#{certType},#{certCode},#{sex},#{birthTime},#{marriageDetail},#{marriageTime},#{education},#{educationTime},#{titleDetail},#{titleTime},#{residencePhone},#{residenceTime},#{phoneNumber},#{phoneTime},#{emailAddress},#{emailTime},#{mateName},#{mateCertType},#{mateCertCode},#{mateSex},#{mateBirthTime},#{mateWork},#{mateWorkTime},#{matePhone},#{matePhoneTime},#{createTime},#{createMan},#{modifyTime},#{modifyMan},#{remark}) 
+	</insert>
+
+	<!-- 修 改-->
+	<update id="updateEntity" parameterType="com.shangyong.backend.entity.sh.ShCredit">
+		 UPDATE sh_credit
+ 		 <set> 
+			<if test="applicationId != null">
+				 application_id = #{applicationId},
+			</if>
+			<if test="queryReason != null">
+				 query_reason = #{queryReason},
+			</if>
+			<if test="reportNumber != null">
+				 report_number = #{reportNumber},
+			</if>
+			<if test="reportTime != null">
+				 report_time = #{reportTime},
+			</if>
+			<if test="name != null">
+				 name = #{name},
+			</if>
+			<if test="certType != null">
+				 cert_type = #{certType},
+			</if>
+			<if test="certCode != null">
+				 cert_code = #{certCode},
+			</if>
+			<if test="sex != null">
+				 sex = #{sex},
+			</if>
+			<if test="birthTime != null">
+				 birth_time = #{birthTime},
+			</if>
+			<if test="marriageDetail != null">
+				 marriage_detail = #{marriageDetail},
+			</if>
+			<if test="marriageTime != null">
+				 marriage_time = #{marriageTime},
+			</if>
+			<if test="education != null">
+				 education = #{education},
+			</if>
+			<if test="educationTime != null">
+				 education_time = #{educationTime},
+			</if>
+			<if test="titleDetail != null">
+				 title_detail = #{titleDetail},
+			</if>
+			<if test="titleTime != null">
+				 title_time = #{titleTime},
+			</if>
+			<if test="residencePhone != null">
+				 residence_phone = #{residencePhone},
+			</if>
+			<if test="residenceTime != null">
+				 residence_time = #{residenceTime},
+			</if>
+			<if test="phoneNumber != null">
+				 phone_number = #{phoneNumber},
+			</if>
+			<if test="phoneTime != null">
+				 phone_time = #{phoneTime},
+			</if>
+			<if test="emailAddress != null">
+				 email_address = #{emailAddress},
+			</if>
+			<if test="emailTime != null">
+				 email_time = #{emailTime},
+			</if>
+			<if test="mateName != null">
+				 mate_name = #{mateName},
+			</if>
+			<if test="mateCertType != null">
+				 mate_cert_type = #{mateCertType},
+			</if>
+			<if test="mateCertCode != null">
+				 mate_cert_code = #{mateCertCode},
+			</if>
+			<if test="mateSex != null">
+				 mate_sex = #{mateSex},
+			</if>
+			<if test="mateBirthTime != null">
+				 mate_birth_time = #{mateBirthTime},
+			</if>
+			<if test="mateWork != null">
+				 mate_work = #{mateWork},
+			</if>
+			<if test="mateWorkTime != null">
+				 mate_work_time = #{mateWorkTime},
+			</if>
+			<if test="matePhone != null">
+				 mate_phone = #{matePhone},
+			</if>
+			<if test="matePhoneTime != null">
+				 mate_phone_time = #{matePhoneTime},
+			</if>
+			<if test="createTime != null">
+				 create_time = #{createTime},
+			</if>
+			<if test="createMan != null">
+				 create_man = #{createMan},
+			</if>
+			<if test="modifyTime != null">
+				 modify_time = #{modifyTime},
+			</if>
+			<if test="modifyMan != null">
+				 modify_man = #{modifyMan},
+			</if>
+			<if test="remark != null">
+				 remark = #{remark},
+			</if>
+
+ 		 </set>
+		 WHERE sh_credit_id = #{shCreditId}
+	</update>
+
+</mapper>

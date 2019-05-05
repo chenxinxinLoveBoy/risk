@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.shangyong.backend.dao.approval.BuSpApprovalDao">
+
+	<resultMap type="com.shangyong.backend.entity.approval.BuSpApproval" id="BuSpApprovalMap">
+		<id property="approvalId" column="approval_id" javaType="java.lang.String"></id>
+		<result property="applicationId" column="application_id" javaType="java.lang.String"></result>
+		<result property="auditingState" column="auditing_state" javaType="java.lang.String"></result>
+		<result property="rgAuditingState" column="rg_auditing_state" javaType="java.lang.String"></result>
+		<result property="rgAuditingTime" column="rg_auditing_time" javaType="java.lang.String"></result>
+		<result property="refuseName" column="refuse_name" javaType="java.lang.String"></result>
+		<result property="refuseCode" column="refuse_code" javaType="java.lang.String"></result>
+		<result property="creditMoney" column="credit_money" javaType="java.lang.String"></result>
+		<result property="rgCreditMoney" column="rg_credit_money" javaType="java.lang.String"></result>
+		<result property="isCallPhone" column="is_call_phone" javaType="java.lang.String"></result>
+		<result property="netcheckNoAbnormal" column="netcheck_no_abnormal" javaType="java.lang.String"></result>
+		<result property="rgAuditingRemark" column="rg_auditing_remark" javaType="java.lang.String"></result>
+		<result property="receiveCode" column="receive_code" javaType="java.lang.String"></result>
+		<result property="receiveName" column="receive_name" javaType="java.lang.String"></result>
+		<result property="modifyNo" column="modify_no" javaType="java.lang.String"></result>
+		<result property="modifyMan" column="modify_man" javaType="java.lang.String"></result>
+		<result property="createTime" column="create_time" javaType="java.lang.String"></result>
+		<result property="modifyTime" column="modify_time" javaType="java.lang.String"></result>
+	</resultMap>
+
+<!-- 通用查询结果列-->
+	<sql id="Base_Column_List">
+approval_id,	application_id,	auditing_state,	rg_auditing_state,	rg_auditing_time,	refuse_name,	refuse_code,	credit_money,	rg_credit_money,	is_call_phone,	netcheck_no_abnormal,	rg_auditing_remark,	receive_code,	receive_name,	modify_no,	modify_man,	create_time,	modify_time
+	</sql>
+	<!-- 查询所有日志 -->
+	<select id="getBuSpApprovalList" resultMap="BuSpApprovalMap" parameterType="com.shangyong.backend.entity.approval.BuSpApproval">
+		select approval_id,receive_name,auditing_state,rg_auditing_state,create_time from
+		(
+		select approval_id,receive_name,auditing_state,rg_auditing_state,create_time
+		from bu_sp_approval 
+		where receive_name=#{receiveName} and
+		<![CDATA[ date_sub(curdate(), INTERVAL 3 DAY) <= date(`create_time`)]]>
+		LIMIT 10000
+		) T limit  #{pageIndex},#{pageSize}
+	</select>
+	<!-- 统计 -->
+  	<select id="listAllCount" resultType="java.lang.Integer">
+  		select 
+  			count(1)
+  		from bu_sp_approval t
+  		where receive_name=#{receiveName} and
+  		<![CDATA[ date_sub(curdate(), INTERVAL 3 DAY) <= date(`create_time`)]]>
+  		LIMIT 10000
+  	</select>
+	
+	<!-- 查询（根据主键ID查询） -->
+	<select id="getEntityById" resultMap="BuSpApprovalMap" parameterType="java.lang.String">
+		 SELECT
+		 <include refid="Base_Column_List" />
+		 FROM bu_sp_approval
+		 WHERE application_id = #{applicationId}
+	</select>
+	
+	<!-- 添加 -->
+	<insert id="saveEntity" parameterType="com.shangyong.backend.entity.approval.BuSpApproval">
+		 INSERT INTO bu_sp_approval
+ 		(approval_id,application_id,auditing_state,rg_auditing_state,rg_auditing_time,refuse_name,refuse_code,credit_money,rg_credit_money,is_call_phone,netcheck_no_abnormal,rg_auditing_remark,receive_code,receive_name,modify_no,modify_man,create_time,modify_time) 
+		 VALUES 
+ 		(#{approvalId},#{applicationId},#{auditingState},#{rgAuditingState},NOW(),#{refuseName},#{refuseCode},#{creditMoney},#{rgCreditMoney},#{isCallPhone},#{netcheckNoAbnormal},#{rgAuditingRemark},#{receiveCode},#{receiveName},#{modifyNo},#{modifyMan},NOW(),NOW()) 
+	</insert>
+
+
+	<!-- 修 改-->
+	<update id="updateEntity" parameterType="com.shangyong.backend.entity.approval.BuSpApproval">
+		 UPDATE bu_sp_approval
+ 		 <set> 
+			<if test="applicationId != null">
+				 application_id = #{applicationId},
+			</if>
+			<if test="auditingState != null">
+				 auditing_state = #{auditingState},
+			</if>
+			<if test="rgAuditingState != null">
+				 rg_auditing_state = #{rgAuditingState},
+			</if>
+			<if test="rgAuditingTime != null">
+				 rg_auditing_time = #{rgAuditingTime},
+			</if>
+			<if test="refuseName != null">
+				 refuse_name = #{refuseName},
+			</if>
+			<if test="refuseCode != null">
+				 refuse_code = #{refuseCode},
+			</if>
+			<if test="creditMoney != null">
+				 credit_money = #{creditMoney},
+			</if>
+			<if test="rgCreditMoney != null">
+				 rg_credit_money = #{rgCreditMoney},
+			</if>
+			<if test="isCallPhone != null">
+				 is_call_phone = #{isCallPhone},
+			</if>
+			<if test="netcheckNoAbnormal != null">
+				 netcheck_no_abnormal = #{netcheckNoAbnormal},
+			</if>
+			<if test="rgAuditingRemark != null">
+				 rg_auditing_remark = #{rgAuditingRemark},
+			</if>
+			<if test="receiveCode != null">
+				 receive_code = #{receiveCode},
+			</if>
+			<if test="receiveName != null">
+				 receive_name = #{receiveName},
+			</if>
+			<if test="modifyNo != null">
+				 modify_no = #{modifyNo},
+			</if>
+			<if test="modifyMan != null">
+				 modify_man = #{modifyMan},
+			</if>
+			<if test="createTime != null">
+				 create_time = #{createTime},
+			</if>
+			<if test="modifyTime != null">
+				 modify_time = #{modifyTime},
+			</if> 
+ 		 </set>
+		 WHERE approval_id = #{approvalId}
+	</update>
+
+</mapper>

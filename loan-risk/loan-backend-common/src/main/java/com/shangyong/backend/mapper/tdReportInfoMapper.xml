@@ -1,0 +1,178 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.shangyong.backend.dao.tdReport.TdReportInfoDao">
+
+	<resultMap type="com.shangyong.backend.entity.tdReport.TdReportInfo" id="tdReportInfoMap">
+		<id property="reportId" column="report_id" javaType="java.lang.String"></id>
+		<result property="applicationId" column="application_id" javaType="java.lang.String"></result>
+		<result property="reportVersion" column="report_version" javaType="java.lang.String"></result>
+		<result property="reportUpdateTime" column="report_update_time" javaType="java.lang.String"></result>
+		<result property="taskId" column="task_id" javaType="java.lang.String"></result>
+		<result property="taskTime" column="task_time" javaType="java.lang.String"></result>
+		<result property="realName" column="real_name" javaType="java.lang.String"></result>
+		<result property="identityCode" column="identity_code" javaType="java.lang.String"></result>
+		<result property="age" column="age" javaType="java.lang.String"></result>
+		<result property="gender" column="gender" javaType="java.lang.String"></result>
+		<result property="constellation" column="constellation" javaType="java.lang.String"></result>
+		<result property="hometown" column="hometown" javaType="java.lang.String"></result>
+		<result property="email" column="email" javaType="java.lang.String"></result>
+		<result property="homeAddr" column="home_addr" javaType="java.lang.String"></result>
+		<result property="homeTel" column="home_tel" javaType="java.lang.String"></result>
+		<result property="workAddr" column="work_addr" javaType="java.lang.String"></result>
+		<result property="workTel" column="work_tel" javaType="java.lang.String"></result>
+		<result property="companyName" column="company_name" javaType="java.lang.String"></result>
+		<result property="isCallDataComplete1month" column="is_call_data_complete_1month" javaType="java.lang.String"></result>
+		<result property="isCallDataComplete3month" column="is_call_data_complete_3month" javaType="java.lang.String"></result>
+		<result property="isCallDataComplete6month" column="is_call_data_complete_6month" javaType="java.lang.String"></result>
+		<result property="isMsgDataComplete1month" column="is_msg_data_complete_1month" javaType="java.lang.String"></result>
+		<result property="isMsgDataComplete3month" column="is_msg_data_complete_3month" javaType="java.lang.String"></result>
+		<result property="isMsgDataComplete6month" column="is_msg_data_complete_6month" javaType="java.lang.String"></result>
+		<result property="isConsumeDataComplete1month" column="is_consume_data_complete_1month" javaType="java.lang.String"></result>
+		<result property="isConsumeDataComplete3month" column="is_consume_data_complete_3month" javaType="java.lang.String"></result>
+		<result property="isConsumeDataComplete6month" column="is_consume_data_complete_6month" javaType="java.lang.String"></result>
+		<result property="createTime" column="create_time" javaType="java.lang.String"></result>
+		<result property="createMan" column="create_man" javaType="java.lang.String"></result>
+		<result property="modifyTime" column="modify_time" javaType="java.lang.String"></result>
+		<result property="modifyMan" column="modify_man" javaType="java.lang.String"></result>
+		<result property="remark" column="remark" javaType="java.lang.String"></result>
+	</resultMap>
+
+	<!-- 通用查询结果列-->
+	<sql id="Base_Column_List">
+report_id,	application_id,	report_version,	report_update_time,	task_id,	task_time,	real_name,	identity_code,	age,	gender,	constellation,	hometown,	email,	home_addr,	home_tel,	work_addr,	work_tel,	company_name,	is_call_data_complete_1month,	is_call_data_complete_3month,	is_call_data_complete_6month,	is_msg_data_complete_1month,	is_msg_data_complete_3month,	is_msg_data_complete_6month,	is_consume_data_complete_1month,	is_consume_data_complete_3month,	is_consume_data_complete_6month,	create_time,	create_man,	modify_time,	modify_man,	remark
+	</sql>
+
+	<!-- 查询（根据主键ID查询） -->
+	<select id="getEntityById" resultMap="tdReportInfoMap" parameterType="java.lang.String">
+		 SELECT
+		 <include refid="Base_Column_List" />
+		 FROM td_report_info
+		 WHERE report_id = #{reportId}
+	</select>
+
+	<!-- 查询（根据主键ID查询） -->
+	<select id="findAll" resultMap="tdReportInfoMap" parameterType="java.lang.String">
+		 SELECT
+		 <include refid="Base_Column_List" />
+		 FROM td_report_info
+		 WHERE report_id = #{reportId}
+	</select>
+
+	<!--删除：根据主键ID删除-->
+	<delete id="deleteEntity" parameterType="java.lang.String">
+		 DELETE FROM td_report_info
+		 WHERE report_id = #{reportId}
+	</delete>
+
+	<!-- 添加 -->
+	<insert id="saveEntity" parameterType="com.shangyong.backend.entity.tdReport.TdReportInfo">
+		 INSERT INTO td_report_info
+ 		(report_id,application_id,report_version,report_update_time,task_id,task_time,real_name,identity_code,age,gender,constellation,hometown,email,home_addr,home_tel,work_addr,work_tel,company_name,is_call_data_complete_1month,is_call_data_complete_3month,is_call_data_complete_6month,is_msg_data_complete_1month,is_msg_data_complete_3month,is_msg_data_complete_6month,is_consume_data_complete_1month,is_consume_data_complete_3month,is_consume_data_complete_6month,create_time,create_man,modify_time,modify_man,remark) 
+		 VALUES 
+ 		(#{reportId},#{applicationId},#{reportVersion},#{reportUpdateTime},#{taskId},#{taskTime},#{realName},#{identityCode},#{age},#{gender},#{constellation},#{hometown},#{email},#{homeAddr},#{homeTel},#{workAddr},#{workTel},#{companyName},#{isCallDataComplete1month},#{isCallDataComplete3month},#{isCallDataComplete6month},#{isMsgDataComplete1month},#{isMsgDataComplete3month},#{isMsgDataComplete6month},#{isConsumeDataComplete1month},#{isConsumeDataComplete3month},#{isConsumeDataComplete6month},#{createTime},#{createMan},#{modifyTime},#{modifyMan},#{remark}) 
+	</insert>
+
+	<!-- 修 改-->
+	<update id="updateEntity" parameterType="com.shangyong.backend.entity.tdReport.TdReportInfo">
+		 UPDATE td_report_info
+ 		 <set> 
+			<if test="applicationId != null">
+				 application_id = #{applicationId},
+			</if>
+			<if test="reportVersion != null">
+				 report_version = #{reportVersion},
+			</if>
+			<if test="reportUpdateTime != null">
+				 report_update_time = #{reportUpdateTime},
+			</if>
+			<if test="taskId != null">
+				 task_id = #{taskId},
+			</if>
+			<if test="taskTime != null">
+				 task_time = #{taskTime},
+			</if>
+			<if test="realName != null">
+				 real_name = #{realName},
+			</if>
+			<if test="identityCode != null">
+				 identity_code = #{identityCode},
+			</if>
+			<if test="age != null">
+				 age = #{age},
+			</if>
+			<if test="gender != null">
+				 gender = #{gender},
+			</if>
+			<if test="constellation != null">
+				 constellation = #{constellation},
+			</if>
+			<if test="hometown != null">
+				 hometown = #{hometown},
+			</if>
+			<if test="email != null">
+				 email = #{email},
+			</if>
+			<if test="homeAddr != null">
+				 home_addr = #{homeAddr},
+			</if>
+			<if test="homeTel != null">
+				 home_tel = #{homeTel},
+			</if>
+			<if test="workAddr != null">
+				 work_addr = #{workAddr},
+			</if>
+			<if test="workTel != null">
+				 work_tel = #{workTel},
+			</if>
+			<if test="companyName != null">
+				 company_name = #{companyName},
+			</if>
+			<if test="isCallDataComplete1month != null">
+				 is_call_data_complete_1month = #{isCallDataComplete1month},
+			</if>
+			<if test="isCallDataComplete3month != null">
+				 is_call_data_complete_3month = #{isCallDataComplete3month},
+			</if>
+			<if test="isCallDataComplete6month != null">
+				 is_call_data_complete_6month = #{isCallDataComplete6month},
+			</if>
+			<if test="isMsgDataComplete1month != null">
+				 is_msg_data_complete_1month = #{isMsgDataComplete1month},
+			</if>
+			<if test="isMsgDataComplete3month != null">
+				 is_msg_data_complete_3month = #{isMsgDataComplete3month},
+			</if>
+			<if test="isMsgDataComplete6month != null">
+				 is_msg_data_complete_6month = #{isMsgDataComplete6month},
+			</if>
+			<if test="isConsumeDataComplete1month != null">
+				 is_consume_data_complete_1month = #{isConsumeDataComplete1month},
+			</if>
+			<if test="isConsumeDataComplete3month != null">
+				 is_consume_data_complete_3month = #{isConsumeDataComplete3month},
+			</if>
+			<if test="isConsumeDataComplete6month != null">
+				 is_consume_data_complete_6month = #{isConsumeDataComplete6month},
+			</if>
+			<if test="createTime != null">
+				 create_time = #{createTime},
+			</if>
+			<if test="createMan != null">
+				 create_man = #{createMan},
+			</if>
+			<if test="modifyTime != null">
+				 modify_time = #{modifyTime},
+			</if>
+			<if test="modifyMan != null">
+				 modify_man = #{modifyMan},
+			</if>
+			<if test="remark != null">
+				 remark = #{remark},
+			</if>
+
+ 		 </set>
+		 WHERE report_id = #{reportId}
+	</update>
+
+</mapper>

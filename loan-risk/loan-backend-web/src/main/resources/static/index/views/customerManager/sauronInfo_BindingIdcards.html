@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+<meta charset="UTF-8">
+<title>索伦报告信息</title>
+<link rel="stylesheet" href="../../plugins/layui/css/layui.css"
+	media="all" />
+<link rel="stylesheet" href="../../css/global.css" media="all">
+<link rel="stylesheet"
+	href="../../plugins/font-awesome/css/font-awesome.min.css">
+<!-- <link rel="stylesheet" href="../../css/table.css" /> -->
+</head>
+<body>
+	<!-- <div class="admin-main" style="padding-top:0"> -->
+		<div class="layui-elem-field" style="background:#e2e2e2;margin-top:0.01%;"> 
+			<legend style="margin-left: 1%;margin-top:1%;margin-bottom:1%"><i class="layui-icon" style="font-size: 25px;">&#xe63c;</i>
+				<font size="5" >&nbsp身份证可疑身份</font><br/><font size="2" >除本机以外其他的身份证绑定情况</font>
+			</legend>
+		</div>
+		<table class="layui-table admin-table">
+			<tr>
+				<td width="10%" align="left">绑定的其他身份证</td>
+				<td id="" width="14%" align="left">身份证是否是有效身份证 	</td>
+				<td id="" width="10%" align="left">身份证户籍省份</td>
+				<td id="" width="10%" align="left">身份证户籍城市</td>
+				<td id="" width="10%" align="left">身份证户籍地区</td>
+				<td id="" width="5%" align="left">年龄</td>
+				<td id="" width="5%" align="left">性别</td>
+				<td id="" width="12%" align="left">此号码绑定其他姓名个数</td>
+				<td id="" width="12%" align="left">查询此身份证的机构数</td>
+				<td id="" width="12%" align="left">最近此身份证出现时间</td>
+			<tr>
+			<tbody id="content">
+			</tbody>
+		</table>
+		<label>共<font color='red' id="count_page_number"></font>条记录</label>
+		<div id="paged" class="page" style="display:inline-block;">
+	<!-- 	</div> -->
+	<hr/>
+	<!-- js -->
+	<script src="../../jqery/jquery.js"></script>
+	<script src="../../../commons/base.js"></script>
+	<script type="text/javascript" src="../../plugins/layui/layui.js"></script>
+	<script type="text/javascript" src="../../js/customerManager/sauronInfo_BindingIdcards.js"></script>
+	<!--模板-->
+	<script type="text/html" id="tpl">
+			{{# layui.each(d.list, function(index, item){ 
+			if(item==null||item=='undefined') return;
+				var idcardValidate=item.idcardValidate;
+				if(idcardValidate==0){
+					idcardValidate="否";
+				}else if(idcardValidate==1){
+					idcardValidate="是";
+				}else{
+					idcardValidate="";
+				}
+ 			}}	
+			<tr>
+				<td>{{ item.otherIdcard }}</td>
+				<td>{{ idcardValidate }}</td>
+				<td>{{ item.idcardProvince }}</td> 
+				<td>{{ item.idcardCity }}</td> 
+				<td>{{ item.idcardRegion }}</td>
+				<td>{{ item.idcardAge }}</td>
+				<td>{{ item.idcardGender }}</td>
+				<td>{{ item.otherNamesCnt }}</td>
+				<td>{{ item.searchOrgsCnt }}</td>
+				<td>{{ item.lastAppearIdcard }}</td>
+			</tr>
+			{{# }); }}
+		</script>
+</body>
+
+</html>

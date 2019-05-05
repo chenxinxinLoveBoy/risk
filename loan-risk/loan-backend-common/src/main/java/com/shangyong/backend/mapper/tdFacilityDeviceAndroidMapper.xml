@@ -1,0 +1,383 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.shangyong.backend.dao.tdf.TdFacilityDeviceAndroidServiceDao">
+
+	<resultMap type="com.shangyong.backend.entity.tdf.TdFacilityDeviceAndroid" id="tdFacilityDeviceAndroidinfoMap">
+		<id property="tdFacilityDeviceAndroidId" column="td_facility_device_android_id" javaType="java.lang.String"></id>
+		<result property="buApplicationId" column="bu_application_id" javaType="java.lang.String"></result>
+		<result property="fmVersion" column="fmVersion" javaType="java.lang.String"></result>
+		<result property="os" column="os" javaType="java.lang.String"></result>
+		<result property="sdkVersion" column="sdkVersion" javaType="java.lang.String"></result>
+		<result property="releaseVersion" column="releaseVersion" javaType="java.lang.String"></result>
+		<result property="model" column="model" javaType="java.lang.String"></result>
+		<result property="product" column="product" javaType="java.lang.String"></result>
+		<result property="brand" column="brand" javaType="java.lang.String"></result>
+		<result property="serialNo" column="serialNo" javaType="java.lang.String"></result>
+		<result property="display" column="display" javaType="java.lang.String"></result>
+		<result property="host" column="host" javaType="java.lang.String"></result>
+		<result property="deviceName" column="deviceName" javaType="java.lang.String"></result>
+		<result property="hardware" column="hardware" javaType="java.lang.String"></result>
+		<result property="tags" column="tags" javaType="java.lang.String"></result>
+		<result property="imsi" column="imsi" javaType="java.lang.String"></result>
+		<result property="phoneNumber" column="phoneNumber" javaType="java.lang.String"></result>
+		<result property="imei" column="imei" javaType="java.lang.String"></result>
+		<result property="voiceMail" column="voiceMail" javaType="java.lang.String"></result>
+		<result property="simSerial" column="simSerial" javaType="java.lang.String"></result>
+		<result property="countryIso" column="countryIso" javaType="java.lang.String"></result>
+		<result property="carrier" column="carrier" javaType="java.lang.String"></result>
+		<result property="mnc" column="mnc" javaType="java.lang.String"></result>
+		<result property="mcc" column="mcc" javaType="java.lang.String"></result>
+		<result property="simOperator" column="simOperator" javaType="java.lang.String"></result>
+		<result property="phoneType" column="phoneType" javaType="java.lang.String"></result>
+		<result property="radioType" column="radioType" javaType="java.lang.String"></result>
+		<result property="cellLocation" column="cellLocation" javaType="java.lang.String"></result>
+		<result property="deviceSVN" column="deviceSVN" javaType="java.lang.String"></result>
+		<result property="wifiIp" column="wifiIp" javaType="java.lang.String"></result>
+		<result property="wifiMac" column="wifiMac" javaType="java.lang.String"></result>
+		<result property="ssid" column="ssid" javaType="java.lang.String"></result>
+		<result property="bssid" column="bssid" javaType="java.lang.String"></result>
+		<result property="gateway" column="gateway" javaType="java.lang.String"></result>
+		<result property="wifiNetmask" column="wifiNetmask" javaType="java.lang.String"></result>
+		<result property="proxyInfo" column="proxyInfo" javaType="java.lang.String"></result>
+		<result property="dnsAddress" column="dnsAddress" javaType="java.lang.String"></result>
+		<result property="vpnIp" column="vpnIp" javaType="java.lang.String"></result>
+		<result property="vpnNetmask" column="vpnNetmask" javaType="java.lang.String"></result>
+		<result property="cellIp" column="cellIp" javaType="java.lang.String"></result>
+		<result property="networkType" column="networkType" javaType="java.lang.String"></result>
+		<result property="currentTime" column="currentTime" javaType="java.lang.String"></result>
+		<result property="upTime" column="upTime" javaType="java.lang.String"></result>
+		<result property="bootTime" column="bootTime" javaType="java.lang.String"></result>
+		<result property="activeTime" column="activeTime" javaType="java.lang.String"></result>
+		<result property="root" column="root" javaType="java.lang.String"></result>
+		<result property="packageName" column="packageName" javaType="java.lang.String"></result>
+		<result property="apkVersion" column="apkVersion" javaType="java.lang.String"></result>
+		<result property="sdkMD5" column="sdkMD5" javaType="java.lang.String"></result>
+		<result property="signMD5" column="signMD5" javaType="java.lang.String"></result>
+		<result property="apkMD5" column="apkMD5" javaType="java.lang.String"></result>
+		<result property="timeZone" column="timeZone" javaType="java.lang.String"></result>
+		<result property="language" column="language" javaType="java.lang.String"></result>
+		<result property="brightness" column="brightness" javaType="java.lang.String"></result>
+		<result property="batteryStatus" column="batteryStatus" javaType="java.lang.String"></result>
+		<result property="batteryLevel" column="batteryLevel" javaType="java.lang.String"></result>
+		<result property="batteryTemp" column="batteryTemp" javaType="java.lang.String"></result>
+		<result property="screenRes" column="screenRes" javaType="java.lang.String"></result>
+		<result property="fontHash" column="fontHash" javaType="java.lang.String"></result>
+		<result property="blueMac" column="blueMac" javaType="java.lang.String"></result>
+		<result property="androidId" column="androidId" javaType="java.lang.String"></result>
+		<result property="cpuFrequency" column="cpuFrequency" javaType="java.lang.String"></result>
+		<result property="cpuHardware" column="cpuHardware" javaType="java.lang.String"></result>
+		<result property="cpuType" column="cpuType" javaType="java.lang.String"></result>
+		<result property="totalMemory" column="totalMemory" javaType="java.lang.String"></result>
+		<result property="availableMemory" column="availableMemory" javaType="java.lang.String"></result>
+		<result property="totalStorage" column="totalStorage" javaType="java.lang.String"></result>
+		<result property="availableStorage" column="availableStorage" javaType="java.lang.String"></result>
+		<result property="basebandVersion" column="basebandVersion" javaType="java.lang.String"></result>
+		<result property="kernelVersion" column="kernelVersion" javaType="java.lang.String"></result>
+		<result property="gpsLocation" column="gpsLocation" javaType="java.lang.String"></result>
+		<result property="allowMockLocation" column="allowMockLocation" javaType="java.lang.String"></result>
+		<result property="initTime" column="initTime" javaType="java.lang.String"></result>
+		<result property="deviceId" column="deviceId" javaType="java.lang.String"></result>
+		<result property="trueIp" column="trueIp" javaType="java.lang.String"></result>
+		<result property="tokenId" column="tokenId" javaType="java.lang.String"></result>
+		<result property="createTime" column="create_time" javaType="java.lang.String"></result>
+		<result property="createMan" column="create_man" javaType="java.lang.String"></result>
+		<result property="modifyTime" column="modify_time" javaType="java.lang.String"></result>
+		<result property="modifyMan" column="modify_man" javaType="java.lang.String"></result>
+		<result property="remark" column="remark" javaType="java.lang.String"></result>
+	</resultMap>
+
+	<!-- 通用查询结果列-->
+	<sql id="Base_Column_List">
+	td_facility_device_android_id,	bu_application_id,	fmVersion,	os,	sdkVersion,	releaseVersion,	model,	product,	brand,	serialNo,	display,	host,	deviceName,	hardware,	tags,	imsi,	phoneNumber,	imei,	voiceMail,	simSerial,	countryIso,	carrier,	mnc,	mcc,	simOperator,	phoneType,	radioType,	cellLocation,	deviceSVN,	wifiIp,	wifiMac,	ssid,	bssid,	gateway,	wifiNetmask,	proxyInfo,	dnsAddress,	vpnIp,	vpnNetmask,	cellIp,	networkType,	currentTime,	upTime,	bootTime,	activeTime,	root,	packageName,	apkVersion,	sdkMD5,	signMD5,	apkMD5,	timeZone,	language,	brightness,	batteryStatus,	batteryLevel,	batteryTemp,	screenRes,	fontHash,	blueMac,	androidId,	cpuFrequency,	cpuHardware,	cpuType,	totalMemory,	availableMemory,	totalStorage,	availableStorage,	basebandVersion,	kernelVersion,	gpsLocation,	allowMockLocation,	initTime,	deviceId,	trueIp,	tokenId,	create_time,	create_man,	modify_time,	modify_man,	remark
+	</sql>
+
+	<!-- 查询（根据主键ID查询） -->
+	<select id="getEntityById" resultMap="tdFacilityDeviceAndroidinfoMap" parameterType="java.lang.String">
+		 SELECT
+		 <include refid="Base_Column_List" />
+		 FROM td_facility_device_android
+		 WHERE td_facility_device_android_id = #{tdFacilityDeviceAndroidId}
+	</select>
+	
+		<!-- 查询（根据主键ID查询手机品牌） -->
+	<select id="queryByAid" resultType="java.lang.String" parameterType="java.lang.String">
+		 SELECT
+		 brand
+		 FROM td_facility_device_android
+		 WHERE bu_application_id = #{buapplicationId} 
+		 order by create_time desc
+		 limit 1
+	</select>
+
+	<!-- 查询（根据主键ID查询） -->
+	<select id="getAll" resultMap="tdFacilityDeviceAndroidinfoMap" parameterType="java.lang.String">
+		 SELECT
+		 <include refid="Base_Column_List" />
+		 FROM td_facility_device_android
+	</select>
+
+	<!--删除：根据主键ID删除-->
+	<delete id="deleteEntity" parameterType="java.lang.String">
+		 DELETE FROM td_facility_device_android
+		 WHERE td_facility_device_android_id = #{tdFacilityDeviceAndroidId}
+	</delete>
+
+	<!-- 添加 -->
+	<insert id="saveEntity" parameterType="com.shangyong.backend.entity.tdf.TdFacilityDeviceAndroid">
+		 INSERT INTO td_facility_device_android
+ 		(td_facility_device_android_id,bu_application_id,fmVersion,os,sdkVersion,releaseVersion,model,product,brand,serialNo,display,host,deviceName,hardware,tags,imsi,phoneNumber,imei,voiceMail,simSerial,countryIso,carrier,mnc,mcc,simOperator,phoneType,radioType,cellLocation,deviceSVN,wifiIp,wifiMac,ssid,bssid,gateway,wifiNetmask,proxyInfo,dnsAddress,vpnIp,vpnNetmask,cellIp,networkType,currentTime,upTime,bootTime,activeTime,root,packageName,apkVersion,sdkMD5,signMD5,apkMD5,timeZone,language,brightness,batteryStatus,batteryLevel,batteryTemp,screenRes,fontHash,blueMac,androidId,cpuFrequency,cpuHardware,cpuType,totalMemory,availableMemory,totalStorage,availableStorage,basebandVersion,kernelVersion,gpsLocation,allowMockLocation,initTime,deviceId,trueIp,tokenId,create_time,create_man,modify_time,modify_man,remark) 
+		 VALUES 
+ 		(#{tdFacilityDeviceAndroidId},#{buApplicationId},#{fmVersion},#{os},#{sdkVersion},#{releaseVersion},#{model},#{product},#{brand},#{serialNo},#{display},#{host},#{deviceName},#{hardware},#{tags},#{imsi},#{phoneNumber},#{imei},#{voiceMail},#{simSerial},#{countryIso},#{carrier},#{mnc},#{mcc},#{simOperator},#{phoneType},#{radioType},#{cellLocation},#{deviceSVN},#{wifiIp},#{wifiMac},#{ssid},#{bssid},#{gateway},#{wifiNetmask},#{proxyInfo},#{dnsAddress},#{vpnIp},#{vpnNetmask},#{cellIp},#{networkType},#{currentTime},#{upTime},#{bootTime},#{activeTime},#{root},#{packageName},#{apkVersion},#{sdkMD5},#{signMD5},#{apkMD5},#{timeZone},#{language},#{brightness},#{batteryStatus},#{batteryLevel},#{batteryTemp},#{screenRes},#{fontHash},#{blueMac},#{androidId},#{cpuFrequency},#{cpuHardware},#{cpuType},#{totalMemory},#{availableMemory},#{totalStorage},#{availableStorage},#{basebandVersion},#{kernelVersion},#{gpsLocation},#{allowMockLocation},#{initTime},#{deviceId},#{trueIp},#{tokenId},#{createTime},#{createMan},#{modifyTime},#{modifyMan},#{remark}) 
+	</insert>
+
+	<!-- 修 改-->
+	<update id="updateEntity" parameterType="com.shangyong.backend.entity.tdf.TdFacilityDeviceAndroid">
+		 UPDATE td_facility_device_android
+ 		 <set> 
+			<if test="buApplicationId != null">
+				 bu_application_id = #{buApplicationId},
+			</if>
+			<if test="fmVersion != null">
+				 fmVersion = #{fmVersion},
+			</if>
+			<if test="os != null">
+				 os = #{os},
+			</if>
+			<if test="sdkVersion != null">
+				 sdkVersion = #{sdkVersion},
+			</if>
+			<if test="releaseVersion != null">
+				 releaseVersion = #{releaseVersion},
+			</if>
+			<if test="model != null">
+				 model = #{model},
+			</if>
+			<if test="product != null">
+				 product = #{product},
+			</if>
+			<if test="brand != null">
+				 brand = #{brand},
+			</if>
+			<if test="serialNo != null">
+				 serialNo = #{serialNo},
+			</if>
+			<if test="display != null">
+				 display = #{display},
+			</if>
+			<if test="host != null">
+				 host = #{host},
+			</if>
+			<if test="deviceName != null">
+				 deviceName = #{deviceName},
+			</if>
+			<if test="hardware != null">
+				 hardware = #{hardware},
+			</if>
+			<if test="tags != null">
+				 tags = #{tags},
+			</if>
+			<if test="imsi != null">
+				 imsi = #{imsi},
+			</if>
+			<if test="phoneNumber != null">
+				 phoneNumber = #{phoneNumber},
+			</if>
+			<if test="imei != null">
+				 imei = #{imei},
+			</if>
+			<if test="voiceMail != null">
+				 voiceMail = #{voiceMail},
+			</if>
+			<if test="simSerial != null">
+				 simSerial = #{simSerial},
+			</if>
+			<if test="countryIso != null">
+				 countryIso = #{countryIso},
+			</if>
+			<if test="carrier != null">
+				 carrier = #{carrier},
+			</if>
+			<if test="mnc != null">
+				 mnc = #{mnc},
+			</if>
+			<if test="mcc != null">
+				 mcc = #{mcc},
+			</if>
+			<if test="simOperator != null">
+				 simOperator = #{simOperator},
+			</if>
+			<if test="phoneType != null">
+				 phoneType = #{phoneType},
+			</if>
+			<if test="radioType != null">
+				 radioType = #{radioType},
+			</if>
+			<if test="cellLocation != null">
+				 cellLocation = #{cellLocation},
+			</if>
+			<if test="deviceSVN != null">
+				 deviceSVN = #{deviceSVN},
+			</if>
+			<if test="wifiIp != null">
+				 wifiIp = #{wifiIp},
+			</if>
+			<if test="wifiMac != null">
+				 wifiMac = #{wifiMac},
+			</if>
+			<if test="ssid != null">
+				 ssid = #{ssid},
+			</if>
+			<if test="bssid != null">
+				 bssid = #{bssid},
+			</if>
+			<if test="gateway != null">
+				 gateway = #{gateway},
+			</if>
+			<if test="wifiNetmask != null">
+				 wifiNetmask = #{wifiNetmask},
+			</if>
+			<if test="proxyInfo != null">
+				 proxyInfo = #{proxyInfo},
+			</if>
+			<if test="dnsAddress != null">
+				 dnsAddress = #{dnsAddress},
+			</if>
+			<if test="vpnIp != null">
+				 vpnIp = #{vpnIp},
+			</if>
+			<if test="vpnNetmask != null">
+				 vpnNetmask = #{vpnNetmask},
+			</if>
+			<if test="cellIp != null">
+				 cellIp = #{cellIp},
+			</if>
+			<if test="networkType != null">
+				 networkType = #{networkType},
+			</if>
+			<if test="currentTime != null">
+				 currentTime = #{currentTime},
+			</if>
+			<if test="upTime != null">
+				 upTime = #{upTime},
+			</if>
+			<if test="bootTime != null">
+				 bootTime = #{bootTime},
+			</if>
+			<if test="activeTime != null">
+				 activeTime = #{activeTime},
+			</if>
+			<if test="root != null">
+				 root = #{root},
+			</if>
+			<if test="packageName != null">
+				 packageName = #{packageName},
+			</if>
+			<if test="apkVersion != null">
+				 apkVersion = #{apkVersion},
+			</if>
+			<if test="sdkMD5 != null">
+				 sdkMD5 = #{sdkMD5},
+			</if>
+			<if test="signMD5 != null">
+				 signMD5 = #{signMD5},
+			</if>
+			<if test="apkMD5 != null">
+				 apkMD5 = #{apkMD5},
+			</if>
+			<if test="timeZone != null">
+				 timeZone = #{timeZone},
+			</if>
+			<if test="language != null">
+				 language = #{language},
+			</if>
+			<if test="brightness != null">
+				 brightness = #{brightness},
+			</if>
+			<if test="batteryStatus != null">
+				 batteryStatus = #{batteryStatus},
+			</if>
+			<if test="batteryLevel != null">
+				 batteryLevel = #{batteryLevel},
+			</if>
+			<if test="batteryTemp != null">
+				 batteryTemp = #{batteryTemp},
+			</if>
+			<if test="screenRes != null">
+				 screenRes = #{screenRes},
+			</if>
+			<if test="fontHash != null">
+				 fontHash = #{fontHash},
+			</if>
+			<if test="blueMac != null">
+				 blueMac = #{blueMac},
+			</if>
+			<if test="androidId != null">
+				 androidId = #{androidId},
+			</if>
+			<if test="cpuFrequency != null">
+				 cpuFrequency = #{cpuFrequency},
+			</if>
+			<if test="cpuHardware != null">
+				 cpuHardware = #{cpuHardware},
+			</if>
+			<if test="cpuType != null">
+				 cpuType = #{cpuType},
+			</if>
+			<if test="totalMemory != null">
+				 totalMemory = #{totalMemory},
+			</if>
+			<if test="availableMemory != null">
+				 availableMemory = #{availableMemory},
+			</if>
+			<if test="totalStorage != null">
+				 totalStorage = #{totalStorage},
+			</if>
+			<if test="availableStorage != null">
+				 availableStorage = #{availableStorage},
+			</if>
+			<if test="basebandVersion != null">
+				 basebandVersion = #{basebandVersion},
+			</if>
+			<if test="kernelVersion != null">
+				 kernelVersion = #{kernelVersion},
+			</if>
+			<if test="gpsLocation != null">
+				 gpsLocation = #{gpsLocation},
+			</if>
+			<if test="allowMockLocation != null">
+				 allowMockLocation = #{allowMockLocation},
+			</if>
+			<if test="initTime != null">
+				 initTime = #{initTime},
+			</if>
+			<if test="deviceId != null">
+				 deviceId = #{deviceId},
+			</if>
+			<if test="trueIp != null">
+				 trueIp = #{trueIp},
+			</if>
+			<if test="tokenId != null">
+				 tokenId = #{tokenId},
+			</if>
+			<if test="createTime != null">
+				 create_time = #{createTime},
+			</if>
+			<if test="createMan != null">
+				 create_man = #{createMan},
+			</if>
+			<if test="modifyTime != null">
+				 modify_time = #{modifyTime},
+			</if>
+			<if test="modifyMan != null">
+				 modify_man = #{modifyMan},
+			</if>
+			<if test="remark != null">
+				 remark = #{remark},
+			</if>
+
+ 		 </set>
+		 WHERE td_facility_device_android_id = #{tdFacilityDeviceAndroidId}
+	</update>
+
+</mapper>

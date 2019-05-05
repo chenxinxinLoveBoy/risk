@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.shangyong.backend.dao.CuCustomerOtherDao">
+
+	<resultMap type="com.shangyong.backend.entity.CuCustomerOther" id="cuCustomerOtherinfoMap">
+		<id property="otherInfoId" column="other_info_id" javaType="java.lang.String"></id>
+		<result property="platformCustomerId" column="platform_customer_id" javaType="java.lang.String"></result>
+		<result property="customerId" column="customer_id" javaType="java.lang.String"></result>
+		<result property="otherType" column="other_type" javaType="java.lang.String"></result>
+		<result property="otherAccount" column="other_account" javaType="java.lang.String"></result>
+		<result property="otherPass" column="other_pass" javaType="java.lang.String"></result>
+		<result property="certificateMark" column="certificate_mark" javaType="java.lang.String"></result>
+		<result property="createTime" column="create_time" javaType="java.lang.String"></result>
+		<result property="modifyTime" column="modify_time" javaType="java.lang.String"></result>
+	</resultMap>
+
+	<!-- 通用查询结果列-->
+	<sql id="Base_Column_List">
+other_info_id,	platform_customer_id,	customer_id,	other_type,	other_account,	other_pass,	certificate_mark,	create_time,	modify_time
+	</sql>
+
+	<!-- 查询（根据主键ID查询） -->
+	<select id="getEntityById" resultMap="cuCustomerOtherinfoMap" parameterType="java.lang.String">
+		 SELECT
+		 <include refid="Base_Column_List" />
+		 FROM cu_customer_other
+		 WHERE other_info_id = #{otherInfoId}
+	</select>
+
+    <delete id="delete" parameterType="java.lang.String">
+		 DELETE FROM cu_customer_other
+		 WHERE platform_customer_id = #{platformCustomerId}
+	</delete>
+	
+	<!-- 添加 -->
+	<insert id="saveEntity" parameterType="com.shangyong.backend.entity.CuCustomerOther">
+		 INSERT INTO cu_customer_other
+ 		(other_info_id,platform_customer_id,customer_id,other_type,other_account,other_pass,certificate_mark,create_time,modify_time) 
+		 VALUES 
+ 		(#{otherInfoId},#{platformCustomerId},#{customerId},#{otherType},#{otherAccount},#{otherPass},#{certificateMark},now(),#{modifyTime})
+	</insert>
+
+	<!-- 修 改-->
+	<update id="updateEntity" parameterType="com.shangyong.backend.entity.CuCustomerOther">
+		 UPDATE cu_customer_other
+ 		 <set> 
+			<if test="platformCustomerId != null">
+				 platform_customer_id = #{platformCustomerId},
+			</if>
+			<if test="customerId != null">
+				 customer_id = #{customerId},
+			</if>
+			<if test="otherType != null">
+				 other_type = #{otherType},
+			</if>
+			<if test="otherAccount != null">
+				 other_account = #{otherAccount},
+			</if>
+			<if test="otherPass != null">
+				 other_pass = #{otherPass},
+			</if>
+			<if test="certificateMark != null">
+				 certificate_mark = #{certificateMark},
+			</if>
+			<if test="createTime != null">
+				 create_time = #{createTime},
+			</if>
+			<if test="modifyTime != null">
+				 modify_time = #{modifyTime}
+			</if>
+
+ 		 </set>
+		 WHERE platform_customer_id = #{platformCustomerId} and  other_type = #{otherType}
+	</update>
+
+</mapper>

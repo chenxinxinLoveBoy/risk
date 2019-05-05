@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<META HTTP-EQUIV="pragma" CONTENT="no-cache">
+<META HTTP-EQUIV="Cache-Control" CONTENT="no-cache, must-revalidate">
+<META HTTP-EQUIV="expires" CONTENT="0">
+<!-- <title>Insert title here</title> -->
+</head>
+		<!-- css -->
+		<link rel="stylesheet" href="../../plugins/layui/css/layui.css" media="all" />
+		<link rel="stylesheet" href="../../css/global.css" media="all">
+		<link rel="stylesheet" href="../../plugins/font-awesome/css/font-awesome.min.css">
+		<link rel="stylesheet" href="../../css/table.css" />
+
+		<!-- JS -->
+		<script type="text/javascript" src="../../plugins/layui/layui.js"></script>
+		<script src="../../jqery/jquery.js"></script>
+		<script type="text/javascript" src="../../../commons/base.js"></script>
+		<script type="text/javascript" src="../../js/scScoreBig/scScoreBig_add.js"></script>
+		<!-- 日期控件 -->
+	<script language="javascript" type="text/javascript" src="../../My97DatePicker/WdatePicker.js"></script>
+		
+<body>
+	<div style="margin: 15px;">
+	<form class="layui-form" id="userForms" >
+		<div class="layui-form-item" >
+			<label class="layui-form-label" style="width:150px">评分项规则大类编号</label>
+			<div class="layui-input-inline" style="width:500px"> 
+				<input id="scoreBigId" type="hidden" name="scoreBigId"  autocomplete="off" class="layui-input" >
+				<input id="version" type="hidden" name="version"  autocomplete="off" class="layui-input" >
+				<input id="createMan" type="hidden" name="createMan"  autocomplete="off" class="layui-input" >
+				<input id="createTime" type="hidden" name="createTime"  autocomplete="off" class="layui-input" >
+				<input id="scoreBigCode" type="text" name="scoreBigCode" placeholder="评分项规则大类编号"  autocomplete="off" class="layui-input">
+			</div>
+		</div>	
+		
+		<div class="layui-form-item">
+			<label class="layui-form-label" style="width:150px">评分项名称</label>
+			<div class="layui-input-inline" style="width:500px">
+				<input id="scoreName" type="text" name="scoreName"   placeholder="评分项名称" autocomplete="off" class="layui-input">
+			</div>
+		</div>
+		
+    	<div class="layui-form-item" id="status_creditType">
+			<label class="layui-form-label" style="width:150px">征信机构类型</label>
+			<div class="layui-input-inline" style="width:500px">
+			        <select name="creditType" lay-filter="creditType"  lay-search="" id="select_creditType" lay-verify="creditType" >
+			          <option value="">直接选择</option>
+				          <option value="01">01-同盾</option>
+				          <option value="02">02-聚信立蜜蜂</option>
+				          <option value="03">03-聚信立蜜罐</option>
+				          <option value="04">04-芝麻信用</option>
+				          <option value="05">05-91征信</option>
+				          <option value="06">06-宜信</option>
+				          <option value="07">07-中智诚</option>
+			        </select>
+			</div>
+ 		 </div>
+		
+		<div class="layui-form-item">
+			<label class="layui-form-label" style="width:150px">评分项规则明细</label>
+			<div class="layui-input-inline" style="width:500px">
+		       <textarea rows="4" cols="76" id="scoreRuleDetail"   name="scoreRuleDetail"   placeholder="评分项规则明细"></textarea> 
+ 			</div>
+		</div>
+		 
+		 
+		<div class="layui-form-item">
+			<label class="layui-form-label" style="width:150px">备注</label>
+			<div class="layui-input-inline" style="width:500px">
+				<textarea rows="2" cols="76" id="remark"   name="remark"   placeholder="备注"></textarea> 
+ 			</div>
+		</div>
+		
+		 <div class="layui-form-item">
+		    <label class="layui-form-label" style="width:150px">状态</label>
+		    <div class="layui-input-block" style="width:500px">
+		    	<input name="level1" value="01" title="生效" type="radio"    lay-filter="radio_filter1" id="level_id1" />
+		    	<input name="level1" value="02" title="失效" type="radio"    lay-filter="radio_filter1" id="level_id2" />
+		    </div>
+		  </div>
+		  
+		  	<div class="layui-form-item">
+			<label class="layui-form-label" style="width:150px">权重</label>
+			<div class="layui-input-inline" style="width:500px">
+				<input id="percent" type="text" name="percent"   placeholder="权重" autocomplete="off" class="layui-input">
+			</div>
+		</div>
+		
+		<button lay-submit lay-filter="save"  class="layui-btn" id="save_bt" >保存</button>
+ 		<button class="layui-btn layui-btn-normal" id="closeIframe" onclick="closeIfrname()" >取消</button>
+		
+	</form>
+</div>
+</body>
+</html>

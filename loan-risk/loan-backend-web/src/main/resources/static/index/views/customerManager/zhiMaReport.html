@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+<meta charset="UTF-8">
+<title>芝麻信用报告信息</title>
+<link rel="stylesheet" href="../../plugins/layui/css/layui.css"
+	media="all" />
+<link rel="stylesheet" href="../../css/global.css" media="all">
+<link rel="stylesheet"
+	href="../../plugins/font-awesome/css/font-awesome.min.css">
+<!-- <link rel="stylesheet" href="../../css/table.css" /> -->
+</head>
+<body>
+	<input type="button" onclick="showDataBase()" value="查询数据库" class="layui-btn layui-btn-small"/>
+	<input type="button" onclick="showAliyun()" value="查询阿里云" class="layui-btn layui-btn-small"/>
+	<div class="admin-main">
+		<!-- <blockquote class="layui-elem-quote">
+			<a href="javascript:;" class="layui-btn layui-btn-small" id="getcustom" >查看用户信息 </a>
+		    <a href="javascript:;" class="layui-btn layui-btn-small" id="getTd"> 查看聚信立信息 </a>
+		</blockquote> -->
+
+		<legend style="margin-left: 44.5%;">芝麻信用评分</legend>
+		<table class="layui-table">
+			<tbody>
+				<tr>
+					<th style="width: 170px; ">芝麻信用业务号</th>
+					<td><font id="zmBizNo_pf"></font></td>
+				</tr>
+				<tr>
+					<th>芝麻信用评分</th>
+					<td><font id="zmScore"></font></td>
+				</tr>
+				</tr>
+			</tbody>
+		</table>
+
+		<legend style="margin-left: 43%;">芝麻信用欺诈关注清单</legend>
+		<!-- 		<table class="layui-table"> -->
+		<!-- 			<tbody > -->
+		<!-- 				<tr> -->
+		<!-- 					<th style="width: 160px;">欺诈关注清单业务号</th> -->
+		<!-- 					<td><font id="zmBizNo_qd"></font></td> -->
+		<!-- 				</tr> -->
+		<!-- 				<tr> -->
+		<!-- 					<th>是否命中</th> -->
+		<!-- 					<td><font id="state"></font></td> -->
+		<!-- 				</tr> -->
+		<!-- 				<tr> -->
+		<!-- 					<td >Riskcode列表</td> -->
+		<!-- 					<td><font id="riskCode"></font></td> -->
+		<!-- 					<td colspan="2">2222</td> -->
+		<!-- 					<td><font id="22">吃吃吃</font></td> -->
+		<!-- 				</tr> -->
+		<!-- 			</tbody> -->
+		<!-- 		</table> --> 
+
+		<table class="layui-table" >
+					<tbody id="tbody_id">
+						<tr>
+							<th style="width: 170px;">欺诈关注清单业务号</th>
+							<td colspan="3"><font id="zmBizNo_qd"></font></td>
+						</tr>
+						<tr>
+							<th>芝麻关注清单是否命中</th>
+							<td colspan="3"><font id="state"></font></td>
+						</tr>
+						
+					</tbody>
+				</table>
+
+	<legend style="margin-left: 42.5%;">芝麻信用行业关注名单主信息</legend>
+		<table class="layui-table">
+			<tbody>
+
+				<tr>
+					<th style="width: 170px; ">业务号</th>
+					<td id="bizNo" ></td>
+				</tr>
+				<tr>
+					<th style="width: 170px; ">行业关注名单是否命中</th>
+					<td ><font id="isMatched"></font></td>
+				</tr>
+
+			</tbody>
+		</table>
+
+
+		 <legend style="margin-left: 42.5%;">芝麻信用行业关注名单详细信息</legend>
+		<table class="layui-table" >
+			<tbody id="czcwInfo">
+			</tbody>
+		</table>
+		
+		 <legend style="margin-left: 42.5%;">芝麻信用行业关注名单扩展信息</legend>
+		<table class="layui-table" >
+			<tbody id="extendInfo">
+			</tbody>
+		</table>
+		
+		<!-- 		</fieldset> -->
+		<div class="admin-table-page">
+			<div id="paged" class="page"></div>
+		</div>
+	</div>
+	<!-- js -->
+	<script src="../../jqery/jquery.js"></script>
+	<script src="../../../commons/base.js"></script>
+	<script type="text/javascript" src="../../plugins/layui/layui.js"></script>
+	<script type="text/javascript" src="../../js/zhiMa/zhiMa_JsonReport.js"></script>
+</body>
+
+</html>

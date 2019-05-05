@@ -1,0 +1,1018 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.shangyong.backend.dao.BuBoOrderformDao" >
+  <resultMap id="BaseResultMap" type="com.shangyong.backend.entity.BuBoOrderform" >
+    <id column="bo_orderform_id" property="boOrderformId" jdbcType="VARCHAR" />
+    <result column="platform_id" property="platformId" jdbcType="VARCHAR" />
+    <result column="use_id" property="useId" jdbcType="VARCHAR" />
+    <result column="application_id" property="applicationId" jdbcType="VARCHAR" />
+    <result column="customer_id" property="customerId" jdbcType="VARCHAR" />
+    <result column="name" property="name" jdbcType="VARCHAR" />
+    <result column="cert_type" property="certType" jdbcType="VARCHAR" />
+    <result column="cert_code" property="certCode" jdbcType="VARCHAR" />
+    <result column="phone_num" property="phoneNum" jdbcType="VARCHAR" />
+    <result column="fina_product_id" property="finaProductId" jdbcType="VARCHAR" />
+    <result column="order_time" property="orderTime" jdbcType="TIMESTAMP" />
+    <result column="product_quota" property="productQuota" jdbcType="DECIMAL" />
+    <result column="real_quota" property="realQuota" jdbcType="DECIMAL" />
+    <result column="days" property="days" jdbcType="INTEGER" />
+    <result column="product_rate" property="productRate" jdbcType="DECIMAL" />
+    <result column="inquiry_fee" property="inquiryFee" jdbcType="DECIMAL" />
+    <result column="management_cost" property="managementCost" jdbcType="DECIMAL" />
+    <result column="sum_renewal_money" property="sumRenewalMoney" jdbcType="DECIMAL" />
+    <result column="renewal_num" property="renewalNum" jdbcType="INTEGER" />
+    <result column="sum_loan_interest" property="sumLoanInterest" jdbcType="DECIMAL" />
+    <result column="original_repay_date" property="originalRepayDate" jdbcType="TIMESTAMP" />
+    <result column="new_repay_date" property="newRepayDate" jdbcType="TIMESTAMP" />
+    <result column="actual_repay_date" property="actualRepayDate" jdbcType="TIMESTAMP" />
+    <result column="repay_money" property="repayMoney" jdbcType="DECIMAL" />
+    <result column="rp_sum_money" property="rpSumMoney" jdbcType="DECIMAL" />
+    <result column="sum_delay_money" property="sumDelayMoney" jdbcType="DECIMAL" />
+    <result column="delay_days" property="delayDays" jdbcType="INTEGER" />
+    <result column="repay_type" property="repayType" jdbcType="VARCHAR" />
+    <result column="overdue_mark" property="overdueMark" jdbcType="VARCHAR" />
+    <result column="state" property="state" jdbcType="VARCHAR" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="create_man" property="createMan" jdbcType="VARCHAR" />
+    <result column="modify_time" property="modifyTime" jdbcType="TIMESTAMP" />
+    <result column="modify_man" property="modifyMan" jdbcType="VARCHAR" />
+    <result column="remark" property="remark" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    bo_orderform_id, platform_id, use_id, application_id, customer_id, name, cert_type, 
+    cert_code, phone_num, fina_product_id, order_time, product_quota, real_quota, days, 
+    product_rate, inquiry_fee, management_cost, sum_renewal_money, renewal_num, sum_loan_interest, 
+    original_repay_date, new_repay_date, actual_repay_date, repay_money, rp_sum_money, 
+    sum_delay_money, delay_days, repay_type, overdue_mark, state, create_time, create_man, 
+    modify_time, modify_man, remark
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from bu_bo_orderform
+    where bo_orderform_id = #{boOrderformId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from bu_bo_orderform
+    where bo_orderform_id = #{boOrderformId,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.shangyong.backend.entity.BuBoOrderform" >
+    insert into bu_bo_orderform (bo_orderform_id, platform_id, use_id, 
+      application_id, customer_id, name, 
+      cert_type, cert_code, phone_num, 
+      fina_product_id, order_time, product_quota, 
+      real_quota, days, product_rate, 
+      inquiry_fee, management_cost, sum_renewal_money, 
+      renewal_num, sum_loan_interest, original_repay_date, 
+      new_repay_date, actual_repay_date, repay_money, 
+      rp_sum_money, sum_delay_money, delay_days, 
+      repay_type, overdue_mark, state, 
+      create_time, create_man, modify_time, 
+      modify_man, remark)
+    values (#{boOrderformId,jdbcType=VARCHAR}, #{platformId,jdbcType=VARCHAR}, #{useId,jdbcType=VARCHAR}, 
+      #{applicationId,jdbcType=VARCHAR}, #{customerId,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR}, 
+      #{certType,jdbcType=VARCHAR}, #{certCode,jdbcType=VARCHAR}, #{phoneNum,jdbcType=VARCHAR}, 
+      #{finaProductId,jdbcType=VARCHAR}, #{orderTime,jdbcType=TIMESTAMP}, #{productQuota,jdbcType=DECIMAL}, 
+      #{realQuota,jdbcType=DECIMAL}, #{days,jdbcType=INTEGER}, #{productRate,jdbcType=DECIMAL}, 
+      #{inquiryFee,jdbcType=DECIMAL}, #{managementCost,jdbcType=DECIMAL}, #{sumRenewalMoney,jdbcType=DECIMAL}, 
+      #{renewalNum,jdbcType=INTEGER}, #{sumLoanInterest,jdbcType=DECIMAL}, #{originalRepayDate,jdbcType=TIMESTAMP}, 
+      #{newRepayDate,jdbcType=TIMESTAMP}, #{actualRepayDate,jdbcType=TIMESTAMP}, #{repayMoney,jdbcType=DECIMAL}, 
+      #{rpSumMoney,jdbcType=DECIMAL}, #{sumDelayMoney,jdbcType=DECIMAL}, #{delayDays,jdbcType=INTEGER}, 
+      #{repayType,jdbcType=VARCHAR}, #{overdueMark,jdbcType=VARCHAR}, #{state,jdbcType=VARCHAR}, 
+      #{createTime,jdbcType=TIMESTAMP}, #{createMan,jdbcType=VARCHAR}, #{modifyTime,jdbcType=TIMESTAMP}, 
+      #{modifyMan,jdbcType=VARCHAR}, #{remark,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.shangyong.backend.entity.BuBoOrderform" >
+    insert into bu_bo_orderform
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="boOrderformId != null" >
+        bo_orderform_id,
+      </if>
+      <if test="platformId != null" >
+        platform_id,
+      </if>
+      <if test="useId != null" >
+        use_id,
+      </if>
+      <if test="applicationId != null" >
+        application_id,
+      </if>
+      <if test="customerId != null" >
+        customer_id,
+      </if>
+      <if test="name != null" >
+        name,
+      </if>
+      <if test="certType != null" >
+        cert_type,
+      </if>
+      <if test="certCode != null" >
+        cert_code,
+      </if>
+      <if test="phoneNum != null" >
+        phone_num,
+      </if>
+      <if test="finaProductId != null" >
+        fina_product_id,
+      </if>
+      <if test="orderTime != null" >
+        order_time,
+      </if>
+      <if test="productQuota != null" >
+        product_quota,
+      </if>
+      <if test="realQuota != null" >
+        real_quota,
+      </if>
+      <if test="days != null" >
+        days,
+      </if>
+      <if test="productRate != null" >
+        product_rate,
+      </if>
+      <if test="inquiryFee != null" >
+        inquiry_fee,
+      </if>
+      <if test="managementCost != null" >
+        management_cost,
+      </if>
+      <if test="sumRenewalMoney != null" >
+        sum_renewal_money,
+      </if>
+      <if test="renewalNum != null" >
+        renewal_num,
+      </if>
+      <if test="sumLoanInterest != null" >
+        sum_loan_interest,
+      </if>
+      <if test="originalRepayDate != null" >
+        original_repay_date,
+      </if>
+      <if test="newRepayDate != null" >
+        new_repay_date,
+      </if>
+      <if test="actualRepayDate != null" >
+        actual_repay_date,
+      </if>
+      <if test="repayMoney != null" >
+        repay_money,
+      </if>
+      <if test="rpSumMoney != null" >
+        rp_sum_money,
+      </if>
+      <if test="sumDelayMoney != null" >
+        sum_delay_money,
+      </if>
+      <if test="delayDays != null" >
+        delay_days,
+      </if>
+      <if test="repayType != null" >
+        repay_type,
+      </if>
+      <if test="overdueMark != null" >
+        overdue_mark,
+      </if>
+      <if test="state != null" >
+        state,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+      <if test="createMan != null" >
+        create_man,
+      </if>
+      <if test="modifyTime != null" >
+        modify_time,
+      </if>
+      <if test="modifyMan != null" >
+        modify_man,
+      </if>
+      <if test="remark != null" >
+        remark
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="boOrderformId != null" >
+        #{boOrderformId,jdbcType=VARCHAR},
+      </if>
+      <if test="platformId != null" >
+        #{platformId,jdbcType=VARCHAR},
+      </if>
+      <if test="useId != null" >
+        #{useId,jdbcType=VARCHAR},
+      </if>
+      <if test="applicationId != null" >
+        #{applicationId,jdbcType=VARCHAR},
+      </if>
+      <if test="customerId != null" >
+        #{customerId,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null" >
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="certType != null" >
+        #{certType,jdbcType=VARCHAR},
+      </if>
+      <if test="certCode != null" >
+        #{certCode,jdbcType=VARCHAR},
+      </if>
+      <if test="phoneNum != null" >
+        #{phoneNum,jdbcType=VARCHAR},
+      </if>
+      <if test="finaProductId != null" >
+        #{finaProductId,jdbcType=VARCHAR},
+      </if>
+      <if test="orderTime != null" >
+        #{orderTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="productQuota != null" >
+        #{productQuota,jdbcType=DECIMAL},
+      </if>
+      <if test="realQuota != null" >
+        #{realQuota,jdbcType=DECIMAL},
+      </if>
+      <if test="days != null" >
+        #{days,jdbcType=INTEGER},
+      </if>
+      <if test="productRate != null" >
+        #{productRate,jdbcType=DECIMAL},
+      </if>
+      <if test="inquiryFee != null" >
+        #{inquiryFee,jdbcType=DECIMAL},
+      </if>
+      <if test="managementCost != null" >
+        #{managementCost,jdbcType=DECIMAL},
+      </if>
+      <if test="sumRenewalMoney != null" >
+        #{sumRenewalMoney,jdbcType=DECIMAL},
+      </if>
+      <if test="renewalNum != null" >
+        #{renewalNum,jdbcType=INTEGER},
+      </if>
+      <if test="sumLoanInterest != null" >
+        #{sumLoanInterest,jdbcType=DECIMAL},
+      </if>
+      <if test="originalRepayDate != null" >
+        #{originalRepayDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="newRepayDate != null" >
+        #{newRepayDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="actualRepayDate != null" >
+        #{actualRepayDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="repayMoney != null" >
+        #{repayMoney,jdbcType=DECIMAL},
+      </if>
+      <if test="rpSumMoney != null" >
+        #{rpSumMoney,jdbcType=DECIMAL},
+      </if>
+      <if test="sumDelayMoney != null" >
+        #{sumDelayMoney,jdbcType=DECIMAL},
+      </if>
+      <if test="delayDays != null" >
+        #{delayDays,jdbcType=INTEGER},
+      </if>
+      <if test="repayType != null" >
+        #{repayType,jdbcType=VARCHAR},
+      </if>
+      <if test="overdueMark != null" >
+        #{overdueMark,jdbcType=VARCHAR},
+      </if>
+      <if test="state != null" >
+        #{state,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createMan != null" >
+        #{createMan,jdbcType=VARCHAR},
+      </if>
+      <if test="modifyTime != null" >
+        #{modifyTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modifyMan != null" >
+        #{modifyMan,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null" >
+        #{remark,jdbcType=VARCHAR}
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.shangyong.backend.entity.BuBoOrderform" >
+    update bu_bo_orderform
+    <set >
+      <if test="platformId != null" >
+        platform_id = #{platformId,jdbcType=VARCHAR},
+      </if>
+      <if test="useId != null" >
+        use_id = #{useId,jdbcType=VARCHAR},
+      </if>
+      <if test="applicationId != null" >
+        application_id = #{applicationId,jdbcType=VARCHAR},
+      </if>
+      <if test="customerId != null" >
+        customer_id = #{customerId,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null" >
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="certType != null" >
+        cert_type = #{certType,jdbcType=VARCHAR},
+      </if>
+      <if test="certCode != null" >
+        cert_code = #{certCode,jdbcType=VARCHAR},
+      </if>
+      <if test="phoneNum != null" >
+        phone_num = #{phoneNum,jdbcType=VARCHAR},
+      </if>
+      <if test="finaProductId != null" >
+        fina_product_id = #{finaProductId,jdbcType=VARCHAR},
+      </if>
+      <if test="orderTime != null" >
+        order_time = #{orderTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="productQuota != null" >
+        product_quota = #{productQuota,jdbcType=DECIMAL},
+      </if>
+      <if test="realQuota != null" >
+        real_quota = #{realQuota,jdbcType=DECIMAL},
+      </if>
+      <if test="days != null" >
+        days = #{days,jdbcType=INTEGER},
+      </if>
+      <if test="productRate != null" >
+        product_rate = #{productRate,jdbcType=DECIMAL},
+      </if>
+      <if test="inquiryFee != null" >
+        inquiry_fee = #{inquiryFee,jdbcType=DECIMAL},
+      </if>
+      <if test="managementCost != null" >
+        management_cost = #{managementCost,jdbcType=DECIMAL},
+      </if>
+      <if test="sumRenewalMoney != null" >
+        sum_renewal_money = #{sumRenewalMoney,jdbcType=DECIMAL},
+      </if>
+      <if test="renewalNum != null" >
+        renewal_num = #{renewalNum,jdbcType=INTEGER},
+      </if>
+      <if test="sumLoanInterest != null" >
+        sum_loan_interest = #{sumLoanInterest,jdbcType=DECIMAL},
+      </if>
+      <if test="originalRepayDate != null" >
+        original_repay_date = #{originalRepayDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="newRepayDate != null" >
+        new_repay_date = #{newRepayDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="actualRepayDate != null" >
+        actual_repay_date = #{actualRepayDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="repayMoney != null" >
+        repay_money = #{repayMoney,jdbcType=DECIMAL},
+      </if>
+      <if test="rpSumMoney != null" >
+        rp_sum_money = #{rpSumMoney,jdbcType=DECIMAL},
+      </if>
+      <if test="sumDelayMoney != null" >
+        sum_delay_money = #{sumDelayMoney,jdbcType=DECIMAL},
+      </if>
+      <if test="delayDays != null" >
+        delay_days = #{delayDays,jdbcType=INTEGER},
+      </if>
+      <if test="repayType != null" >
+        repay_type = #{repayType,jdbcType=VARCHAR},
+      </if>
+      <if test="overdueMark != null" >
+        overdue_mark = #{overdueMark,jdbcType=VARCHAR},
+      </if>
+      <if test="state != null" >
+        state = #{state,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createMan != null" >
+        create_man = #{createMan,jdbcType=VARCHAR},
+      </if>
+      <if test="modifyTime != null" >
+        modify_time = #{modifyTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modifyMan != null" >
+        modify_man = #{modifyMan,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null" >
+        remark = #{remark,jdbcType=VARCHAR}
+      </if>
+    </set>
+    where bo_orderform_id = #{boOrderformId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.shangyong.backend.entity.BuBoOrderform" >
+    update bu_bo_orderform
+    set platform_id = #{platformId,jdbcType=VARCHAR},
+      use_id = #{useId,jdbcType=VARCHAR},
+      application_id = #{applicationId,jdbcType=VARCHAR},
+      customer_id = #{customerId,jdbcType=VARCHAR},
+      name = #{name,jdbcType=VARCHAR},
+      cert_type = #{certType,jdbcType=VARCHAR},
+      cert_code = #{certCode,jdbcType=VARCHAR},
+      phone_num = #{phoneNum,jdbcType=VARCHAR},
+      fina_product_id = #{finaProductId,jdbcType=VARCHAR},
+      order_time = #{orderTime,jdbcType=TIMESTAMP},
+      product_quota = #{productQuota,jdbcType=DECIMAL},
+      real_quota = #{realQuota,jdbcType=DECIMAL},
+      days = #{days,jdbcType=INTEGER},
+      product_rate = #{productRate,jdbcType=DECIMAL},
+      inquiry_fee = #{inquiryFee,jdbcType=DECIMAL},
+      management_cost = #{managementCost,jdbcType=DECIMAL},
+      sum_renewal_money = #{sumRenewalMoney,jdbcType=DECIMAL},
+      renewal_num = #{renewalNum,jdbcType=INTEGER},
+      sum_loan_interest = #{sumLoanInterest,jdbcType=DECIMAL},
+      original_repay_date = #{originalRepayDate,jdbcType=TIMESTAMP},
+      new_repay_date = #{newRepayDate,jdbcType=TIMESTAMP},
+      actual_repay_date = #{actualRepayDate,jdbcType=TIMESTAMP},
+      repay_money = #{repayMoney,jdbcType=DECIMAL},
+      rp_sum_money = #{rpSumMoney,jdbcType=DECIMAL},
+      sum_delay_money = #{sumDelayMoney,jdbcType=DECIMAL},
+      delay_days = #{delayDays,jdbcType=INTEGER},
+      repay_type = #{repayType,jdbcType=VARCHAR},
+      overdue_mark = #{overdueMark,jdbcType=VARCHAR},
+      state = #{state,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      create_man = #{createMan,jdbcType=VARCHAR},
+      modify_time = #{modifyTime,jdbcType=TIMESTAMP},
+      modify_man = #{modifyMan,jdbcType=VARCHAR},
+      remark = #{remark,jdbcType=VARCHAR}
+    where bo_orderform_id = #{boOrderformId,jdbcType=VARCHAR}
+  </update>
+  
+  <select id="custLoanSummaryList" resultType="java.util.Map" parameterType="java.util.Map">
+		select customer_id, name customerName, platform_id platformId, phone_num,
+	    sum(product_quota) sumMoney,
+   		count(bo_orderform_id) loanSumCount,
+		sum(if(state = 2, product_quota, 0)) hasRepaySumMoney, <!-- 收到还款总额 -->
+		sum(if(state = 1, product_quota, 0)) readyRepaySumMoney, <!--  待还总额 -->
+		sum(if(overdue_mark = 1, product_quota, 0)) overdueSumMoney, <!-- 逾期待催缴总额 -->
+		<![CDATA[ 
+		sum(
+			CASE when (0 < delay_days/days and delay_days/days <= 1) then 1
+					 when (1 < delay_days/days and delay_days/days <= 2) then 2
+					 when 2 < delay_days/days then 3
+			ELSE 0
+			END
+		) overdueCount
+		]]>
+		from bu_bo_orderform o 
+		<where>
+			<if test="startTime!=null">
+				DATE_FORMAT(order_time, '%Y-%m-%d') >= #{startTime}
+			</if>
+			<if test="endTime != null">
+				and	#{endTime} >= DATE_FORMAT(order_time, '%Y-%m-%d')
+			</if>
+			<if test="idCard != null">
+				and cert_code REGEXP #{idCard}
+			</if>
+		</where>
+		GROUP BY customer_id
+		limit #{pageIndex}, #{pageSize}
+  </select>
+  
+  <select id="custLoanSummaryCount" resultType="java.lang.Integer" parameterType="java.util.Map">
+  		select count(1) from (
+			select customer_id
+			from bu_bo_orderform o 
+			<where>
+				<if test="startTime!=null">
+					DATE_FORMAT(order_time, '%Y-%m-%d') >= #{startTime}
+				</if>
+				<if test="endTime != null">
+					and	#{endTime} >= DATE_FORMAT(order_time, '%Y-%m-%d')
+				</if>
+				<if test="idCard != null">
+					and cert_code REGEXP #{idCard}
+				</if>
+			</where>
+			GROUP BY customer_id
+		) t
+  </select>
+  
+  <!-- 平台收益列表顶部统计信息 -->
+  <select id="incomeManageSummaryData" resultType="java.util.Map" parameterType="java.util.Map">
+		select SUM(IFNULL(product_quota, 0)) loanSumMoney, <!-- 实际放款总额 -->
+			 SUM(IF(state = 1, product_quota, 0)) overdueSumMoney,   <!-- 逾期待催总额 -->
+        SUM(IF(state = 2, IF(product_quota IS NULL or product_quota = '', 0, product_quota), 0)) hasRepaySumMoney,   <!-- 已还款总额 -->
+        SUM(
+	         IF(sum_loan_interest IS NULL or sum_loan_interest = '', 0, sum_loan_interest) 
+	       + IF(inquiry_fee IS NULL or inquiry_fee = '', 0, inquiry_fee)
+	       + IF(management_cost IS NULL or management_cost = '', 0, management_cost)
+        ) serviceSumMoney,		<!-- 合计服务费总额 -->
+			 SUM(IF(state = 2,
+			 (IF(sum_loan_interest IS NULL or sum_loan_interest = '', 0, sum_loan_interest) <!--- 利息 -->
+			   + IF(management_cost IS NULL or management_cost = '', 0, management_cost) <!-- 账户管理费 -->
+			   + IF(inquiry_fee IS NULL or inquiry_fee = '', 0, inquiry_fee) -- 信审查询费
+			   + IF(sum_delay_money IS NULL or sum_delay_money = '', 0, sum_delay_money) <!-- 延期费 -->
+			   + IF(sum_renewal_money IS NULL or sum_renewal_money = '', 0, sum_renewal_money) <!-- 续期费 -->
+			  ), 0)) realIncomeProfit,   <!-- 实收利润 -->
+			 SUM(IF(state = 1,
+			 (IF(sum_loan_interest IS NULL or sum_loan_interest = '', 0, sum_loan_interest) <!-- 利息 -->
+			   + IF(management_cost IS NULL or management_cost = '', 0, management_cost) <!-- 账户管理费-->
+			   + IF(inquiry_fee IS NULL or inquiry_fee = '', 0, inquiry_fee) <!-- 信审查询费-->
+			   + IF(sum_delay_money IS NULL or sum_delay_money = '', 0, sum_delay_money) <!-- 延期费-->
+			   + IF(sum_renewal_money IS NULL or sum_renewal_money = '', 0, sum_renewal_money) <!-- 续期费-->
+			 ), 0)) shouldIncomeProfit <!--应收利润 -->
+		       <!-- 合计利润总额 -->
+		from bu_bo_orderform o
+		<where>
+				<if test="startTime!=null">
+					DATE_FORMAT(order_time, '%Y-%m-%d') >= #{startTime}
+				</if>
+				<if test="endTime != null">
+					and	#{endTime} >= DATE_FORMAT(order_time, '%Y-%m-%d')
+				</if>
+		</where>
+  </select>
+  
+  <!-- 收益管理列表sql -->
+  <sql id="incomeManageListSelectSql">
+  					   sum(IF(product_quota IS NULL or product_quota = '', 0, product_quota)) loanSumMoney, <!-- 放款总额 -->
+				       sum(if(state = 2, product_quota, 0)) hasRepaySumMoney, <!--收到还款总额-->
+							 sum(if(state = 1, product_quota, 0)) overdueSumMoney, <!-- 逾期待催缴总额-->
+							 sum(IF(sum_loan_interest IS NULL or sum_loan_interest = '', 0, sum_loan_interest)) sumLoanInterest, <!-- 利息-->
+							 sum(IF(management_cost IS NULL or management_cost = '', 0, management_cost)) managementCost, <!-- 账户管理费-->
+							 sum(IF(inquiry_fee IS NULL or inquiry_fee = '', 0, inquiry_fee)) inquiryFee, <!-- 信审查询费-->
+							 <!-- 合计服务费（利息 + 账户管理费 + 信息审查费）-->
+							 sum(IF(sum_delay_money IS NULL or sum_delay_money = '', 0, sum_delay_money)) sumDelayMoney, <!-- 逾期费-->
+							 sum(IF(sum_renewal_money IS NULL or sum_renewal_money = '', 0, sum_renewal_money)) sumRenewalMoney, <!-- 续期费-->
+				      SUM(IF(state = 2,
+							(IF(sum_loan_interest IS NULL or sum_loan_interest = '', 0, sum_loan_interest) <!-- 利息-->
+							   + IF(management_cost IS NULL or management_cost = '', 0, management_cost) <!-- 账户管理费-->
+							   + IF(inquiry_fee IS NULL or inquiry_fee = '', 0, inquiry_fee) -- 信审查询费-->
+							   + IF(sum_delay_money IS NULL or sum_delay_money = '', 0, sum_delay_money) <!-- 延期费-->
+							   + IF(sum_renewal_money IS NULL or sum_renewal_money = '', 0, sum_renewal_money) <!-- 续期费-->
+							 ), 0)) realIncomeProfit,   <!-- 实收利润-->
+							SUM(IF(state = 1,
+							 (IF(sum_loan_interest IS NULL or sum_loan_interest = '', 0, sum_loan_interest) <!-- 利息-->
+							   + IF(management_cost IS NULL or management_cost = '', 0, management_cost) <!-- 账户管理费-->
+							   + IF(inquiry_fee IS NULL or inquiry_fee = '', 0, inquiry_fee) <!-- 信审查询费-->
+							   + IF(sum_delay_money IS NULL or sum_delay_money = '', 0, sum_delay_money) <!-- 延期费-->
+							   + IF(sum_renewal_money IS NULL or sum_renewal_money = '', 0, sum_renewal_money) <!-- 续期费-->
+							 ), 0)) shouldIncomeProfit <!-- 应收利润 -->
+				       <!-- 总利润（服务费　+ 延期费 + 续期费） -->
+  </sql>
+  <sql id="incomeManageListFromSql">
+		from bu_bo_orderform 
+		<where>
+				<if test="startTime!=null">
+					DATE_FORMAT(order_time, '%Y-%m-%d') >= #{startTime}
+				</if>
+				<if test="endTime != null">
+					and	#{endTime} >= DATE_FORMAT(order_time, '%Y-%m-%d')
+				</if>
+		</where>
+  </sql>
+  
+  <sql id="incomeManageListDateListWhereSql">
+	<where>
+			<if test="startTime!=null">
+				DATE_FORMAT(datelist, '%Y-%m-%d') >= #{startTime}
+			</if>
+			<if test="endTime != null">
+				and	#{endTime} >= DATE_FORMAT(datelist, '%Y-%m-%d')
+			</if>
+	</where>
+  </sql>
+  
+  
+  <!-- 平台收益列表 -->
+  <select id="incomeManageList" resultType="java.util.Map" parameterType="java.util.Map">
+		<choose>
+			<when test="calcUnit == 1"><!-- 天 -->
+			    select * from 
+				(
+					select datelist timestr,
+					(DATE_FORMAT(datelist,'%Y-%m-%d')) startTime, 
+					(DATE_FORMAT(datelist,'%Y-%m-%d')) endTime
+					from sc_calendar
+					<include refid="optDataListDateListWhereSql"></include>
+				) t1 left join
+				(
+					select DATE_FORMAT(order_time, '%Y-%m-%d') startTime,
+					       DATE_FORMAT(order_time, '%Y-%m-%d') endTime,
+						   <include refid="incomeManageListSelectSql"></include>
+						   <include refid="incomeManageListFromSql"></include>
+					group by DATE_FORMAT(order_time, '%Y-%m-%d')
+				) t2  on t1.startTime = t2.startTime
+				ORDER BY t1.startTime
+			</when>
+			<when test="calcUnit == 2"><!-- 月 -->
+				select * from 
+				(
+					select datelist timestr, 
+				    DATE_FORMAT(DATE_ADD(datelist,interval -day(datelist)+1 day), '%Y-%m-%d')  startTime,
+				    DATE_FORMAT(last_day(datelist),'%Y-%m-%d') endTime
+					from sc_calendar
+					<include refid="optDataListDateListWhereSql"></include>
+					group by DATE_FORMAT(datelist, '%Y-%m')
+				) t1 left join
+			    (
+					select DATE_FORMAT(DATE_ADD(order_time,interval -day(order_time)+1 day), '%Y-%m-%d')  startTime,
+					      DATE_FORMAT(last_day(order_time), '%Y-%m-%d') endTime,
+						  <include refid="incomeManageListSelectSql"></include>
+						  <include refid="incomeManageListFromSql"></include>
+					group by DATE_FORMAT(order_time, '%Y-%m')
+			    ) t2 on t1.startTime = t2.startTime
+				order by t1.startTime
+			</when>
+			<when test="calcUnit == 3"><!-- 季 -->
+				select * from 
+				(
+					select datelist timestr, 
+			           DATE_FORMAT(date(concat(year(datelist),'-',elt(quarter(datelist),1,4,7,10),'-',1)), '%Y-%m-%d') startTime,
+				       DATE_FORMAT(LAST_DAY(MAKEDATE(EXTRACT(YEAR FROM datelist),1) + interval QUARTER(datelist)*3-1 month), '%Y-%m-%d') endTime
+					from sc_calendar
+					<include refid="optDataListDateListWhereSql"></include>
+					group by QUARTER(datelist)
+				) t1 left join
+			    (
+				    select DATE_FORMAT(date(concat(year(order_time),'-',elt(quarter(order_time),1,4,7,10),'-',1)), '%Y-%m-%d') startTime,
+					       DATE_FORMAT(LAST_DAY(MAKEDATE(EXTRACT(YEAR FROM order_time),1) + interval QUARTER(order_time)*3-1 month), '%Y-%m-%d') endTime,
+						   <include refid="incomeManageListSelectSql"></include>
+						   <include refid="incomeManageListFromSql"></include>
+					group by QUARTER(order_time)
+			    ) t2 on t1.startTime = t2.startTime
+				ORDER BY t1.startTime
+			</when>
+			<when test="calcUnit == 4"><!-- 年 -->
+				select * from 
+				(
+					select datelist timestr, 
+						DATE_FORMAT(concat(YEAR(datelist), '-01-01'), '%Y-%m-%d') startTime,
+     					DATE_FORMAT(CONCAT(YEAR(datelist),'-12-31'), '%Y-%m-%d') endTime
+					from sc_calendar
+					<include refid="optDataListDateListWhereSql"></include>
+					GROUP BY YEAR(datelist)
+				) t1 left join
+				(
+					select DATE_FORMAT(concat(YEAR(order_time), '-01-01'), '%Y-%m-%d') startTime,
+					       DATE_FORMAT(CONCAT(YEAR(order_time),'-12-31'), '%Y-%m-%d') endTime,
+						   <include refid="incomeManageListSelectSql"></include>
+						   <include refid="incomeManageListFromSql"></include>
+					group by YEAR(order_time)
+				) t2 on t1.startTime = t2.startTime
+				ORDER BY t1.startTime
+			</when>
+		</choose>
+		limit #{pageIndex}, #{pageSize}
+  </select>
+   
+  <!-- 平台收益列表count -->
+  <select id="incomeManageCount" resultType="java.lang.Integer" parameterType="java.util.Map">
+	   <choose>
+			<when test="calcUnit == 1"><!-- 天 -->
+				select count(1) from (
+					select datelist
+					from sc_calendar
+					<include refid="optDataListDateListWhereSql"></include>
+				) t
+			</when>
+			<when test="calcUnit == 2"><!-- 月 -->
+				select count(1) from (
+					select datelist
+					from sc_calendar
+					<include refid="optDataListDateListWhereSql"></include>
+					group by DATE_FORMAT(datelist, '%Y-%m')
+				) t
+			</when>
+			<when test="calcUnit == 3"><!-- 季 -->
+				select count(1) from (
+					select datelist
+					from sc_calendar
+					<include refid="optDataListDateListWhereSql"></include>
+					group by QUARTER(datelist)
+				) t
+			</when>
+			<when test="calcUnit == 4"><!-- 年 -->
+				select count(1) from (
+					select datelist
+					from sc_calendar
+					<include refid="optDataListDateListWhereSql"></include>
+					GROUP BY YEAR(datelist)
+				) t
+			</when>
+		</choose>  		
+  </select>
+  
+  
+  <sql id="optDataListDateListWhereSql">
+	<where>
+			<if test="startTime!=null">
+				DATE_FORMAT(datelist, '%Y-%m-%d') >= #{startTime}
+			</if>
+			<if test="endTime != null">
+				and	#{endTime} >= DATE_FORMAT(datelist, '%Y-%m-%d')
+			</if>
+	</where>
+  </sql>
+  <sql id="optDataListOrderformSql">
+			sum(IF(product_quota IS NULL or product_quota = '', 0, product_quota)) loanSumMoney, <!-- 新增放款总量 -->
+			<!-- 新增借款申请数（次）-->
+			count(bo_orderform_id) loanSumCount, <!-- 成功放款（次）-->
+				<!-- 放款率（%）service里做运算 -->
+			SUM(IF(state = 1, product_quota, 0)) overdueSumMoney, <!-- 新增逾期待催缴金额（元）-->
+			SUM(if(overdue_mark = 1, 1, 0)) overdueCount, <!-- 逾期次数 -->
+			
+			<![CDATA[ 
+			SUM(IF((0 < delay_days/days and delay_days/days <= 1), 1, 0)) m0OverdueCount,
+			SUM(IF((1 < delay_days/days and delay_days/days <= 2), 1, 0)) m1OverdueCount,
+			SUM(IF((2 < delay_days/days), 1, 0)) m2OverdueCount
+			]]>
+			<!-- 不良率service里计算 -->
+		from bu_bo_orderform
+		<where>
+				<if test="startTime!=null">
+					DATE_FORMAT(order_time, '%Y-%m-%d') >= #{startTime}
+				</if>
+				<if test="endTime != null">
+					and	#{endTime} >= DATE_FORMAT(order_time, '%Y-%m-%d')
+				</if>
+		</where>
+  </sql>
+  
+  <!-- 平台运营数据列表 -->
+  <select id="optDataList" parameterType="java.util.Map" resultType="java.util.Map">
+	   <choose>
+			<when test="calcUnit == 1"><!-- 天 -->
+		  		select * from 
+				(
+					select datelist timestr,
+					(DATE_FORMAT(datelist,'%Y-%m-%d')) startTime, 
+					(DATE_FORMAT(datelist,'%Y-%m-%d')) endTime
+					from sc_calendar
+					<include refid="optDataListDateListWhereSql"></include>
+				) t1 left join 
+				(
+				 select * from 
+				    (
+					  select
+						(DATE_FORMAT(order_time,'%Y-%m-%d')) startTime,
+						(DATE_FORMAT(order_time,'%Y-%m-%d')) endTime,
+						<include refid="optDataListOrderformSql"></include>
+					  group by (DATE_FORMAT(order_time,'%Y-%m-%d'))
+					) t3 left join 
+					(
+					   select DATE_FORMAT(create_time, '%Y-%m-%d') apply_time,
+					   count(application_id) applayNum from bu_application
+					   <where>
+								<if test="startTime!=null">
+									DATE_FORMAT(create_time, '%Y-%m-%d') >= #{startTime}
+								</if>
+								<if test="endTime != null">
+									and	#{endTime} >= DATE_FORMAT(create_time, '%Y-%m-%d')
+								</if>
+					   </where>
+					   group by DATE_FORMAT(create_time, '%Y-%m-%d')
+					 ) t4 on t3.startTime = t4.apply_time
+				) t2 on t1.startTime = t2.startTime
+				order by t1.startTime
+			</when>
+			<when test="calcUnit == 2"><!-- 月 -->
+				select * from 
+				(
+					select datelist timestr, 
+				    DATE_FORMAT(DATE_ADD(datelist,interval -day(datelist)+1 day), '%Y-%m-%d')  startTime,
+				    DATE_FORMAT(last_day(datelist),'%Y-%m-%d') endTime
+					from sc_calendar
+					<include refid="optDataListDateListWhereSql"></include>
+					group by DATE_FORMAT(datelist, '%Y-%m')
+				) t1 left join
+				(
+				 select * from 
+				 	(
+					  select
+				        DATE_FORMAT(DATE_ADD(order_time,interval -day(order_time)+1 day), '%Y-%m-%d')  startTime,
+				        DATE_FORMAT(last_day(order_time), '%Y-%m-%d') endTime,
+						<include refid="optDataListOrderformSql"></include>
+					  group by DATE_FORMAT(order_time, '%Y-%m')
+					) t3 left join 
+					(
+					   select DATE_FORMAT(DATE_ADD(create_time,interval -day(create_time)+1 day), '%Y-%m-%d') apply_time, 
+					   count(application_id) applayNum
+					   from bu_application
+					   <where>
+								<if test="startTime!=null">
+									DATE_FORMAT(create_time, '%Y-%m-%d') >= #{startTime}
+								</if>
+								<if test="endTime != null">
+									and	#{endTime} >= DATE_FORMAT(create_time, '%Y-%m-%d')
+								</if>
+					   </where>
+					   group by DATE_FORMAT(create_time, '%Y-%m')
+					 ) t4 on t3.startTime = t4.apply_time
+				) t2 on t1.startTime = t2.startTime
+				order by t1.startTime
+			</when>
+			<when test="calcUnit == 3"><!-- 季 -->
+				select * from 
+				(
+					select datelist timestr, 
+			           DATE_FORMAT(date(concat(year(datelist),'-',elt(quarter(datelist),1,4,7,10),'-',1)), '%Y-%m-%d') startTime,
+				       DATE_FORMAT(LAST_DAY(MAKEDATE(EXTRACT(YEAR FROM datelist),1) + interval QUARTER(datelist)*3-1 month), '%Y-%m-%d') endTime
+					from sc_calendar
+					<include refid="optDataListDateListWhereSql"></include>
+					group by QUARTER(datelist)
+				) t1 left join
+				(
+				
+				 select * from 
+				    (
+					  select
+			            DATE_FORMAT(date(concat(year(order_time),'-',elt(quarter(order_time),1,4,7,10),'-',1)), '%Y-%m-%d') startTime,
+				        DATE_FORMAT(LAST_DAY(MAKEDATE(EXTRACT(YEAR FROM order_time),1) + interval QUARTER(order_time)*3-1 month), '%Y-%m-%d') endTime,
+						<include refid="optDataListOrderformSql"></include>
+					  group by QUARTER(order_time)
+					) t3 left join 
+					(
+					   select 
+					   DATE_FORMAT(date(concat(year(create_time),'-',elt(quarter(create_time),1,4,7,10),'-',1)), '%Y-%m-%d') apply_time,
+					   count(application_id) applayNum from bu_application
+					   <where>
+								<if test="startTime!=null">
+									DATE_FORMAT(create_time, '%Y-%m-%d') >= #{startTime}
+								</if>
+								<if test="endTime != null">
+									and	#{endTime} >= DATE_FORMAT(create_time, '%Y-%m-%d')
+								</if>
+					   </where>
+					   group by QUARTER(create_time)
+					 ) t4 on t3.startTime = t4.apply_time
+				) t2 on t1.startTime = t2.startTime
+				order by t1.startTime
+			</when>
+			<when test="calcUnit == 4"><!-- 年 -->
+				select * from 
+				(
+					select datelist timestr, 
+						DATE_FORMAT(concat(YEAR(datelist), '-01-01'), '%Y-%m-%d') startTime,
+     					DATE_FORMAT(CONCAT(YEAR(datelist),'-12-31'), '%Y-%m-%d') endTime
+					from sc_calendar
+					<include refid="optDataListDateListWhereSql"></include>
+					GROUP BY YEAR(datelist)
+				) t1 left join
+				(
+				 select * from 
+				    (
+					  select
+				        DATE_FORMAT(concat(YEAR(order_time), '-01-01'), '%Y-%m-%d') startTime,
+     					DATE_FORMAT(CONCAT(YEAR(order_time),'-12-31'), '%Y-%m-%d') endTime,
+						<include refid="optDataListOrderformSql"></include>
+					  GROUP BY YEAR(order_time)
+					) t3 left join 
+					(
+					   select 
+					   DATE_FORMAT(concat(YEAR(create_time), '-01-01'), '%Y-%m-%d') apply_time,
+					   count(application_id) applayNum from bu_application
+					   <where>
+								<if test="startTime!=null">
+									DATE_FORMAT(create_time, '%Y-%m-%d') >= #{startTime}
+								</if>
+								<if test="endTime != null">
+									and	#{endTime} >= DATE_FORMAT(create_time, '%Y-%m-%d')
+								</if>
+					   </where>
+					   group by YEAR(create_time)
+					 ) t4 on t3.startTime = t4.apply_time
+				) t2 on t1.startTime = t2.startTime
+				order by t1.startTime
+			</when>
+		</choose>
+		limit #{pageIndex}, #{pageSize}
+  </select>
+  
+  <!-- 平台运营数据列表count -->
+  <select id="optDataListCount" parameterType="java.util.Map" resultType="java.lang.Integer">
+	   <choose>
+			<when test="calcUnit == 1"><!-- 天 -->
+				select count(1) from (
+					select datelist
+					from sc_calendar
+					<include refid="optDataListDateListWhereSql"></include>
+				) t
+			</when>
+			<when test="calcUnit == 2"><!-- 月 -->
+				select count(1) from (
+					select datelist
+					from sc_calendar
+					<include refid="optDataListDateListWhereSql"></include>
+					group by DATE_FORMAT(datelist, '%Y-%m')
+				) t
+			</when>
+			<when test="calcUnit == 3"><!-- 季 -->
+				select count(1) from (
+					select datelist
+					from sc_calendar
+					<include refid="optDataListDateListWhereSql"></include>
+					group by QUARTER(datelist)
+				) t
+			</when>
+			<when test="calcUnit == 4"><!-- 年 -->
+				select count(1) from (
+					select datelist
+					from sc_calendar
+					<include refid="optDataListDateListWhereSql"></include>
+					GROUP BY YEAR(datelist)
+				) t
+			</when>
+		</choose>  		
+  </select>
+  
+  <!-- 平台运营数据列表统计数据 -->
+  <select id="optDataSummary" parameterType="java.util.Map" resultType="java.util.Map">
+  		select * from 
+		(
+			select count(1) loanTotalUser <!-- 借款用户总数 -->
+			from (select count(customer_id) from bu_bo_orderform GROUP BY customer_id) t
+		)
+		 t2,
+		(
+				select
+				sum(IF(product_quota IS NULL or product_quota = '', 0, product_quota)) loanSumMoney, <!-- 新增放款总量 --> 
+ 				<!-- 新增借款申请数（在下面查询获得） -->
+				sum(IF(state = 1, IF(product_quota IS NULL or product_quota = '', 0, product_quota), 0)) overdueSumMoney, <!-- 新增逾期待催缴总金额 -->
+				count(bo_orderform_id) loanSumCount, <!-- 成功放款次数 -->
+ 				<!-- 放款率 -->
+				SUM(IF(overdue_mark = 2,1, 0)) nomalCount, <!-- （正常单子个数 为不良率使用） -->
+				SUM(IF(overdue_mark = 1,1, 0)) overdueCount, <!-- （逾期单子个数 为不良率使用） -->
+				<!-- 不良率 -->
+				<![CDATA[ 
+					SUM(IF((0 < delay_days/days and delay_days/days <= 1), 1, 0)) m0OverdueCount,
+					SUM(IF((1 < delay_days/days and delay_days/days <= 2), 1, 0)) m1OverdueCount,
+					SUM(IF((2 < delay_days/days), 1, 0)) m2OverdueCount
+				]]>
+				from bu_bo_orderform 
+				<where>
+					<if test="startTime!=null">
+						DATE_FORMAT(order_time, '%Y-%m-%d') >= #{startTime}
+					</if>
+					<if test="endTime != null">
+						and	#{endTime} >= DATE_FORMAT(order_time, '%Y-%m-%d')
+					</if>
+				</where>
+		) t4,
+		(
+		  select COUNT(application_id) applayNum <!-- 新增借款申请数 -->
+		  from bu_application
+		  <where>
+					<if test="startTime!=null">
+						DATE_FORMAT(create_time, '%Y-%m-%d') >= #{startTime}
+					</if>
+					<if test="endTime != null">
+						and	#{endTime} >= DATE_FORMAT(create_time, '%Y-%m-%d')
+					</if>
+		  </where>
+		) t5
+  </select>
+ 
+
+	<!-- 获取需要提前一天短信通知的所有未还款且未逾期客户订单信息 -->
+	<select id="getAllPrepaymentBuBoOrderform" resultMap="BaseResultMap"
+		parameterType="java.lang.String">
+		SELECT
+		<include refid="Base_Column_List" />
+		FROM
+		bu_bo_orderform
+		WHERE state=1 and overdue_mark=2 and
+		new_repay_date
+		&lt; DATE_SUB(CURDATE(),
+		INTERVAL -2 DAY)
+		AND new_repay_date >=
+		DATE_SUB(CURDATE(), INTERVAL -1
+		DAY)
+	</select>
+
+	<!-- 获取需要还款日当天短信通知的所有未还款且未逾期的客户订单信息 -->
+	<select id="getAllRepaymentBuBoOrderform" resultMap="BaseResultMap"
+		parameterType="java.lang.String">
+		SELECT
+		<include refid="Base_Column_List" />
+		FROM
+		bu_bo_orderform
+		WHERE state=1 and overdue_mark=2 and
+		new_repay_date
+		&lt; DATE_SUB(CURDATE(), INTERVAL -1 DAY)
+		AND new_repay_date
+		>=CURDATE()
+	</select>
+
+	<!-- 获取所有未还款且已逾期的客户订单信息 -->
+	<select id="getAllOverdueBuBoOrderform" resultMap="BaseResultMap"
+		parameterType="java.lang.String">
+		SELECT
+		<include refid="Base_Column_List" />
+		FROM
+		bu_bo_orderform
+		WHERE state=1 and overdue_mark=1 and delay_days
+		&lt;=days*3
+	</select>
+  
+</mapper>

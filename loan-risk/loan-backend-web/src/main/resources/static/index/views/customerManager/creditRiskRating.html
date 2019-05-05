@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+<meta charset="UTF-8">
+<title>极光报告信息</title>
+<link rel="stylesheet" href="../../plugins/layui/css/layui.css"
+	media="all" />
+<link rel="stylesheet" href="../../css/global.css" media="all">
+<link rel="stylesheet"
+	href="../../plugins/font-awesome/css/font-awesome.min.css">
+<link rel="stylesheet" href="../../css/table.css" />
+
+</head>
+
+<!-- js -->
+<script src="../../jqery/jquery.js"></script>
+<script src="../../../commons/base.js"></script>
+<script type="text/javascript" src="../../plugins/layui/layui.js"></script>
+
+<!-- 极光js -->
+<script type="text/javascript" src="../../js/customerManager/jgInfo.js"></script>
+
+	
+<!-- 腾讯云js -->
+<script type="text/javascript" src="../../js/customerManager/txy.js"></script>
+	
+<!-- 芝麻分js -->
+<script type="text/javascript" src="../../js/customerManager/zhiMaScore.js"></script>
+
+<body>
+	<div class="admin-main">
+		<fieldset class="layui-elem-field">
+	
+			&nbsp;&nbsp;&nbsp;&nbsp;<a href="javascript:getZhiMaMysqlData();" ></a>
+			
+			<legend  style="margin-left:38%">芝麻分风险报告 </legend>
+			<div class="layui-field-box layui-form">
+				<table class="layui-table">
+					<colgroup>
+						<col width="150">
+						<col width="200">
+						<col>
+					</colgroup>
+					<tbody>
+						<tr>
+							<td>芝麻分</td>
+							<td ><font id="zhiMaScore"></font></td>
+						</tr>
+						<tr>
+							<td>行业类型</td>
+							<td><font id="bizCode"></font></td>
+						</tr>
+						<tr>
+							<td>风险类型</td>
+							<td><font id="zhiMaType"></font></td>
+						</tr>
+						<tr>
+							<td>风险等级</td>
+							<td><font id="zhiMaLevel"></font></td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		
+			<br>
+			
+			<br>
+			<legend  style="margin-left:38%">极光风险报告 </legend>
+			&nbsp;&nbsp;&nbsp;&nbsp;<a href="javascript:getJgMysqlData();" class="layui-btn layui-btn-small">
+			<i class="layui-icon">&#xe615;</i> Mysql数据查询
+			</a>
+			<a href="javascript:getJgMongoData();" class="layui-btn layui-btn-small" >
+			<i class="layui-icon">&#xe615;</i> Mongo数据查询
+			</a>
+			<div class="layui-field-box layui-form">
+				<table class="layui-table">
+					<colgroup>
+						<col width="150">
+						<col width="200">
+						<col>
+					</colgroup>
+					<tbody>
+						<tr>
+							<td>逾期分数</td>
+							<td ><font id="overdueScore"></font></td>
+						</tr>
+						<tr>
+							<td>违约分</td>
+							<td><font id="violationScore"></font></td>
+						</tr>
+						<tr>
+							<td>关系风险分数</td>
+							<td><font id="circleScore"></font></td>
+						</tr>
+						<tr>
+							<td>最终风险系数得分</td>
+							<td><font id="finallyRiskScore"></font></td>
+						</tr>
+						<tr>
+							<td>风险描述</td>
+							<td><font id="riskDescription"></font></td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+			<br>
+			
+			<br>
+			<legend  style="margin-left:38%">腾讯云风险报告 </legend>
+			&nbsp;&nbsp;&nbsp;&nbsp;<a href="javascript:getTxyMysqlData();" class="layui-btn layui-btn-small">
+			<i class="layui-icon">&#xe615;</i> Mysql数据查询
+			</a>
+			<a href="javascript:getTxyMongoData();" class="layui-btn layui-btn-small" >
+			<i class="layui-icon">&#xe615;</i> Mongo数据查询
+			</a>
+			<div class="layui-field-box layui-form">
+				<table class="layui-table">
+					<colgroup>
+						<col width="150">
+						<col width="200">
+						<col>
+					</colgroup>
+					<tbody>
+						<tr>
+							<td>记录能否被查到</td>
+							<td ><font id="isFound"></font></td>
+						</tr>
+						<tr>
+							<td>记录身份证能否被查到</td>
+							<td><font id="isIdFound"></font></td>
+						</tr>
+						<tr>
+							<td>风险分数</td>
+							<td><font id="riskScore"></font></td>
+						</tr>
+					</tbody>
+				</table>
+				<legend  style="margin-left:38%">风险详细信息 </legend>
+				<table class="layui-table"> 
+					<thead>
+						<tr>
+							<th>风险码</th>
+							<th>风险值</th>
+						</tr>
+					</thead>
+					<tbody id="riskInfo">
+					
+					</tbody>
+				</table>
+			</div>
+		</fieldset>
+	</div>
+
+
+	
+</body>
+
+</html>

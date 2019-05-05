@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.shangyong.backend.dao.bqsrep.BqsRepAntiFraudCloudServiceDao">
+
+	<resultMap type="com.shangyong.backend.entity.bqsrep.BqsRepAntiFraudCloud" id="bqsRepAntiFraudCloudinfoMap">
+		<id property="bqsAntiFraudCloudId" column="bqs_anti_fraud_cloud_id" javaType="java.lang.String"></id>
+		<result property="bqsPetitionerId" column="bqs_petitioner_id" javaType="java.lang.String"></result>
+		<result property="partnerCount" column="partner_count" javaType="java.lang.String"></result>
+		<result property="idcCount" column="idc_count" javaType="java.lang.String"></result>
+		<result property="phoneCount" column="phone_count" javaType="java.lang.String"></result>
+		<result property="starnetCount" column="starnet_count" javaType="java.lang.String"></result>
+	</resultMap>
+
+	<!-- 通用查询结果列-->
+	<sql id="Base_Column_List">
+	bqs_anti_fraud_cloud_id,	bqs_petitioner_id,	partner_count,	idc_count,	phone_count,	starnet_count
+	</sql>
+
+	<!-- 查询（根据主键ID查询） -->
+	<select id="getEntityById" resultMap="bqsRepAntiFraudCloudinfoMap" parameterType="java.lang.String">
+		 SELECT
+		 <include refid="Base_Column_List" />
+		 FROM bqs_rep_anti_fraud_cloud
+		 WHERE bqs_anti_fraud_cloud_id = #{bqsAntiFraudCloudId}
+	</select>
+	
+	<select id="queryByPid" resultMap="bqsRepAntiFraudCloudinfoMap" parameterType="java.lang.String">
+		 SELECT
+		 <include refid="Base_Column_List" />
+		 FROM bqs_rep_anti_fraud_cloud
+		 WHERE bqs_petitioner_id = #{bqsPetitionerId}
+	</select>
+
+	<!-- 查询（根据主键ID查询） -->
+	<select id="getAll" resultMap="bqsRepAntiFraudCloudinfoMap" parameterType="java.lang.String">
+		 SELECT
+		 <include refid="Base_Column_List" />
+		 FROM bqs_rep_anti_fraud_cloud
+	</select>
+
+	<!--删除：根据主键ID删除-->
+	<delete id="deleteEntity" parameterType="java.lang.String">
+		 DELETE FROM bqs_rep_anti_fraud_cloud
+		 WHERE bqs_anti_fraud_cloud_id = #{bqsAntiFraudCloudId}
+	</delete>
+
+	<!-- 添加 -->
+	<insert id="saveEntity" parameterType="com.shangyong.backend.entity.bqsrep.BqsRepAntiFraudCloud">
+		 INSERT INTO bqs_rep_anti_fraud_cloud
+ 		(bqs_anti_fraud_cloud_id,bqs_petitioner_id,partner_count,idc_count,phone_count,starnet_count) 
+		 VALUES 
+ 		(#{bqsAntiFraudCloudId},#{bqsPetitionerId},#{partnerCount},#{idcCount},#{phoneCount},#{starnetCount}) 
+	</insert>
+
+	<!-- 修 改-->
+	<update id="updateEntity" parameterType="com.shangyong.backend.entity.bqsrep.BqsRepAntiFraudCloud">
+		 UPDATE bqs_rep_anti_fraud_cloud
+ 		 <set> 
+			<if test="bqsPetitionerId != null">
+				 bqs_petitioner_id = #{bqsPetitionerId},
+			</if>
+			<if test="partnerCount != null">
+				 partner_count = #{partnerCount},
+			</if>
+			<if test="idcCount != null">
+				 idc_count = #{idcCount},
+			</if>
+			<if test="phoneCount != null">
+				 phone_count = #{phoneCount},
+			</if>
+			<if test="starnetCount != null">
+				 starnet_count = #{starnetCount},
+			</if>
+
+ 		 </set>
+		 WHERE bqs_anti_fraud_cloud_id = #{bqsAntiFraudCloudId}
+	</update>
+
+</mapper>

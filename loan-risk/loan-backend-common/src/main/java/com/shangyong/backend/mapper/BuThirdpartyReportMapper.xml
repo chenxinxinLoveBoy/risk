@@ -1,0 +1,264 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.shangyong.backend.dao.BuThirdpartyReportDao">
+
+	<resultMap type="com.shangyong.backend.entity.BuThirdpartyReport" id="buThirdpartyReportMap">
+		<id property="thirdpartyReportId" column="thirdparty_report_id" javaType="java.lang.String"></id>
+		<result property="buApplicationId" column="bu_application_id" javaType="java.lang.String"></result>
+		<result property="taskType" column="task_type" javaType="java.lang.String"></result>
+		<result property="taskId" column="task_id" javaType="java.lang.String"></result>
+		<result property="backup1" column="backup1" javaType="java.lang.String"></result>
+		<result property="createMan" column="create_man" javaType="java.lang.String"></result>
+		<result property="updateMan" column="update_man" javaType="java.lang.String"></result>
+		<result property="createTime" column="create_time" javaType="java.lang.String"></result>
+		<result property="updateTime" column="update_time" javaType="java.lang.String"></result>
+		<result property="remark" column="remark" javaType="java.lang.String"></result>
+		<result property="josnStoragePath" column="josn_storage_path" javaType="java.lang.String"></result>
+	</resultMap>
+
+	<!-- 通用查询结果列-->
+	<sql id="Base_Column_List">
+	   thirdparty_report_id,	
+	   bu_application_id,	
+	   task_type,	
+	   task_id,	
+	   backup1,	
+	   create_man,
+	   update_man,	
+	   create_time,
+	   update_time,
+	   josn_storage_path,
+	   remark
+	</sql>
+	
+	<sql id="timeQuery">
+		<if test="startTime != '' and startTime != null" >
+	    	<![CDATA[ and create_time >= #{startTime} ]]>
+	    </if>
+	    <if test="endTime != '' and endTime != null" >
+	    	<![CDATA[ and create_time <= #{endTime} ]]>
+	    </if>
+	</sql>
+
+	<!-- 查询（根据主键ID查询） -->
+	<select id="getEntityById" resultMap="buThirdpartyReportMap" parameterType="java.lang.String" >
+		 SELECT
+		 <include refid="Base_Column_List" />
+		 FROM bu_thirdparty_report
+		 where 
+			bu_application_id = #{buApplicationId} 
+	</select>
+
+	<!-- 查询（根据主键ID查询） -->
+	<select id="findAll" resultMap="buThirdpartyReportMap" parameterType="java.lang.String">
+		 SELECT
+		 <include refid="Base_Column_List" />
+		 FROM bu_thirdparty_report
+		 WHERE thirdparty_report_id = #{thirdpartyReportId}
+	</select>
+	
+	<!-- 查询（根据借款申请编号和任务类型查询） -->
+	<select id="getTaskId" resultType="java.lang.String" parameterType="com.shangyong.backend.entity.BuThirdpartyReport">
+		 SELECT
+			task_id taskId
+		 FROM  bu_thirdparty_report
+		 WHERE bu_application_id = #{buApplicationId}
+		 AND   task_type = #{taskType}
+		 limit 1
+	</select>
+
+	<select id="getTaskReport" resultType="java.lang.String" parameterType="java.lang.String">
+		 SELECT
+			backup1 reportId
+		 FROM  bu_thirdparty_report
+		 WHERE bu_application_id = #{buApplicationId}
+		 AND   task_type = '03001'
+		 limit 1
+	</select>
+	
+	<!-- 根据申请单编号修改report字段信息-->
+	<update id="updateByReport" parameterType="java.util.Map">
+		 UPDATE bu_thirdparty_report
+		  <set> 
+		 	<if test="reportId != null and reportId!=''">
+				backup1 = #{reportId, jdbcType=VARCHAR},
+			</if>
+		 	update_time =NOW()
+		 </set> 
+		 WHERE bu_application_id = #{applicationId, jdbcType=VARCHAR}
+		 AND   task_type = '03001'
+	</update>
+	
+	<!--删除：根据主键ID删除-->
+	<delete id="deleteEntity" parameterType="java.lang.String">
+		 DELETE FROM bu_thirdparty_report
+		 WHERE thirdparty_report_id = #{thirdpartyReportId}
+	</delete>
+
+	<!-- 添加 -->
+	<insert id="saveEntity" parameterType="com.shangyong.backend.entity.BuThirdpartyReport">
+		 INSERT INTO bu_thirdparty_report
+ 		(thirdparty_report_id,bu_application_id,task_type,task_id,backup1,create_man,update_man,create_time,update_time,remark
+		<if test="josnStoragePath!=null and josnStoragePath!=''">
+			,josn_storage_path
+		</if>
+		)
+		 VALUES 
+ 		(#{thirdpartyReportId},#{buApplicationId},#{taskType},#{taskId},#{backup1},#{createMan},#{updateMan},#{createTime},#{updateTime},#{remark}
+			<if test="josnStoragePath!=null and josnStoragePath!=''">
+			,#{josnStoragePath}
+		</if>
+		)
+	</insert>
+	
+	<!-- 添加 -->
+	<insert id="saveEntityList" parameterType="java.util.List">
+		 INSERT INTO bu_thirdparty_report
+ 		(thirdparty_report_id,bu_application_id,task_type,task_id,backup1,create_man,update_man,create_time,update_time,remark
+			,josn_storage_path)
+		 VALUES 
+		 <foreach collection="list" item="item" index="index" separator="," >
+ 		(#{item.thirdpartyReportId},#{item.buApplicationId},#{item.taskType},#{item.taskId},#{item.backup1},#{item.createMan},#{item.updateMan},now(),now(),#{item.remark}
+				 ,#{item.josnStoragePath})
+ 		 </foreach> 
+	</insert>
+
+	<!-- 修 改-->
+	<update id="updateEntity" parameterType="com.shangyong.backend.entity.BuThirdpartyReport">
+		 UPDATE bu_thirdparty_report
+ 		 <set> 
+			<if test="buApplicationId != null">
+				 bu_application_id = #{buApplicationId},
+			</if>
+			<if test="taskType != null">
+				 task_type = #{taskType},
+			</if>
+			<if test="taskId != null">
+				 task_id = #{taskId},
+			</if>
+			<if test="backup1 != null">
+				 backup1 = #{backup1},
+			</if>
+			<if test="createMan != null">
+				 create_man = #{createMan},
+			</if>
+			<if test="updateMan != null">
+				 update_man = #{updateMan},
+			</if>
+			<if test="createTime != null">
+				 create_time = #{createTime},
+			</if>
+			<if test="updateTime != null">
+				 update_time = #{updateTime},
+			</if>
+			<if test="remark != null">
+				 remark = #{remark},
+			</if>
+			<if test="josnStoragePath != null">
+				 josn_storage_path = #{josnStoragePath},
+			</if>
+
+ 		 </set>
+		 WHERE thirdparty_report_id = #{thirdpartyReportId}
+	</update>
+
+
+	<!-- 查询（根据闪贷申请单ID查询91查询记录） -->
+	<select id="getXczxByApplicationId" resultMap="buThirdpartyReportMap" parameterType="com.shangyong.backend.entity.BuThirdpartyReport" >
+		 SELECT
+		 <include refid="Base_Column_List" />
+		 FROM bu_thirdparty_report
+		<where>
+		 	<if test="taskType != null">
+				task_type = #{taskType}
+			</if>
+			<if test="buApplicationId != null">
+				and bu_application_id = #{buApplicationId}
+			</if>
+			<if test="taskId != null">
+				and task_id = #{taskId}
+			</if>
+		</where>
+		limit 1;
+	</select>
+
+	<!-- 根据申请单编号/taskType/taskID,修改report字段信息-->
+	<update id="updateReportForJsonPath" parameterType="com.shangyong.backend.entity.BuThirdpartyReport">
+		UPDATE bu_thirdparty_report
+		<set>
+			<if test="backup1 != null">
+				backup1 = #{backup1},
+			</if>
+			<if test="josnStoragePath!=null and josnStoragePath!=''">
+				josn_storage_path = #{josnStoragePath},
+			</if>
+			<if test="createMan != null">
+				create_man = #{createMan},
+			</if>
+			<if test="updateMan != null">
+				update_man = #{updateMan},
+			</if>
+			<if test="createTime != null">
+				create_time = #{createTime},
+			</if>
+			<if test="updateTime != null">
+				update_time = #{updateTime},
+			</if>
+			<if test="remark != null">
+				remark = #{remark},
+			</if>
+		</set>
+		WHERE bu_application_id = #{buApplicationId}
+		AND   task_type = #{taskType}
+	</update>
+	
+	<select id="listAllCount" resultType="Integer"  parameterType="java.lang.String">
+		 SELECT
+		 count(1)
+		 FROM bu_thirdparty_report
+		where
+				 bu_application_id = #{buApplicationId} limit 20
+	</select>
+	
+	<select id="listViewAll" resultMap="buThirdpartyReportMap" parameterType="java.lang.String">
+		 SELECT
+		 <include refid="Base_Column_List" />
+		 FROM bu_thirdparty_report
+		where
+				 bu_application_id = #{buApplicationId} order by update_time limit 20
+	</select>
+	
+	<select id="getAccordingoDateEntityById" resultMap="buThirdpartyReportMap" parameterType="java.lang.String">
+		 SELECT
+		 bu_application_id,task_type,josn_storage_path,update_time
+		 FROM bu_thirdparty_report
+		<where>
+			<if test="startTime != '' and startTime != null" >
+	    	<![CDATA[ and update_time >= #{startTime} ]]>
+	   		 </if>
+		    <if test="endTime != '' and endTime != null" >
+		    	<![CDATA[ and update_time <= #{endTime} ]]>
+		    </if>
+			and josn_storage_path!='' and josn_storage_path is not null order by update_time
+		</where>
+	</select>
+	
+	<!-- 通过taskType和applicationId获取响应josn报文存储地址  -->
+	<select id="getJosnStoragePathBytaskTypeApplicationId" resultType="String" parameterType="com.shangyong.backend.entity.BuThirdpartyReport">
+		select
+		josn_storage_path as josnStoragePath
+		from  bu_thirdparty_report
+		where
+		bu_application_id= #{buApplicationId} and task_type=#{taskType}
+	</select> 
+	
+	<select id="queryThirdartyReport" resultMap="buThirdpartyReportMap" parameterType="java.lang.String">
+		 SELECT
+		 thirdparty_report_id,create_man,create_time,bu_application_id,task_type,josn_storage_pathbu_application_id,task_type,josn_storage_path
+		 FROM ${tableName}
+		 where
+		 <include refid="timeQuery"></include> 
+		 and create_man = '1' LIMIT 500
+	</select>
+</mapper>

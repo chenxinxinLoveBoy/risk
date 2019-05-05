@@ -1,0 +1,220 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.shangyong.backend.dao.tdf.TdFacilityGeoIpServiceDao">
+
+	<resultMap type="com.shangyong.backend.entity.tdf.TdFacilityGeoIp" id="tdFacilityGeoIpinfoMap">
+		<id property="tdFacilityGeoIpId" column="td_facility_geo_ip_id" javaType="java.lang.String"></id>
+		<result property="buApplicationId" column="bu_application_id" javaType="java.lang.String"></result>
+		<result property="city" column="city" javaType="java.lang.String"></result>
+		<result property="cityId" column="cityId" javaType="java.lang.String"></result>
+		<result property="country" column="country" javaType="java.lang.String"></result>
+		<result property="countryId" column="countryId" javaType="java.lang.String"></result>
+		<result property="province" column="province" javaType="java.lang.String"></result>
+		<result property="provinceId" column="provinceId" javaType="java.lang.String"></result>
+		<result property="county" column="county" javaType="java.lang.String"></result>
+		<result property="street" column="street" javaType="java.lang.String"></result>
+		<result property="isp" column="isp" javaType="java.lang.String"></result>
+		<result property="latitude" column="latitude" javaType="java.lang.String"></result>
+		<result property="longitude" column="longitude" javaType="java.lang.String"></result>
+		<result property="lip" column="lip" javaType="java.lang.String"></result>
+		<result property="type" column="type" javaType="java.lang.String"></result>
+		<result property="createTime" column="create_time" javaType="java.lang.String"></result>
+		<result property="createMan" column="create_man" javaType="java.lang.String"></result>
+		<result property="modifyTime" column="modify_time" javaType="java.lang.String"></result>
+		<result property="modifyMan" column="modify_man" javaType="java.lang.String"></result>
+		<result property="remark" column="remark" javaType="java.lang.String"></result>
+		<result property="lbsAddress" column="lbs_address" javaType="java.lang.String"></result>
+		<result property="lbsProvince" column="lbs_province" javaType="java.lang.String"></result>
+		<result property="lbsCity" column="lbs_city" javaType="java.lang.String"></result>
+	</resultMap>
+
+	<!-- 通用查询结果列-->
+	<sql id="Base_Column_List">
+	td_facility_geo_ip_id,	bu_application_id,	city,	cityId,	country,	countryId,	province,	provinceId,	county,	street,	isp,	latitude,	longitude,	lip,	type,	create_time,	create_man,	modify_time,	modify_man,	remark,	lbs_address,	lbs_province,	lbs_city
+	</sql>
+
+	<!-- 查询（根据主键ID查询） -->
+	<select id="getEntityById" resultMap="tdFacilityGeoIpinfoMap" parameterType="java.lang.String">
+		 SELECT
+		 <include refid="Base_Column_List" />
+		 FROM td_facility_geo_ip
+		 WHERE td_facility_geo_ip_id = #{tdFacilityGeoIpId}
+	</select>
+		<!-- 查询（根据主键applicationId查询）LBS地理位置 -->
+	<select id="querybyId" resultMap="tdFacilityGeoIpinfoMap" parameterType="java.lang.String">
+		 SELECT
+		 <include refid="Base_Column_List" />
+		 FROM td_facility_geo_ip
+		 WHERE bu_application_id = #{buApplicationId}
+		 order by create_time desc limit 1
+	</select>
+
+	<!-- 查询全部 -->
+	<select id="getAll" resultMap="tdFacilityGeoIpinfoMap" parameterType="java.lang.String">
+		 SELECT
+		 <include refid="Base_Column_List" />
+		 FROM td_facility_geo_ip
+	</select>
+
+	<!--删除：根据主键ID删除-->
+	<delete id="deleteEntity" parameterType="java.lang.String">
+		 DELETE FROM td_facility_geo_ip
+		 WHERE td_facility_geo_ip_id = #{tdFacilityGeoIpId}
+	</delete>
+
+	<!-- 添加 -->
+	<insert id="saveEntity" parameterType="com.shangyong.backend.entity.tdf.TdFacilityGeoIp">
+		 INSERT INTO td_facility_geo_ip
+ 		(td_facility_geo_ip_id,bu_application_id,city,cityId,country,countryId,province,provinceId,county,street,isp,latitude,longitude,lip,type,create_time,create_man,modify_time,modify_man,remark,lbs_address,lbs_province,lbs_city) 
+		 VALUES 
+ 		(#{tdFacilityGeoIpId},#{buApplicationId},#{city},#{cityId},#{country},#{countryId},#{province},#{provinceId},#{county},#{street},#{isp},#{latitude},#{longitude},#{lip},#{type},#{createTime},#{createMan},#{modifyTime},#{modifyMan},#{remark},#{lbsAddress},#{lbsProvince},#{lbsCity}) 
+	</insert>
+
+	<!-- 修 改-->
+	<update id="updateEntity" parameterType="com.shangyong.backend.entity.tdf.TdFacilityGeoIp">
+		 UPDATE td_facility_geo_ip
+ 		 <set> 
+			<if test="buApplicationId != null">
+				 bu_application_id = #{buApplicationId},
+			</if>
+			<if test="city != null">
+				 city = #{city},
+			</if>
+			<if test="cityId != null">
+				 cityId = #{cityId},
+			</if>
+			<if test="country != null">
+				 country = #{country},
+			</if>
+			<if test="countryId != null">
+				 countryId = #{countryId},
+			</if>
+			<if test="province != null">
+				 province = #{province},
+			</if>
+			<if test="provinceId != null">
+				 provinceId = #{provinceId},
+			</if>
+			<if test="county != null">
+				 county = #{county},
+			</if>
+			<if test="street != null">
+				 street = #{street},
+			</if>
+			<if test="isp != null">
+				 isp = #{isp},
+			</if>
+			<if test="latitude != null">
+				 latitude = #{latitude},
+			</if>
+			<if test="longitude != null">
+				 longitude = #{longitude},
+			</if>
+			<if test="lip != null">
+				 lip = #{lip},
+			</if>
+			<if test="type != null">
+				 type = #{type},
+			</if>
+			<if test="createTime != null">
+				 create_time = #{createTime},
+			</if>
+			<if test="createMan != null">
+				 create_man = #{createMan},
+			</if>
+			<if test="modifyTime != null">
+				 modify_time = #{modifyTime},
+			</if>
+			<if test="modifyMan != null">
+				 modify_man = #{modifyMan},
+			</if>
+			<if test="remark != null">
+				 remark = #{remark},
+			</if>
+			<if test="lbsAddress != null">
+				 lbs_address = #{lbsAddress},
+			</if>
+			<if test="lbsProvince != null">
+				 lbs_province = #{lbsProvince},
+			</if>
+			<if test="lbsCity != null">
+				 lbs_city = #{lbsCity},
+			</if>
+ 		 </set>
+		 WHERE td_facility_geo_ip_id = #{tdFacilityGeoIpId}
+	</update>
+	<!-- 修 改  信  息-->
+	<update id="updateTdFacilityGeoIp" parameterType="com.shangyong.backend.entity.tdf.TdFacilityGeoIp">
+		 UPDATE td_facility_geo_ip
+ 		 <set> 
+			<if test="buApplicationId != null">
+				 bu_application_id = #{buApplicationId},
+			</if>
+			<if test="city != null">
+				 city = #{city},
+			</if>
+			<if test="cityId != null">
+				 cityId = #{cityId},
+			</if>
+			<if test="country != null">
+				 country = #{country},
+			</if>
+			<if test="countryId != null">
+				 countryId = #{countryId},
+			</if>
+			<if test="province != null">
+				 province = #{province},
+			</if>
+			<if test="provinceId != null">
+				 provinceId = #{provinceId},
+			</if>
+			<if test="county != null">
+				 county = #{county},
+			</if>
+			<if test="street != null">
+				 street = #{street},
+			</if>
+			<if test="isp != null">
+				 isp = #{isp},
+			</if>
+			<if test="latitude != null">
+				 latitude = #{latitude},
+			</if>
+			<if test="longitude != null">
+				 longitude = #{longitude},
+			</if>
+			<if test="lip != null">
+				 lip = #{lip},
+			</if>
+			<if test="type != null">
+				 type = #{type},
+			</if>
+			<if test="createTime != null">
+				 create_time = #{createTime},
+			</if>
+			<if test="createMan != null">
+				 create_man = #{createMan},
+			</if>
+			<if test="modifyTime != null">
+				 modify_time = #{modifyTime},
+			</if>
+			<if test="modifyMan != null">
+				 modify_man = #{modifyMan},
+			</if>
+			<if test="remark != null">
+				 remark = #{remark},
+			</if>
+			<if test="lbsAddress != null">
+				 lbs_address = #{lbsAddress},
+			</if>
+			<if test="lbsProvince != null">
+				 lbs_province = #{lbsProvince},
+			</if>
+			<if test="lbsCity != null">
+				 lbs_city = #{lbsCity},
+			</if>
+ 		 </set>
+		 WHERE td_facility_geo_ip_id = #{tdFacilityGeoIpId}
+	</update>
+</mapper>

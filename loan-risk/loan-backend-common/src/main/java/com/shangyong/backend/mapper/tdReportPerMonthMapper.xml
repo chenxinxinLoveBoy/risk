@@ -1,0 +1,232 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.shangyong.backend.dao.tdReport.TdReportPerMonthDao">
+
+	<resultMap type="com.shangyong.backend.entity.tdReport.TdReportPerMonth" id="tdReportPerMonthMap">
+		<id property="perMonthId" column="per_month_id" javaType="java.lang.String"></id>
+		<result property="applicationId" column="application_id" javaType="java.lang.String"></result>
+		<result property="month" column="month" javaType="java.lang.String"></result>
+		<result property="contactCount" column="contact_count" javaType="java.lang.String"></result>
+		<result property="contactCountActive" column="contact_count_active" javaType="java.lang.String"></result>
+		<result property="contactCountActiveTelephone" column="contact_count_active_telephone" javaType="java.lang.String"></result>
+		<result property="contactCountPassive" column="contact_count_passive" javaType="java.lang.String"></result>
+		<result property="contactCountMutual" column="contact_count_mutual" javaType="java.lang.String"></result>
+		<result property="contactCountCallCountOver10" column="contact_count_call_count_over10" javaType="java.lang.String"></result>
+		<result property="callCount" column="call_count" javaType="java.lang.String"></result>
+		<result property="callCountActive" column="call_count_active" javaType="java.lang.String"></result>
+		<result property="callCountActiveLocal" column="call_count_active_local" javaType="java.lang.String"></result>
+		<result property="callCountActiveRoam" column="call_count_active_roam" javaType="java.lang.String"></result>
+		<result property="callCountPassive" column="call_count_passive" javaType="java.lang.String"></result>
+		<result property="callCountPassiveLocal" column="call_count_passive_local" javaType="java.lang.String"></result>
+		<result property="callCountPassiveRoam" column="call_count_passive_roam" javaType="java.lang.String"></result>
+		<result property="callCountLateNight" column="call_count_late_night" javaType="java.lang.String"></result>
+		<result property="callCountWorkTime" column="call_count_work_time" javaType="java.lang.String"></result>
+		<result property="callCountOffworkTime" column="call_count_offwork_time" javaType="java.lang.String"></result>
+		<result property="callCountCallTimeLess1min" column="call_count_call_time_less1min" javaType="java.lang.String"></result>
+		<result property="callCountCallTime1min5min" column="call_count_call_time_1min5min" javaType="java.lang.String"></result>
+		<result property="callCountCallTime5min10min" column="call_count_call_time_5min10min" javaType="java.lang.String"></result>
+		<result property="callCountCallTimeOver10min" column="call_count_call_time_over10min" javaType="java.lang.String"></result>
+		<result property="callTime" column="call_time" javaType="java.lang.String"></result>
+		<result property="callTimeActive" column="call_time_active" javaType="java.lang.String"></result>
+		<result property="callTimeActiveLocal" column="call_time_active_local" javaType="java.lang.String"></result>
+		<result property="callTimeActiveRoam" column="call_time_active_roam" javaType="java.lang.String"></result>
+		<result property="callTimePassive" column="call_time_passive" javaType="java.lang.String"></result>
+		<result property="callTimePassiveLocal" column="call_time_passive_local" javaType="java.lang.String"></result>
+		<result property="callTimePassiveRoam" column="call_time_passive_roam" javaType="java.lang.String"></result>
+		<result property="callTimeLateNight" column="call_time_late_night" javaType="java.lang.String"></result>
+		<result property="callTimeWorkTime" column="call_time_work_time" javaType="java.lang.String"></result>
+		<result property="callTimeOffworkTime" column="call_time_offwork_time" javaType="java.lang.String"></result>
+		<result property="msgCount" column="msg_count" javaType="java.lang.String"></result>
+		<result property="msgCountSendMobile" column="msg_count_send_mobile" javaType="java.lang.String"></result>
+		<result property="msgCountReceiveMobile" column="msg_count_receive_mobile" javaType="java.lang.String"></result>
+		<result property="createTime" column="create_time" javaType="java.lang.String"></result>
+		<result property="createMan" column="create_man" javaType="java.lang.String"></result>
+		<result property="modifyTime" column="modify_time" javaType="java.lang.String"></result>
+		<result property="modifyMan" column="modify_man" javaType="java.lang.String"></result>
+		<result property="remark" column="remark" javaType="java.lang.String"></result>
+	</resultMap>
+
+	<!-- 通用查询结果列-->
+	<sql id="Base_Column_List">
+per_month_id,	application_id,	month,	contact_count,	contact_count_active,	contact_count_active_telephone,	contact_count_passive,	contact_count_mutual,	contact_count_call_count_over10,	call_count,	call_count_active,	call_count_active_local,	call_count_active_roam,	call_count_passive,	call_count_passive_local,	call_count_passive_roam,	call_count_late_night,	call_count_work_time,	call_count_offwork_time,	call_count_call_time_less1min,	call_count_call_time_1min5min,	call_count_call_time_5min10min,	call_count_call_time_over10min,	call_time,	call_time_active,	call_time_active_local,	call_time_active_roam,	call_time_passive,	call_time_passive_local,	call_time_passive_roam,	call_time_late_night,	call_time_work_time,	call_time_offwork_time,	msg_count,	msg_count_send_mobile,	msg_count_receive_mobile,	create_time,	create_man,	modify_time,	modify_man,	remark
+	</sql>
+
+	<!-- 查询（根据主键ID查询） -->
+	<select id="getEntityById" resultMap="tdReportPerMonthMap" parameterType="java.lang.String">
+		 SELECT
+		 <include refid="Base_Column_List" />
+		 FROM td_report_per_month
+		 WHERE per_month_id = #{perMonthId}
+	</select>
+
+	<!-- 查询（根据主键ID查询） -->
+	<select id="findAll" resultMap="tdReportPerMonthMap" parameterType="java.lang.String">
+		 SELECT
+		 <include refid="Base_Column_List" />
+		 FROM td_report_per_month
+		 WHERE per_month_id = #{perMonthId}
+	</select>
+	<!-- 查询（根据主键ID查询） -->
+	<select id="queryMonthById" resultMap="tdReportPerMonthMap" parameterType="java.lang.String">
+		 SELECT
+		 <include refid="Base_Column_List" />
+		 FROM td_report_per_month
+		 WHERE application_id = #{applicationId}
+		 ORDER BY month DESC
+		 LIMIT 6
+	</select>
+
+	<!--删除：根据主键ID删除-->
+	<delete id="deleteEntity" parameterType="java.lang.String">
+		 DELETE FROM td_report_per_month
+		 WHERE per_month_id = #{perMonthId}
+	</delete>
+
+	<!-- 添加 -->
+	<insert id="saveEntity" parameterType="com.shangyong.backend.entity.tdReport.TdReportPerMonth">
+		 INSERT INTO td_report_per_month
+ 		(per_month_id,application_id,month,contact_count,contact_count_active,contact_count_active_telephone,contact_count_passive,contact_count_mutual,contact_count_call_count_over10,call_count,call_count_active,call_count_active_local,call_count_active_roam,call_count_passive,call_count_passive_local,call_count_passive_roam,call_count_late_night,call_count_work_time,call_count_offwork_time,call_count_call_time_less1min,call_count_call_time_1min5min,call_count_call_time_5min10min,call_count_call_time_over10min,call_time,call_time_active,call_time_active_local,call_time_active_roam,call_time_passive,call_time_passive_local,call_time_passive_roam,call_time_late_night,call_time_work_time,call_time_offwork_time,msg_count,msg_count_send_mobile,msg_count_receive_mobile,create_time,create_man,modify_time,modify_man,remark) 
+		 VALUES 
+ 		(#{perMonthId},#{applicationId},#{month},#{contactCount},#{contactCountActive},#{contactCountActiveTelephone},#{contactCountPassive},#{contactCountMutual},#{contactCountCallCountOver10},#{callCount},#{callCountActive},#{callCountActiveLocal},#{callCountActiveRoam},#{callCountPassive},#{callCountPassiveLocal},#{callCountPassiveRoam},#{callCountLateNight},#{callCountWorkTime},#{callCountOffworkTime},#{callCountCallTimeLess1min},#{callCountCallTime1min5min},#{callCountCallTime5min10min},#{callCountCallTimeOver10min},#{callTime},#{callTimeActive},#{callTimeActiveLocal},#{callTimeActiveRoam},#{callTimePassive},#{callTimePassiveLocal},#{callTimePassiveRoam},#{callTimeLateNight},#{callTimeWorkTime},#{callTimeOffworkTime},#{msgCount},#{msgCountSendMobile},#{msgCountReceiveMobile},#{createTime},#{createMan},#{modifyTime},#{modifyMan},#{remark}) 
+	</insert>
+	<!-- 批量插入 -->
+	<insert id="saveAllEntity" parameterType="java.util.List">
+		   INSERT INTO td_report_per_month
+ 		(per_month_id,application_id,month,contact_count,contact_count_active,contact_count_active_telephone,contact_count_passive,contact_count_mutual,contact_count_call_count_over10,call_count,call_count_active,call_count_active_local,call_count_active_roam,call_count_passive,call_count_passive_local,call_count_passive_roam,call_count_late_night,call_count_work_time,call_count_offwork_time,call_count_call_time_less1min,call_count_call_time_1min5min,call_count_call_time_5min10min,call_count_call_time_over10min,call_time,call_time_active,call_time_active_local,call_time_active_roam,call_time_passive,call_time_passive_local,call_time_passive_roam,call_time_late_night,call_time_work_time,call_time_offwork_time,msg_count,msg_count_send_mobile,msg_count_receive_mobile,create_time,create_man,modify_time,modify_man,remark) 
+		 VALUES  
+ 	    <foreach collection="list" item="item" index="index" separator="," >  
+ 		(#{item.perMonthId},#{item.applicationId},#{item.month},#{item.contactCount},#{item.contactCountActive},#{item.contactCountActiveTelephone},#{item.contactCountPassive},#{item.contactCountMutual},#{item.contactCountCallCountOver10},#{item.callCount},#{item.callCountActive},#{item.callCountActiveLocal},#{item.callCountActiveRoam},#{item.callCountPassive},#{item.callCountPassiveLocal},#{item.callCountPassiveRoam},#{item.callCountLateNight},#{item.callCountWorkTime},#{item.callCountOffworkTime},#{item.callCountCallTimeLess1min},#{item.callCountCallTime1min5min},#{item.callCountCallTime5min10min},#{item.callCountCallTimeOver10min},#{item.callTime},#{item.callTimeActive},#{item.callTimeActiveLocal},#{item.callTimeActiveRoam},#{item.callTimePassive},#{item.callTimePassiveLocal},#{item.callTimePassiveRoam},#{item.callTimeLateNight},#{item.callTimeWorkTime},#{item.callTimeOffworkTime},#{item.msgCount},#{item.msgCountSendMobile},#{item.msgCountReceiveMobile},#{item.createTime},#{item.createMan},#{item.modifyTime},#{item.modifyMan},#{item.remark}) 
+	    </foreach>
+	</insert>
+
+	<!-- 修 改-->
+	<update id="updateEntity" parameterType="com.shangyong.backend.entity.tdReport.TdReportPerMonth">
+		 UPDATE td_report_per_month
+ 		 <set> 
+			<if test="applicationId != null">
+				 application_id = #{applicationId},
+			</if>
+			<if test="month != null">
+				 month = #{month},
+			</if>
+			<if test="contactCount != null">
+				 contact_count = #{contactCount},
+			</if>
+			<if test="contactCountActive != null">
+				 contact_count_active = #{contactCountActive},
+			</if>
+			<if test="contactCountActiveTelephone != null">
+				 contact_count_active_telephone = #{contactCountActiveTelephone},
+			</if>
+			<if test="contactCountPassive != null">
+				 contact_count_passive = #{contactCountPassive},
+			</if>
+			<if test="contactCountMutual != null">
+				 contact_count_mutual = #{contactCountMutual},
+			</if>
+			<if test="contactCountCallCountOver10 != null">
+				 contact_count_call_count_over10 = #{contactCountCallCountOver10},
+			</if>
+			<if test="callCount != null">
+				 call_count = #{callCount},
+			</if>
+			<if test="callCountActive != null">
+				 call_count_active = #{callCountActive},
+			</if>
+			<if test="callCountActiveLocal != null">
+				 call_count_active_local = #{callCountActiveLocal},
+			</if>
+			<if test="callCountActiveRoam != null">
+				 call_count_active_roam = #{callCountActiveRoam},
+			</if>
+			<if test="callCountPassive != null">
+				 call_count_passive = #{callCountPassive},
+			</if>
+			<if test="callCountPassiveLocal != null">
+				 call_count_passive_local = #{callCountPassiveLocal},
+			</if>
+			<if test="callCountPassiveRoam != null">
+				 call_count_passive_roam = #{callCountPassiveRoam},
+			</if>
+			<if test="callCountLateNight != null">
+				 call_count_late_night = #{callCountLateNight},
+			</if>
+			<if test="callCountWorkTime != null">
+				 call_count_work_time = #{callCountWorkTime},
+			</if>
+			<if test="callCountOffworkTime != null">
+				 call_count_offwork_time = #{callCountOffworkTime},
+			</if>
+			<if test="callCountCallTimeLess1min != null">
+				 call_count_call_time_less1min = #{callCountCallTimeLess1min},
+			</if>
+			<if test="callCountCallTime1min5min != null">
+				 call_count_call_time_1min5min = #{callCountCallTime1min5min},
+			</if>
+			<if test="callCountCallTime5min10min != null">
+				 call_count_call_time_5min10min = #{callCountCallTime5min10min},
+			</if>
+			<if test="callCountCallTimeOver10min != null">
+				 call_count_call_time_over10min = #{callCountCallTimeOver10min},
+			</if>
+			<if test="callTime != null">
+				 call_time = #{callTime},
+			</if>
+			<if test="callTimeActive != null">
+				 call_time_active = #{callTimeActive},
+			</if>
+			<if test="callTimeActiveLocal != null">
+				 call_time_active_local = #{callTimeActiveLocal},
+			</if>
+			<if test="callTimeActiveRoam != null">
+				 call_time_active_roam = #{callTimeActiveRoam},
+			</if>
+			<if test="callTimePassive != null">
+				 call_time_passive = #{callTimePassive},
+			</if>
+			<if test="callTimePassiveLocal != null">
+				 call_time_passive_local = #{callTimePassiveLocal},
+			</if>
+			<if test="callTimePassiveRoam != null">
+				 call_time_passive_roam = #{callTimePassiveRoam},
+			</if>
+			<if test="callTimeLateNight != null">
+				 call_time_late_night = #{callTimeLateNight},
+			</if>
+			<if test="callTimeWorkTime != null">
+				 call_time_work_time = #{callTimeWorkTime},
+			</if>
+			<if test="callTimeOffworkTime != null">
+				 call_time_offwork_time = #{callTimeOffworkTime},
+			</if>
+			<if test="msgCount != null">
+				 msg_count = #{msgCount},
+			</if>
+			<if test="msgCountSendMobile != null">
+				 msg_count_send_mobile = #{msgCountSendMobile},
+			</if>
+			<if test="msgCountReceiveMobile != null">
+				 msg_count_receive_mobile = #{msgCountReceiveMobile},
+			</if>
+			<if test="createTime != null">
+				 create_time = #{createTime},
+			</if>
+			<if test="createMan != null">
+				 create_man = #{createMan},
+			</if>
+			<if test="modifyTime != null">
+				 modify_time = #{modifyTime},
+			</if>
+			<if test="modifyMan != null">
+				 modify_man = #{modifyMan},
+			</if>
+			<if test="remark != null">
+				 remark = #{remark},
+			</if>
+
+ 		 </set>
+		 WHERE per_month_id = #{perMonthId}
+	</update>
+
+</mapper>

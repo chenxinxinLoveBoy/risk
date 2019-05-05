@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+<meta charset="UTF-8">
+<title>学信信息报告</title>
+<link rel="stylesheet" href="../../plugins/layui/css/layui.css"
+	media="all" />
+<link rel="stylesheet" href="../../css/global.css" media="all">
+<link rel="stylesheet"
+	href="../../plugins/font-awesome/css/font-awesome.min.css"> 
+	<script src="../../jqery/jquery.js"></script>
+	<script src="../../../commons/base.js"></script>
+	<script type="text/javascript" src="../../plugins/layui/layui.js"></script>
+<script type="text/javascript"
+	src="../../js/customerManager/xuexinReport.js"></script>
+<link rel="stylesheet" href="../../css/lzh_login.css" media="all" />
+</head> 
+<body>
+	&nbsp; &nbsp; &nbsp; 
+			<a href="javascript:;"  id="xx" >
+						<i class="layui-icon"></i>魔盒-学信报告
+				    </a>
+			&nbsp; &nbsp; &nbsp; 
+			<a href="javascript:;"  id="sb" style="margin-left: 0.5%">
+						<i class="layui-icon"></i>魔盒-社保报告
+				    </a>
+				    &nbsp; &nbsp; &nbsp; 
+				    <a href="javascript:;"   id="gjjs" style="margin-left: 0.5%">
+						<i
+						 class="layui-icon"></i>魔盒-公积金报告
+				    </a>
+				  <!--   &nbsp; &nbsp; &nbsp; 	
+				      <a href="javascript:;" class="layui-btn layui-btn-small" id="ds" style="margin-left: 0.5%">
+						<i class="layui-icon"></i>魔盒-电商报告
+				    </a> -->
+				    &nbsp; &nbsp; &nbsp; 
+				      <a href="javascript:;"  id="gr" style="margin-left: 0.5%">
+						<i class="layui-icon"></i>魔盒-个人信用报告
+				    </a>
+				    <br></br>	 
+	<div class="admin-main" id="xxs">  
+	<!-- <a href="javascript:getmysqldata();" class="layui-btn layui-btn-small" id="search">
+				<i class="layui-icon">&#xe615;</i> 数据查询
+		</a> -->
+		<fieldset class="layui-elem-field"> 
+		<div class="layui-field-box layui-form" >
+			<legend style="margin-left: -0.2cm">学历信息 </legend>&nbsp;&nbsp;<span id="Level"></span>--<span id="school"><a href="javascript:;" class="layui-btn layui-btn-small" onclick="infoQuery()" >
+						<i class="layui-icon"></i>阿里云数据查询
+				    </a></span>
+					&nbsp; &nbsp; &nbsp; 
+			
+				<table class="layui-table"> 
+					<tbody>
+						<tr>
+							<th width="200px" >姓名:</th>
+							<td id="Inforealname" width="200px"></td> 
+							<th width="200px">性别:</th>
+							<td id="Infogender" width="200px"> </td>
+							<td width="200px" colspan="3" rowspan="5" align="center" ><img style="width: 160px;height: 200px; border:0;"  src="" id="InfoheadImgUrl" /></td>
+						</tr>
+
+						<tr>
+							<th>民族:</th>
+							<td> <span id="Infonation"></span></td>
+								<th >出生日期:</th>
+							<td id="Infobirthday" > </td> 
+						</tr>
+						
+						<tr> 
+							<th>入学时间:</th>
+							<td id="InfoentranceDate"></td>
+							<th>毕业时间:</th>
+							<td id="InfograduateDate"></td>
+						</tr>
+						
+						<tr> 
+							<th>学历类别</th>
+							<td id="InfoeduType"></td>
+							<th>学历层次</th>
+							<td id="InfoeduLevel"></td>
+						</tr>
+						
+						<tr> 
+							<th>院校</th>
+							<td id="Infoschool"> </td>
+							<th>院校所在地</th>
+							<td id="Infolocation"></td>
+						</tr>
+						
+						<tr> 
+							<th>专业名称</th>
+							<td id="Infomajor"></td>
+							<th>学习形式</th>
+							<td id="InfoeduForm"></td>
+							<th>证书编号</th>
+							<td id="InfocertificateId" ></td>
+						</tr> 
+						 
+						 <tr> 
+							<th>毕结业结论</th>
+							<td id="InfoeduConclusion" colspan="5"></td> 
+						</tr> 
+						
+					</tbody>
+				</table>
+			</div>
+			
+			<div class="layui-field-box layui-form">
+				<legend  style="margin-left: -0.2cm">学籍信息</legend>&nbsp;&nbsp;<span id="sLevel"></span>--<span id="sschool"></span>
+				<table class="layui-table">
+					<tbody > 
+						<tr>
+							<th width="200px">姓名</th>
+							<td width="200px" id="Schoolrealname" ></td> 
+							<th width="200px">性别</th>
+							<td width="200px" id="Schoolgender"></td>
+							<td width="200px" colspan="3" rowspan="5" align="center"><img style="width: 160px;height: 200px;border:0;" src="" id="SchoolheadImgUrl" /></td>
+						</tr>
+
+						<tr>
+							<th>民族</th>
+							<td id="Schoolnation"></td>
+								<th>出生日期:</th>
+							<td id="Schoolbirthday"></td> 
+						</tr>
+
+						<tr> 
+							<th>身份证号码</th>
+							<td id="SchoolcardId"> </td>
+							<th>考生号</th>
+							<td id="SchoolexaminationId" ></td>
+						</tr>
+						
+						<tr> 
+							<th>学号</th>
+							<td id="SchoolstudentId"></td>
+							<th>院校名称:</th>
+							<td id="Schoolschool" ></td>
+						</tr>
+						
+						<tr> 
+							<th>分院</th>
+							<td id="Schoolcollege"></td>
+							<th>系(所、函授站)</th>
+							<td id="Schooldepartment" ></td>
+						</tr>
+						
+						<tr> 
+							<th>专业</th>
+							<td id="Schoolmajor"> </td>
+							<th>班级</th>
+							<td id="Schoolclassname"></td>
+							<th>层次</th>
+							<td id="SchooleduLevel"></td>
+						</tr>
+						 
+						 
+						 <tr> 
+							<th>学制</th>
+							<td id="SchooleduSystem"> </td>
+							<th>学历类别</th>
+							<td id="SchooleduType"></td>
+							<th>学习形式</th>
+							<td id="SchooleduForm"></td>
+						</tr>
+						
+						<tr> 
+							<th>入学日期</th>
+							<td id="SchoolentranceDate"></td>
+							<th>离校日期</th>
+							<td id="SchoolgraduateDate"></td>
+							<th>学籍状态</th>
+							<td id="SchoolStatus"></td>
+						</tr>
+						
+					</tbody>
+				</table>
+			</div>
+		</fieldset>
+		
+		<div class="admin-table-page">
+			<div id="paged" class="page"></div>
+		</div>
+	</div>
+	<iframe class="layui-elem-field" id="bindingIdcards" name="toppage" style="height:600px;width:99%;"  marginwidth=0 marginheight=0 frameborder="no" border="0"  src="" ></iframe>
+</body>
+</html>

@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+<meta charset="UTF-8">
+<title>易极付黑名单报告信息</title>
+<link rel="stylesheet" href="../../plugins/layui/css/layui.css"
+	media="all" />
+<link rel="stylesheet" href="../../css/global.css" media="all">
+<link rel="stylesheet"
+	href="../../plugins/font-awesome/css/font-awesome.min.css">
+<link rel="stylesheet" href="../../css/table.css" />
+</head>
+<body>
+	<div class="admin-main">
+		<fieldset class="layui-elem-field">
+			<br>
+			<br>
+			&nbsp;&nbsp;&nbsp;&nbsp;<a href="javascript:getMysqlData();" class="layui-btn layui-btn-small">
+			<i class="layui-icon">&#xe615;</i> Mysql数据查询
+			<a href="javascript:getMongoData();" class="layui-btn layui-btn-small" >
+			<i class="layui-icon">&#xe615;</i> Mongo数据查询
+			</a>
+			<div class="layui-field-box layui-form">
+				<table class="layui-table">
+					<colgroup>
+						<col width="150">
+						<col width="200">
+						<col>
+					</colgroup>
+					<tbody>
+						<tr>
+							<td>命中名单类别</td>
+							<td ><font id="userType"></font></td>
+						</tr>
+						<tr>
+							<td>命中原因</td>
+							<td ><font id="blackListTypeDesc"></font></td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</fieldset>
+	</div>
+
+	<!-- js -->
+	<script src="../../jqery/jquery.js"></script>
+	<script src="../../../commons/base.js"></script>
+	<script type="text/javascript" src="../../plugins/layui/layui.js"></script>
+	<script type="text/javascript" src="../../js/customerManager/yjfBlackList.js"></script>
+</body>
+
+</html>

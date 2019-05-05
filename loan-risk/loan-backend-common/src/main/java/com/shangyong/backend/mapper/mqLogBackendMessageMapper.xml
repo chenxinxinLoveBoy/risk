@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.shangyong.backend.dao.MqLogBackendMessageDao">
+
+	<resultMap type="com.shangyong.backend.entity.MqLogBackendMessage" id="mqLogBackendMessageMap">
+		<id property="hsid" column="hsid" javaType="java.lang.Long"></id>
+		<result property="messageId" column="message_id" javaType="java.lang.String"></result>
+		<result property="messageExchange" column="message_exchange" javaType="java.lang.String"></result>
+		<result property="messageRoutingkey" column="message_routingkey" javaType="java.lang.String"></result>
+		<result property="messageQueue" column="message_queue" javaType="java.lang.String"></result>
+		<result property="messageBody" column="message_body" javaType="java.lang.String"></result>
+		<result property="messageInfo" column="message_info" javaType="java.lang.String"></result>
+		<result property="messageService" column="message_service" javaType="java.lang.String"></result>
+		<result property="serviceId" column="service_id" javaType="java.lang.String"></result>
+		<result property="messageType" column="message_type" javaType="java.lang.Integer"></result>
+		<result property="messageLevel" column="message_level" javaType="java.lang.Integer"></result>
+		<result property="remark" column="remark" javaType="java.lang.String"></result>
+		<result property="ip" column="ip" javaType="java.lang.String"></result>
+		<result property="flagDel" column="flag_del" javaType="java.lang.Integer"></result>
+		<result property="createTime" column="create_time" javaType="java.lang.String"></result>
+		<result property="createMan" column="create_man" javaType="java.lang.String"></result>
+		<result property="modifyMan" column="modify_man" javaType="java.lang.String"></result>
+		<result property="modifyTime" column="modify_time" javaType="java.lang.String"></result>
+	</resultMap>
+
+	<!-- 通用查询结果列-->
+	<sql id="Base_Column_List">
+hsid,	message_id,	message_exchange,	message_routingkey,	message_queue,	message_body,	message_info,	message_service,	service_id,	message_type,	message_level,	remark,	ip,	flag_del,	create_time,	create_man,	modify_man,	modify_time
+	</sql>
+
+	<!-- 查询（根据主键ID查询） -->
+	<select id="getEntityById" resultMap="mqLogBackendMessageMap" parameterType="java.lang.Long">
+		 SELECT
+		 <include refid="Base_Column_List" />
+		 FROM mq_log_backend_message
+		 WHERE hsid = #{hsid}
+	</select>
+
+	<!-- 查询（根据主键ID查询） -->
+	<select id="findAll" resultMap="mqLogBackendMessageMap" parameterType="java.lang.Long">
+		 SELECT
+		 <include refid="Base_Column_List" />
+		 FROM mq_log_backend_message
+		 WHERE hsid = #{hsid}
+	</select>
+
+	<!--删除：根据主键ID删除-->
+	<delete id="deleteEntity" parameterType="java.lang.Long">
+		 DELETE FROM mq_log_backend_message
+		 WHERE hsid = #{hsid}
+	</delete>
+
+	<!-- 添加 -->
+	<insert id="saveEntity" parameterType="com.shangyong.backend.entity.MqLogBackendMessage">
+		 INSERT INTO mq_log_backend_message
+ 		(hsid,message_id,message_exchange,message_routingkey,message_queue,message_body,message_info,message_service,service_id,message_type,message_level,remark,ip,flag_del,create_time,create_man,modify_man,modify_time) 
+		 VALUES 
+ 		(#{hsid},#{messageId},#{messageExchange},#{messageRoutingkey},#{messageQueue},#{messageBody},#{messageInfo},#{messageService},#{serviceId},#{messageType},#{messageLevel},#{remark},#{ip},#{flagDel},#{createTime},#{createMan},#{modifyMan},#{modifyTime}) 
+	</insert>
+
+	<!-- 修 改-->
+	<update id="updateEntity" parameterType="com.shangyong.backend.entity.MqLogBackendMessage">
+		 UPDATE mq_log_backend_message
+ 		 <set> 
+			<if test="messageId != null">
+				 message_id = #{messageId},
+			</if>
+			<if test="messageExchange != null">
+				 message_exchange = #{messageExchange},
+			</if>
+			<if test="messageRoutingkey != null">
+				 message_routingkey = #{messageRoutingkey},
+			</if>
+			<if test="messageQueue != null">
+				 message_queue = #{messageQueue},
+			</if>
+			<if test="messageBody != null">
+				 message_body = #{messageBody},
+			</if>
+			<if test="messageInfo != null">
+				 message_info = #{messageInfo},
+			</if>
+			<if test="messageService != null">
+				 message_service = #{messageService},
+			</if>
+			<if test="serviceId != null">
+				 service_id = #{serviceId},
+			</if>
+			<if test="messageType != null">
+				 message_type = #{messageType},
+			</if>
+			<if test="messageLevel != null">
+				 message_level = #{messageLevel},
+			</if>
+			<if test="remark != null">
+				 remark = #{remark},
+			</if>
+			<if test="ip != null">
+				 ip = #{ip},
+			</if>
+			<if test="flagDel != null">
+				 flag_del = #{flagDel},
+			</if>
+			<if test="createTime != null">
+				 create_time = #{createTime},
+			</if>
+			<if test="createMan != null">
+				 create_man = #{createMan},
+			</if>
+			<if test="modifyMan != null">
+				 modify_man = #{modifyMan},
+			</if>
+			<if test="modifyTime != null">
+				 modify_time = #{modifyTime},
+			</if>
+
+ 		 </set>
+		 WHERE hsid = #{hsid}
+	</update>
+
+</mapper>

@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.shangyong.backend.dao.bqsrep.BqsRepMnoInfoServiceDao">
+
+	<resultMap type="com.shangyong.backend.entity.bqsrep.BqsRepMnoInfo" id="bqsRepMnoInfoinfoMap">
+		<id property="bqsMnoInfoId" column="bqs_mno_info_id" javaType="java.lang.String"></id>
+		<result property="bqsPetitionerId" column="bqs_petitioner_id" javaType="java.lang.String"></result>
+		<result property="mobile" column="mobile" javaType="java.lang.String"></result>
+		<result property="monType" column="mon_type" javaType="java.lang.String"></result>
+		<result property="belongTo" column="belong_to" javaType="java.lang.String"></result>
+		<result property="boundCertNo" column="bound_cert_no" javaType="java.lang.String"></result>
+		<result property="boundName" column="bound_name" javaType="java.lang.String"></result>
+		<result property="boundEmail" column="bound_email" javaType="java.lang.String"></result>
+	</resultMap>
+
+	<!-- 通用查询结果列-->
+	<sql id="Base_Column_List">
+	bqs_mno_info_id,	bqs_petitioner_id,	mobile,	mon_type,	belong_to,	bound_cert_no,	bound_name,	bound_email
+	</sql>
+
+	<!-- 查询（根据主键ID查询） -->
+	<select id="getEntityById" resultMap="bqsRepMnoInfoinfoMap" parameterType="java.lang.String">
+		 SELECT
+		 <include refid="Base_Column_List" />
+		 FROM bqs_rep_mno_info
+		 WHERE bqs_mno_info_id = #{bqsMnoInfoId}
+	</select>
+	
+	<!-- 查询（根据bqsPetitionerId查询） -->
+	<select id="queryById" resultMap="bqsRepMnoInfoinfoMap" parameterType="java.lang.String">
+		 SELECT
+		 <include refid="Base_Column_List" />
+		 FROM bqs_rep_mno_info
+		 WHERE bqs_petitioner_id = #{bqsPetitionerId}
+	</select>
+
+	<!-- 查询（根据主键ID查询） -->
+	<select id="getAll" resultMap="bqsRepMnoInfoinfoMap" parameterType="java.lang.String">
+		 SELECT
+		 <include refid="Base_Column_List" />
+		 FROM bqs_rep_mno_info
+	</select>
+
+	<!--删除：根据主键ID删除-->
+	<delete id="deleteEntity" parameterType="java.lang.String">
+		 DELETE FROM bqs_rep_mno_info
+		 WHERE bqs_mno_info_id = #{bqsMnoInfoId}
+	</delete>
+
+	<!-- 添加 -->
+	<insert id="saveEntity" parameterType="com.shangyong.backend.entity.bqsrep.BqsRepMnoInfo">
+		 INSERT INTO bqs_rep_mno_info
+ 		(bqs_mno_info_id,bqs_petitioner_id,mobile,mon_type,belong_to,bound_cert_no,bound_name,bound_email) 
+		 VALUES 
+ 		(#{bqsMnoInfoId},#{bqsPetitionerId},#{mobile},#{monType},#{belongTo},#{boundCertNo},#{boundName},#{boundEmail}) 
+	</insert>
+
+	<!-- 修 改-->
+	<update id="updateEntity" parameterType="com.shangyong.backend.entity.bqsrep.BqsRepMnoInfo">
+		 UPDATE bqs_rep_mno_info
+ 		 <set> 
+			<if test="bqsPetitionerId != null">
+				 bqs_petitioner_id = #{bqsPetitionerId},
+			</if>
+			<if test="mobile != null">
+				 mobile = #{mobile},
+			</if>
+			<if test="monType != null">
+				 mon_type = #{monType},
+			</if>
+			<if test="belongTo != null">
+				 belong_to = #{belongTo},
+			</if>
+			<if test="boundCertNo != null">
+				 bound_cert_no = #{boundCertNo},
+			</if>
+			<if test="boundName != null">
+				 bound_name = #{boundName},
+			</if>
+			<if test="boundEmail != null">
+				 bound_email = #{boundEmail},
+			</if>
+
+ 		 </set>
+		 WHERE bqs_mno_info_id = #{bqsMnoInfoId}
+	</update>
+
+</mapper>

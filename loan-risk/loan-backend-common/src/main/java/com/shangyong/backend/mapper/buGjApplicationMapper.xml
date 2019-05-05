@@ -1,0 +1,205 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.shangyong.backend.dao.BuGjApplicationDao">
+
+	<resultMap type="com.shangyong.backend.entity.BuGjApplication" id="buGjApplicationMap">
+		<id property="applicationId" column="application_id" javaType="java.lang.String"></id>
+		<result property="appSerialNumber" column="app_serial_number" javaType="java.lang.String"></result>
+		<result property="platformId" column="platform_id" javaType="java.lang.String"></result>
+		<result property="applicationBuId" column="application_bu_id" javaType="java.lang.String"></result>
+		<result property="customerId" column="customer_id" javaType="java.lang.String"></result>
+		<result property="name" column="name" javaType="java.lang.String"></result>
+		<result property="certType" column="cert_type" javaType="java.lang.String"></result>
+		<result property="certCode" column="cert_code" javaType="java.lang.String"></result>
+		<result property="phoneNum" column="phone_num" javaType="java.lang.String"></result>
+		<result property="loanIp" column="loan_ip" javaType="java.lang.String"></result>
+		<result property="handleTime" column="handle_time" javaType="java.lang.String"></result>
+		<result property="handleState" column="handle_state" javaType="java.lang.String"></result>
+		<result property="source" column="source" javaType="java.lang.String"></result>
+		<result property="auditResult" column="audit_result" javaType="java.lang.String"></result>
+		<result property="isPushApp" column="is_push_app" javaType="java.lang.String"></result>
+		<result property="isStep" column="is_step" javaType="java.lang.String"></result>
+		<result property="errorDescription" column="error_description" javaType="java.lang.String"></result>
+		<result property="auditMan" column="audit_man" javaType="java.lang.String"></result>
+		<result property="blackBox" column="black_box" javaType="java.lang.String"></result>
+		<result property="jxlToken" column="jxl_token" javaType="java.lang.String"></result>
+		<result property="createTime" column="create_time" javaType="java.lang.String"></result>
+		<result property="createMan" column="create_man" javaType="java.lang.String"></result>
+		<result property="modifyTime" column="modify_time" javaType="java.lang.String"></result>
+		<result property="modifyMan" column="modify_man" javaType="java.lang.String"></result>
+		<result property="remark" column="remark" javaType="java.lang.String"></result>
+	</resultMap>
+
+	<!-- 通用查询结果列-->
+	<sql id="Base_Column_List">
+application_id,	app_serial_number,	platform_id,	application_bu_id,	customer_id,	name,	cert_type,	cert_code,	phone_num,	loan_ip,	handle_time,	handle_state,	source,	audit_result,	is_push_app,	is_step,	error_description,	audit_man,	black_box,	jxl_token,	create_time,	create_man,	modify_time,	modify_man,	remark
+	</sql>
+
+	<!-- 查询（根据主键ID查询） -->
+	<select id="getEntityById" resultMap="buGjApplicationMap" parameterType="java.lang.String">
+		 SELECT
+		 <include refid="Base_Column_List" />
+		 FROM bu_gj_application
+		 WHERE app_serial_number = #{appSerialNumber}
+	</select>
+
+	<!-- 查询（根据主键ID查询） -->
+	<select id="findAll" resultMap="buGjApplicationMap" parameterType="java.lang.String">
+		 SELECT
+		 <include refid="Base_Column_List" />
+		 FROM bu_gj_application
+		 WHERE application_id = #{applicationId}
+	</select>
+
+	<!--删除：根据主键ID删除-->
+	<delete id="deleteEntity" parameterType="java.lang.String">
+		 DELETE FROM bu_gj_application
+		 WHERE application_id = #{applicationId}
+	</delete>
+
+	<!-- 添加 -->
+	<insert id="saveEntity" parameterType="com.shangyong.backend.entity.BuGjApplication">
+		 INSERT INTO bu_gj_application
+ 		(application_id,app_serial_number,platform_id,application_bu_id,customer_id,name,cert_type,cert_code,phone_num,loan_ip,handle_time,handle_state,source,audit_result,is_push_app,is_step,error_description,audit_man,black_box,jxl_token,create_time,create_man,modify_time,modify_man,remark) 
+		 VALUES 
+ 		(#{applicationId},#{appSerialNumber},#{platformId},getApplicationId(),#{customerId},#{name},#{certType},#{certCode},#{phoneNum},#{loanIp},#{handleTime},#{handleState},#{source},#{auditResult},#{isPushApp},#{isStep},#{errorDescription},#{auditMan},#{blackBox},#{jxlToken},#{createTime},#{createMan},#{modifyTime},#{modifyMan},#{remark}) 
+	</insert>
+
+	<!-- 修 改-->
+	<update id="updateEntity" parameterType="com.shangyong.backend.entity.BuGjApplication">
+		 UPDATE bu_gj_application
+ 		 <set> 
+			<if test="appSerialNumber != null">
+				 app_serial_number = #{appSerialNumber},
+			</if>
+			<if test="platformId != null">
+				 platform_id = #{platformId},
+			</if>
+			<if test="applicationBuId != null">
+				 application_bu_id = #{applicationBuId},
+			</if>
+			<if test="customerId != null">
+				 customer_id = #{customerId},
+			</if>
+			<if test="name != null">
+				 name = #{name},
+			</if>
+			<if test="certType != null">
+				 cert_type = #{certType},
+			</if>
+			<if test="certCode != null">
+				 cert_code = #{certCode},
+			</if>
+			<if test="phoneNum != null">
+				 phone_num = #{phoneNum},
+			</if>
+			<if test="loanIp != null">
+				 loan_ip = #{loanIp},
+			</if>
+			<if test="handleTime != null">
+				 handle_time = #{handleTime},
+			</if>
+			<if test="handleState != null">
+				 handle_state = #{handleState},
+			</if>
+			<if test="source != null">
+				 source = #{source},
+			</if>
+			<if test="auditResult != null">
+				 audit_result = #{auditResult},
+			</if>
+			<if test="isPushApp != null">
+				 is_push_app = #{isPushApp},
+			</if>
+			<if test="isStep != null">
+				 is_step = #{isStep},
+			</if>
+			<if test="errorDescription != null">
+				 error_description = #{errorDescription},
+			</if>
+			<if test="auditMan != null">
+				 audit_man = #{auditMan},
+			</if>
+			<if test="blackBox != null">
+				 black_box = #{blackBox},
+			</if>
+			<if test="jxlToken != null">
+				 jxl_token = #{jxlToken},
+			</if>
+			<if test="createTime != null">
+				 create_time = #{createTime},
+			</if>
+			<if test="createMan != null">
+				 create_man = #{createMan},
+			</if>
+			<if test="modifyTime != null">
+				 modify_time = #{modifyTime},
+			</if>
+			<if test="modifyMan != null">
+				 modify_man = #{modifyMan},
+			</if>
+			<if test="remark != null">
+				 remark = #{remark},
+			</if>
+
+ 		 </set>
+		 WHERE application_id = #{applicationId}
+	</update>
+
+	<!-- 	根据处理状态和步骤标识查询申请表数据 -->
+	<select id="getGjAppLicationList" resultType="java.util.Map" parameterType="java.util.Map">
+		select 
+			 cu.email         email,
+			 cu.age 		  age,
+			 cu.education_id  educationId,
+			 cu.bank_card     bankCard,
+			 cu.if_marriage   ifMarriage,
+			 cu.home_address  homeAddress,
+			 cu.registered_address  registeredAddress,
+			 cu.contact_address  contactAddress,
+			 bu.cert_type	  certType,
+			 bu.cert_code     certCode,
+			 bu.phone_num     phoneNum,
+			 bu.`name`,
+			 bu.application_id applicationNumber,
+			 bu.app_serial_number	appSerialNumber,
+			 bu.application_bu_id	applicationBuId,
+			 bu.platform_id   platformId,
+			 bu.customer_id   customerId,
+			 bu.loan_ip       loanIp,
+			 bu.source        source,
+			 bu.source        blackBox,
+			 bu.source        jxlToken
+		FROM bu_gj_application  bu
+		LEFT JOIN
+		 	 cu_platform_customer cu 
+		ON   bu.platform_id = cu.platform_customer_id
+		<where> 
+	    <if test="handleState != '' and handleState != null" >
+	    	 bu.handle_state=#{handleState, jdbcType=VARCHAR}
+	    </if>
+	    <if test="isStep != '' and isStep != null" >
+	    	AND bu.is_step=#{isStep, jdbcType=VARCHAR}
+	    </if>
+	    </where>
+	    limit 100
+	</select>
+	
+	<!-- 根据申请单编号修改借款申请表字段信息-->
+	<update id="updateGjApplicationByStep" parameterType="java.util.Map">
+		 UPDATE bu_gj_application
+		  <set> 
+		 	<if test="isStep != null and isStep!=''">
+				is_step=#{isStep, jdbcType=VARCHAR},
+			</if>
+			<if test="handleState != null and handleState!=''">
+				handle_state = #{handleState, jdbcType=VARCHAR},
+			</if>
+		 	auditing_time =NOW(),
+		 	modify_time =NOW()
+		 </set> 
+		 WHERE application_id = #{applicationId, jdbcType=VARCHAR}
+	</update>
+	
+</mapper>

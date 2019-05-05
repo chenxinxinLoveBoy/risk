@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.shangyong.backend.dao.bqs.BqsPersonalInfoServiceDao">
+
+	<resultMap type="com.shangyong.backend.entity.bqs.BqsPersonalInfo" id="bqsPersonalInfoinfoMap">
+		<id property="bqsPersonalInfoId" column="bqs_personal_info_id" javaType="java.lang.String"></id>
+		<result property="buApplicationId" column="bu_application_id" javaType="java.lang.String"></result>
+		<result property="boundName" column="bound_name" javaType="java.lang.String"></result>
+		<result property="boundCertNo" column="bound_cert_no" javaType="java.lang.String"></result>
+		<result property="mobile" column="mobile" javaType="java.lang.String"></result>
+		<result property="isRealCheck" column="is_real_check" javaType="java.lang.String"></result>
+		<result property="monType" column="mon_type" javaType="java.lang.String"></result>
+		<result property="belongTo" column="belong_to" javaType="java.lang.String"></result>
+		<result property="status" column="status" javaType="java.lang.String"></result>
+		<result property="blanceMoney" column="blance_money" javaType="java.lang.String"></result>
+		<result property="availableFee" column="available_fee" javaType="java.lang.String"></result>
+		<result property="raltimeFee" column="raltime_fee" javaType="java.lang.String"></result>
+		<result property="custLevel" column="cust_level" javaType="java.lang.String"></result>
+		<result property="state" column="state" javaType="java.lang.String"></result>
+		<result property="remark" column="remark" javaType="java.lang.String"></result>
+		<result property="createTime" column="create_time" javaType="java.lang.String"></result>
+		<result property="createMan" column="create_man" javaType="java.lang.String"></result>
+		<result property="modifyTime" column="modify_time" javaType="java.lang.String"></result>
+		<result property="modifyMan" column="modify_man" javaType="java.lang.String"></result>
+	</resultMap>
+
+	<!-- 通用查询结果列-->
+	<sql id="Base_Column_List">
+	bqs_personal_info_id,	bu_application_id,	bound_name,	bound_cert_no,	mobile,	is_real_check,	mon_type,	belong_to,	status,	blance_money,	available_fee,	raltime_fee,	cust_level,	state,	remark,	create_time,	create_man,	modify_time,	modify_man
+	</sql>
+
+	<!-- 查询（根据主键ID查询） -->
+	<select id="getEntityById" resultMap="bqsPersonalInfoinfoMap" parameterType="java.lang.String">
+		 SELECT
+		 <include refid="Base_Column_List" />
+		 FROM bqs_personal_info
+		 WHERE bqs_personal_info_id = #{bqsPersonalInfoId}
+	</select>
+
+	<!-- 查询（根据主键ID查询） -->
+	<select id="getAll" resultMap="bqsPersonalInfoinfoMap" parameterType="java.lang.String">
+		 SELECT
+		 <include refid="Base_Column_List" />
+		 FROM bqs_personal_info
+	</select>
+
+	<!--删除：根据主键ID删除-->
+	<delete id="deleteEntity" parameterType="java.lang.String">
+		 DELETE FROM bqs_personal_info
+		 WHERE bqs_personal_info_id = #{bqsPersonalInfoId}
+	</delete>
+
+	<!-- 添加 -->
+	<insert id="saveEntity" parameterType="com.shangyong.backend.entity.bqs.BqsPersonalInfo">
+		 INSERT INTO bqs_personal_info
+ 		(bqs_personal_info_id,bu_application_id,bound_name,bound_cert_no,mobile,is_real_check,mon_type,belong_to,status,blance_money,available_fee,raltime_fee,cust_level,state,remark,create_time,create_man,modify_time,modify_man) 
+		 VALUES 
+ 		(#{bqsPersonalInfoId},#{buApplicationId},#{boundName},#{boundCertNo},#{mobile},#{isRealCheck},#{monType},#{belongTo},#{status},#{blanceMoney},#{availableFee},#{raltimeFee},#{custLevel},#{state},#{remark},#{createTime},#{createMan},#{modifyTime},#{modifyMan}) 
+	</insert>
+
+	<!-- 修 改-->
+	<update id="updateEntity" parameterType="com.shangyong.backend.entity.bqs.BqsPersonalInfo">
+		 UPDATE bqs_personal_info
+ 		 <set> 
+			<if test="buApplicationId != null">
+				 bu_application_id = #{buApplicationId},
+			</if>
+			<if test="boundName != null">
+				 bound_name = #{boundName},
+			</if>
+			<if test="boundCertNo != null">
+				 bound_cert_no = #{boundCertNo},
+			</if>
+			<if test="mobile != null">
+				 mobile = #{mobile},
+			</if>
+			<if test="isRealCheck != null">
+				 is_real_check = #{isRealCheck},
+			</if>
+			<if test="monType != null">
+				 mon_type = #{monType},
+			</if>
+			<if test="belongTo != null">
+				 belong_to = #{belongTo},
+			</if>
+			<if test="status != null">
+				 status = #{status},
+			</if>
+			<if test="blanceMoney != null">
+				 blance_money = #{blanceMoney},
+			</if>
+			<if test="availableFee != null">
+				 available_fee = #{availableFee},
+			</if>
+			<if test="raltimeFee != null">
+				 raltime_fee = #{raltimeFee},
+			</if>
+			<if test="custLevel != null">
+				 cust_level = #{custLevel},
+			</if>
+			<if test="state != null">
+				 state = #{state},
+			</if>
+			<if test="remark != null">
+				 remark = #{remark},
+			</if>
+			<if test="createTime != null">
+				 create_time = #{createTime},
+			</if>
+			<if test="createMan != null">
+				 create_man = #{createMan},
+			</if>
+			<if test="modifyTime != null">
+				 modify_time = #{modifyTime},
+			</if>
+			<if test="modifyMan != null">
+				 modify_man = #{modifyMan},
+			</if>
+
+ 		 </set>
+		 WHERE bqs_personal_info_id = #{bqsPersonalInfoId}
+	</update>
+
+</mapper>

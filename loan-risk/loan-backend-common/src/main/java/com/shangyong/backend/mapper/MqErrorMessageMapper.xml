@@ -1,0 +1,357 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.shangyong.backend.dao.mq.MqErrorMessageDao">
+    <resultMap id="BaseResultMap" type="com.shangyong.backend.entity.mq.MqErrorMessage">
+        <id column="hsid" jdbcType="BIGINT" property="hsid"/>
+        <result column="message_id" jdbcType="VARCHAR" property="messageId"/>
+        <result column="message_exchange" jdbcType="VARCHAR" property="messageExchange"/>
+        <result column="message_routingkey" jdbcType="VARCHAR" property="messageRoutingkey"/>
+        <result column="message_queue" jdbcType="VARCHAR" property="messageQueue"/>
+        <result column="message_channel_type" jdbcType="TINYINT" property="messageChannelType"/>
+        <result column="message_service" jdbcType="VARCHAR" property="messageService"/>
+        <result column="application_id" jdbcType="VARCHAR" property="applicationId"/>
+        <result column="message_status" jdbcType="TINYINT" property="messageStatus"/>
+        <result column="message_type" jdbcType="TINYINT" property="messageType"/>
+        <result column="message_level" jdbcType="TINYINT" property="messageLevel"/>
+        <result column="ip" jdbcType="VARCHAR" property="ip"/>
+        <result column="flag_del" jdbcType="TINYINT" property="flagDel"/>
+        <result column="create_time" jdbcType="TIMESTAMP" property="createTime"/>
+        <result column="create_man" jdbcType="VARCHAR" property="createMan"/>
+        <result column="modify_man" jdbcType="VARCHAR" property="modifyMan"/>
+        <result column="modify_time" jdbcType="TIMESTAMP" property="modifyTime"/>
+        <result column="message_body" jdbcType="LONGVARCHAR" property="messageBody"/>
+        <result column="message_info" jdbcType="LONGVARCHAR" property="messageInfo"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        hsid,message_id,message_exchange,message_routingkey,message_queue,message_channel_type,message_service,application_id,message_status,message_type,message_level,ip,flag_del,create_time,create_man,modify_man,modify_time,message_body,message_info
+    </sql>
+
+    <sql id="Base_ondition_List">
+        <where>
+            <if test="hsid != null">
+                hsid = #{hsid,jdbcType=BIGINT}
+            </if>
+            <if test="messageId != null and messageId != ''">
+                and message_id = #{messageId,jdbcType=VARCHAR}
+            </if>
+            <if test="messageExchange != null">
+                and message_exchange = #{messageExchange,jdbcType=VARCHAR}
+            </if>
+            <if test="messageRoutingkey != null">
+                and message_routingkey = #{messageRoutingkey,jdbcType=VARCHAR}
+            </if>
+            <if test="messageQueue != null">
+                and message_queue = #{messageQueue,jdbcType=VARCHAR}
+            </if>
+            <if test="messageChannelType != null">
+                and message_channel_type = #{messageChannelType,jdbcType=TINYINT}
+            </if>
+            <if test="messageService != null">
+                and message_service = #{messageService,jdbcType=VARCHAR}
+            </if>
+            <if test="applicationId != null and applicationId != ''">
+                and application_id = #{applicationId,jdbcType=VARCHAR}
+            </if>
+            <if test="messageStatus != null">
+                and message_status = #{messageStatus,jdbcType=TINYINT}
+            </if>
+            <if test="messageType != null">
+                and message_type = #{messageType,jdbcType=TINYINT}
+            </if>
+            <if test="messageLevel != null">
+                and message_level = #{messageLevel,jdbcType=TINYINT}
+            </if>
+            <if test="ip != null">
+                and ip = #{ip,jdbcType=VARCHAR}
+            </if>
+            <if test="flagDel != null">
+                and flag_del = #{flagDel,jdbcType=TINYINT}
+            </if>
+            <if test="createTime != null">
+                and create_time = #{createTime,jdbcType=TIMESTAMP}
+            </if>
+            <if test="createMan != null">
+                and create_man = #{createMan,jdbcType=VARCHAR}
+            </if>
+            <if test="modifyMan != null">
+                and modify_man = #{modifyMan,jdbcType=VARCHAR}
+            </if>
+            <if test="modifyTime != null">
+                and modify_time = #{modifyTime,jdbcType=TIMESTAMP}
+            </if>
+            <if test="messageBody != null">
+                and instr(message_body, #{messageBody,jdbcType=LONGVARCHAR}) > 0
+            </if>
+            <if test="messageInfo != null">
+                and message_info = #{messageInfo,jdbcType=LONGVARCHAR}
+            </if>
+            <!--  操作开始日期 -->
+            <if test="optTimeBigen != null and optTimeBigen != ''">
+                and create_time  >= #{optTimeBigen}
+            </if>
+            <!--  操作结束日期 -->
+            <if test="optTimeEnd != null and optTimeEnd != ''">
+                and create_time  <![CDATA[<=]]> #{optTimeEnd}
+            </if>
+        </where>
+    </sql>
+
+    <insert id="insert" parameterType="com.shangyong.backend.entity.mq.MqErrorMessage">
+        insert into mq_error_message (<include refid="Base_Column_List" />)
+        values(#{hsid,jdbcType=BIGINT},#{messageId,jdbcType=VARCHAR},#{messageExchange,jdbcType=VARCHAR},#{messageRoutingkey,jdbcType=VARCHAR},#{messageQueue,jdbcType=VARCHAR},#{messageChannelType,jdbcType=TINYINT},#{messageService,jdbcType=VARCHAR},#{applicationId,jdbcType=VARCHAR},#{messageStatus,jdbcType=TINYINT},#{messageType,jdbcType=TINYINT},#{messageLevel,jdbcType=TINYINT},#{ip,jdbcType=VARCHAR},#{flagDel,jdbcType=TINYINT},#{createTime,jdbcType=TIMESTAMP},#{createMan,jdbcType=VARCHAR},#{modifyMan,jdbcType=VARCHAR},#{modifyTime,jdbcType=TIMESTAMP},#{messageBody,jdbcType=LONGVARCHAR},#{messageInfo,jdbcType=LONGVARCHAR})
+    </insert>
+
+    <insert id="insertSelective" parameterType="com.shangyong.backend.entity.mq.MqErrorMessage">
+        insert into mq_error_message
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="hsid != null">
+                hsid,
+            </if>
+            <if test="messageId != null">
+                message_id,
+            </if>
+            <if test="messageExchange != null">
+                message_exchange,
+            </if>
+            <if test="messageRoutingkey != null">
+                message_routingkey,
+            </if>
+            <if test="messageQueue != null">
+                message_queue,
+            </if>
+            <if test="messageChannelType != null">
+                message_channel_type,
+            </if>
+            <if test="messageService != null">
+                message_service,
+            </if>
+            <if test="applicationId != null">
+                application_id,
+            </if>
+            <if test="messageStatus != null">
+                message_status,
+            </if>
+            <if test="messageType != null">
+                message_type,
+            </if>
+            <if test="messageLevel != null">
+                message_level,
+            </if>
+            <if test="ip != null">
+                ip,
+            </if>
+            <if test="flagDel != null">
+                flag_del,
+            </if>
+            <if test="createTime != null">
+                create_time,
+            </if>
+            <if test="createMan != null">
+                create_man,
+            </if>
+            <if test="modifyMan != null">
+                modify_man,
+            </if>
+            <if test="modifyTime != null">
+                modify_time,
+            </if>
+            <if test="messageBody != null">
+                message_body,
+            </if>
+            <if test="messageInfo != null">
+                message_info,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="hsid != null">
+                #{hsid,jdbcType=BIGINT},
+            </if>
+            <if test="messageId != null">
+                #{messageId,jdbcType=VARCHAR},
+            </if>
+            <if test="messageExchange != null">
+                #{messageExchange,jdbcType=VARCHAR},
+            </if>
+            <if test="messageRoutingkey != null">
+                #{messageRoutingkey,jdbcType=VARCHAR},
+            </if>
+            <if test="messageQueue != null">
+                #{messageQueue,jdbcType=VARCHAR},
+            </if>
+            <if test="messageChannelType != null">
+                #{messageChannelType,jdbcType=TINYINT},
+            </if>
+            <if test="messageService != null">
+                #{messageService,jdbcType=VARCHAR},
+            </if>
+            <if test="applicationId != null">
+                #{applicationId,jdbcType=VARCHAR},
+            </if>
+            <if test="messageStatus != null">
+                #{messageStatus,jdbcType=TINYINT},
+            </if>
+            <if test="messageType != null">
+                #{messageType,jdbcType=TINYINT},
+            </if>
+            <if test="messageLevel != null">
+                #{messageLevel,jdbcType=TINYINT},
+            </if>
+            <if test="ip != null">
+                #{ip,jdbcType=VARCHAR},
+            </if>
+            <if test="flagDel != null">
+                #{flagDel,jdbcType=TINYINT},
+            </if>
+            <if test="createTime != null">
+                #{createTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="createMan != null">
+                #{createMan,jdbcType=VARCHAR},
+            </if>
+            <if test="modifyMan != null">
+                #{modifyMan,jdbcType=VARCHAR},
+            </if>
+            <if test="modifyTime != null">
+                #{modifyTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="messageBody != null">
+                #{messageBody,jdbcType=LONGVARCHAR},
+            </if>
+            <if test="messageInfo != null">
+                #{messageInfo,jdbcType=LONGVARCHAR},
+            </if>
+        </trim>
+    </insert>
+
+    <update id="updateByPrimaryKey" parameterType="com.shangyong.backend.entity.mq.MqErrorMessage">
+        update mq_error_message set
+        message_id = #{messageId,jdbcType=VARCHAR},
+        message_exchange = #{messageExchange,jdbcType=VARCHAR},
+        message_routingkey = #{messageRoutingkey,jdbcType=VARCHAR},
+        message_queue = #{messageQueue,jdbcType=VARCHAR},
+        message_channel_type = #{messageChannelType,jdbcType=TINYINT},
+        message_service = #{messageService,jdbcType=VARCHAR},
+        application_id = #{applicationId,jdbcType=VARCHAR},
+        message_status = #{messageStatus,jdbcType=TINYINT},
+        message_type = #{messageType,jdbcType=TINYINT},
+        message_level = #{messageLevel,jdbcType=TINYINT},
+        ip = #{ip,jdbcType=VARCHAR},
+        flag_del = #{flagDel,jdbcType=TINYINT},
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+        create_man = #{createMan,jdbcType=VARCHAR},
+        modify_man = #{modifyMan,jdbcType=VARCHAR},
+        modify_time = #{modifyTime,jdbcType=TIMESTAMP},
+        message_body = #{messageBody,jdbcType=LONGVARCHAR},
+        message_info = #{messageInfo,jdbcType=LONGVARCHAR}
+        <where>
+            <if test="hsid != null">
+                hsid = #{hsid,jdbcType=BIGINT}
+            </if>
+        </where>
+    </update>
+
+    <update id="updateByPrimaryKeySelective" parameterType="com.shangyong.backend.entity.mq.MqErrorMessage">
+        update mq_error_message
+        <set>
+            <if test="messageId != null">
+                message_id = #{messageId,jdbcType=VARCHAR},
+            </if>
+            <if test="messageExchange != null">
+                message_exchange = #{messageExchange,jdbcType=VARCHAR},
+            </if>
+            <if test="messageRoutingkey != null">
+                message_routingkey = #{messageRoutingkey,jdbcType=VARCHAR},
+            </if>
+            <if test="messageQueue != null">
+                message_queue = #{messageQueue,jdbcType=VARCHAR},
+            </if>
+            <if test="messageChannelType != null">
+                message_channel_type = #{messageChannelType,jdbcType=TINYINT},
+            </if>
+            <if test="messageService != null">
+                message_service = #{messageService,jdbcType=VARCHAR},
+            </if>
+            <if test="applicationId != null">
+                application_id = #{applicationId,jdbcType=VARCHAR},
+            </if>
+            <if test="messageStatus != null">
+                message_status = #{messageStatus,jdbcType=TINYINT},
+            </if>
+            <if test="messageType != null">
+                message_type = #{messageType,jdbcType=TINYINT},
+            </if>
+            <if test="messageLevel != null">
+                message_level = #{messageLevel,jdbcType=TINYINT},
+            </if>
+            <if test="ip != null">
+                ip = #{ip,jdbcType=VARCHAR},
+            </if>
+            <if test="flagDel != null">
+                flag_del = #{flagDel,jdbcType=TINYINT},
+            </if>
+            <if test="createTime != null">
+                create_time = #{createTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="createMan != null">
+                create_man = #{createMan,jdbcType=VARCHAR},
+            </if>
+            <if test="modifyMan != null">
+                modify_man = #{modifyMan,jdbcType=VARCHAR},
+            </if>
+            <if test="modifyTime != null">
+                modify_time = #{modifyTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="messageBody != null">
+                message_body = #{messageBody,jdbcType=LONGVARCHAR},
+            </if>
+            <if test="messageInfo != null">
+                message_info = #{messageInfo,jdbcType=LONGVARCHAR},
+            </if>
+        </set>
+        <where>
+            <if test="hsid != null">
+                hsid = #{hsid,jdbcType=BIGINT}
+            </if>
+        </where>
+    </update>
+
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+        delete from mq_error_message
+        <where>
+            <if test="hsid != null">
+                hsid = #{hsid,jdbcType=BIGINT}
+            </if>
+        </where>
+    </delete>
+
+    <select id="selectOne" parameterType="com.shangyong.backend.entity.mq.MqErrorMessage" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List" />
+        from mq_error_message
+        <include refid="Base_ondition_List" />
+    </select>
+
+    <select id="selectList" parameterType="com.shangyong.backend.entity.mq.MqErrorMessage" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List" />
+        from mq_error_message
+        <include refid="Base_ondition_List" />
+    </select>
+
+    <select id="pageQuery" parameterType="com.shangyong.backend.entity.mq.MqErrorMessage" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from mq_error_message
+        <include refid="Base_ondition_List"/>
+        ORDER BY create_time DESC
+        <if test="pageSize != -1">
+            limit #{pageIndex}, #{pageSize}
+        </if>
+    </select>
+
+    <select id="count" parameterType="com.shangyong.backend.entity.mq.MqErrorMessage" resultType="java.lang.Integer">
+        select count(1) from mq_error_message
+        <include refid="Base_ondition_List"/>
+    </select>
+</mapper>

@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<link rel="stylesheet" href="../../plugins/layui/css/layui.css" media="all" />
+		<link rel="stylesheet" href="../../css/global.css" media="all">
+		<link rel="stylesheet" href="../../plugins/font-awesome/css/font-awesome.min.css">
+		<link rel="stylesheet" href="../../css/table.css" />
+		<link rel="stylesheet" href="../../css/lzh_xy_gl.css" media="all" />
+		<!-- js -->
+		<script src="../../jqery/jquery.js"></script>
+		<script src="../../../commons/base.js"></script>
+		<script type="text/javascript" src="../../plugins/layui/layui.js"></script>
+		<script type="text/javascript" src="../../js/dataBase/dataBaseFindOne.js"></script>
+	</head> 
+	<body>
+		<div class="admin-main"> 
+			<blockquote class="layui-elem-quote"> 
+				<!-- 查询条件 -->
+				<div class="layui-inline">
+			      <label class="layui-form-label" style="width: auto;">数据库名称：</label>
+			      <div class="layui-input-inline">
+			        <input name="tableSchema" lay-verify="tableSchema" autocomplete="off" value="risk"  onfocus="if(value =='risk){value ==''}" onblur="if (value ==''){value='risk}" class="layui-input"  id="tableSchema" >
+			      </div>
+			    </div>
+			    
+				<div class="layui-inline">
+			      <label class="layui-form-label">表名称：</label>
+			      <div class="layui-input-inline">
+			        <input name="tableName" lay-verify="tableName" autocomplete="off" placeholder="支持模糊查询" class="layui-input"  id="tableName" >
+			      </div>
+			    </div>
+			    &nbsp;
+					<a href="javascript:;" class="layui-btn layui-btn-small" id="search" onclick="sel()">
+						<i class="layui-icon">&#xe615;</i> 搜索
+					</a>
+			</blockquote>
+			<fieldset class="layui-elem-field">
+				<legend>数据列表</legend>
+				<div class="layui-field-box layui-form">
+					<table class="layui-table admin-table"  style="word-break: keep-all;overflow:auto;"  id="tabid">
+						<thead>
+							<tr>   
+								<th>实例名</th>
+								<th>表名</th>
+								<th>字段名</th> 
+ 								<th>原始位置</th>
+								<th>默认字段</th> 
+								<th>是否空</th>
+								<th>数据类型</th>
+								<th>字符最大长度</th>
+								<th>字符集名</th>
+								<th>字段类型</th>
+								<th>字段索引</th> 
+								<th>字段注释</th> 
+							</tr>
+						</thead>
+						<tbody id="content">
+						</tbody>
+					</table>
+				</div>
+			</fieldset>
+		</div>
+		<!--模板-->
+ 		<script type="text/html" id="tpl">
+			{{# layui.each(d.list, function(index, item){  
+			var f1=item.COLUMN_DEFAULT;
+ 			if(f1 == undefined){
+				f1="";
+			} 
+
+			var f2=item.CHARACTER_MAXIMUM_LENGTH;
+			if(f2 == undefined){
+				f2="";
+			} 
+
+			var f3=item.CHARACTER_SET_NAME;
+			if(f3 == undefined){
+				f3="";
+			} 
+
+ 			 }}
+
+			<tr>   
+				<td>{{ item.TABLE_SCHEMA }}</td>
+				<td>{{ item.TABLE_NAME }}</td>
+				<td>{{ item.COLUMN_NAME }}</td> 
+				<td >{{ item.ORDINAL_POSITION }}</td>
+				<td>{{ f1 }}</td> 
+				<td>{{ item.IS_NULLABLE }}</td>
+ 				<td>{{ item.DATA_TYPE }}</td>
+				<td>{{ f2 }}</td>
+				<td>{{  f3}}</td>
+				<td>{{ item.COLUMN_TYPE }}</td> 
+				<td>{{ item.COLUMN_KEY }}</td> 
+				<td>{{ item.COLUMN_COMMENT }}</td>
+			</tr>
+			{{# }); }}
+		</script>
+		 
+	</body> 
+</html>

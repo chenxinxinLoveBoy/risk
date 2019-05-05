@@ -1,0 +1,176 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.shangyong.backend.dao.ScScoreCreditDao">
+
+	<resultMap type="com.shangyong.backend.entity.ScScoreCredit" id="scScoreCreditinfoMap">
+		<id property="scoreCreditId" column="score_credit_id" javaType="java.lang.Integer"></id>
+		<result property="scoreMax" column="score_max" javaType="java.lang.String"></result>
+		<result property="scoreMin" column="score_min" javaType="java.lang.String"></result>
+		<result property="creditMoney" column="credit_money" javaType="java.lang.String"></result>
+		<result property="state" column="state" javaType="java.lang.String"></result>
+		<result property="version" column="version" javaType="java.lang.Integer"></result>
+		<result property="createTime" column="create_time" javaType="java.lang.String"></result>
+		<result property="createMan" column="create_man" javaType="java.lang.String"></result>
+		<result property="modifyTime" column="modify_time" javaType="java.lang.String"></result>
+		<result property="modifyMan" column="modify_man" javaType="java.lang.String"></result>
+		<result property="remark" column="remark" javaType="java.lang.String"></result>
+		<result property="createName" column="create_name" javaType="java.lang.String"></result>
+		<result property="modifyName" column="modify_name" javaType="java.lang.String"></result>
+		<result property="scoreTplId" column="score_tpl_id" javaType="java.lang.String"></result>
+		<result property="scoreTplName" column="score_tpl_name" javaType="java.lang.String"></result>
+		<result property="promoteCreditMoney" column="promote_credit_money" javaType="java.lang.String"></result>
+	</resultMap>
+
+	<!-- 通用查询结果列-->
+	<sql id="Base_Column_List">
+		 score_tpl_id,score_credit_id,	score_max,	score_min,	credit_money,	state,	version,	create_time,	create_man,	modify_time,	modify_man,	remark,create_name,modify_name ,promote_credit_money
+	</sql>
+
+	<!-- 查询（根据主键ID查询） -->
+	<select id="getEntityById" resultMap="scScoreCreditinfoMap" parameterType="java.lang.String">
+		 SELECT
+		 <include refid="Base_Column_List" />
+		 FROM sc_score_credit
+		 WHERE score_credit_id = #{scoreCreditId}
+	</select>
+	
+	<!-- 查询（根据分数值查询） -->
+	<select id="queryByScore" resultMap="scScoreCreditinfoMap" parameterType="com.shangyong.backend.entity.ScScoreCredit">
+		 SELECT
+		 <include refid="Base_Column_List" />
+		 FROM sc_score_credit
+		 where
+		 <![CDATA[ ((score_min <= #{scoreMin} and score_max > #{scoreMin}) 
+		 		or (score_min < #{scoreMax} and score_max > #{scoreMax})
+		 		or (score_min > #{scoreMin} and score_max <= #{scoreMax})) ]]>
+		<if test="scoreTplId != null and scoreTplId != '' ">
+			 and score_tpl_id = #{scoreTplId}
+		</if>
+		 and state = '01'
+	</select>
+	
+	<!-- 查询（根据分数值查询） -->
+	<select id="getByScore" resultMap="scScoreCreditinfoMap">
+		 SELECT
+		 <include refid="Base_Column_List" />
+		 FROM sc_score_credit
+		 where
+		 <![CDATA[ score_min <= #{score} and score_max > #{score}]]>
+		 and score_tpl_id = #{scoreTplId}
+		 and state = '01'
+	</select>
+
+	<!-- 查询（根据主键ID查询） -->
+	<select id="findAll" resultMap="scScoreCreditinfoMap" parameterType="com.shangyong.backend.entity.ScScoreCredit">
+		SELECT
+	b.score_tpl_name as scoreTplName,
+	a.score_credit_id as scoreCreditId,
+	a.score_max as scoreMax,
+	a.score_min as scoreMin,
+	a.credit_money as creditMoney,
+	a.state as  state,
+	a.version as version,
+	a.create_time as createTime,
+	a.create_man as createMan,
+	a.modify_time as  modifyTime,
+	a.modify_man as modifyMan,
+	a.remark as remark,
+	a.create_name as createName,
+	a.modify_name as modifyName,
+	a.promote_credit_money as promoteCreditMoney 
+FROM
+	sc_score_credit a
+LEFT JOIN sc_score_tpl b ON a.score_tpl_id = b.score_tpl_id
+		 <where>
+		 	<if test="score != null and score != '' ">
+				 <![CDATA[ a.score_min <= #{score} and a.score_max > #{score} ]]>
+			</if>
+			<if test="creditMoney != null and creditMoney != '' ">
+				 and a.credit_money = #{creditMoney}
+			</if>
+			<if test="scoreTplId != null and scoreTplId != '' ">
+				 and a.score_tpl_id = #{scoreTplId}
+			</if>
+		 </where>
+		 order by a.score_credit_id 
+	     LIMIT #{pageIndex},#{pageSize}
+	</select>
+	
+	<!-- 查询（根据主键ID查询） -->
+	<select id="listAllCount" resultType="java.lang.Integer" parameterType="com.shangyong.backend.entity.ScScoreCredit">
+		 SELECT
+		 count(1)
+		 FROM sc_score_credit
+		 <where>
+		 	<if test="score != null and score != '' ">
+				 <![CDATA[ score_min <= #{score} and score_max >= #{score} ]]>
+			</if>
+			<if test="creditMoney != null and creditMoney != '' ">
+				 and credit_money = #{creditMoney}
+			</if>
+			<if test="scoreTplId != null and scoreTplId != '' ">
+				 and score_tpl_id = #{scoreTplId}
+			</if>
+		 </where>
+	</select>
+
+	<!--删除：根据主键ID删除-->
+	<delete id="deleteEntity" parameterType="java.lang.Integer">
+		 DELETE FROM sc_score_credit
+		 WHERE score_credit_id = #{scoreCreditId}
+	</delete>
+
+	<!-- 添加 -->
+	<insert id="insert" parameterType="com.shangyong.backend.entity.ScScoreCredit" useGeneratedKeys="true" keyProperty="scoreCreditId">
+		 INSERT INTO sc_score_credit
+ 		(score_tpl_id,score_credit_id,score_max,score_min,credit_money,state,version,create_time,create_man,remark,create_name,modify_name,promote_credit_money ) 
+		 VALUES 
+ 		(#{scoreTplId},#{scoreCreditId},#{scoreMax},#{scoreMin},#{creditMoney},#{state},#{version},#{createTime},#{createMan},#{remark},#{createName},#{modifyName},#{promoteCreditMoney}) 
+	</insert>
+
+	<!-- 修 改-->
+	<update id="updateByPrimaryKey" parameterType="com.shangyong.backend.entity.ScScoreCredit">
+		 UPDATE sc_score_credit
+ 		 <set> 
+			<if test="scoreMax != null">
+				 score_max = #{scoreMax},
+			</if>
+			<if test="scoreMin != null">
+				 score_min = #{scoreMin},
+			</if>
+			<if test="creditMoney != null">
+				 credit_money = #{creditMoney},
+			</if>
+			<if test="state != null">
+				 state = #{state},
+			</if>
+			<if test="version != null">
+				 version = #{version},
+			</if>
+			<if test="modifyTime != null">
+				 modify_time = #{modifyTime},
+			</if>
+			<if test="modifyMan != null">
+				 modify_man = #{modifyMan},
+			</if>
+			<if test="remark != null">
+				 remark = #{remark},
+			</if>
+            <if test="createName != null">
+				 create_name = #{createName},
+			</if>
+			<if test="modifyName != null">
+				 modify_name = #{modifyName},
+			</if>
+			<if test="scoreTplId != null">
+				 score_tpl_id = #{scoreTplId},
+			</if>
+			<if test="promoteCreditMoney != null">
+				 promote_credit_money = #{promoteCreditMoney}
+			</if>
+ 		 </set>
+		 WHERE score_credit_id = #{scoreCreditId}
+	</update>
+
+</mapper>

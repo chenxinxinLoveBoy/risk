@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title>BoOrderform</title>
+		<link rel="stylesheet" href="../../plugins/layui/css/layui.css" media="all">
+		<link rel="stylesheet" href="../../css/global.css" media="all">
+		<link rel="stylesheet" href="../../plugins/font-awesome/css/font-awesome.min.css">
+		<link rel="stylesheet" href="../../css/table.css" />
+	</head>
+	
+	<body>
+		<div class="admin-main">
+			
+			<blockquote class="layui-elem-quote" >
+				
+				<!-- 查询条件 -->
+				<div class="layui-inline">
+			      <label class="layui-form-label">借款编号</label>
+			      <div class="layui-input-inline">
+			        <input name="boOrderformId" lay-verify="boOrderformId" id="boOrderformId" autocomplete="off" class="layui-input" >
+			      </div>
+			    </div>
+			    <div class="layui-inline">
+			      <label class="layui-form-label" style="width: 100px;">借款人身份证号</label>
+			      <div class="layui-input-inline">
+			        <input name="certCode"  lay-verify="certCode" id="certCode" autocomplete="off" class="layui-input" >
+			      </div>
+			    </div>
+			    <div class="layui-inline">
+			      <label class="layui-form-label">借款时间</label>
+			      <div class="layui-input-inline">
+			      <input name="startTime"  lay-verify="startTime" id="startTime" autocomplete="off" class="layui-input"  style="width: 180px; display:inline;">
+			      &nbsp;至&nbsp;
+			      <input name="endTime"  lay-verify="endTime" id="endTime" autocomplete="off" class="layui-input"  style="width: 180px; display:inline;">
+			      </div>
+			    </div>
+			    
+				<a href="javascript:;" class="layui-btn layui-btn-small" id="search">
+					<i class="layui-icon">&#xe615;</i> 搜索
+				</a>
+				<br><br>
+				<div class="layui-inline">
+			      <label class="layui-form-label">App平台</label>
+			      <div class="layui-input-inline">
+				      <select name="appName" id = "appName" class="layui-input">
+				        <option value="">全部</option>
+				        <option value="1">洪澄</option>
+				        <option value="2">速贷</option>
+				      </select> 
+			      </div>
+			    </div>
+			    <div class="layui-inline">
+			      <label class="layui-form-label">产品天数</label>
+			      <div class="layui-input-inline">
+				      <select name="days" id = "days" class="layui-input">
+				        <option value="0">全部</option>
+				        <option value="1">洪澄（全部）</option>
+				        <option value="2">洪澄7天</option>
+				        <option value="3">洪澄14天</option>
+				        <option value="4">速贷（全部）</option>
+				        <option value="5">速贷7天</option>
+				        <option value="6">速贷14天</option>
+				        <option value="7">速贷21天</option>
+				      </select> 
+			      </div>
+			    </div>
+			    <div class="layui-inline">
+			      <label class="layui-form-label">产品金额</label>
+			      <div class="layui-input-inline">
+				      <select name="productQuota" id = "productQuota" class="layui-input">
+				        <option value="">全部</option>
+				        <option value="1">少于1000元</option>
+				        <option value="2">1000元-5000元</option>
+				      </select> 
+			      </div>
+			    </div>
+			    <div class="layui-inline" id="stateDiv">
+			      <label class="layui-form-label">还款状态</label>
+			      <div class="layui-input-inline">
+				      <select name="state" id = "state" class="layui-input">
+				        <option value="">全部</option>
+				        <option value="2">已还款</option>
+				        <option value="1">未还款</option>
+				      </select> 
+			      </div>
+			    </div>
+			    <div class="layui-inline" id="overdueMarkDiv">
+			      <label class="layui-form-label">逾期</label>
+			      <div class="layui-form-label">
+				      <input type="checkbox" id="overdueMark1" value="1" title="是"> 是&nbsp;&nbsp;&nbsp;
+      				  <input type="checkbox" id="overdueMark2" value="2" title="否"> 否
+			      </div>
+			    </div>
+
+			</blockquote>
+			
+			<fieldset class="layui-elem-field">
+				<legend id="title">所有订单查询</legend>
+				<br>
+				<div class="layui-field-box layui-form">
+					<table class="layui-table admin-table"  style="word-break: keep-all;overflow:auto;">
+						<thead>
+							<tr>
+								<th>APP平台</th>
+								<th>用户ID</th>
+								<th>应还款时间&nbsp;&nbsp;</th>
+								<th>实际还款时间</th>
+								<th>借款编号</th>
+								<th>手机号</th>
+								<th>身份证号</th>
+								<th>姓名</th>
+								<th>借款时间&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</th>
+								<th>借款金额（元）</th>
+								<th>借款期限（天）</th>
+								<th>信审查询费（元）</th>
+								<th>账户管理费（元）</th>
+								<th>借款利息（元）</th>
+								<th>红包抵扣（元）</th>
+								<th>续期（次）</th>
+								<th>续期费（元）</th>
+								<th>逾期（天）</th>
+								<th>逾期利息（元）</th>
+								<th>应还款（元）</th>
+								<th id="repayMoney">已还款 （元）</th>
+								<th id="inAdvance">是否提前还款</th>
+								<th id="repayType">还款方式</th>
+								<th>还款状态</th>
+								<th>操作</th>
+							</tr>
+						</thead>
+						<tbody id="content">
+						</tbody>
+					</table>
+				</div>
+			</fieldset>
+			<div class="admin-table-page">
+				<div id="paged" class="page">
+				</div>
+			</div>
+		</div>
+		
+		<!--模板-->
+		<script type="text/html" id="tpl">
+			{{# layui.each(d.list, function(index, item){ }}
+			<tr>
+				<td>{{ item.appName }}</td>
+				<td>{{ item.customerId }}</td>
+				<td>{{ item.newRepayDate }}</td>
+				<td>{{ item.actualRepayDate }}</td>
+				<td>{{ item.boOrderformId }}</td>
+				<td>{{ item.phoneNum }}</td>
+				<td>{{ item.certCode }}</td>
+				<td>{{ item.name }}</td>
+				<td>{{ item.orderTime }}</td>
+				<td>{{ item.productQuota }}</td>
+				<td>{{ item.days }}</td>
+				<td>{{ item.inquiryFee }}</td>
+				<td>{{ item.managementCost }}</td>
+				<td>{{ item.sumLoanInterest }}</td>
+				<td>{{ item.rpSumMoney }}</td>
+				<td>{{ item.renewalNum }}</td>
+				<td>{{ item.sumRenewalMoney }}</td>
+				<td>{{ item.delayDays }}</td>
+				<td>{{ item.sumDelayMoney }}</td>
+				<td>{{ item.needRepayMoney }}</td>
+				{{# if(flag != 1 && flag != 2){ }}
+				<td>{{ item.repayMoney }}</td>
+				{{# if(item.newRepayDate < item.actualRepayDate){ }}
+				<td>否</td>
+				{{# } else { }}
+				<td>是</td>
+				{{# } }}
+
+				{{# if(item.repayType == 1){ }}
+				<td>代扣</td>
+				{{# } else if(item.repayType == 2){ }}
+				<td>认证</td>
+				{{# } else { }}
+				<td></td>
+				{{# } }}
+				{{# } }}
+
+				{{# if(item.state == 1){ }}
+				<td>未还款</td>
+				{{# } else if(item.state == 2){ }}
+				<td>已还款</td>
+				{{# } else { }}
+				<td></td>
+				{{# } }}
+				<td>
+					<a href="../customerManager/customerInfo.html?id={{ item.platformId }}&applicationId={{ item.applicationId }}" style="text-decoration:underline;" >用户详情信息</a>
+				</td>
+			</tr>
+			{{# }); }}
+		</script>
+
+		
+		<!-- js -->
+		<script src="../../jqery/jquery.js"></script>
+		<script src="../../../commons/base.js"></script>
+		<script type="text/javascript" src="../../plugins/layui/layui.js"></script>
+		<script type="text/javascript" src="../../js/boOrderform/boOrderform.js"></script>
+	</body>
+</html>

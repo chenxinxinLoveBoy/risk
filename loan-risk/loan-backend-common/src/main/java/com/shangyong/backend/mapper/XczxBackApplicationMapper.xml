@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.shangyong.backend.dao.xczx.XczxApplicationDao">
+
+	<resultMap type="com.shangyong.backend.entity.xczx.XczxApplication" id="backapplicationMap">
+		<id property="applicationId" column="application_id" javaType="java.lang.String"></id>
+		<result property="customerId" column="customer_id" javaType="java.lang.String"></result>
+		<result property="realName" column="real_name" javaType="java.lang.String"></result>
+		<result property="idCard" column="id_card" javaType="java.lang.String"></result>
+		<result property="phoneNum" column="phone_num" javaType="java.lang.String"></result>
+		<result property="borrowType" column="borrow_type" javaType="java.lang.String"></result>
+		<result property="borrowState" column="borrow_state" javaType="java.lang.String"></result>
+		<result property="borrowAmount" column="borrow_amount" javaType="java.lang.String"></result>
+		<result property="contractDate" column="contract_date" javaType="java.lang.String"></result>
+		<result property="loanPeriod" column="loan_period" javaType="java.lang.String"></result>
+		<result property="repayState" column="repay_state" javaType="java.lang.String"></result>
+		<result property="arrearsAmount" column="arrears_amount" javaType="java.lang.String"></result>
+		<result property="companyCode" column="company_code" javaType="java.lang.String"></result>
+		<result property="createTime" column="create_time" javaType="java.lang.String"></result>
+	</resultMap>
+
+	<!-- 查询 -->
+	<select id="queryBackApplication" resultMap="backapplicationMap" parameterType="java.lang.String">
+		 SELECT
+		 	application_id,
+		 	customer_id,
+		 	real_name,
+		 	id_card,
+		 	phone_num,
+		 	borrow_type,
+			borrow_state,  	
+			borrow_amount,	
+			contract_date,	
+			repay_state, 
+			loan_period,
+			arrears_amount,	
+			company_code
+		 FROM xczx_back_application
+		 WHERE real_name = #{realName} and id_card = #{idCard}
+	</select>
+
+</mapper>

@@ -1,0 +1,169 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<link rel="stylesheet" href="../../plugins/layui/css/layui.css"
+	media="all" />
+<link rel="stylesheet" href="../../css/global.css" media="all">
+<link rel="stylesheet"
+	href="../../plugins/font-awesome/css/font-awesome.min.css">
+<link rel="stylesheet" href="../../css/table.css" />
+<!-- js -->
+
+<script src="../../jqery/jquery.js"></script>
+<script src="../../../commons/base.js"></script>
+<script type="text/javascript" src="../../plugins/layui/layui.js"></script>
+<script type="text/javascript" src="../../js/scLiftConfiguration/scLiftConfiguration_add.js"></script>
+ <script language="javascript" type="text/javascript" src="../../My97DatePicker/WdatePicker.js"></script>
+</head>
+
+<body>
+	<div style="margin: 30px;">
+	<form class="layui-form" id="userForms" >
+	<input type="hidden" id="version" value=" ">
+	<input type="hidden" id="operation" value="">
+		
+		<div class="layui-form-item">
+		  <label class="layui-form-label" style="width: 150px;">大类渠道名称 </label>
+	      <div class="layui-input-inline" id="tplContent" style="width:200px;">
+	      </div>
+	    </div>
+		
+		 <div class="layui-form-item" id="status_appLevel">
+			<label class="layui-form-label" style="width:150px">客户标识</label>
+			<div class="layui-input-inline" style="width:200px">
+			        <select name="appLevel" lay-filter="appLevel"  lay-search="" id="select_appLevel" lay-verify="appLevel" lay-search="">
+ 				          <option value="0">新客户</option>
+				          <option value="1">老客户</option>
+			        </select>
+			</div>
+ 		 </div>
+		
+		
+		 <div class="layui-form-item" id="status_creditMoney">
+			<label class="layui-form-label" style="width:150px">授信额度</label>
+			<div class="layui-input-inline" style="width:200px">
+			        <select name="creditMoney" lay-filter="creditMoney"  lay-search="" id="select_creditMoney" lay-verify="creditMoney" lay-search="">
+ 				          <option value="500.00">500.00</option>
+				          <option value="1000.00">1000.00</option>
+				          <option value="1500.00">1500.00</option>
+			        </select>
+			</div>
+ 		 </div>
+		
+		
+		 <div class="layui-form-item" id="status_isAccumulationFund">
+			<label class="layui-form-label" style="width:150px">是否有公积金</label>
+			<div class="layui-input-inline" style="width:200px">
+			        <select name="isAccumulationFund" lay-filter="isAccumulationFund"  lay-search="" id="select_isAccumulationFund" lay-verify="isAccumulationFund" lay-search="">
+ 				          <option value="0">否</option>
+				          <option value="1">是</option>
+			        </select>
+			</div>
+ 		 </div>
+ 		 
+ 		 
+ 		  <div class="layui-form-item" id="status_isSocialSecurity">
+			<label class="layui-form-label" style="width:150px">是否有社保</label>
+			<div class="layui-input-inline" style="width:200px">
+			        <select name="isSocialSecurity" lay-filter="isSocialSecurity"  lay-search="" id="select_isSocialSecurity" lay-verify="isSocialSecurity" lay-search="">
+ 				          <option value="0">否</option>
+				          <option value="1">是</option>
+			        </select>
+			</div>
+ 		 </div>
+		
+		
+		
+		 <div class="layui-form-item" id="status_repaymentTimes">
+			<label class="layui-form-label" style="width:150px">按时还款次数</label>
+			<div class="layui-input-inline" style="width:200px">
+			        <select name="repaymentTimes" lay-filter="repaymentTimes"  lay-search="" id="select_repaymentTimes" lay-verify="repaymentTimes" lay-search="">
+ 				          <option value="0">0</option>
+				          <option value="1">1</option>
+				          <option value="2">2</option>
+				          <option value="3">3</option>
+				          <option value="4">4</option>
+				          <option value="5">5</option>
+			        </select>
+			</div>
+ 		 </div>
+		
+		
+		
+<!-- 		 <div class="layui-form-item" id="status_todayTimes"> -->
+<!-- 			<label class="layui-form-label" style="width:150px">当天借当天还次数</label> -->
+<!-- 			<div class="layui-input-inline" style="width:200px"> -->
+<!-- 			        <select name="todayTimes" lay-filter="todayTimes"  lay-search="" id="select_todayTimes" lay-verify="todayTimes" > -->
+<!--  				          <option value="0">0</option> -->
+<!-- 				          <option value="1">1</option> -->
+<!-- 				          <option value="2">2</option> -->
+<!-- 				          <option value="3">3</option> -->
+<!-- 				          <option value="4">4</option> -->
+<!-- 				          <option value="5">5</option> -->
+<!-- 			        </select> -->
+<!-- 			</div> -->
+<!--  		 </div> -->
+		
+			<div class="layui-form-item">
+			<label class="layui-form-label" style="width:150px">当天借当天还次数(小于等于)</label>
+			<div class="layui-input-block"  >
+				<input id="todayTimes" type="text" name="todayTimes" placeholder="请输入正整数" style="width:200px;display:inline;"  onkeyup="this.value=this.value.replace(/\D/g,'')" class="layui-input">
+			</div>
+		</div>
+			    
+	 	<div class="layui-form-item">
+			<label class="layui-form-label" style="width:150px">提额百分比</label>
+			<div class="layui-input-block"  >
+				<input id="percentageOfLift" type="text" name="percentageOfLift" placeholder="请输入正整数" style="width:200px;display:inline;"  onkeyup="this.value=this.value.replace(/\D/g,'')" class="layui-input">%
+			</div>
+		</div>
+		<div class="layui-form-item">
+			<label class="layui-form-label"  style="width:150px">提额尾数</label>
+			<div class="layui-input-block">
+			<input id="scLiftConfigurationId" type="hidden" name="scLiftConfigurationId"  autocomplete="off" class="layui-input" >
+				<input id="version" type="hidden" name="version"  autocomplete="off" class="layui-input" >
+  				<input id="percentageOfLiftMantissa" type="text" name="percentageOfLiftMantissa" placeholder="提额尾数 " placeholder="请输入正整数" onkeyup="this.value=this.value.replace(/\D/g,'')"  style="width:200px"   autocomplete="off" class="layui-input"  >
+			</div>
+		</div>
+  
+  	<div class="layui-form-item">
+		    <label class="layui-form-label" style="width:150px">状态</label>
+		    <div class="layui-input-block" >
+		    	<input name="state" value="01" title="有效" type="radio"    lay-filter="radio_filter" id="state" />
+		    	<input name="state" value="02" title="失效" type="radio"    lay-filter="radio_filter" id="state2" />
+		    </div>
+		 </div> 
+		 
+		 <div class="layui-form-item">
+		    <label class="layui-form-label" style="width:150px">是否匹配证件号码</label>
+		    <div class="layui-input-block" >
+		    	<input name="mateCertCode" value="0" title="否" type="radio"    lay-filter="radio_filter1" id="mateCertCode" />
+		    	<input name="mateCertCode" value="1" title="是" type="radio"    lay-filter="radio_filter1" id="mateCertCode2" />
+		    </div>
+		 </div>
+		 
+		 <div class="layui-form-item">
+		    <label class="layui-form-label" style="width:150px">是否匹配手机号</label>
+		    <div class="layui-input-block" >
+		    	<input name="matePhone" value="0" title="否" type="radio"    lay-filter="radio_filter2" id="matePhone" />
+		    	<input name="matePhone" value="1" title="是" type="radio"    lay-filter="radio_filter2" id="matePhone2" />
+		    </div>
+		 </div>
+		 
+		 <div class="layui-form-item">
+		    <label class="layui-form-label" style="width:150px">是否匹配姓名</label>
+		    <div class="layui-input-block" >
+		    	<input name="mateName" value="0" title="否" type="radio"    lay-filter="radio_filter3" id="mateName" />
+		    	<input name="mateName" value="1" title="是" type="radio"    lay-filter="radio_filter3" id="mateName2" />
+		    </div>
+		 </div>
+  
+		<div class="layui-form-item"  style="margin-left: 15%">
+		<button lay-submit lay-filter="save"  class="layui-btn" id="save_bt" >保存</button> 
+		<button class="layui-btn layui-btn-normal" id="closeIframe" onclick="closeIfrname()" >取消</button>
+		</div> 
+</form> 
+</div>
+</body>
+</html>

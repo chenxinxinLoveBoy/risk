@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.shangyong.backend.dao.mq.MqQueueInfoDao">
+
+	<resultMap type="com.shangyong.backend.entity.mq.MqQueueInfo" id="mqQueueInfoMap">
+		<id property="id" column="id" javaType="java.lang.Integer"></id>
+		<result property="businessCode" column="business_code" javaType="java.lang.String"></result>
+		<result property="creditCode" column="credit_code" javaType="java.lang.String"></result>
+		<result property="appCode" column="app_code" javaType="java.lang.String"></result>
+		<result property="parentQueue" column="parent_queue" javaType="java.lang.Integer"></result>
+		<result property="queue" column="queue" javaType="java.lang.String"></result>
+		<result property="exchanges" column="exchanges" javaType="java.lang.String"></result>
+		<result property="routingKey" column="routing_key" javaType="java.lang.String"></result>
+		<result property="queueLeader" column="queue_leader" javaType="java.lang.String"></result>
+		<result property="alarmThreshold" column="alarm_threshold" javaType="java.lang.Integer"></result>
+		<result property="timeOut" column="time_out" javaType="java.lang.Integer"></result>
+		<result property="cache" column="cache" javaType="java.lang.Integer"></result>
+		<result property="maxLength" column="max_length" javaType="java.lang.Integer"></result>
+		<result property="type" column="type" javaType="java.lang.Integer"></result>
+		<result property="status" column="status" javaType="java.lang.Integer"></result>
+		<result property="remarks" column="remarks" javaType="java.lang.String"></result>
+		<result property="modifyTime" column="modify_time" javaType="java.lang.String"></result>
+		<result property="createTime" column="create_time" javaType="java.lang.String"></result>
+		<result property="bind" column="bind" javaType="java.lang.Integer"></result>
+		<result property="featuresCode" column="features_code" javaType="java.lang.String"></result>
+		<result property="sleepTime" column="sleep_time" javaType="java.lang.Integer"></result>
+	</resultMap>
+
+	<!-- 通用查询结果列-->
+	<sql id="Base_Column_List">
+id,	business_code,	credit_code,	app_code,	parent_queue,	queue,	exchanges,	routing_key,	queue_leader,	alarm_threshold,	time_out,	cache,	max_length,	type,	status,	remarks,	modify_time,	create_time,	bind,	features_code,	sleep_time
+	</sql>
+
+	<!-- 查询（根据主键ID查询） -->
+	<select id="getEntityById" resultMap="mqQueueInfoMap" parameterType="java.lang.Integer">
+		 SELECT
+		 <include refid="Base_Column_List" />
+		 FROM mq_queue_info
+		 WHERE id = #{id}
+	</select>
+
+	<!-- 查询（根据主键ID查询） -->
+	<select id="findAll" resultMap="mqQueueInfoMap" parameterType="java.lang.Integer">
+		 SELECT
+		 <include refid="Base_Column_List" />
+		 FROM mq_queue_info
+		 WHERE id = #{id}
+	</select>
+	<!-- 查询所有 -->
+    <select id="listAllCount" resultType="java.lang.Integer" parameterType="com.shangyong.backend.entity.mq.MqQueueInfo">
+        SELECT  
+        count(distinct(exchanges))  
+        FROM 
+        mq_queue_info 
+        WHERE 
+        status = 1
+    </select>
+    <!-- 查询信息分页 -->
+    <select id="findAllMq" resultMap="mqQueueInfoMap" parameterType="com.shangyong.backend.entity.mq.MqQueueInfo">
+         SELECT
+         <include refid="Base_Column_List" />
+         FROM mq_queue_info
+         WHERE
+         status = 1
+         GROUP BY exchanges 
+        LIMIT #{pageIndex},#{pageSize} 
+    </select>
+
+	<!--删除：根据主键ID删除-->
+	<delete id="deleteEntity" parameterType="java.lang.Integer">
+		 DELETE FROM mq_queue_info
+		 WHERE id = #{id}
+	</delete>
+
+	<!-- 添加 -->
+	<insert id="saveEntity" parameterType="com.shangyong.backend.entity.mq.MqQueueInfo">
+		 INSERT INTO mq_queue_info
+ 		(id,business_code,credit_code,app_code,parent_queue,queue,exchanges,routing_key,queue_leader,alarm_threshold,time_out,cache,max_length,type,status,remarks,modify_time,create_time,bind,features_code,sleep_time) 
+		 VALUES 
+ 		(#{id},#{businessCode},#{creditCode},#{appCode},#{parentQueue},#{queue},#{exchanges},#{routingKey},#{queueLeader},#{alarmThreshold},#{timeOut},#{cache},#{maxLength},#{type},#{status},#{remarks},#{modifyTime},#{createTime},#{bind},#{featuresCode},#{sleepTime}) 
+	</insert>
+
+	<!-- 修 改-->
+	<update id="updateEntity" parameterType="com.shangyong.backend.entity.mq.MqQueueInfo">
+		 UPDATE mq_queue_info
+ 		 <set> 
+			<if test="businessCode != null">
+				 business_code = #{businessCode},
+			</if>
+			<if test="creditCode != null">
+				 credit_code = #{creditCode},
+			</if>
+			<if test="appCode != null">
+				 app_code = #{appCode},
+			</if>
+			<if test="parentQueue != null">
+				 parent_queue = #{parentQueue},
+			</if>
+			<if test="queue != null">
+				 queue = #{queue},
+			</if>
+			<if test="exchanges != null">
+				 exchanges = #{exchanges},
+			</if>
+			<if test="routingKey != null">
+				 routing_key = #{routingKey},
+			</if>
+			<if test="queueLeader != null">
+				 queue_leader = #{queueLeader},
+			</if>
+			<if test="alarmThreshold != null">
+				 alarm_threshold = #{alarmThreshold},
+			</if>
+			<if test="timeOut != null">
+				 time_out = #{timeOut},
+			</if>
+			<if test="cache != null">
+				 cache = #{cache},
+			</if>
+			<if test="maxLength != null">
+				 max_length = #{maxLength},
+			</if>
+			<if test="type != null">
+				 type = #{type},
+			</if>
+			<if test="status != null">
+				 status = #{status},
+			</if>
+			<if test="remarks != null">
+				 remarks = #{remarks},
+			</if>
+			<if test="modifyTime != null">
+				 modify_time = #{modifyTime},
+			</if>
+			<if test="createTime != null">
+				 create_time = #{createTime},
+			</if>
+			<if test="bind != null">
+				 bind = #{bind},
+			</if>
+			<if test="featuresCode != null">
+				 features_code = #{featuresCode},
+			</if>
+			<if test="sleepTime != null">
+				 sleep_time = #{sleepTime},
+			</if>
+
+ 		 </set>
+		 WHERE id = #{id}
+	</update>
+
+</mapper>

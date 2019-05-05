@@ -1,0 +1,78 @@
+﻿
+<!DOCTYPE html>
+<html>
+	<head>
+		<base target="_Self">
+		<meta charset="UTF-8">
+		<title>用户手机通讯录记录</title>
+		<link rel="stylesheet" href="../../plugins/layui/css/layui.css" media="all" />
+		<link rel="stylesheet" href="../../css/global.css" media="all">
+		<link rel="stylesheet" href="../../plugins/font-awesome/css/font-awesome.min.css">
+		<link rel="stylesheet" href="../../css/table.css" />
+		<script type="text/javascript" src="../../plugins/layui/layui.js"></script>
+		<script src="../../jqery/jquery.js"></script>
+		<script src="../../../commons/base.js"></script>
+		<script type="text/javascript" src="../../js/customerManager/phoneAddress.js"></script>
+		<style type="text/css">
+		.layui-input-inline {
+			width: 150px;
+		}
+		</style>
+	</head>
+<body>
+	<fieldset class="layui-elem-field">
+		<div class="layui-field-box layui-form">
+			<div class="layui-tab layui-tab-card">
+			  <ul class="layui-tab-title">
+			    <li class="layui-this">正常联系人（<label id="phoneSize"></label>）</li>
+			    <li>异类联系人（<label id="errorPhoneSize"></label>）</li>
+			    <li>异常联系人（<label id="exceptionPhoneSize"></label>）</li>
+			  </ul>
+			  <div class="layui-tab-content";">
+			   <div class="layui-tab-item layui-show">
+			    <table class="layui-table admin-table" id="txl">
+						<thead>
+							<legend style="text-align: center" >正常联系人号码</legend>
+							<tr>
+								<th>联系人姓名</th>
+								<th>联系人号码</th>
+							</tr>
+							</thead>
+							<tbody id="neContent">
+						</tbody>
+				</table>
+			    </div>
+			    <div class="layui-tab-item">
+			    	<table class="layui-table admin-table" id="txl">
+						<thead>
+							<legend style="margin-left: 40%">异类联系人号码</legend>
+							<tr>
+						<th>联系人姓名</th>
+						<th>联系人号码</th>
+						<th>异类类型</th>
+					</tr>
+					</thead>
+				<tbody id="exContent"/>
+			</table>
+			    </div>
+			    <div class="layui-tab-item">
+			    	<table class="layui-table admin-table" id="txl">
+					<thead>
+						<legend style="margin-left: 40%">异常联系人号码</legend>
+						<tr>
+							<th>联系人姓名</th>
+							<th>联系人号码</th>
+							<th>异常类型</th>
+						</tr>
+					</thead>
+				<tbody id="erContent" />
+			</table>
+			    
+			    </div>
+			  		</div>
+				</div>
+			</div>
+		</div>
+	</fieldset>
+</body>
+</html>

@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.shangyong.backend.dao.td.TdPlatformDetailServiceDao">
+
+	<resultMap type="com.shangyong.backend.entity.td.TdPlatformDetail" id="tdPlatformDetailinfoMap">
+		<id property="tdPlatformDetailId" column="td_platform_detail_id" javaType="java.lang.String"></id>
+		<result property="tdPlatformId" column="td_platform_id" javaType="java.lang.String"></result>
+		<result property="tdPlatformDimensionId" column="td_platform_dimension_id" javaType="java.lang.String"></result>
+		<result property="count" column="count" javaType="java.lang.String"></result>
+		<result property="industryDisplayName" column="industry_display_name" javaType="java.lang.String"></result>
+	</resultMap>
+
+	<!-- 通用查询结果列-->
+	<sql id="Base_Column_List">
+	td_platform_detail_id,	td_platform_id,	td_platform_dimension_id,	count,	industry_display_name
+	</sql>
+
+	<!-- 查询（根据主键ID查询） -->
+	<select id="getEntityById" resultMap="tdPlatformDetailinfoMap" parameterType="java.lang.String">
+		 SELECT
+		 <include refid="Base_Column_List" />
+		 FROM td_platform_detail
+		 WHERE td_platform_detail_id = #{tdPlatformDetailId}
+	</select>
+	
+	<!-- 查询（根据主键tdPlatformId查询） -->
+	<select id="queryByFormId" resultMap="tdPlatformDetailinfoMap" parameterType="java.lang.String">
+		 SELECT
+		 <include refid="Base_Column_List" />
+		 FROM td_platform_detail
+		 WHERE td_platform_id = #{tdPlatformId}
+	</select>
+	
+	<!-- 查询（根据主键tdPlatformId查询） -->
+	<select id="queryByAid" resultType="java.lang.String" parameterType="java.lang.String">
+		SELECT
+			`count`
+			FROM
+				
+				td_platform_detail b,
+				td_platform a,
+				td_risk_items c,
+				td_anti_fraud d
+			WHERE
+			
+			 a.td_platform_id = b.td_platform_id
+			AND a.td_risk_items_id = c.td_risk_items_id
+			AND c.td_anti_fraud_id = d.td_anti_fraud_id
+			AND b.industry_display_name = 'P2P网贷'
+			AND a.description = '7天内申请人在多个平台申请借款'
+			AND application_id = #{applicationId}
+	</select>
+	
+	<!-- 查询（根据主键tdPlatformId查询） -->
+	<select id="queryByFormDimensionId" resultMap="tdPlatformDetailinfoMap" parameterType="java.lang.String">
+		 SELECT
+		 <include refid="Base_Column_List" />
+		 FROM td_platform_detail
+		 WHERE td_platform_dimension_id = #{tdPlatformDimensionId}
+	</select>
+
+	<!-- 查询（根据主键ID查询） -->
+	<select id="getAll" resultMap="tdPlatformDetailinfoMap" parameterType="java.lang.String">
+		 SELECT
+		 <include refid="Base_Column_List" />
+		 FROM td_platform_detail
+	</select>
+
+	<!--删除：根据主键ID删除-->
+	<delete id="deleteEntity" parameterType="java.lang.String">
+		 DELETE FROM td_platform_detail
+		 WHERE td_platform_detail_id = #{tdPlatformDetailId}
+	</delete>
+
+	<!-- 添加 -->
+	<insert id="saveEntity" parameterType="com.shangyong.backend.entity.td.TdPlatformDetail">
+		 INSERT INTO td_platform_detail
+ 		(td_platform_detail_id,td_platform_id,td_platform_dimension_id,count,industry_display_name) 
+		 VALUES 
+ 		(#{tdPlatformDetailId},#{tdPlatformId},#{tdPlatformDimensionId},#{count},#{industryDisplayName}) 
+	</insert>
+
+	<!-- 修 改-->
+	<update id="updateEntity" parameterType="com.shangyong.backend.entity.td.TdPlatformDetail">
+		 UPDATE td_platform_detail
+ 		 <set> 
+			<if test="tdPlatformId != null">
+				 td_platform_id = #{tdPlatformId},
+			</if>
+			<if test="tdPlatformDimensionId != null">
+				 td_platform_dimension_id = #{tdPlatformDimensionId},
+			</if>
+			<if test="count != null">
+				 count = #{count},
+			</if>
+			<if test="industryDisplayName != null">
+				 industry_display_name = #{industryDisplayName},
+			</if>
+
+ 		 </set>
+		 WHERE td_platform_detail_id = #{tdPlatformDetailId}
+	</update>
+
+</mapper>

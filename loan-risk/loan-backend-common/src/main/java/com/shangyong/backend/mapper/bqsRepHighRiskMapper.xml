@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.shangyong.backend.dao.bqsrep.BqsRepHighRiskServiceDao">
+
+	<resultMap type="com.shangyong.backend.entity.bqsrep.BqsRepHighRisk" id="bqsRepHighRiskinfoMap">
+		<id property="bqsHighRiskId" column="bqs_high_risk_id" javaType="java.lang.String"></id>
+		<result property="bqsPetitionerId" column="bqs_petitioner_id" javaType="java.lang.String"></result>
+		<result property="riskGrade" column="risk_grade" javaType="java.lang.String"></result>
+		<result property="riskIdType" column="risk_id_type" javaType="java.lang.String"></result>
+		<result property="firstType" column="first_type" javaType="java.lang.String"></result>
+		<result property="secondType" column="second_type" javaType="java.lang.String"></result>
+	</resultMap>
+
+	<!-- 通用查询结果列-->
+	<sql id="Base_Column_List">
+	bqs_high_risk_id,	bqs_petitioner_id,	risk_grade,	risk_id_type,	first_type,	second_type
+	</sql>
+
+	<!-- 查询（根据主键ID查询） -->
+	<select id="getEntityById" resultMap="bqsRepHighRiskinfoMap" parameterType="java.lang.String">
+		 SELECT
+		 <include refid="Base_Column_List" />
+		 FROM bqs_rep_high_risk
+		 WHERE bqs_high_risk_id = #{bqsHighRiskId}
+	</select>
+	
+	<!-- 查询（根据主键bqsPetitionerId查询） -->
+	<select id="queryListById" resultMap="bqsRepHighRiskinfoMap" parameterType="java.lang.String">
+		 SELECT
+		 <include refid="Base_Column_List" />
+		 FROM bqs_rep_high_risk
+		 WHERE bqs_petitioner_id = #{bqsPetitionerId}
+	</select>
+
+	<!-- 查询（根据主键ID查询） -->
+	<select id="getAll" resultMap="bqsRepHighRiskinfoMap" parameterType="java.lang.String">
+		 SELECT
+		 <include refid="Base_Column_List" />
+		 FROM bqs_rep_high_risk
+	</select>
+
+	<!--删除：根据主键ID删除-->
+	<delete id="deleteEntity" parameterType="java.lang.String">
+		 DELETE FROM bqs_rep_high_risk
+		 WHERE bqs_high_risk_id = #{bqsHighRiskId}
+	</delete>
+
+	<!-- 添加 -->
+	<insert id="saveEntity" parameterType="com.shangyong.backend.entity.bqsrep.BqsRepHighRisk">
+		 INSERT INTO bqs_rep_high_risk
+ 		(bqs_high_risk_id,bqs_petitioner_id,risk_grade,risk_id_type,first_type,second_type) 
+		 VALUES 
+ 		(#{bqsHighRiskId},#{bqsPetitionerId},#{riskGrade},#{riskIdType},#{firstType},#{secondType}) 
+	</insert>
+
+	<!-- 修 改-->
+	<update id="updateEntity" parameterType="com.shangyong.backend.entity.bqsrep.BqsRepHighRisk">
+		 UPDATE bqs_rep_high_risk
+ 		 <set> 
+			<if test="bqsPetitionerId != null">
+				 bqs_petitioner_id = #{bqsPetitionerId},
+			</if>
+			<if test="riskGrade != null">
+				 risk_grade = #{riskGrade},
+			</if>
+			<if test="riskIdType != null">
+				 risk_id_type = #{riskIdType},
+			</if>
+			<if test="firstType != null">
+				 first_type = #{firstType},
+			</if>
+			<if test="secondType != null">
+				 second_type = #{secondType},
+			</if>
+
+ 		 </set>
+		 WHERE bqs_high_risk_id = #{bqsHighRiskId}
+	</update>
+
+</mapper>

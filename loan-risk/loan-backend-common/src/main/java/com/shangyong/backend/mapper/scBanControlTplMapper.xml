@@ -1,0 +1,207 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.shangyong.backend.dao.ScBanControlTplDao">
+
+	<resultMap type="com.shangyong.backend.entity.ScBanControlTpl" id="scBanControlTplMap">
+		<id property="banControlTplId" column="ban_control_tpl_id" javaType="java.lang.Integer"></id>
+		<result property="banTplCode" column="ban_tpl_code" javaType="java.lang.String"></result>
+		<result property="banTplName" column="ban_tpl_name" javaType="java.lang.String"></result>
+		<result property="startTime" column="start_time" javaType="java.lang.String"></result>
+		<result property="endTime" column="end_time" javaType="java.lang.String"></result>
+		<result property="tplPercent" column="tpl_percent" javaType="java.lang.String"></result>
+		<result property="executeType" column="execute_type" javaType="java.lang.Integer"></result>
+		<result property="level" column="level" javaType="java.lang.Integer"></result>
+		<result property="operation" column="operation" javaType="java.lang.String"></result>
+		<result property="state" column="state" javaType="java.lang.String"></result>
+		<result property="version" column="version" javaType="java.lang.Integer"></result>
+		<result property="createTime" column="create_time" javaType="java.lang.String"></result>
+		<result property="createMan" column="create_man" javaType="java.lang.String"></result>
+		<result property="createName" column="create_name" javaType="java.lang.String"></result>
+		<result property="modifyTime" column="modify_time" javaType="java.lang.String"></result>
+		<result property="modifyMan" column="modify_man" javaType="java.lang.String"></result>
+		<result property="modifyName" column="modify_name" javaType="java.lang.String"></result>
+		<result property="remark" column="remark" javaType="java.lang.String"></result>
+	</resultMap>
+
+	<!-- 通用查询结果列-->
+	<sql id="Base_Column_List">
+	ban_control_tpl_id,	ban_tpl_code,	ban_tpl_name,	start_time,	end_time,	tpl_percent,	execute_type,	level,	operation,	state,	version,	create_time,	create_man,	create_name,	modify_time,	modify_man,	modify_name,	remark
+	</sql>
+	<!-- 查询（根据主键ID查询） -->
+	<select id="getEntityById" resultMap="scBanControlTplMap" parameterType="com.shangyong.backend.entity.ScBanControlTpl">
+		 SELECT
+		 <include refid="Base_Column_List" />
+		 FROM sc_ban_control_tpl
+		 WHERE ban_control_tpl_id = #{banControlTplId}
+	</select>
+ 
+	<!-- 查询信息分页 -->
+	<select id="findAll" resultMap="scBanControlTplMap" parameterType="com.shangyong.backend.entity.ScBanControlTpl">
+		 SELECT
+		 <include refid="Base_Column_List" />
+		 FROM sc_ban_control_tpl
+		 <where>
+		 	<if test="banTplCode != null and banTplCode != ''">
+				 ban_tpl_code = #{banTplCode}
+			</if>
+			<if test="banTplName != null and banTplName != ''">
+				and  instr(ban_tpl_name, #{banTplName}) > 0 
+			</if>
+			<if test="state != null and state !=''">
+				and state = #{state}
+			</if> 
+			<if test="level != null and level !=''">
+				and level = #{level}
+			</if> 
+		 </where>
+		 ORDER BY ban_control_tpl_id ASC
+		LIMIT #{pageIndex},#{pageSize} 
+	</select>
+	
+	<!-- 查询所有 -->
+	<select id="listAllCount" resultType="java.lang.Integer" parameterType="com.shangyong.backend.entity.ScBanControlTpl">
+		 SELECT
+			COUNT(1)
+		 FROM sc_ban_control_tpl
+		 <where>
+		 	<if test="banTplCode != null and banTplCode != ''">
+				 ban_tpl_code = #{banTplCode}
+			</if>
+			<if test="banTplName != null and banTplName != ''">
+				and  instr(ban_tpl_name, #{banTplName}) > 0 
+			</if>
+			<if test="state != null and state !=''">
+				and  state = #{state}
+			</if> 
+			<if test="level != null and level !=''">
+				and level = #{level}
+			</if> 
+			<if test="banControlTplId != null and banControlTplId !=''">
+				and ban_control_tpl_id = #{banControlTplId}
+			</if> 
+		 </where> 
+	</select>
+
+	<!--删除：根据主键ID删除-->
+	<delete id="deleteEntity" parameterType="java.lang.Integer">
+		 DELETE FROM sc_ban_control_tpl
+		 WHERE ban_control_tpl_id = #{banControlTplId}
+	</delete>
+
+	<!-- 添加 -->
+	<insert id="saveEntity" parameterType="com.shangyong.backend.entity.ScBanControlTpl" useGeneratedKeys="true" keyProperty="banControlTplId" >
+		INSERT INTO sc_ban_control_tpl
+ 		( ban_tpl_code,ban_tpl_name,start_time,end_time,tpl_percent,execute_type,level,operation,state,version,create_time,create_man,create_name,modify_time,modify_man,modify_name,remark) 
+		 VALUES 
+ 		( #{banTplCode},#{banTplName},#{startTime},#{endTime},#{tplPercent},#{executeType},#{level},#{operation},#{state},#{version},#{createTime},#{createMan},#{createName},#{modifyTime},#{modifyMan},#{modifyName},#{remark}) 
+	</insert>
+
+	<!-- 修 改-->
+	<update id="updateEntity" parameterType="com.shangyong.backend.entity.ScBanControlTpl">
+		 UPDATE sc_ban_control_tpl
+ 		 <set> 
+ 		 		version = #{version}+1,
+			<if test="banTplCode != null">
+				 ban_tpl_code = #{banTplCode},
+			</if>
+			<if test="banTplName != null">
+				 ban_tpl_name = #{banTplName},
+			</if>
+			<if test="startTime != null">
+				 start_time = #{startTime},
+			</if>
+			<if test="endTime != null">
+				 end_time = #{endTime},
+			</if>
+			<if test="tplPercent != null">
+				 tpl_percent = #{tplPercent},
+			</if>
+			<if test="executeType != null">
+				 execute_type = #{executeType},
+			</if>
+			<if test="level != null">
+				 level = #{level},
+			</if>
+			<if test="operation != null">
+				 operation = #{operation},
+			</if>
+			<if test="state != null">
+				 state = #{state},
+			</if>
+			<if test="createTime != null">
+				 create_time = #{createTime},
+			</if>
+			<if test="createMan != null">
+				 create_man = #{createMan},
+			</if>
+			<if test="createName != null">
+				 create_name = #{createName},
+			</if>
+			<if test="modifyTime != null">
+				 modify_time = #{modifyTime},
+			</if>
+			<if test="modifyMan != null">
+				 modify_man = #{modifyMan},
+			</if>
+			<if test="modifyName != null">
+				 modify_name = #{modifyName},
+			</if>
+			<if test="remark != null">
+				 remark = #{remark},
+			</if>
+
+ 		 </set>
+		 WHERE ban_control_tpl_id = #{banControlTplId}
+		 		and version = #{version}
+	</update>
+	
+	<!-- 查询（ban_tpl_code） -->
+	<select id="findCode" resultMap="scBanControlTplMap" parameterType="com.shangyong.backend.entity.ScBanControlTpl">
+		 SELECT
+		 <include refid="Base_Column_List" />
+		 FROM sc_ban_control_tpl
+		 <where>
+	 		<if test="banTplCode != null and banTplCode != '' ">
+			ban_tpl_code = #{banTplCode}
+			</if> 	 
+		 </where> 
+	</select>
+	
+	<!-- 当前生效模板 -->
+	<select id="getValidTmpl" resultMap="scBanControlTplMap" parameterType="java.util.Map">
+		select 
+			<include refid="Base_Column_List"></include>
+		from (
+			select 
+			<include refid="Base_Column_List"></include>
+			from sc_ban_control_tpl 
+		 	where execute_type = 1 
+		  	<![CDATA[ 
+				and DATE_FORMAT(start_time,'%H:%i:%s') <= DATE_FORMAT(now(),'%H:%i:%s')
+				and DATE_FORMAT(now(),'%H:%i:%s') < DATE_FORMAT(end_time,'%H:%i:%s')
+			]]>
+				and state = '01'
+				and ban_control_tpl_id != #{default_ban_template_id}
+<!-- 		UNION ALL -->
+<!-- 		select  -->
+<!-- 		<include refid="Base_Column_List"></include>  -->
+<!-- 		from sc_ban_control_tpl -->
+<!-- 		  where execute_type = 2 -->
+<!-- 				and start_time &lt;= now() -->
+<!-- 				and now() &lt; end_time -->
+<!-- 				and state = '01' -->
+<!-- 				and ban_control_tpl_id != #{default_ban_template_id} -->
+		) t order by level
+	</select>
+	
+	<select id="queryNormalPercent" resultType="java.lang.Double" >
+		select round(IFNULL(sum(tpl_percent), 0),2) from sc_ban_control_tpl
+		<where>
+			ban_control_tpl_id !=  #{defaultBanTemplateId} and state = '01'
+			<if test="id != null and id != '' ">
+				and ban_control_tpl_id != #{id}
+			</if> 	 
+		</where>
+	</select>
+</mapper>

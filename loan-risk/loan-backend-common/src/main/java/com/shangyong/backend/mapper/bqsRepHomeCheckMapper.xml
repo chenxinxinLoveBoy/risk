@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.shangyong.backend.dao.bqsrep.BqsRepHomeCheckServiceDao">
+
+	<resultMap type="com.shangyong.backend.entity.bqsrep.BqsRepHomeCheck" id="bqsRepHomeCheckinfoMap">
+		<id property="bqsHomeCheckId" column="bqs_home_check_id" javaType="java.lang.String"></id>
+		<result property="bqsPetitionerId" column="bqs_petitioner_id" javaType="java.lang.String"></result>
+		<result property="mobile" column="mobile" javaType="java.lang.String"></result>
+		<result property="belongTo" column="belongTo" javaType="java.lang.String"></result>
+		<result property="latestConnectTime" column="latestConnectTime" javaType="java.lang.String"></result>
+		<result property="firstConnectTime" column="firstConnectTime" javaType="java.lang.String"></result>
+		<result property="threeDaysConnectOrder" column="threeDaysConnectOrder" javaType="java.lang.String"></result>
+		<result property="threeDaysConnectCount" column="threeDaysConnectCount" javaType="java.lang.String"></result>
+		<result property="threeDaysConnectDuration" column="threeDaysConnectDuration" javaType="java.lang.String"></result>
+		<result property="sevenDaysConnectOrder" column="sevenDaysConnectOrder" javaType="java.lang.String"></result>
+		<result property="sevenDaysConnectCount" column="sevenDaysConnectCount" javaType="java.lang.String"></result>
+		<result property="sevenDaysConnectDuration" column="sevenDaysConnectDuration" javaType="java.lang.String"></result>
+		<result property="thirtyDaysConnectOrder" column="thirtyDaysConnectOrder" javaType="java.lang.String"></result>
+		<result property="thirtyDaysConnectCount" column="thirtyDaysConnectCount" javaType="java.lang.String"></result>
+		<result property="thirtyDaysConnectDuration" column="thirtyDaysConnectDuration" javaType="java.lang.String"></result>
+		<result property="connectOrder" column="connectOrder" javaType="java.lang.String"></result>
+		<result property="connectCount" column="connectCount" javaType="java.lang.String"></result>
+		<result property="connectDuration" column="connectDuration" javaType="java.lang.String"></result>
+		<result property="callInCount" column="callInCount" javaType="java.lang.String"></result>
+		<result property="callInTime" column="callInTime" javaType="java.lang.String"></result>
+		<result property="callOutCount" column="callOutCount" javaType="java.lang.String"></result>
+		<result property="callOutTime" column="callOutTime" javaType="java.lang.String"></result>
+		<result property="smsCount" column="smsCount" javaType="java.lang.String"></result>
+	</resultMap>
+
+	<!-- 通用查询结果列-->
+	<sql id="Base_Column_List">
+	bqs_home_check_id,	bqs_petitioner_id,	mobile,	belongTo,	latestConnectTime,	firstConnectTime,	threeDaysConnectOrder,	threeDaysConnectCount,	threeDaysConnectDuration,	sevenDaysConnectOrder,	sevenDaysConnectCount,	sevenDaysConnectDuration,	thirtyDaysConnectOrder,	thirtyDaysConnectCount,	thirtyDaysConnectDuration,	connectOrder,	connectCount,	connectDuration,	callInCount,	callInTime,	callOutCount,	callOutTime,	smsCount
+	</sql>
+
+	<!-- 查询（根据主键ID查询） -->
+	<select id="getEntityById" resultMap="bqsRepHomeCheckinfoMap" parameterType="java.lang.String">
+		 SELECT
+		 <include refid="Base_Column_List" />
+		 FROM bqs_rep_home_check
+		 WHERE bqs_home_check_id = #{bqsHomeCheckId}
+	</select>
+	
+	<!-- 查询（根据主键bqsPetitionerId查询） -->
+	<select id="queryListById" resultMap="bqsRepHomeCheckinfoMap" parameterType="java.lang.String">
+		 SELECT
+		 <include refid="Base_Column_List" />
+		FROM bqs_rep_home_check
+		 WHERE bqs_petitioner_id = #{bqsPetitionerId}
+	</select>
+
+	<!-- 查询（根据主键ID查询） -->
+	<select id="getAll" resultMap="bqsRepHomeCheckinfoMap" parameterType="java.lang.String">
+		 SELECT
+		 <include refid="Base_Column_List" />
+		 FROM bqs_rep_home_check
+	</select>
+
+	<!--删除：根据主键ID删除-->
+	<delete id="deleteEntity" parameterType="java.lang.String">
+		 DELETE FROM bqs_rep_home_check
+		 WHERE bqs_home_check_id = #{bqsHomeCheckId}
+	</delete>
+
+	<!-- 添加 -->
+	<insert id="saveEntity" parameterType="com.shangyong.backend.entity.bqsrep.BqsRepHomeCheck">
+		 INSERT INTO bqs_rep_home_check
+ 		(bqs_home_check_id,bqs_petitioner_id,mobile,belongTo,latestConnectTime,firstConnectTime,threeDaysConnectOrder,threeDaysConnectCount,threeDaysConnectDuration,sevenDaysConnectOrder,sevenDaysConnectCount,sevenDaysConnectDuration,thirtyDaysConnectOrder,thirtyDaysConnectCount,thirtyDaysConnectDuration,connectOrder,connectCount,connectDuration,callInCount,callInTime,callOutCount,callOutTime,smsCount) 
+		 VALUES 
+ 		(#{bqsHomeCheckId},#{bqsPetitionerId},#{mobile},#{belongTo},#{latestConnectTime},#{firstConnectTime},#{threeDaysConnectOrder},#{threeDaysConnectCount},#{threeDaysConnectDuration},#{sevenDaysConnectOrder},#{sevenDaysConnectCount},#{sevenDaysConnectDuration},#{thirtyDaysConnectOrder},#{thirtyDaysConnectCount},#{thirtyDaysConnectDuration},#{connectOrder},#{connectCount},#{connectDuration},#{callInCount},#{callInTime},#{callOutCount},#{callOutTime},#{smsCount}) 
+	</insert>
+
+	<!-- 修 改-->
+	<update id="updateEntity" parameterType="com.shangyong.backend.entity.bqsrep.BqsRepHomeCheck">
+		 UPDATE bqs_rep_home_check
+ 		 <set> 
+			<if test="bqsPetitionerId != null">
+				 bqs_petitioner_id = #{bqsPetitionerId},
+			</if>
+			<if test="mobile != null">
+				 mobile = #{mobile},
+			</if>
+			<if test="belongTo != null">
+				 belongTo = #{belongTo},
+			</if>
+			<if test="latestConnectTime != null">
+				 latestConnectTime = #{latestConnectTime},
+			</if>
+			<if test="firstConnectTime != null">
+				 firstConnectTime = #{firstConnectTime},
+			</if>
+			<if test="threeDaysConnectOrder != null">
+				 threeDaysConnectOrder = #{threeDaysConnectOrder},
+			</if>
+			<if test="threeDaysConnectCount != null">
+				 threeDaysConnectCount = #{threeDaysConnectCount},
+			</if>
+			<if test="threeDaysConnectDuration != null">
+				 threeDaysConnectDuration = #{threeDaysConnectDuration},
+			</if>
+			<if test="sevenDaysConnectOrder != null">
+				 sevenDaysConnectOrder = #{sevenDaysConnectOrder},
+			</if>
+			<if test="sevenDaysConnectCount != null">
+				 sevenDaysConnectCount = #{sevenDaysConnectCount},
+			</if>
+			<if test="sevenDaysConnectDuration != null">
+				 sevenDaysConnectDuration = #{sevenDaysConnectDuration},
+			</if>
+			<if test="thirtyDaysConnectOrder != null">
+				 thirtyDaysConnectOrder = #{thirtyDaysConnectOrder},
+			</if>
+			<if test="thirtyDaysConnectCount != null">
+				 thirtyDaysConnectCount = #{thirtyDaysConnectCount},
+			</if>
+			<if test="thirtyDaysConnectDuration != null">
+				 thirtyDaysConnectDuration = #{thirtyDaysConnectDuration},
+			</if>
+			<if test="connectOrder != null">
+				 connectOrder = #{connectOrder},
+			</if>
+			<if test="connectCount != null">
+				 connectCount = #{connectCount},
+			</if>
+			<if test="connectDuration != null">
+				 connectDuration = #{connectDuration},
+			</if>
+			<if test="callInCount != null">
+				 callInCount = #{callInCount},
+			</if>
+			<if test="callInTime != null">
+				 callInTime = #{callInTime},
+			</if>
+			<if test="callOutCount != null">
+				 callOutCount = #{callOutCount},
+			</if>
+			<if test="callOutTime != null">
+				 callOutTime = #{callOutTime},
+			</if>
+			<if test="smsCount != null">
+				 smsCount = #{smsCount},
+			</if>
+
+ 		 </set>
+		 WHERE bqs_home_check_id = #{bqsHomeCheckId}
+	</update>
+
+</mapper>

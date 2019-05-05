@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.shangyong.backend.dao.bqsrep.BqsRepMonthUsedServiceDao">
+
+	<resultMap type="com.shangyong.backend.entity.bqsrep.BqsRepMonthUsed" id="bqsRepMonthUsedinfoMap">
+		<id property="bqsRepMonthUsedId" column="bqs_rep_month_used_id" javaType="java.lang.String"></id>
+		<result property="bqsPetitionerId" column="bqs_petitioner_id" javaType="java.lang.String"></result>
+		<result property="mobile" column="mobile" javaType="java.lang.String"></result>
+		<result property="belongTo" column="belong_to" javaType="java.lang.String"></result>
+		<result property="month" column="month" javaType="java.lang.String"></result>
+		<result property="monType" column="mon_type" javaType="java.lang.String"></result>
+		<result property="callCount" column="call_count" javaType="java.lang.String"></result>
+		<result property="callTime" column="call_time" javaType="java.lang.String"></result>
+		<result property="originatingCallCount" column="originating_call_count" javaType="java.lang.String"></result>
+		<result property="originatingCallTime" column="originating_call_time" javaType="java.lang.String"></result>
+		<result property="terminatingCallCount" column="terminating_call_count" javaType="java.lang.String"></result>
+		<result property="terminatingCallTime" column="terminating_call_time" javaType="java.lang.String"></result>
+		<result property="networkTraffic" column="network_traffic" javaType="java.lang.String"></result>
+		<result property="msgCount" column="msg_count" javaType="java.lang.String"></result>
+		<result property="costMoney" column="cost_money" javaType="java.lang.String"></result>
+		<result property="avgCallTime" column="avg_call_time" javaType="java.lang.String"></result>
+		<result property="avgCallOutTime" column="avg_call_out_time" javaType="java.lang.String"></result>
+		<result property="avgCallInTime" column="avg_call_in_time" javaType="java.lang.String"></result>
+	</resultMap>
+
+	<!-- 通用查询结果列-->
+	<sql id="Base_Column_List">
+	bqs_rep_month_used_id,	bqs_petitioner_id,	mobile,	belong_to,	month,	mon_type,	call_count,	call_time,	originating_call_count,	originating_call_time,	terminating_call_count,	terminating_call_time,	network_traffic,	msg_count,	cost_money,	avg_call_time,	avg_call_out_time,	avg_call_in_time
+	</sql>
+
+	<!-- 查询（根据主键ID查询） -->
+	<select id="getEntityById" resultMap="bqsRepMonthUsedinfoMap" parameterType="java.lang.String">
+		 SELECT
+		 <include refid="Base_Column_List" />
+		 FROM bqs_rep_month_used
+		 WHERE bqs_rep_month_used_id = #{bqsRepMonthUsedId}
+	</select>
+	<!-- 查询（根据主键ID查询） -->
+	<select id="queryById" resultMap="bqsRepMonthUsedinfoMap" parameterType="java.lang.String">
+		 SELECT
+		 <include refid="Base_Column_List" />
+		 FROM bqs_rep_month_used
+		 WHERE bqs_petitioner_id = #{bqsPetitionerId}
+		 ORDER BY month DESC
+		 LIMIT 6
+	</select>
+	<!-- 查询（根据主键ID查询） -->
+	<select id="getAll" resultMap="bqsRepMonthUsedinfoMap" parameterType="java.lang.String">
+		 SELECT
+		 <include refid="Base_Column_List" />
+		 FROM bqs_rep_month_used
+	</select>
+
+	<!--删除：根据主键ID删除-->
+	<delete id="deleteEntity" parameterType="java.lang.String">
+		 DELETE FROM bqs_rep_month_used
+		 WHERE bqs_rep_month_used_id = #{bqsRepMonthUsedId}
+	</delete>
+
+	<!-- 添加 -->
+	<insert id="saveEntity" parameterType="com.shangyong.backend.entity.bqsrep.BqsRepMonthUsed">
+		 INSERT INTO bqs_rep_month_used
+ 		(bqs_rep_month_used_id,bqs_petitioner_id,mobile,belong_to,month,mon_type,call_count,call_time,originating_call_count,originating_call_time,terminating_call_count,terminating_call_time,network_traffic,msg_count,cost_money,avg_call_time,avg_call_out_time,avg_call_in_time) 
+		 VALUES 
+ 		(#{bqsRepMonthUsedId},#{bqsPetitionerId},#{mobile},#{belongTo},#{month},#{monType},#{callCount},#{callTime},#{originatingCallCount},#{originatingCallTime},#{terminatingCallCount},#{terminatingCallTime},#{networkTraffic},#{msgCount},#{costMoney},#{avgCallTime},#{avgCallOutTime},#{avgCallInTime}) 
+	</insert>
+	<!-- 批量插入 -->
+	<insert id="saveAllEntity" parameterType="java.util.List">
+		  INSERT INTO bqs_rep_month_used
+ 		(bqs_rep_month_used_id,bqs_petitioner_id,mobile,belong_to,month,mon_type,call_count,call_time,originating_call_count,originating_call_time,terminating_call_count,terminating_call_time,network_traffic,msg_count,cost_money,avg_call_time,avg_call_out_time,avg_call_in_time) 
+		 VALUES    
+ 	    <foreach collection="list" item="item" index="index" separator="," > 
+ 		(#{item.bqsRepMonthUsedId},#{item.bqsPetitionerId},#{item.mobile},#{item.belongTo},#{item.month},#{item.monType},#{item.callCount},#{item.callTime},#{item.originatingCallCount},#{item.originatingCallTime},#{item.terminatingCallCount},#{item.terminatingCallTime},#{item.networkTraffic},#{item.msgCount},#{item.costMoney},#{item.avgCallTime},#{item.avgCallOutTime},#{item.avgCallInTime}) 
+ 		</foreach>
+	</insert>
+	<!-- 修 改-->
+	<update id="updateEntity" parameterType="com.shangyong.backend.entity.bqsrep.BqsRepMonthUsed">
+		 UPDATE bqs_rep_month_used
+ 		 <set> 
+			<if test="bqsPetitionerId != null">
+				 bqs_petitioner_id = #{bqsPetitionerId},
+			</if>
+			<if test="mobile != null">
+				 mobile = #{mobile},
+			</if>
+			<if test="belongTo != null">
+				 belong_to = #{belongTo},
+			</if>
+			<if test="month != null">
+				 month = #{month},
+			</if>
+			<if test="monType != null">
+				 mon_type = #{monType},
+			</if>
+			<if test="callCount != null">
+				 call_count = #{callCount},
+			</if>
+			<if test="callTime != null">
+				 call_time = #{callTime},
+			</if>
+			<if test="originatingCallCount != null">
+				 originating_call_count = #{originatingCallCount},
+			</if>
+			<if test="originatingCallTime != null">
+				 originating_call_time = #{originatingCallTime},
+			</if>
+			<if test="terminatingCallCount != null">
+				 terminating_call_count = #{terminatingCallCount},
+			</if>
+			<if test="terminatingCallTime != null">
+				 terminating_call_time = #{terminatingCallTime},
+			</if>
+			<if test="networkTraffic != null">
+				 network_traffic = #{networkTraffic},
+			</if>
+			<if test="msgCount != null">
+				 msg_count = #{msgCount},
+			</if>
+			<if test="costMoney != null">
+				 cost_money = #{costMoney},
+			</if>
+			<if test="avgCallTime != null">
+				 avg_call_time = #{avgCallTime},
+			</if>
+			<if test="avgCallOutTime != null">
+				 avg_call_out_time = #{avgCallOutTime},
+			</if>
+			<if test="avgCallInTime != null">
+				 avg_call_in_time = #{avgCallInTime},
+			</if>
+
+ 		 </set>
+		 WHERE bqs_rep_month_used_id = #{bqsRepMonthUsedId}
+	</update>
+
+</mapper>

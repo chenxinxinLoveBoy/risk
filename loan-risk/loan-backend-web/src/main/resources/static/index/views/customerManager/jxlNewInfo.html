@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+<meta charset="UTF-8">
+<title>聚信立电商报告</title>
+<link rel="stylesheet" href="../../plugins/layui/css/layui.css"
+	media="all" />
+<link rel="stylesheet" href="../../css/global.css" media="all">
+<link rel="stylesheet"
+	href="../../plugins/font-awesome/css/font-awesome.min.css"> 
+	<!-- js -->
+	<script src="../../jqery/jquery.js"></script>
+	<script src="../../../commons/base.js"></script>
+	<script type="text/javascript" src="../../plugins/layui/layui.js"></script>
+	<script type="text/javascript" src="../../js/customerManager/jxlNewInfo.js"></script>
+</head>
+<body>
+	<div class="admin-main">
+			<div style="font-size: 20px;" >
+			  编号：     	<span id="rpt_id"></span>  
+			 报告时间：  <span id="update_time"></span>  
+			</div>
+			<fieldset class="layui-elem-field">
+
+			<div class="layui-field-box layui-form">
+			<legend style="margin-left:45%">用户申请表检测</legend>
+				<table class="layui-table"> 
+					<tbody id="user_check">
+					    <tr>
+							<td style="width: 340px">姓名</td>
+							<td ><font id="name"></font></td>
+						</tr>
+						<tr>
+							<td>身份证</td>
+							<td ><font id="idCard"></font></td>
+						</tr>
+						<tr>
+							<td>性别</td>
+							<td ><font id="gender"></font></td>
+						</tr>
+						<tr>
+							<td>年龄</td>
+							<td ><font id="age"></font></td>
+						</tr>
+						<tr>
+							<td>籍贯</td>
+							<td ><font id="city"></font></td>
+						</tr>
+						<tr>
+							<td>手机号码</td>
+							<td ><font id="phone"></font></td>
+						</tr>
+						<tr>
+							<td>居住地址</td>
+							<td ><font id="address"></font></td>
+						</tr>
+						<tr>
+							<td>联系人</td>
+							<td ><font id="home_phone"></font></td>
+						</tr>
+					<!-- 	<tr>
+							<td>联系人</td>
+							<td ><font id="name"></font></td>
+						</tr> -->
+						<tr>
+							<td>淘宝账号</td>
+							<td ><font id="name"></font></td>
+						</tr>
+						<tr>
+							<td>京东账号</td>
+							<td ><font id="jd"></font></td>
+						</tr>
+					</tbody>
+				</table>
+			<legend style="margin-left:45%">用户信息检测 联系人数据</legend>
+				<table class="layui-table" >
+					<tbody id="user_check_contact" style="white-space: nowrap;">
+					    <tr>
+							<td width="335px" rowspan=10>用户查询信息</td> 
+						</tr>
+						<tr>
+							<td colspan=2>查询过该用户的相关企业数量</td>
+							<td width="680px"><font id="searched_org_cnt"></font></td>
+						</tr>
+						<tr>
+							<td colspan=2>查询过该用户的相关企业类型</td>
+							<td><font id="searched_org_type"></font></td>
+						</tr>
+						<tr>
+							<td colspan=2>身份证组何过的其他姓名</td>
+							<td><font id="idcard_with_other_names"></font></td>
+						</tr>
+						<tr>
+							<td colspan=2>身份证组合过其他电话</td>
+							<td><font id="idcard_with_other_phones"></font></td>
+						</tr>
+						<tr>
+							<td colspan=2>电话号码组合过其他姓名</td>
+							<td><font id="phone_with_other_names"></font></td>
+						</tr>
+						<tr>
+							<td colspan=2>电话号码组合过其他身份证</td>
+							<td><font id="phone_with_other_idcards"></font></td>
+						</tr>
+						<tr>
+							<td colspan=2>电话号码注册过的相关企业数量</td>
+							<td><font id="register_org_cnt"></font></td>
+						</tr>
+						<tr>
+							<td colspan=2>电话号码注册过的相关企业类型</td>
+							<td><font id="register_org_type"></font></td>
+						</tr>
+						<tr>
+							<td colspan=2>电话号码出现过的公开网站</td>
+							<td><font id="arised_open_web"></font></td>
+						</tr>
+					</tbody>
+				</table>
+			<legend style="margin-left:45%">用户行为检测 黑名单</legend>
+				<table class="layui-table"> 
+					<tbody id="user_check_black" style="white-space: nowrap;">
+					    <tr>
+							<td width="335px" rowspan=7>黑名单信息</td>
+						</tr>
+						<tr>
+							<td colspan=2>黑中介分数</td>
+							<td width="680px" ><font id="phone_gray_score"></font>(分数范围0-100，参考分为10，分数越低关系越紧密)</td>
+						</tr>
+						<tr>
+							<td colspan=2>直接联系人中黑名单人数</td>
+							<td><font id="contacts_class1_blacklist_cnt"></font> (直接联系人：和被查询号码有通话记录)</td>
+						</tr>
+						<tr>
+							<td colspan=2>中间联系人中黑名单人数</td>
+							<td><font id="contacts_class2_blacklist_cnt"></font>(间接联系人：和被查询号码的直接联系人有通话记录)</td>
+						</tr>
+						<tr>
+							<td colspan=2>直接联系人人数</td>
+							<td><font id="contacts_class1_cnt"></font>(直接联系人：和被查询号码有通话记录)</td>
+						</tr>
+						<tr>
+							<td colspan=2>引起黑名单的直接联系人数量</td>
+							<td><font id="contacts_router_cnt"></font> (直接联系人有和黑名单用户的通讯记录的号码数量)</td>
+						</tr>
+						<tr>
+							<td colspan=2>直接联系人中引起间接黑名单占比</td>
+							<td><font id="contacts_router_ratio"></font>(直接联系人有和黑名单用户的通讯记录的号码数量在直接联系人数量中的百分比)</td>
+						</tr>
+					</tbody>
+				</table>
+			<legend style="margin-left:45%">用户行为检测</legend>
+				<table class="layui-table"> 
+					<tbody id="user_behavior">
+					    <tr>
+							<th>检查项</th>
+							<th>结果</th>
+							<th>依据</th>
+							<th>标记</th> 
+						</tr>
+					</tbody>
+				</table>
+  
+			<legend style="margin-left:45%">联系人和地址信息</legend>
+				<table class="layui-table"> 
+					<tbody id="user_contact">
+					    <tr>
+							<th>联系人</th>
+							<th>最早联系时间</th>
+							<th>最晚联系时间</th>
+							<th>联系电话</th>
+							<th>近半年通话（分）</th>
+						</tr>
+					</tbody>
+				</table>
+			<legend style="margin-left:45%">地址信息</legend>
+				<table class="layui-table"> 
+					<tbody id="user_address">
+					    <tr>
+							<th>地址</th> 
+							<th>总消费金额</th> 
+							<th>收货人姓名</th>
+							<th>收货人手机</th>
+						</tr>
+					</tbody>
+				</table>
+			<legend style="margin-left:45%">电商数据分析</legend>
+				<table class="layui-table"> 
+					<tbody id="user_ebusiness">
+					    <tr>
+							<th>月份</th>
+							<th>全部消费笔数</th>
+							<th>全部消费金额（元）</th>
+							<th>品类分析</th>
+						</tr>
+					</tbody>
+				</table> 
+			</div>
+		</fieldset>
+		<div class="admin-table-page">
+			<div id="paged" class="page"></div>
+		</div>
+	</div> 
+</body>
+
+</html>

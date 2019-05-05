@@ -1,0 +1,145 @@
+﻿<!DOCTYPE html>
+<html>
+
+<head>
+<meta charset="UTF-8">
+<META HTTP-EQUIV="pragma" CONTENT="no-cache">
+<META HTTP-EQUIV="Cache-Control" CONTENT="no-cache, must-revalidate">
+<META HTTP-EQUIV="expires" CONTENT="0">
+<title>数据测试明细表</title>
+<link rel="stylesheet" href="../../plugins/layui/css/layui.css"
+	media="all" />
+<link rel="stylesheet" href="../../css/global.css" media="all">
+<link rel="stylesheet"
+	href="../../plugins/font-awesome/css/font-awesome.min.css">
+<link rel="stylesheet" href="../../css/table.css" />
+<link rel="stylesheet" href="../../css/lzh_login.css" media="all">
+	<!-- js -->
+	<script src="../../jqery/jquery.js"></script>
+	<script src="../../../commons/base.js"></script>
+	<script type="text/javascript" src="../../plugins/layui/layui.js"></script>
+	<script type="text/javascript" src="../../js/cuCustomerCheckApply/cuCustomerCheckApply.js"></script>
+	<style type="text/css">
+    .layui-inline {
+		margin-top:0%;
+	}
+    </style>
+</head>
+
+<body>
+	<div class="admin-main"> 
+			<blockquote class="layui-elem-quote"> 
+				<!-- 查询条件 -->
+			<form action="" class="layui-form" style="margin-top: 0px;">
+			<!-- 查询条件 -->
+				<div class="layui-inline">
+			      <label class="layui-form-label" style="width: auto;">数据测试单号：</label>
+			      <div class="layui-input-inline">
+			        <input name="customerCheckApplyId"   placeholder="数据测试单号 " id="customerCheckApplyId"  autocomplete="off" class="layui-input" >
+			      </div>
+			    </div>
+			    
+			    <div class="layui-inline">
+			      <label class="layui-form-label" style="width: auto;">批次号：</label>
+			      <div class="layui-input-inline">
+			        <input name="customerCheckCodeId"   id="customerCheckCodeId" placeholder="批次号"    autocomplete="off" class="layui-input" >
+			      </div>
+			    </div> 
+			    
+			    <div class="layui-inline">
+			      <label class="layui-form-label" style="width: auto;">客户姓名：</label>
+			      <div class="layui-input-inline">
+			        <input name="name"   placeholder="客户姓名 " id="name"  autocomplete="off" class="layui-input" >
+			      </div>
+			    </div>
+			    
+			    <div class="layui-inline">
+			      <label class="layui-form-label" style="width: auto;">证件号码：</label>
+			      <div class="layui-input-inline">
+			        <input name="certCode"   id="certCode" placeholder="证件号码"    autocomplete="off" class="layui-input" >
+			      </div>
+			    </div> 
+			    
+			      <br><br>
+			    
+			     <div class="layui-inline">
+			      <label class="layui-form-label" style="width: auto;">命中规则编号：</label>
+			      <div class="layui-input-inline">
+			        <input name="banCode"   id="banCode" placeholder="命中规则编号"    autocomplete="off" class="layui-input" >
+			      </div>
+			    </div>
+			    
+			    <div class="layui-inline">
+			      <label class="layui-form-label" style="width: auto;">手机号：</label>
+			      <div class="layui-input-inline">
+			        <input name="phoneNum"   placeholder="手机号 " id="phoneNum"  autocomplete="off" class="layui-input" >
+			      </div>
+			    </div>
+					
+			    <div class="layui-inline">
+					<a href="javascript:;" class="layui-btn layui-btn-small"  onclick="sel()">
+					<i class="layui-icon">&#xe615;</i>搜索 </a>
+				</div>
+				</br></br>
+				 <div class="layui-inline">
+					<a href="javascript:;" class="layui-btn layui-btn-small"  onclick="sendQueues()">
+					<i class="layui-icon">&#xe615;</i>一键重发&nbsp;<font color = 'red' id="sendQueue"></font>&nbsp;条
+					 </a>
+						<input type="hidden" name="sendVal" id="sendVal"/>
+				</div>
+			</form> 
+		</blockquote>
+		</div> 	 
+		
+		<fieldset class="layui-elem-field">
+			<legend>数据测试明细表</legend>
+			<div class="layui-field-box layui-form">
+				<table class="layui-table admin-table"  style="word-break: keep-all;overflow:auto;">
+					<thead>
+						<tr>  
+						    <th>数据测试单号</th>
+ 							<th>批次号</th>
+							<th>客户姓名</th>
+							<th>证件号码</th>
+							<th>手机号</th> 
+							<th>命中规则编号</th>
+							<th>命中规则描述</th>  
+  							<th>创建时间</th>
+ 							<th>修改时间</th>
+ 							<th>操作</th>
+						</tr>
+					</thead>
+					<tbody id="content">
+					</tbody>
+				</table>
+					<label>共<font color='red' id="count_page_number"></font>条记录</label>
+					<div id="paged" class="page" style="display:inline-block;">
+					</div>
+			</div>
+		</fieldset> 
+	<!--模板-->
+	<script type="text/html" id="tpl">
+			{{# layui.each(d.list, function(index, item){
+ 				var customerCheckApplyId = item.customerCheckApplyId;
+			}}
+			<tr>
+                <td>
+				<a href="javascript:;" data-applyId="{{ customerCheckApplyId}}" data-opt="findd" class="layui-btn layui-btn-normal layui-btn-mini " >{{ customerCheckApplyId }} </a>
+				</td>
+ 				<td>{{ item.customerCheckCodeId }} </td>
+				<td>{{ item.name  }} </td>
+				<td>{{ item.certCode }}  </td>  
+				<td>{{ item.phoneNum }}  </td>  
+				<td >{{ item.banCode  }}  </td>
+				<td>{{ item.banDescription  }}  </td>
+				<td style="white-space: nowrap;">{{ item.createTime.substring(0,19)  }}  </td>
+				<td style="white-space: nowrap;">{{ item.modifyTime.substring(0,19)  }} </td>
+                <td style="white-space: nowrap;">
+					<a href="javascript:;" data-id="{{ customerCheckApplyId }}"  data-opt="find" class="layui-btn layui-btn-normal layui-btn-mini">查看报告信息</a>
+				</td>
+			</tr>
+			{{# }); }}
+		</script>
+</body>
+
+</html>

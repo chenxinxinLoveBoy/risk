@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <!-- 		<title>Table</title> -->
+    <link rel="stylesheet" href="../../plugins/layui/css/layui.css" media="all"/>
+    <link rel="stylesheet" href="../../css/global.css" media="all">
+    <link rel="stylesheet" href="../../plugins/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="../../css/table.css"/>
+     <link rel="stylesheet" href="../../css/lzh_xy_gl.css" media="all" />
+    <style type="text/css">
+    	.layui-form-item .layui-input-inline {
+		    float: left;
+		    width:53%;
+		    margin-right: 10px;
+		}
+    </style>
+</head>
+
+<body>
+<div class="admin-main">
+
+    <blockquote class="layui-elem-quote">
+        <form class="layui-form" style="margin-top: 0px;">
+            <div class="layui-form-item">
+                <div class="layui-inline">
+                    <label class="layui-form-label" style="width: 100px;">消息类型：</label>
+                    <div class="layui-input-inline">
+                        <select name="messageType" lay-filter="select" lay-search=""
+                                id="messageType">
+                            <option value="">直接选择或搜索选择</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="layui-inline">
+                    <label class="layui-form-label" style="width: 100px;">消息编号：</label>
+                    <div class="layui-input-inline">
+                        <input name="messageId" autocomplete="off" placeholder="消息编号" class="layui-input"
+                               id="messageId">
+                    </div>
+                </div>
+                <div class="layui-inline">
+                    <label class="layui-form-label" style="width: 100px;">创建时间：</label>
+                    <div class="layui-input-inline" style="width: 394px;">
+                        <input name="optTimeBigen" lay-verify="required" id="optTimeBigen" autocomplete="off"
+                               class="layui-input" style="width: 180px; display:inline;" required>
+                        &nbsp;至&nbsp;
+                        <input name="optTimeEnd" lay-verify="required" id="optTimeEnd" autocomplete="off"
+                               class="layui-input" style="width: 180px; display:inline;" required>
+                    </div>
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <div class="layui-inline">
+                    <label class="layui-form-label" style="width: 100px;">消息管道类型：</label>
+                    <div class="layui-input-inline">
+                        <select name="messageChannelType" lay-filter="select" lay-search=""
+                                id="messageChannelType">
+                            <option value="">直接选择或搜索选择</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="layui-inline">
+                    <label class="layui-form-label" style="width: 100px;">申请单号：</label>
+                    <div class="layui-input-inline">
+                        <input name="applicationId" autocomplete="off" placeholder="申请单号" class="layui-input"
+                               id="applicationId">
+                    </div>
+                </div>
+                <div class="layui-inline">
+                    <label class="layui-form-label" style="width: 100px;">消息内容：</label>
+                    <div class="layui-input-inline">
+                        <input name="messageBody" autocomplete="off" placeholder="支持模糊查询" class="layui-input"
+                               id="messageBody">
+                    </div>
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <div class="layui-inline">
+                    <label class="layui-form-label" style="width: 100px;">消费状态：</label>
+                    <div class="layui-input-inline">
+                        <select name="isConsumption" lay-filter="select" lay-search=""
+                                id="isConsumption">
+                            <option value="">直接选择或搜索选择</option>
+                        </select>
+                    </div>
+                </div>
+                <button class="layui-btn layui-btn-small" lay-submit lay-filter="from"><i class="layui-icon">&#xe615;</i> 搜索</button>
+                <button type="reset" class="layui-btn layui-btn-small">重置条件</button>
+            </div>
+        </form>
+    </blockquote>
+    <fieldset class="layui-elem-field">
+        <br>
+        <a href="javascript:;" id="resend"  class="layui-btn layui-btn-small" style="margin-left: 18px">重发</a>
+        <a href="javascript:;" id="showMessage" class="layui-btn layui-btn-small">查看消息详情</a>
+        <br>
+        <legend>数据列表</legend>
+        <div class="layui-field-box layui-form">
+            <table class="layui-table admin-table" style="word-break: keep-all;overflow:auto;">
+                <thead>
+                <tr>
+                    <th style="width: 30px;"><input type="checkbox" lay-filter="allselector" lay-skin="primary"></th>
+                    <th>序号</th>
+                    <th>管道类型</th>
+                    <th>消息编号</th>
+                    <th>申请单号</th>
+                    <th>消息类型</th>
+                    <th>消费状态</th>
+                    <th>消息所属业务</th>
+                    <th>消息交换机</th>
+                    <th>消息路由键</th>
+                    <th>消息队列名称</th>
+                    <th>IP地址</th>
+                    <th style="min-width: 144px;">创建时间</th>
+                </tr>
+                </thead>
+                <tbody id="content">
+                </tbody>
+            </table>
+            <label>共<font color='red' id="count_page_number"></font>条记录</label>
+            <div id="paged" class="page" style="display:inline-block;">
+            </div>
+        </div>
+    </fieldset>
+
+</div>
+<!--模板-->
+<script type="text/html" id="tpl">
+    {{# layui.each(d.list, function(index, item){ }}
+    <tr>
+        <td><input type="checkbox" lay-skin="primary"></td>
+        <td>{{ index+1 }}
+            <div style="display: none" name="messageBody">{{ item.messageBody }}</div>
+            <div style="display: none" name="messageInfo">{{ item.messageInfo }}</div>
+            <input type="hidden" name="hsid" value="{{ item.hsid }}">
+            <div name="messageDetails" style="display: none">
+                <fieldset class="layui-elem-field" style=" width:800px;">
+                    <legend>消息信息</legend>
+                    <div class="layui-field-box" style="word-break:break-all">
+                        {{ item.messageInfo }}
+                    </div>
+                </fieldset>
+                <fieldset class="layui-elem-field" style=" width:800px;">
+                    <legend>消息内容</legend>
+                    <div class="layui-field-box" style="word-break:break-all">
+                        {{ item.messageBody }}
+                    </div>
+                </fieldset>
+            </div>
+        </td>
+        <td>
+            {{# if(item.messageChannelType === 0 && item.createTime != ''){ }}
+            发送
+            {{# } }}
+            {{# if(item.messageChannelType === 1 && item.createTime != ''){ }}
+            接收
+            {{# } }}
+        </td>
+        <td>{{ item.messageId }}</td>
+        <td>{{ item.applicationId || '' }}</td>
+        <td>
+            {{# if(item.messageType === 1){ }}
+            转发
+            {{# } }}
+            {{# if(item.messageType === 2){ }}
+            广播
+            {{# } }}
+            {{# if(item.messageType === 3){ }}
+            模糊匹配
+            {{# } }}
+        </td>
+        <td>
+            {{# if(item.isConsumption === '1'){ }}
+            未消费
+            {{# } }}
+            {{# if(item.isConsumption === '2'){ }}
+            消费成功
+            {{# } }}
+            {{# if(item.isConsumption === '3'){ }}
+            消费失败
+            {{# } }}
+        </td>
+        <td>{{ item.messageService }}</td>
+        <td>{{ item.messageExchange }}</td>
+        <td>{{ item.messageRoutingkey }}</td>
+        <td>{{ item.messageQueue }}</td>
+        <td>{{ item.ip }}</td>
+        <td>{{ item.createTime }}</td>
+    </tr>
+    {{# }); }}
+</script>
+
+<!-- js -->
+<script src="../../jqery/jquery.js"></script>
+<script src="../../../commons/base.js"></script>
+<script type="text/javascript" src="../../plugins/layui/layui.js"></script>
+<script type="text/javascript" src="../../js/mqLog/log_list.js"></script>
+</body>
+
+</html>

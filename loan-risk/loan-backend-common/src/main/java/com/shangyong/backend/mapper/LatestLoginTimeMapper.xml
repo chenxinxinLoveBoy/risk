@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.shangyong.backend.dao.approval.LatestLoginTimeDao">
+
+	<resultMap type="com.shangyong.backend.entity.CuCustomerExpand" id="cuCustomerExpandMap">
+		<id property="cusInfoId" column="cus_info_id" javaType="java.lang.String"></id>
+		<result property="customerId" column="customer_id" javaType="java.lang.String"></result>
+		<result property="appName" column="app_name" javaType="java.lang.Integer"></result>
+		<result property="latestLoginTime" column="latest_login_time" javaType="java.lang.String"></result>
+		<result property="createTime" column="create_time" javaType="java.lang.String"></result>
+		<result property="createMan" column="create_man" javaType="java.lang.String"></result>
+		<result property="modifyTime" column="modify_time" javaType="java.lang.String"></result>
+		<result property="modifyMan" column="modify_man" javaType="java.lang.String"></result>
+		<result property="remark" column="remark" javaType="java.lang.String"></result>
+	</resultMap>
+
+	<!-- 通用查询结果列-->
+	<sql id="Base_Column_List">
+		cus_info_id,	customer_id,	app_name,	latest_login_time,	create_time,	create_man,	modify_time,	modify_man,	remark
+	</sql>
+
+	<!-- 查询（根据主键ID查询） -->
+	<select id="findListEntity" resultMap="cuCustomerExpandMap" parameterType="com.shangyong.backend.entity.CuCustomerExpand">
+		 SELECT
+		 <include refid="Base_Column_List" />
+		 FROM cu_customer_expand
+		  WHERE remark IS NULL LIMIT 0,500
+	</select>
+
+	<!-- 修 改-->
+	<update id="updateEntity" parameterType="com.shangyong.backend.entity.CuCustomerExpand">
+		 UPDATE cu_customer_expand
+ 		 <set> 
+			remark = '1'
+ 		 </set>
+		 WHERE customer_id = #{customerId} and app_name = #{appName}
+	</update>
+</mapper>

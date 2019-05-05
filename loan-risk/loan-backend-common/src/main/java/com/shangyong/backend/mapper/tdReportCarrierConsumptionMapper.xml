@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.shangyong.backend.dao.tdReport.TdReportCarrierConsumptionDao">
+
+	<resultMap type="com.shangyong.backend.entity.tdReport.TdReportCarrierConsumption" id="tdReportCarrierConsumptionMap">
+		<id property="carrierConsumptionId" column="carrier_consumption_id" javaType="java.lang.String"></id>
+		<result property="applicationId" column="application_id" javaType="java.lang.String"></result>
+		<result property="consumeAmount1month" column="consume_amount_1month" javaType="java.lang.String"></result>
+		<result property="consumeAmount3month" column="consume_amount_3month" javaType="java.lang.String"></result>
+		<result property="consumeAmount6month" column="consume_amount_6month" javaType="java.lang.String"></result>
+		<result property="rechargeCount1month" column="recharge_count_1month" javaType="java.lang.String"></result>
+		<result property="rechargeCount3month" column="recharge_count_3month" javaType="java.lang.String"></result>
+		<result property="rechargeCount6month" column="recharge_count_6month" javaType="java.lang.String"></result>
+		<result property="rechargeAmount1month" column="recharge_amount_1month" javaType="java.lang.String"></result>
+		<result property="rechargeAmount3month" column="recharge_amount_3month" javaType="java.lang.String"></result>
+		<result property="rechargeAmount6month" column="recharge_amount_6month" javaType="java.lang.String"></result>
+		<result property="createTime" column="create_time" javaType="java.lang.String"></result>
+		<result property="createMan" column="create_man" javaType="java.lang.String"></result>
+		<result property="modifyTime" column="modify_time" javaType="java.lang.String"></result>
+		<result property="modifyMan" column="modify_man" javaType="java.lang.String"></result>
+		<result property="remark" column="remark" javaType="java.lang.String"></result>
+	</resultMap>
+
+	<!-- 通用查询结果列-->
+	<sql id="Base_Column_List">
+carrier_consumption_id,	application_id,	consume_amount_1month,	consume_amount_3month,	consume_amount_6month,	recharge_count_1month,	recharge_count_3month,	recharge_count_6month,	recharge_amount_1month,	recharge_amount_3month,	recharge_amount_6month,	create_time,	create_man,	modify_time,	modify_man,	remark
+	</sql>
+
+	<!-- 查询（根据主键ID查询） -->
+	<select id="getEntityById" resultMap="tdReportCarrierConsumptionMap" parameterType="java.lang.String">
+		 SELECT
+		 <include refid="Base_Column_List" />
+		 FROM td_report_carrier_consumption
+		 WHERE carrier_consumption_id = #{carrierConsumptionId}
+	</select>
+
+	<!-- 查询（根据主键ID查询） -->
+	<select id="findAll" resultMap="tdReportCarrierConsumptionMap" parameterType="java.lang.String">
+		 SELECT
+		 <include refid="Base_Column_List" />
+		 FROM td_report_carrier_consumption
+		 WHERE carrier_consumption_id = #{carrierConsumptionId}
+	</select>
+
+	<!--删除：根据主键ID删除-->
+	<delete id="deleteEntity" parameterType="java.lang.String">
+		 DELETE FROM td_report_carrier_consumption
+		 WHERE carrier_consumption_id = #{carrierConsumptionId}
+	</delete>
+
+	<!-- 添加 -->
+	<insert id="saveEntity" parameterType="com.shangyong.backend.entity.tdReport.TdReportCarrierConsumption">
+		 INSERT INTO td_report_carrier_consumption
+ 		(carrier_consumption_id,application_id,consume_amount_1month,consume_amount_3month,consume_amount_6month,recharge_count_1month,recharge_count_3month,recharge_count_6month,recharge_amount_1month,recharge_amount_3month,recharge_amount_6month,create_time,create_man,modify_time,modify_man,remark) 
+		 VALUES 
+ 		(#{carrierConsumptionId},#{applicationId},#{consumeAmount1month},#{consumeAmount3month},#{consumeAmount6month},#{rechargeCount1month},#{rechargeCount3month},#{rechargeCount6month},#{rechargeAmount1month},#{rechargeAmount3month},#{rechargeAmount6month},#{createTime},#{createMan},#{modifyTime},#{modifyMan},#{remark}) 
+	</insert>
+
+	<!-- 修 改-->
+	<update id="updateEntity" parameterType="com.shangyong.backend.entity.tdReport.TdReportCarrierConsumption">
+		 UPDATE td_report_carrier_consumption
+ 		 <set> 
+			<if test="applicationId != null">
+				 application_id = #{applicationId},
+			</if>
+			<if test="consumeAmount1month != null">
+				 consume_amount_1month = #{consumeAmount1month},
+			</if>
+			<if test="consumeAmount3month != null">
+				 consume_amount_3month = #{consumeAmount3month},
+			</if>
+			<if test="consumeAmount6month != null">
+				 consume_amount_6month = #{consumeAmount6month},
+			</if>
+			<if test="rechargeCount1month != null">
+				 recharge_count_1month = #{rechargeCount1month},
+			</if>
+			<if test="rechargeCount3month != null">
+				 recharge_count_3month = #{rechargeCount3month},
+			</if>
+			<if test="rechargeCount6month != null">
+				 recharge_count_6month = #{rechargeCount6month},
+			</if>
+			<if test="rechargeAmount1month != null">
+				 recharge_amount_1month = #{rechargeAmount1month},
+			</if>
+			<if test="rechargeAmount3month != null">
+				 recharge_amount_3month = #{rechargeAmount3month},
+			</if>
+			<if test="rechargeAmount6month != null">
+				 recharge_amount_6month = #{rechargeAmount6month},
+			</if>
+			<if test="createTime != null">
+				 create_time = #{createTime},
+			</if>
+			<if test="createMan != null">
+				 create_man = #{createMan},
+			</if>
+			<if test="modifyTime != null">
+				 modify_time = #{modifyTime},
+			</if>
+			<if test="modifyMan != null">
+				 modify_man = #{modifyMan},
+			</if>
+			<if test="remark != null">
+				 remark = #{remark},
+			</if>
+
+ 		 </set>
+		 WHERE carrier_consumption_id = #{carrierConsumptionId}
+	</update>
+
+</mapper>

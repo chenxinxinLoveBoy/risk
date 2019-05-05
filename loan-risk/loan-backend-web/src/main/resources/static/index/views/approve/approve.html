@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title>案件分配页</title>
+		<link rel="stylesheet" href="../../plugins/layui/css/layui.css" media="all">
+		<link rel="stylesheet" href="../../css/global.css" media="all">
+		<link rel="stylesheet" href="../../plugins/font-awesome/css/font-awesome.min.css">
+		<link rel="stylesheet" href="../../css/table.css" /> 
+		<!-- js -->
+		<script src="../../jqery/jquery.js"></script>
+		<script src="../../../commons/base.js"></script>
+		<script type="text/javascript" src="../../plugins/layui/layui.js"></script>
+		<script type="text/javascript" src="../../js/approve/approve.js"></script>
+		<link rel="stylesheet" href="../../css/lzh_xy_gl.css" media="all" />
+	</head>
+	
+	<body>
+		<div class="admin-main"> 
+			<blockquote class="layui-elem-quote"> 
+			 <form action="" class="layui-form" style="margin-top: 0px;">
+			    <div class="layui-inline">
+			      <label class="layui-form-label" >案件编号：</label>
+			      <div class="layui-input-inline">
+			        <input name="appSerialNumber"  lay-verify="appSerialNumber" id="appSerialNumber"  autocomplete="off" class="layui-input" >
+			      </div>
+			    </div>
+			    
+			    <div class="layui-inline">
+			      <label class="layui-form-label" >客户编号： </label>
+			      <div class="layui-input-inline">
+			        <input name="customerId"  lay-verify="customerId" id="customerId"  autocomplete="off" class="layui-input" >
+			      </div>
+			    </div>
+			    
+			    <div class="layui-inline">
+			      <label class="layui-form-label">姓名：</label>
+			      <div class="layui-input-inline">
+			        <input name="name"  lay-verify="name" id="name" autocomplete="off" class="layui-input" >
+			      </div>
+			    </div>
+			    
+			     <div class="layui-inline">
+			      <label class="layui-form-label">手机号：</label>
+			      <div class="layui-input-inline">
+			        <input name="phoneNum"  lay-verify="phoneNum" id="phoneNum" maxlength="11" onkeyup="this.value=this.value.replace(/\D/g,'')"  onafterpaste="this.value=this.value.replace(/\D/g,'')" autocomplete="off" class="layui-input" >
+			      </div>
+			    </div> 
+			    <br></br> 
+			    
+			    <div class="layui-inline">
+			      <label class="layui-form-label">身份证号：</label>
+			      <div class="layui-input-inline">
+			        <input name="certCode"  lay-verify="certCode" id="certCode"  autocomplete="off" placeholder="支持模糊查询" class="layui-input" >
+			      </div>
+			    </div> 
+			      
+			  
+			     <div class="layui-inline">
+			      <label class="layui-form-label">经办人：</label>
+			      <div class="layui-input-inline">
+			        <input name="auditMan"  lay-verify="auditMan" id="auditMan" autocomplete="off" class="layui-input" >
+			      </div>
+			    </div> 
+			    
+			    <div class="layui-inline">
+			      <label class="layui-form-label">申请时间：</label>
+			      <div class="layui-input-inline">
+			      <input name="startTime"  lay-verify="startTime" id="startTime" autocomplete="off" class="layui-input"  style="width: 200px; display:inline;">
+			      &nbsp;&nbsp;
+			      <input name="endTime"  lay-verify="endTime" id="endTime" autocomplete="off" class="layui-input"  style="width: 200px; display:inline;">
+			      </div> 
+			    </div>
+			    <br></br> 
+			    
+				 <div class="layui-inline">
+				  <label class="layui-form-label">审批状态：</label>
+			      <div class="layui-input-inline">
+				      <select name="auditingState" id = "auditingState" class="layui-input" lay-search="">
+				        <option value="0">全部</option>
+				        <option value="1">待系统审批</option>
+				        <option value="2">系统审批通过</option>
+				        <option value="3">系统审批未通过</option>
+				        <option value="4">待人工审批</option>
+				        <option value="66">人工审批通过</option>
+				        <option value="99">人工审批未通过</option>
+				      </select> 
+			      </div>
+			    </div> 
+			    
+			    <div class="layui-inline">
+				  <label class="layui-form-label">案件状态：</label>
+			      <div class="layui-input-inline">
+				      <select name="ycNumber" id = "ycNumber" class="layui-input" lay-search="">
+				        <option value="-1">全部</option>
+				        <option value="1">正常</option>
+				        <option value="2">异常</option>
+				        <option value="3">异类</option>
+				      </select> 
+			      </div>
+			    </div>
+			     
+			    <div class="layui-inline">
+			      <label class="layui-form-label">进入案件池原因：</label>
+			      <div class="layui-input-inline">
+			        <input name="errorDescription" lay-verify="errorDescription" id="errorDescription" autocomplete="off" placeholder="支持模糊查询" class="layui-input" >
+			      </div>
+			    </div>
+			    
+			     <div class="layui-inline">
+				  <label class="layui-form-label">平台类型：</label>
+			      <div class="layui-input-inline">
+				      <select name="source" id = "source" class="layui-input" lay-search="">
+				        <option value="-1">全部</option>
+				        <option value="0">Android</option>
+				        <option value="1">IOS</option>
+				      </select> 
+			      </div>
+			    </div>
+			    
+			    <br></br>
+			     <div class="layui-inline">
+			      <label class="layui-form-label" style="white-space: nowrap;">人工审核日期：</label>
+			      <div class="layui-input-inline">
+			      <input name="rgAuditingTime"  lay-verify="rgAuditingTime" id="rgAuditingTime" autocomplete="off" class="layui-input"  style="width: 200px; display:inline;">
+			      &nbsp;&nbsp;
+			      <input name="endRgAuditingTime"  lay-verify="endRgAuditingTime" id="endRgAuditingTime" autocomplete="off" class="layui-input"  style="width: 200px; display:inline;">
+			      </div>
+			    </div>
+			    <div class="layui-inline">
+				   <label class="layui-form-label">用户标识：</label>
+			       <div class="layui-input-inline">
+				       <select name="appLevel" id = "appLevel" class="layui-input" lay-search="">
+				         <option value="-1">全部</option>
+				         <option value="0">新用户</option>
+				         <option value="1">老用户</option>
+				       </select> 
+			       </div>
+			     </div>
+			     　　　　　<a href="javascript:;" class="layui-btn layui-btn-small" id="search" >
+						<i class="layui-icon">&#xe615;</i> 搜索
+				    </a>
+				    　<a href="javascript:;" class="layui-btn layui-btn-small" id="clear" onclick="clecr()">
+						<i class="layui-icon">&#xe615;</i> 重置
+				    </a>	 
+			</form>
+			</blockquote>
+			
+			<fieldset class="layui-elem-field">
+				<legend>案件一览</legend>
+				<br>
+				<div class="layui-field-box layui-form">
+					<table class="layui-table admin-table"  style="word-break: keep-all;overflow:auto;">
+						<thead>
+							<tr> 
+								<th>案件编号</th>
+								<th>客户编号</th>
+								<th>姓名</th>
+								<th>身份证</th>
+								<th>手机号</th>
+								<th>平台类型</th>
+								<th>客户标识</th>
+								<th>经办人</th>
+								<th>申请日期</th>
+								<th>人工审批日期</th>
+								<th>最终授信额度</th>
+								<th>人工审批金额</th>
+								<th>审批状态</th>
+								<th>案件状态</th>
+								<th>进入案件池原因</th> 
+							</tr>
+						</thead>
+						<tbody id="content">
+						</tbody>
+					</table>
+					<label>共<font color='red' id="count_page_number"></font>条记录</label>
+					<div id="paged" class="page" style="display:inline-block;">
+					</div>
+				</div>
+			</fieldset>
+		</div>
+		
+		<!--模板-->
+		<script type="text/html" id="tpl">
+			{{# layui.each(d.list, function(index, item){    
+				var state =  item.rgAuditingState;  
+				var money = item.creditMoney;
+				var cmoney = item.rgCreditMoney;
+				var source = item.source;
+				if(source ==0){
+					source ='Android';
+				}else if(source ==1){
+					source ='IOS';
+				}
+				var appLevel = item.appLevel;
+				if(appLevel ==0){
+					appLevel ='新用户';
+				}else if(appLevel ==1){
+					appLevel ='老用户';
+				}
+				var createTime =item.createTime; 
+				var isCallPhone =  item.isCallPhone;
+				var netcheckNoAbnormal = item.netcheckNoAbnormal;
+				var remark = item.rgAuditingRemark; 
+				var receiveCode= item.receiveCode;
+				var auditMan= item.auditMan;
+				var errorDescription = item.errorDescription;
+				var ycNumber = item.ycNumber;
+				if(ycNumber.length==0 && errorDescription.length == 0){
+					ycNumber='正常';
+				}else if(ycNumber==1 || ycNumber==2 || ycNumber==3){
+					ycNumber='异类';
+				}else if(ycNumber.length ==0 && errorDescription.length != 0){
+					ycNumber='异常';
+					
+				}
+				if(money.length ==0){
+					money ='';
+				}
+				if(cmoney.length ==0){
+					cmoney ='';
+				} 
+				var time =  item.rgAuditingTime; 
+					if( time == undefined ){
+					time='';
+					} 
+ 
+				if(undefined == receiveCode || receiveCode=='' ||  receiveCode==null ){ 
+					time='';
+				} 
+			}}
+			<tr>  
+				<td> <a href="javascript:;"  data-id="{{ item.appSerialNumber }}" data-app={{ item.appName }} data-cid={{ item.customerId }} data-is="{{ isCallPhone }}" data-net="{{ netcheckNoAbnormal }}"   data-aid="{{ item.applicationId }}" data-opt="find"   data-name="{{ item.name }}"  data-state="{{ item.rgAuditingState }}"  data-rcode="{{ auditMan }}" data-source="{{ item.source }}" data-money="{{ item.rgCreditMoney }}" style="color: blue;" >{{ item.appSerialNumber }}</a>
+				</td>
+				<td>{{ item.customerId }}</td>
+				<td>{{ item.name }}</td>
+				<td>{{ item.certCode }}</td>
+				<td>{{ item.phoneNum }}</td>
+
+				{{#  if(item.source == 0){ }}
+				<td>Android</td>
+				{{# } else if(item.source == 1){ }}
+				<td>IOS</td> 
+				{{# } }}
+				{{# if(item.appLevel == 0){ }}
+				<td>新用户</td>
+				{{# } else if(item.appLevel == 1){ }}
+				<td>老用户</td> 
+				{{# } }}
+				<td>{{ auditMan }}</td>
+				<td style="white-space: nowrap;">{{ createTime.substring(0,19)}}</td>
+				<td style="white-space: nowrap;">{{ time.substring(0,19)}}</td>
+				<td>{{ money}}</td>
+				<td>{{cmoney}}</td>
+				{{#  if(item.auditingState == 2 && (auditMan =='' || auditMan == null)  ){ }}
+				<td>系统审批通过</td>
+				{{# } else if(item.auditingState == 3 && (auditMan =='' || auditMan == null) ){ }}
+				<td>系统审批未通过</td> 
+				{{# } else if(item.auditingState == 1 && (auditMan =='' || auditMan == null) ){ }}
+				<td>待系统审批</td> 
+				{{# } else if(item.auditingState == 4 && (auditMan !='' || auditMan != null) && (receiveCode=='' || receiveCode== null) ){ }}
+				<td>待人工审批</td> 
+				{{# }  else if(state == 2 && (receiveCode =='' || receiveCode != null )  ){ }}
+				<td>人工审批通过</td> 
+				{{# } else if(state == 3 && (receiveCode !='' || receiveCode != null)  ){ }}
+				<td>人工审批未通过</td> 
+				{{# } }}
+				<td>{{ ycNumber}}</td>
+				<td>
+					<div title="{{errorDescription}}" style="width:251px;overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">
+						{{errorDescription}}
+					</div>
+				</td>  
+			</tr>
+			{{# }); }}
+		</script> 
+	</body>
+</html>

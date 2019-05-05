@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<!-- <title>Insert title here</title> -->
+</head>
+		<!-- css -->
+		<link rel="stylesheet" href="../../plugins/layui/css/layui.css" media="all" />
+		<link rel="stylesheet" href="../../css/global.css" media="all">
+		<link rel="stylesheet" href="../../plugins/font-awesome/css/font-awesome.min.css">
+		<link rel="stylesheet" href="../../css/table.css" />
+
+		<!-- JS -->
+		<script type="text/javascript" src="../../plugins/layui/layui.js"></script>
+		<script src="../../jqery/jquery.js"></script>
+		<script type="text/javascript" src="../../../commons/base.js"></script>
+		<script type="text/javascript" src="../../js/task/taskEdit.js"></script>
+		
+		
+<body>
+	<div style="margin: 15px;">
+	<form class="layui-form" id="taskForm">
+		 
+		<div class="layui-form-item">
+			<label class="layui-form-label">job name</label>
+			<div class="layui-input-inline">
+				<input id="jobName" type="text" name="jobName"  lay-verify="jobName" value="backend_task_blacklist" placeholder="job name"  class="layui-input" >
+			</div>
+		</div>
+	  	 
+		<div class="layui-form-item">
+			<label class="layui-form-label">job group</label>
+			<div class="layui-input-block">
+				<input id="jobGroup" type="text" name="jobGroup" lay-verify="jobGroup" value="JOB_BACKEND" placeholder="job group" autocomplete="off" class="layui-input">
+			</div>
+		</div>
+		<div class="layui-form-item">
+			<label class="layui-form-label">描述</label>
+			<div class="layui-input-block">
+				<input id="description" type="text" name="description" lay-verify="description" value="backend_task黑名单"  placeholder="描述" autocomplete="off" class="layui-input">
+			</div>
+		</div>
+		<div class="layui-form-item">
+			<label class="layui-form-label">项目名称</label>
+			<div class="layui-input-block">
+				<input id="artifactId" type="text" name="artifactId" lay-verify="artifactId" value="backend_task"  placeholder="项目名称" autocomplete="off" class="layui-input">
+			</div>
+		</div>
+		<div class="layui-form-item">
+			<label class="layui-form-label">类路径</label>
+			<div class="layui-input-block">
+				<input id="beanClass" type="text" name="beanClass" lay-verify="beanClass" value="com.honglu.task.config.TestTask"  placeholder="类路径" autocomplete="off" class="layui-input">
+			</div>
+		</div>
+		<div class="layui-form-item">
+			<label class="layui-form-label">springbeanid</label>
+			<div class="layui-input-block">
+				<input id="springId" type="text" name="springId" lay-verify="springId" value="testTask" placeholder="spring bean id" autocomplete="off" class="layui-input">
+			</div>
+		</div>
+		<div class="layui-form-item">
+			<label class="layui-form-label">方法名</label>
+			<div class="layui-input-block">
+				<input id="methodName" type="text" name="methodName" lay-verify="methodName" value="scheduler" placeholder="方法名" autocomplete="off" class="layui-input">
+			</div>
+		</div>
+		<div class="layui-form-item">
+			<label class="layui-form-label">cron表达式</label>
+			<div class="layui-input-block">
+				<input id="cronExpression" type="text" name="cronExpression"  lay-verify="cronExpression" value="0/1 * * * * ?" placeholder="cron表达式" autocomplete="off" class="layui-input">
+			</div>
+		</div>
+		<div class="layui-form-item">
+			<label class="layui-form-label">运行状态</label>
+			<div class="layui-input-block">
+				<input id="jobStatus" type="text" name="jobStatus" value="0" lay-verify="jobStatus" readOnly placeholder="运行状态" autocomplete="off" class="layui-input">
+			</div>
+		</div>
+		<div class="layui-form-item">
+			<label class="layui-form-label">是否同步</label>
+			<div class="layui-input-inline">
+		        <select name="parentId" lay-filter="select" id = "isConcurrent" name = "isConcurrent" lay-verify="isConcurrent" lay-search="" id="select_parentId">
+		          <option value="0">0  有状态</option>
+		          <option value="1">1  无状态</option>
+		        </select>
+			</div>
+		</div>
+		
+		<button lay-submit lay-filter="save"  class="layui-btn" id="save_bt" style="margin-left: 280px;margin-top: 50px;" >保存</button>
+		<button class="layui-btn layui-btn-normal" id="off_bt" onclick="closeIfrname()"  style="margin-left: 60px;margin-top: 49px;">取消</button>
+		
+	</form>
+</div>
+</body>
+</html>

@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+<meta charset="UTF-8">
+<title>芝麻信用报告信息</title>
+<link rel="stylesheet" href="../../plugins/layui/css/layui.css"
+	media="all" />
+<link rel="stylesheet" href="../../css/global.css" media="all">
+<link rel="stylesheet"
+	href="../../plugins/font-awesome/css/font-awesome.min.css"> 
+<!-- js -->
+<script src="../../jqery/jquery.js"></script>
+<script src="../../../commons/base.js"></script>
+<script type="text/javascript" src="../../plugins/layui/layui.js"></script>
+<script type="text/javascript" src="../../js/cuCustomerCheckApply/zhiMa_JsonReport.js"></script>
+</head>
+<body> 
+	<div class="admin-main">  
+		<legend style="margin-left: 43%;">芝麻信用欺诈关注清单</legend>  
+		<table class="layui-table" >
+					<tbody id="tbody_id">
+						<tr>
+							<th style="width: 170px;">欺诈关注清单业务号</th>
+							<td colspan="3"><font id="zmBizNo_qd"></font></td>
+						</tr>
+						<tr>
+							<th>芝麻关注清单是否命中</th>
+							<td colspan="3"><font id="state"></font></td>
+						</tr> 
+					</tbody>
+				</table>  
+		<div class="admin-table-page">
+			<div id="paged" class="page"></div>
+		</div>
+	</div> 
+</body> 
+</html>

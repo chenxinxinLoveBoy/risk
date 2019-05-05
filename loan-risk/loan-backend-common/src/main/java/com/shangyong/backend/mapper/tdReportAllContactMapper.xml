@@ -1,0 +1,305 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.shangyong.backend.dao.tdReport.TdReportAllContactDao">
+
+	<resultMap type="com.shangyong.backend.entity.tdReport.TdReportAllContact" id="tdReportAllContactMap">
+		<id property="allContactId" column="all_contact_id" javaType="java.lang.String"></id>
+		<result property="applicationId" column="application_id" javaType="java.lang.String"></result>
+		<result property="contactCount1month" column="contact_count_1month" javaType="java.lang.String"></result>
+		<result property="contactCount3month" column="contact_count_3month" javaType="java.lang.String"></result>
+		<result property="contactCountActive3month" column="contact_count_active_3month" javaType="java.lang.String"></result>
+		<result property="contactCountPassive3month" column="contact_count_passive_3month" javaType="java.lang.String"></result>
+		<result property="contactCountMutual3month" column="contact_count_mutual_3month" javaType="java.lang.String"></result>
+		<result property="contactCountCallCountOver103month" column="contact_count_call_count_over10_3month" javaType="java.lang.String"></result>
+		<result property="contactCount6month" column="contact_count_6month" javaType="java.lang.String"></result>
+		<result property="contactCountActive6month" column="contact_count_active_6month" javaType="java.lang.String"></result>
+		<result property="contactCountPassive6month" column="contact_count_passive_6month" javaType="java.lang.String"></result>
+		<result property="contactCountMutual6month" column="contact_count_mutual_6month" javaType="java.lang.String"></result>
+		<result property="contactCountCallCountOver106month" column="contact_count_call_count_over10_6month" javaType="java.lang.String"></result>
+		<result property="contactCountMobile6month" column="contact_count_mobile_6month" javaType="java.lang.String"></result>
+		<result property="contactCountTelephone6month" column="contact_count_telephone_6month" javaType="java.lang.String"></result>
+		<result property="contactCountNotMobileTelephone6month" column="contact_count_not_mobile_telephone_6month" javaType="java.lang.String"></result>
+		<result property="callCount1month" column="call_count_1month" javaType="java.lang.String"></result>
+		<result property="callCount3month" column="call_count_3month" javaType="java.lang.String"></result>
+		<result property="callCountActive3month" column="call_count_active_3month" javaType="java.lang.String"></result>
+		<result property="callCountPassive3month" column="call_count_passive_3month" javaType="java.lang.String"></result>
+		<result property="callCountLateNight3month" column="call_count_late_night_3month" javaType="java.lang.String"></result>
+		<result property="callCountWorkTime3month" column="call_count_work_time_3month" javaType="java.lang.String"></result>
+		<result property="callCountOffworkTime3month" column="call_count_offwork_time_3month" javaType="java.lang.String"></result>
+		<result property="callCountWorkday3month" column="call_count_workday_3month" javaType="java.lang.String"></result>
+		<result property="callCountHoliday3month" column="call_count_holiday_3month" javaType="java.lang.String"></result>
+		<result property="callCount6month" column="call_count_6month" javaType="java.lang.String"></result>
+		<result property="callCountActive6month" column="call_count_active_6month" javaType="java.lang.String"></result>
+		<result property="callCountPassive6month" column="call_count_passive_6month" javaType="java.lang.String"></result>
+		<result property="callCountLateNight6month" column="call_count_late_night_6month" javaType="java.lang.String"></result>
+		<result property="callCountActiveLateNight6month" column="call_count_active_late_night_6month" javaType="java.lang.String"></result>
+		<result property="callCountPassiveLateNight6month" column="call_count_passive_late_night_6month" javaType="java.lang.String"></result>
+		<result property="callCountWorkTime6month" column="call_count_work_time_6month" javaType="java.lang.String"></result>
+		<result property="callCountOffworkTime6month" column="call_count_offwork_time_6month" javaType="java.lang.String"></result>
+		<result property="callCountWorkday6month" column="call_count_workday_6month" javaType="java.lang.String"></result>
+		<result property="callCountHoliday6month" column="call_count_holiday_6month" javaType="java.lang.String"></result>
+		<result property="callCountCallTimeLess1min6month" column="call_count_call_time_less1min_6month" javaType="java.lang.String"></result>
+		<result property="callCountCallTime1min5min6month" column="call_count_call_time_1min5min_6month" javaType="java.lang.String"></result>
+		<result property="callCountCallTime5min10min6month" column="call_count_call_time_5min10min_6month" javaType="java.lang.String"></result>
+		<result property="callCountCallTimeOver10min6month" column="call_count_call_time_over10min_6month" javaType="java.lang.String"></result>
+		<result property="callTime1month" column="call_time_1month" javaType="java.lang.String"></result>
+		<result property="callTime3month" column="call_time_3month" javaType="java.lang.String"></result>
+		<result property="callTimeActive3month" column="call_time_active_3month" javaType="java.lang.String"></result>
+		<result property="callTimePassive3month" column="call_time_passive_3month" javaType="java.lang.String"></result>
+		<result property="callTimeLateNight3month" column="call_time_late_night_3month" javaType="java.lang.String"></result>
+		<result property="callTimeWorkTime3month" column="call_time_work_time_3month" javaType="java.lang.String"></result>
+		<result property="callTimeOffworkTime3month" column="call_time_offwork_time_3month" javaType="java.lang.String"></result>
+		<result property="callTime6month" column="call_time_6month" javaType="java.lang.String"></result>
+		<result property="callTimeActive6month" column="call_time_active_6month" javaType="java.lang.String"></result>
+		<result property="callTimePassive6month" column="call_time_passive_6month" javaType="java.lang.String"></result>
+		<result property="callTimeActiveMobile6month" column="call_time_active_mobile_6month" javaType="java.lang.String"></result>
+		<result property="callTimePassiveMobile6month" column="call_time_passive_mobile_6month" javaType="java.lang.String"></result>
+		<result property="callTimeLateNight6month" column="call_time_late_night_6month" javaType="java.lang.String"></result>
+		<result property="callTimeWorkTime6month" column="call_time_work_time_6month" javaType="java.lang.String"></result>
+		<result property="callTimeOffworkTime6month" column="call_time_offwork_time_6month" javaType="java.lang.String"></result>
+		<result property="msgCount1month" column="msg_count_1month" javaType="java.lang.String"></result>
+		<result property="msgCount3month" column="msg_count_3month" javaType="java.lang.String"></result>
+		<result property="msgCount6month" column="msg_count_6month" javaType="java.lang.String"></result>
+		<result property="createTime" column="create_time" javaType="java.lang.String"></result>
+		<result property="createMan" column="create_man" javaType="java.lang.String"></result>
+		<result property="modifyTime" column="modify_time" javaType="java.lang.String"></result>
+		<result property="modifyMan" column="modify_man" javaType="java.lang.String"></result>
+		<result property="remark" column="remark" javaType="java.lang.String"></result>
+	</resultMap>
+
+	<!-- 通用查询结果列-->
+	<sql id="Base_Column_List">
+all_contact_id,	application_id,	contact_count_1month,	contact_count_3month,	contact_count_active_3month,	contact_count_passive_3month,	contact_count_mutual_3month,	contact_count_call_count_over10_3month,	contact_count_6month,	contact_count_active_6month,	contact_count_passive_6month,	contact_count_mutual_6month,	contact_count_call_count_over10_6month,	contact_count_mobile_6month,	contact_count_telephone_6month,	contact_count_not_mobile_telephone_6month,	call_count_1month,	call_count_3month,	call_count_active_3month,	call_count_passive_3month,	call_count_late_night_3month,	call_count_work_time_3month,	call_count_offwork_time_3month,	call_count_workday_3month,	call_count_holiday_3month,	call_count_6month,	call_count_active_6month,	call_count_passive_6month,	call_count_late_night_6month,	call_count_active_late_night_6month,	call_count_passive_late_night_6month,	call_count_work_time_6month,	call_count_offwork_time_6month,	call_count_workday_6month,	call_count_holiday_6month,	call_count_call_time_less1min_6month,	call_count_call_time_1min5min_6month,	call_count_call_time_5min10min_6month,	call_count_call_time_over10min_6month,	call_time_1month,	call_time_3month,	call_time_active_3month,	call_time_passive_3month,	call_time_late_night_3month,	call_time_work_time_3month,	call_time_offwork_time_3month,	call_time_6month,	call_time_active_6month,	call_time_passive_6month,	call_time_active_mobile_6month,	call_time_passive_mobile_6month,	call_time_late_night_6month,	call_time_work_time_6month,	call_time_offwork_time_6month,	msg_count_1month,	msg_count_3month,	msg_count_6month,	create_time,	create_man,	modify_time,	modify_man,	remark
+	</sql>
+
+	<!-- 查询（根据主键ID查询） -->
+	<select id="getEntityById" resultMap="tdReportAllContactMap" parameterType="java.lang.String">
+		 SELECT
+		 <include refid="Base_Column_List" />
+		 FROM td_report_all_contact
+		 WHERE all_contact_id = #{allContactId}
+	</select>
+		<!-- 查询（根据主键ID查询） -->
+	<select id="queryById" resultMap="tdReportAllContactMap" parameterType="java.lang.String">
+		 SELECT
+		 <include refid="Base_Column_List" />
+		 FROM td_report_all_contact
+		 WHERE application_id = #{applicationId}
+	</select>
+
+	<!-- 查询（根据主键ID查询） -->
+	<select id="findAll" resultMap="tdReportAllContactMap" parameterType="java.lang.String">
+		 SELECT
+		 <include refid="Base_Column_List" />
+		 FROM td_report_all_contact
+		 WHERE all_contact_id = #{allContactId}
+	</select>
+
+	<!--删除：根据主键ID删除-->
+	<delete id="deleteEntity" parameterType="java.lang.String">
+		 DELETE FROM td_report_all_contact
+		 WHERE all_contact_id = #{allContactId}
+	</delete>
+
+	<!-- 添加 -->
+	<insert id="saveEntity" parameterType="com.shangyong.backend.entity.tdReport.TdReportAllContact">
+		 INSERT INTO td_report_all_contact
+ 		(all_contact_id,application_id,contact_count_1month,contact_count_3month,contact_count_active_3month,contact_count_passive_3month,contact_count_mutual_3month,contact_count_call_count_over10_3month,contact_count_6month,contact_count_active_6month,contact_count_passive_6month,contact_count_mutual_6month,contact_count_call_count_over10_6month,contact_count_mobile_6month,contact_count_telephone_6month,contact_count_not_mobile_telephone_6month,call_count_1month,call_count_3month,call_count_active_3month,call_count_passive_3month,call_count_late_night_3month,call_count_work_time_3month,call_count_offwork_time_3month,call_count_workday_3month,call_count_holiday_3month,call_count_6month,call_count_active_6month,call_count_passive_6month,call_count_late_night_6month,call_count_active_late_night_6month,call_count_passive_late_night_6month,call_count_work_time_6month,call_count_offwork_time_6month,call_count_workday_6month,call_count_holiday_6month,call_count_call_time_less1min_6month,call_count_call_time_1min5min_6month,call_count_call_time_5min10min_6month,call_count_call_time_over10min_6month,call_time_1month,call_time_3month,call_time_active_3month,call_time_passive_3month,call_time_late_night_3month,call_time_work_time_3month,call_time_offwork_time_3month,call_time_6month,call_time_active_6month,call_time_passive_6month,call_time_active_mobile_6month,call_time_passive_mobile_6month,call_time_late_night_6month,call_time_work_time_6month,call_time_offwork_time_6month,msg_count_1month,msg_count_3month,msg_count_6month,create_time,create_man,modify_time,modify_man,remark) 
+		 VALUES 
+ 		(#{allContactId},#{applicationId},#{contactCount1month},#{contactCount3month},#{contactCountActive3month},#{contactCountPassive3month},#{contactCountMutual3month},#{contactCountCallCountOver103month},#{contactCount6month},#{contactCountActive6month},#{contactCountPassive6month},#{contactCountMutual6month},#{contactCountCallCountOver106month},#{contactCountMobile6month},#{contactCountTelephone6month},#{contactCountNotMobileTelephone6month},#{callCount1month},#{callCount3month},#{callCountActive3month},#{callCountPassive3month},#{callCountLateNight3month},#{callCountWorkTime3month},#{callCountOffworkTime3month},#{callCountWorkday3month},#{callCountHoliday3month},#{callCount6month},#{callCountActive6month},#{callCountPassive6month},#{callCountLateNight6month},#{callCountActiveLateNight6month},#{callCountPassiveLateNight6month},#{callCountWorkTime6month},#{callCountOffworkTime6month},#{callCountWorkday6month},#{callCountHoliday6month},#{callCountCallTimeLess1min6month},#{callCountCallTime1min5min6month},#{callCountCallTime5min10min6month},#{callCountCallTimeOver10min6month},#{callTime1month},#{callTime3month},#{callTimeActive3month},#{callTimePassive3month},#{callTimeLateNight3month},#{callTimeWorkTime3month},#{callTimeOffworkTime3month},#{callTime6month},#{callTimeActive6month},#{callTimePassive6month},#{callTimeActiveMobile6month},#{callTimePassiveMobile6month},#{callTimeLateNight6month},#{callTimeWorkTime6month},#{callTimeOffworkTime6month},#{msgCount1month},#{msgCount3month},#{msgCount6month},#{createTime},#{createMan},#{modifyTime},#{modifyMan},#{remark}) 
+	</insert>
+
+	<!-- 修 改-->
+	<update id="updateEntity" parameterType="com.shangyong.backend.entity.tdReport.TdReportAllContact">
+		 UPDATE td_report_all_contact
+ 		 <set> 
+			<if test="applicationId != null">
+				 application_id = #{applicationId},
+			</if>
+			<if test="contactCount1month != null">
+				 contact_count_1month = #{contactCount1month},
+			</if>
+			<if test="contactCount3month != null">
+				 contact_count_3month = #{contactCount3month},
+			</if>
+			<if test="contactCountActive3month != null">
+				 contact_count_active_3month = #{contactCountActive3month},
+			</if>
+			<if test="contactCountPassive3month != null">
+				 contact_count_passive_3month = #{contactCountPassive3month},
+			</if>
+			<if test="contactCountMutual3month != null">
+				 contact_count_mutual_3month = #{contactCountMutual3month},
+			</if>
+			<if test="contactCountCallCountOver103month != null">
+				 contact_count_call_count_over10_3month = #{contactCountCallCountOver103month},
+			</if>
+			<if test="contactCount6month != null">
+				 contact_count_6month = #{contactCount6month},
+			</if>
+			<if test="contactCountActive6month != null">
+				 contact_count_active_6month = #{contactCountActive6month},
+			</if>
+			<if test="contactCountPassive6month != null">
+				 contact_count_passive_6month = #{contactCountPassive6month},
+			</if>
+			<if test="contactCountMutual6month != null">
+				 contact_count_mutual_6month = #{contactCountMutual6month},
+			</if>
+			<if test="contactCountCallCountOver106month != null">
+				 contact_count_call_count_over10_6month = #{contactCountCallCountOver106month},
+			</if>
+			<if test="contactCountMobile6month != null">
+				 contact_count_mobile_6month = #{contactCountMobile6month},
+			</if>
+			<if test="contactCountTelephone6month != null">
+				 contact_count_telephone_6month = #{contactCountTelephone6month},
+			</if>
+			<if test="contactCountNotMobileTelephone6month != null">
+				 contact_count_not_mobile_telephone_6month = #{contactCountNotMobileTelephone6month},
+			</if>
+			<if test="callCount1month != null">
+				 call_count_1month = #{callCount1month},
+			</if>
+			<if test="callCount3month != null">
+				 call_count_3month = #{callCount3month},
+			</if>
+			<if test="callCountActive3month != null">
+				 call_count_active_3month = #{callCountActive3month},
+			</if>
+			<if test="callCountPassive3month != null">
+				 call_count_passive_3month = #{callCountPassive3month},
+			</if>
+			<if test="callCountLateNight3month != null">
+				 call_count_late_night_3month = #{callCountLateNight3month},
+			</if>
+			<if test="callCountWorkTime3month != null">
+				 call_count_work_time_3month = #{callCountWorkTime3month},
+			</if>
+			<if test="callCountOffworkTime3month != null">
+				 call_count_offwork_time_3month = #{callCountOffworkTime3month},
+			</if>
+			<if test="callCountWorkday3month != null">
+				 call_count_workday_3month = #{callCountWorkday3month},
+			</if>
+			<if test="callCountHoliday3month != null">
+				 call_count_holiday_3month = #{callCountHoliday3month},
+			</if>
+			<if test="callCount6month != null">
+				 call_count_6month = #{callCount6month},
+			</if>
+			<if test="callCountActive6month != null">
+				 call_count_active_6month = #{callCountActive6month},
+			</if>
+			<if test="callCountPassive6month != null">
+				 call_count_passive_6month = #{callCountPassive6month},
+			</if>
+			<if test="callCountLateNight6month != null">
+				 call_count_late_night_6month = #{callCountLateNight6month},
+			</if>
+			<if test="callCountActiveLateNight6month != null">
+				 call_count_active_late_night_6month = #{callCountActiveLateNight6month},
+			</if>
+			<if test="callCountPassiveLateNight6month != null">
+				 call_count_passive_late_night_6month = #{callCountPassiveLateNight6month},
+			</if>
+			<if test="callCountWorkTime6month != null">
+				 call_count_work_time_6month = #{callCountWorkTime6month},
+			</if>
+			<if test="callCountOffworkTime6month != null">
+				 call_count_offwork_time_6month = #{callCountOffworkTime6month},
+			</if>
+			<if test="callCountWorkday6month != null">
+				 call_count_workday_6month = #{callCountWorkday6month},
+			</if>
+			<if test="callCountHoliday6month != null">
+				 call_count_holiday_6month = #{callCountHoliday6month},
+			</if>
+			<if test="callCountCallTimeLess1min6month != null">
+				 call_count_call_time_less1min_6month = #{callCountCallTimeLess1min6month},
+			</if>
+			<if test="callCountCallTime1min5min6month != null">
+				 call_count_call_time_1min5min_6month = #{callCountCallTime1min5min6month},
+			</if>
+			<if test="callCountCallTime5min10min6month != null">
+				 call_count_call_time_5min10min_6month = #{callCountCallTime5min10min6month},
+			</if>
+			<if test="callCountCallTimeOver10min6month != null">
+				 call_count_call_time_over10min_6month = #{callCountCallTimeOver10min6month},
+			</if>
+			<if test="callTime1month != null">
+				 call_time_1month = #{callTime1month},
+			</if>
+			<if test="callTime3month != null">
+				 call_time_3month = #{callTime3month},
+			</if>
+			<if test="callTimeActive3month != null">
+				 call_time_active_3month = #{callTimeActive3month},
+			</if>
+			<if test="callTimePassive3month != null">
+				 call_time_passive_3month = #{callTimePassive3month},
+			</if>
+			<if test="callTimeLateNight3month != null">
+				 call_time_late_night_3month = #{callTimeLateNight3month},
+			</if>
+			<if test="callTimeWorkTime3month != null">
+				 call_time_work_time_3month = #{callTimeWorkTime3month},
+			</if>
+			<if test="callTimeOffworkTime3month != null">
+				 call_time_offwork_time_3month = #{callTimeOffworkTime3month},
+			</if>
+			<if test="callTime6month != null">
+				 call_time_6month = #{callTime6month},
+			</if>
+			<if test="callTimeActive6month != null">
+				 call_time_active_6month = #{callTimeActive6month},
+			</if>
+			<if test="callTimePassive6month != null">
+				 call_time_passive_6month = #{callTimePassive6month},
+			</if>
+			<if test="callTimeActiveMobile6month != null">
+				 call_time_active_mobile_6month = #{callTimeActiveMobile6month},
+			</if>
+			<if test="callTimePassiveMobile6month != null">
+				 call_time_passive_mobile_6month = #{callTimePassiveMobile6month},
+			</if>
+			<if test="callTimeLateNight6month != null">
+				 call_time_late_night_6month = #{callTimeLateNight6month},
+			</if>
+			<if test="callTimeWorkTime6month != null">
+				 call_time_work_time_6month = #{callTimeWorkTime6month},
+			</if>
+			<if test="callTimeOffworkTime6month != null">
+				 call_time_offwork_time_6month = #{callTimeOffworkTime6month},
+			</if>
+			<if test="msgCount1month != null">
+				 msg_count_1month = #{msgCount1month},
+			</if>
+			<if test="msgCount3month != null">
+				 msg_count_3month = #{msgCount3month},
+			</if>
+			<if test="msgCount6month != null">
+				 msg_count_6month = #{msgCount6month},
+			</if>
+			<if test="createTime != null">
+				 create_time = #{createTime},
+			</if>
+			<if test="createMan != null">
+				 create_man = #{createMan},
+			</if>
+			<if test="modifyTime != null">
+				 modify_time = #{modifyTime},
+			</if>
+			<if test="modifyMan != null">
+				 modify_man = #{modifyMan},
+			</if>
+			<if test="remark != null">
+				 remark = #{remark},
+			</if>
+
+ 		 </set>
+		 WHERE all_contact_id = #{allContactId}
+	</update>
+
+</mapper>

@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.shangyong.backend.dao.bqsrep.BqsRepMnoThreeDayMobileServiceDao">
+
+	<resultMap type="com.shangyong.backend.entity.bqsrep.BqsRepMnoThreeDayMobile" id="bqsRepMnoThreeDayMobileinfoMap">
+		<id property="bqsMnoThreeDayInfoId" column="bqs_mno_three_day_info_id" javaType="java.lang.String"></id>
+		<result property="bqsPetitionerId" column="bqs_petitioner_id" javaType="java.lang.String"></result>
+		<result property="mobile" column="mobile" javaType="java.lang.String"></result>
+		<result property="mobileTag" column="mobile_tag" javaType="java.lang.String"></result>
+		<result property="mobileTagType" column="mobile_tag_type" javaType="java.lang.String"></result>
+		<result property="financeTag" column="finance_tag" javaType="java.lang.String"></result>
+		<result property="beginTime" column="begin_time" javaType="java.lang.String"></result>
+		<result property="endTime" column="end_time" javaType="java.lang.String"></result>
+		<result property="monType" column="mon_type" javaType="java.lang.String"></result>
+		<result property="belongTo" column="belong_to" javaType="java.lang.String"></result>
+		<result property="connectCount" column="connect_count" javaType="java.lang.String"></result>
+		<result property="connectTime" column="connect_time" javaType="java.lang.String"></result>
+		<result property="originatingCallCount" column="originating_call_count" javaType="java.lang.String"></result>
+		<result property="originatingTime" column="originating_time" javaType="java.lang.String"></result>
+		<result property="terminatingCallCount" column="terminating_call_count" javaType="java.lang.String"></result>
+		<result property="terminatingTime" column="terminating_time" javaType="java.lang.String"></result>
+	</resultMap>
+
+	<!-- 通用查询结果列-->
+	<sql id="Base_Column_List">
+	bqs_mno_three_day_info_id,	bqs_petitioner_id,	mobile,	mobile_tag,	mobile_tag_type,	finance_tag,	begin_time,	end_time,	mon_type,	belong_to,	connect_count,	connect_time,	originating_call_count,	originating_time,	terminating_call_count,	terminating_time
+	</sql>
+
+	<!-- 查询（根据主键ID查询） -->
+	<select id="getEntityById" resultMap="bqsRepMnoThreeDayMobileinfoMap" parameterType="java.lang.String">
+		 SELECT
+		 <include refid="Base_Column_List" />
+		 FROM bqs_rep_mno_three_day_mobile
+		 WHERE bqs_mno_three_day_info_id = #{bqsMnoThreeDayInfoId}
+	</select>
+
+	<!-- 查询（根据主键ID查询） -->
+	<select id="getAll" resultMap="bqsRepMnoThreeDayMobileinfoMap" parameterType="java.lang.String">
+		 SELECT
+		 <include refid="Base_Column_List" />
+		 FROM bqs_rep_mno_three_day_mobile
+	</select>
+
+	<!--删除：根据主键ID删除-->
+	<delete id="deleteEntity" parameterType="java.lang.String">
+		 DELETE FROM bqs_rep_mno_three_day_mobile
+		 WHERE bqs_mno_three_day_info_id = #{bqsMnoThreeDayInfoId}
+	</delete>
+
+	<!-- 添加 -->
+	<insert id="saveEntity" parameterType="com.shangyong.backend.entity.bqsrep.BqsRepMnoThreeDayMobile">
+		 INSERT INTO bqs_rep_mno_three_day_mobile
+ 		(bqs_mno_three_day_info_id,bqs_petitioner_id,mobile,mobile_tag,mobile_tag_type,finance_tag,begin_time,end_time,mon_type,belong_to,connect_count,connect_time,originating_call_count,originating_time,terminating_call_count,terminating_time) 
+		 VALUES 
+ 		(#{bqsMnoThreeDayInfoId},#{bqsPetitionerId},#{mobile},#{mobileTag},#{mobileTagType},#{financeTag},#{beginTime},#{endTime},#{monType},#{belongTo},#{connectCount},#{connectTime},#{originatingCallCount},#{originatingTime},#{terminatingCallCount},#{terminatingTime}) 
+	</insert>
+	<!-- 批量插入 -->
+	<insert id="saveAllEntity" parameterType="java.util.List">
+		 INSERT INTO bqs_rep_mno_three_day_mobile
+ 		(bqs_mno_three_day_info_id,bqs_petitioner_id,mobile,mobile_tag,mobile_tag_type,finance_tag,begin_time,end_time,mon_type,belong_to,connect_count,connect_time,originating_call_count,originating_time,terminating_call_count,terminating_time) 
+		 VALUES   
+ 	    <foreach collection="list" item="item" index="index" separator="," > 
+ 		(#{item.bqsMnoThreeDayInfoId},#{item.bqsPetitionerId},#{item.mobile},#{item.mobileTag},#{item.mobileTagType},#{item.financeTag},#{item.beginTime},#{item.endTime},#{item.monType},#{item.belongTo},#{item.connectCount},#{item.connectTime},#{item.originatingCallCount},#{item.originatingTime},#{item.terminatingCallCount},#{item.terminatingTime}) 
+ 		</foreach>
+	</insert>
+
+	<!-- 修 改-->
+	<update id="updateEntity" parameterType="com.shangyong.backend.entity.bqsrep.BqsRepMnoThreeDayMobile">
+		 UPDATE bqs_rep_mno_three_day_mobile
+ 		 <set> 
+			<if test="bqsPetitionerId != null">
+				 bqs_petitioner_id = #{bqsPetitionerId},
+			</if>
+			<if test="mobile != null">
+				 mobile = #{mobile},
+			</if>
+			<if test="mobileTag != null">
+				 mobile_tag = #{mobileTag},
+			</if>
+			<if test="mobileTagType != null">
+				 mobile_tag_type = #{mobileTagType},
+			</if>
+			<if test="financeTag != null">
+				 finance_tag = #{financeTag},
+			</if>
+			<if test="beginTime != null">
+				 begin_time = #{beginTime},
+			</if>
+			<if test="endTime != null">
+				 end_time = #{endTime},
+			</if>
+			<if test="monType != null">
+				 mon_type = #{monType},
+			</if>
+			<if test="belongTo != null">
+				 belong_to = #{belongTo},
+			</if>
+			<if test="connectCount != null">
+				 connect_count = #{connectCount},
+			</if>
+			<if test="connectTime != null">
+				 connect_time = #{connectTime},
+			</if>
+			<if test="originatingCallCount != null">
+				 originating_call_count = #{originatingCallCount},
+			</if>
+			<if test="originatingTime != null">
+				 originating_time = #{originatingTime},
+			</if>
+			<if test="terminatingCallCount != null">
+				 terminating_call_count = #{terminatingCallCount},
+			</if>
+			<if test="terminatingTime != null">
+				 terminating_time = #{terminatingTime},
+			</if>
+
+ 		 </set>
+		 WHERE bqs_mno_three_day_info_id = #{bqsMnoThreeDayInfoId}
+	</update>
+
+</mapper>

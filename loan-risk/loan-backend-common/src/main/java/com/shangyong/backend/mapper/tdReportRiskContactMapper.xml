@@ -1,0 +1,171 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.shangyong.backend.dao.tdReport.TdReportRiskContactDao">
+
+	<resultMap type="com.shangyong.backend.entity.tdReport.TdReportRiskContact" id="tdReportRiskContactMap">
+		<id property="riskContactId" column="risk_contact_id" javaType="java.lang.String"></id>
+		<result property="applicationId" column="application_id" javaType="java.lang.String"></result>
+		<result property="riskType" column="risk_type" javaType="java.lang.String"></result>
+		<result property="contactCount1month" column="contact_count_1month" javaType="java.lang.String"></result>
+		<result property="contactCount3month" column="contact_count_3month" javaType="java.lang.String"></result>
+		<result property="contactCount6month" column="contact_count_6month" javaType="java.lang.String"></result>
+		<result property="callCount1month" column="call_count_1month" javaType="java.lang.String"></result>
+		<result property="callCount3month" column="call_count_3month" javaType="java.lang.String"></result>
+		<result property="callCountActive3month" column="call_count_active_3month" javaType="java.lang.String"></result>
+		<result property="callCountPassive3month" column="call_count_passive_3month" javaType="java.lang.String"></result>
+		<result property="callCount6month" column="call_count_6month" javaType="java.lang.String"></result>
+		<result property="callCountActive6month" column="call_count_active_6month" javaType="java.lang.String"></result>
+		<result property="callCountPassive6month" column="call_count_passive_6month" javaType="java.lang.String"></result>
+		<result property="callTime1month" column="call_time_1month" javaType="java.lang.String"></result>
+		<result property="callTime3month" column="call_time_3month" javaType="java.lang.String"></result>
+		<result property="callTimeActive3month" column="call_time_active_3month" javaType="java.lang.String"></result>
+		<result property="callTimePassive3month" column="call_time_passive_3month" javaType="java.lang.String"></result>
+		<result property="callTime6month" column="call_time_6month" javaType="java.lang.String"></result>
+		<result property="callTimeActive6month" column="call_time_active_6month" javaType="java.lang.String"></result>
+		<result property="callTimePassive6month" column="call_time_passive_6month" javaType="java.lang.String"></result>
+		<result property="msgCount1month" column="msg_count_1month" javaType="java.lang.String"></result>
+		<result property="msgCount3month" column="msg_count_3month" javaType="java.lang.String"></result>
+		<result property="msgCount6month" column="msg_count_6month" javaType="java.lang.String"></result>
+		<result property="createTime" column="create_time" javaType="java.lang.String"></result>
+		<result property="createMan" column="create_man" javaType="java.lang.String"></result>
+		<result property="modifyTime" column="modify_time" javaType="java.lang.String"></result>
+		<result property="modifyMan" column="modify_man" javaType="java.lang.String"></result>
+		<result property="remark" column="remark" javaType="java.lang.String"></result>
+	</resultMap>
+
+	<!-- 通用查询结果列-->
+	<sql id="Base_Column_List">
+risk_contact_id,	application_id,	risk_type,	contact_count_1month,	contact_count_3month,	contact_count_6month,	call_count_1month,	call_count_3month,	call_count_active_3month,	call_count_passive_3month,	call_count_6month,	call_count_active_6month,	call_count_passive_6month,	call_time_1month,	call_time_3month,	call_time_active_3month,	call_time_passive_3month,	call_time_6month,	call_time_active_6month,	call_time_passive_6month,	msg_count_1month,	msg_count_3month,	msg_count_6month,	create_time,	create_man,	modify_time,	modify_man,	remark
+	</sql>
+
+	<!-- 查询（根据主键ID查询） -->
+	<select id="getEntityById" resultMap="tdReportRiskContactMap" parameterType="java.lang.String">
+		 SELECT
+		 <include refid="Base_Column_List" />
+		 FROM td_report_risk_contact
+		 WHERE risk_contact_id = #{riskContactId}
+	</select>
+
+	<!-- 查询（根据主键ID查询） -->
+	<select id="findAll" resultMap="tdReportRiskContactMap" parameterType="java.lang.String">
+		 SELECT
+		 <include refid="Base_Column_List" />
+		 FROM td_report_risk_contact
+		 WHERE risk_contact_id = #{riskContactId}
+	</select>
+
+	<!--删除：根据主键ID删除-->
+	<delete id="deleteEntity" parameterType="java.lang.String">
+		 DELETE FROM td_report_risk_contact
+		 WHERE risk_contact_id = #{riskContactId}
+	</delete>
+
+	<!-- 添加 -->
+	<insert id="saveEntity" parameterType="com.shangyong.backend.entity.tdReport.TdReportRiskContact">
+		 INSERT INTO td_report_risk_contact
+ 		(risk_contact_id,application_id,risk_type,contact_count_1month,contact_count_3month,contact_count_6month,call_count_1month,call_count_3month,call_count_active_3month,call_count_passive_3month,call_count_6month,call_count_active_6month,call_count_passive_6month,call_time_1month,call_time_3month,call_time_active_3month,call_time_passive_3month,call_time_6month,call_time_active_6month,call_time_passive_6month,msg_count_1month,msg_count_3month,msg_count_6month,create_time,create_man,modify_time,modify_man,remark) 
+		 VALUES 
+ 		(#{riskContactId},#{applicationId},#{riskType},#{contactCount1month},#{contactCount3month},#{contactCount6month},#{callCount1month},#{callCount3month},#{callCountActive3month},#{callCountPassive3month},#{callCount6month},#{callCountActive6month},#{callCountPassive6month},#{callTime1month},#{callTime3month},#{callTimeActive3month},#{callTimePassive3month},#{callTime6month},#{callTimeActive6month},#{callTimePassive6month},#{msgCount1month},#{msgCount3month},#{msgCount6month},#{createTime},#{createMan},#{modifyTime},#{modifyMan},#{remark}) 
+	</insert>
+	<!-- 批量插入 -->
+	<insert id="saveAllEntity" parameterType="java.util.List">
+		  INSERT INTO td_report_risk_contact
+ 		(risk_contact_id,application_id,risk_type,contact_count_1month,contact_count_3month,contact_count_6month,call_count_1month,call_count_3month,call_count_active_3month,call_count_passive_3month,call_count_6month,call_count_active_6month,call_count_passive_6month,call_time_1month,call_time_3month,call_time_active_3month,call_time_passive_3month,call_time_6month,call_time_active_6month,call_time_passive_6month,msg_count_1month,msg_count_3month,msg_count_6month,create_time,create_man,modify_time,modify_man,remark) 
+		 VALUES
+ 	    <foreach collection="list" item="item" index="index" separator="," >  
+ 		(#{item.riskContactId},#{item.applicationId},#{item.riskType},#{item.contactCount1month},#{item.contactCount3month},#{item.contactCount6month},#{item.callCount1month},#{item.callCount3month},#{item.callCountActive3month},#{item.callCountPassive3month},#{item.callCount6month},#{item.callCountActive6month},#{item.callCountPassive6month},#{item.callTime1month},#{item.callTime3month},#{item.callTimeActive3month},#{item.callTimePassive3month},#{item.callTime6month},#{item.callTimeActive6month},#{item.callTimePassive6month},#{item.msgCount1month},#{item.msgCount3month},#{item.msgCount6month},#{item.createTime},#{item.createMan},#{item.modifyTime},#{item.modifyMan},#{item.remark}) 
+	    </foreach>
+	</insert>
+
+	<!-- 修 改-->
+	<update id="updateEntity" parameterType="com.shangyong.backend.entity.tdReport.TdReportRiskContact">
+		 UPDATE td_report_risk_contact
+ 		 <set> 
+			<if test="applicationId != null">
+				 application_id = #{applicationId},
+			</if>
+			<if test="riskType != null">
+				 risk_type = #{riskType},
+			</if>
+			<if test="contactCount1month != null">
+				 contact_count_1month = #{contactCount1month},
+			</if>
+			<if test="contactCount3month != null">
+				 contact_count_3month = #{contactCount3month},
+			</if>
+			<if test="contactCount6month != null">
+				 contact_count_6month = #{contactCount6month},
+			</if>
+			<if test="callCount1month != null">
+				 call_count_1month = #{callCount1month},
+			</if>
+			<if test="callCount3month != null">
+				 call_count_3month = #{callCount3month},
+			</if>
+			<if test="callCountActive3month != null">
+				 call_count_active_3month = #{callCountActive3month},
+			</if>
+			<if test="callCountPassive3month != null">
+				 call_count_passive_3month = #{callCountPassive3month},
+			</if>
+			<if test="callCount6month != null">
+				 call_count_6month = #{callCount6month},
+			</if>
+			<if test="callCountActive6month != null">
+				 call_count_active_6month = #{callCountActive6month},
+			</if>
+			<if test="callCountPassive6month != null">
+				 call_count_passive_6month = #{callCountPassive6month},
+			</if>
+			<if test="callTime1month != null">
+				 call_time_1month = #{callTime1month},
+			</if>
+			<if test="callTime3month != null">
+				 call_time_3month = #{callTime3month},
+			</if>
+			<if test="callTimeActive3month != null">
+				 call_time_active_3month = #{callTimeActive3month},
+			</if>
+			<if test="callTimePassive3month != null">
+				 call_time_passive_3month = #{callTimePassive3month},
+			</if>
+			<if test="callTime6month != null">
+				 call_time_6month = #{callTime6month},
+			</if>
+			<if test="callTimeActive6month != null">
+				 call_time_active_6month = #{callTimeActive6month},
+			</if>
+			<if test="callTimePassive6month != null">
+				 call_time_passive_6month = #{callTimePassive6month},
+			</if>
+			<if test="msgCount1month != null">
+				 msg_count_1month = #{msgCount1month},
+			</if>
+			<if test="msgCount3month != null">
+				 msg_count_3month = #{msgCount3month},
+			</if>
+			<if test="msgCount6month != null">
+				 msg_count_6month = #{msgCount6month},
+			</if>
+			<if test="createTime != null">
+				 create_time = #{createTime},
+			</if>
+			<if test="createMan != null">
+				 create_man = #{createMan},
+			</if>
+			<if test="modifyTime != null">
+				 modify_time = #{modifyTime},
+			</if>
+			<if test="modifyMan != null">
+				 modify_man = #{modifyMan},
+			</if>
+			<if test="remark != null">
+				 remark = #{remark},
+			</if>
+
+ 		 </set>
+		 WHERE risk_contact_id = #{riskContactId}
+	</update>
+
+</mapper>

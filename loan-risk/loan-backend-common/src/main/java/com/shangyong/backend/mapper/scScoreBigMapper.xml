@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.shangyong.backend.dao.ScScoreBigDao">
+
+	<resultMap type="com.shangyong.backend.entity.ScScoreBig" id="scScoreBiginfoMap">
+		<id property="scoreBigId" column="score_big_id" javaType="java.lang.Integer"></id>
+		<result property="creditType" column="credit_type" javaType="java.lang.String"></result>
+		<result property="scoreName" column="score_name" javaType="java.lang.String"></result>
+		<result property="scoreBigCode" column="score_big_code" javaType="java.lang.String"></result>
+		<result property="scoreRuleDetail" column="score_rule_detail" javaType="java.lang.String"></result>
+		<result property="state" column="state" javaType="java.lang.String"></result>
+		<result property="version" column="version" javaType="java.lang.Integer"></result>
+		<result property="createTime" column="create_time" javaType="java.lang.String"></result>
+		<result property="createMan" column="create_man" javaType="java.lang.String"></result>
+		<result property="modifyTime" column="modify_time" javaType="java.lang.String"></result>
+		<result property="modifyMan" column="modify_man" javaType="java.lang.String"></result>
+		<result property="remark" column="remark" javaType="java.lang.String"></result>
+		<result property="createName" column="create_name" javaType="java.lang.String"></result>
+		<result property="modifyName" column="modify_name" javaType="java.lang.String"></result>
+		<result property="percent" column="percent" javaType="java.lang.String"></result>
+	</resultMap>
+
+	<!-- 通用查询结果列-->
+	<sql id="Base_Column_List">
+score_big_id,	credit_type,	score_name,	score_big_code,	score_rule_detail,	state,	version,	create_time,	create_man,	modify_time,	modify_man,	remark,create_name,modify_name ,percent
+	</sql>
+
+	<!-- 查询（根据主键ID查询） -->
+	<select id="selectByPrimaryKey" resultMap="scScoreBiginfoMap" parameterType="java.lang.Integer">
+		 SELECT
+		 <include refid="Base_Column_List" />
+		 FROM sc_score_big
+		 WHERE score_big_id = #{scoreBigId}
+	</select>
+
+	<select id="queryByScoreBigCode" resultMap="scScoreBiginfoMap" parameterType="java.lang.String">
+		 SELECT
+		 <include refid="Base_Column_List" />
+		 FROM sc_score_big
+		 WHERE score_big_code = #{scoreBigCode}
+		 <!-- 状态 -->
+		 	and state = '01'
+	</select>
+
+
+	<!-- 根据对象查询list列表 -->
+	<select id="getAll" resultMap="scScoreBiginfoMap"  parameterType="com.shangyong.backend.entity.ScScoreBig">
+		 SELECT
+		 <include refid="Base_Column_List" />
+		 FROM sc_score_big
+		   <where>
+ 			<if test="scoreBigCode != null and scoreBigCode != '' ">
+				  score_big_code = #{scoreBigCode}
+			</if>
+			<if test="scoreName != null and scoreName != '' ">
+ 			 instr(score_name, #{scoreName}) > 0
+			</if>
+			<if test="creditType != null and creditType != '' ">
+				and credit_type = #{creditType}
+			</if>
+			<!-- 状态 -->
+			<if test="state != null and state != ''">
+				and state = #{state}
+			</if>
+			<!-- 评分卡大类序号（主键自增id）， 提供给'向'接口需要用到 -->
+			<if test="scoreBigId != null and scoreBigId != ''">
+				and score_big_id = #{scoreBigId}
+			</if>
+		</where>
+		order by score_big_code ASC
+<!-- 		LIMIT #{pageIndex},#{pageSize} -->
+	</select>
+
+<!-- 查询  -->
+	<select id="listAllCount" resultType="java.lang.Integer">
+		 SELECT count(1)  
+ 		 FROM sc_score_big
+		    <where>
+ 			<if test="scoreBigCode != null and scoreBigCode != '' ">
+				  score_big_code = #{scoreBigCode}
+			</if>
+			<if test="scoreName != null and scoreName != '' ">
+ 			 instr(score_name, #{scoreName}) > 0
+			</if>
+			<if test="creditType != null and creditType != '' ">
+				and credit_type = #{creditType}
+			</if>
+		</where>
+ 	</select>
+
+
+
+	<!--删除：根据主键ID删除-->
+	<delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+		 DELETE FROM sc_score_big
+		 WHERE score_big_id = #{scoreBigId}
+	</delete>
+
+	<!-- 添加 -->
+	<insert id="insertSelective" parameterType="com.shangyong.backend.entity.ScScoreBig" useGeneratedKeys="true" keyProperty="scoreBigId">
+		 INSERT INTO sc_score_big
+ 		(score_big_id,credit_type,score_name,score_big_code,score_rule_detail,state,version,create_time,create_man,modify_time,modify_man,remark,create_name,modify_name,percent) 
+		 VALUES 
+ 		(#{scoreBigId},#{creditType},#{scoreName},#{scoreBigCode},#{scoreRuleDetail},#{state},#{version},#{createTime},#{createMan},#{modifyTime},#{modifyMan},#{remark},#{createName},#{modifyName},#{percent}) 
+	</insert>
+
+	<!-- 修 改-->
+	<update id="updateByPrimaryKeySelective" parameterType="com.shangyong.backend.entity.ScScoreBig">
+		 UPDATE sc_score_big
+ 		 <set> 
+			<if test="creditType != null">
+				 credit_type = #{creditType},
+			</if>
+			<if test="scoreName != null">
+				 score_name = #{scoreName},
+			</if>
+			<if test="scoreBigCode != null">
+				 score_big_code = #{scoreBigCode},
+			</if>
+			<if test="scoreRuleDetail != null">
+				 score_rule_detail = #{scoreRuleDetail},
+			</if>
+			<if test="state != null">
+				 state = #{state},
+			</if>
+			<if test="version != null">
+				 version = #{version},
+			</if>
+			<if test="createTime != null">
+				 create_time = #{createTime},
+			</if>
+			<if test="createMan != null">
+				 create_man = #{createMan},
+			</if>
+			<if test="modifyTime != null">
+				 modify_time = #{modifyTime},
+			</if>
+			<if test="modifyMan != null">
+				 modify_man = #{modifyMan},
+			</if>
+			<if test="remark != null">
+				 remark = #{remark},
+			</if>
+            <if test="createName != null">
+				 create_name = #{createName},
+			</if>
+			<if test="modifyName != null">
+				 modify_name = #{modifyName},
+			</if>
+			<if test="percent != null">
+				 percent = #{percent}
+			</if>
+ 		 </set>
+		 WHERE score_big_id = #{scoreBigId}
+	</update>
+
+</mapper>

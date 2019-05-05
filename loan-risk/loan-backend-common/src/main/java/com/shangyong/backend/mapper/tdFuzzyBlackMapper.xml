@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.shangyong.backend.dao.td.TdFuzzyBlackServiceDao">
+
+	<resultMap type="com.shangyong.backend.entity.td.TdFuzzyBlack" id="tdFuzzyBlackinfoMap">
+		<id property="tdFuzzyBlackId" column="td_fuzzy_black_id" javaType="java.lang.String"></id>
+		<result property="tdRiskItemsId" column="td_risk_items_id" javaType="java.lang.String"></result>
+		<result property="description" column="description" javaType="java.lang.String"></result>
+		<result property="fraudTypeDisplayName" column="fraud_type_display_name" javaType="java.lang.String"></result>
+		<result property="fuzzyIdNumber" column="fuzzy_id_number" javaType="java.lang.String"></result>
+		<result property="fraudType" column="fraud_type" javaType="java.lang.String"></result>
+		<result property="fuzzyName" column="fuzzy_name" javaType="java.lang.String"></result>
+	</resultMap>
+
+	<!-- 通用查询结果列-->
+	<sql id="Base_Column_List">
+	td_fuzzy_black_id,	td_risk_items_id,	description,	fraud_type_display_name,	fuzzy_id_number,	fraud_type,	fuzzy_name
+	</sql>
+
+	<!-- 查询（根据主键ID查询） -->
+	<select id="getEntityById" resultMap="tdFuzzyBlackinfoMap" parameterType="java.lang.String">
+		 SELECT
+		 <include refid="Base_Column_List" />
+		 FROM td_fuzzy_black
+		 WHERE td_fuzzy_black_id = #{tdFuzzyBlackId}
+	</select>
+
+	<!-- 查询（根据主键ID查询） -->
+	<select id="getAll" resultMap="tdFuzzyBlackinfoMap" parameterType="java.lang.String">
+		 SELECT
+		 <include refid="Base_Column_List" />
+		 FROM td_fuzzy_black
+	</select>
+
+	<!--删除：根据主键ID删除-->
+	<delete id="deleteEntity" parameterType="java.lang.String">
+		 DELETE FROM td_fuzzy_black
+		 WHERE td_fuzzy_black_id = #{tdFuzzyBlackId}
+	</delete>
+
+	<!-- 添加 -->
+	<insert id="saveEntity" parameterType="com.shangyong.backend.entity.td.TdFuzzyBlack">
+		 INSERT INTO td_fuzzy_black
+ 		(td_fuzzy_black_id,td_risk_items_id,description,fraud_type_display_name,fuzzy_id_number,fraud_type,fuzzy_name) 
+		 VALUES 
+ 		(#{tdFuzzyBlackId},#{tdRiskItemsId},#{description},#{fraudTypeDisplayName},#{fuzzyIdNumber},#{fraudType},#{fuzzyName}) 
+	</insert>
+
+	<!-- 修 改-->
+	<update id="updateEntity" parameterType="com.shangyong.backend.entity.td.TdFuzzyBlack">
+		 UPDATE td_fuzzy_black
+ 		 <set> 
+			<if test="tdRiskItemsId != null">
+				 td_risk_items_id = #{tdRiskItemsId},
+			</if>
+			<if test="description != null">
+				 description = #{description},
+			</if>
+			<if test="fraudTypeDisplayName != null">
+				 fraud_type_display_name = #{fraudTypeDisplayName},
+			</if>
+			<if test="fuzzyIdNumber != null">
+				 fuzzy_id_number = #{fuzzyIdNumber},
+			</if>
+			<if test="fraudType != null">
+				 fraud_type = #{fraudType},
+			</if>
+			<if test="fuzzyName != null">
+				 fuzzy_name = #{fuzzyName},
+			</if>
+
+ 		 </set>
+		 WHERE td_fuzzy_black_id = #{tdFuzzyBlackId}
+	</update>
+
+</mapper>

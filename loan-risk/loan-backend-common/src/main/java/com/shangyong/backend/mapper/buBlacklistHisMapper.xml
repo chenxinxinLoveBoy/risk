@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.shangyong.backend.dao.BuBlacklistHisDao">
+
+	<resultMap type="com.shangyong.backend.entity.BuBlacklistHis" id="buBlacklistHisMap">
+		<id property="blacklistHisId" column="blacklist_his_id" javaType="java.lang.String"></id>
+		<result property="blacklistId" column="blacklist_id" javaType="java.lang.String"></result>
+		<result property="appName" column="app_name" javaType="java.lang.Integer"></result>
+		<result property="platformId" column="platform_id" javaType="java.lang.String"></result>
+		<result property="customerId" column="customer_id" javaType="java.lang.String"></result>
+		<result property="name" column="name" javaType="java.lang.String"></result>
+		<result property="certType" column="cert_type" javaType="java.lang.String"></result>
+		<result property="certCode" column="cert_code" javaType="java.lang.String"></result>
+		<result property="phoneNum" column="phone_num" javaType="java.lang.String"></result>
+		<result property="deviceId" column="device_id" javaType="java.lang.String"></result>
+		<result property="rejectType" column="reject_type" javaType="java.lang.String"></result>
+		<result property="rejectFlag" column="reject_flag" javaType="java.lang.String"></result>
+		<result property="isFailure" column="is_failure" javaType="java.lang.String"></result>
+		<result property="createTime" column="create_time" javaType="java.lang.String"></result>
+		<result property="createMan" column="create_man" javaType="java.lang.String"></result>
+		<result property="modifyTime" column="modify_time" javaType="java.lang.String"></result>
+		<result property="modifyMan" column="modify_man" javaType="java.lang.String"></result>
+		<result property="remark" column="remark" javaType="java.lang.String"></result>
+		<result property="banCode" column="ban_code" javaType="java.lang.String"></result>
+		<result property="dsSource" column="ds_source" javaType="java.lang.String"></result>
+		<result property="sNumber" column="s_number" javaType="java.lang.String"></result>
+		<result property="deleteTime" column="delete_time" javaType="java.lang.String"></result>
+		<result property="deleteMan" column="delete_man" javaType="java.lang.String"></result>
+	</resultMap>
+
+	<!-- 通用查询结果列-->
+	<sql id="Base_Column_List">
+blacklist_his_id,	blacklist_id,	app_name,	platform_id,	customer_id,	name,	cert_type,	cert_code,	phone_num,	device_id,	reject_type,	reject_flag,	is_failure,	create_time,	create_man,	modify_time,	modify_man,	remark,	ban_code,	ds_source,	s_number,	delete_time,	delete_man
+	</sql>
+
+	<!-- 查询（根据主键ID查询） -->
+	<select id="getEntityById" resultMap="buBlacklistHisMap" parameterType="java.lang.String">
+		 SELECT
+		 <include refid="Base_Column_List" />
+		 FROM bu_blacklist_his
+		 WHERE blacklist_his_id = #{blacklistHisId}
+	</select>
+
+	<!-- 查询（根据主键ID查询） -->
+	<select id="findAll" resultMap="buBlacklistHisMap" parameterType="java.lang.String">
+		 SELECT
+		 <include refid="Base_Column_List" />
+		 FROM bu_blacklist_his
+		 WHERE blacklist_his_id = #{blacklistHisId}
+	</select>
+
+	<!--删除：根据主键ID删除-->
+	<delete id="deleteEntity" parameterType="java.lang.String">
+		 DELETE FROM bu_blacklist_his
+		 WHERE blacklist_his_id = #{blacklistHisId}
+	</delete>
+
+	<!-- 添加 -->
+	<insert id="saveEntity" parameterType="com.shangyong.backend.entity.BuBlacklistHis">
+		 INSERT INTO bu_blacklist_his
+ 		(blacklist_his_id,blacklist_id,app_name,platform_id,customer_id,name,cert_type,cert_code,phone_num,device_id,reject_type,reject_flag,is_failure,create_time,create_man,modify_time,modify_man,remark,ban_code,ds_source,s_number,delete_time,delete_man) 
+		 VALUES 
+ 		(#{blacklistHisId},#{blacklistId},#{appName},#{platformId},#{customerId},#{name},#{certType},#{certCode},#{phoneNum},#{deviceId},#{rejectType},#{rejectFlag},#{isFailure},#{createTime},#{createMan},#{modifyTime},#{modifyMan},#{remark},#{banCode},#{dsSource},#{sNumber},#{deleteTime},#{deleteMan}) 
+	</insert>
+
+	<!-- 修 改-->
+	<update id="updateEntity" parameterType="com.shangyong.backend.entity.BuBlacklistHis">
+		 UPDATE bu_blacklist_his
+ 		 <set> 
+			<if test="blacklistId != null">
+				 blacklist_id = #{blacklistId},
+			</if>
+			<if test="appName != null">
+				 app_name = #{appName},
+			</if>
+			<if test="platformId != null">
+				 platform_id = #{platformId},
+			</if>
+			<if test="customerId != null">
+				 customer_id = #{customerId},
+			</if>
+			<if test="name != null">
+				 name = #{name},
+			</if>
+			<if test="certType != null">
+				 cert_type = #{certType},
+			</if>
+			<if test="certCode != null">
+				 cert_code = #{certCode},
+			</if>
+			<if test="phoneNum != null">
+				 phone_num = #{phoneNum},
+			</if>
+			<if test="deviceId != null">
+				 device_id = #{deviceId},
+			</if>
+			<if test="rejectType != null">
+				 reject_type = #{rejectType},
+			</if>
+			<if test="rejectFlag != null">
+				 reject_flag = #{rejectFlag},
+			</if>
+			<if test="isFailure != null">
+				 is_failure = #{isFailure},
+			</if>
+			<if test="createTime != null">
+				 create_time = #{createTime},
+			</if>
+			<if test="createMan != null">
+				 create_man = #{createMan},
+			</if>
+			<if test="modifyTime != null">
+				 modify_time = #{modifyTime},
+			</if>
+			<if test="modifyMan != null">
+				 modify_man = #{modifyMan},
+			</if>
+			<if test="remark != null">
+				 remark = #{remark},
+			</if>
+			<if test="banCode != null">
+				 ban_code = #{banCode},
+			</if>
+			<if test="dsSource != null">
+				 ds_source = #{dsSource},
+			</if>
+			<if test="sNumber != null">
+				 s_number = #{sNumber},
+			</if>
+			<if test="deleteTime != null">
+				 delete_time = #{deleteTime},
+			</if>
+			<if test="deleteMan != null">
+				 delete_man = #{deleteMan},
+			</if>
+
+ 		 </set>
+		 WHERE blacklist_his_id = #{blacklistHisId}
+	</update>
+
+</mapper>

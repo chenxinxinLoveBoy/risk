@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.shangyong.backend.dao.approval.CustomerDao">
+	<resultMap id="customerMap" type="com.shangyong.backend.entity.approval.Customer">
+		<id property="customerId" column="customer_id" javaType="java.lang.String"></id>
+		<result property="useId" column="use_id" javaType="java.lang.String"></result>
+		<result property="phoneNum" column="phone_num" javaType="java.lang.String"></result>
+		<result property="password" column="password" javaType="java.lang.String"></result>
+		<result property="verifyCode" column="verify_code" javaType="java.lang.String"></result>
+		<result property="deviceId" column="device_id" javaType="java.lang.String"></result>
+		<result property="osVersion" column="os_version" javaType="java.lang.String"></result>
+		<result property="appVersion" column="app_version" javaType="java.lang.String"></result>
+		<result property="sdkVersion" column="sdk_version" javaType="java.lang.String"></result>
+		<result property="market" column="market" javaType="java.lang.String"></result>
+		<result property="nickName" column="nickname" javaType="java.lang.String"></result>
+		<result property="userAvatar" column="user_avatar" javaType="java.lang.String"></result>
+		<result property="loginCounts" column="login_counts"></result>
+		<result property="loginErrorCounts" column="login_error_counts"></result>
+		<result property="lastLoginTime" column="last_login_time" javaType="java.lang.String"></result>
+		<result property="loginState" column="login_state" javaType="java.lang.String"></result>
+		<result property="appNum" column="app_num"></result>
+		<result property="state" column="state"></result>
+		<result property="createTime" column="create_time" javaType="java.lang.String"></result>
+		<result property="createMan" column="create_man" javaType="java.lang.String"></result>
+		<result property="modifyTime" column="modify_time" javaType="java.lang.String"></result>
+		<result property="modifyMan" column="modify_man" javaType="java.lang.String"></result>
+		<result property="remark" column="remark" javaType="java.lang.String"></result>
+		<result property="tokenCode" column="token_code" javaType="java.lang.String"></result>
+		<result property="salt" column="salt" javaType="java.lang.String"></result>
+		<result property="pushToken" column="push_token" javaType="java.lang.String"></result>
+		<result property="lng" column="lng" javaType="java.lang.String"></result>
+		<result property="lat" column="lat" javaType="java.lang.String"></result>
+		<result property="source" column="source" javaType="java.lang.String"></result>
+		<result property="origin" column="origin"></result>
+		<result property="gesturePass" column="gesture_pass" javaType="java.lang.String"></result>
+		<result property="inviter" column="inviter" javaType="java.lang.String"></result>
+		<result property="tokenEffective" column="token_effective" javaType="java.lang.String"></result>
+		<result property="tokenExpired" column="token_expired" javaType="java.lang.String"></result>
+		<result property="lastAppVersion" column="last_app_version" javaType="java.lang.String"></result>
+		<result property="lastMarket" column="last_market" javaType="java.lang.String"></result>
+	</resultMap>
+	
+	<select id="getCustomerById"
+		resultMap="customerMap">
+		select
+		customer_id,use_id,phone_num,verify_code,device_id,nickname,user_avatar,login_counts,login_state,login_error_counts,
+		last_login_time,create_time,modify_time,create_man,modify_man,state,remark,token_code,salt,push_token,lng,lat,source,gesture_pass,
+		inviter,token_effective,token_expired,origin,app_version,market,last_app_version,last_market
+		from sdj_app.cu_customer where
+		customer_id=#{customerId}
+	</select>
+</mapper>

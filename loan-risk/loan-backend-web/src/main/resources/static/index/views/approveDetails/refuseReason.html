@@ -1,0 +1,165 @@
+<html>
+<!DOCTYPE html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<link type="text/css" rel="stylesheet" href="../../css/global.css" />
+		<link type="text/css" rel="stylesheet" href="../../plugins/font-awesome/css/font-awesome.min.css">
+
+		<link type="text/css" rel="stylesheet" href="../../plugins/layui/css/layui.css" media="all">
+		<link type="text/css" rel="stylesheet" href="../../css/approve_detail.css" />
+
+		<!-- js -->
+		<script src="../../jqery/jquery.js"></script>
+		<script src="../../../commons/base.js"></script> 
+		<script type="text/javascript" src="../../plugins/layui/layui.js"></script>
+		<script type="text/javascript" src="../../js/approveDetails/refuseReason.js"></script>
+	</head>
+
+	<body>
+		<div class="mgauto refuse_conect">
+			<div>
+				<div class="refuse_title">
+					<ul id="js-refuse-reason-selected"></ul>
+				</div>
+				<div id="js-refuse-reason-list" class="refuse_list mgb10">
+					<h3><strong>QZ欺诈信息</strong></h3>
+					<ul>
+						<li><a href="javascript:;" data-refuse-code="QZ01">身份证异常</a></li>
+						<li><a href="javascript:;" data-refuse-code="QZ02">虚假工作</a></li>
+						<li><a href="javascript:;" data-refuse-code="QZ03">照片异常</a></li>
+						<li><a href="javascript:;" data-refuse-code="QZ04">虚假通讯录</a></li>
+						<li><a href="javascript:;" data-refuse-code="QZ05">通讯录异常信息</a></li>
+						<li><a href="javascript:;" data-refuse-code="QZ06">通话记录异常</a></li>
+						<li><a href="javascript:;" data-refuse-code="QZ07">模拟设备登录</a></li>
+						<div class="clear"></div>
+					</ul>
+					<h3><strong>FM负面信息</strong></h3>
+					<ul>
+						<li><a href="javacript:;" data-refuse-code="FM01">网上信息查询异常</a></li>
+						<li><a href="javacript:;" data-refuse-code="FM02">限制行业 </a></li>
+						<li><a href="javacript:;" data-refuse-code="FM03">工作经营核实异常 </a></li>
+						<li><a href="javacript:;" data-refuse-code="FM04">高风险区域 </a></li>
+						<li><a href="javacript:;" data-refuse-code="FM05">关联信息匹配异常</a></li>
+						<li><a href="javacript:;" data-refuse-code="FM06">同业参与 </a></li>
+						<li><a href="javacript:;" data-refuse-code="FM08">黑中介分数过低 </a></li>
+						<li><a href="javacript:;" data-refuse-code="FM09">少数民族 </a></li>
+						<li><a href="javacript:;" data-refuse-code="FM10">被催收次数较多 </a></li>
+						<li><a href="javacript:;" data-refuse-code="FM11">历史记录有逾期 </a></li>
+						<li><a href="javacript:;" data-refuse-code="FM12">其他负面影响 </a></li>
+						<li><a href="javacript:;" data-refuse-code="FM07">非本人申请 </a></li>
+						<div class="clear"></div>
+					<ul>
+					</ul>
+					<h3><strong>SZ还款能力</strong></h3>
+					<ul>
+						<li><a href="javascript:;" data-refuse-code="SZ01">收入过低</a></li>
+						<!--<li><a href="javascript:;" data-refuse-code="SZ05">芝麻评分较低</a></li>-->
+						<li><a href="javascript:;" data-refuse-code="SZ06">年龄较小/较大</a></li>
+						<li><a href="javascript:;" data-refuse-code="SZ07">多头借贷</a></li>
+						<li><a href="javascript:;" data-refuse-code="SZ08">APP贷款过多</a></li>
+						<li><a href="javascript:;" data-refuse-code="SZ02">收支严重失衡</a></li>
+						<!--<li><a href="javascript:;" data-refuse-code="SZ04">工作性质</a></li>-->
+						<li><a href="javascript:;" data-refuse-code="SZ09">综合资质</a></li>
+						<div class="clear"></div>
+					</ul>
+					<h3><strong>JJ电核拒绝</strong></h3>
+						<li><a href="javascript:;" data-refuse-code="JJ01">规定时间内无法联系本人</a></li>
+						<li><a href="javascript:;" data-refuse-code="JJ02">关机停机</a></li>
+						<li><a href="javascript:;" data-refuse-code="JJ03">申请人不配合 </a></li>
+						<li><a href="javascript:;" data-refuse-code="JJ04">客户本人要求取消</a></li>
+						<li><a href="javascript:;" data-refuse-code="JJ05">电核出信息不真实</a></li>
+						<li><a href="javascript:;" data-refuse-code="JJ06">电核异常</a></li>
+						<div class="clear"></div>
+					</ul>
+				</div>
+			</div>
+		</div>
+
+	</body>
+	<script type="text/javascript">
+		$(document).ready(function(){
+		    var _refuseCode = getQueryString("refuseCode");
+		    if(null != _refuseCode && "" != _refuseCode){
+				var _refuseCodeArray = _refuseCode.split(",");
+				var _tempHtmlSelected = [];
+				$("#js-refuse-reason-list a").each(function(){
+				    var $this = $(this);
+				    for(var i = 0; i < _refuseCodeArray.length; i++){
+				        var _tempRefuseName = $this.text();
+                        var _tempRefuseCode = $this.data("refuse-code");
+
+                        if($this.data("refuse-code") == _refuseCodeArray[i]){
+
+                            $(this).addClass("refuse_title_a_hover");
+
+                            _tempHtmlSelected.push('<li>');
+                            _tempHtmlSelected.push('<a href="javascript:;" data-refuse-code="'+_tempRefuseCode+'" data-refuse-name="'+_tempRefuseName+'">' +_tempRefuseName);
+                            _tempHtmlSelected.push('<img src="../../images/approve_details/icon_close_alt2.png" alt="关闭">');
+                            _tempHtmlSelected.push('</a>');
+                            _tempHtmlSelected.push('</li>');
+                        }
+					}
+				});
+
+				if(_tempHtmlSelected.length > 0){
+					$("#js-refuse-reason-selected").html(_tempHtmlSelected.join(''));
+                    $("#js-refuse-reason-selected li a").on("click", function(){
+                        unSelect(this);
+					})
+				}
+			}
+
+		    $("#js-refuse-reason-list ul li a").on("click", function () {
+		        if($(".refuse_title ul li").length >= 5){
+                    alert("只能选取5个 ！");
+                    return false;
+				}
+				var $this = $(this);
+		        $this.addClass("refuse_title_a_hover");
+
+				var _refuseCode = $this.data("refuse-code");
+		        var _refuseName = $this.text();
+
+		        if(false == isSelect(_refuseCode)){
+                    var _tempHtml = [];
+                    _tempHtml.push('<li><a href="javascript:;" data-refuse-code="'+ _refuseCode+'" data-refuse-name="'+_refuseName+'">');
+                    _tempHtml.push(_refuseName);
+                    _tempHtml.push('<img src="../../images/approve_details/icon_close_alt2.png" alt="关闭" />');
+                    _tempHtml.push('</a></li>');
+                    $("#js-refuse-reason-selected").append(_tempHtml.join(''));
+                }
+
+                $("#js-refuse-reason-selected li a").on("click", function(){
+                    unSelect(this);
+				});
+			});
+
+		    function unSelect(_this){
+                var $this = $(_this);
+                var _tempRefuseCode = $this.data("refuse-code");
+                $this.parent().remove();
+                $("#js-refuse-reason-list a").each(function(){
+                    var $thisTemp = $(this);
+                    if($thisTemp.data("refuse-code") == _tempRefuseCode){
+                        $thisTemp.removeClass("refuse_title_a_hover");
+                        return;
+                    }
+                    $thisTemp = null;
+                });
+			}
+
+		    function isSelect(_refuseCode){
+                var flag = false;
+		        $("#js-refuse-reason-selected li a").each(function () {
+					if(_refuseCode.trim() == $(this).data("refuse-code").trim()){
+                        flag = true;
+                        return;
+					}
+                });
+                return flag;
+			}
+		});
+	</script>
+</html>

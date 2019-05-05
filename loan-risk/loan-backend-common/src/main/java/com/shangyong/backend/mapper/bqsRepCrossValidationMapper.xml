@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.shangyong.backend.dao.bqsrep.BqsRepCrossValidationServiceDao">
+
+	<resultMap type="com.shangyong.backend.entity.bqsrep.BqsRepCrossValidation" id="bqsRepCrossValidationinfoMap">
+		<id property="bqsCrossValidationId" column="bqs_cross_validation_id" javaType="java.lang.String"></id>
+		<result property="bqsPetitionerId" column="bqs_petitioner_id" javaType="java.lang.String"></result>
+		<result property="evidence" column="evidence" javaType="java.lang.String"></result>
+		<result property="inspectionItems" column="inspectionItems" javaType="java.lang.String"></result>
+		<result property="result" column="result" javaType="java.lang.String"></result>
+		<result property="type" column="type" javaType="java.lang.String"></result>
+	</resultMap>
+
+	<!-- 通用查询结果列-->
+	<sql id="Base_Column_List">
+	bqs_cross_validation_id,	bqs_petitioner_id,	evidence,	inspectionItems,	result,	type
+	</sql>
+
+	<!-- 查询（根据主键ID查询） -->
+	<select id="getEntityById" resultMap="bqsRepCrossValidationinfoMap" parameterType="java.lang.String">
+		 SELECT
+		 <include refid="Base_Column_List" />
+		 FROM bqs_rep_cross_validation
+		 WHERE bqs_cross_validation_id = #{bqsCrossValidationId}
+	</select>
+	<!-- 查询（根据bqsPetitionerId查询） -->
+	<select id="queryById" resultMap="bqsRepCrossValidationinfoMap" parameterType="java.lang.String">
+		 SELECT
+		 <include refid="Base_Column_List" />
+		 FROM bqs_rep_cross_validation
+		 WHERE bqs_petitioner_id = #{bqsPetitionerId}
+	</select>
+	<!-- 查询（根据bqsPetitionerId查询） -->
+	<select id="queryRWById" resultMap="bqsRepCrossValidationinfoMap" parameterType="com.shangyong.backend.entity.bqsrep.BqsRepCrossValidation">
+		 SELECT
+		 <include refid="Base_Column_List" />
+		 FROM bqs_rep_cross_validation
+		 WHERE bqs_petitioner_id = #{bqsPetitionerId} 
+		 AND type = #{type}
+	</select>
+
+	<!-- 查询（根据主键ID查询） -->
+	<select id="getAll" resultMap="bqsRepCrossValidationinfoMap" parameterType="java.lang.String">
+		 SELECT
+		 <include refid="Base_Column_List" />
+		 FROM bqs_rep_cross_validation
+	</select>
+
+	<!--删除：根据主键ID删除-->
+	<delete id="deleteEntity" parameterType="java.lang.String">
+		 DELETE FROM bqs_rep_cross_validation
+		 WHERE bqs_cross_validation_id = #{bqsCrossValidationId}
+	</delete>
+
+	<!-- 添加 -->
+	<insert id="saveEntity" parameterType="com.shangyong.backend.entity.bqsrep.BqsRepCrossValidation">
+		 INSERT INTO bqs_rep_cross_validation
+ 		(bqs_cross_validation_id,bqs_petitioner_id,evidence,inspectionItems,result,type) 
+		 VALUES 
+ 		(#{bqsCrossValidationId},#{bqsPetitionerId},#{evidence},#{inspectionItems},#{result},#{type}) 
+	</insert>
+
+	<!-- 修 改-->
+	<update id="updateEntity" parameterType="com.shangyong.backend.entity.bqsrep.BqsRepCrossValidation">
+		 UPDATE bqs_rep_cross_validation
+ 		 <set> 
+			<if test="bqsPetitionerId != null">
+				 bqs_petitioner_id = #{bqsPetitionerId},
+			</if>
+			<if test="evidence != null">
+				 evidence = #{evidence},
+			</if>
+			<if test="inspectionItems != null">
+				 inspectionItems = #{inspectionItems},
+			</if>
+			<if test="result != null">
+				 result = #{result},
+			</if>
+			<if test="type != null">
+				 type = #{type},
+			</if>
+
+ 		 </set>
+		 WHERE bqs_cross_validation_id = #{bqsCrossValidationId}
+	</update>
+
+</mapper>

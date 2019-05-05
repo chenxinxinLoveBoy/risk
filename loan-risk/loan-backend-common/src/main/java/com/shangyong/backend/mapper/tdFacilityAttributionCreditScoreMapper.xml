@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.shangyong.backend.dao.tdf.TdFacilityAttributionCreditScoreServiceDao">
+
+	<resultMap type="com.shangyong.backend.entity.tdf.TdFacilityAttributionCreditScore" id="tdFacilityAttributionCreditScoreinfoMap">
+		<id property="tdFacilityAttributionCreditScoreId" column="td_facility_attribution_credit_score_id" javaType="java.lang.String"></id>
+		<result property="buApplicationId" column="bu_application_id" javaType="java.lang.String"></result>
+		<result property="idCardProvince" column="idCardProvince" javaType="java.lang.String"></result>
+		<result property="idCardCity" column="idCardCity" javaType="java.lang.String"></result>
+		<result property="county" column="county" javaType="java.lang.String"></result>
+		<result property="mobileAddressProvince" column="mobileAddressProvince" javaType="java.lang.String"></result>
+		<result property="mobileAddressCity" column="mobileAddressCity" javaType="java.lang.String"></result>
+		<result property="idNumberMobileScore" column="id_number_mobile_score" javaType="java.lang.String"></result>
+		<result property="mobileScore" column="mobile_score" javaType="java.lang.String"></result>
+		<result property="idNumberScore" column="id_number_score" javaType="java.lang.String"></result>
+		<result property="createTime" column="create_time" javaType="java.lang.String"></result>
+		<result property="createMan" column="create_man" javaType="java.lang.String"></result>
+		<result property="modifyTime" column="modify_time" javaType="java.lang.String"></result>
+		<result property="modifyMan" column="modify_man" javaType="java.lang.String"></result>
+		<result property="remark" column="remark" javaType="java.lang.String"></result>
+	</resultMap>
+
+	<!-- 通用查询结果列-->
+	<sql id="Base_Column_List">
+	td_facility_attribution_credit_score_id,	bu_application_id,	idCardProvince,	idCardCity,	county,	mobileAddressProvince,	mobileAddressCity,	id_number_mobile_score,	mobile_score,	id_number_score,	create_time,	create_man,	modify_time,	modify_man,	remark
+	</sql>
+
+	<!-- 查询（根据主键ID查询） -->
+	<select id="getEntityById" resultMap="tdFacilityAttributionCreditScoreinfoMap" parameterType="java.lang.String">
+		 SELECT
+		 <include refid="Base_Column_List" />
+		 FROM td_facility_attribution_credit_score
+		 WHERE td_facility_attribution_credit_score_id = #{tdFacilityAttributionCreditScoreId}
+	</select>
+
+	<!-- 查询（根据主键ID查询） -->
+	<select id="getAll" resultMap="tdFacilityAttributionCreditScoreinfoMap" parameterType="java.lang.String">
+		 SELECT
+		 <include refid="Base_Column_List" />
+		 FROM td_facility_attribution_credit_score
+	</select>
+
+	<!--删除：根据主键ID删除-->
+	<delete id="deleteEntity" parameterType="java.lang.String">
+		 DELETE FROM td_facility_attribution_credit_score
+		 WHERE td_facility_attribution_credit_score_id = #{tdFacilityAttributionCreditScoreId}
+	</delete>
+
+	<!-- 添加 -->
+	<insert id="saveEntity" parameterType="com.shangyong.backend.entity.tdf.TdFacilityAttributionCreditScore">
+		 INSERT INTO td_facility_attribution_credit_score
+ 		(td_facility_attribution_credit_score_id,bu_application_id,idCardProvince,idCardCity,county,mobileAddressProvince,mobileAddressCity,id_number_mobile_score,mobile_score,id_number_score,create_time,create_man,modify_time,modify_man,remark) 
+		 VALUES 
+ 		(#{tdFacilityAttributionCreditScoreId},#{buApplicationId},#{idCardProvince},#{idCardCity},#{county},#{mobileAddressProvince},#{mobileAddressCity},#{idNumberMobileScore},#{mobileScore},#{idNumberScore},#{createTime},#{createMan},#{modifyTime},#{modifyMan},#{remark}) 
+	</insert>
+
+	<!-- 修 改-->
+	<update id="updateEntity" parameterType="com.shangyong.backend.entity.tdf.TdFacilityAttributionCreditScore">
+		 UPDATE td_facility_attribution_credit_score
+ 		 <set> 
+			<if test="buApplicationId != null">
+				 bu_application_id = #{buApplicationId},
+			</if>
+			<if test="idCardProvince != null">
+				 idCardProvince = #{idCardProvince},
+			</if>
+			<if test="idCardCity != null">
+				 idCardCity = #{idCardCity},
+			</if>
+			<if test="county != null">
+				 county = #{county},
+			</if>
+			<if test="mobileAddressProvince != null">
+				 mobileAddressProvince = #{mobileAddressProvince},
+			</if>
+			<if test="mobileAddressCity != null">
+				 mobileAddressCity = #{mobileAddressCity},
+			</if>
+			<if test="idNumberMobileScore != null">
+				 id_number_mobile_score = #{idNumberMobileScore},
+			</if>
+			<if test="mobileScore != null">
+				 mobile_score = #{mobileScore},
+			</if>
+			<if test="idNumberScore != null">
+				 id_number_score = #{idNumberScore},
+			</if>
+			<if test="createTime != null">
+				 create_time = #{createTime},
+			</if>
+			<if test="createMan != null">
+				 create_man = #{createMan},
+			</if>
+			<if test="modifyTime != null">
+				 modify_time = #{modifyTime},
+			</if>
+			<if test="modifyMan != null">
+				 modify_man = #{modifyMan},
+			</if>
+			<if test="remark != null">
+				 remark = #{remark},
+			</if>
+
+ 		 </set>
+		 WHERE td_facility_attribution_credit_score_id = #{tdFacilityAttributionCreditScoreId}
+	</update>
+
+</mapper>

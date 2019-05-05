@@ -1,0 +1,478 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+<meta charset="UTF-8">
+<title>运营商数据报告</title>
+<link rel="stylesheet" href="../../plugins/layui/css/layui.css"
+	media="all" />
+<link rel="stylesheet" href="../../css/global.css" media="all">
+<link rel="stylesheet"
+	href="../../plugins/font-awesome/css/font-awesome.min.css">
+<link rel="stylesheet" href="../../css/table.css" />
+<!-- js -->
+<script src="../../jqery/jquery.js"></script>
+<script src="../../../commons/base.js"></script>
+<script type="text/javascript" src="../../plugins/layui/layui.js"></script>
+<script type="text/javascript"
+	src="../../js/customerManager/operatReport.js"></script>
+<link rel="stylesheet" href="../../css/lzh_login.css" media="all" />
+</head>
+<body>
+		&nbsp; &nbsp; &nbsp; 
+			<a href="javascript:;" class="layui-btn layui-btn-small" id="address" >
+						<i class="layui-icon"></i>魔盒-学信报告
+				    </a>
+			&nbsp; &nbsp; &nbsp; 
+			<a href="javascript:;" class="layui-btn layui-btn-small" id="logs" style="margin-left: 0.5%">
+						<i class="layui-icon"></i>魔盒-社保报告
+				    </a>
+				    &nbsp; &nbsp; &nbsp; 
+				    <a href="javascript:;" class="layui-btn layui-btn-small" id="logs" style="margin-left: 0.5%">
+						<i
+						 class="layui-icon"></i>魔盒-公积金报告
+				    </a>
+				    &nbsp; &nbsp; &nbsp; 	
+				      <a href="javascript:;" class="layui-btn layui-btn-small" id="logs" style="margin-left: 0.5%">
+						<i class="layui-icon"></i>魔盒-电商报告
+				    </a>
+				    &nbsp; &nbsp; &nbsp; 
+				    <br></br>	 
+		<!-- <div style="font-size: 20px;" id="dev_id">
+			编号:&nbsp;<span id=""></span>MH201706162218263420778206390272 <span
+				style="margin: 90px";></span> 运营商:&nbsp;<span id=""></span>中国移动 <span
+				style="margin: 90px";></span> 报告生成时间:&nbsp;<span id=""></span>2017/06/16
+			<span style="margin: 90px";></span> 数据时间范围:&nbsp;<span id=""></span>2017/01-2017/06
+		</div>
+
+		<div style="height: 10px"></div>
+		<fieldset class="layui-elem-field">
+			<div class="layui-field-box layui-form">
+				<legend>基础信息 </legend>
+				<table class="layui-table">
+					<tbody id=" ">
+						js取值id
+						<tr>
+							<th>姓名</th>
+							<td><font id="">*毅</font></td>
+						</tr>
+
+						<tr>
+							<th>身份证号</th>
+							<td><font id="">无数据</font></td>
+						</tr>
+
+						<tr>
+							<th>手机号码</th>
+							<td><font id="">15001719546</font></td>
+						</tr>
+
+						<tr>
+							<th>入网时间:</th>
+							<td><font id="">7</font></td>
+						</tr>
+
+						<tr>
+							<th>账户状态:</th>
+							<td><font id="">正常</font></td>
+						</tr>
+
+						<tr>
+							<th>套餐类型:</th>
+							<td><font id="">全球通</font></td>
+						</tr>
+
+						<tr>
+							<th>最近常用通话地:</th>
+							<td><font id="">上海市.上海市</font></td>
+						</tr>
+
+						<tr>
+							<th>入网归属地:</th>
+							<td><font id="">上海市.上海市</font></td>
+						</tr>
+
+						<tr>
+							<th>身份证归属地:</th>
+							<td><font id="">无数据</font></td>
+						</tr>
+
+						<tr>
+							<th>联系地址:</th>
+							<td><font id="">辽宁省********************室</font></td>
+						</tr>
+					</tbody>
+				</table>
+
+				<legend>行为检测</legend>
+				<table class="layui-table">
+					<tbody id=" ">
+						js取值id
+						<tr>
+							<th>检查项目</th>
+							<th>检测结果</th>
+						</tr>
+
+						<tr>
+							<th>手机静默使用情况</th>
+							<td><font id="">最长连续静默天数:3天 月均手机静默天数:2.0天
+									连续静默天数超过15天的次数和记录:0 连续静默天数超过3天的次数和记录:1</font></td>
+						</tr>
+
+						<tr>
+							<th>手机号入网时长</th>
+							<td><font id="">手机号码入网时长:7月</font></td>
+						</tr>
+
+						<tr>
+							<th>异地使用情况</th>
+							<td><font id="">最近常用通话地:上海市.上海市 手机入网地:上海市.上海市</font></td>
+						</tr>
+
+						<tr>
+							<th>互通号码情况</th>
+							<td><font id="">互通电话号码个数:42 互通电话号码占比:20.10%</font></td>
+						</tr>
+
+						<tr>
+							<th>特殊号码通话记录</th>
+							<td><font id="">110号码通话记录:0 120号码通话记录:0 澳门地区通话记录:0</font></td>
+						</tr>
+
+						<tr>
+							<th>主叫被叫通话详情</th>
+							<td><font id="" >主叫通话时长:958.97分钟 被叫通话时长:620.67分钟 主叫被叫比例:1.55 : 1</font></td>
+						</tr>
+					</tbody>
+				</table>
+
+				<legend>紧急联系人</legend>
+				<table class="layui-table">
+					<tbody id=" ">
+						js取值id
+						<tr>
+							<th>手机号码</th>
+							<th>归属地</th>
+							<th>主叫时长(分钟)</th>
+							<th>主叫时长占比(%)</th>
+							<th>被叫时长(分钟)</th>
+							<th>被叫时长占比(%)</th>
+							<th>主叫次数</th>
+							<th>被叫次数</th>
+							<th>短信次数</th>
+						</tr>
+
+						<tr>
+							<td><font id="">15136178237</font></td>
+							<td><font id="">河南</font></td>
+							<td><font id="">150</font></td>
+							<td><font id="">93</font></td>
+							<td><font id="">15</font></td>
+							<td><font id="">10</font></td>
+							<td><font id="">89</font></td>
+							<td><font id="">13</font></td>
+							<td><font id="">16</font></td>
+						</tr>
+					</tbody>
+				</table>
+
+				<legend>亲情号联系人</legend>
+				<table class="layui-table">
+					<tbody id=" ">
+						js取值id
+						<tr>
+							<th>手机号码</th>
+							<th>归属地</th>
+							<th>主叫时长(分钟)</th>
+							<th>主叫时长占比(%)</th>
+							<th>被叫时长(分钟)</th>
+							<th>被叫时长占比(%)</th>
+							<th>主叫次数</th>
+							<th>被叫次数</th>
+							<th>短信次数</th>
+						</tr>
+
+						<tr>
+							<td><font id="">15136178237</font></td>
+							<td><font id="">河南</font></td>
+							<td><font id="">150</font></td>
+							<td><font id="">93</font></td>
+							<td><font id=""id="">15</font></td>
+							<td><font id="">10</font></td>
+							<td><font id="">89</font></td>
+							<td><font id="">13</font></td>
+							<td><font id="">16</font></td>
+						</tr>
+					</tbody>
+				</table>
+
+				<legend>常用联系人TOP10</legend>
+				<table class="layui-table">
+					<tbody id=" ">
+						js取值id
+						<tr>
+							<th></th>
+							<th>手机号码</th>
+							<th>归属地</th>
+							<th>主叫时长(分钟)</th>
+							<th>主叫时长占比(%)</th>
+							<th>被叫时长(分钟)</th>
+							<th>被叫时长占比(%)</th>
+							<th>主叫次数</th>
+							<th>被叫次数</th>
+							<th>短信次数</th>
+						</tr>
+
+						<tr>
+							<td><font id="">1</font></td>
+							<td><font id="">18234105669</font></td>
+							<td><font id="">山西省.太原市</font></td>
+							<td><font id="">210</font></td>
+							<td><font id="">21.8%</font></td>
+							<td><font id="">55</font></td>
+							<td><font id="">8.9%</font></td>
+							<td><font id="">13</font></td>
+							<td><font id="">4</font></td>
+							<td><font id="">2</font></td>
+						</tr>
+						<tr>
+							<td><font id="">2</font></td>
+							<td><font id="">15062308361</font></td>
+							<td><font id="">江苏省.苏州市</font></td>
+							<td><font id="">66</font></td>
+							<td><font id="">6.9%</font></td>
+							<td><font id="">167</font></td>
+							<td><font id="">26.9%</font></td>
+							<td><font id="">32</font></td>
+							<td><font id="">46</font></td>
+							<td><font id="">2</font></td>
+						</tr>
+						<tr>
+							<td><font id="">3</font></td>
+							<td><font id="">18240349295</font></td>
+							<td><font id="">辽宁省.沈阳市</font></td>
+							<td><font id="">117</font></td>
+							<td><font id="">12.2%</font></td>
+							<td><font id="">30</font></td>
+							<td><font id="">4.7%</font></td>
+							<td><font id="">19</font></td>
+							<td><font id="">11</font></td>
+							<td><font id="">0</font></td>
+						</tr>
+						<tr>
+							<td><font id="">4</font></td>
+							<td><font id="">18234105669</font></td>
+							<td><font id="">山西省.太原市</font></td>
+							<td><font id="">210</font></td>
+							<td><font id="">21.8%</font></td>
+							<td><font id="">55</font></td>
+							<td><font id="">8.9%</font></td>
+							<td><font id="">13</font></td>
+							<td><font id="">4</font></td>
+							<td><font id="">2</font></td>
+						</tr>
+						<tr>
+							<td><font id="">5</font></td>
+							<td><font id="">18234105669</font></td>
+							<td><font id="">山西省.太原市</font></td>
+							<td><font id="">210</font></td>
+							<td><font id="">21.8%</font></td>
+							<td><font id="">55</font></td>
+							<td><font id="">8.9%</font></td>
+							<td><font id="">13</font></td>
+							<td><font id="">4</font></td>
+							<td><font id="">2</font></td>
+						</tr>
+						<tr>
+							<td><font id="">6</font></td>
+							<td><font id="">18234105669</font></td>
+							<td><font id="">山西省.太原市</font></td>
+							<td><font id="">210</font></td>
+							<td><font id="">21.8%</font></td>
+							<td><font id="">55</font></td>
+							<td><font id="">8.9%</font></td>
+							<td><font id="">13</font></td>
+							<td><font id="">4</font></td>
+							<td><font id="">2</font></td>
+						</tr>
+						<tr>
+							<td><font id="">7</font></td>
+							<td><font id="">18234105669</font></td>
+							<td><font id="">山西省.太原市</font></td>
+							<td><font id="">210</font></td>
+							<td><font id="">21.8%</font></td>
+							<td><font id="">55</font></td>
+							<td><font id="">8.9%</font></td>
+							<td><font id="">13</font></td>
+							<td><font id="">4</font></td>
+							<td><font id="">2</font></td>
+						</tr>
+						<tr>
+							<td><font id="">8</font></td>
+							<td><font id="">18234105669</font></td>
+							<td><font id="">山西省.太原市</font></td>
+							<td><font id="">210</font></td>
+							<td><font id="">21.8%</font></td>
+							<td><font id="">55</font></td>
+							<td><font id="">8.9%</font></td>
+							<td><font id="">13</font></td>
+							<td><font id="">4</font></td>
+							<td><font id="">2</font></td>
+						</tr>
+						<tr>
+							<td><font id="">9</font></td>
+							<td><font id="">18234105669</font></td>
+							<td><font id="">山西省.太原市</font></td>
+							<td><font id="">210</font></td>
+							<td><font id="">21.8%</font></td>
+							<td><font id="">55</font></td>
+							<td><font id="">8.9%</font></td>
+							<td><font id="">13</font></td>
+							<td><font id="">4</font></td>
+							<td><font id="">2</font></td>
+						</tr>
+						<tr>
+							<td><font id="">10</font></td>
+							<td><font id="">18234105669</font></td>
+							<td><font id="">山西省.太原市</font></td>
+							<td><font id="">210</font></td>
+							<td><font id="">21.8%</font></td>
+							<td><font id="">55</font></td>
+							<td><font id="">8.9%</font></td>
+							<td><font id="">13</font></td>
+							<td><font id="">4</font></td>
+							<td><font id="">2</font></td>
+						</tr>
+
+					</tbody>
+				</table>
+
+				<legend>联系人地区分布</legend>
+				<table class="layui-table">
+					<tbody id=" ">
+						js取值id
+						<tr>
+							<th>地区</th>
+							<th>联系人数量</th>
+							<th>联系人占比</th>
+							<th>主叫时长(分钟)</th>
+							<th>主叫时长占比</th>
+							<th>被叫时长(分钟)</th>
+							<th>被叫时长占比</th>
+							<th>主叫次数</th>
+							<th>被叫次数</th>
+						</tr>
+
+						<tr>
+							<td><font id="">上海市.上海市</font></td>
+							<td><font id="">137</font></td>
+							<td><font id="">32.4%</font></td>
+							<td><font id="">160</font></td>
+							<td><font id="">17.6%</font></td>
+							<td><font id="">183</font></td>
+							<td><font id="">29.6%</font></td>
+							<td><font id="">116</font></td>
+							<td><font id="">158</font></td>
+						</tr>
+
+						<tr>
+							<td><font id="">北京市.北京市</font></td>
+							<td><font id="">8</font></td>
+							<td><font id="">1.9%</font></td>
+							<td><font id="">22</font></td>
+							<td><font id="">2.4%</font></td>
+							<td><font id="">40</font></td>
+							<td><font id="">6.4%</font></td>
+							<td><font id="">6</font></td>
+							<td><font id="">11</font></td>
+						</tr>
+
+						<tr>
+							<td><font id="">其他</font></td>
+							<td><font id="">262</font></td>
+							<td><font id="">61.9%</font></td>
+							<td><font id="">431</font></td>
+							<td><font id="">47.4%</font></td>
+							<td><font id="">150</font></td>
+							<td><font id="">24.2%</font></td>
+							<td><font id="">73</font></td>
+							<td><font id="">38</font></td>
+						</tr>
+					</tbody>
+				</table>
+
+				<legend>运营商数据统计</legend>
+				<table class="layui-table">
+					<tbody id=" ">
+						js取值id
+						<tr>
+							<th>月份</th>
+							<th>主叫时长(分钟)</th>
+							<th>被叫时长(分钟)</th>
+							<th>主叫次数</th>
+							<th>被叫次数</th>
+							<th>短信次数</th>
+							<th>话费金额(元)</th>
+							<th>缴费金额(元)</th>
+							<th>当月常用通话地</th>
+						</tr>
+
+						<tr>
+							<td><font id="">2017-01</font></td>
+							<td><font id="">201</font></td>
+							<td><font id="">139</font></td>
+							<td><font id="">91</font></td>
+							<td><font id="">62</font></td>
+							<td><font id="">138</font></td>
+							<td><font id="">74.30</font></td>
+							<td><font id="">130.00</font></td>
+							<td><font id="">上海市.上海市</font></td>
+						</tr>
+
+						<tr>
+							<td><font id="">2017-02</font></td>
+							<td><font id="">101</font></td>
+							<td><font id="">57</font></td>
+							<td><font id="">37</font></td>
+							<td><font id="">46</font></td>
+							<td><font id="">149</font></td>
+							<td><font id="">58.10</font></td>
+							<td><font id="">0.00</font></td>
+							<td><font id="">上海市.上海市</font></td>
+						</tr>
+
+					</tbody>
+				</table>
+
+				<legend>通话地区分析</legend>
+				<table class="layui-table">
+					<tbody id=" ">
+						js取值id
+						<tr>
+							<th>通话地区</th>
+							<th>通话天数</th>
+							<th>主叫时长(分钟)</th>
+							<th>被叫时长(分钟)</th>
+							<th>主叫次数</th>
+							<th>被叫次数</th>
+						</tr>
+
+						<tr>
+							<td><font id="">上海市.上海市</font></td>
+							<td><font id="">151</font></td>
+							<td><font id="">950</font></td>
+							<td><font id="">619</font></td>
+							<td><font id="">305</font></td>
+							<td><font id="">281</font></td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+ 
+		</fieldset> -->
+		<div class="admin-table-page">
+			<div id="paged" class="page"></div>
+		</div>
+	</div>
+</body>
+</html>

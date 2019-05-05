@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.shangyong.backend.dao.sh.ShCreditWorkDao">
+
+	<resultMap type="com.shangyong.backend.entity.sh.ShCreditWork" id="shCreditWorkMap">
+		<id property="shCreditWorkId" column="sh_credit_work_id" javaType="java.lang.String"></id>
+		<result property="applicationId" column="application_id" javaType="java.lang.String"></result>
+		<result property="workNumber" column="work_number" javaType="java.lang.String"></result>
+		<result property="workDetail" column="work_detail" javaType="java.lang.String"></result>
+		<result property="workProfession" column="work_profession" javaType="java.lang.String"></result>
+		<result property="workTime" column="work_time" javaType="java.lang.String"></result>
+		<result property="createTime" column="create_time" javaType="java.lang.String"></result>
+		<result property="createMan" column="create_man" javaType="java.lang.String"></result>
+		<result property="modifyTime" column="modify_time" javaType="java.lang.String"></result>
+		<result property="modifyMan" column="modify_man" javaType="java.lang.String"></result>
+		<result property="remark" column="remark" javaType="java.lang.String"></result>
+	</resultMap>
+
+	<!-- 通用查询结果列-->
+	<sql id="Base_Column_List">
+sh_credit_work_id,	application_id,	work_number,	work_detail,	work_profession,	work_time,	create_time,	create_man,	modify_time,	modify_man,	remark
+	</sql>
+
+	<!-- 查询（根据主键ID查询） -->
+	<select id="getEntityById" resultMap="shCreditWorkMap" parameterType="java.lang.String">
+		 SELECT
+		 <include refid="Base_Column_List" />
+		 FROM sh_credit_work
+		 WHERE sh_credit_work_id = #{shCreditWorkId}
+	</select>
+	<!-- 查询（根据主键ID查询） -->
+	<select id="queryByApplicationId" resultMap="shCreditWorkMap" parameterType="java.lang.String">
+		 SELECT
+		 <include refid="Base_Column_List" />
+		 FROM sh_credit_work
+		 WHERE application_id = #{applicationId}
+	</select>
+
+	<!-- 查询（根据主键ID查询） -->
+	<select id="findAll" resultMap="shCreditWorkMap" parameterType="java.lang.String">
+		 SELECT
+		 <include refid="Base_Column_List" />
+		 FROM sh_credit_work
+		 WHERE sh_credit_work_id = #{shCreditWorkId}
+	</select>
+
+	<!--删除：根据主键ID删除-->
+	<delete id="deleteEntity" parameterType="java.lang.String">
+		 DELETE FROM sh_credit_work
+		 WHERE sh_credit_work_id = #{shCreditWorkId}
+	</delete>
+
+	<!-- 添加 -->
+	<insert id="saveEntity" parameterType="com.shangyong.backend.entity.sh.ShCreditWork">
+		 INSERT INTO sh_credit_work
+ 		(sh_credit_work_id,application_id,work_number,work_detail,work_profession,work_time,create_time,create_man,modify_time,modify_man,remark) 
+		 VALUES 
+ 		(#{shCreditWorkId},#{applicationId},#{workNumber},#{workDetail},#{workProfession},#{workTime},#{createTime},#{createMan},#{modifyTime},#{modifyMan},#{remark}) 
+	</insert>
+	
+		<!-- 批量插入 -->
+	<insert id="saveAllEntity" parameterType="java.util.List">
+		 INSERT INTO sh_credit_work
+ 		(sh_credit_work_id,application_id,work_number,work_detail,work_profession,work_time,create_time,create_man,modify_time,modify_man,remark) 
+		 VALUES
+ 	    <foreach collection="list" item="item" index="index" separator="," >  
+ 		(#{item.shCreditWorkId},#{item.applicationId},#{item.workNumber},#{item.workDetail},#{item.workProfession},#{item.workTime},#{item.createTime},#{item.createMan},#{item.modifyTime},#{item.modifyMan},#{item.remark}) 
+	    </foreach>
+	</insert>
+
+	<!-- 修 改-->
+	<update id="updateEntity" parameterType="com.shangyong.backend.entity.sh.ShCreditWork">
+		 UPDATE sh_credit_work
+ 		 <set> 
+			<if test="applicationId != null">
+				 application_id = #{applicationId},
+			</if>
+			<if test="workNumber != null">
+				 work_number = #{workNumber},
+			</if>
+			<if test="workDetail != null">
+				 work_detail = #{workDetail},
+			</if>
+			<if test="workProfession != null">
+				 work_profession = #{workProfession},
+			</if>
+			<if test="workTime != null">
+				 work_time = #{workTime},
+			</if>
+			<if test="createTime != null">
+				 create_time = #{createTime},
+			</if>
+			<if test="createMan != null">
+				 create_man = #{createMan},
+			</if>
+			<if test="modifyTime != null">
+				 modify_time = #{modifyTime},
+			</if>
+			<if test="modifyMan != null">
+				 modify_man = #{modifyMan},
+			</if>
+			<if test="remark != null">
+				 remark = #{remark},
+			</if>
+
+ 		 </set>
+		 WHERE sh_credit_work_id = #{shCreditWorkId}
+	</update>
+
+</mapper>

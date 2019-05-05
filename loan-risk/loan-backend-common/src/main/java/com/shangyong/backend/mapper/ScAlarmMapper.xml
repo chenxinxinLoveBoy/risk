@@ -1,0 +1,245 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.shangyong.backend.dao.ScAlarmDao">
+    <resultMap id="BaseResultMap" type="com.shangyong.backend.entity.ScAlarm">
+        <id column="alarm_id" jdbcType="INTEGER" property="alarmId"/>
+        <result column="alarm_code" jdbcType="VARCHAR" property="alarmCode"/>
+        <result column="alarm_msg" jdbcType="VARCHAR" property="alarmMsg"/>
+        <result column="priority" jdbcType="INTEGER" property="priority"/>
+        <result column="alarm_type" jdbcType="INTEGER" property="alarmType"/>
+        <result column="third_party_credit_investigation" jdbcType="INTEGER" property="thirdPartyCreditInvestigation"/>
+        <result column="create_time" jdbcType="TIMESTAMP" property="createTime"/>
+        <result column="modify_time" jdbcType="TIMESTAMP" property="modifyTime"/>
+        <result column="alarm_param" jdbcType="VARCHAR" property="alarmParam"/>
+        <result column="phone" jdbcType="VARCHAR" property="phone"/>
+        <result column="email" jdbcType="VARCHAR" property="email"/>
+        <result column="dingding_url" jdbcType="VARCHAR" property="dingdingUrl"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        alarm_id,alarm_code,alarm_msg,priority,alarm_type,third_party_credit_investigation,create_time,modify_time,alarm_param,phone,email,dingding_url
+    </sql>
+
+    <sql id="Base_ondition_List">
+        <where>
+            <if test="alarmId != null">
+                alarm_id = #{alarmId,jdbcType=INTEGER}
+            </if>
+            <if test="alarmCode != null and alarmCode != ''">
+                and alarm_code = #{alarmCode,jdbcType=VARCHAR}
+            </if>
+            <if test="alarmMsg != null and alarmMsg != ''">
+                and instr(#{alarmMsg,jdbcType=VARCHAR}, alarm_msg) > 0
+            </if>
+            <if test="priority != null">
+                and priority = #{priority,jdbcType=INTEGER}
+            </if>
+            <if test="alarmType != null">
+                and alarm_type = #{alarmType,jdbcType=INTEGER}
+            </if>
+            <if test="thirdPartyCreditInvestigation != null">
+                and third_party_credit_investigation = #{thirdPartyCreditInvestigation,jdbcType=INTEGER}
+            </if>
+            <if test="createTime != null">
+                and create_time = #{createTime,jdbcType=TIMESTAMP}
+            </if>
+            <if test="modifyTime != null">
+                and modify_time = #{modifyTime,jdbcType=TIMESTAMP}
+            </if>
+            <if test="alarmParam != null">
+                and alarm_param = #{alarmParam,jdbcType=VARCHAR}
+            </if>
+            <if test="phone != null">
+                and phone = #{phone,jdbcType=VARCHAR}
+            </if>
+            <if test="email != null">
+                and email = #{email,jdbcType=VARCHAR}
+            </if>
+            <if test="dingdingUrl != null">
+                and dingding_url = #{dingdingUrl,jdbcType=VARCHAR}
+            </if>
+        </where>
+    </sql>
+
+    <insert id="insert" parameterType="com.shangyong.backend.entity.ScAlarm">
+        insert into sc_alarm (<include refid="Base_Column_List"/>)
+        values(#{alarmId,jdbcType=INTEGER},#{alarmCode,jdbcType=VARCHAR},#{alarmMsg,jdbcType=VARCHAR},#{priority,jdbcType=INTEGER},#{alarmType,jdbcType=INTEGER},#{thirdPartyCreditInvestigation,jdbcType=INTEGER},#{createTime,jdbcType=TIMESTAMP},#{modifyTime,jdbcType=TIMESTAMP},#{alarmParam,jdbcType=VARCHAR},#{phone,jdbcType=VARCHAR},#{email,jdbcType=VARCHAR},#{dingdingUrl,jdbcType=VARCHAR})
+    </insert>
+
+    <insert id="insertSelective" parameterType="com.shangyong.backend.entity.ScAlarm">
+        insert into sc_alarm
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="alarmId != null">
+                alarm_id,
+            </if>
+            <if test="alarmCode != null">
+                alarm_code,
+            </if>
+            <if test="alarmMsg != null">
+                alarm_msg,
+            </if>
+            <if test="priority != null">
+                priority,
+            </if>
+            <if test="alarmType != null">
+                alarm_type,
+            </if>
+            <if test="thirdPartyCreditInvestigation != null">
+                third_party_credit_investigation,
+            </if>
+            <if test="createTime != null">
+                create_time,
+            </if>
+            <if test="modifyTime != null">
+                modify_time,
+            </if>
+            <if test="alarmParam != null">
+                alarm_param,
+            </if>
+            <if test="phone != null">
+                phone,
+            </if>
+            <if test="email != null">
+                email,
+            </if>
+            <if test="dingdingUrl != null">
+                dingding_url,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="alarmId != null">
+                #{alarmId,jdbcType=INTEGER},
+            </if>
+            <if test="alarmCode != null">
+                #{alarmCode,jdbcType=VARCHAR},
+            </if>
+            <if test="alarmMsg != null">
+                #{alarmMsg,jdbcType=VARCHAR},
+            </if>
+            <if test="priority != null">
+                #{priority,jdbcType=INTEGER},
+            </if>
+            <if test="alarmType != null">
+                #{alarmType,jdbcType=INTEGER},
+            </if>
+            <if test="thirdPartyCreditInvestigation != null">
+                #{thirdPartyCreditInvestigation,jdbcType=INTEGER},
+            </if>
+            <if test="createTime != null">
+                #{createTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="modifyTime != null">
+                #{modifyTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="alarmParam != null">
+                #{alarmParam,jdbcType=VARCHAR},
+            </if>
+            <if test="phone != null">
+                #{phone,jdbcType=VARCHAR},
+            </if>
+            <if test="email != null">
+                #{email,jdbcType=VARCHAR},
+            </if>
+            <if test="dingdingUrl != null">
+                #{dingdingUrl,jdbcType=VARCHAR},
+            </if>
+        </trim>
+    </insert>
+
+    <update id="updateByPrimaryKey" parameterType="com.shangyong.backend.entity.ScAlarm">
+        update sc_alarm set
+        alarm_code = #{alarmCode,jdbcType=VARCHAR},
+        alarm_msg = #{alarmMsg,jdbcType=VARCHAR},
+        priority = #{priority,jdbcType=INTEGER},
+        alarm_type = #{alarmType,jdbcType=INTEGER},
+        third_party_credit_investigation = #{thirdPartyCreditInvestigation,jdbcType=INTEGER},
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+        modify_time = #{modifyTime,jdbcType=TIMESTAMP},
+        alarm_param = #{alarmParam,jdbcType=VARCHAR},
+        phone = #{phone,jdbcType=VARCHAR},
+        email = #{email,jdbcType=VARCHAR},
+        dingding_url = #{dingdingUrl,jdbcType=VARCHAR}
+        <where>
+            <if test="alarmId != null">
+                alarm_id = #{alarmId,jdbcType=INTEGER}
+            </if>
+        </where>
+    </update>
+
+    <update id="updateByPrimaryKeySelective" parameterType="com.shangyong.backend.entity.ScAlarm">
+        update sc_alarm
+        <set>
+            <if test="alarmCode != null">
+                alarm_code = #{alarmCode,jdbcType=VARCHAR},
+            </if>
+            <if test="alarmMsg != null">
+                alarm_msg = #{alarmMsg,jdbcType=VARCHAR},
+            </if>
+            <if test="priority != null">
+                priority = #{priority,jdbcType=INTEGER},
+            </if>
+            <if test="alarmType != null">
+                alarm_type = #{alarmType,jdbcType=INTEGER},
+            </if>
+            <if test="thirdPartyCreditInvestigation != null">
+                third_party_credit_investigation = #{thirdPartyCreditInvestigation,jdbcType=INTEGER},
+            </if>
+            <if test="createTime != null">
+                create_time = #{createTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="modifyTime != null">
+                modify_time = #{modifyTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="alarmParam != null">
+                alarm_param = #{alarmParam,jdbcType=VARCHAR},
+            </if>
+            <if test="phone != null">
+                phone = #{phone,jdbcType=VARCHAR},
+            </if>
+            <if test="email != null">
+                email = #{email,jdbcType=VARCHAR},
+            </if>
+            <if test="dingdingUrl != null">
+                dingding_url = #{dingdingUrl,jdbcType=VARCHAR},
+            </if>
+        </set>
+        <where>
+            <if test="alarmId != null">
+                alarm_id = #{alarmId,jdbcType=INTEGER}
+            </if>
+        </where>
+    </update>
+
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+        delete from sc_alarm
+        <where>
+            <if test="alarmId != null">
+                alarm_id = #{alarmId,jdbcType=INTEGER}
+            </if>
+        </where>
+    </delete>
+
+    <select id="selectOne" parameterType="com.shangyong.backend.entity.ScAlarm" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from sc_alarm
+        <include refid="Base_ondition_List"/>
+        limit 1
+    </select>
+
+    <select id="selectList" parameterType="com.shangyong.backend.entity.ScAlarm" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from sc_alarm
+        <include refid="Base_ondition_List"/>
+        order by create_time desc
+        <if test="pageSize != -1">
+            limit #{pageIndex}, #{pageSize}
+        </if>
+    </select>
+
+    <select id="count" parameterType="com.shangyong.backend.entity.ScAlarm" resultType="java.lang.Integer">
+        select count(1) from sc_alarm
+        <include refid="Base_ondition_List"/>
+    </select>
+</mapper>

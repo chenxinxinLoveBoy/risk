@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.shangyong.backend.dao.txy.TxyRiskInfoServiceDao">
+
+	<resultMap type="com.shangyong.backend.entity.txy.TxyRiskInfo" id="txyRiskInfoinfoMap">
+		<id property="txyRiskInfoId" column="txy_risk_info_id" javaType="java.lang.String"></id>
+		<result property="txyAntiFraudId" column="txy_anti_fraud_id" javaType="java.lang.String"></result>
+		<result property="riskCode" column="risk_code" javaType="java.lang.String"></result>
+		<result property="riskCodeValue" column="risk_code_value" javaType="java.lang.String"></result>
+		<result property="remark" column="remark" javaType="java.lang.String"></result>
+		<result property="createTime" column="create_time" javaType="java.lang.String"></result>
+		<result property="modifyTime" column="modify_time" javaType="java.lang.String"></result>
+		<result property="createMan" column="create_man" javaType="java.lang.String"></result>
+		<result property="modifyMan" column="modify_man" javaType="java.lang.String"></result>
+	</resultMap>
+
+	<!-- 通用查询结果列-->
+	<sql id="Base_Column_List">
+	txy_risk_info_id,	txy_anti_fraud_id,	risk_code,	risk_code_value,	remark,	create_time,	modify_time,	create_man,	modify_man
+	</sql>
+
+	<!-- 查询（根据主键ID查询） -->
+	<select id="getEntityById" resultMap="txyRiskInfoinfoMap" parameterType="java.lang.String">
+		 SELECT
+		 <include refid="Base_Column_List" />
+		 FROM txy_risk_info
+		 WHERE txy_risk_info_id = #{txyRiskInfoId}
+	</select>
+	
+	<!-- 查询（根据主键ID查询） -->
+	<select id="queryById" resultMap="txyRiskInfoinfoMap" parameterType="java.lang.String">
+		 SELECT
+		 <include refid="Base_Column_List" />
+		 FROM txy_risk_info
+		 WHERE txy_anti_fraud_id = #{txyAntiFraudId}
+	</select>
+
+	<!-- 查询（根据主键ID查询） -->
+	<select id="getAll" resultMap="txyRiskInfoinfoMap" parameterType="java.lang.String">
+		 SELECT
+		 <include refid="Base_Column_List" />
+		 FROM txy_risk_info
+	</select>
+
+	<!--删除：根据主键ID删除-->
+	<delete id="deleteEntity" parameterType="java.lang.String">
+		 DELETE FROM txy_risk_info
+		 WHERE txy_risk_info_id = #{txyRiskInfoId}
+	</delete>
+
+	<!-- 添加 -->
+	<insert id="saveEntity" parameterType="com.shangyong.backend.entity.txy.TxyRiskInfo">
+		 INSERT INTO txy_risk_info
+ 		(txy_risk_info_id,txy_anti_fraud_id,risk_code,risk_code_value,remark,create_time,modify_time,create_man,modify_man) 
+		 VALUES 
+ 		(#{txyRiskInfoId},#{txyAntiFraudId},#{riskCode},#{riskCodeValue},#{remark},#{createTime},#{modifyTime},#{createMan},#{modifyMan}) 
+	</insert>
+	
+	<!-- 批量插入 -->
+	<insert id="saveAllEntity" parameterType="java.util.List">
+		 INSERT INTO txy_risk_info
+ 		(txy_risk_info_id,txy_anti_fraud_id,risk_code,risk_code_value,remark,create_time,modify_time,create_man,modify_man)
+		 VALUES 
+ 	    <foreach collection="list" item="item" index="index" separator="," >  
+ 		(#{item.txyRiskInfoId},#{item.txyAntiFraudId},#{item.riskCode},#{item.riskCodeValue},#{item.remark},#{item.createTime},#{item.modifyTime},#{item.createMan},#{item.modifyMan}) 
+	    </foreach>
+	</insert>
+	<!-- 修 改-->
+	<update id="updateEntity" parameterType="com.shangyong.backend.entity.txy.TxyRiskInfo">
+		 UPDATE txy_risk_info
+ 		 <set> 
+			<if test="txyAntiFraudId != null">
+				 txy_anti_fraud_id = #{txyAntiFraudId},
+			</if>
+			<if test="riskCode != null">
+				 risk_code = #{riskCode},
+			</if>
+			<if test="riskCodeValue != null">
+				 risk_code_value = #{riskCodeValue},
+			</if>
+			<if test="remark != null">
+				 remark = #{remark},
+			</if>
+			<if test="createTime != null">
+				 create_time = #{createTime},
+			</if>
+			<if test="modifyTime != null">
+				 modify_time = #{modifyTime},
+			</if>
+			<if test="createMan != null">
+				 create_man = #{createMan},
+			</if>
+			<if test="modifyMan != null">
+				 modify_man = #{modifyMan},
+			</if>
+
+ 		 </set>
+		 WHERE txy_risk_info_id = #{txyRiskInfoId}
+	</update>
+
+</mapper>

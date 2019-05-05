@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.shangyong.backend.dao.BussnessParamHisDao">
+
+	<resultMap type="com.shangyong.backend.entity.SysParam" id="sysParamHisinfoMap"> 
+	  <id property="paramHisId" column="param_his_id" javaType="java.lang.Integer"></id>
+		<result property="sysParamId" column="sys_param_id" javaType="java.lang.Integer"></result>
+		<result property="paramValue" column="param_value" javaType="java.lang.String"></result>
+		<result property="paramName" column="param_name" javaType="java.lang.String"></result>
+		<result property="paramValueOne" column="param_value_one" javaType="java.lang.String"></result>
+		<result property="paramNameOne" column="param_name_one" javaType="java.lang.String"></result>
+		<result property="paramValueTwo" column="param_value_two" javaType="java.lang.String"></result>
+		<result property="paramNameTwo" column="param_name_two" javaType="java.lang.String"></result>
+		<result property="paramValueThree" column="param_value_three" javaType="java.lang.String"></result>
+		<result property="paramNameThree" column="param_name_three" javaType="java.lang.String"></result>
+		<result property="paramValueFour" column="param_value_four" javaType="java.lang.String"></result>
+		<result property="paramNameFour" column="param_name_four" javaType="java.lang.String"></result>
+		<result property="paramValueFive" column="param_value_five" javaType="java.lang.String"></result>
+		<result property="paramNameFive" column="param_name_five" javaType="java.lang.String"></result>
+		<result property="statue" column="statue" javaType="java.lang.String"></result>
+		<result property="createTime" column="create_time" javaType="java.lang.String"></result>
+		<result property="createMan" column="create_man" javaType="java.lang.String"></result>
+		<result property="modifyMan" column="modify_man" javaType="java.lang.String"></result>
+		<result property="modifyTime" column="modify_time" javaType="java.lang.String"></result>
+		<result property="version" column="version" javaType="java.lang.Integer"></result>
+		<result property="remark" column="remark" javaType="java.lang.String"></result>
+				<result property="recordNewtime" column="record_newtime" javaType="java.lang.String"></result>
+	</resultMap>
+
+	<!-- 通用查询结果列-->
+	<sql id="Base_Column_List">
+param_his_id as paramHisId,business_param_id,	param_value,	param_name,	param_value_one,	param_name_one,	param_value_two,	param_name_two,	param_value_three,	param_name_three,	param_value_four,	param_name_four,	param_value_five,	param_name_five,	statue,	create_time,	create_man,	modify_man,	modify_time,	version,	remark,record_newtime
+	</sql>
+
+	<!-- 查询（根据主键ID查询） -->
+	<select id="selectByPrimaryKey" resultMap="sysParamHisinfoMap" parameterType="java.lang.Integer">
+		 SELECT
+		 <include refid="Base_Column_List" />
+		 FROM business_param_his
+		 WHERE param_his_id = #{paramHisId}
+	</select>
+ 
+	 
+	<!-- 查询 -->
+	<select id="getAll" resultMap="sysParamHisinfoMap" parameterType="java.lang.Integer">
+		 SELECT
+		 <include refid="Base_Column_List" />
+		 FROM business_param_his
+		 <where>
+			<!-- 参数编号  -->
+			<if test="paramValue != null and paramValue != '' ">
+				 instr(param_value, #{paramValue}) > 0
+			</if>
+			<!--  参数名称 -->
+			<if test="paramName != null and paramName != '' ">
+				and instr(param_name, #{paramName}) > 0
+			</if>
+			<if test="statue != null and statue != '' ">
+				and statue = #{statue}
+			</if>
+			 <if test="beginTime1 != '' and beginTime1 != null" >
+	    	    <![CDATA[ and record_newtime >= #{beginTime1} ]]>
+	         </if>
+	   	     <if test="endTime1 != '' and endTime1 != null" >
+	    	    <![CDATA[ and record_newtime <= #{endTime1} ]]>
+	         </if> 
+		</where>
+		order by record_newtime DESC
+		LIMIT #{pageIndex},#{pageSize}
+	</select>
+	
+    <select id="listAllCount" resultType="java.lang.Integer">
+		select count(1) from
+		business_param_his
+		<where>
+ 			 <!-- 参数编号  -->
+			<if test="paramValue != null and paramValue != '' ">
+				 instr(param_value, #{paramValue}) > 0
+			</if>
+			<!--  参数名称 -->
+			<if test="paramName != null and paramName != '' ">
+				and instr(param_name, #{paramName}) > 0
+			</if>
+			<if test="statue != null and statue != '' ">
+				and statue = #{statue}
+			</if>
+			 <if test="beginTime1 != '' and beginTime1 != null" >
+	    	    <![CDATA[ and record_newtime >= #{beginTime1} ]]>
+	         </if>
+	   	     <if test="endTime1 != '' and endTime1 != null" >
+	    	    <![CDATA[ and record_newtime <= #{endTime1} ]]>
+	         </if> 
+		</where>
+	</select>
+	 
+
+	<!-- 添加 -->
+	<insert id="saveEntity" parameterType="com.shangyong.backend.entity.SysParam">
+		 INSERT INTO business_param_his
+ 		(sys_param_id,param_value,param_name,param_value_one,param_name_one,param_value_two,param_name_two,param_value_three,param_name_three,param_value_four,param_name_four,param_value_five,param_name_five,statue,create_time,create_man,modify_man,modify_time,version,remark) 
+		 VALUES 
+ 		(#{sysParamId},#{paramValue},#{paramName},#{paramValueOne},#{paramNameOne},#{paramValueTwo},#{paramNameTwo},#{paramValueThree},#{paramNameThree},#{paramValueFour},#{paramNameFour},#{paramValueFive},#{paramNameFive},#{statue},#{createTime},#{createMan},#{modifyMan},#{modifyTime},#{version},#{remark}) 
+	</insert>
+	
+	<insert id="saveBusinessEntity" parameterType="com.shangyong.backend.entity.SysParam">
+		 INSERT INTO business_param_his
+ 		(business_param_id,param_value,param_name,param_value_one,param_name_one,param_value_two,param_name_two,param_value_three,param_name_three,param_value_four,param_name_four,param_value_five,param_name_five,statue,create_time,create_man,modify_man,modify_time,version,remark) 
+		 VALUES 
+ 		(#{sysParamId},#{paramValue},#{paramName},#{paramValueOne},#{paramNameOne},#{paramValueTwo},#{paramNameTwo},#{paramValueThree},#{paramNameThree},#{paramValueFour},#{paramNameFour},#{paramValueFive},#{paramNameFive},#{statue},#{createTime},#{createMan},#{modifyMan},#{modifyTime},#{version},#{remark}) 
+	</insert>
+
+</mapper>

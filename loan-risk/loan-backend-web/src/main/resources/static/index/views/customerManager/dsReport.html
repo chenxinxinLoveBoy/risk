@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="UTF-8">
+	<title>基本信息</title>
+	<link rel="stylesheet" href="../../plugins/layui/css/layui.css"
+		media="all" />
+	<link rel="stylesheet" href="../../css/global.css" media="all">
+	<link rel="stylesheet"
+		href="../../plugins/font-awesome/css/font-awesome.min.css">
+	<link rel="stylesheet" href="../../css/table.css" />
+	<!-- js -->
+	<script src="../../jqery/jquery.js"></script>
+	<script src="../../../commons/base.js"></script>
+	<script type="text/javascript" src="../../plugins/layui/layui.js"></script>
+	<script type="text/javascript" src="../../js/customerManager/dsReport.js"></script>
+	<script type="text/javascript" src="../../js/customerManager/dsOrder.js"></script>
+	<link rel="stylesheet" href="../../css/lzh_login.css" media="all" />
+</head>
+<body>
+	<div class="admin-main" id="dss">
+		<div style="height: 10px"></div>
+		<fieldset class="layui-elem-field">
+			<div class="layui-field-box layui-form">
+				<legend>基本信息 </legend>
+				<table class="layui-table">
+						<!-- js取值id -->
+						<tr>
+							<th style="width: 200px"; >用户名</th>
+							<td ><font id="userName">jd_6d66c2790a10c</font></td> 
+							<th style="width: 200px ;" >用户级别</th>
+							<td><font id="userLevel">注册会员</font></td>
+							 <th style="width: 200px">昵称</th>
+							<td><font id="nickName">jd_6d66c2790a10c</font></td>
+						</tr>
+
+						<tr>
+							<th>真实姓名</th>
+							<td><font id="name">习近平 </font></td>
+							<th>性别</th>
+							<td ><font id="gender">保密</font></td>
+							<th>绑定手机号</th>
+							<td ><font id="mobile">183*****290</font></td>
+						</tr>
+
+						 <tr>
+							<th>实名认证姓名</th>
+							<td><font id="realName">习近平 </font></td>
+							<th>实名认证身份证</th>
+							<td ><font id="identityCode"> 410329***********7</font></td>
+							<th>邮箱</th>
+							<td ><font id="email">132456789@163.com</font></td>
+						</tr>
+				</table>
+				<legend>账户信息 </legend>
+				<table class="layui-table">
+						<!-- js取值id -->
+						<tr>
+							<th style="width: 200px">账户余额(元)</th>
+							<td><font id="accountBalance">1.00</font></td> 
+							<th style="width: 200px">金融账户余额(元)</th>
+							<td><font id="financialAccountBalance">2.00</font></td>
+							<th style="width: 200px">信用分数</th>
+							<td><font id="creditPoint">60.5</font></td>
+						</tr>
+
+						<tr>
+							<th style="width: 200px">信用额度(元)</th>
+							<td><font id="creditQuota">5000</font></td>
+							<th style="width: 200px">消费额度(元)</th>
+							<td colspan="3"><font id="consumeQuota">2000</font></td> 
+						</tr> 
+				</table>
+				<legend>收货地址 </legend>
+				<table class="layui-table">
+						<thead>
+						<tr>
+							<th style="width: 90px" >收货人</th> 
+							<th style="width: 90px">地区</th> 
+							<th style="width: 70px">地址</th> 
+							<th style="width: 70px">手机号码</th>
+							
+						</tr> 
+						</thead>
+						<tbody id="content">
+						</tbody>
+				</table>
+				<label>共<font color='red' id="count_page_number"></font>条记录</label>
+					<div id="paged" class="page" style="display:inline-block;">
+				</div>
+				<legend>订单信息 </legend>
+				<table class="layui-table">
+						<!-- js取值id -->
+						<thead>
+						<tr>
+							<th style="width: 200px">订单号</th> 
+							<th style="width: 200px">订单金额(元)</th> 
+							<th style="width: 200px">订单类型</th> 
+							<th style="width: 200px">订单状态</th> 
+							<th style="width: 200px">订单时间</th> 
+						</tr> 
+						</thead>
+						<tbody id="content1">
+						</tbody>
+				</table>
+				<label>共<font color='red' id="count_page_number1"></font>条记录</label>
+					<div id="paged1" class="page" style="display:inline-block;">
+				</div>
+			</div>
+		</fieldset>
+	</div>
+	
+	<!--模板-->
+		<script type="text/html" id="tpl">
+			{{# layui.each(d.list, function(index, item){ }}
+			<tr>
+				<td>{{ item.name }}</td>
+				<td>{{ item.area }}</td>
+				<td>{{ item.address }}</td>
+				<td>{{ item.mobile }}</td>
+			</tr>
+			{{# }); }}
+		</script>
+		<script type="text/html" id="tpl1">
+			{{# layui.each(d.list, function(index, item){ }}
+			<tr>
+				<td>{{ item.orderId }}</td>
+				<td>{{ item.orderAmount }}</td>
+				<td>{{ item.orderType }}</td>
+				<td>{{ item.orderStatus }}</td>
+				<td>{{ item.orderTime }}</td>
+			</tr>
+			{{# }); }}
+		</script>
+</body>
+</html>

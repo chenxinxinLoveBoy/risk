@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.shangyong.backend.dao.tdReport.TdReportTravelCityDao">
+
+	<resultMap type="com.shangyong.backend.entity.tdReport.TdReportTravelCity" id="tdReportTravelCityMap">
+		<id property="travelCityId" column="travel_city_id" javaType="java.lang.String"></id>
+		<result property="applicationId" column="application_id" javaType="java.lang.String"></result>
+		<result property="leaveCity" column="leave_city" javaType="java.lang.String"></result>
+		<result property="leaveDay" column="leave_day" javaType="java.lang.String"></result>
+		<result property="leaveDayType" column="leave_day_type" javaType="java.lang.String"></result>
+		<result property="arriveCity" column="arrive_city" javaType="java.lang.String"></result>
+		<result property="arriveDay" column="arrive_day" javaType="java.lang.String"></result>
+		<result property="arriveDayType" column="arrive_day_type" javaType="java.lang.String"></result>
+		<result property="createTime" column="create_time" javaType="java.lang.String"></result>
+		<result property="createMan" column="create_man" javaType="java.lang.String"></result>
+		<result property="modifyTime" column="modify_time" javaType="java.lang.String"></result>
+		<result property="modifyMan" column="modify_man" javaType="java.lang.String"></result>
+		<result property="remark" column="remark" javaType="java.lang.String"></result>
+	</resultMap>
+
+	<!-- 通用查询结果列-->
+	<sql id="Base_Column_List">
+travel_city_id,	application_id,	leave_city,	leave_day,	leave_day_type,	arrive_city,	arrive_day,	arrive_day_type,	create_time,	create_man,	modify_time,	modify_man,	remark
+	</sql>
+
+	<!-- 查询（根据主键ID查询） -->
+	<select id="getEntityById" resultMap="tdReportTravelCityMap" parameterType="java.lang.String">
+		 SELECT
+		 <include refid="Base_Column_List" />
+		 FROM td_report_travel_city
+		 WHERE travel_city_id = #{travelCityId}
+	</select>
+
+	<!-- 查询（根据主键ID查询） -->
+	<select id="findAll" resultMap="tdReportTravelCityMap" parameterType="java.lang.String">
+		 SELECT
+		 <include refid="Base_Column_List" />
+		 FROM td_report_travel_city
+		 WHERE travel_city_id = #{travelCityId}
+	</select>
+
+	<!--删除：根据主键ID删除-->
+	<delete id="deleteEntity" parameterType="java.lang.String">
+		 DELETE FROM td_report_travel_city
+		 WHERE travel_city_id = #{travelCityId}
+	</delete>
+
+	<!-- 添加 -->
+	<insert id="saveEntity" parameterType="com.shangyong.backend.entity.tdReport.TdReportTravelCity">
+		 INSERT INTO td_report_travel_city
+ 		(travel_city_id,application_id,leave_city,leave_day,leave_day_type,arrive_city,arrive_day,arrive_day_type,create_time,create_man,modify_time,modify_man,remark) 
+		 VALUES 
+ 		(#{travelCityId},#{applicationId},#{leaveCity},#{leaveDay},#{leaveDayType},#{arriveCity},#{arriveDay},#{arriveDayType},#{createTime},#{createMan},#{modifyTime},#{modifyMan},#{remark}) 
+	</insert>
+	<!-- 批量插入 -->
+	<insert id="saveAllEntity" parameterType="java.util.List">
+		 INSERT INTO td_report_travel_city
+ 		(travel_city_id,application_id,leave_city,leave_day,leave_day_type,arrive_city,arrive_day,arrive_day_type,create_time,create_man,modify_time,modify_man,remark) 
+		 VALUES  
+ 	    <foreach collection="list" item="item" index="index" separator="," >  
+ 		(#{item.travelCityId},#{item.applicationId},#{item.leaveCity},#{item.leaveDay},#{item.leaveDayType},#{item.arriveCity},#{item.arriveDay},#{item.arriveDayType},#{item.createTime},#{item.createMan},#{item.modifyTime},#{item.modifyMan},#{item.remark}) 
+	    </foreach>
+	</insert>
+
+	<!-- 修 改-->
+	<update id="updateEntity" parameterType="com.shangyong.backend.entity.tdReport.TdReportTravelCity">
+		 UPDATE td_report_travel_city
+ 		 <set> 
+			<if test="applicationId != null">
+				 application_id = #{applicationId},
+			</if>
+			<if test="leaveCity != null">
+				 leave_city = #{leaveCity},
+			</if>
+			<if test="leaveDay != null">
+				 leave_day = #{leaveDay},
+			</if>
+			<if test="leaveDayType != null">
+				 leave_day_type = #{leaveDayType},
+			</if>
+			<if test="arriveCity != null">
+				 arrive_city = #{arriveCity},
+			</if>
+			<if test="arriveDay != null">
+				 arrive_day = #{arriveDay},
+			</if>
+			<if test="arriveDayType != null">
+				 arrive_day_type = #{arriveDayType},
+			</if>
+			<if test="createTime != null">
+				 create_time = #{createTime},
+			</if>
+			<if test="createMan != null">
+				 create_man = #{createMan},
+			</if>
+			<if test="modifyTime != null">
+				 modify_time = #{modifyTime},
+			</if>
+			<if test="modifyMan != null">
+				 modify_man = #{modifyMan},
+			</if>
+			<if test="remark != null">
+				 remark = #{remark},
+			</if>
+
+ 		 </set>
+		 WHERE travel_city_id = #{travelCityId}
+	</update>
+
+</mapper>

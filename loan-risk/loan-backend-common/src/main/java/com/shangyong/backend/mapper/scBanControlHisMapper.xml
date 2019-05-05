@@ -1,0 +1,178 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.shangyong.backend.dao.ScBanControlHisDao">
+
+	<resultMap type="com.shangyong.backend.entity.ScBanControl" id="scBanControlHisinfoMap">
+	 <id property="controlHisId" column="control_his_id" javaType="java.lang.Integer"></id>
+		<result property="banControlId" column="ban_control_id" javaType="java.lang.Integer"></result>
+		<result property="banControlTplId" column="ban_control_tpl_id" javaType="java.lang.String"></result>
+		<result property="banTplName" column="ban_tpl_name" javaType="java.lang.String"></result>
+		<result property="banCode" column="ban_code" javaType="java.lang.String"></result>
+		<result property="ruleName" column="rule_name" javaType="java.lang.String"></result>
+		<result property="creditType" column="credit_type" javaType="java.lang.String"></result>
+		<result property="ruleDetail" column="rule_detail" javaType="java.lang.String"></result>
+		<result property="ruleComparisonValue" column="rule_comparison_value" javaType="java.lang.String"></result>
+		<result property="ruleComparisonType" column="rule_comparison_type"	javaType="java.lang.String"></result>
+	    <result property="ifRefuse" column="if_refuse" javaType="java.lang.String"></result>
+		<result property="state" column="state" javaType="java.lang.String"></result>
+		<result property="validateRule" column="validate_rule" javaType="java.lang.String"></result>
+		<result property="version" column="version" javaType="java.lang.Integer"></result>
+		<result property="createTime" column="create_time" javaType="java.lang.String"></result>
+		<result property="createMan" column="create_man" javaType="java.lang.String"></result>
+		<result property="modifyTime" column="modify_time" javaType="java.lang.String"></result>
+		<result property="modifyMan" column="modify_man" javaType="java.lang.String"></result>
+		<result property="remark" column="remark" javaType="java.lang.String"></result>
+		<result property="createName" column="create_name" javaType="java.lang.String"></result>
+		<result property="modifyName" column="modify_name" javaType="java.lang.String"></result> 
+	</resultMap>
+
+	<!-- 添加 -->
+	<insert id="saveEntity" parameterType="com.shangyong.backend.entity.ScBanControl">
+		INSERT INTO
+		sc_ban_control_his
+		(
+		ban_control_id,ban_code,ban_control_tpl_id,rule_name,credit_type,rule_detail,rule_comparison_value,rule_comparison_type,if_refuse,state,validate_rule,version,create_time,create_man,modify_time,modify_man,remark,create_name,modify_name )
+		VALUES
+		(
+		#{banControlId},#{banCode},#{banControlTplId},#{ruleName},#{creditType},#{ruleDetail},#{ruleComparisonValue},#{ruleComparisonType},#{ifRefuse},#{state},#{validateRule},#{version},#{createTime},#{createMan},#{modifyTime},#{modifyMan},#{remark},#{createName},#{modifyName})
+	</insert>
+
+<!-- 通用查询结果列-->
+	<sql id="Base_Column_List">
+control_his_id,	ban_control_id,	ban_code,	ban_control_tpl_id,	rule_name,	credit_type,	rule_detail,	rule_comparison_value,	rule_comparison_type,	if_refuse,	state,	validate_rule,	version,	create_time,	create_man,	create_name,	modify_time,	modify_man,	modify_name,	remark
+	</sql>
+
+	<!-- 查询（根据主键ID查询） -->
+	<select id="selectByPrimaryKey" resultMap="scBanControlHisinfoMap" parameterType="java.lang.Integer">
+		 SELECT
+		 <include refid="Base_Column_List" />
+		 FROM sc_ban_control_his
+		 WHERE control_his_id = #{controlHisId}
+	</select>
+
+
+	<!-- 查询  -->
+	<select id="getAll" resultMap="scBanControlHisinfoMap"  parameterType="com.shangyong.backend.entity.ScBanControl">
+		 SELECT
+		ban.control_his_id
+		,ban.ban_control_id
+		 ,ban.ban_code
+		 ,ban.rule_name
+		 ,ban.ban_control_tpl_id
+		 ,ban.credit_type
+		 ,ban.rule_detail
+		 ,ban.rule_comparison_value
+		 ,ban.rule_comparison_type
+		 ,ban.if_refuse
+		 ,ban.state
+		 ,ban.validate_rule
+		 ,ban.version
+		 ,ban.create_time
+		 ,ban.create_man
+		 ,ban.modify_time
+		 ,ban.modify_man
+		 ,ban.remark
+		 ,ban.create_name
+		 ,ban.modify_name 
+		 ,tpl.ban_tpl_name
+		 FROM sc_ban_control_his ban left join sc_ban_control_tpl tpl on ban.ban_control_tpl_id = tpl.ban_control_tpl_id
+		  <where>
+ 			<if test="banCode != null and banCode != '' ">
+				  ban.ban_code = #{banCode}
+			</if>
+			<if test="ruleName != null and ruleName != '' ">
+			 	and instr(ban.rule_name, #{ruleName}) > 0
+			</if>
+			<if test="creditType != null and creditType != '' ">
+				and ban.credit_type = #{creditType}
+			</if>
+			<if test="state != null and state != '' ">
+				and ban.state = #{state}
+			</if>
+			<if test="ifRefuse != null and ifRefuse != '' ">
+				and ban.if_refuse = #{ifRefuse}
+			</if>
+			<if test="banControlTplId != null and banControlTplId != '' ">
+				and ban.ban_control_tpl_id = #{banControlTplId}
+			</if>
+			<if test="startTimeInterval != null and startTimeInterval != '' ">
+				and <![CDATA[ record_newtime > #{startTimeInterval}  ]]>
+			</if>
+			<if test="endTimeInterval != null and endTimeInterval != '' ">
+				and <![CDATA[ record_newtime < #{endTimeInterval} ]]>
+			</if>
+		</where>
+		order by modify_time DESC
+		LIMIT #{pageIndex},#{pageSize}
+	</select>
+
+
+	<!-- 查询  -->
+	<select id="listAllCount" resultType="java.lang.Integer">
+		 SELECT count(1)  
+		 FROM sc_ban_control_his ban left join sc_ban_control_tpl tpl on ban.ban_control_tpl_id = tpl.ban_control_tpl_id
+		  <where>
+ 			<if test="banCode != null and banCode != '' ">
+				  ban.ban_code = #{banCode}
+			</if>
+			<if test="ruleName != null and ruleName != '' ">
+			 	and instr(ban.rule_name, #{ruleName}) > 0
+			</if>
+			<if test="creditType != null and creditType != '' ">
+				and ban.credit_type = #{creditType}
+			</if>
+			<if test="state != null and state != '' ">
+				and ban.state = #{state}
+			</if>
+			<if test="ifRefuse != null and ifRefuse != '' ">
+				and ban.if_refuse = #{ifRefuse}
+			</if>
+			<if test="banControlTplId != null and banControlTplId != '' ">
+				and ban.ban_control_tpl_id = #{banControlTplId}
+			</if>
+			<if test="startTimeInterval != null and startTimeInterval != '' ">
+				and <![CDATA[ record_newtime > #{startTimeInterval}  ]]>
+			</if>
+			<if test="endTimeInterval != null and endTimeInterval != '' ">
+				and <![CDATA[ record_newtime < #{endTimeInterval} ]]>
+			</if>
+		</where>
+ 	</select>
+
+<!-- 查询(根据日期查询当天修改的禁止项规则的所有历史记录)  -->
+	<select id="findAllScBanControlHis" resultMap="scBanControlHisinfoMap"  parameterType="java.lang.String">
+		 SELECT
+		ban.control_his_id
+		,ban.ban_control_id
+		 ,ban.ban_code
+		 ,ban.rule_name
+		 ,ban.ban_control_tpl_id
+		 ,ban.credit_type
+		 ,ban.rule_detail
+		 ,ban.rule_comparison_value
+		 ,ban.rule_comparison_type
+		 ,ban.if_refuse
+		 ,ban.state
+		 ,ban.validate_rule
+		 ,ban.version
+		 ,ban.create_time
+		 ,ban.create_man
+		 ,ban.modify_time
+		 ,ban.modify_man
+		 ,ban.remark
+		 ,ban.create_name
+		 ,ban.modify_name 
+		 ,tpl.ban_tpl_name
+		 FROM sc_ban_control_his ban left join sc_ban_control_tpl tpl on ban.ban_control_tpl_id = tpl.ban_control_tpl_id
+		  <where>
+			<if test="startTimeInterval != null and startTimeInterval != '' ">
+			    <![CDATA[ record_newtime > #{startTimeInterval}  ]]>
+			</if>
+			<if test="endTimeInterval != null and endTimeInterval != '' ">
+				and <![CDATA[ record_newtime < #{endTimeInterval} ]]>
+			</if>
+		</where>
+		order by modify_time DESC
+ 	</select>
+</mapper>

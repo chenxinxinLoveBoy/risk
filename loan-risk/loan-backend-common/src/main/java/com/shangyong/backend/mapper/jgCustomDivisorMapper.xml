@@ -1,0 +1,482 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.shangyong.backend.dao.jg.JgCustomDivisorDao">
+
+	<resultMap type="com.shangyong.backend.entity.jg.JgCustomDivisor" id="jgCustomDivisorMap">
+		<id property="jgCustomDivisorId" column="jg_custom_divisor_id" javaType="java.lang.String"></id>
+		<result property="buApplicationId" column="bu_application_id" javaType="java.lang.String"></result>
+		<result property="customerId" column="customer_id" javaType="java.lang.String"></result>
+		<result property="name" column="name" javaType="java.lang.String"></result>
+		<result property="phone" column="phone" javaType="java.lang.String"></result>
+		<result property="idNumber" column="id_number" javaType="java.lang.String"></result>
+		<result property="sopGeneralAll0m1m" column="sop_general_all_0m_1m" javaType="java.lang.String"></result>
+		<result property="finLoanSmallAvgUsetime1m2m" column="fin_loan_small_avg_usetime_1m_2m" javaType="java.lang.String"></result>
+		<result property="finFinanceAll0m1m" column="fin_finance_all_0m_1m" javaType="java.lang.String"></result>
+		<result property="finLoanAll0m1m" column="fin_loan_all_0m_1m" javaType="java.lang.String"></result>
+		<result property="finLoanOtherAll0m1m" column="fin_loan_other_all_0m_1m" javaType="java.lang.String"></result>
+		<result property="finLoanSmallAll0m1m" column="fin_loan_small_all_0m_1m" javaType="java.lang.String"></result>
+		<result property="finPaymentAll0m1m" column="fin_payment_all_0m_1m" javaType="java.lang.String"></result>
+		<result property="finBankAll0m1m" column="fin_bank_all_0m_1m" javaType="java.lang.String"></result>
+		<result property="finDebitPctAll0m1m" column="fin_debit_pct_all_0m_1m" javaType="java.lang.String"></result>
+		<result property="busSoftwareInstalling0m1m" column="bus_software_installing_0m_1m" javaType="java.lang.String"></result>
+		<result property="sopGeneralInstalling0m1m" column="sop_general_installing_0m_1m" javaType="java.lang.String"></result>
+		<result property="eduBooksInstalling0m1m" column="edu_books_installing_0m_1m" javaType="java.lang.String"></result>
+		<result property="finFinanceInstalling0m1m" column="fin_finance_installing_0m_1m" javaType="java.lang.String"></result>
+		<result property="finLoanInstalling0m1m" column="fin_loan_installing_0m_1m" javaType="java.lang.String"></result>
+		<result property="finLoanSmallInstalling0m1m" column="fin_loan_small_installing_0m_1m" javaType="java.lang.String"></result>
+		<result property="finPaymentInstalling0m1m" column="fin_payment_installing_0m_1m" javaType="java.lang.String"></result>
+		<result property="finBankInstalling0m1m" column="fin_bank_installing_0m_1m" javaType="java.lang.String"></result>
+		<result property="socChatFriendInstalling0m1m" column="soc_chat_friend_installing_0m_1m" javaType="java.lang.String"></result>
+		<result property="finDebitPctInstalling0m1m" column="fin_debit_pct_installing_0m_1m" javaType="java.lang.String"></result>
+		<result property="statusHaveChildInstalling0m1m" column="status_have_child_installing_0m_1m" javaType="java.lang.String"></result>
+		<result property="finLoanUninstall0m1m" column="fin_loan_uninstall_0m_1m" javaType="java.lang.String"></result>
+		<result property="finFinanceAll1m2m" column="fin_finance_all_1m_2m" javaType="java.lang.String"></result>
+		<result property="finLoanAll1m2m" column="fin_loan_all_1m_2m" javaType="java.lang.String"></result>
+		<result property="finLoanOtherAll1m2m" column="fin_loan_other_all_1m_2m" javaType="java.lang.String"></result>
+		<result property="finLoanSmallAll1m2m" column="fin_loan_small_all_1m_2m" javaType="java.lang.String"></result>
+		<result property="sopGeneralInstalling1m2m" column="sop_general_installing_1m_2m" javaType="java.lang.String"></result>
+		<result property="finFinanceInstalling1m2m" column="fin_finance_installing_1m_2m" javaType="java.lang.String"></result>
+		<result property="finLoanInstalling1m2m" column="fin_loan_installing_1m_2m" javaType="java.lang.String"></result>
+		<result property="finLoanSmallInstalling1m2m" column="fin_loan_small_installing_1m_2m" javaType="java.lang.String"></result>
+		<result property="finPaymentInstalling1m2m" column="fin_payment_installing_1m_2m" javaType="java.lang.String"></result>
+		<result property="finPaymentGeneralInstalling1m2m" column="fin_payment_general_installing_1m_2m" javaType="java.lang.String"></result>
+		<result property="lifFoodEntertainmentInstalling1m2m" column="lif_food_entertainment_installing_1m_2m" javaType="java.lang.String"></result>
+		<result property="mediaVedioplayerInstalling1m2m" column="media_vedioplayer_installing_1m_2m" javaType="java.lang.String"></result>
+		<result property="finDebitPctInstalling1m2m" column="fin_debit_pct_installing_1m_2m" javaType="java.lang.String"></result>
+		<result property="sopGeneralInstalling2m3m" column="sop_general_installing_2m_3m" javaType="java.lang.String"></result>
+		<result property="finFinanceInstalling2m3m" column="fin_finance_installing_2m_3m" javaType="java.lang.String"></result>
+		<result property="finLoanInstalling2m3m" column="fin_loan_installing_2m_3m" javaType="java.lang.String"></result>
+		<result property="finLoanSmallInstalling2m3m" column="fin_loan_small_installing_2m_3m" javaType="java.lang.String"></result>
+		<result property="finDebitPctInstalling2m3m" column="fin_debit_pct_installing_2m_3m" javaType="java.lang.String"></result>
+		<result property="lbsWorkPopDensity0m1m" column="lbs_work_pop_density_0m_1m" javaType="java.lang.String"></result>
+		<result property="lbsCell4gRation0m1m" column="lbs_cell_4g_ration_0m_1m" javaType="java.lang.String"></result>
+		<result property="lbsWifiCnt0m1m" column="lbs_wifi_cnt_0m_1m" javaType="java.lang.String"></result>
+		<result property="lbsLbsCnt0m1m" column="lbs_lbs_cnt_0m_1m" javaType="java.lang.String"></result>
+		<result property="lbsUploadDateCnt0m1m" column="lbs_upload_date_cnt_0m_1m" javaType="java.lang.String"></result>
+		<result property="lbsGpsRatio1m2m" column="lbs_gps_ratio_1m_2m" javaType="java.lang.String"></result>
+		<result property="lbsLbsCnt1m2m" column="lbs_lbs_cnt_1m_2m" javaType="java.lang.String"></result>
+		<result property="lbsUploadDateCnt1m2m" column="lbs_upload_date_cnt_1m_2m" javaType="java.lang.String"></result>
+		<result property="lbsCityCnt2m3m" column="lbs_city_cnt_2m_3m" javaType="java.lang.String"></result>
+		<result property="lbsGpsRatio2m3m" column="lbs_gps_ratio_2m_3m" javaType="java.lang.String"></result>
+		<result property="lbsUploadDateCnt2m3m" column="lbs_upload_date_cnt_2m_3m" javaType="java.lang.String"></result>
+		<result property="finFinanceTotalOpen0w1w" column="fin_finance_total_open_0w_1w" javaType="java.lang.String"></result>
+		<result property="finLoanTotalOpen0w1w" column="fin_loan_total_open_0w_1w" javaType="java.lang.String"></result>
+		<result property="finLoanSmallTotalOpen0w1w" column="fin_loan_small_total_open_0w_1w" javaType="java.lang.String"></result>
+		<result property="finFinanceTotalOpenWorkTime0w1w" column="fin_finance_total_open_work_time_0w_1w" javaType="java.lang.String"></result>
+		<result property="finLoanSmallTotalOpenWorkTime0w1w" column="fin_loan_small_total_open_work_time_0w_1w" javaType="java.lang.String"></result>
+		<result property="finFinanceTotalTime0w1w" column="fin_finance_total_time_0w_1w" javaType="java.lang.String"></result>
+		<result property="finLoanTotalTime0w1w" column="fin_loan_total_time_0w_1w" javaType="java.lang.String"></result>
+		<result property="finLoanSmallTotalTime0w1w" column="fin_loan_small_total_time_0w_1w" javaType="java.lang.String"></result>
+		<result property="finFinanceTotalTimeWorkTime0w1w" column="fin_finance_total_time_work_time_0w_1w" javaType="java.lang.String"></result>
+		<result property="finLoanTotalTimeWorkTime0w1w" column="fin_loan_total_time_work_time_0w_1w" javaType="java.lang.String"></result>
+		<result property="finLoanSmallTotalTimeWorkTime0w1w" column="fin_loan_small_total_time_work_time_0w_1w" javaType="java.lang.String"></result>
+		<result property="finFinanceAvgUsetime0w1w" column="fin_finance_avg_usetime_0w_1w" javaType="java.lang.String"></result>
+		<result property="finLoanAvgUsetime0w1w" column="fin_loan_avg_usetime_0w_1w" javaType="java.lang.String"></result>
+		<result property="finLoanSmallAvgUsetime0w1w" column="fin_loan_small_avg_usetime_0w_1w" javaType="java.lang.String"></result>
+		<result property="finFinanceAvgUsetimeWorkTime0w1w" column="fin_finance_avg_usetime_work_time_0w_1w" javaType="java.lang.String"></result>
+		<result property="finLoanAvgUsetimeWorkTime0w1w" column="fin_loan_avg_usetime_work_time_0w_1w" javaType="java.lang.String"></result>
+		<result property="finLoanSmallAvgUsetimeWorkTime0w1w" column="fin_loan_small_avg_usetime_work_time_0w_1w" javaType="java.lang.String"></result>
+		<result property="finFinanceTotalOpen0m1m" column="fin_finance_total_open_0m_1m" javaType="java.lang.String"></result>
+		<result property="finLoanTotalOpen0m1m" column="fin_loan_total_open_0m_1m" javaType="java.lang.String"></result>
+		<result property="finLoanSmallTotalOpen0m1m" column="fin_loan_small_total_open_0m_1m" javaType="java.lang.String"></result>
+		<result property="finFinanceTotalTime0m1m" column="fin_finance_total_time_0m_1m" javaType="java.lang.String"></result>
+		<result property="finLoanTotalTime0m1m" column="fin_loan_total_time_0m_1m" javaType="java.lang.String"></result>
+		<result property="finLoanSmallTotalTime0m1m" column="fin_loan_small_total_time_0m_1m" javaType="java.lang.String"></result>
+		<result property="finFinanceAvgUsetime0m1m" column="fin_finance_avg_usetime_0m_1m" javaType="java.lang.String"></result>
+		<result property="finLoanAvgUsetime0m1m" column="fin_loan_avg_usetime_0m_1m" javaType="java.lang.String"></result>
+		<result property="finLoanSmallAvgUsetime0m1m" column="fin_loan_small_avg_usetime_0m_1m" javaType="java.lang.String"></result>
+		<result property="finFinanceTotalOpen1m2m" column="fin_finance_total_open_1m_2m" javaType="java.lang.String"></result>
+		<result property="finLoanTotalOpen1m2m" column="fin_loan_total_open_1m_2m" javaType="java.lang.String"></result>
+		<result property="finLoanSmallTotalOpen1m2m" column="fin_loan_small_total_open_1m_2m" javaType="java.lang.String"></result>
+		<result property="finFinanceTotalTime1m2m" column="fin_finance_total_time_1m_2m" javaType="java.lang.String"></result>
+		<result property="finLoanTotalTime1m2m" column="fin_loan_total_time_1m_2m" javaType="java.lang.String"></result>
+		<result property="finLoanSmallTotalTime1m2m" column="fin_loan_small_total_time_1m_2m" javaType="java.lang.String"></result>
+		<result property="finFinanceAvgUsetime1m2m" column="fin_finance_avg_usetime_1m_2m" javaType="java.lang.String"></result>
+		<result property="finLoanAvgUsetime1m2m" column="fin_loan_avg_usetime_1m_2m" javaType="java.lang.String"></result>
+		<result property="finFinanceTotalOpen2m3m" column="fin_finance_total_open_2m_3m" javaType="java.lang.String"></result>
+		<result property="finLoanTotalOpen2m3m" column="fin_loan_total_open_2m_3m" javaType="java.lang.String"></result>
+		<result property="finLoanSmallTotalOpen2m3m" column="fin_loan_small_total_open_2m_3m" javaType="java.lang.String"></result>
+		<result property="finFinanceTotalTime2m3m" column="fin_finance_total_time_2m_3m" javaType="java.lang.String"></result>
+		<result property="finLoanTotalTime2m3m" column="fin_loan_total_time_2m_3m" javaType="java.lang.String"></result>
+		<result property="finLoanSmallTotalTime2m3m" column="fin_loan_small_total_time_2m_3m" javaType="java.lang.String"></result>
+		<result property="finFinanceAvgUsetime2m3m" column="fin_finance_avg_usetime_2m_3m" javaType="java.lang.String"></result>
+		<result property="finLoanAvgUsetime2m3m" column="fin_loan_avg_usetime_2m_3m" javaType="java.lang.String"></result>
+		<result property="finLoanSmallAvgUsetime2m3m" column="fin_loan_small_avg_usetime_2m_3m" javaType="java.lang.String"></result>
+		<result property="mutiHaveOverdue15d0m1m" column="muti_have_overdue_15d_0m_1m" javaType="java.lang.String"></result>
+		<result property="mutiRepaySuccessAppCnt0m1m" column="muti_repay_success_app_cnt_0m_1m" javaType="java.lang.String"></result>
+		<result property="mutiRepaySuccessCnt0m1m" column="muti_repay_success_cnt_0m_1m" javaType="java.lang.String"></result>
+		<result property="deviceStability0m1m" column="device_stability_0m_1m" javaType="java.lang.String"></result>
+		<result property="netImeiAbnormal" column="net_imei_abnormal" javaType="java.lang.String"></result>
+		<result property="netImeiPhoneCnt" column="net_imei_phone_cnt" javaType="java.lang.String"></result>
+		<result property="netImeiPhoneImsiCnt" column="net_imei_phone_imsi_cnt" javaType="java.lang.String"></result>
+		<result property="createTime" column="create_time" javaType="java.lang.String"></result>
+		<result property="modifyTime" column="modify_time" javaType="java.lang.String"></result>
+	</resultMap>
+
+	<!-- 通用查询结果列-->
+	<sql id="Base_Column_List">
+jg_custom_divisor_id,	bu_application_id,	customer_id,	name,	phone,	id_number,	sop_general_all_0m_1m,	fin_loan_small_avg_usetime_1m_2m,	fin_finance_all_0m_1m,	fin_loan_all_0m_1m,	fin_loan_other_all_0m_1m,	fin_loan_small_all_0m_1m,	fin_payment_all_0m_1m,	fin_bank_all_0m_1m,	fin_debit_pct_all_0m_1m,	bus_software_installing_0m_1m,	sop_general_installing_0m_1m,	edu_books_installing_0m_1m,	fin_finance_installing_0m_1m,	fin_loan_installing_0m_1m,	fin_loan_small_installing_0m_1m,	fin_payment_installing_0m_1m,	fin_bank_installing_0m_1m,	soc_chat_friend_installing_0m_1m,	fin_debit_pct_installing_0m_1m,	status_have_child_installing_0m_1m,	fin_loan_uninstall_0m_1m,	fin_finance_all_1m_2m,	fin_loan_all_1m_2m,	fin_loan_other_all_1m_2m,	fin_loan_small_all_1m_2m,	sop_general_installing_1m_2m,	fin_finance_installing_1m_2m,	fin_loan_installing_1m_2m,	fin_loan_small_installing_1m_2m,	fin_payment_installing_1m_2m,	fin_payment_general_installing_1m_2m,	lif_food_entertainment_installing_1m_2m,	media_vedioplayer_installing_1m_2m,	fin_debit_pct_installing_1m_2m,	sop_general_installing_2m_3m,	fin_finance_installing_2m_3m,	fin_loan_installing_2m_3m,	fin_loan_small_installing_2m_3m,	fin_debit_pct_installing_2m_3m,	lbs_work_pop_density_0m_1m,	lbs_cell_4g_ration_0m_1m,	lbs_wifi_cnt_0m_1m,	lbs_lbs_cnt_0m_1m,	lbs_upload_date_cnt_0m_1m,	lbs_gps_ratio_1m_2m,	lbs_lbs_cnt_1m_2m,	lbs_upload_date_cnt_1m_2m,	lbs_city_cnt_2m_3m,	lbs_gps_ratio_2m_3m,	lbs_upload_date_cnt_2m_3m,	fin_finance_total_open_0w_1w,	fin_loan_total_open_0w_1w,	fin_loan_small_total_open_0w_1w,	fin_finance_total_open_work_time_0w_1w,	fin_loan_small_total_open_work_time_0w_1w,	fin_finance_total_time_0w_1w,	fin_loan_total_time_0w_1w,	fin_loan_small_total_time_0w_1w,	fin_finance_total_time_work_time_0w_1w,	fin_loan_total_time_work_time_0w_1w,	fin_loan_small_total_time_work_time_0w_1w,	fin_finance_avg_usetime_0w_1w,	fin_loan_avg_usetime_0w_1w,	fin_loan_small_avg_usetime_0w_1w,	fin_finance_avg_usetime_work_time_0w_1w,	fin_loan_avg_usetime_work_time_0w_1w,	fin_loan_small_avg_usetime_work_time_0w_1w,	fin_finance_total_open_0m_1m,	fin_loan_total_open_0m_1m,	fin_loan_small_total_open_0m_1m,	fin_finance_total_time_0m_1m,	fin_loan_total_time_0m_1m,	fin_loan_small_total_time_0m_1m,	fin_finance_avg_usetime_0m_1m,	fin_loan_avg_usetime_0m_1m,	fin_loan_small_avg_usetime_0m_1m,	fin_finance_total_open_1m_2m,	fin_loan_total_open_1m_2m,	fin_loan_small_total_open_1m_2m,	fin_finance_total_time_1m_2m,	fin_loan_total_time_1m_2m,	fin_loan_small_total_time_1m_2m,	fin_finance_avg_usetime_1m_2m,	fin_loan_avg_usetime_1m_2m,	fin_finance_total_open_2m_3m,	fin_loan_total_open_2m_3m,	fin_loan_small_total_open_2m_3m,	fin_finance_total_time_2m_3m,	fin_loan_total_time_2m_3m,	fin_loan_small_total_time_2m_3m,	fin_finance_avg_usetime_2m_3m,	fin_loan_avg_usetime_2m_3m,	fin_loan_small_avg_usetime_2m_3m,	muti_have_overdue_15d_0m_1m,	muti_repay_success_app_cnt_0m_1m,	muti_repay_success_cnt_0m_1m,	device_stability_0m_1m,	net_imei_abnormal,	net_imei_phone_cnt,	net_imei_phone_imsi_cnt,	create_time,	modify_time
+	</sql>
+
+	<!-- 查询（根据主键ID查询） -->
+	<select id="getEntityById" resultMap="jgCustomDivisorMap" parameterType="java.lang.String">
+		 SELECT
+		 <include refid="Base_Column_List" />
+		 FROM jg_custom_divisor
+		 WHERE jg_custom_divisor_id = #{jgCustomDivisorId}
+	</select>
+
+	<!-- 查询（根据主键ID查询） -->
+	<select id="findAll" resultMap="jgCustomDivisorMap" parameterType="java.lang.String">
+		 SELECT
+		 <include refid="Base_Column_List" />
+		 FROM jg_custom_divisor
+		 WHERE jg_custom_divisor_id = #{jgCustomDivisorId}
+	</select>
+
+	<!--删除：根据主键ID删除-->
+	<delete id="deleteEntity" parameterType="java.lang.String">
+		 DELETE FROM jg_custom_divisor
+		 WHERE jg_custom_divisor_id = #{jgCustomDivisorId}
+	</delete>
+
+	<!-- 添加 -->
+	<insert id="saveEntity" parameterType="com.shangyong.backend.entity.jg.JgCustomDivisor">
+		 INSERT INTO jg_custom_divisor
+ 		(jg_custom_divisor_id,bu_application_id,customer_id,name,phone,id_number,sop_general_all_0m_1m,fin_loan_small_avg_usetime_1m_2m,fin_finance_all_0m_1m,fin_loan_all_0m_1m,fin_loan_other_all_0m_1m,fin_loan_small_all_0m_1m,fin_payment_all_0m_1m,fin_bank_all_0m_1m,fin_debit_pct_all_0m_1m,bus_software_installing_0m_1m,sop_general_installing_0m_1m,edu_books_installing_0m_1m,fin_finance_installing_0m_1m,fin_loan_installing_0m_1m,fin_loan_small_installing_0m_1m,fin_payment_installing_0m_1m,fin_bank_installing_0m_1m,soc_chat_friend_installing_0m_1m,fin_debit_pct_installing_0m_1m,status_have_child_installing_0m_1m,fin_loan_uninstall_0m_1m,fin_finance_all_1m_2m,fin_loan_all_1m_2m,fin_loan_other_all_1m_2m,fin_loan_small_all_1m_2m,sop_general_installing_1m_2m,fin_finance_installing_1m_2m,fin_loan_installing_1m_2m,fin_loan_small_installing_1m_2m,fin_payment_installing_1m_2m,fin_payment_general_installing_1m_2m,lif_food_entertainment_installing_1m_2m,media_vedioplayer_installing_1m_2m,fin_debit_pct_installing_1m_2m,sop_general_installing_2m_3m,fin_finance_installing_2m_3m,fin_loan_installing_2m_3m,fin_loan_small_installing_2m_3m,fin_debit_pct_installing_2m_3m,lbs_work_pop_density_0m_1m,lbs_cell_4g_ration_0m_1m,lbs_wifi_cnt_0m_1m,lbs_lbs_cnt_0m_1m,lbs_upload_date_cnt_0m_1m,lbs_gps_ratio_1m_2m,lbs_lbs_cnt_1m_2m,lbs_upload_date_cnt_1m_2m,lbs_city_cnt_2m_3m,lbs_gps_ratio_2m_3m,lbs_upload_date_cnt_2m_3m,fin_finance_total_open_0w_1w,fin_loan_total_open_0w_1w,fin_loan_small_total_open_0w_1w,fin_finance_total_open_work_time_0w_1w,fin_loan_small_total_open_work_time_0w_1w,fin_finance_total_time_0w_1w,fin_loan_total_time_0w_1w,fin_loan_small_total_time_0w_1w,fin_finance_total_time_work_time_0w_1w,fin_loan_total_time_work_time_0w_1w,fin_loan_small_total_time_work_time_0w_1w,fin_finance_avg_usetime_0w_1w,fin_loan_avg_usetime_0w_1w,fin_loan_small_avg_usetime_0w_1w,fin_finance_avg_usetime_work_time_0w_1w,fin_loan_avg_usetime_work_time_0w_1w,fin_loan_small_avg_usetime_work_time_0w_1w,fin_finance_total_open_0m_1m,fin_loan_total_open_0m_1m,fin_loan_small_total_open_0m_1m,fin_finance_total_time_0m_1m,fin_loan_total_time_0m_1m,fin_loan_small_total_time_0m_1m,fin_finance_avg_usetime_0m_1m,fin_loan_avg_usetime_0m_1m,fin_loan_small_avg_usetime_0m_1m,fin_finance_total_open_1m_2m,fin_loan_total_open_1m_2m,fin_loan_small_total_open_1m_2m,fin_finance_total_time_1m_2m,fin_loan_total_time_1m_2m,fin_loan_small_total_time_1m_2m,fin_finance_avg_usetime_1m_2m,fin_loan_avg_usetime_1m_2m,fin_finance_total_open_2m_3m,fin_loan_total_open_2m_3m,fin_loan_small_total_open_2m_3m,fin_finance_total_time_2m_3m,fin_loan_total_time_2m_3m,fin_loan_small_total_time_2m_3m,fin_finance_avg_usetime_2m_3m,fin_loan_avg_usetime_2m_3m,fin_loan_small_avg_usetime_2m_3m,muti_have_overdue_15d_0m_1m,muti_repay_success_app_cnt_0m_1m,muti_repay_success_cnt_0m_1m,device_stability_0m_1m,net_imei_abnormal,net_imei_phone_cnt,net_imei_phone_imsi_cnt,create_time,modify_time) 
+		 VALUES 
+ 		(#{jgCustomDivisorId},#{buApplicationId},#{customerId},#{name},#{phone},#{idNumber},#{sopGeneralAll0m1m},#{finLoanSmallAvgUsetime1m2m},#{finFinanceAll0m1m},#{finLoanAll0m1m},#{finLoanOtherAll0m1m},#{finLoanSmallAll0m1m},#{finPaymentAll0m1m},#{finBankAll0m1m},#{finDebitPctAll0m1m},#{busSoftwareInstalling0m1m},#{sopGeneralInstalling0m1m},#{eduBooksInstalling0m1m},#{finFinanceInstalling0m1m},#{finLoanInstalling0m1m},#{finLoanSmallInstalling0m1m},#{finPaymentInstalling0m1m},#{finBankInstalling0m1m},#{socChatFriendInstalling0m1m},#{finDebitPctInstalling0m1m},#{statusHaveChildInstalling0m1m},#{finLoanUninstall0m1m},#{finFinanceAll1m2m},#{finLoanAll1m2m},#{finLoanOtherAll1m2m},#{finLoanSmallAll1m2m},#{sopGeneralInstalling1m2m},#{finFinanceInstalling1m2m},#{finLoanInstalling1m2m},#{finLoanSmallInstalling1m2m},#{finPaymentInstalling1m2m},#{finPaymentGeneralInstalling1m2m},#{lifFoodEntertainmentInstalling1m2m},#{mediaVedioplayerInstalling1m2m},#{finDebitPctInstalling1m2m},#{sopGeneralInstalling2m3m},#{finFinanceInstalling2m3m},#{finLoanInstalling2m3m},#{finLoanSmallInstalling2m3m},#{finDebitPctInstalling2m3m},#{lbsWorkPopDensity0m1m},#{lbsCell4gRation0m1m},#{lbsWifiCnt0m1m},#{lbsLbsCnt0m1m},#{lbsUploadDateCnt0m1m},#{lbsGpsRatio1m2m},#{lbsLbsCnt1m2m},#{lbsUploadDateCnt1m2m},#{lbsCityCnt2m3m},#{lbsGpsRatio2m3m},#{lbsUploadDateCnt2m3m},#{finFinanceTotalOpen0w1w},#{finLoanTotalOpen0w1w},#{finLoanSmallTotalOpen0w1w},#{finFinanceTotalOpenWorkTime0w1w},#{finLoanSmallTotalOpenWorkTime0w1w},#{finFinanceTotalTime0w1w},#{finLoanTotalTime0w1w},#{finLoanSmallTotalTime0w1w},#{finFinanceTotalTimeWorkTime0w1w},#{finLoanTotalTimeWorkTime0w1w},#{finLoanSmallTotalTimeWorkTime0w1w},#{finFinanceAvgUsetime0w1w},#{finLoanAvgUsetime0w1w},#{finLoanSmallAvgUsetime0w1w},#{finFinanceAvgUsetimeWorkTime0w1w},#{finLoanAvgUsetimeWorkTime0w1w},#{finLoanSmallAvgUsetimeWorkTime0w1w},#{finFinanceTotalOpen0m1m},#{finLoanTotalOpen0m1m},#{finLoanSmallTotalOpen0m1m},#{finFinanceTotalTime0m1m},#{finLoanTotalTime0m1m},#{finLoanSmallTotalTime0m1m},#{finFinanceAvgUsetime0m1m},#{finLoanAvgUsetime0m1m},#{finLoanSmallAvgUsetime0m1m},#{finFinanceTotalOpen1m2m},#{finLoanTotalOpen1m2m},#{finLoanSmallTotalOpen1m2m},#{finFinanceTotalTime1m2m},#{finLoanTotalTime1m2m},#{finLoanSmallTotalTime1m2m},#{finFinanceAvgUsetime1m2m},#{finLoanAvgUsetime1m2m},#{finFinanceTotalOpen2m3m},#{finLoanTotalOpen2m3m},#{finLoanSmallTotalOpen2m3m},#{finFinanceTotalTime2m3m},#{finLoanTotalTime2m3m},#{finLoanSmallTotalTime2m3m},#{finFinanceAvgUsetime2m3m},#{finLoanAvgUsetime2m3m},#{finLoanSmallAvgUsetime2m3m},#{mutiHaveOverdue15d0m1m},#{mutiRepaySuccessAppCnt0m1m},#{mutiRepaySuccessCnt0m1m},#{deviceStability0m1m},#{netImeiAbnormal},#{netImeiPhoneCnt},#{netImeiPhoneImsiCnt},#{createTime},#{modifyTime}) 
+	</insert>
+
+	<!-- 修 改-->
+	<update id="updateEntity" parameterType="com.shangyong.backend.entity.jg.JgCustomDivisor">
+		 UPDATE jg_custom_divisor
+ 		 <set> 
+			<if test="buApplicationId != null">
+				 bu_application_id = #{buApplicationId},
+			</if>
+			<if test="customerId != null">
+				 customer_id = #{customerId},
+			</if>
+			<if test="name != null">
+				 name = #{name},
+			</if>
+			<if test="phone != null">
+				 phone = #{phone},
+			</if>
+			<if test="idNumber != null">
+				 id_number = #{idNumber},
+			</if>
+			<if test="sopGeneralAll0m1m != null">
+				 sop_general_all_0m_1m = #{sopGeneralAll0m1m},
+			</if>
+			<if test="finLoanSmallAvgUsetime1m2m != null">
+				 fin_loan_small_avg_usetime_1m_2m = #{finLoanSmallAvgUsetime1m2m},
+			</if>
+			<if test="finFinanceAll0m1m != null">
+				 fin_finance_all_0m_1m = #{finFinanceAll0m1m},
+			</if>
+			<if test="finLoanAll0m1m != null">
+				 fin_loan_all_0m_1m = #{finLoanAll0m1m},
+			</if>
+			<if test="finLoanOtherAll0m1m != null">
+				 fin_loan_other_all_0m_1m = #{finLoanOtherAll0m1m},
+			</if>
+			<if test="finLoanSmallAll0m1m != null">
+				 fin_loan_small_all_0m_1m = #{finLoanSmallAll0m1m},
+			</if>
+			<if test="finPaymentAll0m1m != null">
+				 fin_payment_all_0m_1m = #{finPaymentAll0m1m},
+			</if>
+			<if test="finBankAll0m1m != null">
+				 fin_bank_all_0m_1m = #{finBankAll0m1m},
+			</if>
+			<if test="finDebitPctAll0m1m != null">
+				 fin_debit_pct_all_0m_1m = #{finDebitPctAll0m1m},
+			</if>
+			<if test="busSoftwareInstalling0m1m != null">
+				 bus_software_installing_0m_1m = #{busSoftwareInstalling0m1m},
+			</if>
+			<if test="sopGeneralInstalling0m1m != null">
+				 sop_general_installing_0m_1m = #{sopGeneralInstalling0m1m},
+			</if>
+			<if test="eduBooksInstalling0m1m != null">
+				 edu_books_installing_0m_1m = #{eduBooksInstalling0m1m},
+			</if>
+			<if test="finFinanceInstalling0m1m != null">
+				 fin_finance_installing_0m_1m = #{finFinanceInstalling0m1m},
+			</if>
+			<if test="finLoanInstalling0m1m != null">
+				 fin_loan_installing_0m_1m = #{finLoanInstalling0m1m},
+			</if>
+			<if test="finLoanSmallInstalling0m1m != null">
+				 fin_loan_small_installing_0m_1m = #{finLoanSmallInstalling0m1m},
+			</if>
+			<if test="finPaymentInstalling0m1m != null">
+				 fin_payment_installing_0m_1m = #{finPaymentInstalling0m1m},
+			</if>
+			<if test="finBankInstalling0m1m != null">
+				 fin_bank_installing_0m_1m = #{finBankInstalling0m1m},
+			</if>
+			<if test="socChatFriendInstalling0m1m != null">
+				 soc_chat_friend_installing_0m_1m = #{socChatFriendInstalling0m1m},
+			</if>
+			<if test="finDebitPctInstalling0m1m != null">
+				 fin_debit_pct_installing_0m_1m = #{finDebitPctInstalling0m1m},
+			</if>
+			<if test="statusHaveChildInstalling0m1m != null">
+				 status_have_child_installing_0m_1m = #{statusHaveChildInstalling0m1m},
+			</if>
+			<if test="finLoanUninstall0m1m != null">
+				 fin_loan_uninstall_0m_1m = #{finLoanUninstall0m1m},
+			</if>
+			<if test="finFinanceAll1m2m != null">
+				 fin_finance_all_1m_2m = #{finFinanceAll1m2m},
+			</if>
+			<if test="finLoanAll1m2m != null">
+				 fin_loan_all_1m_2m = #{finLoanAll1m2m},
+			</if>
+			<if test="finLoanOtherAll1m2m != null">
+				 fin_loan_other_all_1m_2m = #{finLoanOtherAll1m2m},
+			</if>
+			<if test="finLoanSmallAll1m2m != null">
+				 fin_loan_small_all_1m_2m = #{finLoanSmallAll1m2m},
+			</if>
+			<if test="sopGeneralInstalling1m2m != null">
+				 sop_general_installing_1m_2m = #{sopGeneralInstalling1m2m},
+			</if>
+			<if test="finFinanceInstalling1m2m != null">
+				 fin_finance_installing_1m_2m = #{finFinanceInstalling1m2m},
+			</if>
+			<if test="finLoanInstalling1m2m != null">
+				 fin_loan_installing_1m_2m = #{finLoanInstalling1m2m},
+			</if>
+			<if test="finLoanSmallInstalling1m2m != null">
+				 fin_loan_small_installing_1m_2m = #{finLoanSmallInstalling1m2m},
+			</if>
+			<if test="finPaymentInstalling1m2m != null">
+				 fin_payment_installing_1m_2m = #{finPaymentInstalling1m2m},
+			</if>
+			<if test="finPaymentGeneralInstalling1m2m != null">
+				 fin_payment_general_installing_1m_2m = #{finPaymentGeneralInstalling1m2m},
+			</if>
+			<if test="lifFoodEntertainmentInstalling1m2m != null">
+				 lif_food_entertainment_installing_1m_2m = #{lifFoodEntertainmentInstalling1m2m},
+			</if>
+			<if test="mediaVedioplayerInstalling1m2m != null">
+				 media_vedioplayer_installing_1m_2m = #{mediaVedioplayerInstalling1m2m},
+			</if>
+			<if test="finDebitPctInstalling1m2m != null">
+				 fin_debit_pct_installing_1m_2m = #{finDebitPctInstalling1m2m},
+			</if>
+			<if test="sopGeneralInstalling2m3m != null">
+				 sop_general_installing_2m_3m = #{sopGeneralInstalling2m3m},
+			</if>
+			<if test="finFinanceInstalling2m3m != null">
+				 fin_finance_installing_2m_3m = #{finFinanceInstalling2m3m},
+			</if>
+			<if test="finLoanInstalling2m3m != null">
+				 fin_loan_installing_2m_3m = #{finLoanInstalling2m3m},
+			</if>
+			<if test="finLoanSmallInstalling2m3m != null">
+				 fin_loan_small_installing_2m_3m = #{finLoanSmallInstalling2m3m},
+			</if>
+			<if test="finDebitPctInstalling2m3m != null">
+				 fin_debit_pct_installing_2m_3m = #{finDebitPctInstalling2m3m},
+			</if>
+			<if test="lbsWorkPopDensity0m1m != null">
+				 lbs_work_pop_density_0m_1m = #{lbsWorkPopDensity0m1m},
+			</if>
+			<if test="lbsCell4gRation0m1m != null">
+				 lbs_cell_4g_ration_0m_1m = #{lbsCell4gRation0m1m},
+			</if>
+			<if test="lbsWifiCnt0m1m != null">
+				 lbs_wifi_cnt_0m_1m = #{lbsWifiCnt0m1m},
+			</if>
+			<if test="lbsLbsCnt0m1m != null">
+				 lbs_lbs_cnt_0m_1m = #{lbsLbsCnt0m1m},
+			</if>
+			<if test="lbsUploadDateCnt0m1m != null">
+				 lbs_upload_date_cnt_0m_1m = #{lbsUploadDateCnt0m1m},
+			</if>
+			<if test="lbsGpsRatio1m2m != null">
+				 lbs_gps_ratio_1m_2m = #{lbsGpsRatio1m2m},
+			</if>
+			<if test="lbsLbsCnt1m2m != null">
+				 lbs_lbs_cnt_1m_2m = #{lbsLbsCnt1m2m},
+			</if>
+			<if test="lbsUploadDateCnt1m2m != null">
+				 lbs_upload_date_cnt_1m_2m = #{lbsUploadDateCnt1m2m},
+			</if>
+			<if test="lbsCityCnt2m3m != null">
+				 lbs_city_cnt_2m_3m = #{lbsCityCnt2m3m},
+			</if>
+			<if test="lbsGpsRatio2m3m != null">
+				 lbs_gps_ratio_2m_3m = #{lbsGpsRatio2m3m},
+			</if>
+			<if test="lbsUploadDateCnt2m3m != null">
+				 lbs_upload_date_cnt_2m_3m = #{lbsUploadDateCnt2m3m},
+			</if>
+			<if test="finFinanceTotalOpen0w1w != null">
+				 fin_finance_total_open_0w_1w = #{finFinanceTotalOpen0w1w},
+			</if>
+			<if test="finLoanTotalOpen0w1w != null">
+				 fin_loan_total_open_0w_1w = #{finLoanTotalOpen0w1w},
+			</if>
+			<if test="finLoanSmallTotalOpen0w1w != null">
+				 fin_loan_small_total_open_0w_1w = #{finLoanSmallTotalOpen0w1w},
+			</if>
+			<if test="finFinanceTotalOpenWorkTime0w1w != null">
+				 fin_finance_total_open_work_time_0w_1w = #{finFinanceTotalOpenWorkTime0w1w},
+			</if>
+			<if test="finLoanSmallTotalOpenWorkTime0w1w != null">
+				 fin_loan_small_total_open_work_time_0w_1w = #{finLoanSmallTotalOpenWorkTime0w1w},
+			</if>
+			<if test="finFinanceTotalTime0w1w != null">
+				 fin_finance_total_time_0w_1w = #{finFinanceTotalTime0w1w},
+			</if>
+			<if test="finLoanTotalTime0w1w != null">
+				 fin_loan_total_time_0w_1w = #{finLoanTotalTime0w1w},
+			</if>
+			<if test="finLoanSmallTotalTime0w1w != null">
+				 fin_loan_small_total_time_0w_1w = #{finLoanSmallTotalTime0w1w},
+			</if>
+			<if test="finFinanceTotalTimeWorkTime0w1w != null">
+				 fin_finance_total_time_work_time_0w_1w = #{finFinanceTotalTimeWorkTime0w1w},
+			</if>
+			<if test="finLoanTotalTimeWorkTime0w1w != null">
+				 fin_loan_total_time_work_time_0w_1w = #{finLoanTotalTimeWorkTime0w1w},
+			</if>
+			<if test="finLoanSmallTotalTimeWorkTime0w1w != null">
+				 fin_loan_small_total_time_work_time_0w_1w = #{finLoanSmallTotalTimeWorkTime0w1w},
+			</if>
+			<if test="finFinanceAvgUsetime0w1w != null">
+				 fin_finance_avg_usetime_0w_1w = #{finFinanceAvgUsetime0w1w},
+			</if>
+			<if test="finLoanAvgUsetime0w1w != null">
+				 fin_loan_avg_usetime_0w_1w = #{finLoanAvgUsetime0w1w},
+			</if>
+			<if test="finLoanSmallAvgUsetime0w1w != null">
+				 fin_loan_small_avg_usetime_0w_1w = #{finLoanSmallAvgUsetime0w1w},
+			</if>
+			<if test="finFinanceAvgUsetimeWorkTime0w1w != null">
+				 fin_finance_avg_usetime_work_time_0w_1w = #{finFinanceAvgUsetimeWorkTime0w1w},
+			</if>
+			<if test="finLoanAvgUsetimeWorkTime0w1w != null">
+				 fin_loan_avg_usetime_work_time_0w_1w = #{finLoanAvgUsetimeWorkTime0w1w},
+			</if>
+			<if test="finLoanSmallAvgUsetimeWorkTime0w1w != null">
+				 fin_loan_small_avg_usetime_work_time_0w_1w = #{finLoanSmallAvgUsetimeWorkTime0w1w},
+			</if>
+			<if test="finFinanceTotalOpen0m1m != null">
+				 fin_finance_total_open_0m_1m = #{finFinanceTotalOpen0m1m},
+			</if>
+			<if test="finLoanTotalOpen0m1m != null">
+				 fin_loan_total_open_0m_1m = #{finLoanTotalOpen0m1m},
+			</if>
+			<if test="finLoanSmallTotalOpen0m1m != null">
+				 fin_loan_small_total_open_0m_1m = #{finLoanSmallTotalOpen0m1m},
+			</if>
+			<if test="finFinanceTotalTime0m1m != null">
+				 fin_finance_total_time_0m_1m = #{finFinanceTotalTime0m1m},
+			</if>
+			<if test="finLoanTotalTime0m1m != null">
+				 fin_loan_total_time_0m_1m = #{finLoanTotalTime0m1m},
+			</if>
+			<if test="finLoanSmallTotalTime0m1m != null">
+				 fin_loan_small_total_time_0m_1m = #{finLoanSmallTotalTime0m1m},
+			</if>
+			<if test="finFinanceAvgUsetime0m1m != null">
+				 fin_finance_avg_usetime_0m_1m = #{finFinanceAvgUsetime0m1m},
+			</if>
+			<if test="finLoanAvgUsetime0m1m != null">
+				 fin_loan_avg_usetime_0m_1m = #{finLoanAvgUsetime0m1m},
+			</if>
+			<if test="finLoanSmallAvgUsetime0m1m != null">
+				 fin_loan_small_avg_usetime_0m_1m = #{finLoanSmallAvgUsetime0m1m},
+			</if>
+			<if test="finFinanceTotalOpen1m2m != null">
+				 fin_finance_total_open_1m_2m = #{finFinanceTotalOpen1m2m},
+			</if>
+			<if test="finLoanTotalOpen1m2m != null">
+				 fin_loan_total_open_1m_2m = #{finLoanTotalOpen1m2m},
+			</if>
+			<if test="finLoanSmallTotalOpen1m2m != null">
+				 fin_loan_small_total_open_1m_2m = #{finLoanSmallTotalOpen1m2m},
+			</if>
+			<if test="finFinanceTotalTime1m2m != null">
+				 fin_finance_total_time_1m_2m = #{finFinanceTotalTime1m2m},
+			</if>
+			<if test="finLoanTotalTime1m2m != null">
+				 fin_loan_total_time_1m_2m = #{finLoanTotalTime1m2m},
+			</if>
+			<if test="finLoanSmallTotalTime1m2m != null">
+				 fin_loan_small_total_time_1m_2m = #{finLoanSmallTotalTime1m2m},
+			</if>
+			<if test="finFinanceAvgUsetime1m2m != null">
+				 fin_finance_avg_usetime_1m_2m = #{finFinanceAvgUsetime1m2m},
+			</if>
+			<if test="finLoanAvgUsetime1m2m != null">
+				 fin_loan_avg_usetime_1m_2m = #{finLoanAvgUsetime1m2m},
+			</if>
+			<if test="finFinanceTotalOpen2m3m != null">
+				 fin_finance_total_open_2m_3m = #{finFinanceTotalOpen2m3m},
+			</if>
+			<if test="finLoanTotalOpen2m3m != null">
+				 fin_loan_total_open_2m_3m = #{finLoanTotalOpen2m3m},
+			</if>
+			<if test="finLoanSmallTotalOpen2m3m != null">
+				 fin_loan_small_total_open_2m_3m = #{finLoanSmallTotalOpen2m3m},
+			</if>
+			<if test="finFinanceTotalTime2m3m != null">
+				 fin_finance_total_time_2m_3m = #{finFinanceTotalTime2m3m},
+			</if>
+			<if test="finLoanTotalTime2m3m != null">
+				 fin_loan_total_time_2m_3m = #{finLoanTotalTime2m3m},
+			</if>
+			<if test="finLoanSmallTotalTime2m3m != null">
+				 fin_loan_small_total_time_2m_3m = #{finLoanSmallTotalTime2m3m},
+			</if>
+			<if test="finFinanceAvgUsetime2m3m != null">
+				 fin_finance_avg_usetime_2m_3m = #{finFinanceAvgUsetime2m3m},
+			</if>
+			<if test="finLoanAvgUsetime2m3m != null">
+				 fin_loan_avg_usetime_2m_3m = #{finLoanAvgUsetime2m3m},
+			</if>
+			<if test="finLoanSmallAvgUsetime2m3m != null">
+				 fin_loan_small_avg_usetime_2m_3m = #{finLoanSmallAvgUsetime2m3m},
+			</if>
+			<if test="mutiHaveOverdue15d0m1m != null">
+				 muti_have_overdue_15d_0m_1m = #{mutiHaveOverdue15d0m1m},
+			</if>
+			<if test="mutiRepaySuccessAppCnt0m1m != null">
+				 muti_repay_success_app_cnt_0m_1m = #{mutiRepaySuccessAppCnt0m1m},
+			</if>
+			<if test="mutiRepaySuccessCnt0m1m != null">
+				 muti_repay_success_cnt_0m_1m = #{mutiRepaySuccessCnt0m1m},
+			</if>
+			<if test="deviceStability0m1m != null">
+				 device_stability_0m_1m = #{deviceStability0m1m},
+			</if>
+			<if test="netImeiAbnormal != null">
+				 net_imei_abnormal = #{netImeiAbnormal},
+			</if>
+			<if test="netImeiPhoneCnt != null">
+				 net_imei_phone_cnt = #{netImeiPhoneCnt},
+			</if>
+			<if test="netImeiPhoneImsiCnt != null">
+				 net_imei_phone_imsi_cnt = #{netImeiPhoneImsiCnt},
+			</if>
+			<if test="createTime != null">
+				 create_time = #{createTime},
+			</if>
+			<if test="modifyTime != null">
+				 modify_time = #{modifyTime},
+			</if>
+
+ 		 </set>
+		 WHERE jg_custom_divisor_id = #{jgCustomDivisorId}
+	</update>
+
+</mapper>

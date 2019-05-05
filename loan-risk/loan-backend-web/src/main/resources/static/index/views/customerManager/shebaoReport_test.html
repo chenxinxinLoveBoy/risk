@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+<meta charset="UTF-8">
+<title>社保数据报告</title>
+<link rel="stylesheet" href="../../plugins/layui/css/layui.css"
+	media="all" />
+<link rel="stylesheet" href="../../css/global.css" media="all">
+<link rel="stylesheet"
+	href="../../plugins/font-awesome/css/font-awesome.min.css">
+<link rel="stylesheet" href="../../css/table.css" />
+<!-- js -->
+<script src="../../jqery/jquery.js"></script>
+<script src="../../../commons/base.js"></script>
+<script type="text/javascript" src="../../plugins/layui/layui.js"></script>
+<script type="text/javascript"
+	src="../../js/customerManager/shebaoReport_test.js"></script>
+</head>
+<body>
+	<div class="admin-main" id="sbs">
+		<div style="height: 10px"></div>
+		<fieldset class="layui-elem-field">
+			<div class="layui-field-box layui-form">
+				<legend>基础信息 </legend>
+				<table class="layui-table">
+					<tbody>
+						<!-- js取值id -->
+						<tr>
+							<th>姓名</th>
+							<td><font id="name"></font></td>
+							<th>身份证号</th>
+							<td><font id="certificateNumber"></font></td>
+							<th>民族</th>
+							<td><font id="nation"></font></td>
+						</tr>
+
+						<tr>
+							<th>性别</th>
+							<td><font id="gender"></font></td>
+							<th>户口性质</th>
+							<td><font id="hukouType"></font></td>
+							<th>参加工作日期</th>
+							<td><font id="timeToWork"></font></td>
+						</tr>
+
+						<tr>
+							<th>所在单位</th>
+							<td colspan="5"><font id="companyName"></font></td>
+						</tr>
+
+						<tr>
+							<th>家庭住址</th>
+							<td colspan="5"><font id="homeAddress"></font></td>
+						</tr>
+					</tbody>
+				</table>
+
+				<legend>意外保险</legend>
+				<table class="layui-table">
+					<tbody id="accident">
+						<!-- js取值id -->
+						<tr>
+							<th>月份</th>
+							<th>单位缴存</th>
+							<th>缴费基数</th>
+							<th>月数</th>
+							<th>缴存日期</th>
+						</tr>
+
+					</tbody>
+				</table>
+
+				<legend>养老保险</legend>
+				<table class="layui-table">
+					<tbody id="endowment">
+						<!-- js取值id -->
+						<tr>
+							<th>月份</th>
+							<th>单位缴存</th>
+							<th>个人缴存</th>
+							<th>缴费基数</th>
+							<th>月数</th>
+							<th>缴存日期</th>
+						</tr>
+					</tbody>
+				</table>
+
+				<legend>生育保险</legend>
+				<table class="layui-table">
+					<tbody id="maternity">
+						<!-- js取值id -->
+						<tr>
+							<th>月份</th>
+							<th>个人缴存</th>
+							<th>缴费基数</th>
+							<th>月数</th>
+							<th>缴存日期</th>
+						</tr>
+
+					</tbody>
+				</table>
+
+				<legend>医疗保险</legend>
+				<table class="layui-table">
+					<tbody id="medical">
+						<!-- js取值id -->
+						<tr>
+							<th>月份</th>
+							<th>单位缴存</th>
+							<th>个人缴存</th>
+							<th>缴费基数</th>
+							<th>月数</th>
+							<th>缴存日期</th>
+						</tr>
+
+					</tbody>
+				</table>
+
+				<legend>失业保险</legend>
+				<table class="layui-table">
+					<tbody id="unemployment">
+						<!-- js取值id -->
+						<tr>
+							<th>月份</th>
+							<th>单位缴存</th>
+							<th>个人缴存</th>
+							<th>缴费基数</th>
+							<th>月数</th>
+							<th>缴存日期</th>
+						</tr>
+
+					</tbody>
+				</table>
+			</div>
+		</fieldset>
+		<div class="admin-table-page">
+			<div id="paged" class="page"></div>
+		</div>
+	</div>
+</body>
+</html>

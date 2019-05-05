@@ -1,0 +1,226 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.shangyong.backend.dao.tdReport.TdReportCallCityDao">
+
+	<resultMap type="com.shangyong.backend.entity.tdReport.TdReportCallCity" id="tdReportCallCityMap">
+		<id property="callCityId" column="call_city_id" javaType="java.lang.String"></id>
+		<result property="applicationId" column="application_id" javaType="java.lang.String"></result>
+		<result property="callAreaCity" column="call_area_city" javaType="java.lang.String"></result>
+		<result property="callAreaSeqNo" column="call_area_seq_no" javaType="java.lang.String"></result>
+		<result property="activeDay1call1month" column="active_day_1call_1month" javaType="java.lang.String"></result>
+		<result property="activeDay1callActive1month" column="active_day_1call_active_1month" javaType="java.lang.String"></result>
+		<result property="activeDay1call3month" column="active_day_1call_3month" javaType="java.lang.String"></result>
+		<result property="activeDay1callActive3month" column="active_day_1call_active_3month" javaType="java.lang.String"></result>
+		<result property="activeDay1call6month" column="active_day_1call_6month" javaType="java.lang.String"></result>
+		<result property="activeDay1callActive6month" column="active_day_1call_active_6month" javaType="java.lang.String"></result>
+		<result property="callCount1month" column="call_count_1month" javaType="java.lang.String"></result>
+		<result property="callCount3month" column="call_count_3month" javaType="java.lang.String"></result>
+		<result property="callCountActive3month" column="call_count_active_3month" javaType="java.lang.String"></result>
+		<result property="callCountPassive3month" column="call_count_passive_3month" javaType="java.lang.String"></result>
+		<result property="callCountWorkday3month" column="call_count_workday_3month" javaType="java.lang.String"></result>
+		<result property="callCountHoliday3month" column="call_count_holiday_3month" javaType="java.lang.String"></result>
+		<result property="callCount6month" column="call_count_6month" javaType="java.lang.String"></result>
+		<result property="callCountActive6month" column="call_count_active_6month" javaType="java.lang.String"></result>
+		<result property="callCountPassive6month" column="call_count_passive_6month" javaType="java.lang.String"></result>
+		<result property="callCountWorkday6month" column="call_count_workday_6month" javaType="java.lang.String"></result>
+		<result property="callCountHoliday6month" column="call_count_holiday_6month" javaType="java.lang.String"></result>
+		<result property="callTime1month" column="call_time_1month" javaType="java.lang.String"></result>
+		<result property="callTime3month" column="call_time_3month" javaType="java.lang.String"></result>
+		<result property="callTimeActive3month" column="call_time_active_3month" javaType="java.lang.String"></result>
+		<result property="callTimePassive3month" column="call_time_passive_3month" javaType="java.lang.String"></result>
+		<result property="callTime6month" column="call_time_6month" javaType="java.lang.String"></result>
+		<result property="callTimeActive6month" column="call_time_active_6month" javaType="java.lang.String"></result>
+		<result property="callTimePassive6month" column="call_time_passive_6month" javaType="java.lang.String"></result>
+		<result property="continueActiveDayOver11call1month" column="continue_active_day_over1_1call_1month" javaType="java.lang.String"></result>
+		<result property="continueActiveDayOver31call1month" column="continue_active_day_over3_1call_1month" javaType="java.lang.String"></result>
+		<result property="continueActiveDayOver11call3month" column="continue_active_day_over1_1call_3month" javaType="java.lang.String"></result>
+		<result property="continueActiveDayOver31call3month" column="continue_active_day_over3_1call_3month" javaType="java.lang.String"></result>
+		<result property="continueActiveDayOver11call6month" column="continue_active_day_over1_1call_6month" javaType="java.lang.String"></result>
+		<result property="continueActiveDayOver31call6month" column="continue_active_day_over3_1call_6month" javaType="java.lang.String"></result>
+		<result property="maxContinueActiveDay1call1month" column="max_continue_active_day_1call_1month" javaType="java.lang.String"></result>
+		<result property="maxContinueActiveDay1call3month" column="max_continue_active_day_1call_3month" javaType="java.lang.String"></result>
+		<result property="maxContinueActiveDay1call6month" column="max_continue_active_day_1call_6month" javaType="java.lang.String"></result>
+		<result property="createTime" column="create_time" javaType="java.lang.String"></result>
+		<result property="createMan" column="create_man" javaType="java.lang.String"></result>
+		<result property="modifyTime" column="modify_time" javaType="java.lang.String"></result>
+		<result property="modifyMan" column="modify_man" javaType="java.lang.String"></result>
+		<result property="remark" column="remark" javaType="java.lang.String"></result>
+	</resultMap>
+
+	<!-- 通用查询结果列-->
+	<sql id="Base_Column_List">
+call_city_id,	application_id,	call_area_city,	call_area_seq_no,	active_day_1call_1month,	active_day_1call_active_1month,	active_day_1call_3month,	active_day_1call_active_3month,	active_day_1call_6month,	active_day_1call_active_6month,	call_count_1month,	call_count_3month,	call_count_active_3month,	call_count_passive_3month,	call_count_workday_3month,	call_count_holiday_3month,	call_count_6month,	call_count_active_6month,	call_count_passive_6month,	call_count_workday_6month,	call_count_holiday_6month,	call_time_1month,	call_time_3month,	call_time_active_3month,	call_time_passive_3month,	call_time_6month,	call_time_active_6month,	call_time_passive_6month,	continue_active_day_over1_1call_1month,	continue_active_day_over3_1call_1month,	continue_active_day_over1_1call_3month,	continue_active_day_over3_1call_3month,	continue_active_day_over1_1call_6month,	continue_active_day_over3_1call_6month,	max_continue_active_day_1call_1month,	max_continue_active_day_1call_3month,	max_continue_active_day_1call_6month,	create_time,	create_man,	modify_time,	modify_man,	remark
+	</sql>
+
+	<!-- 查询（根据主键ID查询） -->
+	<select id="getEntityById" resultMap="tdReportCallCityMap" parameterType="java.lang.String">
+		 SELECT
+		 <include refid="Base_Column_List" />
+		 FROM td_report_call_city
+		 WHERE call_city_id = #{callCityId}
+	</select>
+
+	<!-- 查询（根据主键ID查询） -->
+	<select id="findAll" resultMap="tdReportCallCityMap" parameterType="java.lang.String">
+		 SELECT
+		 <include refid="Base_Column_List" />
+		 FROM td_report_call_city
+		 WHERE call_city_id = #{callCityId}
+	</select>
+
+	<!--删除：根据主键ID删除-->
+	<delete id="deleteEntity" parameterType="java.lang.String">
+		 DELETE FROM td_report_call_city
+		 WHERE call_city_id = #{callCityId}
+	</delete>
+
+	<!-- 添加 -->
+	<insert id="saveEntity" parameterType="com.shangyong.backend.entity.tdReport.TdReportCallCity">
+		 INSERT INTO td_report_call_city
+ 		(call_city_id,application_id,call_area_city,call_area_seq_no,active_day_1call_1month,active_day_1call_active_1month,active_day_1call_3month,active_day_1call_active_3month,active_day_1call_6month,active_day_1call_active_6month,call_count_1month,call_count_3month,call_count_active_3month,call_count_passive_3month,call_count_workday_3month,call_count_holiday_3month,call_count_6month,call_count_active_6month,call_count_passive_6month,call_count_workday_6month,call_count_holiday_6month,call_time_1month,call_time_3month,call_time_active_3month,call_time_passive_3month,call_time_6month,call_time_active_6month,call_time_passive_6month,continue_active_day_over1_1call_1month,continue_active_day_over3_1call_1month,continue_active_day_over1_1call_3month,continue_active_day_over3_1call_3month,continue_active_day_over1_1call_6month,continue_active_day_over3_1call_6month,max_continue_active_day_1call_1month,max_continue_active_day_1call_3month,max_continue_active_day_1call_6month,create_time,create_man,modify_time,modify_man,remark) 
+		 VALUES 
+ 		(#{callCityId},#{applicationId},#{callAreaCity},#{callAreaSeqNo},#{activeDay1call1month},#{activeDay1callActive1month},#{activeDay1call3month},#{activeDay1callActive3month},#{activeDay1call6month},#{activeDay1callActive6month},#{callCount1month},#{callCount3month},#{callCountActive3month},#{callCountPassive3month},#{callCountWorkday3month},#{callCountHoliday3month},#{callCount6month},#{callCountActive6month},#{callCountPassive6month},#{callCountWorkday6month},#{callCountHoliday6month},#{callTime1month},#{callTime3month},#{callTimeActive3month},#{callTimePassive3month},#{callTime6month},#{callTimeActive6month},#{callTimePassive6month},#{continueActiveDayOver11call1month},#{continueActiveDayOver31call1month},#{continueActiveDayOver11call3month},#{continueActiveDayOver31call3month},#{continueActiveDayOver11call6month},#{continueActiveDayOver31call6month},#{maxContinueActiveDay1call1month},#{maxContinueActiveDay1call3month},#{maxContinueActiveDay1call6month},#{createTime},#{createMan},#{modifyTime},#{modifyMan},#{remark}) 
+	</insert>
+	<!-- 批量插入 -->
+	<insert id="saveAllEntity" parameterType="java.util.List">
+		 INSERT INTO td_report_call_city
+ 		(call_city_id,application_id,call_area_city,call_area_seq_no,active_day_1call_1month,active_day_1call_active_1month,active_day_1call_3month,active_day_1call_active_3month,active_day_1call_6month,active_day_1call_active_6month,call_count_1month,call_count_3month,call_count_active_3month,call_count_passive_3month,call_count_workday_3month,call_count_holiday_3month,call_count_6month,call_count_active_6month,call_count_passive_6month,call_count_workday_6month,call_count_holiday_6month,call_time_1month,call_time_3month,call_time_active_3month,call_time_passive_3month,call_time_6month,call_time_active_6month,call_time_passive_6month,continue_active_day_over1_1call_1month,continue_active_day_over3_1call_1month,continue_active_day_over1_1call_3month,continue_active_day_over3_1call_3month,continue_active_day_over1_1call_6month,continue_active_day_over3_1call_6month,max_continue_active_day_1call_1month,max_continue_active_day_1call_3month,max_continue_active_day_1call_6month,create_time,create_man,modify_time,modify_man,remark) 
+		 VALUES 
+ 	    <foreach collection="list" item="item" index="index" separator="," >  
+ 		(#{item.callCityId},#{item.applicationId},#{item.callAreaCity},#{item.callAreaSeqNo},#{item.activeDay1call1month},#{item.activeDay1callActive1month},#{item.activeDay1call3month},#{item.activeDay1callActive3month},#{item.activeDay1call6month},#{item.activeDay1callActive6month},#{item.callCount1month},#{item.callCount3month},#{item.callCountActive3month},#{item.callCountPassive3month},#{item.callCountWorkday3month},#{item.callCountHoliday3month},#{item.callCount6month},#{item.callCountActive6month},#{item.callCountPassive6month},#{item.callCountWorkday6month},#{item.callCountHoliday6month},#{item.callTime1month},#{item.callTime3month},#{item.callTimeActive3month},#{item.callTimePassive3month},#{item.callTime6month},#{item.callTimeActive6month},#{item.callTimePassive6month},#{item.continueActiveDayOver11call1month},#{item.continueActiveDayOver31call1month},#{item.continueActiveDayOver11call3month},#{item.continueActiveDayOver31call3month},#{item.continueActiveDayOver11call6month},#{item.continueActiveDayOver31call6month},#{item.maxContinueActiveDay1call1month},#{item.maxContinueActiveDay1call3month},#{item.maxContinueActiveDay1call6month},#{item.createTime},#{item.createMan},#{item.modifyTime},#{item.modifyMan},#{item.remark}) 
+	    </foreach>
+	</insert>
+	<!-- 修 改-->
+	<update id="updateEntity" parameterType="com.shangyong.backend.entity.tdReport.TdReportCallCity">
+		 UPDATE td_report_call_city
+ 		 <set> 
+			<if test="applicationId != null">
+				 application_id = #{applicationId},
+			</if>
+			<if test="callAreaCity != null">
+				 call_area_city = #{callAreaCity},
+			</if>
+			<if test="callAreaSeqNo != null">
+				 call_area_seq_no = #{callAreaSeqNo},
+			</if>
+			<if test="activeDay1call1month != null">
+				 active_day_1call_1month = #{activeDay1call1month},
+			</if>
+			<if test="activeDay1callActive1month != null">
+				 active_day_1call_active_1month = #{activeDay1callActive1month},
+			</if>
+			<if test="activeDay1call3month != null">
+				 active_day_1call_3month = #{activeDay1call3month},
+			</if>
+			<if test="activeDay1callActive3month != null">
+				 active_day_1call_active_3month = #{activeDay1callActive3month},
+			</if>
+			<if test="activeDay1call6month != null">
+				 active_day_1call_6month = #{activeDay1call6month},
+			</if>
+			<if test="activeDay1callActive6month != null">
+				 active_day_1call_active_6month = #{activeDay1callActive6month},
+			</if>
+			<if test="callCount1month != null">
+				 call_count_1month = #{callCount1month},
+			</if>
+			<if test="callCount3month != null">
+				 call_count_3month = #{callCount3month},
+			</if>
+			<if test="callCountActive3month != null">
+				 call_count_active_3month = #{callCountActive3month},
+			</if>
+			<if test="callCountPassive3month != null">
+				 call_count_passive_3month = #{callCountPassive3month},
+			</if>
+			<if test="callCountWorkday3month != null">
+				 call_count_workday_3month = #{callCountWorkday3month},
+			</if>
+			<if test="callCountHoliday3month != null">
+				 call_count_holiday_3month = #{callCountHoliday3month},
+			</if>
+			<if test="callCount6month != null">
+				 call_count_6month = #{callCount6month},
+			</if>
+			<if test="callCountActive6month != null">
+				 call_count_active_6month = #{callCountActive6month},
+			</if>
+			<if test="callCountPassive6month != null">
+				 call_count_passive_6month = #{callCountPassive6month},
+			</if>
+			<if test="callCountWorkday6month != null">
+				 call_count_workday_6month = #{callCountWorkday6month},
+			</if>
+			<if test="callCountHoliday6month != null">
+				 call_count_holiday_6month = #{callCountHoliday6month},
+			</if>
+			<if test="callTime1month != null">
+				 call_time_1month = #{callTime1month},
+			</if>
+			<if test="callTime3month != null">
+				 call_time_3month = #{callTime3month},
+			</if>
+			<if test="callTimeActive3month != null">
+				 call_time_active_3month = #{callTimeActive3month},
+			</if>
+			<if test="callTimePassive3month != null">
+				 call_time_passive_3month = #{callTimePassive3month},
+			</if>
+			<if test="callTime6month != null">
+				 call_time_6month = #{callTime6month},
+			</if>
+			<if test="callTimeActive6month != null">
+				 call_time_active_6month = #{callTimeActive6month},
+			</if>
+			<if test="callTimePassive6month != null">
+				 call_time_passive_6month = #{callTimePassive6month},
+			</if>
+			<if test="continueActiveDayOver11call1month != null">
+				 continue_active_day_over1_1call_1month = #{continueActiveDayOver11call1month},
+			</if>
+			<if test="continueActiveDayOver31call1month != null">
+				 continue_active_day_over3_1call_1month = #{continueActiveDayOver31call1month},
+			</if>
+			<if test="continueActiveDayOver11call3month != null">
+				 continue_active_day_over1_1call_3month = #{continueActiveDayOver11call3month},
+			</if>
+			<if test="continueActiveDayOver31call3month != null">
+				 continue_active_day_over3_1call_3month = #{continueActiveDayOver31call3month},
+			</if>
+			<if test="continueActiveDayOver11call6month != null">
+				 continue_active_day_over1_1call_6month = #{continueActiveDayOver11call6month},
+			</if>
+			<if test="continueActiveDayOver31call6month != null">
+				 continue_active_day_over3_1call_6month = #{continueActiveDayOver31call6month},
+			</if>
+			<if test="maxContinueActiveDay1call1month != null">
+				 max_continue_active_day_1call_1month = #{maxContinueActiveDay1call1month},
+			</if>
+			<if test="maxContinueActiveDay1call3month != null">
+				 max_continue_active_day_1call_3month = #{maxContinueActiveDay1call3month},
+			</if>
+			<if test="maxContinueActiveDay1call6month != null">
+				 max_continue_active_day_1call_6month = #{maxContinueActiveDay1call6month},
+			</if>
+			<if test="createTime != null">
+				 create_time = #{createTime},
+			</if>
+			<if test="createMan != null">
+				 create_man = #{createMan},
+			</if>
+			<if test="modifyTime != null">
+				 modify_time = #{modifyTime},
+			</if>
+			<if test="modifyMan != null">
+				 modify_man = #{modifyMan},
+			</if>
+			<if test="remark != null">
+				 remark = #{remark},
+			</if>
+
+ 		 </set>
+		 WHERE call_city_id = #{callCityId}
+	</update>
+
+</mapper>

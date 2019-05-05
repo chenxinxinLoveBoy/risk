@@ -1,0 +1,81 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+<META HTTP-EQUIV="pragma" CONTENT="no-cache">
+<META HTTP-EQUIV="Cache-Control" CONTENT="no-cache, must-revalidate">
+<META HTTP-EQUIV="expires" CONTENT="0">
+<meta charset="UTF-8">
+<link rel="stylesheet" href="../../plugins/layui/css/layui.css"
+	media="all" />
+<link rel="stylesheet" href="../../css/global.css" media="all">
+<link rel="stylesheet"
+	href="../../plugins/font-awesome/css/font-awesome.min.css">
+<link rel="stylesheet" href="../../css/table.css" />
+<!-- js -->
+
+<script src="../../jqery/jquery.js"></script>
+<script src="../../../commons/base.js"></script>
+<script type="text/javascript" src="../../plugins/layui/layui.js"></script>
+<script type="text/javascript" src="../../js/template/template_add.js"></script>
+</head>
+
+<body>
+	<div style="margin: 30px;">
+	<form class="layui-form" id="userForms" >
+		<div class="layui-form-item">
+			<label class="layui-form-label" style="width:150px">禁止项模板名称</label>
+			<div class="layui-input-block">
+				<input id="banTplName" type="text" name="banTplName" placeholder="禁止项模板名称 " style="width:500px"  autocomplete="off" class="layui-input"  >
+			</div>
+		</div>
+		<div class="layui-form-item">
+			<label class="layui-form-label" style="width:150px">禁止项模板业务编号</label>
+			<div class="layui-input-block"  >
+				<input id="banTplCode" type="text" name="banTplCode" placeholder="禁止项模板业务编号" style="width:500px"   class="layui-input">
+			</div>
+		</div>
+
+		<div class="layui-form-item">
+			<label class="layui-form-label" style="width:150px">模板生效时间</label>
+			<div class="layui-input-block">
+				<input id="startTime" type="text" name="startTime" lay-verify="startTime" placeholder="模板生效时间" style="width:300px" class="layui-input">
+			</div>
+		</div>
+		
+		<div class="layui-form-item">
+			<label class="layui-form-label" style="width:150px">模板失效时间</label>
+			<div class="layui-input-block">
+				<input id="endTime" type="text" name="endTime"  lay-verify="endTime" placeholder="模板失效时间" style="width:300px" class="layui-input">
+			</div>
+		</div> 
+		 
+		<div class="layui-form-item">
+		    <label class="layui-form-label" style="width:150px">模板状态</label>
+		    <div class="layui-input-block" style="width:500px">
+		    	<input name="state" value="01" title="有效" type="radio"    lay-filter="radio_filter" id="state" />
+		    	<input name="state" value="02" title="失效" type="radio"    lay-filter="radio_filter" id="state2" />
+		    </div>
+		  </div>
+		  
+		  <div class="layui-form-item">
+		    <label class="layui-form-label" style="width:150px">操作标志</label>
+		    <div class="layui-input-block" style="width:500px">
+		    	<input name="operation" value="1" title="手动" type="radio"    lay-filter="radio_filter" id="operation" />
+		    	<input name="operation" value="2" title="自动" type="radio"    lay-filter="radio_filter" id="operation2" />
+		    </div>
+		  </div>
+ 
+	 <div class="layui-form-item">
+			<label class="layui-form-label" style="width:150px">模板权重</label>
+			<div class="layui-input-block">
+				<input id="tplPercent" type="text" name="tplPercent" placeholder="模板权重" style="width:500px" class="layui-input">
+			</div>
+		</div>
+  
+		<div class="layui-form-item"  style="margin-left: 15%">
+		<button lay-submit lay-filter="save"  class="layui-btn" id="save_bt" >保存</button> 
+		</div> 
+</form> 
+</div>
+</body>
+</html>

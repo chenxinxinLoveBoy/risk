@@ -1,0 +1,182 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.shangyong.backend.dao.tdReport.TdReportContactAnalysisDao">
+
+	<resultMap type="com.shangyong.backend.entity.tdReport.TdReportContactAnalysis" id="tdReportContactAnalysisMap">
+		<id property="contactAnalysisId" column="contact_analysis_id" javaType="java.lang.String"></id>
+		<result property="applicationId" column="application_id" javaType="java.lang.String"></result>
+		<result property="blackTop10ContactTotalCountRatio" column="black_top10_contact_total_count_ratio" javaType="java.lang.String"></result>
+		<result property="blackTop10ContactCreditcrackCountRatio" column="black_top10_contact_creditcrack_count_ratio" javaType="java.lang.String"></result>
+		<result property="blackTop10ContactPaymentfraudCountRatio" column="black_top10_contact_paymentfraud_count_ratio" javaType="java.lang.String"></result>
+		<result property="blackTop10ContactDiscreditrepayCountRati" column="black_top10_contact_discreditrepay_count_rati" javaType="java.lang.String"></result>
+		<result property="blackTop10ContactScalpingCountRatio" column="black_top10_contact_scalping_count_ratio" javaType="java.lang.String"></result>
+		<result property="blackTop10ContactStudentloansOverdueCountRatio" column="black_top10_contact_studentloans_overdue_count_ratio" javaType="java.lang.String"></result>
+		<result property="blackTop10ContactCarloanBlacklistCountRatio" column="black_top10_contact_carloan_blacklist_count_ratio" javaType="java.lang.String"></result>
+		<result property="blackTop10ContactFakemobileCountRatio" column="black_top10_contact_fakemobile_count_ratio" javaType="java.lang.String"></result>
+		<result property="blackTop10ContactOver2CountRatio" column="black_top10_contact_over2_count_ratio" javaType="java.lang.String"></result>
+		<result property="manyheadsTop10ContactRecent6monthPartnercodeCountAvg" column="manyheads_top10_contact_recent6month_partnercode_count_avg" javaType="java.lang.String"></result>
+		<result property="manyheadsTop10ContactRecent6monthPartnercodeCountMax" column="manyheads_top10_contact_recent6month_partnercode_count_max" javaType="java.lang.String"></result>
+		<result property="manyheadsTop10ContactRecent6monthHavePartnercodeCount" column="manyheads_top10_contact_recent6month_have_partnercode_count" javaType="java.lang.String"></result>
+		<result property="manyheadsTop10ContactRecent6monthPartnercodeCountOver2" column="manyheads_top10_contact_recent6month_partnercode_count_over2" javaType="java.lang.String"></result>
+		<result property="manyheadsTop10ContactRecent3monthPartnercodeCountAvg" column="manyheads_top10_contact_recent3month_partnercode_count_avg" javaType="java.lang.String"></result>
+		<result property="manyheadsTop10ContactRecent3monthPartnercodeCountMax" column="manyheads_top10_contact_recent3month_partnercode_count_max" javaType="java.lang.String"></result>
+		<result property="manyheadsTop10ContactRecent3monthHavePartnercodeCount" column="manyheads_top10_contact_recent3month_have_partnercode_count" javaType="java.lang.String"></result>
+		<result property="manyheadsTop10ContactRecent3monthPartnercodeCountOver2" column="manyheads_top10_contact_recent3month_partnercode_count_over2" javaType="java.lang.String"></result>
+		<result property="manyheadsTop10ContactRecent1monthPartnercodeCountAvg" column="manyheads_top10_contact_recent1month_partnercode_count_avg" javaType="java.lang.String"></result>
+		<result property="manyheadsTop10ContactRecent1monthPartnercodeCountMax" column="manyheads_top10_contact_recent1month_partnercode_count_max" javaType="java.lang.String"></result>
+		<result property="manyheadsTop10ContactRecent1monthHavePartnercodeCount" column="manyheads_top10_contact_recent1month_have_partnercode_count" javaType="java.lang.String"></result>
+		<result property="manyheadsTop10ContactRecent1monthPartnercodeCountOver2" column="manyheads_top10_contact_recent1month_partnercode_count_over2" javaType="java.lang.String"></result>
+		<result property="creditscoreTop10ContactAvg" column="creditscore_top10_contact_avg" javaType="java.lang.String"></result>
+		<result property="creditscoreTop10ContactMax" column="creditscore_top10_contact_max" javaType="java.lang.String"></result>
+		<result property="creditscoreTop10ContactMin" column="creditscore_top10_contact_min" javaType="java.lang.String"></result>
+		<result property="creditscoreTop10ContactMedian" column="creditscore_top10_contact_median" javaType="java.lang.String"></result>
+		<result property="creditscoreTop10ContactCount" column="creditscore_top10_contact_count" javaType="java.lang.String"></result>
+		<result property="createTime" column="create_time" javaType="java.lang.String"></result>
+		<result property="createMan" column="create_man" javaType="java.lang.String"></result>
+		<result property="modifyTime" column="modify_time" javaType="java.lang.String"></result>
+		<result property="modifyMan" column="modify_man" javaType="java.lang.String"></result>
+		<result property="remark" column="remark" javaType="java.lang.String"></result>
+	</resultMap>
+
+	<!-- 通用查询结果列-->
+	<sql id="Base_Column_List">
+contact_analysis_id,	application_id,	black_top10_contact_total_count_ratio,	black_top10_contact_creditcrack_count_ratio,	black_top10_contact_paymentfraud_count_ratio,	black_top10_contact_discreditrepay_count_rati,	black_top10_contact_scalping_count_ratio,	black_top10_contact_studentloans_overdue_count_ratio,	black_top10_contact_carloan_blacklist_count_ratio,	black_top10_contact_fakemobile_count_ratio,	black_top10_contact_over2_count_ratio,	manyheads_top10_contact_recent6month_partnercode_count_avg,	manyheads_top10_contact_recent6month_partnercode_count_max,	manyheads_top10_contact_recent6month_have_partnercode_count,	manyheads_top10_contact_recent6month_partnercode_count_over2,	manyheads_top10_contact_recent3month_partnercode_count_avg,	manyheads_top10_contact_recent3month_partnercode_count_max,	manyheads_top10_contact_recent3month_have_partnercode_count,	manyheads_top10_contact_recent3month_partnercode_count_over2,	manyheads_top10_contact_recent1month_partnercode_count_avg,	manyheads_top10_contact_recent1month_partnercode_count_max,	manyheads_top10_contact_recent1month_have_partnercode_count,	manyheads_top10_contact_recent1month_partnercode_count_over2,	creditscore_top10_contact_avg,	creditscore_top10_contact_max,	creditscore_top10_contact_min,	creditscore_top10_contact_median,	creditscore_top10_contact_count,	create_time,	create_man,	modify_time,	modify_man,	remark
+	</sql>
+
+	<!-- 查询（根据主键ID查询） -->
+	<select id="getEntityById" resultMap="tdReportContactAnalysisMap" parameterType="java.lang.String">
+		 SELECT
+		 <include refid="Base_Column_List" />
+		 FROM td_report_contact_analysis
+		 WHERE contact_analysis_id = #{contactAnalysisId}
+	</select>
+
+	<!-- 查询（根据主键ID查询） -->
+	<select id="findAll" resultMap="tdReportContactAnalysisMap" parameterType="java.lang.String">
+		 SELECT
+		 <include refid="Base_Column_List" />
+		 FROM td_report_contact_analysis
+		 WHERE contact_analysis_id = #{contactAnalysisId}
+	</select>
+
+	<!--删除：根据主键ID删除-->
+	<delete id="deleteEntity" parameterType="java.lang.String">
+		 DELETE FROM td_report_contact_analysis
+		 WHERE contact_analysis_id = #{contactAnalysisId}
+	</delete>
+
+	<!-- 添加 -->
+	<insert id="saveEntity" parameterType="com.shangyong.backend.entity.tdReport.TdReportContactAnalysis">
+		 INSERT INTO td_report_contact_analysis
+ 		(contact_analysis_id,application_id,black_top10_contact_total_count_ratio,black_top10_contact_creditcrack_count_ratio,black_top10_contact_paymentfraud_count_ratio,black_top10_contact_discreditrepay_count_rati,black_top10_contact_scalping_count_ratio,black_top10_contact_studentloans_overdue_count_ratio,black_top10_contact_carloan_blacklist_count_ratio,black_top10_contact_fakemobile_count_ratio,black_top10_contact_over2_count_ratio,manyheads_top10_contact_recent6month_partnercode_count_avg,manyheads_top10_contact_recent6month_partnercode_count_max,manyheads_top10_contact_recent6month_have_partnercode_count,manyheads_top10_contact_recent6month_partnercode_count_over2,manyheads_top10_contact_recent3month_partnercode_count_avg,manyheads_top10_contact_recent3month_partnercode_count_max,manyheads_top10_contact_recent3month_have_partnercode_count,manyheads_top10_contact_recent3month_partnercode_count_over2,manyheads_top10_contact_recent1month_partnercode_count_avg,manyheads_top10_contact_recent1month_partnercode_count_max,manyheads_top10_contact_recent1month_have_partnercode_count,manyheads_top10_contact_recent1month_partnercode_count_over2,creditscore_top10_contact_avg,creditscore_top10_contact_max,creditscore_top10_contact_min,creditscore_top10_contact_median,creditscore_top10_contact_count,create_time,create_man,modify_time,modify_man,remark) 
+		 VALUES 
+ 		(#{contactAnalysisId},#{applicationId},#{blackTop10ContactTotalCountRatio},#{blackTop10ContactCreditcrackCountRatio},#{blackTop10ContactPaymentfraudCountRatio},#{blackTop10ContactDiscreditrepayCountRati},#{blackTop10ContactScalpingCountRatio},#{blackTop10ContactStudentloansOverdueCountRatio},#{blackTop10ContactCarloanBlacklistCountRatio},#{blackTop10ContactFakemobileCountRatio},#{blackTop10ContactOver2CountRatio},#{manyheadsTop10ContactRecent6monthPartnercodeCountAvg},#{manyheadsTop10ContactRecent6monthPartnercodeCountMax},#{manyheadsTop10ContactRecent6monthHavePartnercodeCount},#{manyheadsTop10ContactRecent6monthPartnercodeCountOver2},#{manyheadsTop10ContactRecent3monthPartnercodeCountAvg},#{manyheadsTop10ContactRecent3monthPartnercodeCountMax},#{manyheadsTop10ContactRecent3monthHavePartnercodeCount},#{manyheadsTop10ContactRecent3monthPartnercodeCountOver2},#{manyheadsTop10ContactRecent1monthPartnercodeCountAvg},#{manyheadsTop10ContactRecent1monthPartnercodeCountMax},#{manyheadsTop10ContactRecent1monthHavePartnercodeCount},#{manyheadsTop10ContactRecent1monthPartnercodeCountOver2},#{creditscoreTop10ContactAvg},#{creditscoreTop10ContactMax},#{creditscoreTop10ContactMin},#{creditscoreTop10ContactMedian},#{creditscoreTop10ContactCount},#{createTime},#{createMan},#{modifyTime},#{modifyMan},#{remark}) 
+	</insert>
+
+	<!-- 修 改-->
+	<update id="updateEntity" parameterType="com.shangyong.backend.entity.tdReport.TdReportContactAnalysis">
+		 UPDATE td_report_contact_analysis
+ 		 <set> 
+			<if test="applicationId != null">
+				 application_id = #{applicationId},
+			</if>
+			<if test="blackTop10ContactTotalCountRatio != null">
+				 black_top10_contact_total_count_ratio = #{blackTop10ContactTotalCountRatio},
+			</if>
+			<if test="blackTop10ContactCreditcrackCountRatio != null">
+				 black_top10_contact_creditcrack_count_ratio = #{blackTop10ContactCreditcrackCountRatio},
+			</if>
+			<if test="blackTop10ContactPaymentfraudCountRatio != null">
+				 black_top10_contact_paymentfraud_count_ratio = #{blackTop10ContactPaymentfraudCountRatio},
+			</if>
+			<if test="blackTop10ContactDiscreditrepayCountRati != null">
+				 black_top10_contact_discreditrepay_count_rati = #{blackTop10ContactDiscreditrepayCountRati},
+			</if>
+			<if test="blackTop10ContactScalpingCountRatio != null">
+				 black_top10_contact_scalping_count_ratio = #{blackTop10ContactScalpingCountRatio},
+			</if>
+			<if test="blackTop10ContactStudentloansOverdueCountRatio != null">
+				 black_top10_contact_studentloans_overdue_count_ratio = #{blackTop10ContactStudentloansOverdueCountRatio},
+			</if>
+			<if test="blackTop10ContactCarloanBlacklistCountRatio != null">
+				 black_top10_contact_carloan_blacklist_count_ratio = #{blackTop10ContactCarloanBlacklistCountRatio},
+			</if>
+			<if test="blackTop10ContactFakemobileCountRatio != null">
+				 black_top10_contact_fakemobile_count_ratio = #{blackTop10ContactFakemobileCountRatio},
+			</if>
+			<if test="blackTop10ContactOver2CountRatio != null">
+				 black_top10_contact_over2_count_ratio = #{blackTop10ContactOver2CountRatio},
+			</if>
+			<if test="manyheadsTop10ContactRecent6monthPartnercodeCountAvg != null">
+				 manyheads_top10_contact_recent6month_partnercode_count_avg = #{manyheadsTop10ContactRecent6monthPartnercodeCountAvg},
+			</if>
+			<if test="manyheadsTop10ContactRecent6monthPartnercodeCountMax != null">
+				 manyheads_top10_contact_recent6month_partnercode_count_max = #{manyheadsTop10ContactRecent6monthPartnercodeCountMax},
+			</if>
+			<if test="manyheadsTop10ContactRecent6monthHavePartnercodeCount != null">
+				 manyheads_top10_contact_recent6month_have_partnercode_count = #{manyheadsTop10ContactRecent6monthHavePartnercodeCount},
+			</if>
+			<if test="manyheadsTop10ContactRecent6monthPartnercodeCountOver2 != null">
+				 manyheads_top10_contact_recent6month_partnercode_count_over2 = #{manyheadsTop10ContactRecent6monthPartnercodeCountOver2},
+			</if>
+			<if test="manyheadsTop10ContactRecent3monthPartnercodeCountAvg != null">
+				 manyheads_top10_contact_recent3month_partnercode_count_avg = #{manyheadsTop10ContactRecent3monthPartnercodeCountAvg},
+			</if>
+			<if test="manyheadsTop10ContactRecent3monthPartnercodeCountMax != null">
+				 manyheads_top10_contact_recent3month_partnercode_count_max = #{manyheadsTop10ContactRecent3monthPartnercodeCountMax},
+			</if>
+			<if test="manyheadsTop10ContactRecent3monthHavePartnercodeCount != null">
+				 manyheads_top10_contact_recent3month_have_partnercode_count = #{manyheadsTop10ContactRecent3monthHavePartnercodeCount},
+			</if>
+			<if test="manyheadsTop10ContactRecent3monthPartnercodeCountOver2 != null">
+				 manyheads_top10_contact_recent3month_partnercode_count_over2 = #{manyheadsTop10ContactRecent3monthPartnercodeCountOver2},
+			</if>
+			<if test="manyheadsTop10ContactRecent1monthPartnercodeCountAvg != null">
+				 manyheads_top10_contact_recent1month_partnercode_count_avg = #{manyheadsTop10ContactRecent1monthPartnercodeCountAvg},
+			</if>
+			<if test="manyheadsTop10ContactRecent1monthPartnercodeCountMax != null">
+				 manyheads_top10_contact_recent1month_partnercode_count_max = #{manyheadsTop10ContactRecent1monthPartnercodeCountMax},
+			</if>
+			<if test="manyheadsTop10ContactRecent1monthHavePartnercodeCount != null">
+				 manyheads_top10_contact_recent1month_have_partnercode_count = #{manyheadsTop10ContactRecent1monthHavePartnercodeCount},
+			</if>
+			<if test="manyheadsTop10ContactRecent1monthPartnercodeCountOver2 != null">
+				 manyheads_top10_contact_recent1month_partnercode_count_over2 = #{manyheadsTop10ContactRecent1monthPartnercodeCountOver2},
+			</if>
+			<if test="creditscoreTop10ContactAvg != null">
+				 creditscore_top10_contact_avg = #{creditscoreTop10ContactAvg},
+			</if>
+			<if test="creditscoreTop10ContactMax != null">
+				 creditscore_top10_contact_max = #{creditscoreTop10ContactMax},
+			</if>
+			<if test="creditscoreTop10ContactMin != null">
+				 creditscore_top10_contact_min = #{creditscoreTop10ContactMin},
+			</if>
+			<if test="creditscoreTop10ContactMedian != null">
+				 creditscore_top10_contact_median = #{creditscoreTop10ContactMedian},
+			</if>
+			<if test="creditscoreTop10ContactCount != null">
+				 creditscore_top10_contact_count = #{creditscoreTop10ContactCount},
+			</if>
+			<if test="createTime != null">
+				 create_time = #{createTime},
+			</if>
+			<if test="createMan != null">
+				 create_man = #{createMan},
+			</if>
+			<if test="modifyTime != null">
+				 modify_time = #{modifyTime},
+			</if>
+			<if test="modifyMan != null">
+				 modify_man = #{modifyMan},
+			</if>
+			<if test="remark != null">
+				 remark = #{remark},
+			</if>
+
+ 		 </set>
+		 WHERE contact_analysis_id = #{contactAnalysisId}
+	</update>
+
+</mapper>

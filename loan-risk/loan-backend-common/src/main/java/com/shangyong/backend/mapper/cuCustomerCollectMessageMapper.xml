@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.shangyong.backend.dao.approval.CuCustomerCollectMessageDao">
+
+	<resultMap type="com.shangyong.backend.entity.approval.CuCustomerCollectMessage" id="cuCustomerCollectMessageMap">
+		<id property="customerCollectMessageId" column="customer_collect_message_id" javaType="java.lang.Long"></id>
+		<result property="customerId" column="customer_id" javaType="java.lang.String"></result>
+		<result property="appName" column="app_name" javaType="java.lang.Integer"></result>
+		<result property="extend" column="extend" javaType="java.lang.String"></result>
+		<result property="createTime" column="create_time" javaType="java.lang.String"></result>
+		<result property="modifyTime" column="modify_time" javaType="java.lang.String"></result>
+	</resultMap>
+
+	<!-- 通用查询结果列-->
+	<sql id="Base_Column_List">
+customer_collect_message_id,	customer_id,	app_name,	extend,	create_time,	modify_time
+	</sql>
+	<!-- 查询（根据客户编号和平台查询） -->
+	<select id="getEntityByCustomerId" resultMap="cuCustomerCollectMessageMap">
+		 SELECT
+		 <include refid="Base_Column_List" />
+		 FROM cu_customer_collect_message
+		 WHERE customer_id = #{customerId} and app_name = #{appName} LIMIT 1 FOR UPDATE
+	</select>
+	<!-- 添加, 并返回自增的主键id -->
+	<insert id="saveEntity" parameterType="com.shangyong.backend.entity.approval.CuCustomerCollectMessage" 
+			useGeneratedKeys="true" keyProperty="customerCollectMessageId">
+		 INSERT INTO cu_customer_collect_message
+ 		(customer_id,app_name,extend,create_time,modify_time)
+		 VALUES 
+ 		(#{customerId},#{appName},#{extend},#{createTime},#{modifyTime})
+	</insert>
+</mapper>

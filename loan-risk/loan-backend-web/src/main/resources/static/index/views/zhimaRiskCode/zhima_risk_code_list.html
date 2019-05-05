@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+<!-- 		<title>Table</title> -->
+		<link rel="stylesheet" href="../../plugins/layui/css/layui.css" media="all" />
+		<link rel="stylesheet" href="../../css/global.css" media="all">
+		<link rel="stylesheet" href="../../plugins/font-awesome/css/font-awesome.min.css">
+		<link rel="stylesheet" href="../../css/table.css" />
+		<link rel="stylesheet" href="../../css/lzh_login.css" media="all" />
+	</head>
+
+	<body>
+		<div class="admin-main"> 
+			<blockquote class="layui-elem-quote">
+			<form action="" class="layui-form" >  
+				<a href="javascript:;" class="layui-btn layui-btn-small" id="add">
+					<i class="layui-icon">&#xe608;</i> 添加
+				</a>
+
+				<!-- 查询条件 -->
+				<div class="layui-inline">
+			      <label class="layui-form-label">信息项：</label>
+			      <div class="layui-input-inline">
+			        <input name="info" lay-verify="info" autocomplete="off" placeholder="支持模糊查询" class="layui-input"  id="info" >
+			      </div>
+			    </div>
+			    
+			    <div class="layui-inline">
+			      <label class="layui-form-label">风险代码：</label>
+			      <div class="layui-input-inline">
+			        <input name="code" lay-verify="code" autocomplete="off" placeholder="支持模糊查询" class="layui-input"  id="code" >
+			      </div>
+			    </div>
+			    
+			     <div class="layui-inline">
+			      <label class="layui-form-label">风险类型：</label>
+			      <div class="layui-input-inline">
+			        	<select name="suggestType" lay-verify="suggestType"  id="suggestType" class="layui-input" lay-search="">
+						<option value="-1">请选择</option>
+						<option value="低风险">低风险</option>
+						<option value="中风险">中风险</option>
+						<option value="高风险">高风险</option>
+					</select>	
+			      </div>
+			    </div>
+			    
+			       <div class="layui-inline">
+			      <label class="layui-form-label">类型：</label>
+			      <div class="layui-input-inline">
+			        	<select name="type" lay-verify="type"  id="type" class="layui-input" lay-search="">
+						<option value="-1">请选择</option>
+						<option value="1">欺诈关注清单</option>
+						<option value="2">欺诈信息验证</option>
+					</select>	
+			      </div>
+			    </div>
+			    
+			    
+				<a href="javascript:;" class="layui-btn layui-btn-small" id="search">
+						<i class="layui-icon">&#xe615;</i> 搜索
+				</a>	
+				</form>	
+			</blockquote>
+			<fieldset class="layui-elem-field">
+				<legend>数据列表</legend>
+				<div class="layui-field-box layui-form">
+					<table class="layui-table admin-table">
+						<thead>
+							<tr>
+								<th style="width: 30px;">
+								<input type="checkbox" lay-filter="allselector" lay-skin="primary"></th>
+								<th>编号</th>
+								<th>信息项</th>
+								<th>风险代码</th>
+								<th>风险类型</th>
+								<th>中文说明</th>
+								<th>类型</th>
+								<th>操作</th>
+							</tr>
+						</thead>
+						<tbody id="content">
+						</tbody>
+					</table>
+					<label>共<font color='red' id="count_page_number"></font>条记录</label>
+					<div id="paged" class="page" style="display:inline-block;">
+					</div>
+				</div>
+			</fieldset>
+
+		</div>
+		<!--模板-->
+		<script type="text/html" id="tpl">
+			{{# layui.each(d.list, function(index, item){ 
+				var type = item.type;
+
+				if(type==1){
+					type='欺诈关注清单';
+				}else if(type==2){
+					type='欺诈信息验证';
+				}else{
+					type='';	
+				};
+			}}
+			<tr>
+				<td><input type="checkbox" lay-skin="primary"></td>
+				<td>{{ item.riskCodeId }}</td>
+				<td>{{ item.info }}</td>
+				<td>{{ item.code }}</td>
+				<td>{{ item.suggestType }}</td>
+				<td>{{ item.remark }}</td>
+				<td>{{ type }}</td>
+				<td>
+					<a href="javascript:;" data-id="{{ item.riskCodeId }}" data-opt="find" class="layui-btn layui-btn-normal layui-btn-mini">预览</a>
+					<a href="javascript:;" data-id="{{ item.riskCodeId }}" data-opt="edit" class="layui-btn layui-btn-mini">编辑</a>
+					<a href="javascript:;" data-id="{{ item.riskCodeId }}" data-opt="del" class="layui-btn layui-btn-danger layui-btn-mini">删除</a>
+				</td>
+			</tr>
+			{{# }); }}
+		</script>
+		
+		<!-- js -->
+		<script src="../../jqery/jquery.js"></script>
+		<script src="../../../commons/base.js"></script>
+		<script type="text/javascript" src="../../plugins/layui/layui.js"></script>
+		<script type="text/javascript" src="../../js/zhimaRiskCode/zhima_risk_code_list.js"></script>
+	</body>
+
+</html>

@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+<meta charset="UTF-8">
+<META HTTP-EQUIV="pragma" CONTENT="no-cache">
+<META HTTP-EQUIV="Cache-Control" CONTENT="no-cache, must-revalidate">
+<META HTTP-EQUIV="expires" CONTENT="0">
+<link rel="stylesheet" href="../../plugins/layui/css/layui.css"
+	media="all" />
+<link rel="stylesheet" href="../../css/global.css" media="all">
+<link rel="stylesheet"
+	href="../../plugins/font-awesome/css/font-awesome.min.css">
+<link rel="stylesheet" href="../../css/table.css" />
+<link rel="stylesheet" href="../../css/lzh_tongji_fenxi.css" media="all" />
+</head>
+
+<body>
+	<div class="admin-main">
+	  <blockquote class="layui-elem-quote">
+	    <form action="" class="layui-form" style="margin-top: 0px;">
+				<!-- 查询条件 -->
+			    <div class="layui-inline">
+			      <label class="layui-form-label">开始时间：</label>
+			      <div class="layui-input-inline">
+			        <input name="beginTime"  lay-verify="beginTime"  id="beginTime" autocomplete="off" class="layui-input" >
+			      </div>
+			     </div>
+			     
+			     <div class="layui-inline">
+			      <label class="layui-form-label">结束时间：</label>
+			      <div class="layui-input-inline">
+			        <input name="endTime"   lay-verify="endTime"  id="endTime" autocomplete="off" class="layui-input" >
+			      </div>
+			    </div>
+			   
+			      <div class="layui-inline">
+				  <label class="layui-form-label" style="width: 100px;">　模板名称 </label>
+			      <div class="layui-input-inline" id="tplContent" style="width:160px;">
+			      </div>
+			    </div>
+					<a href="javascript:;" class="layui-btn layui-btn-small" id="search">
+						<i class="layui-icon">&#xe615;</i> 搜索
+					</a>
+					
+					 <a href="javascript:;" class="layui-btn layui-btn-small" id="pie">
+			      	    <i class="layui-icon"></i> 饼状图形化
+			         </a>
+			         </form>
+			</blockquote>
+ 	
+	 
+			<fieldset class="layui-elem-field">
+				<legend>评分小类统计分析列表</legend>
+				<br>
+				<div class="layui-field-box layui-form">
+					<table class="layui-table admin-table"  style="word-break: keep-all;overflow:auto;">
+						<thead>
+							<tr>
+							    <th>模板名称</th>
+							    <th>评分大类名称</th>
+								<th>评分小类名称</th>
+								<th>评分小类编号</th>
+								<th>评分小类出现次数</th>
+								<th>操作</th>
+ 							</tr>
+						</thead>
+						<tbody id="content2">
+						</tbody>
+					</table>
+					<label>共<font color='red' id="count_page_number"></font>条记录</label>
+					<div id="paged" class="page" style="display:inline-block;">
+					</div>
+				</div>
+			</fieldset>
+		
+			</div>
+		
+
+ 
+		<!--模板-->
+		<script type="text/html" id="tpl2">
+ 			{{# layui.each(d.list, function(index, item){ }}
+			<tr>
+                <td>{{ item.tplName }}</td>
+                <td>{{ item.scoreName }}</td>
+				<td>{{ item.name }}</td>
+				<td>{{ item.scoreSmallCode }}</td>
+				<td>{{ item.count }}</td>
+				<td>
+					<a href="javascript:;" data-id="{{ item.scoreSmallId }}"   data-opt="find" class="layui-btn layui-btn-mini">命中客户清单</a>
+				</td>
+ 			</tr>
+            {{# }); }}
+		</script>
+
+	<!-- js -->
+	<script src="../../jqery/jquery.js"></script>
+	<script src="../../../commons/base.js"></script>
+	<script type="text/javascript" src="../../plugins/layui/layui.js"></script>
+	<script type="text/javascript" src="../../js/scoreDetail/scoreDetailSmallStatistics.js"></script>
+<!-- 	<script language="javascript" type="text/javascript" src="../../My97DatePicker/WdatePicker.js"></script> -->
+</body>
+
+</html>

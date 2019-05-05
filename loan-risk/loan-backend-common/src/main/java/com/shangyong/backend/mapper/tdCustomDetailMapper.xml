@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.shangyong.backend.dao.td.TdCustomDetailServiceDao">
+
+	<resultMap type="com.shangyong.backend.entity.td.TdCustomDetail" id="tdCustomDetailinfoMap">
+		<id property="tdCustomDetailId" column="td_custom_detail_id" javaType="java.lang.String"></id>
+		<result property="tdRiskItemsId" column="td_risk_items_id" javaType="java.lang.String"></result>
+		<result property="hitListDatas" column="hit_list_datas" javaType="java.lang.String"></result>
+		<result property="highRiskAreas" column="high_risk_areas" javaType="java.lang.String"></result>
+	</resultMap>
+
+	<!-- 通用查询结果列-->
+	<sql id="Base_Column_List">
+	td_custom_detail_id,	td_risk_items_id,	hit_list_datas,	high_risk_areas
+	</sql>
+
+	<!-- 查询（根据主键ID查询） -->
+	<select id="getEntityById" resultMap="tdCustomDetailinfoMap" parameterType="java.lang.String">
+		 SELECT
+		 <include refid="Base_Column_List" />
+		 FROM td_custom_detail
+		 WHERE td_custom_detail_id = #{tdCustomDetailId}
+	</select>
+	
+	<!-- 查询（根据tdRiskItemsId查询） -->
+	<select id="queryById" resultMap="tdCustomDetailinfoMap" parameterType="java.lang.String">
+		 SELECT
+		 <include refid="Base_Column_List" />
+		 FROM td_custom_detail
+		 WHERE td_risk_items_id = #{tdRiskItemsId}
+	</select>
+
+	<!-- 查询（根据主键ID查询） -->
+	<select id="getAll" resultMap="tdCustomDetailinfoMap" parameterType="java.lang.String">
+		 SELECT
+		 <include refid="Base_Column_List" />
+		 FROM td_custom_detail
+	</select>
+
+	<!--删除：根据主键ID删除-->
+	<delete id="deleteEntity" parameterType="java.lang.String">
+		 DELETE FROM td_custom_detail
+		 WHERE td_custom_detail_id = #{tdCustomDetailId}
+	</delete>
+
+	<!-- 添加 -->
+	<insert id="saveEntity" parameterType="com.shangyong.backend.entity.td.TdCustomDetail">
+		 INSERT INTO td_custom_detail
+ 		(td_custom_detail_id,td_risk_items_id,hit_list_datas,high_risk_areas) 
+		 VALUES 
+ 		(#{tdCustomDetailId},#{tdRiskItemsId},#{hitListDatas},#{highRiskAreas}) 
+	</insert>
+
+	<!-- 修 改-->
+	<update id="updateEntity" parameterType="com.shangyong.backend.entity.td.TdCustomDetail">
+		 UPDATE td_custom_detail
+ 		 <set> 
+			<if test="tdRiskItemsId != null">
+				 td_risk_items_id = #{tdRiskItemsId},
+			</if>
+			<if test="hitListDatas != null">
+				 hit_list_datas = #{hitListDatas},
+			</if>
+			<if test="highRiskAreas != null">
+				 high_risk_areas = #{highRiskAreas},
+			</if>
+
+ 		 </set>
+		 WHERE td_custom_detail_id = #{tdCustomDetailId}
+	</update>
+
+</mapper>

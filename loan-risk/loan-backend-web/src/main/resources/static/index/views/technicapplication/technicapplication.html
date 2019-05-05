@@ -1,0 +1,401 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title>增强版信用审核列表</title>
+		<link rel="stylesheet" href="../../plugins/layui/css/layui.css" media="all">
+		<link rel="stylesheet" href="../../css/global.css" media="all">
+		<link rel="stylesheet" href="../../plugins/font-awesome/css/font-awesome.min.css">
+		<link rel="stylesheet" href="../../css/table.css" />
+		<link rel="stylesheet" href="../../css/lzh_xy_shenghe.css" media="all" />
+		<!-- js -->
+		<script src="../../jqery/jquery.js"></script>
+		<script src="../../../commons/base.js"></script>
+		<script type="text/javascript" src="../../plugins/layui/layui.js"></script>
+		<script type="text/javascript" src="../../js/technicapplication/technicapplication.js"></script>
+	</head>
+
+	<body>
+		<div class="admin-main">
+
+			<blockquote class="layui-elem-quote">
+				<!-- 查询条件 -->
+				<form action="" class="layui-form" >
+			    <div class="layui-inline">
+			      <label class="layui-form-label">APP申请编号 </label>
+			      <div class="layui-input-inline">
+			        <input name="appSerialNumber"  lay-verify="appSerialNumber" id="appSerialNumber" autocomplete="off" class="layui-input" >
+			      </div>
+			    </div>
+			    <div class="layui-inline">
+			      <label class="layui-form-label">用户姓名</label>
+			      <div class="layui-input-inline">
+			        <input name="name"  lay-verify="name" id="name" autocomplete="off" class="layui-input" >
+			      </div>
+			    </div>
+			    <div class="layui-inline">
+			      <label class="layui-form-label">用户手机号</label>
+			      <div class="layui-input-inline">
+			        <input name="phoneNum"  lay-verify="phoneNum" id="phoneNum" autocomplete="off" class="layui-input" >
+			      </div>
+			    </div>
+			    <div class="layui-inline">
+			      <label class="layui-form-label">用户证件号</label>
+			      <div class="layui-input-inline">
+			        <input name="certCode"  lay-verify="certCode" id="certCode" autocomplete="off" class="layui-input" >
+			      </div>
+			    </div>　　
+
+				<br><br>
+				<div class="layui-inline">
+			      <label class="layui-form-label">申请单编号</label>
+			      <div class="layui-input-inline">
+			        <input name="applicationId"  lay-verify="applicationId" id="applicationId" autocomplete="off" class="layui-input" >
+			      </div>
+			    </div>
+ 
+				<div class="layui-inline">
+			      <label class="layui-form-label">申请来源</label>
+			      <div class="layui-input-inline">
+				      <select name="source" id = "source" class="layui-input" lay-search="">
+				        <option value="00">全部</option>
+				        <option value="0">Android</option>
+				        <option value="1">IOS</option>
+				      </select>
+			      </div>
+			    </div>
+			    <div class="layui-inline">
+				  <label class="layui-form-label">审批状态</label>
+			      <div class="layui-input-inline">
+				      <select name="auditingState" id = "auditingState" class="layui-input" lay-search="">
+				        <option value="00">全部</option>
+				        <option value="2">审批通过</option>
+				        <option value="3">审批未通过</option>
+				        <option value="1">待审核</option>
+				        <option value="4">待人工确认</option>
+				      </select>
+			      </div>
+			    </div>
+			    <div class="layui-inline">
+				  <label class="layui-form-label">审批步骤</label>
+			      <div class="layui-input-inline">
+				      <select name="isStep" id = "isStep" class="layui-input" lay-search="">
+				        <option value="00">全部</option>
+				      <option value="0">待处理</option>
+				        <option value="1">同盾设备信息</option>
+				        <option value="2">同盾反欺诈</option>
+				        <option value="3">极光黑名单</option>
+				        <option value="4">腾讯反欺诈</option>
+				        <option value="5">91征信查询（多头借贷）</option>
+				        <option value="6">91回调</option>
+				        <option value="7">上海资信</option>
+				        <option value="8">易极付黑名单</option>
+				        <option value="9">资信云报告</option>
+				        <option value="98">规则引擎模板分发</option>
+				        <option value="99">潘多拉拒绝名单</option>
+				        <option value="100">客户授信</option>
+				      </select>
+			      </div>
+			    </div> 
+			     <br></br>
+ 				<div class="layui-inline" >
+					<label class="layui-form-label">决策树列表</label>
+					<div class="layui-input-inline" id="decisionTreeId" style="width:160px;">
+					</div>
+				</div>
+			     <div class="layui-inline">
+				  <label class="layui-form-label">处理状态</label>
+			      <div class="layui-input-inline">
+				      <select name="errorDescription" id = "errorDescription" class="layui-input" lay-search="">
+				        <option value="0">全部</option>
+				        <option value="1">处理异常</option>
+				        <option value="2">非异常</option>
+				      </select>
+			      </div>
+			    </div>
+
+			    <div class="layui-inline">
+			      <label class="layui-form-label">失败次数(大于)</label>
+			      <div class="layui-input-inline">
+			        <input name="failureTimes"  lay-verify="failureTimes" id="failureTimes" autocomplete="off" class="layui-input" onkeyup="this.value=this.value.replace(/\D/g,'')"  >
+			      </div>
+			    </div> 
+
+			   <div class="layui-inline">
+			      <label class="layui-form-label">外部系统标识</label>
+			      <div class="layui-input-inline">
+				      <select name="isPushApp" id = "isPushApp" class="layui-input" lay-search="">
+				        <option value="00">全部</option>
+				        <option value="0">未推送App</option>
+				        <option value="1">已推送APP</option>
+				        <option value="2">已推送大数据</option>
+				        <option value="3">已接收大数据消息</option>
+				      </select>
+			      </div>
+			    </div>
+
+				<br></br>
+			    <div class="layui-inline">
+				  <label class="layui-form-label">app平台</label>
+			      <div class="layui-input-inline">
+				      <select name="appName" id = "appName" class="layui-input" lay-search="">
+				        <option value="00">全部</option>
+				        <option value="1">中鸿贷</option>
+				        <option value="2">无忧钱包</option>
+				        <!-- <option value="0">未知</option> -->
+				      </select>
+			      </div>
+			    </div>
+			     <div class="layui-inline">
+				  <label class="layui-form-label">客户标识</label>
+			      <div class="layui-input-inline">
+				      <select name="appLevel" id = "appLevel" class="layui-input" lay-search="">
+				        <option value="00">全部</option>
+				        <option value="0">新客户</option>
+				        <option value="1">老客户</option>
+				      </select>
+			      </div>
+			    </div>
+			     
+			      <div class="layui-inline">
+				  <label class="layui-form-label">是否同步大数据</label>
+			      <div class="layui-input-inline">
+				      <select name="isHbaseSyn" id = "isHbaseSyn" class="layui-input" lay-search="">
+				        <option value="00">全部</option>
+				        <option value="1">是</option>
+				        <option value="0">否</option>
+				      </select>
+			      </div>
+			    </div>
+
+			     <div class="layui-inline">
+				  <label class="layui-form-label">app下载渠道</label>
+				   <div class="layui-input-inline">
+			       <input name="appChannel"  lay-verify="appChannel" id="appChannel" autocomplete="off" class="layui-input"   >
+			       </div>
+			      </div>
+				<br><br>
+			    <div class="layui-inline">
+				  <label class="layui-form-label">是否为人工审核</label>
+			      <div class="layui-input-inline">
+				      <select name="auditMan" id = "auditMan" class="layui-input" lay-search="">
+				        <option value="00">全部</option>
+				        <option value="1">是</option>
+				        <option value="2">否</option>
+				      </select>
+			      </div>
+			    </div>
+ 				<div class="layui-inline">
+				  <label class="layui-form-label">命中规则</label>
+				   <div class="layui-input-inline">
+			       <input name="banCode"  lay-verify="banCode" id="banCode" autocomplete="off" class="layui-input" onkeyup="this.value=this.value.replace(/\D/g,'')"  >
+			       </div>
+			      </div>
+			    <div class="layui-inline">
+			      <label class="layui-form-label">申请时间</label>
+			      <div class="layui-input-inline">
+			      <input name="startTime"  lay-verify="startTime" id="startTime" autocomplete="off" class="layui-input"  style="width: 180px; display:inline;">
+			      &nbsp;至&nbsp;
+			      <input name="endTime"  lay-verify="endTime" id="endTime" autocomplete="off" class="layui-input"  style="width: 180px; display:inline;">
+			      </div>
+			    </div>
+			     　　　　　<a href="javascript:;" class="layui-btn layui-btn-small" id="search" onclick="sel()">
+						<i class="layui-icon">&#xe615;</i> 搜索
+				    </a>
+				    <div class="layui-inline">
+				    <label class="layui-form-label"> 总人数：</label>
+				    <label name="personCount" id="personCount"  class="layui-form-label" style="width: auto;"></label>
+				</div>
+			</form>
+			</blockquote>
+			<fieldset class="layui-elem-field">
+				<legend>借款申请列表</legend>
+				<br>
+				<a href="#" class="layui-btn layui-btn-small" id="getuserInfo" style="margin-left: 18px" ><i class="layui-icon" aria-hidden="true" >&#xe63c;</i>用户信息详情 </a>
+				<a href="#" class="layui-btn layui-btn-small" id="getDetailInfo" style="margin-left: 18px" ><i class="layui-icon" aria-hidden="true" >&#xe63c;</i>申请单信息 </a>
+				<a href="#" class="layui-btn layui-btn-small" id="xinyong" style="margin-left: 18px" ><i class="layui-icon" aria-hidden="true" >&#xe63c;</i>客户借款申请扩展明細</a>
+				<a href="#" class="layui-btn layui-btn-small" id="getSelected" onclick="getSelected()" style="margin-left: 18px" > <i class="fa fa-shopping-cart" aria-hidden="true" ></i>失败次数批量清零 </a>
+				<!-- <a href="javascript:;" id="batchSend" class="layui-btn layui-btn-small" style="margin-left: 18px">申请单消息补发</a>
+				<a href="javascript:;" id="send" class="layui-btn layui-btn-small" style="margin-left: 18px">根据条件消息批量补发</a>
+				<a href="javascript:;" id="consumption" class="layui-btn layui-btn-small" style="margin-left: 18px">根据条件重新消费</a>
+				<a href="javascript:;" id="pushApp" class="layui-btn layui-btn-small" style="margin-left: 18px">根据条件手工推送APP</a>  -->
+				<br>
+				<div class="layui-field-box layui-form">
+					<table class="layui-table admin-table"  style="word-break: keep-all;overflow:auto;">
+						<thead>
+							<tr>
+							<th style="width: 30px;"><input type="checkbox" lay-filter="allselector" lay-skin="primary" id="check"></th>
+								<th>失败次数</th>
+								<th>app平台</th>
+								<th>申请来源</th>
+								<th>app下载渠道</th>
+								<th>客户标识</th>
+								<th>申请编号</th>
+								<th>APP申请编号</th>
+								<th>用户姓名</th>
+								<th>用户手机号</th>
+								<th>用户证件号</th>
+								<th>外部系统交互标识</th>
+								<th>是否为人工审核</th>
+								<th>审批状态</th>
+								<th>提交审核时间</th>
+								<th>审核完成时间</th>
+								<th>授信额度</th>
+								<th>模板分发时间 </th>
+								<th>最新修改时间 </th>
+								<th style="min-width: 300px;">审批结论</th>
+								<th>审批步骤</th>
+								<th>步骤处理异常描述</th>
+								<th>操作</th>
+							</tr>
+						</thead>
+						<tbody id="content">
+						</tbody>
+					</table>
+					<label>共<font color='red' id="count_page_number"></font>条记录</label>
+					<div id="paged" class="page" style="display:inline-block;">
+					</div>
+				</div>
+			</fieldset>
+		</div>
+
+		<!--模板-->
+		<script type="text/html" id="tpl">
+			{{# layui.each(d.list, function(index, item){ 
+		var time = item.failureTimes ;
+		var distributionTime = item.distributionTime;
+		var isSyn = item.isHbaseSyn;
+			if(isSyn == '0' ){
+				isSyn ='否';
+				};
+				if(isSyn == '1' ){
+				isSyn ='是';
+				};
+
+				var isAuditMan = item.auditMan;
+
+				if(isAuditMan != '' && isAuditMan != null){
+					isAuditMan = '是';
+				}else {
+					isAuditMan ='否';
+				};
+
+			var level = item.appLevel;
+				if(level == '0' ){
+				level ='新客户';
+				};
+				if(level == '1' ){
+				level ='老客户';
+				};
+	}}
+			<tr>
+			<td><input type="checkbox" lay-skin="primary"  data-id="{{ item.applicationId }}" data-cid="{{ item.customerId }}" data-pid="{{ item.platformId }}" data-name="{{ item.name }}" ></td>
+				{{# if(item.failureTimes != null){ }} 
+				<td>{{ item.failureTimes }}</td>
+				{{# } else { }}
+				<td></td>
+				{{# } }}
+				{{# if(item.appName == 1){ }}
+				<td>中鸿贷</td>
+				{{# } else if(item.appName == 2){ }}
+				<td>无忧钱包</td>
+				{{# } else if(item.appName == 0){ }}
+				<td>未知</td>
+				{{# } else { }}
+				<td></td>
+				{{# } }}
+				{{# if(item.source == 1){ }}
+				<td>IOS</td>
+				{{# } else if(item.source == 0){ }}
+				<td>Android</td>
+				{{# } else { }}
+				<td></td>
+				{{# } }}
+				<td>{{ item.appChannel }}</td>
+				<td>{{ level }}</td>
+				<td>{{ item.applicationId }}</td>
+				<td>{{ item.appSerialNumber }}</td>
+				<td>{{ item.name }}</td>
+				<td>{{ item.phoneNum }}</td>
+				<td>{{ item.certCode }}</td>
+				{{# if(item.isPushApp == 0){ }}
+				<td style="white-space: nowrap;">未推送App</td>
+				{{# } else if(item.isPushApp == 1){ }}
+				<td>已推送APP</td>
+				{{# } else if(item.isPushApp == 2){ }}
+				<td style="white-space: nowrap;">已推送大数据</td>
+				{{# }
+ 				else if(item.isPushApp == 3){ }}
+				<td style="white-space: nowrap;">已接收大数据消息</td>
+				{{# } else { }}
+				<td></td>
+				{{# } }}
+				<td>{{ isAuditMan }}</td>
+				{{# if(item.auditingState == 1){ }}
+				<td>待审批</td>
+				{{# } else if(item.auditingState == 2){ }}
+				<td>审批通过</td>
+				{{# } else if(item.auditingState == 3){ }}
+				<td>审批未通过</td>
+				{{# } else if(item.auditingState == 4){ }}
+				<td>待人工确认</td>
+				{{# } else if(item.auditingState == 5){ }}
+				<td>信息重新采集</td>
+				{{# } else { }}
+				<td></td>
+				{{# } }}
+				<td style="white-space: nowrap;">{{ item.createTime.substring(0,19) }}</td>
+				<!-- <td>{{ item.productQuota }}</td>
+				<td>{{ item.days }}</td> -->
+				<td style="white-space: nowrap;">{{ item.auditingTime.substring(0,19) }}</td>
+				<td>{{ item.creditMoney }}</td>
+				<td style="white-space: nowrap;">{{distributionTime.substring(0,19) }}</td>
+				<td style="white-space: nowrap;">{{item.modifyTime.substring(0,19) }}</td>
+				{{# if(item.auditResult != null){ }}
+				<td>{{ item.auditResult }}</td>
+				{{# } else { }}
+				<td></td>
+				{{# } }}
+				{{# if(item.isStep == 0){ }}
+				<td>待处理</td>
+				{{#} else if(item.isStep == 1){ }}
+				<td>同盾设备信息</td>
+				{{# } else if(item.isStep == 2){ }}
+				<td>同盾反欺诈</td>
+				{{# } else if(item.isStep == 3){ }}
+				<td>极光黑名单</td>
+				{{# } else if(item.isStep == 4){ }}
+				<td>腾讯反欺诈</td>
+				{{# } else if(item.isStep == 5){ }}
+				<td>91征信查询（多头借贷）</td>
+				{{# } else if(item.isStep == 6){ }}
+				<td>91回调</td>
+				{{# } else if(item.isStep == 7){ }}
+				<td>上海资信</td>
+				{{# } else if(item.isStep == 8){ }}
+				<td>易极付黑名单</td>
+				{{# } else if(item.isStep == 9){ }}
+				<td>资信云报告</td>
+				{{# } else if(item.isStep == 98){ }}
+				<td>规则引擎模板分发</td>
+				{{# } else if(item.isStep == 99){ }}
+				<td>潘多拉拒绝名单</td>
+				{{# } else if(item.isStep == 100){ }}
+				<td>客户授信</td>
+				{{# } else { }}
+				<td></td>
+				{{# } }}
+				{{# if(item.errorDescription != null){ }}
+				<td style="white-space: nowrap;">{{ item.errorDescription }}</td>
+				{{# } else { }}
+				<td></td>
+				{{# } }}
+				<td style="white-space: nowrap;">  
+					<a href="javascript:;" data-id="{{ item.applicationId }}" data-opt="sendQuery" class="layui-btn layui-btn-mini">查询91数据报告</a>
+				</td>
+			</tr>
+			{{# }); }}
+		</script>
+	</body>
+</html>

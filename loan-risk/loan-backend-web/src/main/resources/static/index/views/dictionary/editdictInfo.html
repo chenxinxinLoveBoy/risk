@@ -1,0 +1,46 @@
+﻿<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<link rel="stylesheet" href="../../plugins/layui/css/layui.css" media="all" />
+		<link rel="stylesheet" href="../../css/global.css" media="all">
+		<link rel="stylesheet" href="../../plugins/font-awesome/css/font-awesome.min.css">
+		<link rel="stylesheet" href="../../css/table.css" />
+		<!-- js -->
+		
+		<script src="../../jqery/jquery.js"></script>
+		<script src="../../../commons/base.js"></script>
+		<script type="text/javascript" src="../../plugins/layui/layui.js"></script>
+		<script type="text/javascript" src="../../js/dictionary/editdictInfo.js"></script>
+	</head>
+
+	<body>
+		<div style="margin: 15px;">
+	 
+		<div class="layui-form-item">
+			<label class="layui-form-label">字典编号</label>
+			<div class="layui-input-block"> 
+				<input id="dicBigCode" type="text" name="dicBigCode"   class="layui-input" >
+			</div>
+		</div>
+		<div class="layui-form-item">
+			<label class="layui-form-label">字典名称</label>
+			<div class="layui-input-block"> 
+				<input id="dicBigValue" type="text" name="dicBigValue"   class="layui-input" >
+			</div>
+		</div> 
+		 <div class="layui-form-item">
+			<label class="layui-form-label">字典状态</label> 
+			<select name="dicBigStaues" id="dicBigStaues">
+			<option value=" "> </option>
+			<option value="1">正常</option>
+			<option value="2">停用</option> 
+			</select>
+			</div>
+		</div>
+		
+  		
+		<input type="button" class="layui-btn" value="保存" onclick="save()" id="save_bt" style="margin-top: 30px;margin-left: 248px;" />
+		<button class="layui-btn layui-btn-normal" id="closeIframe" onclick="closeIfrname()" style="margin-left: 70px;margin-top: 29px;" >取消</button>
+</body>
+</html>

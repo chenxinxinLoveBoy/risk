@@ -1,0 +1,181 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.shangyong.backend.dao.CuPlatformCustomerDao">
+
+	<resultMap type="com.shangyong.backend.entity.CuPlatformCustomerWeb" id="cuPlatformCustomerMap">
+		<id property="platformCustomerId" column="platform_customer_id" javaType="java.lang.String"></id>
+		<result property="customerId" column="customer_id" javaType="java.lang.String"></result>
+		<result property="appName" column="app_name" javaType="java.lang.Integer"></result>
+		<result property="name" column="name" javaType="java.lang.String"></result>
+		<result property="phoneNum" column="phone_num" javaType="java.lang.String"></result>
+		<result property="certType" column="cert_type" javaType="java.lang.String"></result>
+		<result property="expirationDate" column="expiration_date" javaType="java.lang.String"></result>
+		<result property="issueInstitution" column="issue_institution" javaType="java.lang.String"></result>
+		<result property="certCode" column="cert_code" javaType="java.lang.String"></result>
+		<result property="gender" column="gender" javaType="java.lang.String"></result>
+		<result property="email" column="email" javaType="java.lang.String"></result>
+		<result property="age" column="age" javaType="java.lang.Integer"></result>
+		<result property="educationId" column="education_id" javaType="java.lang.String"></result>
+		<result property="bankCard" column="bank_card" javaType="java.lang.String"></result>
+		<result property="ifMarriage" column="if_marriage" javaType="java.lang.String"></result>
+		<result property="homeAddress" column="home_address" javaType="java.lang.String"></result>
+		<result property="registeredAddress" column="registered_address" javaType="java.lang.String"></result>
+		<result property="contactAddress" column="contact_address" javaType="java.lang.String"></result>
+		<result property="provinceName" column="province_name" javaType="java.lang.String"></result>
+		<result property="liveTime" column="live_time" javaType="java.lang.String"></result>
+		<result property="bankName" column="bank_name" javaType="java.lang.String"></result>
+		<result property="nation" column="nation" javaType="java.lang.String"></result>
+		<result property="birth" column="birth" javaType="java.lang.String"></result>
+		<result property="remark" column="remark" javaType="java.lang.String"></result>
+		<result property="registerTime" column="register_time" javaType="java.lang.String"></result>
+		<result property="createTime" column="create_time" javaType="java.lang.String"></result>
+		<result property="createMan" column="create_man" javaType="java.lang.String"></result>
+		<result property="modifyTime" column="modify_time" javaType="java.lang.String"></result>
+		<result property="modifyMan" column="modify_man" javaType="java.lang.String"></result>
+	</resultMap>
+
+	<!-- 通用查询结果列-->
+	<sql id="Base_Column_List">
+platform_customer_id,	customer_id,	app_name,	name,	phone_num,	cert_type,	expiration_date,	issue_institution,	cert_code,	gender,	email,	age,	education_id,	bank_card,	if_marriage,	home_address,	registered_address,	contact_address,	province_name,	live_time,	bank_name,	nation,	birth,	remark,	register_time,	create_time,	create_man,	modify_time,	modify_man
+	</sql>
+
+	<!-- 查询（根据主键ID查询） -->
+	<select id="getEntityById" resultMap="cuPlatformCustomerMap" parameterType="java.lang.String">
+		 SELECT
+		 <include refid="Base_Column_List" />
+		 FROM cu_platform_customer
+		 WHERE platform_customer_id = #{platformCustomerId}
+	</select>
+	
+	<!-- 查询（根据主键ID查询） -->
+	<select id="querybyId" resultMap="cuPlatformCustomerMap" parameterType="java.lang.String">
+		 SELECT
+		 <include refid="Base_Column_List" />
+		 FROM cu_platform_customer
+		 WHERE customer_id = #{customerId}
+	</select>
+	
+	<!-- 查询（根据主键ID查询） -->
+	<select id="findAll" resultMap="cuPlatformCustomerMap" parameterType="java.lang.String">
+		 SELECT
+		 <include refid="Base_Column_List" />
+		 FROM cu_platform_customer
+		 WHERE platform_customer_id = #{platformCustomerId}
+	</select>
+
+	<!--删除：根据主键ID删除-->
+	<delete id="deleteEntity" parameterType="java.lang.String">
+		 DELETE FROM cu_platform_customer
+		 WHERE platform_customer_id = #{platformCustomerId}
+	</delete>
+
+	<!-- 添加 -->
+	<insert id="saveEntity" parameterType="com.shangyong.backend.entity.CuPlatformCustomer">
+		 INSERT INTO cu_platform_customer
+ 		(platform_customer_id,customer_id,app_name,name,phone_num,cert_type,expiration_date,issue_institution,cert_code,gender,email,age,education_id,bank_card,if_marriage,home_address,registered_address,contact_address,province_name,live_time,bank_name,nation,birth,remark,register_time,create_time,create_man,modify_time,modify_man) 
+		 VALUES 
+ 		(#{platformCustomerId},#{customerId},#{appName},#{name},#{phoneNum},#{certType},#{expirationDate},#{issueInstitution},#{certCode},#{gender},#{email},#{age},#{educationId},#{bankCard},#{ifMarriage},#{homeAddress},#{registeredAddress},#{contactAddress},#{provinceName},#{liveTime},#{bankName},#{nation},#{birth},#{remark},#{registerTime},#{createTime},#{createMan},#{modifyTime},#{modifyMan}) 
+	</insert>
+
+	<!-- 修 改-->
+	<update id="updateEntity" parameterType="com.shangyong.backend.entity.CuPlatformCustomer">
+		 UPDATE cu_platform_customer
+ 		 <set> 
+			<if test="customerId != null">
+				 customer_id = #{customerId},
+			</if>
+			<if test="appName != null">
+				 app_name = #{appName},
+			</if>
+			<if test="name != null">
+				 name = #{name},
+			</if>
+			<if test="phoneNum != null">
+				 phone_num = #{phoneNum},
+			</if>
+			<if test="certType != null">
+				 cert_type = #{certType},
+			</if>
+			<if test="expirationDate != null">
+				 expiration_date = #{expirationDate},
+			</if>
+			<if test="issueInstitution != null">
+				 issue_institution = #{issueInstitution},
+			</if>
+			<if test="certCode != null">
+				 cert_code = #{certCode},
+			</if>
+			<if test="gender != null">
+				 gender = #{gender},
+			</if>
+			<if test="email != null">
+				 email = #{email},
+			</if>
+			<if test="age != null">
+				 age = #{age},
+			</if>
+			<if test="educationId != null">
+				 education_id = #{educationId},
+			</if>
+			<if test="bankCard != null">
+				 bank_card = #{bankCard},
+			</if>
+			<if test="ifMarriage != null">
+				 if_marriage = #{ifMarriage},
+			</if>
+			<if test="homeAddress != null">
+				 home_address = #{homeAddress},
+			</if>
+			<if test="registeredAddress != null">
+				 registered_address = #{registeredAddress},
+			</if>
+			<if test="contactAddress != null">
+				 contact_address = #{contactAddress},
+			</if>
+			<if test="provinceName != null">
+				 province_name = #{provinceName},
+			</if>
+			<if test="liveTime != null">
+				 live_time = #{liveTime},
+			</if>
+			<if test="bankName != null">
+				 bank_name = #{bankName},
+			</if>
+			<if test="nation != null">
+				 nation = #{nation},
+			</if>
+			<if test="birth != null">
+				 birth = #{birth},
+			</if>
+			<if test="remark != null">
+				 remark = #{remark},
+			</if>
+			<if test="registerTime != null">
+				 register_time = #{registerTime},
+			</if>
+			<if test="createTime != null">
+				 create_time = #{createTime},
+			</if>
+			<if test="createMan != null">
+				 create_man = #{createMan},
+			</if>
+			<if test="modifyTime != null">
+				 modify_time = #{modifyTime},
+			</if>
+			<if test="modifyMan != null">
+				 modify_man = #{modifyMan},
+			</if>
+
+ 		 </set>
+		 WHERE platform_customer_id = #{platformCustomerId}
+	</update>
+
+	<!--通过客户编号查询平台用户编号） -->
+	<select id="findObjByCustomerId" resultMap="cuPlatformCustomerMap" parameterType="com.shangyong.backend.entity.CuPlatformCustomerWeb">
+		 SELECT
+		 <include refid="Base_Column_List" />
+		 FROM cu_platform_customer
+		 WHERE customer_id = #{customerId} limit 1
+	</select>
+</mapper>

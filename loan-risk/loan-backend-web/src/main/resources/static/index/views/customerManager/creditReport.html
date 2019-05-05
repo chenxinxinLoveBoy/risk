@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html> 
+<head>
+<meta charset="UTF-8">
+<title>个人信用报告信息</title>
+<link rel="stylesheet" href="../../plugins/layui/css/layui.css"
+	media="all" />
+<link rel="stylesheet" href="../../css/global.css" media="all">
+<link rel="stylesheet"
+	href="../../plugins/font-awesome/css/font-awesome.min.css"> 
+	<script src="../../jqery/jquery.js"></script>
+	<script src="../../../commons/base.js"></script>
+	<script type="text/javascript" src="../../plugins/layui/layui.js"></script>
+	<script type="text/javascript" src="../../js/customerManager/creditReport.js"></script>
+</head>
+<body> 
+	<div class="admin-main" id="ges"> 
+			<fieldset class="layui-elem-field">
+				<legend>征信基本信息</legend>
+				<table class="layui-table"> 
+					<tbody id="base_info">
+					    <tr>
+							<td style="width: 207px" >报告编号  </td>
+							<td ><font id="report_id"></font></td>
+							<td style="width: 207px">查询时间</td>
+							<td style="white-space: nowrap;" ><font id="query_time"></font></td>
+							<td style="width: 207px">报告时间</td> 
+							<td style="white-space: nowrap;" ><font id="report_time"></font></td>
+						</tr> 
+						<tr>
+							<td style="width: 207px">姓名  </td>
+							<td ><font id="name"></font></td>
+							<td style="width: 207px">证件类型</td>
+							<td ><font id="credential_type"></font></td>
+							<td style="width: 207px">证件号码</td> 
+							<td ><font id="credential_id"></font></td>
+						</tr> 
+						<tr>
+							<td style="width: 207px">婚姻状态  </td>
+							<td colspan="5" ><font id="marital_status"></font></td> 
+						</tr> 
+					</tbody>
+				</table>
+			<div class="layui-field-box layui-form">
+			<legend >信用卡详情</legend>
+				<table class="layui-table"> 
+					<tbody id="credit_card_info">
+					    <tr>
+							<td style="width: 340px">发放日期</td>
+							<td style="width: 340px">银行</td>
+							<td style="width: 340px">卡类型</td>
+							<td style="width: 340px">账户币种</td>
+							<td style="width: 340px">账户状态</td>
+							<td style="width: 340px">销户日期</td> 
+							<td style="width: 340px">截止日期</td>
+							<td style="width: 340px">信用额度</td> 
+							<td style="width: 340px">已用额度</td> 
+							<td style="width: 340px">逾期金额</td> 
+							<td style="width: 340px">逾期状态</td>
+							<td style="width: 340px">逾期月份</td> 
+							<td style="width: 340px">逾期超过90天月份</td> 
+						</tr> 
+					</tbody>
+				</table>
+			<legend >购房贷款详情</legend>
+				<table class="layui-table"> 
+					<tbody id="house_loan_info">
+					    <tr>
+							<td style="width: 340px">发放日期</td>
+							<td style="width: 340px">银行</td>
+							<td style="width: 340px">贷款总额</td>
+							<td style="width: 340px">贷款类型</td>
+							<td style="width: 340px">贷款币种</td>
+							<td style="width: 340px">贷款状态</td> 
+							<td style="width: 340px">到期日期或结清日期</td>
+							<td style="width: 340px">截止日期</td> 
+							<td style="width: 340px">贷款余额</td> 
+							<td style="width: 340px">逾期金额</td>
+							<td style="width: 340px">逾期状态</td>
+							<td style="width: 340px">逾期月份</td> 	
+							<td style="width: 340px">逾期超过90天月份</td>
+						</tr> 
+					</tbody>
+				</table>
+			 	<legend >其他贷款详情</legend>
+				<table class="layui-table"> 
+					<tbody id="other_loan_info">
+					    <tr>
+							<td style="width: 340px">发放日期</td>
+							<td style="width: 340px">银行</td>
+							<td style="width: 340px">贷款总额</td>
+							<td style="width: 340px">贷款类型</td>
+							<td style="width: 340px">贷款币种</td>
+							<td style="width: 340px">贷款状态</td> 
+							<td style="width: 340px">到期日期或结清日期</td>
+							<td style="width: 340px">截止日期</td> 
+							<td style="width: 340px">贷款余额</td> 
+							<td style="width: 340px">逾期金额</td>
+							<td style="width: 340px">逾期状态</td>
+							<td style="width: 340px">逾期月份</td> 	
+							<td style="width: 340px">逾期超过90天月份</td>
+						</tr> 
+					</tbody>
+				</table>
+				
+				<legend >资产处置详情</legend>
+				<table class="layui-table"> 
+					<tbody id="assets_disposal_info">
+					    <tr>
+							<td style="width: 340px">处置日期</td>
+							<td style="width: 340px">公司</td>
+							<td style="width: 340px">金额</td>
+							<td style="width: 340px">最近一次还款日期</td>
+							<td style="width: 340px">余额</td> 
+						</tr> 
+					</tbody>
+				</table>
+			 <legend >保证人代偿详情</legend>
+				<table class="layui-table"> 
+					<tbody id="guarantor_compensation_info">
+					    <tr>
+							<td style="width: 340px">最近一次代偿日期</td>
+							<td style="width: 340px">公司</td>
+							<td style="width: 340px">累计代偿金额</td>
+							<td style="width: 340px">最近一次还款日期</td>
+							<td style="width: 340px">余额</td> 
+						</tr> 
+					</tbody>
+				</table>
+		 	 <legend >为他人担保详情</legend>
+				<table class="layui-table"> 
+					<tbody id="warrantor_info">
+					    <tr>
+							<td style="width: 340px">担保日期</td>
+							<td style="width: 340px">被担保人姓名</td>
+							<td style="width: 340px">被担保人证件类型</td>
+							<td style="width: 340px">被担保人证件号码</td>
+							<td style="width: 340px">银行</td> 
+							<td style="width: 340px">合同金额</td> 
+							<td style="width: 340px">担保金额</td>
+							<td style="width: 340px">截止日期</td>
+							<td style="width: 340px">担保贷款本金金额</td>
+						</tr> 
+					</tbody>
+				</table>
+		 	<legend >欠税详情</legend>
+				<table class="layui-table"> 
+					<tbody id="tax_unpaid_info">
+					    <tr>
+							<td style="width: 340px">主管税务机关</td>
+							<td style="width: 340px">欠税统计时间</td>
+							<td style="width: 340px">欠税总额</td>
+							<td style="width: 340px">纳税人识别号</td> 
+						</tr> 
+					</tbody>
+				</table>
+	 		<legend >民事判决详情</legend>
+				<table class="layui-table"> 
+					<tbody id="civil_judgement_info">
+					    <tr>
+							<td style="width: 340px">立案法院</td>
+							<td style="width: 340px">案号</td>
+							<td style="width: 340px">案由</td>
+							<td style="width: 340px">结案方式</td> 
+							<td style="width: 340px">立案时间</td> 
+							<td style="width: 340px">判决/调解结果</td> 
+							<td style="width: 340px">判决/调解生效时间</td>
+							<td style="width: 340px">诉讼标的</td> 
+							<td style="width: 340px">诉讼标的金额</td> 
+						</tr> 
+					</tbody>
+				</table>
+		 	<legend >强制执行详情</legend>
+				<table class="layui-table"> 
+					<tbody id="court_enforcement_info">
+					    <tr>
+							<td style="width: 340px">执行法院</td>
+							<td style="width: 340px">案号</td>
+							<td style="width: 340px">执行案由</td>
+							<td style="width: 340px">结案方式</td> 
+							<td style="width: 340px">立案时间</td> 
+							<td style="width: 340px">案件状态</td> 
+							<td style="width: 340px">申请执行标的</td>
+							<td style="width: 340px">申请执行标的金额</td> 
+							<td style="width: 340px">已执行标的</td> 
+							<td style="width: 340px">已执行标的金额</td> 
+							<td style="width: 340px">结案时间</td> 
+						</tr> 
+					</tbody>
+				</table>
+		 	<legend >行政处罚详情</legend>
+				<table class="layui-table"> 
+					<tbody id="admin_penalty_info">
+					    <tr>
+							<td style="width: 340px">处罚机构</td>
+							<td style="width: 340px">文书编号</td>
+							<td style="width: 340px">处罚内容</td>
+							<td style="width: 340px">处罚金额</td> 
+							<td style="width: 340px">处罚生效时间</td> 
+							<td style="width: 340px">处罚截止时间</td> 
+							<td style="width: 340px">是否行政复议</td>
+							<td style="width: 340px">行政复议结果</td> 
+						</tr> 
+					</tbody>
+				</table>
+				<legend >电信欠费详情</legend>
+				<table class="layui-table"> 
+					<tbody id="telecom_arrearage_info">
+					    <tr>
+							<td style="width: 340px">电信运营商</td>
+							<td style="width: 340px">业务类型</td>
+							<td style="width: 340px">业务开通时间</td>
+							<td style="width: 340px">记账年月</td> 
+							<td style="width: 340px">欠费金额</td>  
+						</tr> 
+					</tbody>
+				</table>	
+		 <legend >机构查询详情</legend>
+				<table class="layui-table"> 
+					<tbody id="institution_query_info">
+					    <tr>
+							<td style="width: 340px">编号</td>
+							<td style="width: 340px">查询日期</td>
+							<td style="width: 340px">查询操作员</td>
+							<td style="width: 340px">查询原因</td>  
+						</tr> 
+					</tbody>
+				</table>
+			 <legend >个人查询详情</legend>
+				<table class="layui-table"> 
+					<tbody id="individual_query_info">
+					    <tr>
+							<td style="width: 340px">编号</td>
+							<td style="width: 340px">查询日期</td>
+							<td style="width: 340px">查询操作员</td>
+							<td style="width: 340px">查询原因</td>  
+						</tr> 
+					</tbody>
+				</table>	
+			</div>
+		</fieldset>
+		<div class="admin-table-page">
+			<div id="paged" class="page"></div>
+		</div>
+	</div>
+</body>
+
+</html>

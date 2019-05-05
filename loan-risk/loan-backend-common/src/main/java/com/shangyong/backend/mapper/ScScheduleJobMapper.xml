@@ -1,0 +1,287 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.shangyong.backend.dao.ScScheduleJobDao">
+	<resultMap id="BaseResultMap" type="com.shangyong.backend.entity.ScScheduleJob">
+		<id column="job_id" property="jobId" javaType="java.lang.String" />
+		<result column="job_name" property="jobName" javaType="java.lang.String" />
+		<result column="job_group" property="jobGroup" javaType="java.lang.String" />
+		<result column="description" property="description" javaType="java.lang.String" />
+		<result column="artifact_id" property="artifactId" javaType="java.lang.String" />
+		<result column="bean_class" property="beanClass" javaType="java.lang.String" />
+		<result column="spring_id" property="springId" javaType="java.lang.String" />
+		<result column="method_name" property="methodName" javaType="java.lang.String" />
+		<result column="cron_expression" property="cronExpression" javaType="java.lang.String" />
+		<result column="is_concurrent" property="isConcurrent" javaType="java.lang.String" />
+		<result column="job_status" property="jobStatus" javaType="java.lang.String" />
+		<result column="create_time" property="createTime" javaType="java.lang.String" />
+		<result column="modify_time" property="modifyTime" javaType="java.lang.String" />
+	</resultMap>
+	
+	<sql id="Base_Column_List">
+		job_id, 
+		job_name, 
+		job_group,  
+		description, 
+		artifact_id,
+		bean_class, 
+		spring_id, 
+		method_name,
+		cron_expression,
+		is_concurrent, 
+		job_status,
+		create_time, 
+		modify_time
+	</sql>
+	
+	<!-- 公用查询条件 -->
+	<sql id="sql_propertitys">
+		<where>
+			<if test="jobName != null and jobName != ''">
+				job_name LIKE CONCAT('%', #{jobName}, '%')
+			</if>
+			<if test="jobGroup != null and jobGroup != '' ">
+				AND job_group LIKE CONCAT('%', #{jobGroup}, '%')
+			</if>
+			<if test="jobStatus != null and jobStatus != '' ">
+				AND job_status = #{jobStatus}
+			</if>
+			<if test="cronExpression != null and cronExpression!= ''">
+				AND cron_expression = #{cronExpression}
+			</if>
+			<if test="description != null and description!= ''">
+				AND description = #{description}
+			</if>
+			<if test="artifactId != null and artifactId != ''">
+				AND artifact_id LIKE CONCAT('%', #{artifactId}, '%')
+			</if>
+			<if test="beanClass != null and beanClass != '' ">
+				AND bean_class LIKE CONCAT('%', #{beanClass}, '%')
+			</if>
+			<if test="isConcurrent != null and isConcurrent != ''">
+				AND is_concurrent = #{isConcurrent}
+			</if>
+			<if test="springId != null and springId != ''">
+				AND spring_id LIKE CONCAT('%', #{springId}, '%')
+			</if>
+			<if test="methodName != null and methodName != ''">
+				AND method_name LIKE CONCAT('%', #{methodName}, '%')
+			</if>
+		</where>
+	</sql>
+	
+	
+	<!-- 插入任务信息 -->
+	<insert id="saveJob" parameterType="com.shangyong.backend.entity.ScScheduleJob">
+		insert into sc_schedule_job
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="jobId != null">
+				job_id,
+			</if>
+			<if test="createTime != null">
+				create_time,
+			</if>
+			<if test="modifyTime != null">
+				modify_time,
+			</if>
+			<if test="jobName != null">
+				job_name,
+			</if>
+			<if test="jobGroup != null">
+				job_group,
+			</if>
+			<if test="jobStatus != null">
+				job_status,
+			</if>
+			<if test="cronExpression != null">
+				cron_expression,
+			</if>
+			<if test="description != null">
+				description,
+			</if>
+			<if test="artifactId != null">
+				artifact_id,
+			</if>
+			<if test="beanClass != null">
+				bean_class,
+			</if>
+			<if test="isConcurrent != null">
+				is_concurrent,
+			</if>
+			<if test="springId != null">
+				spring_id,
+			</if>
+			<if test="methodName != null">
+				method_name,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="jobId != null">
+				#{jobId},
+			</if>
+			<if test="createTime != null">
+				#{createTime},
+			</if>
+			<if test="modifyTime != null">
+				#{modifyTime},
+			</if>
+			<if test="jobName != null">
+				#{jobName},
+			</if>
+			<if test="jobGroup != null">
+				#{jobGroup},
+			</if>
+			<if test="jobStatus != null">
+				#{jobStatus},
+			</if>
+			<if test="cronExpression != null">
+				#{cronExpression},
+			</if>
+			<if test="description != null">
+				#{description},
+			</if>
+			<if test="artifactId != null">
+				#{artifactId},
+			</if>
+			<if test="beanClass != null">
+				#{beanClass},
+			</if>
+			<if test="isConcurrent != null">
+				#{isConcurrent},
+			</if>
+			<if test="springId != null">
+				#{springId},
+			</if>
+			<if test="methodName != null">
+				#{methodName},
+			</if>
+		</trim>
+	</insert>
+	
+	<!-- 更新任务信息 -->
+	<update id="updateByJob" parameterType="com.shangyong.backend.entity.ScScheduleJob">
+		UPDATE
+			 sc_schedule_job
+		<set>
+			<if test="jobName != null">
+				job_name = #{jobName},
+			</if>
+			<if test="jobGroup != null">
+				job_group = #{jobGroup},
+			</if>
+			<if test="jobStatus != null">
+				job_status = #{jobStatus},
+			</if>
+			<if test="cronExpression != null">
+				cron_expression = #{cronExpression},
+			</if>
+			<if test="description != null">
+				description = #{description},
+			</if>
+			<if test="artifactId != null">
+				artifact_id = #{artifactId},
+			</if>
+			<if test="beanClass != null">
+				bean_class = #{beanClass},
+			</if>
+			<if test="isConcurrent != null">
+				is_concurrent = #{isConcurrent},
+			</if>
+			<if test="springId != null">
+				spring_id = #{springId},
+			</if>
+			<if test="methodName != null">
+				method_name = #{methodName},
+			</if>
+		</set>
+		WHERE
+			job_id = #{jobId}
+	</update>
+	
+	<!-- 根据任务编号删除任务 -->
+	<delete id="deleteByJobId" parameterType="java.lang.String">
+		DELETE FROM
+			sc_schedule_job
+		WHERE
+			job_id = #{jobId}
+	</delete>
+	
+	<!-- 根据任务编号查询任务详情 -->
+	<select id="getByJobId" resultMap="BaseResultMap" parameterType="java.lang.String">
+		SELECT
+			<include refid="Base_Column_List" />
+		FROM
+			sc_schedule_job
+		WHERE 
+			job_id = #{jobId}
+	</select>
+	
+
+	<!-- 根据条件查询任务信息列表 -->
+	<select id="listByJob" resultMap="BaseResultMap" parameterType="com.shangyong.backend.entity.ScScheduleJob">
+		SELECT 
+			<include refid="Base_Column_List" />
+		FROM  
+			sc_schedule_job
+		<where>
+			<if test="jobName != null">
+				job_name = #{jobName}
+			</if>
+			<if test="jobGroup != null">
+				AND job_group = #{jobGroup}
+			</if>
+			<if test="jobStatus != null">
+				AND job_status = #{jobStatus}
+			</if>
+			<if test="cronExpression != null">
+				AND cron_expression = #{cronExpression}
+			</if>
+			<if test="description != null">
+				AND description = #{description}
+			</if>
+			<if test="artifactId != null">
+				AND artifact_id = #{artifactId}
+			</if>
+			<if test="beanClass != null">
+				AND bean_class = #{beanClass}
+			</if>
+			<if test="isConcurrent != null">
+				AND is_concurrent = #{isConcurrent}
+			</if>
+			<if test="springId != null">
+				AND spring_id = #{springId}
+			</if>
+			<if test="methodName != null">
+				AND method_name = #{methodName}
+			</if>
+		</where>
+	</select>
+	
+	<!-- 根据条件查询任务信息列表 -->
+	<select id="listByPage" resultMap="BaseResultMap" parameterType="com.shangyong.backend.bo.ScScheduleJobBo">
+		SELECT 
+			<include refid="Base_Column_List" />
+		FROM  
+			sc_schedule_job
+		<include refid="sql_propertitys"></include>
+		order by modify_time desc
+		limit #{pageIndex}, #{pageSize}
+	</select>
+	
+	<!-- 根据条件查询任务信息列表 -->
+	<select id="listByPageCount" resultType="java.lang.Integer" parameterType="com.shangyong.backend.bo.ScScheduleJobBo">
+		SELECT 
+			count(job_id)
+		FROM  
+			sc_schedule_job
+	 	<include refid="sql_propertitys"></include>
+	</select>
+	
+	<!-- 获取所有的任务信息列表 -->
+	<select id="listAll" resultMap="BaseResultMap">
+		SELECT 
+			<include refid="Base_Column_List" />
+		FROM  
+			sc_schedule_job
+	</select>
+	
+</mapper>

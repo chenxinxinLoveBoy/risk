@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<HTML>
+<HEAD>
+	<TITLE>欺诈分树形图</TITLE>
+	<META HTTP-EQUIV="pragma" CONTENT="no-cache">
+	<META HTTP-EQUIV="Cache-Control" CONTENT="no-cache, must-revalidate">
+	<META HTTP-EQUIV="expires" CONTENT="0">
+	<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+	<!-- ztree   start-->
+	<link rel="stylesheet" href="../../zTree_v3/css/demo.css" type="text/css">
+	<link rel="stylesheet" href="../../zTree_v3/css/zTreeStyle/zTreeStyle.css" type="text/css">
+	<script type="text/javascript" src="../../zTree_v3/js/jquery-1.4.4.min.js"></script>
+	<script type="text/javascript" src="../../zTree_v3/js/jquery.ztree.core.js"></script>
+	<script type="text/javascript" src="../../zTree_v3/js/jquery.ztree.excheck.js"></script>
+	<!-- ztree   end-->
+	
+	
+	
+	<link rel="stylesheet" href="../../plugins/layui/css/layui.css" media="all" />
+	<link rel="stylesheet" href="../../css/global.css" media="all">
+	<link rel="stylesheet" href="../../plugins/font-awesome/css/font-awesome.min.css">
+	<link rel="stylesheet" href="../../css/table.css" />
+	<link rel="stylesheet" href="../../css/lzh_xy_gl.css" media="all" />
+	<!-- JS -->
+	<script type="text/javascript" src="../../plugins/layui/layui.js"></script>
+	<script src="../../../commons/base.js"></script>
+	<script type="text/javascript" src="../../js/scFraudRuleTree/scFraudRuleTree.js"></script>
+</HEAD>
+
+<BODY>
+<h1><font id="roleName" color="#FF0033"></font></h1>
+<!-- <h6>[ 文件路径: excheck/checkbox.html ]</h6> -->
+<div style="position:relative;">
+	<div class="zTreeDemoBackground left" style="width:200px;float:left;padding:0 200px 0 0">
+	   <font style="margin-left: 30px;">欺诈分树形图列表</font>
+		<ul id="treeDemo" class="ztree" style="height:700px;width:360px;margin-left: 30px;margin-top: -2px;"></ul>
+	</div>
+	
+	<div class="admin-main" style="width:800px;float:left;" id="getScFraudRuleBig">
+		<fieldset class="layui-elem-field">
+ 			<div class="layui-field-box layui-form">
+				<table class="layui-table admin-table"  style="word-break: keep-all;overflow:auto;">
+					<thead>
+						<tr>
+							<th>欺诈大类序号</th>
+							<th>欺诈项名称</th>
+							<th>欺诈项规则大类编号</th>
+							<th>征信机构类型</th>
+							<th>欺诈项规则明细</th>
+							<th>状态</th>
+							<th>权重</th>
+							<th>版本编号</th>
+							<th>创建人姓名</th>
+							<th>修改人姓名</th>
+							<th style="min-width: 150px;">创建时间</th>
+							<th style="min-width: 150px;">修改时间</th>
+ 							<th style="min-width: 150px;">备注</th>
+							<th>操作</th>
+						</tr>
+					</thead>
+					<tbody id="content">
+					</tbody>
+				</table>
+				<label>共<font color='red' id="count_page_number"></font>条记录</label>
+ 			</div>
+		</fieldset>
+	</div>
+	
+	
+	
+  <div class="admin-main" style="width:800px;float:left;" id="getScFraudRule">
+		<fieldset class="layui-elem-field">
+ 			<div class="layui-field-box layui-form">
+				<table class="layui-table admin-table"  style="word-break: keep-all;overflow:auto;">
+					<thead>
+						<tr>
+							<th>规则序号</th>
+							<th>欺诈项模板名称</th>
+							<th>欺诈项规则对应编号</th>
+							<th>欺诈大类序号</th>
+							<th style="min-width: 180px;">欺诈项规则名称</th>
+							<th>征信机构类型</th>
+							<th style="min-width: 260px;">欺诈项规则明细</th>
+							<th>欺诈项规则技术比对值</th>
+							<th>技术比对值类型</th>
+							<th>状态</th>
+							<th style="min-width: 260px;">技术校验规则</th>
+							<th>分数</th>
+							<th>权重</th>
+							<th>版本编号</th>
+							<th>创建人姓名</th>
+							<th>修改人姓名</th>
+							<th>创建时间</th>
+							<th>修改时间</th>
+ 							<th style="min-width: 300px;">备注</th>
+							<th id="operate">操作</th>
+ 						</tr>
+					</thead>
+					<tbody id="content1">
+					</tbody>
+				</table>
+				<label>共<font color='red' id="count_page_number1"></font>条记录</label>
+			</div>
+		</fieldset>
+	</div>
+	
+</div>
+
+
+	<!--模板-->
+	<script type="text/html" id="tpl">
+			{{# layui.each(d.list, function(index, item){ }}
+			<tr>
+				<td>{{ item.fraudRuleBigId }}</td>
+                <td><p style="white-space: normal!important;text-overflow: ellipsis;word-wrap: break-word;-webkit-line-clamp: 2;-webkit-box-orient: vertical;">{{ item.fraudRuleName }}</p></td>
+				<td>{{ item.fraudRuleBigCode }}</td>
+
+                {{# if(item.creditType == '01'){ }}
+				<td>同盾</td>
+				{{# } else  if(item.creditType == '02') { }}
+				<td>聚信立蜜蜂</td>
+                {{# } else  if(item.creditType == '03') { }}
+                <td>聚信立蜜罐</td>
+                {{# } else  if(item.creditType == '04') { }}
+                <td> 芝麻信用</td>
+                {{# } else  if(item.creditType == '05') { }}
+                <td> 91征信</td>
+                {{# } else  if(item.creditType == '06') { }}
+                <td> 宜信</td>
+                {{# } else  if(item.creditType == '07') { }}
+                <td> 中智诚</td>
+                {{# } else  { }}
+				<td> </td>
+				{{# } }}
+
+                <td><p style="white-space: normal!important;text-overflow: ellipsis;word-wrap: break-word;-webkit-line-clamp: 2;-webkit-box-orient: vertical;">{{ item.fraudRuleDetail}}</p></td>
+
+                {{# if(item.state == '01'){ }}
+				<td>生效</td>
+                {{# } else if(item.state == '02') { }}
+                <td>失效</td>
+				{{# } else  { }}
+				<td></td>
+				{{# } }}
+
+				<td>{{ item.percent }}</td>
+                <td>{{ item.version }}</td>
+				<td>{{ item.createName }}</td>
+                <td>{{ item.modifyName }}</td>
+ 				<td>{{ item.createTime.substring(0, 19) }}</td>
+                <td>{{ item.modifyTime.substring(0, 19) }}</td>
+				<td><p style="white-space: normal!important;text-overflow: ellipsis;word-wrap: break-word;-webkit-line-clamp: 2;-webkit-box-orient: vertical;">{{ item.remark }}</p></td>
+				<td style="white-space: nowrap;">
+					<a href="javascript:;" data-id="{{ item.fraudRuleBigId }}" data-code="{{ item.fraudRuleBigCode }}" data-opt="add" class="layui-btn layui-btn-mini">新增小类</a>
+                    <a href="javascript:;" data-id="{{ item.fraudRuleBigId }}" data-opt="get" class="layui-btn layui-btn-mini">查看小类</a>
+ 					<a href="javascript:;" data-id="{{ item.fraudRuleBigId }}" data-opt="edit" class="layui-btn layui-btn-mini">编辑</a>
+ 				</td>
+			</tr>
+			{{# }); }}
+		</script>
+		
+		
+		
+		
+		<!--模板-->
+	<script type="text/html" id="tpll">
+			 {{# layui.each(d.list, function(index, item){ }}
+			<tr>
+				 <td>{{ item.fraudRuleId }}</td>
+				<td>{{ item.fraudRuleTplName }}</td>
+                <td>{{ item.fraudRuleCode }}</td>
+ 				<td>{{ item.fraudRuleBigId }}</td>
+
+				<td><p style="white-space: normal!important;text-overflow: ellipsis;word-wrap: break-word;-webkit-line-clamp: 2;-webkit-box-orient: vertical;">{{ item.ruleName }}</p></td>
+
+                {{# if(item.creditType == '01'){ }}
+				<td>同盾</td>
+				{{# } else  if(item.creditType == '02') { }}
+				<td>聚信立蜜蜂</td>
+                {{# } else  if(item.creditType == '03') { }}
+                <td>聚信立蜜罐</td>
+                {{# } else  if(item.creditType == '04') { }}
+                <td> 芝麻信用</td>
+                {{# } else  if(item.creditType == '05') { }}
+                <td> 91征信</td>
+                {{# } else  if(item.creditType == '06') { }}
+                <td> 宜信</td>
+                {{# } else  if(item.creditType == '07') { }}
+                <td> 中智诚</td>
+                {{# } else  if(item.creditType == '08') { }}
+                <td> 潘多拉</td>
+                {{# } else  if(item.creditType == '09') { }}
+                <td> 拒绝名单</td>
+                {{# } else  if(item.creditType == '10') { }}
+                <td> 白骑士</td>
+                {{# } else  { }}
+				<td>&nbsp;&nbsp;</td>
+				{{# } }}
+
+                <td><p style="white-space: normal!important;text-overflow: ellipsis;word-wrap: break-word;-webkit-line-clamp: 2;-webkit-box-orient: vertical;">{{ item.ruleDetail}}</p></td>
+				<td><p style="white-space: normal!important;text-overflow: ellipsis;word-wrap: break-word;-webkit-line-clamp: 2;-webkit-box-orient: vertical;">{{ item.ruleComparisonValue }}</p></td>
+
+                {{# if(item.ruleComparisonType == '01'){ }}
+				<td>数值</td>
+				{{# } else  if(item.ruleComparisonType == '02') { }}
+				<td>字符</td>
+                {{# } else  if(item.ruleComparisonType == '03') { }}
+                <td>集合</td>
+                {{# } else  { }}
+				<td> &nbsp;&nbsp;</td>
+				{{# } }}
+
+                {{# if(item.state == '01'){ }}
+				<td>生效</td>
+                {{# } else if(item.state == '02') { }}
+                <td>失效</td>
+				{{# } else  { }}
+				<td>&nbsp;&nbsp;</td>
+				{{# } }}
+
+                {{# if(item.validateRule == '0101'){ }}
+				<td>0101-（数值）小于</td>
+				{{# } else  if(item.validateRule == '0102') { }}
+				<td>0102-（数值）小于等于</td>
+                {{# } else  if(item.validateRule == '0103') { }}
+                <td>0103-（数值）等于</td>
+                {{# } else  if(item.validateRule == '0104') { }}
+                <td>0104-（数值）大于</td>
+                {{# } else  if(item.validateRule == '0105') { }}
+                <td>0105-（数值）大于等于</td>
+                {{# } else  if(item.validateRule == '0106') { }}
+                <td>0106-（数值）大于开始值小于结束值</td>
+                {{# } else  if(item.validateRule == '0107') { }}
+                <td>0107-（数值）大于等于开始值小于等于结束值</td>
+                {{# } else  if(item.validateRule == '0108') { }}
+                <td>0108-（数值）大于等于开始值小于结束值</td>
+                {{# } else  if(item.validateRule == '0109') { }}
+                <td>0109-（数值）大于开始值小于等于结束值</td>
+                {{# } else  if(item.validateRule == '0201') { }}
+				<td>0201-（字符）数据一致</td>
+                {{# } else  if(item.validateRule == '0202') { }}
+                <td>0202-（字符）不为空且不为null</td>
+                {{# } else  if(item.validateRule == '0203') { }}
+                <td>0203-（字符）为空或为null</td>
+                {{# } else  if(item.validateRule == '0204') { }}
+                <td>0204-（字符）规则在结果中存在</td>
+                {{# } else  if(item.validateRule == '0205') { }}
+                <td>0205-（字符）规则在结果中不存在</td>
+                {{# } else  if(item.validateRule == '0206') { }}
+                <td>0206-（字符）数据不一致</td>
+                {{# } else  if(item.validateRule == '0301') { }}
+                <td>0301-（集合）条数大于</td>
+                {{# } else  if(item.validateRule == '0302') { }}
+                <td>0302-（集合）条数大于等于</td>
+                {{# } else  if(item.validateRule == '0302') { }}
+                <td>0303-（集合）条数小于</td>
+                {{# } else  if(item.validateRule == '0302') { }}
+                <td>0304-（集合）条数小于等于</td>
+                {{# } else  if(item.validateRule == '0302') { }}
+                <td>0305-（集合）条数等于</td>
+                {{# } else  { }}
+				<td>&nbsp;&nbsp; </td>
+				{{# } }}
+
+				<td>{{ item.score }}</td>
+				<td>{{ item.percent }}</td>
+
+                <td>{{ item.version }}</td>
+		        <td>{{ item.createName }}</td>
+                <td>{{ item.modifyName }}</td>
+ 				<td>{{ item.createTime.substring(0, 19) }}</td>
+                <td>{{ item.modifyTime.substring(0, 19) }}</td>
+				<td> <p style="white-space: normal!important;text-overflow: ellipsis;word-wrap: break-word;-webkit-line-clamp: 2;-webkit-box-orient: vertical;"> {{ item.remark }} </p></td>
+				<td  style="white-space: nowrap;">
+ 					<a href="javascript:;" data-id="{{ item.fraudRuleId }}" data-opt="edit" class="layui-btn layui-btn-mini">编辑</a>
+ 					<a href="javascript:;" data-id="{{ item.fraudRuleId }}" data-tplid="{{ item.fraudRuleTplId }}" data-state="{{ item.state }}" data-version="{{ item.version }}" data-opt="update" class="layui-btn layui-btn-mini">修改状态</a>
+  				</td>
+ 			</tr>
+			{{# }); }}
+		</script>
+</BODY>
+</HTML>

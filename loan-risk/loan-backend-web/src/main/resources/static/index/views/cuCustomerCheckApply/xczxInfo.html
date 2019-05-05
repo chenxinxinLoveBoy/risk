@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<link rel="stylesheet" href="../../plugins/layui/css/layui.css" media="all">
+		<link rel="stylesheet" href="../../css/global.css" media="all">
+		<link rel="stylesheet" href="../../plugins/font-awesome/css/font-awesome.min.css">
+		<link rel="stylesheet" href="../../css/table.css" />
+		 
+		<!-- js -->
+		<script src="../../jqery/jquery.js"></script>
+		<script src="../../../commons/base.js"></script>
+		<script type="text/javascript" src="../../plugins/layui/layui.js"></script>
+		<script type="text/javascript" src="../../js/cuCustomerCheckApply/xczxInfo.js"></script>
+	</head>
+	
+	<body>
+		<div class="admin-main">
+			
+			<fieldset class="layui-elem-field">
+				<legend>91征信数据报告</legend>
+				<div class="layui-field-box layui-form">
+					<table class="layui-table admin-table"  style="word-break: keep-all;overflow:auto;">
+						<thead>
+							<tr>
+								<th>申请单编号</th>
+								<th>借款申请扩展表编号</th>
+								<th>GUID</th>
+								<th>借款类型</th>
+								<th>借款状态</th>
+								<th>合同金额 (单位:万元)</th>
+								<th>合同日期</th>
+								<th>批贷期数</th>
+								<th>还款状态</th>
+								<th>欠款金额</th>
+								<th>公司代码 </th>
+								<th>创建时间</th>
+							</tr>
+						</thead>
+						<tbody id="content">
+						</tbody>
+					</table>
+					<label>共<font color='red' id="count_page_number"></font>条记录</label>
+					<div id="paged" class="page" style="display:inline-block;">
+					</div>
+				</div>
+			</fieldset>
+		</div>
+		
+		<!--模板-->
+		<script type="text/html" id="tpl">
+			{{# layui.each(d.list, function(index, item){  
+				var time = item.failureTimes ;
+				var distributionTime = item.distributionTime; 
+			}}
+			<tr> 
+				<td>{{ item.buApplicationId }}</td>
+				<td>{{ item.thirdpartyReportId }}</td>
+				<td>{{ item.guid }}</td>
+	
+				{{# if(item.borrowType == 0){ }}
+				<td>未知</td>
+				{{# } else if(item.borrowType == 1){ }}
+				<td>个人信贷</td>
+				{{# } else if(item.borrowType == 2){ }}
+				<td>个人抵押</td>
+				{{# } else if(item.borrowType == 3){ }}
+				<td>企业信贷</td>
+				{{# } else if(item.borrowType == 4){ }}
+				<td>企业抵押</td>
+				{{# } else { }}
+				<td>未知项</td>
+				{{# } }}
+
+				{{# if(item.borrowState == 0){ }}
+				<td>未知</td>
+				{{# } else if(item.borrowState == 1){ }}
+				<td>拒绝</td>
+				{{# } else if(item.borrowState == 2){ }}
+				<td>批贷已放款</td>
+				{{# } else if(item.borrowState == 4){ }}
+				<td>借款人放弃申请</td>
+				{{# } else if(item.borrowState == 5){ }}
+				<td>审核中</td>
+				{{# } else if(item.borrowState == 6){ }}
+				<td>待还款</td>
+				{{# } else { }}
+				<td>未知项</td>
+				{{# } }}
+
+				{{# if(item.borrowAmount == 0){ }}
+				<td>未知</td>
+				{{# } else if(item.borrowAmount == 1){ }}
+				<td>[1,2)</td>
+				{{# } else if(item.borrowAmount == 2){ }}
+				<td>[2,4)</td>
+				{{# } else if(item.borrowAmount == 3){ }}
+				<td>[4,6)</td>
+				{{# } else if(item.borrowAmount == 4){ }}
+				<td>[6,8)</td>
+				{{# } else if(item.borrowAmount == 5){ }}
+				<td>[8,10)</td>
+				{{# } else if(item.borrowAmount == -1){ }}
+				<td>[0.8,1)</td>
+				{{# } else if(item.borrowAmount == -2){ }}
+				<td>[0.6,0.8)</td>
+				{{# } else if(item.borrowAmount == -3){ }}
+				<td>[0.4,0.6)</td>
+				{{# } else if(item.borrowAmount == -4){ }}
+				<td>[0.3,0.4)</td>
+				{{# } else if(item.borrowAmount == -5){ }}
+				<td>[0.2,0.3)</td>
+				{{# } else if(item.borrowAmount == -6){ }}
+				<td>[0.1,0.2)</td>
+				{{# } else if(item.borrowAmount == -7){ }}
+				<td>[0,0.1)</td>
+				{{# } else { }}
+				<td>未知项</td>
+				{{# } }}
+
+				<td>{{ item.contractDate }}</td>
+				<td>{{ item.loanPeriod }}</td>
+
+				{{# if(item.repayState == 0){ }}
+				<td>未知</td>
+				{{# } else if(item.repayState == 1){ }}
+				<td>正常</td>
+				{{# } else if(item.repayState == 2){ }}
+				<td>M1</td>
+				{{# } else if(item.repayState == 3){ }}
+				<td>M2</td>
+				{{# } else if(item.repayState == 4){ }}
+				<td>M3</td>
+				{{# } else if(item.repayState == 5){ }}
+				<td>M4</td>
+				{{# } else if(item.repayState == 6){ }}
+				<td>M5</td>
+				{{# } else if(item.repayState == 7){ }}
+				<td>M6</td>
+				{{# } else if(item.repayState == 8){ }}
+				<td>M6+</td>
+				{{# } else if(item.repayState == 9){ }}
+				<td>已还清</td>
+				{{# } else { }}
+				<td>未知项</td>
+				{{# } }}
+
+				<td>{{ item.arrearsAmount }}</td>
+				<td>{{ item.companyCode }}</td>
+				<td>{{ item.createTime }}</td>
+			</tr>
+			{{# }); }}
+		</script> 
+	</body>
+</html>

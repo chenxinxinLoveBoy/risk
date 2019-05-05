@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<META HTTP-EQUIV="pragma" CONTENT="no-cache">
+<META HTTP-EQUIV="Cache-Control" CONTENT="no-cache, must-revalidate">
+<META HTTP-EQUIV="expires" CONTENT="0">
+<!-- <title>Insert title here</title> -->
+</head>
+		<!-- css -->
+		<link rel="stylesheet" href="../../plugins/layui/css/layui.css" media="all" />
+		<link rel="stylesheet" href="../../css/global.css" media="all">
+		<link rel="stylesheet" href="../../plugins/font-awesome/css/font-awesome.min.css">
+		<link rel="stylesheet" href="../../css/table.css" />
+
+		<!-- JS -->
+		<script type="text/javascript" src="../../plugins/layui/layui.js"></script>
+		<script src="../../jqery/jquery.js"></script>
+		<script type="text/javascript" src="../../../commons/base.js"></script>
+		<script type="text/javascript" src="../../js/scFraudRuleBig/scFraudRuleBig_add.js"></script>
+		<!-- 日期控件 -->
+	<script language="javascript" type="text/javascript" src="../../My97DatePicker/WdatePicker.js"></script>
+		
+<body>
+	<div style="margin: 15px;">
+	<form class="layui-form" id="userForms" >
+		<div class="layui-form-item" >
+			<label class="layui-form-label" style="width:150px">欺诈项规则大类编号</label>
+			<div class="layui-input-inline" style="width:500px"> 
+				<input id="fraudRuleBigId" type="hidden" name="fraudRuleBigId"  autocomplete="off" class="layui-input" >
+				<input id="version" type="hidden" name="version"  autocomplete="off" class="layui-input" >
+				<input id="createMan" type="hidden" name="createMan"  autocomplete="off" class="layui-input" >
+				<input id="createTime" type="hidden" name="createTime"  autocomplete="off" class="layui-input" >
+				<input id="fraudRuleBigCode" type="text" name="fraudRuleBigCode" placeholder="欺诈项规则大类编号"  autocomplete="off" class="layui-input">
+			</div>
+		</div>	
+		
+		<div class="layui-form-item">
+			<label class="layui-form-label" style="width:150px">欺诈项名称</label>
+			<div class="layui-input-inline" style="width:500px">
+				<input id="fraudRuleName" type="text" name="fraudRuleName"   placeholder="欺诈项名称" autocomplete="off" class="layui-input">
+			</div>
+		</div>
+		
+    	<div class="layui-form-item" id="status_creditType">
+			<label class="layui-form-label" style="width:150px">征信机构类型</label>
+			<div class="layui-input-inline" style="width:500px">
+			        <select name="creditType" lay-filter="creditType"  lay-search="" id="select_creditType" lay-verify="creditType" >
+			          <option value="">直接选择</option>
+				         <option value="01">01-同盾</option>
+				          <option value="02">02-白骑士</option>
+				          <option value="03">03-极光</option>
+				          <option value="04">04-91征信</option>
+				          <option value="05">05-腾讯云</option>
+				          <option value="06">06-易极付</option>
+					      <option value="13">13-网洪</option>
+					      <option value="12">12-运营商路由</option>
+			        </select>
+			</div>
+ 		 </div>
+		
+		<div class="layui-form-item">
+			<label class="layui-form-label" style="width:150px">欺诈项规则明细</label>
+			<div class="layui-input-inline" style="width:500px">
+		       <textarea rows="4" cols="76" id="fraudRuleDetail"   name="fraudRuleDetail"   placeholder="欺诈项规则明细"></textarea> 
+ 			</div>
+		</div>
+		 
+		 
+		<div class="layui-form-item">
+			<label class="layui-form-label" style="width:150px">备注</label>
+			<div class="layui-input-inline" style="width:500px">
+				<textarea rows="2" cols="76" id="remark"   name="remark"   placeholder="备注"></textarea> 
+ 			</div>
+		</div>
+		
+		 <div class="layui-form-item">
+		    <label class="layui-form-label" style="width:150px">状态</label>
+		    <div class="layui-input-block" style="width:500px">
+		    	<input name="level1" value="01" title="生效" type="radio"    lay-filter="radio_filter1" id="level_id1" />
+		    	<input name="level1" value="02" title="失效" type="radio"    lay-filter="radio_filter1" id="level_id2" />
+		    </div>
+		  </div>
+		
+		<div class="layui-form-item">
+			<label class="layui-form-label" style="width:150px">权重</label>
+			<div class="layui-input-inline" style="width:500px">
+				<input id="percent" type="text" name="percent"   placeholder="权重" autocomplete="off" class="layui-input">
+			</div>
+		</div>
+		
+		<button lay-submit lay-filter="save"  class="layui-btn" id="save_bt" >保存</button>
+ 		<button class="layui-btn layui-btn-normal" id="closeIframe" onclick="closeIfrname()" >取消</button>
+		
+	</form>
+</div>
+</body>
+</html>

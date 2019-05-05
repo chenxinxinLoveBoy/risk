@@ -1,0 +1,166 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.shangyong.backend.dao.bqsrep.BqsRepMnoExtMobileServiceDao">
+
+	<resultMap type="com.shangyong.backend.entity.bqsrep.BqsRepMnoExtMobile" id="bqsRepMnoExtMobileinfoMap">
+		<id property="bqsMnoSevenDayInfoId" column="bqs_mno_seven_day_info_id" javaType="java.lang.String"></id>
+		<result property="bqsPetitionerId" column="bqs_petitioner_id" javaType="java.lang.String"></result>
+		<result property="mobile" column="mobile" javaType="java.lang.String"></result>
+		<result property="mobileTag" column="mobile_tag" javaType="java.lang.String"></result>
+		<result property="mobileTagType" column="mobile_tag_type" javaType="java.lang.String"></result>
+		<result property="financeTag" column="finance_tag" javaType="java.lang.String"></result>
+		<result property="monType" column="mon_type" javaType="java.lang.String"></result>
+		<result property="belongTo" column="belong_to" javaType="java.lang.String"></result>
+		<result property="connectCount" column="connect_count" javaType="java.lang.String"></result>
+		<result property="connectTime" column="connect_time" javaType="java.lang.String"></result>
+		<result property="originatingCallCount" column="originating_call_count" javaType="java.lang.String"></result>
+		<result property="originatingTime" column="originating_time" javaType="java.lang.String"></result>
+		<result property="terminatingCallCount" column="terminating_call_count" javaType="java.lang.String"></result>
+		<result property="terminatingTime" column="terminating_time" javaType="java.lang.String"></result>
+		<result property="last7daysConnectCount" column="last7days_connect_count" javaType="java.lang.String"></result>
+		<result property="last1monthConnectCount" column="last1month_connect_count" javaType="java.lang.String"></result>
+		<result property="last3monthConnectCount" column="last3month_connect_count" javaType="java.lang.String"></result>
+		<result property="beyond3monthConnectCount" column="beyond3month_connect_count" javaType="java.lang.String"></result>
+		<result property="earlyMorningConnectCount" column="early_morning_connect_count" javaType="java.lang.String"></result>
+		<result property="morningConnectCount" column="morning_connect_count" javaType="java.lang.String"></result>
+		<result property="noonConnectCount" column="noon_connect_count" javaType="java.lang.String"></result>
+		<result property="afternoonConnectCount" column="afternoon_connect_count" javaType="java.lang.String"></result>
+		<result property="nightConnectCount" column="night_connect_count" javaType="java.lang.String"></result>
+		<result property="isConnectAllDay" column="is_connect_all_day" javaType="java.lang.String"></result>
+		<result property="weekDayConnectCount" column="week_day_connect_count" javaType="java.lang.String"></result>
+		<result property="weekendConnectCount" column="weekend_connect_count" javaType="java.lang.String"></result>
+		<result property="holidayConnectCount" column="holiday_connect_count" javaType="java.lang.String"></result>
+	</resultMap>
+
+	<!-- 通用查询结果列-->
+	<sql id="Base_Column_List">
+	bqs_mno_seven_day_info_id,	bqs_petitioner_id,	mobile,	mobile_tag,	mobile_tag_type,	finance_tag,	mon_type,	belong_to,	connect_count,	connect_time,	originating_call_count,	originating_time,	terminating_call_count,	terminating_time,	last7days_connect_count,	last1month_connect_count,	last3month_connect_count,	beyond3month_connect_count,	early_morning_connect_count,	morning_connect_count,	noon_connect_count,	afternoon_connect_count,	night_connect_count,	is_connect_all_day,	week_day_connect_count,	weekend_connect_count,	holiday_connect_count
+	</sql>
+
+	<!-- 查询（根据主键ID查询） -->
+	<select id="getEntityById" resultMap="bqsRepMnoExtMobileinfoMap" parameterType="java.lang.String">
+		 SELECT
+		 <include refid="Base_Column_List" />
+		 FROM bqs_rep_mno_ext_mobile
+		 WHERE bqs_mno_seven_day_info_id = #{bqsMnoSevenDayInfoId}
+	</select>
+
+	<!-- 查询（根据主键ID查询） -->
+	<select id="getAll" resultMap="bqsRepMnoExtMobileinfoMap" parameterType="java.lang.String">
+		 SELECT
+		 <include refid="Base_Column_List" />
+		 FROM bqs_rep_mno_ext_mobile
+	</select>
+
+	<!--删除：根据主键ID删除-->
+	<delete id="deleteEntity" parameterType="java.lang.String">
+		 DELETE FROM bqs_rep_mno_ext_mobile
+		 WHERE bqs_mno_seven_day_info_id = #{bqsMnoSevenDayInfoId}
+	</delete>
+
+	<!-- 添加 -->
+	<insert id="saveEntity" parameterType="com.shangyong.backend.entity.bqsrep.BqsRepMnoExtMobile">
+		 INSERT INTO bqs_rep_mno_ext_mobile
+ 		(bqs_mno_seven_day_info_id,bqs_petitioner_id,mobile,mobile_tag,mobile_tag_type,finance_tag,mon_type,belong_to,connect_count,connect_time,originating_call_count,originating_time,terminating_call_count,terminating_time,last7days_connect_count,last1month_connect_count,last3month_connect_count,beyond3month_connect_count,early_morning_connect_count,morning_connect_count,noon_connect_count,afternoon_connect_count,night_connect_count,is_connect_all_day,week_day_connect_count,weekend_connect_count,holiday_connect_count) 
+		 VALUES 
+ 		(#{bqsMnoSevenDayInfoId},#{bqsPetitionerId},#{mobile},#{mobileTag},#{mobileTagType},#{financeTag},#{monType},#{belongTo},#{connectCount},#{connectTime},#{originatingCallCount},#{originatingTime},#{terminatingCallCount},#{terminatingTime},#{last7daysConnectCount},#{last1monthConnectCount},#{last3monthConnectCount},#{beyond3monthConnectCount},#{earlyMorningConnectCount},#{morningConnectCount},#{noonConnectCount},#{afternoonConnectCount},#{nightConnectCount},#{isConnectAllDay},#{weekDayConnectCount},#{weekendConnectCount},#{holidayConnectCount}) 
+	</insert>
+		<!-- 批量插入 -->
+	<insert id="saveAllEntity" parameterType="java.util.List">
+		  INSERT INTO bqs_rep_mno_ext_mobile
+ 		(bqs_mno_seven_day_info_id,bqs_petitioner_id,mobile,mobile_tag,mobile_tag_type,finance_tag,mon_type,belong_to,connect_count,connect_time,originating_call_count,originating_time,terminating_call_count,terminating_time,last7days_connect_count,last1month_connect_count,last3month_connect_count,beyond3month_connect_count,early_morning_connect_count,morning_connect_count,noon_connect_count,afternoon_connect_count,night_connect_count,is_connect_all_day,week_day_connect_count,weekend_connect_count,holiday_connect_count) 
+		 VALUES 
+ 	    <foreach collection="list" item="item" index="index" separator="," > 
+ 		(#{item.bqsMnoSevenDayInfoId},#{item.bqsPetitionerId},#{item.mobile},#{item.mobileTag},#{item.mobileTagType},#{item.financeTag},#{item.monType},#{item.belongTo},#{item.connectCount},#{item.connectTime},#{item.originatingCallCount},#{item.originatingTime},#{item.terminatingCallCount},#{item.terminatingTime},#{item.last7daysConnectCount},#{item.last1monthConnectCount},#{item.last3monthConnectCount},#{item.beyond3monthConnectCount},#{item.earlyMorningConnectCount},#{item.morningConnectCount},#{item.noonConnectCount},#{item.afternoonConnectCount},#{item.nightConnectCount},#{item.isConnectAllDay},#{item.weekDayConnectCount},#{item.weekendConnectCount},#{item.holidayConnectCount}) 
+ 		</foreach>
+	</insert>
+
+	<!-- 修 改-->
+	<update id="updateEntity" parameterType="com.shangyong.backend.entity.bqsrep.BqsRepMnoExtMobile">
+		 UPDATE bqs_rep_mno_ext_mobile
+ 		 <set> 
+			<if test="bqsPetitionerId != null">
+				 bqs_petitioner_id = #{bqsPetitionerId},
+			</if>
+			<if test="mobile != null">
+				 mobile = #{mobile},
+			</if>
+			<if test="mobileTag != null">
+				 mobile_tag = #{mobileTag},
+			</if>
+			<if test="mobileTagType != null">
+				 mobile_tag_type = #{mobileTagType},
+			</if>
+			<if test="financeTag != null">
+				 finance_tag = #{financeTag},
+			</if>
+			<if test="monType != null">
+				 mon_type = #{monType},
+			</if>
+			<if test="belongTo != null">
+				 belong_to = #{belongTo},
+			</if>
+			<if test="connectCount != null">
+				 connect_count = #{connectCount},
+			</if>
+			<if test="connectTime != null">
+				 connect_time = #{connectTime},
+			</if>
+			<if test="originatingCallCount != null">
+				 originating_call_count = #{originatingCallCount},
+			</if>
+			<if test="originatingTime != null">
+				 originating_time = #{originatingTime},
+			</if>
+			<if test="terminatingCallCount != null">
+				 terminating_call_count = #{terminatingCallCount},
+			</if>
+			<if test="terminatingTime != null">
+				 terminating_time = #{terminatingTime},
+			</if>
+			<if test="last7daysConnectCount != null">
+				 last7days_connect_count = #{last7daysConnectCount},
+			</if>
+			<if test="last1monthConnectCount != null">
+				 last1month_connect_count = #{last1monthConnectCount},
+			</if>
+			<if test="last3monthConnectCount != null">
+				 last3month_connect_count = #{last3monthConnectCount},
+			</if>
+			<if test="beyond3monthConnectCount != null">
+				 beyond3month_connect_count = #{beyond3monthConnectCount},
+			</if>
+			<if test="earlyMorningConnectCount != null">
+				 early_morning_connect_count = #{earlyMorningConnectCount},
+			</if>
+			<if test="morningConnectCount != null">
+				 morning_connect_count = #{morningConnectCount},
+			</if>
+			<if test="noonConnectCount != null">
+				 noon_connect_count = #{noonConnectCount},
+			</if>
+			<if test="afternoonConnectCount != null">
+				 afternoon_connect_count = #{afternoonConnectCount},
+			</if>
+			<if test="nightConnectCount != null">
+				 night_connect_count = #{nightConnectCount},
+			</if>
+			<if test="isConnectAllDay != null">
+				 is_connect_all_day = #{isConnectAllDay},
+			</if>
+			<if test="weekDayConnectCount != null">
+				 week_day_connect_count = #{weekDayConnectCount},
+			</if>
+			<if test="weekendConnectCount != null">
+				 weekend_connect_count = #{weekendConnectCount},
+			</if>
+			<if test="holidayConnectCount != null">
+				 holiday_connect_count = #{holidayConnectCount},
+			</if>
+
+ 		 </set>
+		 WHERE bqs_mno_seven_day_info_id = #{bqsMnoSevenDayInfoId}
+	</update>
+
+</mapper>

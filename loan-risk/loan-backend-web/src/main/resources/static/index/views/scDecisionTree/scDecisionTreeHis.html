@@ -1,0 +1,187 @@
+﻿<!DOCTYPE html>
+<html>
+
+<head>
+<meta charset="UTF-8">
+<META HTTP-EQUIV="pragma" CONTENT="no-cache">
+<META HTTP-EQUIV="Cache-Control" CONTENT="no-cache, must-revalidate">
+<META HTTP-EQUIV="expires" CONTENT="0">
+<title>决策树配置历史列表</title>
+<link rel="stylesheet" href="../../plugins/layui/css/layui.css"
+	media="all" />
+<link rel="stylesheet" href="../../css/global.css" media="all">
+<link rel="stylesheet"
+	href="../../plugins/font-awesome/css/font-awesome.min.css">
+<link rel="stylesheet" href="../../css/table.css" />
+<link rel="stylesheet" href="../../css/lzh_xy_gl.css" media="all" />
+<!-- js -->
+<script src="../../jqery/jquery.js"></script>
+<script src="../../../commons/base.js"></script>
+<script type="text/javascript" src="../../plugins/layui/layui.js"></script>
+<script type="text/javascript"
+	src="../../js/scDecisionTree/scDecisionTreeHis.js"></script>
+</head>
+
+<body>
+	<div class="admin-main">
+		<blockquote class="layui-elem-quote">
+			<!-- 查询条件 -->
+			<form action="" class="layui-form" style="margin-top: 0px;">
+				<!-- 查询条件 -->
+				<div class="layui-inline">
+					<label class="layui-form-label">名称：</label>
+					<div class="layui-input-inline">
+						<input name="decisionTreeName" placeholder="名称 "
+							id="decisionTreeName" autocomplete="off" class="layui-input">
+					</div>
+				</div>
+
+				<div class="layui-inline">
+					<label class="layui-form-label">业务编号：</label>
+					<div class="layui-input-inline">
+						<input name="decisionTreeCode" id="decisionTreeCode"
+							placeholder="业务编号"
+							onkeyup="this.value=this.value.replace(/\D/g,'')"
+							autocomplete="off" class="layui-input">
+					</div>
+				</div>
+
+    
+			      <div class="layui-inline" >
+					<label class="layui-form-label">实施类型：</label>
+					<div class="layui-input-inline">
+					        <select name="implementType" lay-filter="implementType" class="layui-input" lay-search="" id="implementType" lay-verify="implementType" autocomplete="off">
+					          <option value="">--请选择--</option>
+					          <option value="01">大数据</option>
+ 					        </select>
+					</div>
+				</div> 
+				
+				<div class="layui-inline">
+					<label class="layui-form-label">状态：</label>
+					<div class="layui-input-inline">
+						<select name="state" lay-filter="state" class="layui-input"
+							lay-search="" id="state" lay-verify="state" autocomplete="off">
+							<option value="00">--请选择--</option>
+							<option value="01">有效</option>
+							<option value="02">失效</option>
+						</select>
+					</div>
+				</div>
+<br><br>
+	<!-- 查询条件 -->
+			    <div class="layui-inline">
+			      <label class="layui-form-label">开始时间：</label>
+			      <div class="layui-input-inline">
+			        <input name="beginTime"  lay-verify="beginTime"  id="beginTime" autocomplete="off" class="layui-input" >
+			      </div>
+			     </div>
+			     
+			     <div class="layui-inline">
+			      <label class="layui-form-label">结束时间：</label>
+			      <div class="layui-input-inline">
+			        <input name="endTime"  lay-verify="endTime"  id="endTime" autocomplete="off" class="layui-input" >
+			      </div>
+			    </div>
+
+				<div class="layui-inline">
+					<a href="javascript:;" class="layui-btn layui-btn-small"
+						onclick="sel()"> <i class="layui-icon">&#xe615;</i>搜索
+					</a>
+				</div>
+			</form>
+		</blockquote>
+	</div>
+
+	<fieldset class="layui-elem-field">
+		<legend>决策树配置历史列表</legend>
+		<div class="layui-field-box layui-form">
+			<table class="layui-table admin-table"
+				style="word-break: keep-all; overflow: auto;">
+				<thead>
+					<tr>
+					<th>记录新增时间</th>
+						<th>ID</th>
+						<th>业务编号</th>
+						<th>名称</th>
+						<th>欺诈模板编号</th>
+						<th>评分模板编号</th>
+						<th>禁止项模板编号</th>
+						<th>生效时间</th>
+						<th>失效时间</th>
+	 					<th>实施类型</th>
+						<th>状态</th>
+						<th>权重</th>
+						<th>执行类型</th>
+						<th>优先级</th>
+						<th>版本编号</th>
+						<th>创建时间</th>
+						<th>创建人姓名</th>
+						<th>修改时间</th>
+						<th>修改人姓名</th>
+					</tr>
+				</thead>
+				<tbody id="content">
+				</tbody>
+			</table>
+			<label>共<font color='red' id="count_page_number"></font>条记录
+			</label>
+			<div id="paged" class="page" style="display: inline-block;"></div>
+		</div>
+	</fieldset>
+	<!--模板-->
+	<script type="text/html" id="tpl">
+			{{# layui.each(d.list, function(index, item){
+ 				var sta = item.state;
+				if(sta == '01'){
+					sta = '有效';
+				}else if(sta == '02'){
+					sta = '失效';
+				}else{
+					sta = '';
+                };
+
+	            var implementType = item.implementType;
+				if(implementType == '01'){
+					implementType = '大数据';
+				}else{
+					implementType = '';
+                    };
+
+				var executeType = item.executeType; 
+				if(executeType == '1'){
+					executeType = '按时段执行';
+				}else if(executeType == '2'){
+					executeType = '跨天执行';
+				}else{
+					executeType = '';
+                 };
+			}}
+			<tr>
+<td style="white-space: nowrap;">{{ item.recordNewtime.substring(0,19)  }}  </td>
+ 				<td>{{ item.decisionTreeId }} </td>
+ 				<td>{{ item.decisionTreeCode }} </td>
+				<td>{{ item.decisionTreeName  }} </td>
+
+<td>{{ item.fraudRuleTplId  }} </td>
+<td>{{ item.scoreTplId  }} </td>
+<td>{{ item.banControlTplId  }} </td>
+
+				<td style="white-space: nowrap;">{{ item.startTime.substring(10,19)  }} </td>
+				<td style="white-space: nowrap;">{{ item.endTime.substring(10,19)  }} </td> 
+				<td>{{ implementType  }} </td> 
+				<td>{{ sta  }} </td> 
+				<td>{{ item.tplPercent }}  </td>  
+				<td>{{ executeType }}  </td>  
+				<td>{{ item.level }}  </td>  
+                <td>{{ item.exchanges }}  </td>
+				<td>{{ item.version }}  </td>  
+				<td style="white-space: nowrap;">{{ item.createTime.substring(0,19)  }}  </td>
+				<td >{{ item.createName  }}  </td>
+				<td style="white-space: nowrap;">{{ item.modifyTime.substring(0,19)  }} </td>
+				<td>{{ item.modifyName  }}  </td>
+			</tr>
+			{{# }); }}
+		</script>
+</body>
+</html>

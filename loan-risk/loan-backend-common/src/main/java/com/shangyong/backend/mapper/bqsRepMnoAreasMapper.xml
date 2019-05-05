@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.shangyong.backend.dao.bqsrep.BqsRepMnoAreasServiceDao">
+
+	<resultMap type="com.shangyong.backend.entity.bqsrep.BqsRepMnoAreas" id="bqsRepMnoAreasinfoMap">
+		<id property="bqsRepMnoAreasId" column="bqs_rep_mno_areas_id" javaType="java.lang.String"></id>
+		<result property="bqsPetitionerId" column="bqs_petitioner_id" javaType="java.lang.String"></result>
+		<result property="area" column="area" javaType="java.lang.String"></result>
+		<result property="numberCount" column="number_count" javaType="java.lang.String"></result>
+		<result property="callCount" column="call_count" javaType="java.lang.String"></result>
+		<result property="originatingCallCount" column="originating_call_count" javaType="java.lang.String"></result>
+		<result property="originatingCallTime" column="originating_call_time" javaType="java.lang.String"></result>
+		<result property="terminatingCallCount" column="terminating_call_count" javaType="java.lang.String"></result>
+		<result property="terminatingCallTime" column="terminating_call_time" javaType="java.lang.String"></result>
+		<result property="callInCountPercentage" column="call_in_count_percentage" javaType="java.lang.String"></result>
+		<result property="callInTimePercentage" column="call_in_time_percentage" javaType="java.lang.String"></result>
+		<result property="callOutCountPercentage" column="call_out_count_percentage" javaType="java.lang.String"></result>
+		<result property="callOutTimePercentage" column="call_out_time_percentage" javaType="java.lang.String"></result>
+		<result property="avgCallTime" column="avg_call_time" javaType="java.lang.String"></result>
+		<result property="avgCallInTime" column="avg_call_in_time" javaType="java.lang.String"></result>
+		<result property="avgCallOutTime" column="avg_call_out_time" javaType="java.lang.String"></result>
+	</resultMap>
+
+	<!-- 通用查询结果列-->
+	<sql id="Base_Column_List">
+	bqs_rep_mno_areas_id,	bqs_petitioner_id,	area,	number_count,	call_count,	originating_call_count,	originating_call_time,	terminating_call_count,	terminating_call_time,	call_in_count_percentage,	call_in_time_percentage,	call_out_count_percentage,	call_out_time_percentage,	avg_call_time,	avg_call_in_time,	avg_call_out_time
+	</sql>
+
+	<!-- 查询（根据主键ID查询） -->
+	<select id="getEntityById" resultMap="bqsRepMnoAreasinfoMap" parameterType="java.lang.String">
+		 SELECT
+		 <include refid="Base_Column_List" />
+		 FROM bqs_rep_mno_areas
+		 WHERE bqs_rep_mno_areas_id = #{bqsRepMnoAreasId}
+	</select>
+
+	<!-- 查询（根据主键ID查询） -->
+	<select id="getAll" resultMap="bqsRepMnoAreasinfoMap" parameterType="java.lang.String">
+		 SELECT
+		 <include refid="Base_Column_List" />
+		 FROM bqs_rep_mno_areas
+	</select>
+
+	<!--删除：根据主键ID删除-->
+	<delete id="deleteEntity" parameterType="java.lang.String">
+		 DELETE FROM bqs_rep_mno_areas
+		 WHERE bqs_rep_mno_areas_id = #{bqsRepMnoAreasId}
+	</delete>
+
+	<!-- 添加 -->
+	<insert id="saveEntity" parameterType="com.shangyong.backend.entity.bqsrep.BqsRepMnoAreas">
+		 INSERT INTO bqs_rep_mno_areas
+ 		(bqs_rep_mno_areas_id,bqs_petitioner_id,area,number_count,call_count,originating_call_count,originating_call_time,terminating_call_count,terminating_call_time,call_in_count_percentage,call_in_time_percentage,call_out_count_percentage,call_out_time_percentage,avg_call_time,avg_call_in_time,avg_call_out_time) 
+		 VALUES 
+ 		(#{bqsRepMnoAreasId},#{bqsPetitionerId},#{area},#{numberCount},#{callCount},#{originatingCallCount},#{originatingCallTime},#{terminatingCallCount},#{terminatingCallTime},#{callInCountPercentage},#{callInTimePercentage},#{callOutCountPercentage},#{callOutTimePercentage},#{avgCallTime},#{avgCallInTime},#{avgCallOutTime}) 
+	</insert>
+	<!-- 批量插入 -->
+	<insert id="saveAllEntity" parameterType="java.util.List">
+		  INSERT INTO bqs_rep_mno_areas
+ 		(bqs_rep_mno_areas_id,bqs_petitioner_id,area,number_count,call_count,originating_call_count,originating_call_time,terminating_call_count,terminating_call_time,call_in_count_percentage,call_in_time_percentage,call_out_count_percentage,call_out_time_percentage,avg_call_time,avg_call_in_time,avg_call_out_time) 
+		 VALUES 
+ 	    <foreach collection="list" item="item" index="index" separator="," > 
+ 	    (#{item.bqsRepMnoAreasId},#{item.bqsPetitionerId},#{item.area},#{item.numberCount},#{item.callCount},#{item.originatingCallCount},#{item.originatingCallTime},#{item.terminatingCallCount},#{item.terminatingCallTime},#{item.callInCountPercentage},#{item.callInTimePercentage},#{item.callOutCountPercentage},#{item.callOutTimePercentage},#{item.avgCallTime},#{item.avgCallInTime},#{item.avgCallOutTime}) 
+ 	    </foreach>
+	</insert>
+
+	<!-- 修 改-->
+	<update id="updateEntity" parameterType="com.shangyong.backend.entity.bqsrep.BqsRepMnoAreas">
+		 UPDATE bqs_rep_mno_areas
+ 		 <set> 
+			<if test="bqsPetitionerId != null">
+				 bqs_petitioner_id = #{bqsPetitionerId},
+			</if>
+			<if test="area != null">
+				 area = #{area},
+			</if>
+			<if test="numberCount != null">
+				 number_count = #{numberCount},
+			</if>
+			<if test="callCount != null">
+				 call_count = #{callCount},
+			</if>
+			<if test="originatingCallCount != null">
+				 originating_call_count = #{originatingCallCount},
+			</if>
+			<if test="originatingCallTime != null">
+				 originating_call_time = #{originatingCallTime},
+			</if>
+			<if test="terminatingCallCount != null">
+				 terminating_call_count = #{terminatingCallCount},
+			</if>
+			<if test="terminatingCallTime != null">
+				 terminating_call_time = #{terminatingCallTime},
+			</if>
+			<if test="callInCountPercentage != null">
+				 call_in_count_percentage = #{callInCountPercentage},
+			</if>
+			<if test="callInTimePercentage != null">
+				 call_in_time_percentage = #{callInTimePercentage},
+			</if>
+			<if test="callOutCountPercentage != null">
+				 call_out_count_percentage = #{callOutCountPercentage},
+			</if>
+			<if test="callOutTimePercentage != null">
+				 call_out_time_percentage = #{callOutTimePercentage},
+			</if>
+			<if test="avgCallTime != null">
+				 avg_call_time = #{avgCallTime},
+			</if>
+			<if test="avgCallInTime != null">
+				 avg_call_in_time = #{avgCallInTime},
+			</if>
+			<if test="avgCallOutTime != null">
+				 avg_call_out_time = #{avgCallOutTime},
+			</if>
+
+ 		 </set>
+		 WHERE bqs_rep_mno_areas_id = #{bqsRepMnoAreasId}
+	</update>
+
+</mapper>

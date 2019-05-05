@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.shangyong.backend.dao.tdReport.TdReportCarrierMonthDao">
+
+	<resultMap type="com.shangyong.backend.entity.tdReport.TdReportCarrierMonth" id="tdReportCarrierMonthMap">
+		<id property="carrierMonthId" column="carrier_month_id" javaType="java.lang.String"></id>
+		<result property="applicationId" column="application_id" javaType="java.lang.String"></result>
+		<result property="month" column="month" javaType="java.lang.String"></result>
+		<result property="consumeAmount" column="consume_amount" javaType="java.lang.String"></result>
+		<result property="rechargeCount" column="recharge_count" javaType="java.lang.String"></result>
+		<result property="rechargeAmount" column="recharge_amount" javaType="java.lang.String"></result>
+		<result property="createTime" column="create_time" javaType="java.lang.String"></result>
+		<result property="createMan" column="create_man" javaType="java.lang.String"></result>
+		<result property="modifyTime" column="modify_time" javaType="java.lang.String"></result>
+		<result property="modifyMan" column="modify_man" javaType="java.lang.String"></result>
+		<result property="remark" column="remark" javaType="java.lang.String"></result>
+	</resultMap>
+
+	<!-- 通用查询结果列-->
+	<sql id="Base_Column_List">
+carrier_month_id,	application_id,	month,	consume_amount,	recharge_count,	recharge_amount,	create_time,	create_man,	modify_time,	modify_man,	remark
+	</sql>
+
+	<!-- 查询（根据主键ID查询） -->
+	<select id="getEntityById" resultMap="tdReportCarrierMonthMap" parameterType="java.lang.String">
+		 SELECT
+		 <include refid="Base_Column_List" />
+		 FROM td_report_carrier_month
+		 WHERE carrier_month_id = #{carrierMonthId}
+	</select>
+
+	<!-- 查询（根据主键ID查询） -->
+	<select id="findAll" resultMap="tdReportCarrierMonthMap" parameterType="java.lang.String">
+		 SELECT
+		 <include refid="Base_Column_List" />
+		 FROM td_report_carrier_month
+		 WHERE carrier_month_id = #{carrierMonthId}
+	</select>
+	<!-- 查询（根据主键ID查询） -->
+	<select id="queryMonthById" resultMap="tdReportCarrierMonthMap" parameterType="java.lang.String">
+		 SELECT
+		 <include refid="Base_Column_List" />
+		 FROM td_report_carrier_month
+		 WHERE application_id = #{applicationId}
+	</select>
+
+	<!--删除：根据主键ID删除-->
+	<delete id="deleteEntity" parameterType="java.lang.String">
+		 DELETE FROM td_report_carrier_month
+		 WHERE carrier_month_id = #{carrierMonthId}
+	</delete>
+
+	<!-- 添加 -->
+	<insert id="saveEntity" parameterType="com.shangyong.backend.entity.tdReport.TdReportCarrierMonth">
+		 INSERT INTO td_report_carrier_month
+ 		(carrier_month_id,application_id,month,consume_amount,recharge_count,recharge_amount,create_time,create_man,modify_time,modify_man,remark) 
+		 VALUES 
+ 		(#{carrierMonthId},#{applicationId},#{month},#{consumeAmount},#{rechargeCount},#{rechargeAmount},#{createTime},#{createMan},#{modifyTime},#{modifyMan},#{remark}) 
+	</insert>
+	<!-- 批量插入 -->
+	<insert id="saveAllEntity" parameterType="java.util.List">
+		 INSERT INTO td_report_carrier_month
+ 		(carrier_month_id,application_id,month,consume_amount,recharge_count,recharge_amount,create_time,create_man,modify_time,modify_man,remark) 
+		 VALUES 
+ 	    <foreach collection="list" item="item" index="index" separator="," >  
+ 		(#{item.carrierMonthId},#{item.applicationId},#{item.month},#{item.consumeAmount},#{item.rechargeCount},#{item.rechargeAmount},#{item.createTime},#{item.createMan},#{item.modifyTime},#{item.modifyMan},#{item.remark}) 
+	    </foreach>
+	</insert>
+
+	<!-- 修 改-->
+	<update id="updateEntity" parameterType="com.shangyong.backend.entity.tdReport.TdReportCarrierMonth">
+		 UPDATE td_report_carrier_month
+ 		 <set> 
+			<if test="applicationId != null">
+				 application_id = #{applicationId},
+			</if>
+			<if test="month != null">
+				 month = #{month},
+			</if>
+			<if test="consumeAmount != null">
+				 consume_amount = #{consumeAmount},
+			</if>
+			<if test="rechargeCount != null">
+				 recharge_count = #{rechargeCount},
+			</if>
+			<if test="rechargeAmount != null">
+				 recharge_amount = #{rechargeAmount},
+			</if>
+			<if test="createTime != null">
+				 create_time = #{createTime},
+			</if>
+			<if test="createMan != null">
+				 create_man = #{createMan},
+			</if>
+			<if test="modifyTime != null">
+				 modify_time = #{modifyTime},
+			</if>
+			<if test="modifyMan != null">
+				 modify_man = #{modifyMan},
+			</if>
+			<if test="remark != null">
+				 remark = #{remark},
+			</if>
+
+ 		 </set>
+		 WHERE carrier_month_id = #{carrierMonthId}
+	</update>
+
+</mapper>

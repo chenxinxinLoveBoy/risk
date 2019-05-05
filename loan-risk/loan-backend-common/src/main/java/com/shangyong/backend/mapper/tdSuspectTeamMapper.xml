@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.shangyong.backend.dao.td.TdSuspectTeamServiceDao">
+
+	<resultMap type="com.shangyong.backend.entity.td.TdSuspectTeam" id="tdSuspectTeaminfoMap">
+		<id property="tdSuspectTeamId" column="td_suspect_team_id" javaType="java.lang.String"></id>
+		<result property="tdRiskItemsId" column="td_risk_items_id" javaType="java.lang.String"></result>
+		<result property="groupId" column="group_id" javaType="java.lang.String"></result>
+		<result property="dimType" column="dim_type" javaType="java.lang.String"></result>
+		<result property="dimValue" column="dim_value" javaType="java.lang.String"></result>
+		<result property="nodeDist" column="node_dist" javaType="java.lang.String"></result>
+		<result property="fraudDist" column="fraud_dist" javaType="java.lang.String"></result>
+		<result property="blackRat" column="black_rat" javaType="java.lang.String"></result>
+		<result property="greyRat" column="grey_rat" javaType="java.lang.String"></result>
+		<result property="degree" column="degree" javaType="java.lang.String"></result>
+		<result property="totalCnt" column="total_cnt" javaType="java.lang.String"></result>
+		<result property="blackCnt" column="black_cnt" javaType="java.lang.String"></result>
+		<result property="greyCnt" column="grey_cnt" javaType="java.lang.String"></result>
+		<result property="coreDst" column="core_dst" javaType="java.lang.String"></result>
+		<result property="blackDst" column="black_dst" javaType="java.lang.String"></result>
+		<result property="totalCntTwo" column="total_cnt_two" javaType="java.lang.String"></result>
+		<result property="blackCntOne" column="black_cnt_one" javaType="java.lang.String"></result>
+		<result property="blackCntTwo" column="black_cnt_two" javaType="java.lang.String"></result>
+		<result property="fraudDistOne" column="fraud_dist_one" javaType="java.lang.String"></result>
+		<result property="fraudDistTwo" column="fraud_dist_two" javaType="java.lang.String"></result>
+	</resultMap>
+
+	<!-- 通用查询结果列-->
+	<sql id="Base_Column_List">
+	td_suspect_team_id,	td_risk_items_id,	group_id,	dim_type,	dim_value,	node_dist,	fraud_dist,	black_rat,	grey_rat,	degree,	total_cnt,	black_cnt,	grey_cnt,	core_dst,	black_dst,	total_cnt_two,	black_cnt_one,	black_cnt_two,	fraud_dist_one,	fraud_dist_two
+	</sql>
+
+	<!-- 查询（根据主键ID查询） -->
+	<select id="getEntityById" resultMap="tdSuspectTeaminfoMap" parameterType="java.lang.String">
+		 SELECT
+		 <include refid="Base_Column_List" />
+		 FROM td_suspect_team
+		 WHERE td_suspect_team_id = #{tdSuspectTeamId}
+	</select>
+	
+	<!-- 查询（根据主键tdRiskItemsId查询） -->
+	<select id="queryById" resultMap="tdSuspectTeaminfoMap" parameterType="java.lang.String">
+		 SELECT
+		 <include refid="Base_Column_List" />
+		 FROM td_suspect_team
+		 WHERE td_risk_items_id = #{tdRiskItemsId}
+	</select>
+
+	<!-- 查询（根据主键ID查询） -->
+	<select id="getAll" resultMap="tdSuspectTeaminfoMap" parameterType="java.lang.String">
+		 SELECT
+		 <include refid="Base_Column_List" />
+		 FROM td_suspect_team
+	</select>
+
+	<!--删除：根据主键ID删除-->
+	<delete id="deleteEntity" parameterType="java.lang.String">
+		 DELETE FROM td_suspect_team
+		 WHERE td_suspect_team_id = #{tdSuspectTeamId}
+	</delete>
+
+	<!-- 添加 -->
+	<insert id="saveEntity" parameterType="com.shangyong.backend.entity.td.TdSuspectTeam">
+		 INSERT INTO td_suspect_team
+ 		(td_suspect_team_id,td_risk_items_id,group_id,dim_type,dim_value,node_dist,fraud_dist,black_rat,grey_rat,degree,total_cnt,black_cnt,grey_cnt,core_dst,black_dst,total_cnt_two,black_cnt_one,black_cnt_two,fraud_dist_one,fraud_dist_two) 
+		 VALUES 
+ 		(#{tdSuspectTeamId},#{tdRiskItemsId},#{groupId},#{dimType},#{dimValue},#{nodeDist},#{fraudDist},#{blackRat},#{greyRat},#{degree},#{totalCnt},#{blackCnt},#{greyCnt},#{coreDst},#{blackDst},#{totalCntTwo},#{blackCntOne},#{blackCntTwo},#{fraudDistOne},#{fraudDistTwo}) 
+	</insert>
+
+	<!-- 修 改-->
+	<update id="updateEntity" parameterType="com.shangyong.backend.entity.td.TdSuspectTeam">
+		 UPDATE td_suspect_team
+ 		 <set> 
+			<if test="tdRiskItemsId != null">
+				 td_risk_items_id = #{tdRiskItemsId},
+			</if>
+			<if test="groupId != null">
+				 group_id = #{groupId},
+			</if>
+			<if test="dimType != null">
+				 dim_type = #{dimType},
+			</if>
+			<if test="dimValue != null">
+				 dim_value = #{dimValue},
+			</if>
+			<if test="nodeDist != null">
+				 node_dist = #{nodeDist},
+			</if>
+			<if test="fraudDist != null">
+				 fraud_dist = #{fraudDist},
+			</if>
+			<if test="blackRat != null">
+				 black_rat = #{blackRat},
+			</if>
+			<if test="greyRat != null">
+				 grey_rat = #{greyRat},
+			</if>
+			<if test="degree != null">
+				 degree = #{degree},
+			</if>
+			<if test="totalCnt != null">
+				 total_cnt = #{totalCnt},
+			</if>
+			<if test="blackCnt != null">
+				 black_cnt = #{blackCnt},
+			</if>
+			<if test="greyCnt != null">
+				 grey_cnt = #{greyCnt},
+			</if>
+			<if test="coreDst != null">
+				 core_dst = #{coreDst},
+			</if>
+			<if test="blackDst != null">
+				 black_dst = #{blackDst},
+			</if>
+			<if test="totalCntTwo != null">
+				 total_cnt_two = #{totalCntTwo},
+			</if>
+			<if test="blackCntOne != null">
+				 black_cnt_one = #{blackCntOne},
+			</if>
+			<if test="blackCntTwo != null">
+				 black_cnt_two = #{blackCntTwo},
+			</if>
+			<if test="fraudDistOne != null">
+				 fraud_dist_one = #{fraudDistOne},
+			</if>
+			<if test="fraudDistTwo != null">
+				 fraud_dist_two = #{fraudDistTwo},
+			</if>
+
+ 		 </set>
+		 WHERE td_suspect_team_id = #{tdSuspectTeamId}
+	</update>
+
+</mapper>

@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+<meta charset="UTF-8">
+<link rel="stylesheet" href="../../plugins/layui/css/layui.css"
+	media="all" />
+<link rel="stylesheet" href="../../css/global.css" media="all">
+<link rel="stylesheet"
+	href="../../plugins/font-awesome/css/font-awesome.min.css">
+<!-- js -->
+<script src="../../jqery/jquery.js"></script>
+<script src="../../../commons/base.js"></script>
+<script type="text/javascript" src="../../plugins/layui/layui.js"></script>
+<script type="text/javascript" src="../../js/customerManager/baiQiShi_test.js"></script>
+<script type="text/javascript" src="../../js/customerManager/baiQiShi.js"></script>
+</head>
+<body>
+	<div class="admin-main">  
+				<legend style="margin-left: 43%;">白骑士反欺诈风险决策主信息</legend>
+				<a href="javascript:getmysqldata();" class="layui-btn layui-btn-small" id="search">
+				<i class="layui-icon">&#xe615;</i> 数据查询
+				</a>
+				&nbsp; &nbsp; &nbsp; 
+			<a href="javascript:;" class="layui-btn layui-btn-small" onclick="infoQuery()" >
+						<i class="layui-icon"></i>阿里云数据查询
+				    </a>
+				<table class="layui-table">
+					<tbody>
+						<!-- <tr>
+							<th style="width: 150px;">申请单编号</th>
+							<td id="applicationId"></td>
+						</tr>
+						<tr>
+							<th style="width: 150px;">身份证号码</th>
+							<td id="certCode"></td>
+						</tr>
+						<tr>
+							<th style="width: 150px;">身份证姓名</th>
+							<td id="certName"></td>
+						</tr>
+						<tr>
+							<th style="width: 150px;">手机号</th>
+							<td id="mobile"></td>
+						</tr> -->
+						<tr>
+							<th style="width: 150px;">本次请求的流水号</th>
+							<td id="flowNo"></td>
+						</tr>
+						<!-- <tr>
+							<th style="width: 150px;">结果码</th>
+							<td id="resultCode"></td>
+						</tr> -->
+
+						<!-- <tr>
+							<th style="width: 150px;">事件类型</th>
+							<td id="eventType"></td>
+						</tr>  --> 
+						<tr>
+							<th>决策结果码</th>
+							<td id="finalDecision"></td>
+						</tr>
+
+					<!-- 	<tr>
+							<th style="width: 350px;">最终风险 系数,只有 权重 策略模式下有效</th>
+							<td id="finalScore"></td>
+						</tr> -->
+ 
+					</tbody>
+				</table>
+
+				<legend style="margin-left: 43%;">白骑士反欺诈策略明细</legend> 
+				<table class="layui-table">
+					<tbody id="clmxid">
+					 </tbody>
+				</table>
+				<legend style="margin-left: 43%;">白骑士反欺诈规则明细</legend>
+				<table class="layui-table">
+					<tbody id="qzmxid"></tbody>
+				</table>
+
+				<div class="admin-table-page">
+					<div id="paged" class="page"></div>
+				</div> 
+	</div>
+</body> 
+</html>

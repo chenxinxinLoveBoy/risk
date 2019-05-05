@@ -1,0 +1,209 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.shangyong.backend.dao.tdReport.TdReportSilenceStatsDao">
+
+	<resultMap type="com.shangyong.backend.entity.tdReport.TdReportSilenceStats" id="tdReportSilenceStatsMap">
+		<id property="silenceStatsId" column="silence_stats_id" javaType="java.lang.String"></id>
+		<result property="applicationId" column="application_id" javaType="java.lang.String"></result>
+		<result property="activeDay1call3month" column="active_day_1call_3month" javaType="java.lang.String"></result>
+		<result property="activeDay1call6month" column="active_day_1call_6month" javaType="java.lang.String"></result>
+		<result property="maxContinueActiveDay1call3month" column="max_continue_active_day_1call_3month" javaType="java.lang.String"></result>
+		<result property="maxContinueActiveDay1call6month" column="max_continue_active_day_1call_6month" javaType="java.lang.String"></result>
+		<result property="silenceDay0call3month" column="silence_day_0call_3month" javaType="java.lang.String"></result>
+		<result property="silenceDay0callActive3month" column="silence_day_0call_active_3month" javaType="java.lang.String"></result>
+		<result property="silenceDay0call0msgSend3month" column="silence_day_0call_0msg_send_3month" javaType="java.lang.String"></result>
+		<result property="silenceDay0call6month" column="silence_day_0call_6month" javaType="java.lang.String"></result>
+		<result property="silenceDay0callActive6month" column="silence_day_0call_active_6month" javaType="java.lang.String"></result>
+		<result property="silenceDay0call0msgSend6month" column="silence_day_0call_0msg_send_6month" javaType="java.lang.String"></result>
+		<result property="continueSilenceDayOver30call3month" column="continue_silence_day_over3_0call_3month" javaType="java.lang.String"></result>
+		<result property="continueSilenceDayOver150call3month" column="continue_silence_day_over15_0call_3month" javaType="java.lang.String"></result>
+		<result property="continueSilenceDayOver30callActive3month" column="continue_silence_day_over3_0call_active_3month" javaType="java.lang.String"></result>
+		<result property="continueSilenceDayOver150callActive3month" column="continue_silence_day_over15_0call_active_3month" javaType="java.lang.String"></result>
+		<result property="continueSilenceDayOver30call0msgSend3month" column="continue_silence_day_over3_0call_0msg_send_3month" javaType="java.lang.String"></result>
+		<result property="continueSilenceDayOver150call0msgSend3month" column="continue_silence_day_over15_0call_0msg_send_3month" javaType="java.lang.String"></result>
+		<result property="continueSilenceDayOver30call6month" column="continue_silence_day_over3_0call_6month" javaType="java.lang.String"></result>
+		<result property="continueSilenceDayOver150call6month" column="continue_silence_day_over15_0call_6month" javaType="java.lang.String"></result>
+		<result property="continueSilenceDayOver30callActive6month" column="continue_silence_day_over3_0call_active_6month" javaType="java.lang.String"></result>
+		<result property="continueSilenceDayOver150callActive6month" column="continue_silence_day_over15_0call_active_6month" javaType="java.lang.String"></result>
+		<result property="continueSilenceDayOver30call0msgSend6month" column="continue_silence_day_over3_0call_0msg_send_6month" javaType="java.lang.String"></result>
+		<result property="continueSilenceDayOver150call0msgSend6month" column="continue_silence_day_over15_0call_0msg_send_6month" javaType="java.lang.String"></result>
+		<result property="maxContinueSilenceDay0call3month" column="max_continue_silence_day_0call_3month" javaType="java.lang.String"></result>
+		<result property="maxContinueSilenceDay0callActive3month" column="max_continue_silence_day_0call_active_3month" javaType="java.lang.String"></result>
+		<result property="maxContinueSilenceDay0call0msgSend3month" column="max_continue_silence_day_0call_0msg_send_3month" javaType="java.lang.String"></result>
+		<result property="maxContinueSilenceDay0call6month" column="max_continue_silence_day_0call_6month" javaType="java.lang.String"></result>
+		<result property="maxContinueSilenceDay0callActive6month" column="max_continue_silence_day_0call_active_6month" javaType="java.lang.String"></result>
+		<result property="maxContinueSilenceDay0call0msgSend6month" column="max_continue_silence_day_0call_0msg_send_6month" javaType="java.lang.String"></result>
+		<result property="gapDayLastSilenceDay0call6month" column="gap_day_last_silence_day_0call_6month" javaType="java.lang.String"></result>
+		<result property="gapDayLastSilenceDay0callActive6month" column="gap_day_last_silence_day_0call_active_6month" javaType="java.lang.String"></result>
+		<result property="gapDayLastSilenceDay0call0msgSend6month" column="gap_day_last_silence_day_0call_0msg_send_6month" javaType="java.lang.String"></result>
+		<result property="createTime" column="create_time" javaType="java.lang.String"></result>
+		<result property="createMan" column="create_man" javaType="java.lang.String"></result>
+		<result property="modifyTime" column="modify_time" javaType="java.lang.String"></result>
+		<result property="modifyMan" column="modify_man" javaType="java.lang.String"></result>
+		<result property="remark" column="remark" javaType="java.lang.String"></result>
+	</resultMap>
+
+	<!-- 通用查询结果列-->
+	<sql id="Base_Column_List">
+silence_stats_id,	application_id,	active_day_1call_3month,	active_day_1call_6month,	max_continue_active_day_1call_3month,	max_continue_active_day_1call_6month,	silence_day_0call_3month,	silence_day_0call_active_3month,	silence_day_0call_0msg_send_3month,	silence_day_0call_6month,	silence_day_0call_active_6month,	silence_day_0call_0msg_send_6month,	continue_silence_day_over3_0call_3month,	continue_silence_day_over15_0call_3month,	continue_silence_day_over3_0call_active_3month,	continue_silence_day_over15_0call_active_3month,	continue_silence_day_over3_0call_0msg_send_3month,	continue_silence_day_over15_0call_0msg_send_3month,	continue_silence_day_over3_0call_6month,	continue_silence_day_over15_0call_6month,	continue_silence_day_over3_0call_active_6month,	continue_silence_day_over15_0call_active_6month,	continue_silence_day_over3_0call_0msg_send_6month,	continue_silence_day_over15_0call_0msg_send_6month,	max_continue_silence_day_0call_3month,	max_continue_silence_day_0call_active_3month,	max_continue_silence_day_0call_0msg_send_3month,	max_continue_silence_day_0call_6month,	max_continue_silence_day_0call_active_6month,	max_continue_silence_day_0call_0msg_send_6month,	gap_day_last_silence_day_0call_6month,	gap_day_last_silence_day_0call_active_6month,	gap_day_last_silence_day_0call_0msg_send_6month,	create_time,	create_man,	modify_time,	modify_man,	remark
+	</sql>
+
+	<!-- 查询（根据主键ID查询） -->
+	<select id="querybyId" resultMap="tdReportSilenceStatsMap" parameterType="java.lang.String">
+		 SELECT
+		 <include refid="Base_Column_List" />
+		 FROM td_report_silence_stats
+		 WHERE application_id = #{applicationId}
+	</select>
+	<!-- 查询（根据主键ID查询） -->
+	<select id="getEntityById" resultMap="tdReportSilenceStatsMap" parameterType="java.lang.String">
+		 SELECT
+		 <include refid="Base_Column_List" />
+		 FROM td_report_silence_stats
+		 WHERE silence_stats_id = #{silenceStatsId}
+	</select>
+
+	<!-- 查询（根据主键ID查询） -->
+	<select id="findAll" resultMap="tdReportSilenceStatsMap" parameterType="java.lang.String">
+		 SELECT
+		 <include refid="Base_Column_List" />
+		 FROM td_report_silence_stats
+		 WHERE silence_stats_id = #{silenceStatsId}
+	</select>
+
+	<!--删除：根据主键ID删除-->
+	<delete id="deleteEntity" parameterType="java.lang.String">
+		 DELETE FROM td_report_silence_stats
+		 WHERE silence_stats_id = #{silenceStatsId}
+	</delete>
+
+	<!-- 添加 -->
+	<insert id="saveEntity" parameterType="com.shangyong.backend.entity.tdReport.TdReportSilenceStats">
+		 INSERT INTO td_report_silence_stats
+ 		(silence_stats_id,application_id,active_day_1call_3month,active_day_1call_6month,max_continue_active_day_1call_3month,max_continue_active_day_1call_6month,silence_day_0call_3month,silence_day_0call_active_3month,silence_day_0call_0msg_send_3month,silence_day_0call_6month,silence_day_0call_active_6month,silence_day_0call_0msg_send_6month,continue_silence_day_over3_0call_3month,continue_silence_day_over15_0call_3month,continue_silence_day_over3_0call_active_3month,continue_silence_day_over15_0call_active_3month,continue_silence_day_over3_0call_0msg_send_3month,continue_silence_day_over15_0call_0msg_send_3month,continue_silence_day_over3_0call_6month,continue_silence_day_over15_0call_6month,continue_silence_day_over3_0call_active_6month,continue_silence_day_over15_0call_active_6month,continue_silence_day_over3_0call_0msg_send_6month,continue_silence_day_over15_0call_0msg_send_6month,max_continue_silence_day_0call_3month,max_continue_silence_day_0call_active_3month,max_continue_silence_day_0call_0msg_send_3month,max_continue_silence_day_0call_6month,max_continue_silence_day_0call_active_6month,max_continue_silence_day_0call_0msg_send_6month,gap_day_last_silence_day_0call_6month,gap_day_last_silence_day_0call_active_6month,gap_day_last_silence_day_0call_0msg_send_6month,create_time,create_man,modify_time,modify_man,remark) 
+		 VALUES 
+ 		(#{silenceStatsId},#{applicationId},#{activeDay1call3month},#{activeDay1call6month},#{maxContinueActiveDay1call3month},#{maxContinueActiveDay1call6month},#{silenceDay0call3month},#{silenceDay0callActive3month},#{silenceDay0call0msgSend3month},#{silenceDay0call6month},#{silenceDay0callActive6month},#{silenceDay0call0msgSend6month},#{continueSilenceDayOver30call3month},#{continueSilenceDayOver150call3month},#{continueSilenceDayOver30callActive3month},#{continueSilenceDayOver150callActive3month},#{continueSilenceDayOver30call0msgSend3month},#{continueSilenceDayOver150call0msgSend3month},#{continueSilenceDayOver30call6month},#{continueSilenceDayOver150call6month},#{continueSilenceDayOver30callActive6month},#{continueSilenceDayOver150callActive6month},#{continueSilenceDayOver30call0msgSend6month},#{continueSilenceDayOver150call0msgSend6month},#{maxContinueSilenceDay0call3month},#{maxContinueSilenceDay0callActive3month},#{maxContinueSilenceDay0call0msgSend3month},#{maxContinueSilenceDay0call6month},#{maxContinueSilenceDay0callActive6month},#{maxContinueSilenceDay0call0msgSend6month},#{gapDayLastSilenceDay0call6month},#{gapDayLastSilenceDay0callActive6month},#{gapDayLastSilenceDay0call0msgSend6month},#{createTime},#{createMan},#{modifyTime},#{modifyMan},#{remark}) 
+	</insert>
+
+	<!-- 修 改-->
+	<update id="updateEntity" parameterType="com.shangyong.backend.entity.tdReport.TdReportSilenceStats">
+		 UPDATE td_report_silence_stats
+ 		 <set> 
+			<if test="applicationId != null">
+				 application_id = #{applicationId},
+			</if>
+			<if test="activeDay1call3month != null">
+				 active_day_1call_3month = #{activeDay1call3month},
+			</if>
+			<if test="activeDay1call6month != null">
+				 active_day_1call_6month = #{activeDay1call6month},
+			</if>
+			<if test="maxContinueActiveDay1call3month != null">
+				 max_continue_active_day_1call_3month = #{maxContinueActiveDay1call3month},
+			</if>
+			<if test="maxContinueActiveDay1call6month != null">
+				 max_continue_active_day_1call_6month = #{maxContinueActiveDay1call6month},
+			</if>
+			<if test="silenceDay0call3month != null">
+				 silence_day_0call_3month = #{silenceDay0call3month},
+			</if>
+			<if test="silenceDay0callActive3month != null">
+				 silence_day_0call_active_3month = #{silenceDay0callActive3month},
+			</if>
+			<if test="silenceDay0call0msgSend3month != null">
+				 silence_day_0call_0msg_send_3month = #{silenceDay0call0msgSend3month},
+			</if>
+			<if test="silenceDay0call6month != null">
+				 silence_day_0call_6month = #{silenceDay0call6month},
+			</if>
+			<if test="silenceDay0callActive6month != null">
+				 silence_day_0call_active_6month = #{silenceDay0callActive6month},
+			</if>
+			<if test="silenceDay0call0msgSend6month != null">
+				 silence_day_0call_0msg_send_6month = #{silenceDay0call0msgSend6month},
+			</if>
+			<if test="continueSilenceDayOver30call3month != null">
+				 continue_silence_day_over3_0call_3month = #{continueSilenceDayOver30call3month},
+			</if>
+			<if test="continueSilenceDayOver150call3month != null">
+				 continue_silence_day_over15_0call_3month = #{continueSilenceDayOver150call3month},
+			</if>
+			<if test="continueSilenceDayOver30callActive3month != null">
+				 continue_silence_day_over3_0call_active_3month = #{continueSilenceDayOver30callActive3month},
+			</if>
+			<if test="continueSilenceDayOver150callActive3month != null">
+				 continue_silence_day_over15_0call_active_3month = #{continueSilenceDayOver150callActive3month},
+			</if>
+			<if test="continueSilenceDayOver30call0msgSend3month != null">
+				 continue_silence_day_over3_0call_0msg_send_3month = #{continueSilenceDayOver30call0msgSend3month},
+			</if>
+			<if test="continueSilenceDayOver150call0msgSend3month != null">
+				 continue_silence_day_over15_0call_0msg_send_3month = #{continueSilenceDayOver150call0msgSend3month},
+			</if>
+			<if test="continueSilenceDayOver30call6month != null">
+				 continue_silence_day_over3_0call_6month = #{continueSilenceDayOver30call6month},
+			</if>
+			<if test="continueSilenceDayOver150call6month != null">
+				 continue_silence_day_over15_0call_6month = #{continueSilenceDayOver150call6month},
+			</if>
+			<if test="continueSilenceDayOver30callActive6month != null">
+				 continue_silence_day_over3_0call_active_6month = #{continueSilenceDayOver30callActive6month},
+			</if>
+			<if test="continueSilenceDayOver150callActive6month != null">
+				 continue_silence_day_over15_0call_active_6month = #{continueSilenceDayOver150callActive6month},
+			</if>
+			<if test="continueSilenceDayOver30call0msgSend6month != null">
+				 continue_silence_day_over3_0call_0msg_send_6month = #{continueSilenceDayOver30call0msgSend6month},
+			</if>
+			<if test="continueSilenceDayOver150call0msgSend6month != null">
+				 continue_silence_day_over15_0call_0msg_send_6month = #{continueSilenceDayOver150call0msgSend6month},
+			</if>
+			<if test="maxContinueSilenceDay0call3month != null">
+				 max_continue_silence_day_0call_3month = #{maxContinueSilenceDay0call3month},
+			</if>
+			<if test="maxContinueSilenceDay0callActive3month != null">
+				 max_continue_silence_day_0call_active_3month = #{maxContinueSilenceDay0callActive3month},
+			</if>
+			<if test="maxContinueSilenceDay0call0msgSend3month != null">
+				 max_continue_silence_day_0call_0msg_send_3month = #{maxContinueSilenceDay0call0msgSend3month},
+			</if>
+			<if test="maxContinueSilenceDay0call6month != null">
+				 max_continue_silence_day_0call_6month = #{maxContinueSilenceDay0call6month},
+			</if>
+			<if test="maxContinueSilenceDay0callActive6month != null">
+				 max_continue_silence_day_0call_active_6month = #{maxContinueSilenceDay0callActive6month},
+			</if>
+			<if test="maxContinueSilenceDay0call0msgSend6month != null">
+				 max_continue_silence_day_0call_0msg_send_6month = #{maxContinueSilenceDay0call0msgSend6month},
+			</if>
+			<if test="gapDayLastSilenceDay0call6month != null">
+				 gap_day_last_silence_day_0call_6month = #{gapDayLastSilenceDay0call6month},
+			</if>
+			<if test="gapDayLastSilenceDay0callActive6month != null">
+				 gap_day_last_silence_day_0call_active_6month = #{gapDayLastSilenceDay0callActive6month},
+			</if>
+			<if test="gapDayLastSilenceDay0call0msgSend6month != null">
+				 gap_day_last_silence_day_0call_0msg_send_6month = #{gapDayLastSilenceDay0call0msgSend6month},
+			</if>
+			<if test="createTime != null">
+				 create_time = #{createTime},
+			</if>
+			<if test="createMan != null">
+				 create_man = #{createMan},
+			</if>
+			<if test="modifyTime != null">
+				 modify_time = #{modifyTime},
+			</if>
+			<if test="modifyMan != null">
+				 modify_man = #{modifyMan},
+			</if>
+			<if test="remark != null">
+				 remark = #{remark},
+			</if>
+
+ 		 </set>
+		 WHERE silence_stats_id = #{silenceStatsId}
+	</update>
+
+</mapper>

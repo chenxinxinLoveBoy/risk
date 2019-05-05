@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.shangyong.backend.dao.approval.CuCustomerCallRecordDao">
+
+	<resultMap type="com.shangyong.backend.entity.approval.CuCustomerCallRecord" id="cuCustomerCallRecordMap">
+		<id property="customerCallRecordId" column="customer_call_record_id" javaType="java.lang.String"></id>
+		<result property="customerCollectMessageId" column="customer_collect_message_id" javaType="java.lang.Long"></result>
+		<result property="customerId" column="customer_id" javaType="java.lang.String"></result>
+		<result property="appName" column="app_name" javaType="java.lang.Integer"></result>
+		<result property="callTime" column="call_time" javaType="java.lang.String"></result>
+		<result property="phone" column="phone" javaType="java.lang.String"></result>
+		<result property="callName" column="call_name" javaType="java.lang.String"></result>
+		<result property="useTime" column="use_time" javaType="java.lang.String"></result>
+		<result property="callType" column="call_type" javaType="java.lang.Integer"></result>
+		<result property="extend" column="extend" javaType="java.lang.String"></result>
+		<result property="createTime" column="create_time" javaType="java.lang.String"></result>
+		<result property="modifyTime" column="modify_time" javaType="java.lang.String"></result>
+	</resultMap>
+
+	<!-- 通用查询结果列-->
+	<sql id="Base_Column_List">
+customer_call_record_id,	customer_collect_message_id,	customer_id,	app_name,	call_time,	phone,	call_name,	use_time,	call_type,	extend,	create_time,	modify_time
+	</sql>
+
+	<!-- 添加(批量) -->
+	<insert id="saveAllEntity" parameterType="com.shangyong.backend.entity.approval.CuCustomerCallRecord">
+		 INSERT INTO cu_customer_call_record
+ 		(customer_call_record_id,customer_collect_message_id,customer_id,app_name,call_time,phone,call_name,use_time,call_type,extend,create_time,modify_time) 
+		 VALUES 
+		 <foreach collection="list" item="item" index="index" separator="," >
+	 		(#{item.customerCallRecordId},#{item.customerCollectMessageId},#{item.customerId},#{item.appName},#{item.callTime},#{item.phone},#{item.callName},#{item.useTime},#{item.callType},#{item.extend},#{item.createTime},#{item.modifyTime}) 
+		 </foreach>
+	</insert>
+</mapper>

@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<META HTTP-EQUIV="pragma" CONTENT="no-cache">
+<META HTTP-EQUIV="Cache-Control" CONTENT="no-cache, must-revalidate">
+<META HTTP-EQUIV="expires" CONTENT="0">
+<!-- <title>Insert title here</title> -->
+</head>
+		<!-- css -->
+		<link rel="stylesheet" href="../../plugins/layui/css/layui.css" media="all" />
+		<link rel="stylesheet" href="../../css/global.css" media="all">
+		<link rel="stylesheet" href="../../plugins/font-awesome/css/font-awesome.min.css">
+		<link rel="stylesheet" href="../../css/table.css" />
+
+		<!-- JS -->
+		<script type="text/javascript" src="../../plugins/layui/layui.js"></script>
+		<script src="../../jqery/jquery.js"></script>
+		<script type="text/javascript" src="../../../commons/base.js"></script>
+		<script type="text/javascript" src="../../js/sysParam/sysParamHis_add.js"></script>
+		<!-- 日期控件 -->
+	<script language="javascript" type="text/javascript" src="../../My97DatePicker/WdatePicker.js"></script>
+		
+<body>
+	<div style="margin: 15px;">
+	<form class="layui-form" id="userForms" >
+		<div class="layui-form-item">
+			<label class="layui-form-label">参数编号</label>
+			<div class="layui-input-inline" style="width:500px">
+				<input id="paramHisId" type="hidden" name="paramHisId"  autocomplete="off" class="layui-input" >
+				<input id="sysParamId" type="hidden" name="sysParamId"  autocomplete="off" class="layui-input" >
+				<input id="version" type="hidden" name="version"  autocomplete="off" class="layui-input" >
+				<input id="createMan" type="hidden" name="createMan"  autocomplete="off" class="layui-input" >
+				<input id="createTime" type="hidden" name="createTime"  autocomplete="off" class="layui-input" >
+				<input id="paramValue" type="text" name="paramValue" placeholder="参数编号"  autocomplete="off" class="layui-input">
+			</div>
+		</div>	
+		
+		<div class="layui-form-item">
+			<label class="layui-form-label">参数名称</label>
+			<div class="layui-input-inline" style="width:500px">
+				<input id="paramName" type="text" name="paramName"   placeholder="参数名称" autocomplete="off" class="layui-input">
+			</div>
+		</div>
+		<div class="layui-form-item">
+			<label class="layui-form-label">参数1名称</label>
+			<div class="layui-input-inline" style="width:500px">
+				<input id="paramNameOne" type="text" name="paramNameOne"   placeholder="参数1名称" autocomplete="off" class="layui-input">
+			</div>
+		</div>
+		<div class="layui-form-item">
+			<label class="layui-form-label">参数值1</label>
+			<div class="layui-input-inline" style="width:500px">
+				<input id="paramValueOne" type="text" name="paramValueOne"   placeholder="参数值1" autocomplete="off" class="layui-input">
+			</div>
+		</div>
+		
+		<div class="layui-form-item">
+			<label class="layui-form-label">参数2名称</label>
+			<div class="layui-input-inline" style="width:500px">
+				<input id="paramNameTwo" type="text" name="paramNameTwo"   placeholder="参数2名称" autocomplete="off" class="layui-input">
+			</div>
+		</div>
+		
+		<div class="layui-form-item">
+			<label class="layui-form-label">参数值2</label>
+			<div class="layui-input-inline" style="width:500px">
+				<input id="paramValueTwo" type="text" name="paramValueTwo"   placeholder="参数值2" autocomplete="off" class="layui-input">
+			</div>
+		</div>
+		
+		<div class="layui-form-item">
+			<label class="layui-form-label">参数3名称</label>
+			<div class="layui-input-inline" style="width:500px">
+				<input id="paramNameThree" type="text" name="paramNameThree"   placeholder="参数3名称" autocomplete="off" class="layui-input">
+			</div>
+		</div>
+		<div class="layui-form-item">
+			<label class="layui-form-label">参数值3</label>
+			<div class="layui-input-inline" style="width:500px">
+				<input id="paramValueThree" type="text" name="paramValueThree"   placeholder="参数值3" autocomplete="off" class="layui-input">
+			</div>
+		</div>
+		
+		
+		<div class="layui-form-item">
+			<label class="layui-form-label">参数4名称</label>
+			<div class="layui-input-inline" style="width:500px">
+				<input id="paramNameFour" type="text" name="paramNameFour"   placeholder="参数4名称" autocomplete="off" class="layui-input">
+			</div>
+		</div>
+		<div class="layui-form-item">
+			<label class="layui-form-label">参数值4</label>
+			<div class="layui-input-inline" style="width:500px">
+				<input id="paramValueFour" type="text" name="paramValueFour"   placeholder="参数值4" autocomplete="off" class="layui-input">
+			</div>
+		</div>
+		
+		<div class="layui-form-item">
+			<label class="layui-form-label">参数5名称</label>
+			<div class="layui-input-inline" style="width:500px">
+				<input id="paramNameFive" type="text" name="paramNameFive"   placeholder="参数5名称" autocomplete="off" class="layui-input">
+			</div>
+		</div>
+		
+		<div class="layui-form-item">
+			<label class="layui-form-label">参数值5</label>
+			<div class="layui-input-inline" style="width:500px">
+				<input id="paramValueFive" type="text" name="paramValueFive"   placeholder="参数值5" autocomplete="off" class="layui-input">
+			</div>
+		</div>
+		
+		
+		<div class="layui-form-item">
+			<label class="layui-form-label">备注</label>
+			<div class="layui-input-inline" style="width:500px">
+				<input id="remark" type="text" name="remark"   placeholder="备注" autocomplete="off" class="layui-input">
+			</div>
+		</div>
+		
+		 <div class="layui-form-item">
+		    <label class="layui-form-label">状态</label>
+		    <div class="layui-input-block" style="width:500px">
+		    	<input name="level1" value="01" title="生效" type="radio"    lay-filter="radio_filter1" id="level_id1" />
+		    	<input name="level1" value="02" title="失效" type="radio"    lay-filter="radio_filter1" id="level_id2" />
+		    </div>
+		  </div>
+		
+  		<button class="layui-btn layui-btn-normal" id="closeIframe" onclick="closeIfrname()" >取消</button>
+		
+	</form>
+</div>
+</body>
+</html>

@@ -1,0 +1,291 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.shangyong.backend.dao.tdf.TdFacilityDeviceIosServiceDao">
+
+	<resultMap type="com.shangyong.backend.entity.tdf.TdFacilityDeviceIos" id="tdFacilityDeviceIosinfoMap">
+		<id property="tdFacilityDeviceIOSId" column="td_facility_device_IOS_id" javaType="java.lang.String"></id>
+		<result property="buApplicationId" column="bu_application_id" javaType="java.lang.String"></result>
+		<result property="os" column="os" javaType="java.lang.String"></result>
+		<result property="version" column="version" javaType="java.lang.String"></result>
+		<result property="idfv" column="idfv" javaType="java.lang.String"></result>
+		<result property="idfa" column="idfa" javaType="java.lang.String"></result>
+		<result property="osVersion" column="osVersion" javaType="java.lang.String"></result>
+		<result property="uuid" column="uuid" javaType="java.lang.String"></result>
+		<result property="bootTime" column="bootTime" javaType="java.lang.String"></result>
+		<result property="currentTime" column="currentTime" javaType="java.lang.String"></result>
+		<result property="upTime" column="upTime" javaType="java.lang.String"></result>
+		<result property="totalSpace" column="totalSpace" javaType="java.lang.String"></result>
+		<result property="freeSpace" column="freeSpace" javaType="java.lang.String"></result>
+		<result property="memory" column="memory" javaType="java.lang.String"></result>
+		<result property="cellIp" column="cellIp" javaType="java.lang.String"></result>
+		<result property="wifiIp" column="wifiIp" javaType="java.lang.String"></result>
+		<result property="wifiNetmask" column="wifiNetmask" javaType="java.lang.String"></result>
+		<result property="mac" column="mac" javaType="java.lang.String"></result>
+		<result property="ssid" column="ssid" javaType="java.lang.String"></result>
+		<result property="bssid" column="bssid" javaType="java.lang.String"></result>
+		<result property="vpnIp" column="vpnIp" javaType="java.lang.String"></result>
+		<result property="vpnNetmask" column="vpnNetmask" javaType="java.lang.String"></result>
+		<result property="networkNames" column="networkNames" javaType="java.lang.String"></result>
+		<result property="networkType" column="networkType" javaType="java.lang.String"></result>
+		<result property="proxyType" column="proxyType" javaType="java.lang.String"></result>
+		<result property="proxyUrl" column="proxyUrl" javaType="java.lang.String"></result>
+		<result property="dns" column="dns" javaType="java.lang.String"></result>
+		<result property="jailbreak" column="jailbreak" javaType="java.lang.String"></result>
+		<result property="platform" column="platform" javaType="java.lang.String"></result>
+		<result property="deviceName" column="deviceName" javaType="java.lang.String"></result>
+		<result property="brightness" column="brightness" javaType="java.lang.String"></result>
+		<result property="carrier" column="carrier" javaType="java.lang.String"></result>
+		<result property="countryIso" column="countryIso" javaType="java.lang.String"></result>
+		<result property="mcc" column="mcc" javaType="java.lang.String"></result>
+		<result property="mnc" column="mnc" javaType="java.lang.String"></result>
+		<result property="radioType" column="radioType" javaType="java.lang.String"></result>
+		<result property="bundleId" column="bundleId" javaType="java.lang.String"></result>
+		<result property="appVersion" column="appVersion" javaType="java.lang.String"></result>
+		<result property="timeZone" column="timeZone" javaType="java.lang.String"></result>
+		<result property="signMd5" column="signMd5" javaType="java.lang.String"></result>
+		<result property="timeCost" column="timeCost" javaType="java.lang.String"></result>
+		<result property="languages" column="languages" javaType="java.lang.String"></result>
+		<result property="batteryStatus" column="batteryStatus" javaType="java.lang.String"></result>
+		<result property="batteryLevel" column="batteryLevel" javaType="java.lang.String"></result>
+		<result property="kernelVersion" column="kernelVersion" javaType="java.lang.String"></result>
+		<result property="gpsLocation" column="gpsLocation" javaType="java.lang.String"></result>
+		<result property="gpsSwitch" column="gpsSwitch" javaType="java.lang.String"></result>
+		<result property="gpsAuthStatus" column="gpsAuthStatus" javaType="java.lang.String"></result>
+		<result property="env" column="env" javaType="java.lang.String"></result>
+		<result property="attached" column="attached" javaType="java.lang.String"></result>
+		<result property="deviceId" column="deviceId" javaType="java.lang.String"></result>
+		<result property="trueIp" column="trueIp" javaType="java.lang.String"></result>
+		<result property="tokenId" column="tokenId" javaType="java.lang.String"></result>
+		<result property="createTime" column="create_time" javaType="java.lang.String"></result>
+		<result property="createMan" column="create_man" javaType="java.lang.String"></result>
+		<result property="modifyTime" column="modify_time" javaType="java.lang.String"></result>
+		<result property="modifyMan" column="modify_man" javaType="java.lang.String"></result>
+		<result property="remark" column="remark" javaType="java.lang.String"></result>
+	</resultMap>
+
+	<!-- 通用查询结果列-->
+	<sql id="Base_Column_List">
+	td_facility_device_IOS_id,	bu_application_id,	os,	version,	idfv,	idfa,	osVersion,	uuid,	bootTime,	currentTime,	upTime,	totalSpace,	freeSpace,	memory,	cellIp,	wifiIp,	wifiNetmask,	mac,	ssid,	bssid,	vpnIp,	vpnNetmask,	networkNames,	networkType,	proxyType,	proxyUrl,	dns,	jailbreak,	platform,	deviceName,	brightness,	carrier,	countryIso,	mcc,	mnc,	radioType,	bundleId,	appVersion,	timeZone,	signMd5,	timeCost,	languages,	batteryStatus,	batteryLevel,	kernelVersion,	gpsLocation,	gpsSwitch,	gpsAuthStatus,	env,	attached,	deviceId,	trueIp,	tokenId,	create_time,	create_man,	modify_time,	modify_man,	remark
+	</sql>
+
+	<!-- 查询（根据主键ID查询） -->
+	<select id="getEntityById" resultMap="tdFacilityDeviceIosinfoMap" parameterType="java.lang.String">
+		 SELECT
+		 <include refid="Base_Column_List" />
+		 FROM td_facility_device_ios
+		 WHERE td_facility_device_IOS_id = #{tdFacilityDeviceIOSId}
+	</select>
+
+	<!-- 查询（根据主键ID查询） -->
+	<select id="getAll" resultMap="tdFacilityDeviceIosinfoMap" parameterType="java.lang.String">
+		 SELECT
+		 <include refid="Base_Column_List" />
+		 FROM td_facility_device_ios
+	</select>
+	
+	<!-- 查询（根据buapplicationId查询手机品牌） -->
+	<select id="queryByBuApplicationId" resultType="java.lang.String" parameterType="java.lang.String">
+		 SELECT
+		 platform
+		 FROM td_facility_device_ios
+		 WHERE bu_application_id = #{buapplicationId} 
+		 order by create_time desc
+		 limit 1
+	</select>
+
+	<!--删除：根据主键ID删除-->
+	<delete id="deleteEntity" parameterType="java.lang.String">
+		 DELETE FROM td_facility_device_ios
+		 WHERE td_facility_device_IOS_id = #{tdFacilityDeviceIOSId}
+	</delete>
+
+	<!-- 添加 -->
+	<insert id="saveEntity" parameterType="com.shangyong.backend.entity.tdf.TdFacilityDeviceIos">
+		 INSERT INTO td_facility_device_ios
+ 		(td_facility_device_IOS_id,bu_application_id,os,version,idfv,idfa,osVersion,uuid,bootTime,currentTime,upTime,totalSpace,freeSpace,memory,cellIp,wifiIp,wifiNetmask,mac,ssid,bssid,vpnIp,vpnNetmask,networkNames,networkType,proxyType,proxyUrl,dns,jailbreak,platform,deviceName,brightness,carrier,countryIso,mcc,mnc,radioType,bundleId,appVersion,timeZone,signMd5,timeCost,languages,batteryStatus,batteryLevel,kernelVersion,gpsLocation,gpsSwitch,gpsAuthStatus,env,attached,deviceId,trueIp,tokenId,create_time,create_man,modify_time,modify_man,remark) 
+		 VALUES 
+ 		(#{tdFacilityDeviceIOSId},#{buApplicationId},#{os},#{version},#{idfv},#{idfa},#{osVersion},#{uuid},#{bootTime},#{currentTime},#{upTime},#{totalSpace},#{freeSpace},#{memory},#{cellIp},#{wifiIp},#{wifiNetmask},#{mac},#{ssid},#{bssid},#{vpnIp},#{vpnNetmask},#{networkNames},#{networkType},#{proxyType},#{proxyUrl},#{dns},#{jailbreak},#{platform},#{deviceName},#{brightness},#{carrier},#{countryIso},#{mcc},#{mnc},#{radioType},#{bundleId},#{appVersion},#{timeZone},#{signMd5},#{timeCost},#{languages},#{batteryStatus},#{batteryLevel},#{kernelVersion},#{gpsLocation},#{gpsSwitch},#{gpsAuthStatus},#{env},#{attached},#{deviceId},#{trueIp},#{tokenId},#{createTime},#{createMan},#{modifyTime},#{modifyMan},#{remark}) 
+	</insert>
+
+	<!-- 修 改-->
+	<update id="updateEntity" parameterType="com.shangyong.backend.entity.tdf.TdFacilityDeviceIos">
+		 UPDATE td_facility_device_ios
+ 		 <set> 
+			<if test="buApplicationId != null">
+				 bu_application_id = #{buApplicationId},
+			</if>
+			<if test="os != null">
+				 os = #{os},
+			</if>
+			<if test="version != null">
+				 version = #{version},
+			</if>
+			<if test="idfv != null">
+				 idfv = #{idfv},
+			</if>
+			<if test="idfa != null">
+				 idfa = #{idfa},
+			</if>
+			<if test="osVersion != null">
+				 osVersion = #{osVersion},
+			</if>
+			<if test="uuid != null">
+				 uuid = #{uuid},
+			</if>
+			<if test="bootTime != null">
+				 bootTime = #{bootTime},
+			</if>
+			<if test="currentTime != null">
+				 currentTime = #{currentTime},
+			</if>
+			<if test="upTime != null">
+				 upTime = #{upTime},
+			</if>
+			<if test="totalSpace != null">
+				 totalSpace = #{totalSpace},
+			</if>
+			<if test="freeSpace != null">
+				 freeSpace = #{freeSpace},
+			</if>
+			<if test="memory != null">
+				 memory = #{memory},
+			</if>
+			<if test="cellIp != null">
+				 cellIp = #{cellIp},
+			</if>
+			<if test="wifiIp != null">
+				 wifiIp = #{wifiIp},
+			</if>
+			<if test="wifiNetmask != null">
+				 wifiNetmask = #{wifiNetmask},
+			</if>
+			<if test="mac != null">
+				 mac = #{mac},
+			</if>
+			<if test="ssid != null">
+				 ssid = #{ssid},
+			</if>
+			<if test="bssid != null">
+				 bssid = #{bssid},
+			</if>
+			<if test="vpnIp != null">
+				 vpnIp = #{vpnIp},
+			</if>
+			<if test="vpnNetmask != null">
+				 vpnNetmask = #{vpnNetmask},
+			</if>
+			<if test="networkNames != null">
+				 networkNames = #{networkNames},
+			</if>
+			<if test="networkType != null">
+				 networkType = #{networkType},
+			</if>
+			<if test="proxyType != null">
+				 proxyType = #{proxyType},
+			</if>
+			<if test="proxyUrl != null">
+				 proxyUrl = #{proxyUrl},
+			</if>
+			<if test="dns != null">
+				 dns = #{dns},
+			</if>
+			<if test="jailbreak != null">
+				 jailbreak = #{jailbreak},
+			</if>
+			<if test="platform != null">
+				 platform = #{platform},
+			</if>
+			<if test="deviceName != null">
+				 deviceName = #{deviceName},
+			</if>
+			<if test="brightness != null">
+				 brightness = #{brightness},
+			</if>
+			<if test="carrier != null">
+				 carrier = #{carrier},
+			</if>
+			<if test="countryIso != null">
+				 countryIso = #{countryIso},
+			</if>
+			<if test="mcc != null">
+				 mcc = #{mcc},
+			</if>
+			<if test="mnc != null">
+				 mnc = #{mnc},
+			</if>
+			<if test="radioType != null">
+				 radioType = #{radioType},
+			</if>
+			<if test="bundleId != null">
+				 bundleId = #{bundleId},
+			</if>
+			<if test="appVersion != null">
+				 appVersion = #{appVersion},
+			</if>
+			<if test="timeZone != null">
+				 timeZone = #{timeZone},
+			</if>
+			<if test="signMd5 != null">
+				 signMd5 = #{signMd5},
+			</if>
+			<if test="timeCost != null">
+				 timeCost = #{timeCost},
+			</if>
+			<if test="languages != null">
+				 languages = #{languages},
+			</if>
+			<if test="batteryStatus != null">
+				 batteryStatus = #{batteryStatus},
+			</if>
+			<if test="batteryLevel != null">
+				 batteryLevel = #{batteryLevel},
+			</if>
+			<if test="kernelVersion != null">
+				 kernelVersion = #{kernelVersion},
+			</if>
+			<if test="gpsLocation != null">
+				 gpsLocation = #{gpsLocation},
+			</if>
+			<if test="gpsSwitch != null">
+				 gpsSwitch = #{gpsSwitch},
+			</if>
+			<if test="gpsAuthStatus != null">
+				 gpsAuthStatus = #{gpsAuthStatus},
+			</if>
+			<if test="env != null">
+				 env = #{env},
+			</if>
+			<if test="attached != null">
+				 attached = #{attached},
+			</if>
+			<if test="deviceId != null">
+				 deviceId = #{deviceId},
+			</if>
+			<if test="trueIp != null">
+				 trueIp = #{trueIp},
+			</if>
+			<if test="tokenId != null">
+				 tokenId = #{tokenId},
+			</if>
+			<if test="createTime != null">
+				 create_time = #{createTime},
+			</if>
+			<if test="createMan != null">
+				 create_man = #{createMan},
+			</if>
+			<if test="modifyTime != null">
+				 modify_time = #{modifyTime},
+			</if>
+			<if test="modifyMan != null">
+				 modify_man = #{modifyMan},
+			</if>
+			<if test="remark != null">
+				 remark = #{remark},
+			</if>
+
+ 		 </set>
+		 WHERE td_facility_device_IOS_id = #{tdFacilityDeviceIOSId}
+	</update>
+
+</mapper>

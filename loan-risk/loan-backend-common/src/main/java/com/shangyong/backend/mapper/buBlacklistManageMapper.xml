@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.shangyong.backend.dao.BuBlacklistManageDao">
+
+	<resultMap type="com.shangyong.backend.entity.BuBlacklistManage" id="buBlacklistManageMap">
+		<id property="blacklistManageId" column="blacklist_manage_id" javaType="java.lang.Integer"></id>
+		<result property="blacklistCodeId" column="blacklist_code_id" javaType="java.lang.String"></result>
+		<result property="uploadAddress" column="upload_address" javaType="java.lang.String"></result>
+		<result property="uploadTime" column="upload_time" javaType="java.lang.String"></result>
+		<result property="uploadMan" column="upload_man" javaType="java.lang.String"></result>
+		<result property="uploadSuccess" column="upload_success" javaType="java.lang.String"></result>
+		<result property="uploadFailure" column="upload_failure" javaType="java.lang.String"></result>
+		<result property="remark" column="remark" javaType="java.lang.String"></result>
+	</resultMap>
+
+	<!-- 通用查询结果列-->
+	<sql id="Base_Column_List">
+blacklist_manage_id,	blacklist_code_id,	upload_address,	upload_time,	upload_man,	upload_success,	upload_failure,	remark
+	</sql>
+
+	<!-- 查询（根据主键ID查询） -->
+	<select id="getEntityById" resultMap="buBlacklistManageMap" parameterType="java.lang.Integer">
+		 SELECT
+		 <include refid="Base_Column_List" />
+		 FROM bu_blacklist_manage
+		 WHERE blacklist_manage_id = #{blacklistManageId}
+	</select>
+
+	<!-- 查询（根据主键ID查询） -->
+	<select id="findAll" resultMap="buBlacklistManageMap" parameterType="java.lang.Integer">
+		 SELECT
+		 <include refid="Base_Column_List" />
+		 FROM bu_blacklist_manage
+		 WHERE blacklist_manage_id = #{blacklistManageId}
+	</select>
+
+	<!--删除：根据主键ID删除-->
+	<delete id="deleteEntity" parameterType="java.lang.Integer">
+		 DELETE FROM bu_blacklist_manage
+		 WHERE blacklist_manage_id = #{blacklistManageId}
+	</delete>
+
+	<!-- 添加 -->
+	<insert id="saveEntity" parameterType="com.shangyong.backend.entity.BuBlacklistManage">
+		 INSERT INTO bu_blacklist_manage
+ 		(blacklist_manage_id,blacklist_code_id,upload_address,upload_time,upload_man,upload_success,upload_failure,remark) 
+		 VALUES 
+ 		(#{blacklistManageId},#{blacklistCodeId},#{uploadAddress},#{uploadTime},#{uploadMan},#{uploadSuccess},#{uploadFailure},#{remark}) 
+	</insert>
+
+	<!-- 修 改-->
+	<update id="updateEntity" parameterType="com.shangyong.backend.entity.BuBlacklistManage">
+		 UPDATE bu_blacklist_manage
+ 		 <set> 
+			<if test="blacklistCodeId != null">
+				 blacklist_code_id = #{blacklistCodeId},
+			</if>
+			<if test="uploadAddress != null">
+				 upload_address = #{uploadAddress},
+			</if>
+			<if test="uploadTime != null">
+				 upload_time = #{uploadTime},
+			</if>
+			<if test="uploadMan != null">
+				 upload_man = #{uploadMan},
+			</if>
+			<if test="uploadSuccess != null">
+				 upload_success = #{uploadSuccess},
+			</if>
+			<if test="uploadFailure != null">
+				 upload_failure = #{uploadFailure},
+			</if>
+			<if test="remark != null">
+				 remark = #{remark},
+			</if>
+
+ 		 </set>
+		 WHERE blacklist_manage_id = #{blacklistManageId}
+	</update>
+	 <sql id="propertitys_sql">
+  		<where> 
+  			<if test="blacklistCodeId != null and blacklistCodeId != '' ">
+				 blacklist_code_id = #{blacklistCodeId}
+			</if>
+			<if test="uploadAddress != null">
+				 upload_address = #{uploadAddress}
+			</if>
+			<if test="endTime != null and endTime != ''  "> 
+				<![CDATA[ and upload_time <= #{endTime} ]]>
+		   </if>
+		   <if test="startTime != null and startTime != ''  "> 
+				<![CDATA[ and upload_time >= #{startTime} ]]>
+		   </if>
+			<if test="uploadMan != null">
+				 upload_man = #{uploadMan}
+			</if>
+			<if test="uploadSuccess != null">
+				 upload_success = #{uploadSuccess}
+			</if>
+			<if test="uploadFailure != null">
+				 upload_failure = #{uploadFailure}
+			</if>
+			<if test="remark != null">
+				 remark = #{remark}
+			</if>
+  		</where>
+  </sql>
+	<!-- 查询所有-->
+	<select id="listAll" resultMap="buBlacklistManageMap" resultType="com.shangyong.backend.entity.BuBlacklistManage"  parameterType="com.shangyong.backend.entity.BuBlacklistManage" >
+		 SELECT
+		 <include refid="Base_Column_List" />
+		 FROM bu_blacklist_manage  
+	 	 <include refid="propertitys_sql" />
+	 	 order by upload_time desc 
+   		 LIMIT #{pageIndex},#{pageSize}
+	</select>
+	<!-- 统计 所有-->
+  	<select id="listAllSum" resultType="java.lang.Integer" parameterType="com.shangyong.backend.entity.BuBlacklistManage">
+  		select 
+  			count(1)
+  		from bu_blacklist_manage
+  		<include refid="propertitys_sql" />
+  	</select>
+</mapper>

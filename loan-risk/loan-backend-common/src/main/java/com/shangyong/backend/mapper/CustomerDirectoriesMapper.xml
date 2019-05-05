@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.shangyong.backend.dao.approval.CustomerDirectoriesDao">
+
+	<resultMap type="com.shangyong.backend.entity.approval.CustomerDirectories" id="customerDirectoriesMap">
+		<id property="directoriesId" column="directories_id" javaType="java.lang.String"></id>
+		<result property="customerCollectMessageId" column="customer_collect_message_id" javaType="java.lang.Long"></result>
+		<result property="appName" column="app_name" javaType="java.lang.Integer"></result>
+		<result property="customerId" column="customer_id" javaType="java.lang.String"></result>
+		<result property="contactName" column="contact_name" javaType="java.lang.String"></result>
+		<result property="contactPhone" column="contact_phone" javaType="java.lang.String"></result>
+		<result property="createTime" column="create_time" javaType="java.lang.String"></result>
+		<result property="modifyTime" column="modify_time" javaType="java.lang.String"></result>
+		<result property="ifMobile" column="if_mobile" javaType="java.lang.Integer"></result>
+		<result property="districtNumber" column="district_number" javaType="java.lang.String"></result>
+		<result property="directoriesState" column="directories_state" javaType="java.lang.Integer"></result>
+		<result property="extend" column="extend" javaType="java.lang.String"></result>
+	</resultMap>
+
+	<!-- 通用查询结果列-->
+	<sql id="Base_Column_List">
+directories_id,	customer_collect_message_id,	app_name,	customer_id,	contact_name,	contact_phone,	create_time,	modify_time,	if_mobile,	district_number,	directories_state,	extend
+	</sql>
+
+	<!-- 查询所有（根据客户编号查询） -->
+	<select id="findAll" resultMap="customerDirectoriesMap" parameterType="java.lang.String">
+		 SELECT
+		 <include refid="Base_Column_List" />
+		 FROM cu_customer_directories
+		 WHERE customer_id = #{customerId} and app_name = #{appName}
+	</select>
+
+	<!-- 批量添加 -->
+	<insert id="saveAllEntity">
+		 INSERT INTO cu_customer_directories
+ 		(directories_id,customer_collect_message_id,app_name,customer_id,contact_name,contact_phone,create_time,modify_time,if_mobile,district_number,directories_state,extend)
+		 VALUES 
+ 	    <foreach collection="list" item="item" index="index" separator="," >  
+ 		(#{item.directoriesId},#{item.customerCollectMessageId},#{item.appName},#{item.customerId},#{item.contactName},#{item.contactPhone},#{item.createTime},#{item.modifyTime},#{item.ifMobile},#{item.districtNumber},#{item.directoriesState},#{item.extend}) 
+	    </foreach>  
+	</insert>
+	<!-- 查询（根据根据customerId和appName查询） -->
+	<select id="findlateEntity" resultMap="customerDirectoriesMap">
+		 SELECT
+		 <include refid="Base_Column_List" />
+		 FROM cu_customer_directories
+		 WHERE app_name = #{appName} and customer_id = #{customerId} ORDER BY create_time DESC LIMIT 1
+	</select>
+</mapper>

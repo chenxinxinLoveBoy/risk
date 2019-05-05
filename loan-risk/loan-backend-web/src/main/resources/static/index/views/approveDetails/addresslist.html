@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<!-- <title>Insert title here</title> -->
+</head>
+ <link rel="stylesheet" href="../../plugins/layui/css/layui.css" media="all" />
+<link rel="stylesheet" href="../../css/global.css" media="all">
+<link rel="stylesheet"
+	href="../../plugins/font-awesome/css/font-awesome.min.css"> 
+		<!-- JS -->
+		<script type="text/javascript" src="../../plugins/layui/layui.js"></script>
+		<script src="../../jqery/jquery.js"></script>
+		<script type="text/javascript" src="../../../commons/base.js"></script>
+		<script type="text/javascript" src="../../js/approveDetails/addresslist.js"></script> 
+<body> 
+	<body>
+		<div class="admin-main"> 
+			<blockquote class="layui-elem-quote">  
+			 <div class="layui-inline">
+				    <label class="layui-form-label" style="width: auto;">正常联系人数量：</label>
+				    <font color='blue' ><label name="phoneSize" id="phoneSize"  class="layui-form-label" style="width: auto;"></label></font>
+			</div>
+			
+			 <div class="layui-inline">
+				    <label class="layui-form-label" style="width: auto;">异类号码数量：</label>
+				    <font color='blue' ><label name="errorPhoneSize" id="errorPhoneSize"  class="layui-form-label" style="width: auto;"></label></font>
+			</div>
+			
+			 <div class="layui-inline">
+				    <label class="layui-form-label" style="width: auto;">异常号码数量：</label>
+				    <font color='blue' ><label name="exceptionPhoneSize" id="exceptionPhoneSize"  class="layui-form-label" style="width: auto;"></label></font>
+			</div> 
+		<table class="layui-table" id="txl"> 
+		</table>
+		<button class="layui-btn layui-btn-normal"  id="closeIframe" onclick="closeIfrname()"  style="margin-left: 380px;" >关闭</button> 
+			</blockquote> 
+		</div>
+	</body>
+	</html>

@@ -1,0 +1,253 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.shangyong.backend.dao.BuBlacklistDeviceDao">
+
+	<resultMap type="com.shangyong.backend.entity.BuBlacklistDevice" id="buBlacklistDeviceMap">
+		<id property="blacklistId" column="blacklist_id" javaType="java.lang.String"></id>
+		<result property="customerId" column="customer_id" javaType="java.lang.String"></result>
+		<result property="name" column="name" javaType="java.lang.String"></result>
+		<result property="certType" column="cert_type" javaType="java.lang.String"></result>
+		<result property="certCode" column="cert_code" javaType="java.lang.String"></result>
+		<result property="phoneNum" column="phone_num" javaType="java.lang.String"></result>
+		<result property="deviceId" column="device_id" javaType="java.lang.String"></result>
+		<result property="macAddress" column="mac_address" javaType="java.lang.String"></result>
+		<result property="ipAddress" column="ip_address" javaType="java.lang.String"></result>
+		<result property="isFailure" column="is_failure" javaType="java.lang.String"></result>
+		<result property="createTime" column="create_time" javaType="java.util.Date"></result>
+		<result property="createMan" column="create_man" javaType="java.lang.String"></result>
+		<result property="modifyTime" column="modify_time" javaType="java.util.Date"></result>
+		<result property="modifyMan" column="modify_man" javaType="java.lang.String"></result>
+	</resultMap>
+
+	<!-- 通用查询结果列-->
+	<sql id="Base_Column_List">
+		 	blacklist_id,	customer_id,	name,	cert_type,	cert_code,	phone_num,	device_id,	mac_address,	ip_address,	is_failure,	create_time,	create_man,	modify_time,	modify_man
+	</sql>
+
+	<!-- 查询（根据主键ID查询） -->
+	<select id="selectByPrimaryKey" resultType="com.shangyong.backend.entity.BuBlacklistDevice" parameterType="java.lang.String">
+		 SELECT
+		 <include refid="Base_Column_List" />
+		 FROM bu_blacklist_device
+		 WHERE blacklist_id = #{blacklistId}
+	</select>
+	
+	<!-- 查询是否有重复黑名单 -->
+	<select id="selectRepeat" resultType="java.lang.Integer" parameterType="java.lang.String">
+		 SELECT
+		 count(1)
+		 FROM bu_blacklist_device
+		 WHERE customer_id = #{customerId}
+	     <if test="deviceId != null">
+		 AND   device_id=#{deviceId}
+		 </if>
+		 <if test="macAddress != null">
+		 AND   mac_address=#{macAddress}
+		 </if>
+		 <if test="ipAddress != null">
+		 AND   ip_address=#{ipAddress}
+		</if>
+	</select>
+
+    <!-- 查询是否有存在deviceId -->
+	<select id="selectCountDeviceId" resultType="java.lang.Integer" parameterType="java.lang.String">
+		 SELECT
+		 count(1)
+		 FROM bu_blacklist_device
+		 where  device_id=#{deviceId}
+	</select>
+	
+	<!-- 查询是否有存在trueId -->
+	<select id="selectCountTrueId" resultType="java.lang.Integer" parameterType="java.lang.String">
+		 SELECT
+		 count(1)
+		 FROM bu_blacklist_device
+		 where  ip_address=#{ipAddress}
+	</select>
+	
+	<!-- 查询是否有存在macAddress -->
+	<select id="selectCountMacAddress" resultType="java.lang.Integer" parameterType="java.lang.String">
+		 SELECT
+		 count(1)
+		 FROM bu_blacklist_device
+		 where  mac_address=#{macAddress}
+	</select>
+
+	<!--删除：根据主键ID删除-->
+	<delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+		 DELETE FROM bu_blacklist_device
+		 WHERE blacklist_id = #{blacklistId}
+	</delete>
+
+	<!-- 添加 -->
+	<insert id="insert" parameterType="com.shangyong.backend.entity.BuBlacklistDevice">
+		 INSERT INTO bu_blacklist_device
+ 		(blacklist_id,customer_id,name,cert_type,cert_code,phone_num,device_id,mac_address,ip_address,is_failure,create_time,create_man,modify_time,modify_man) 
+		 VALUES 
+ 		(#{blacklistId},#{customerId},#{name},#{certType},#{certCode},#{phoneNum},#{deviceId},#{macAddress},#{ipAddress},#{isFailure},#{createTime},#{createMan},#{modifyTime},#{modifyMan}) 
+	</insert>
+
+	<!-- 添加 （匹配有值的字段）-->
+	<insert id="insertSelective" parameterType="com.shangyong.backend.entity.BuBlacklistDevice">
+		 INSERT INTO bu_blacklist_device
+		 <trim prefix="(" suffix=")" suffixOverrides="," >
+			<if test="blacklistId != null">
+				 blacklist_id,
+			</if>
+			<if test="customerId != null">
+				 customer_id,
+			</if>
+			<if test="name != null">
+				 name,
+			</if>
+			<if test="certType != null">
+				 cert_type,
+			</if>
+			<if test="certCode != null">
+				 cert_code,
+			</if>
+			<if test="phoneNum != null">
+				 phone_num,
+			</if>
+			<if test="deviceId != null">
+				 device_id,
+			</if>
+			<if test="macAddress != null">
+				 mac_address,
+			</if>
+			<if test="ipAddress != null">
+				 ip_address,
+			</if>
+			<if test="isFailure != null">
+				 is_failure,
+			</if>
+			<if test="createTime != null">
+				 create_time,
+			</if>
+			<if test="createMan != null">
+				 create_man,
+			</if>
+			<if test="modifyTime != null">
+				 modify_time,
+			</if>
+			<if test="modifyMan != null">
+				 modify_man,
+			</if>
+
+		 </trim>
+		 <trim prefix="values (" suffix=")" suffixOverrides="," >
+			<if test="blacklistId!=null">
+				 #{blacklistId},
+			</if>
+			<if test="customerId!=null">
+				 #{customerId},
+			</if>
+			<if test="name!=null">
+				 #{name},
+			</if>
+			<if test="certType!=null">
+				 #{certType},
+			</if>
+			<if test="certCode!=null">
+				 #{certCode},
+			</if>
+			<if test="phoneNum!=null">
+				 #{phoneNum},
+			</if>
+			<if test="deviceId!=null">
+				 #{deviceId},
+			</if>
+			<if test="macAddress!=null">
+				 #{macAddress},
+			</if>
+			<if test="ipAddress!=null">
+				 #{ipAddress},
+			</if>
+			<if test="isFailure!=null">
+				 #{isFailure},
+			</if>
+			<if test="createTime!=null">
+				 #{createTime},
+			</if>
+			<if test="createMan!=null">
+				 #{createMan},
+			</if>
+			<if test="modifyTime!=null">
+				 #{modifyTime},
+			</if>
+			<if test="modifyMan!=null">
+				 #{modifyMan},
+			</if>
+		 </trim>
+	</insert>
+
+	<!-- 修 改-->
+	<update id="updateByPrimaryKeySelective" parameterType="com.shangyong.backend.entity.BuBlacklistDevice">
+		 UPDATE bu_blacklist_device
+ 		 <set> 
+			<if test="customerId != null">
+				 customer_id = #{customerId},
+			</if>
+			<if test="name != null">
+				 name = #{name},
+			</if>
+			<if test="certType != null">
+				 cert_type = #{certType},
+			</if>
+			<if test="certCode != null">
+				 cert_code = #{certCode},
+			</if>
+			<if test="phoneNum != null">
+				 phone_num = #{phoneNum},
+			</if>
+			<if test="deviceId != null">
+				 device_id = #{deviceId},
+			</if>
+			<if test="macAddress != null">
+				 mac_address = #{macAddress},
+			</if>
+			<if test="ipAddress != null">
+				 ip_address = #{ipAddress},
+			</if>
+			<if test="isFailure != null">
+				 is_failure = #{isFailure},
+			</if>
+			<if test="createTime != null">
+				 create_time = #{createTime},
+			</if>
+			<if test="createMan != null">
+				 create_man = #{createMan},
+			</if>
+			<if test="modifyTime != null">
+				 modify_time = #{modifyTime},
+			</if>
+			<if test="modifyMan != null">
+				 modify_man = #{modifyMan},
+			</if>
+
+ 		 </set>
+		 WHERE blacklist_id = #{blacklistId}
+	</update>
+
+	<!-- 修 改-->
+	<update id="updateByPrimaryKey" parameterType="com.shangyong.backend.entity.BuBlacklistDevice">
+		 UPDATE bu_blacklist_device
+		 SET 
+			 customer_id = #{customerId},
+			 name = #{name},
+			 cert_type = #{certType},
+			 cert_code = #{certCode},
+			 phone_num = #{phoneNum},
+			 device_id = #{deviceId},
+			 mac_address = #{macAddress},
+			 ip_address = #{ipAddress},
+			 is_failure = #{isFailure},
+			 create_time = #{createTime},
+			 create_man = #{createMan},
+			 modify_time = #{modifyTime},
+			 modify_man = #{modifyMan}
+		 WHERE blacklist_id = #{blacklistId}
+	</update>
+
+</mapper>

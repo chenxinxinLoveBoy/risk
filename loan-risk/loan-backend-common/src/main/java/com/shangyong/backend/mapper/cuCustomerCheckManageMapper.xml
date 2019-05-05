@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.shangyong.backend.dao.CuCustomerCheckManageDao">
+
+	<resultMap type="com.shangyong.backend.entity.CuCustomerCheckManage" id="cuCustomerCheckManageMap">
+		<id property="customerCheckManageId" column="customer_check_manage_id" javaType="java.lang.Integer"></id>
+		<result property="customerCheckCodeId" column="customer_check_code_id" javaType="java.lang.String"></result>
+		<result property="uploadAddress" column="upload_address" javaType="java.lang.String"></result>
+		<result property="uploadTime" column="upload_time" javaType="java.lang.String"></result>
+		<result property="uploadMan" column="upload_man" javaType="java.lang.String"></result>
+		<result property="uploadSuccess" column="upload_success" javaType="java.lang.String"></result>
+		<result property="uploadFailure" column="upload_failure" javaType="java.lang.String"></result>
+		<result property="taskType" column="task_type" javaType="java.lang.String"></result>
+		<result property="remark" column="remark" javaType="java.lang.String"></result>
+	</resultMap>
+
+	<!-- 通用查询结果列-->
+	<sql id="Base_Column_List">
+customer_check_manage_id,	customer_check_code_id,	upload_address,	upload_time,	upload_man,	upload_success,	upload_failure,	task_type,	remark
+	</sql>
+
+	<!-- 查询（根据主键ID查询） -->
+	<select id="getEntityById" resultMap="cuCustomerCheckManageMap" parameterType="java.lang.Integer">
+		 SELECT
+		 <include refid="Base_Column_List" />
+		 FROM cu_customer_check_manage
+		 WHERE customer_check_manage_id = #{customerCheckManageId}
+	</select>
+
+	<!-- 查询（根据主键ID查询） -->
+	<select id="findAll" resultMap="cuCustomerCheckManageMap" parameterType="java.lang.Integer">
+		 SELECT
+		 <include refid="Base_Column_List" />
+		 FROM cu_customer_check_manage
+		 WHERE customer_check_manage_id = #{customerCheckManageId}
+	</select>
+
+	<!--删除：根据主键ID删除-->
+	<delete id="deleteEntity" parameterType="java.lang.Integer">
+		 DELETE FROM cu_customer_check_manage
+		 WHERE customer_check_manage_id = #{customerCheckManageId}
+	</delete>
+
+	<!-- 添加 -->
+	<insert id="saveEntity" parameterType="com.shangyong.backend.entity.CuCustomerCheckManage">
+		 INSERT INTO cu_customer_check_manage
+ 		(customer_check_manage_id,customer_check_code_id,upload_address,upload_time,upload_man,upload_success,upload_failure,task_type,remark) 
+		 VALUES 
+ 		(#{customerCheckManageId},#{customerCheckCodeId},#{uploadAddress},#{uploadTime},#{uploadMan},#{uploadSuccess},#{uploadFailure},#{taskType},#{remark}) 
+	</insert>
+
+	<!-- 修 改-->
+	<update id="updateEntity" parameterType="com.shangyong.backend.entity.CuCustomerCheckManage">
+		 UPDATE cu_customer_check_manage
+ 		 <set> 
+			<if test="customerCheckCodeId != null">
+				 customer_check_code_id = #{customerCheckCodeId},
+			</if>
+			<if test="uploadAddress != null">
+				 upload_address = #{uploadAddress},
+			</if>
+			<if test="uploadTime != null">
+				 upload_time = #{uploadTime},
+			</if>
+			<if test="uploadMan != null">
+				 upload_man = #{uploadMan},
+			</if>
+			<if test="uploadSuccess != null">
+				 upload_success = #{uploadSuccess},
+			</if>
+			<if test="uploadFailure != null">
+				 upload_failure = #{uploadFailure},
+			</if>
+			<if test="taskType != null">
+				 task_type = #{taskType},
+			</if>
+			<if test="remark != null">
+				 remark = #{remark},
+			</if>
+
+ 		 </set>
+		 WHERE customer_check_manage_id = #{customerCheckManageId}
+	</update>
+	 <!-- 公用查询条件 -->
+  <sql id="propertitys_sql">
+  		<where> 
+  			<if test="customerCheckCodeId != null and customerCheckCodeId != '' ">
+				 customer_check_code_id = #{customerCheckCodeId}
+			</if>
+			<if test="uploadAddress != null and uploadAddress != '' ">
+				 upload_address = #{uploadAddress}
+			</if>
+			<if test="uploadTime != null and uploadTime != '' ">
+				 upload_time = #{uploadTime}
+			</if>
+			<if test="uploadMan != null and uploadMan != '' ">
+				 upload_man = #{uploadMan}
+			</if>
+			<if test="uploadSuccess != null and uploadSuccess != '' ">
+				 upload_success = #{uploadSuccess}
+			</if>
+			<if test="uploadFailure != null and uploadFailure != '' ">
+				 upload_failure = #{uploadFailure}
+			</if>
+			<if test="taskType != null and taskType != '' ">
+				 task_type = #{taskType}
+			</if>
+			<if test="endTime != null and endTime != ''  "> 
+				<![CDATA[ and upload_time <= #{endTime} ]]>
+		   </if>
+		   <if test="startTime != null and startTime != ''  "> 
+				<![CDATA[ and upload_time >= #{startTime} ]]>
+		   </if>
+  		</where>
+  </sql>
+	<!-- 查询（根据条件查询所有） -->
+	<select id="findAllByObj" resultMap="cuCustomerCheckManageMap" parameterType="com.shangyong.backend.entity.CuCustomerCheckManage">
+		 SELECT
+		 <include refid="Base_Column_List" />
+		 FROM cu_customer_check_manage
+		 <include refid="propertitys_sql"></include>
+  		order by upload_time desc 
+	</select>
+	<!-- 统计 -->
+	<select id="listCountAllByObj" parameterType="com.shangyong.backend.entity.CuCustomerCheckManage" resultType="java.lang.Integer">
+		 SELECT
+			count(1)
+		 FROM cu_customer_check_manage
+		 <include refid="propertitys_sql"></include>
+	</select>
+</mapper>

@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+<meta charset="UTF-8">
+<META HTTP-EQUIV="pragma" CONTENT="no-cache">
+<META HTTP-EQUIV="Cache-Control" CONTENT="no-cache, must-revalidate">
+<META HTTP-EQUIV="expires" CONTENT="0">
+<title>提现命中项统计</title>
+<link rel="stylesheet" href="../../plugins/layui/css/layui.css"
+	media="all" />
+<link rel="stylesheet" href="../../css/global.css" media="all">
+<link rel="stylesheet"
+	href="../../plugins/font-awesome/css/font-awesome.min.css">
+<link rel="stylesheet" href="../../css/table.css" />
+<link rel="stylesheet" href="../../css/lzh_tongji_fenxi.css" media="all" />
+</head>
+
+<body>
+	<div class="admin-main">
+
+		<blockquote class="layui-elem-quote">
+			<!-- 查询条件 -->
+				<div class="layui-inline">
+			      <label class="layui-form-label" style="width: auto;"> 开始时间：</label>
+			      <div class="layui-input-inline">
+			        <input name="startTime" lay-verify="startTime" id="startTime" autocomplete="off" class="layui-input" >
+			      </div>
+			    </div>
+			    
+			    <div class="layui-inline">
+			      <label class="layui-form-label" style="width: auto;">结束时间：</label>
+			      <div class="layui-input-inline">
+			        <input name="endTime" lay-verify=endTime id="endTime" autocomplete="off" class="layui-input" >
+			      </div>
+			    </div>
+			    
+			     <div class="layui-inline">
+			      <label class="layui-form-label" style="width: auto;">命中规则描述：</label>
+			      <div class="layui-input-inline">
+			        <input name="Name" lay-verify=Name id="Name" autocomplete="off" placeholder="支持模糊查询" class="layui-input" >
+			      </div>
+			    </div>
+			    
+					<a href="javascript:;" class="layui-btn layui-btn-small" id="search">
+						<i class="layui-icon">&#xe615;</i> 搜索
+					</a>
+					<a href="javascript:;" class="layui-btn layui-btn-small" id="histogram">
+			      	    <i class="layui-icon"></i> 柱状图形化
+			         </a>
+		</blockquote>
+		
+		<fieldset class="layui-elem-field">
+			<legend>数据列表</legend><br>
+
+			<div class="layui-field-box layui-form">
+				<table class="layui-table admin-table"  style="word-break: keep-all;overflow:auto;">
+					<thead>
+						<tr>
+							<th style="width:80px;">序号</th>
+							<th style="width:80px;">规则编号</th>
+							<th>命中规则描述</th>
+							<th>风险等级</th>
+							<th>命中次数</th>
+						</tr>
+					</thead>
+					<tbody id="content">
+					</tbody>
+				</table>
+				<label>共<font color='red' id="count_page_number"></font>条记录</label>
+				<div id="paged" class="page" style="display:inline-block;">
+				</div>
+			</div>
+		</fieldset>
+	</div>
+	<!--模板-->
+	<script type="text/html" id="tpl">
+			{{# layui.each(d.list, function(index, item){
+				var riskLevel = "";
+				if(item.riskLevel == "low"){
+					riskLevel = "低风险";
+				}else if(item.riskLevel == "medium"){
+					riskLevel = "中等风险";
+				}else if(item.riskLevel == "high"){
+					riskLevel = "高风险";
+				}
+			}}
+			<tr>
+				<td>{{ index + 1 }}</td>
+				<td>{{ item.itemId }}</td>
+				<td>{{ item.itemName }}</td>
+                <td>{{ riskLevel }}</td>
+				<td>{{ item.count }}</td>
+			</tr>
+			{{# }); }}
+		</script>
+
+	<!-- js -->
+	<script src="../../jqery/jquery.js"></script>
+	<script src="../../../commons/base.js"></script>
+	<script type="text/javascript" src="../../plugins/layui/layui.js"></script>
+	<script type="text/javascript" src="../../js/statistic/presentList.js"></script>
+</body>
+
+</html>

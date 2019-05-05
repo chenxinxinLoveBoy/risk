@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>提现步骤统计</title>
+    <link rel="stylesheet" href="../../plugins/layui/css/layui.css"
+          media="all"/>
+    <link rel="stylesheet" href="../../css/global.css" media="all">
+    <link rel="stylesheet"
+          href="../../plugins/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="../../css/table.css"/>
+	<link rel="stylesheet" href="../../css/lzh_tongji_fenxi.css" media="all" />
+</head>
+
+<body>
+<div class="admin-main">
+
+      <blockquote class="layui-elem-quote">
+        <form class="layui-form" style="margin-top: 0px;">
+            <div class="layui-form-item">
+                <div class="layui-inline">
+                    <label class="layui-form-label" style="width: 75px;">客户标识</label>
+                    <div class="layui-input-inline">
+                        <select name="appLevel" id="appLevel" lay-filter="select" lay-search="">
+                            <option value="">全部</option>
+                            <option value="0">新客户</option>
+                            <option value="1">老客户</option>
+                        </select>
+                    </div>
+                </div>
+                <!-- 查询条件 -->
+                <div class="layui-inline">
+                    <label class="layui-form-label" style="width: 75px;"> 创建时间</label>
+                    <div class="layui-input-inline" style="width: 394px;">
+                        <input name="startTime" lay-verify="required" id="startTime" autocomplete="off"
+                               class="layui-input" style="width: 180px; display:inline;" required>&nbsp;至&nbsp;
+                        <input name="endTime" lay-verify=required id="endTime" autocomplete="off" class="layui-input"
+                               style="width: 180px; display:inline;" required>
+                    </div>
+                </div>
+                <button class="layui-btn layui-btn-small" lay-submit lay-filter="from" style="margin-top: -15px;"><i
+                        class="layui-icon">&#xe615;</i> 搜索
+                </button>
+                <button type="reset" class="layui-btn layui-btn-small" style="margin-top: -15px;">重置条件</button>
+            </div>
+        </form>
+    </blockquote>
+
+    <fieldset class="layui-elem-field">
+        <legend>数据列表</legend>
+        <br>
+        <div class="layui-inline">
+            <label class="layui-form-label" style="width: 120px;"> 总提现次数：</label>
+            <label name="sum" id="sum" class="layui-form-label" style="width: 120px;"></label>
+        </div>
+        <div class="layui-inline">
+            <label class="layui-form-label" style="width: 120px;"> 审核通过数：</label>
+            <label name="pass" id="pass" class="layui-form-label" style="width: 80px;"></label>
+        </div>
+        <div class="layui-inline">
+            <label class="layui-form-label" style="width: 120px;"> 审核未通过数：</label>
+            <label name="notPass" id="notPass" class="layui-form-label" style="width: 80px;"></label>
+        </div>
+        <div class="layui-inline">
+            <label class="layui-form-label" style="width: 120px;"> 待审核数：</label>
+            <label name="unAudited" id="unAudited" class="layui-form-label" style="width: 80px;"></label>
+        </div>
+        <br><br>
+        <div class="layui-inline">
+            <label class="layui-form-label" style="width: 120px;"> 总提现人数：</label>
+            <label name="sum_certcode" id="sum_certcode" class="layui-form-label" style="width: 120px;"></label>
+        </div>
+        <div class="layui-inline">
+            <label class="layui-form-label" style="width: 120px;"> 审核通过人数：</label>
+            <label name="pass_certcode" id="pass_certcode" class="layui-form-label" style="width: 80px;"></label>
+        </div>
+        <div class="layui-inline">
+            <label class="layui-form-label" style="width: 120px;"> 审核未通过人数：</label>
+            <label name="notPass_certcode" id="notPass_certcode" class="layui-form-label" style="width: 80px;"></label>
+        </div>
+        <div class="layui-inline">
+            <label class="layui-form-label" style="width: 120px;"> 待审核人数：</label>
+            <label name="unAudited_certcode" id="unAudited_certcode" class="layui-form-label"
+                   style="width: 80px;"></label>
+        </div>
+        <br><br>
+        <div class="layui-inline">
+            <label class="layui-form-label" style="width: 120px;"> 审核通过率：</label>
+            <label name="passRate" id="passRate" class="layui-form-label" style="width: 80px;"></label>
+        </div>
+        <div class="layui-inline">
+            <label class="layui-form-label" style="width: 120px;"> 审核未通过率：</label>
+            <label name="notPassRate" id="notPassRate" class="layui-form-label" style="width: 80px;"></label>
+        </div>
+        <div class="layui-inline">
+            <label class="layui-form-label" style="width: 120px;"> 待审核率：</label>
+            <label name="unAuditedRate" id="unAuditedRate" class="layui-form-label" style="width: 80px;"></label>
+        </div>
+        <br><br>
+
+        <div class="layui-inline">
+            <label class="layui-form-label" style="width: 1000px;text-align: left;color: red;margin-left: 14px;">
+                注:<br>
+                1.步骤标识（0：待处理、3：同盾贷前审核、6：芝麻行业清单、7：白骑士、11：葫芦索伦、97：小牛准入、98：规则引擎模板分发、99：潘多拉拒绝名单）
+            </label>
+        </div>
+        <div class="layui-field-box layui-form">
+            <table class="layui-table admin-table" style="word-break: keep-all;overflow:auto;">
+                <thead>
+                <tr>
+                    <th style="width:80px;">序号</th>
+                    <th>步骤号</th>
+                    <th>步骤</th>
+                    <th>待审批数</th>
+                    <th>待审批异常数</th>
+                </tr>
+                </thead>
+                <tbody id="content">
+                </tbody>
+            </table>
+        </div>
+    </fieldset>
+</div>
+
+<!--模板-->
+<script type="text/html" id="tpl">
+    {{# var count = 0 }}
+    {{# var countDetail = 0 }}
+    {{# layui.each(d.list, function(index, item){ }}
+
+    {{# count = count + Number(item.count) }}
+    {{# countDetail = countDetail + Number(item.countDetail) }}
+    <tr>
+        <td>{{ index + 1 }}</td>
+        <td>{{ item.isStep }}</td>
+        <td>
+            {{# if(item.isStep == "0"){ }}
+            待处理
+            {{# } }}
+            {{# if(item.isStep == "1"){ }}
+            芝麻信用评分
+            {{# } }}
+            {{# if(item.isStep == "2"){ }}
+            芝麻信用欺诈清单
+            {{# } }}
+            {{# if(item.isStep == "3"){ }}
+            同盾贷前审核
+            {{# } }}
+            {{# if(item.isStep == "4"){ }}
+            聚信立蜜蜂
+            {{# } }}
+            {{# if(item.isStep == "5"){ }}
+            聚信立蜜罐
+            {{# } }}
+            {{# if(item.isStep == "6"){ }}
+            芝麻行业关注名单
+            {{# } }}
+            {{# if(item.isStep == "7"){ }}
+            白骑士反欺诈
+            {{# } }}
+            {{# if(item.isStep == "8"){ }}
+            91征信
+            {{# } }}
+            {{# if(item.isStep == "9"){ }}
+            91征信回调
+            {{# } }}
+            {{# if(item.isStep == "10"){ }}
+            小视科技
+            {{# } }}
+            {{# if(item.isStep == "11"){ }}
+            葫芦索伦
+            {{# } }}
+            {{# if(item.isStep == "20"){ }}
+            宜信
+            {{# } }}
+			{{# if(item.isStep == "97"){ }}
+            小牛准入
+            {{# } }}
+            {{# if(item.isStep == "98"){ }}
+            规则引擎模板分发
+            {{# } }}
+            {{# if(item.isStep == "99"){ }}
+            潘多拉
+            {{# } }}
+        </td>
+        <td>{{ item.count }}</td>
+        <td>{{ item.countDetail }}</td>
+    </tr>
+    {{#  if(d.list.length == index+1){ }}
+    <tr>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td>总计：{{ count }}</td>
+        <td>总计：{{ countDetail }}</td>
+    </tr>
+    {{#  } }}
+    {{# }); }}
+
+</script>
+
+<!-- js -->
+<script src="../../jqery/jquery.js"></script>
+<script src="../../../commons/base.js"></script>
+<script type="text/javascript" src="../../plugins/layui/layui.js"></script>
+<script type="text/javascript" src="../../js/technicapplication/txCountStep.js?t=Math.randon()"></script>
+</body>
+
+</html>

@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.shangyong.backend.dao.td.TdPlatformServiceDao">
+
+	<resultMap type="com.shangyong.backend.entity.td.TdPlatform" id="tdPlatforminfoMap">
+		<id property="tdPlatformId" column="td_platform_id" javaType="java.lang.String"></id>
+		<result property="tdRiskItemsId" column="td_risk_items_id" javaType="java.lang.String"></result>
+		<result property="description" column="description" javaType="java.lang.String"></result>
+		<result property="platformCount" column="platform_count" javaType="java.lang.String"></result>
+	</resultMap>
+
+	<!-- 通用查询结果列-->
+	<sql id="Base_Column_List">
+	td_platform_id,	td_risk_items_id,	description,	platform_count
+	</sql>
+
+	<!-- 查询（根据主键ID查询） -->
+	<select id="getEntityById" resultMap="tdPlatforminfoMap" parameterType="java.lang.String">
+		 SELECT
+		 <include refid="Base_Column_List" />
+		 FROM td_platform
+		 WHERE td_platform_id = #{tdPlatformId}
+	</select>
+	<!-- 查询（根据tdRiskItemsId查询） -->
+	<select id="queryById" resultMap="tdPlatforminfoMap" parameterType="java.lang.String">
+		 SELECT
+		 <include refid="Base_Column_List" />
+		 FROM td_platform
+		 WHERE td_risk_items_id = #{tdRiskItemsId}
+	</select>
+
+	<!-- 查询（根据主键ID查询） -->
+	<select id="getAll" resultMap="tdPlatforminfoMap" parameterType="java.lang.String">
+		 SELECT
+		 <include refid="Base_Column_List" />
+		 FROM td_platform
+	</select>
+
+	<!--删除：根据主键ID删除-->
+	<delete id="deleteEntity" parameterType="java.lang.String">
+		 DELETE FROM td_platform
+		 WHERE td_platform_id = #{tdPlatformId}
+	</delete>
+
+	<!-- 添加 -->
+	<insert id="saveEntity" parameterType="com.shangyong.backend.entity.td.TdPlatform">
+		 INSERT INTO td_platform
+ 		(td_platform_id,td_risk_items_id,description,platform_count) 
+		 VALUES 
+ 		(#{tdPlatformId},#{tdRiskItemsId},#{description},#{platformCount}) 
+	</insert>
+
+	<!-- 修 改-->
+	<update id="updateEntity" parameterType="com.shangyong.backend.entity.td.TdPlatform">
+		 UPDATE td_platform
+ 		 <set> 
+			<if test="tdRiskItemsId != null">
+				 td_risk_items_id = #{tdRiskItemsId},
+			</if>
+			<if test="description != null">
+				 description = #{description},
+			</if>
+			<if test="platformCount != null">
+				 platform_count = #{platformCount},
+			</if>
+
+ 		 </set>
+		 WHERE td_platform_id = #{tdPlatformId}
+	</update>
+
+</mapper>

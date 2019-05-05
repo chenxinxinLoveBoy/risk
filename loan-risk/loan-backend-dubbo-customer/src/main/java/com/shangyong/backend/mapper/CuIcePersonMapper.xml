@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.shangyong.backend.dao.CuIcePersonDao">
+
+	<resultMap type="com.shangyong.backend.entity.CuIcePerson" id="cuIcePersoninfoMap">
+		<id property="icePersonId" column="ice_person_id" javaType="java.lang.String"></id>
+		<result property="platformCustomerId" column="platform_customer_id" javaType="java.lang.String"></result>
+		<result property="customerId" column="customer_id" javaType="java.lang.String"></result>
+		<result property="type" column="type" javaType="java.lang.String"></result>
+		<result property="trueName" column="true_name" javaType="java.lang.String"></result>
+		<result property="phoneNum" column="phone_num" javaType="java.lang.String"></result>
+		<result property="createTime" column="create_time" javaType="java.lang.String"></result>
+		<result property="createMan" column="create_man" javaType="java.lang.String"></result>
+		<result property="modifyTime" column="modify_time" javaType="java.lang.String"></result>
+		<result property="modifyMan" column="modify_man" javaType="java.lang.String"></result>
+		<result property="remark" column="remark" javaType="java.lang.String"></result>
+		<result property="applicationId" column="application_id" javaType="java.lang.String"></result>
+	</resultMap>
+
+	<!-- 通用查询结果列-->
+	<sql id="Base_Column_List">
+		ice_person_id, platform_customer_id, customer_id, `type`, true_name, phone_num, create_time, create_man, modify_time, modify_man, remark, application_id
+	</sql>
+
+ 	<select id="getEntityById" resultMap="cuIcePersoninfoMap" parameterType="java.lang.String">
+		 SELECT
+		 	<include refid="Base_Column_List" />
+		 FROM
+			cu_ice_person
+		 WHERE
+			platform_customer_id = #{platformCustomerId}
+	</select>
+
+	<!-- 添加 -->
+	<insert id="saveEntity" parameterType="com.shangyong.backend.entity.CuIcePerson">
+		 INSERT INTO cu_ice_person
+ 		(ice_person_id,platform_customer_id,customer_id,type,true_name,phone_num,create_time,create_man,modify_time,modify_man,remark,application_id) 
+		 VALUES 
+ 		(#{icePersonId},#{platformCustomerId},#{customerId},#{type},#{trueName},#{phoneNum},now(),#{createMan},#{modifyTime},#{modifyMan},#{remark},#{applicationId})
+	</insert>
+
+	<insert id="saveEntityAll" parameterType="java.util.HashMap">
+		INSERT INTO cu_ice_person (
+			ice_person_id,platform_customer_id,customer_id,type,true_name,phone_num,create_time,create_man,modify_time,modify_man,remark,application_id
+		) VALUES
+		<foreach collection="cuIcePersonList" item="elem" separator=",">
+			(
+				#{elem.icePersonId},
+				#{elem.platformCustomerId},
+				#{elem.customerId},
+				#{elem.type},
+				#{elem.trueName},
+				#{elem.phoneNum},
+				now(),
+				#{elem.createMan},
+				#{elem.modifyTime},
+				#{elem.modifyMan},
+				#{elem.remark},
+				#{elem.applicationId}
+			)
+		</foreach>
+	</insert>
+	 
+	<delete id="deleteByApplicationId" parameterType="java.lang.String">
+		DELETE FROM cu_ice_person WHERE application_id = #{applicationId}
+	</delete>
+
+	<!-- 修 改-->
+	<update id="updateEntity" parameterType="com.shangyong.backend.entity.CuIcePerson">
+		 UPDATE cu_ice_person
+ 		 <set> 
+			<if test="platformCustomerId != null">
+				 platform_customer_id = #{platformCustomerId},
+			</if>
+			<if test="customerId != null">
+				 customer_id = #{customerId},
+			</if>
+			<if test="type != null">
+				 type = #{type},
+			</if>
+			<if test="trueName != null">
+				 true_name = #{trueName},
+			</if>
+			<if test="phoneNum != null">
+				 phone_num = #{phoneNum},
+			</if>
+			<if test="createTime != null">
+				 create_time = #{createTime},
+			</if>
+			<if test="createMan != null">
+				 create_man = #{createMan},
+			</if>
+			<if test="modifyTime != null">
+				 modify_time = #{modifyTime},
+			</if>
+			<if test="modifyMan != null">
+				 modify_man = #{modifyMan},
+			</if>
+			<if test="remark != null">
+				 remark = #{remark}
+			</if>
+			<if test="applicationId != null">
+				 application_id = #{applicationId}
+			</if>
+ 		 </set>
+		WHERE platform_customer_id = #{platformCustomerId} and  type = #{type}
+	</update>
+</mapper>

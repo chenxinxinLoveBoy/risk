@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title>个人案件池</title>
+		<link rel="stylesheet" href="../../plugins/layui/css/layui.css" media="all">
+		<link rel="stylesheet" href="../../css/global.css" media="all">
+		<link rel="stylesheet" href="../../plugins/font-awesome/css/font-awesome.min.css">
+		<link rel="stylesheet" href="../../css/table.css" /> 
+		<!-- js -->
+		<script src="../../jqery/jquery.js"></script> 
+		<script src="../../../commons/base.js"></script>
+		<script type="text/javascript" src="../../plugins/layui/layui.js"></script>
+		<script type="text/javascript" src="../../js/approve/privateApprove.js"></script>
+		<link rel="stylesheet" href="../../css/lzh_xy_gl.css" media="all" />
+	</head>
+	
+	<body>
+		<div class="admin-main">  
+			<fieldset class="layui-elem-field">
+				<legend>个人案件列表</legend>
+				<br>
+				</a> 
+			 		<a href="#" class="layui-btn layui-btn-small" id="shuaxin" onclick="shuaxin()" style="margin-left: 18px" >刷新数据
+			 	</a> 
+			 	<div class="layui-inline">
+				    <label class="layui-form-label" style="width: auto;">当日个人<font color='red' >待处理</font>案件数：</label>
+				    <label name="grCount" id="grCount"  class="layui-form-label" style="width: auto;"></label>
+				</div> 
+				<div class="layui-inline">
+				    <label class="layui-form-label" style="width: auto;">当日个人<font color='red' >已处理</font>案件数：</label>
+				    <label name="grClAjCount" id="grClAjCount"  class="layui-form-label" style="width: auto;"></label>
+				</div>
+			<!-- 	<div class="layui-inline">
+				    <label class="layui-form-label" style="width: auto;">当日个人<font color='red' >未处理</font>案件数：</label>
+				    <label name="grWClAjCount" id="grWClAjCount"  class="layui-form-label" style="width: auto;"></label>
+				</div> -->
+					 <div class="layui-inline">
+			      <label class="layui-form-label" style="width: 100px">进入时间</label>
+			      <div class="layui-input-inline">
+			      <input name="startTime"  lay-verify="startTime" id="startTime" autocomplete="off" class="layui-input"  style="width: 160px; display:inline;">
+			      &nbsp;至&nbsp;
+			      <input name="endTime"  lay-verify="endTime" id="endTime" autocomplete="off" class="layui-input"  style="width: 160px; display:inline;">
+			      </div>
+			    </div> 
+			    <a href="javascript:;" class="layui-btn layui-btn-small" id="search" style="width: 66px">
+						<i class="layui-icon">&#xe615;</i> 搜索
+				    </a>
+				<div class="layui-field-box layui-form">
+					<table class="layui-table admin-table"  style="word-break: keep-all;overflow:auto;">
+						<thead>
+							<tr>
+<!-- 							<th style="width: 30px;"><input type="checkbox" lay-filter="allselector" lay-skin="primary" id="check"></th>
+ -->							<th>序号</th>
+								<th>案件编号</th>
+								<th>姓名</th>
+								<th>身份证</th>
+								<th>手机号</th>
+								<th>经办人</th>
+								<th>申请日期</th> 
+								<th>系统审批金额</th>
+								<th>系统审批状态</th> 
+								<th>操作</th>
+							</tr>
+						</thead>
+						<tbody id="content">
+						</tbody>
+					</table>
+					<label>共<font color='red' id="count_page_number"></font>条记录</label>
+					<div id="paged" class="page" style="display:inline-block;">
+					</div>
+				</div>
+			</fieldset>
+		</div>
+		
+		<!--模板-->
+		<script type="text/html" id="tpl">
+			{{# layui.each(d.list, function(index, item){ }}
+			<tr> 
+				<td>{{ index+1 }}</td>
+				<td>{{ item.appSerialNumber }}</td>
+				<td>{{ item.name }}</td>
+				<td>{{ item.certCode }}</td>
+				<td>{{ item.phoneNum }}</td>
+				<td>{{ item.auditMan }}</td>
+				<td style="white-space: nowrap;">{{ item.createTime.substring(0,19) }}</td> 
+				<td>{{ item.creditMoney == '' ? '0.00' :item.creditMoney}}</td>
+				{{#  if(item.auditingState == 4){ }}
+				<td>待人工确认</td> 
+				{{# } }}   
+				<td style="white-space: nowrap;"> 
+					<a href="javascript:;" data-id="{{ item.appSerialNumber }}" data-name="{{ item.name }}" data-opt="open" class="layui-btn layui-btn-mini">打开</a>
+					<a href="javascript:;" data-id="{{ item.appSerialNumber }}" data-name="{{ item.name }}" data-opt="return" class="layui-btn layui-btn-danger layui-btn-mini">退件</a>
+				</td>
+			</tr>
+			{{# }); }}
+		</script> 
+	</body>
+</html>

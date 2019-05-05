@@ -1,0 +1,324 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.shangyong.backend.dao.BuBlacklistDao">
+	<resultMap type="com.shangyong.backend.entity.BuBlacklist" id="buBlacklistinfoMap">
+		<id property="blacklistId" column="blacklist_id" javaType="java.lang.String"></id>
+		<result property="appName" column="app_name" javaType="java.lang.String"></result>
+		<result property="platformId" column="platform_id" javaType="java.lang.String"></result>
+		<result property="customerId" column="customer_id" javaType="java.lang.String"></result>
+		<result property="name" column="name" javaType="java.lang.String"></result>
+		<result property="certType" column="cert_type" javaType="java.lang.String"></result>
+		<result property="certCode" column="cert_code" javaType="java.lang.String"></result>
+		<result property="phoneNum" column="phone_num" javaType="java.lang.String"></result>
+		<result property="rejectType" column="reject_type" javaType="java.lang.String"></result>
+		<result property="rejectFlag" column="reject_flag" javaType="java.lang.String"></result>
+		<result property="isFailure" column="is_failure" javaType="java.lang.String"></result>
+		<result property="banCode" column="ban_code" javaType="java.lang.String"></result>
+		<result property="dsSource" column="ds_source" javaType="java.lang.String"></result>
+		<result property="sNumber" column="s_number" javaType="java.lang.String"></result>
+		<result property="createTime" column="create_time" javaType="java.lang.String"></result>
+		<result property="createMan" column="create_man" javaType="java.lang.String"></result>
+		<result property="modifyTime" column="modify_time" javaType="java.lang.String"></result>
+		<result property="modifyMan" column="modify_man" javaType="java.lang.String"></result>
+		<result property="remark" column="remark" javaType="java.lang.String"></result>
+		<result property="deviceId" column="device_id" javaType="java.lang.String"></result>
+		<result property="createTimeEnd" column="create_time" javaType="java.lang.String"></result>
+		<result property="classCode" column="class_code" javaType="java.lang.String"></result>
+
+	</resultMap>
+
+
+	<!-- 通用查询结果列-->
+	<sql id="Base_Column_List">
+		blacklist_id as blacklistId,
+		app_name as appName,
+		platform_id as platformId,
+		customer_id as customerId,
+		name as name,
+		cert_type as certType,
+		cert_code as certCode,
+		phone_num as phoneNum,
+		reject_type as rejectType,
+		reject_flag as rejectFlag,
+		is_failure as isFailure, 
+		ban_code as banCode,
+		ds_source as dsSource,
+		s_number as sNumber,
+		create_time as createTime,
+		create_man as createMan,
+		modify_time as modifyTime,
+		modify_man as modifyMan,	
+		remark as remark,
+		device_id as deviceId,
+		class_code as classCode
+	</sql>
+
+	<!-- 公用查询条件 -->
+	<sql id="propertitys_sql">
+  		<where> 
+  			<if test="certCode != null and certCode != '' ">
+				 t.cert_code = #{certCode}
+		   </if>
+		   <if test="rejectType != null and rejectType != '' ">
+				and t.reject_type = #{rejectType}
+		   </if>
+		   <if test="name != null and name != '' ">
+				and instr(t.name, #{name}) > 0
+		   </if>
+		   <if test="phoneNum != null and phoneNum != '' ">
+				and t.phone_num = #{phoneNum}
+		   </if>
+		    <if test="deviceId != null and deviceId != '' ">
+				and t.device_id = #{deviceId}
+		   </if> 
+		   <if test="endTime != null and endTime != ''  "> 
+				<![CDATA[ and t.create_time <= #{endTime} ]]>
+		   </if>
+		   <if test="startTime != null and startTime != ''  "> 
+				<![CDATA[ and t.create_time >= #{startTime} ]]>
+		   </if>
+		   <if test="banCode != null and banCode != ''  ">
+		   		and t.ban_code = #{banCode}
+		   </if>
+		    <if test="sNumber != null and sNumber != '' ">
+				and t.s_number = #{sNumber}
+		   </if>
+		    <if test="dsSource != null and dsSource != '' ">
+				and t.ds_source = #{dsSource}
+		   </if>
+  		</where>
+  </sql>
+  
+    <sql id="propertitys_sql2">
+  		<where>  
+		    <if test="deviceId != null and deviceId != '' ">
+				and t.s_number = #{sNumber}
+		   </if>
+		    <if test="dsSource != null and dsSource != '' ">
+				and t.ds_source = #{dsSource}
+		   </if>
+  		</where>
+  </sql>
+  
+  
+  <!-- 统计 -->
+  	<select id="queryAllCount" resultType="java.lang.Integer">
+  		select 
+  			count(1)
+  		from bu_blacklist t
+  		 <include refid="propertitys_sql2"></include>
+  	</select>
+
+	<!-- 统计 -->
+  	<select id="listAllCount" resultType="java.lang.Integer">
+  		select 
+  			count(1)
+  		from bu_blacklist t
+  		 <include refid="propertitys_sql"></include>
+  	</select>
+
+
+<!-- 查询（根据ds_source和 s_number查询） -->
+	<select id="findBydsSourceAndsNumber" resultType="com.shangyong.backend.entity.BuBlacklist" parameterType="com.shangyong.backend.entity.BuBlacklist">
+		 SELECT
+		 <include refid="Base_Column_List" />
+		 FROM bu_blacklist 
+		<where>
+		 	<if test="dsSource != null and dsSource != '' ">
+				 ds_source = #{dsSource}
+		   </if>
+		   <if test="sNumber != null and sNumber != '' ">
+				and s_number = #{sNumber}
+		   </if>
+		 </where>
+		 LIMIT 1
+	</select>
+
+	<!-- 查询（根据idCard 查询） -->
+	<select id="findByidCard" resultType="com.shangyong.backend.entity.BuBlacklist" parameterType="com.shangyong.backend.entity.BuBlacklist">
+		 SELECT
+		 <include refid="Base_Column_List" />
+		 FROM bu_blacklist t
+		<where>
+		 	<if test="certCode != null and certCode != '' ">
+				 t.cert_code = #{certCode}
+		   </if>
+		   <if test="rejectType != null and rejectType != '' ">
+				and t.reject_type = #{rejectType}
+		   </if>
+		   <if test="name != null and name != '' ">
+				and instr(t.name, #{name}) > 0
+		   </if>
+		   <if test="phoneNum != null and phoneNum != '' ">
+				and t.phone_num = #{phoneNum}
+		   </if>
+		  	 order by t.create_time desc 
+   		 	LIMIT #{pageIndex},#{pageSize}
+		 </where>
+	</select>
+	
+	<!-- 查询-->
+	<select id="listViewAll" resultType="com.shangyong.backend.entity.BuBlacklist" parameterType="java.lang.String">
+		 SELECT
+		 <include refid="Base_Column_List" />
+		 FROM bu_blacklist t
+		 <include refid="propertitys_sql"></include>
+		 order by t.blacklist_id
+   		 LIMIT #{pageIndex}, #{pageSize}
+	</select>
+
+	<!-- 查询（根据主键ID查询） -->
+	<select id="getEntityById" resultType="com.shangyong.backend.entity.BuBlacklist" parameterType="java.lang.String">
+		 SELECT
+		 <include refid="Base_Column_List" />
+		 FROM bu_blacklist
+		 WHERE blacklist_id = #{blacklistId}
+	</select>
+
+	<!-- 查询（根据主键ID查询） -->
+	<select id="getAll" resultMap="buBlacklistinfoMap" parameterType="java.lang.String">
+		 SELECT
+		 <include refid="Base_Column_List" />
+		 FROM bu_blacklist
+	</select>
+
+	<!--删除：根据主键ID删除-->
+	<delete id="deleteEntity" parameterType="java.lang.String">
+		 DELETE FROM bu_blacklist
+		 WHERE blacklist_id = #{blacklistId}
+	</delete>
+
+	<!-- 添加 -->
+	<insert id="saveEntity" parameterType="com.shangyong.backend.entity.BuBlacklist">
+		 INSERT INTO bu_blacklist (
+		 	blacklist_id, app_name, platform_id,customer_id,name,cert_type,cert_code,phone_num,reject_type,reject_flag,
+		 	is_failure,ban_code,ds_source,s_number,create_time,create_man,modify_time,modify_man,remark,device_id,class_code
+		) VALUES (
+			#{blacklistId},#{appName},#{platformId},#{customerId},#{name},#{certType},#{certCode},#{phoneNum},
+			#{rejectType},#{rejectFlag},#{isFailure},#{banCode},#{dsSource},#{sNumber},#{createTime},#{createMan},
+			#{modifyTime},#{modifyMan},#{remark},#{deviceId},#{classCode}
+		)
+	</insert>
+
+	<insert id="insertBlackById" parameterType="java.util.Map">
+	    INSERT INTO bu_blacklist
+ 		(blacklist_id,app_name,platform_id,customer_id,name,cert_type,cert_code,phone_num,reject_type,reject_flag,is_failure,remark,create_time,create_man)
+		 VALUES
+ 		(#{blackListId, jdbcType=VARCHAR},
+ 		 #{appName, jdbcType=VARCHAR},
+ 		 #{platformId, jdbcType=VARCHAR},
+ 		 #{customerId, jdbcType=VARCHAR},
+ 		 #{name, jdbcType=VARCHAR},
+ 		 #{certType, jdbcType=VARCHAR},
+ 		 #{certCode, jdbcType=VARCHAR},
+ 		 #{phoneNum, jdbcType=VARCHAR},
+ 		 #{rejectType, jdbcType=VARCHAR},
+ 		 #{rejectFlag, jdbcType=VARCHAR},
+ 		 #{isFailure, jdbcType=VARCHAR},
+ 		 #{remark, jdbcType=VARCHAR},
+ 		NOW(),
+ 		'system')
+	</insert>
+
+	<!-- 修 改-->
+	<update id="updateByPrimaryKey" parameterType="com.shangyong.backend.entity.BuBlacklist">
+		 UPDATE bu_blacklist
+ 		 <set> 
+			<if test="appName != null">
+				 app_name = #{appName},
+			</if>
+			<if test="platformId != null">
+				 platform_id = #{platformId},
+			</if>
+			<if test="customerId != null">
+				 customer_id = #{customerId},
+			</if>
+			<if test="name != null">
+				 name = #{name},
+			</if>
+			<if test="certType != null">
+				 cert_type = #{certType},
+			</if>
+			<if test="certCode != null">
+				 cert_code = #{certCode},
+			</if>
+			<if test="phoneNum != null">
+				 phone_num = #{phoneNum},
+			</if>
+			<if test="rejectType != null">
+				 reject_type = #{rejectType},
+			</if>
+			<if test="rejectFlag != null">
+				 reject_flag = #{rejectFlag},
+			</if>
+			<if test="isFailure != null">
+				 is_failure = #{isFailure},
+			</if>
+			<if test="banCode != null">
+				 ban_code = #{banCode},
+			</if>
+			<if test="dsSource != null">
+				 ds_source = #{dsSource},
+			</if>
+			<if test="sNumber != null">
+				 s_number = #{sNumber},
+			</if>
+			<if test="createTime != null">
+				 create_time = #{createTime},
+			</if>
+			<if test="createMan != null">
+				 create_man = #{createMan},
+			</if>
+			<if test="modifyTime != null">
+				 modify_time = #{modifyTime},
+			</if>
+			<if test="modifyMan != null">
+				 modify_man = #{modifyMan},
+			</if>
+			<if test="remark != null">
+				 remark = #{remark},
+			</if>
+	       <if test="deviceId != null">
+				 device_id = #{deviceId}
+			</if>
+ 		 </set>
+		 WHERE blacklist_id = #{blacklistId}
+	</update>
+ 
+ 
+ 	<!-- 根据用户姓名，用户身份证号查询黑名单数据 -->
+	<select id="queryInfoByObj" resultType="com.shangyong.backend.entity.BuBlacklist" parameterType="com.shangyong.backend.entity.BuBlacklist">
+		 SELECT <include refid="Base_Column_List" /> FROM bu_blacklist where name = #{name} and cert_code = #{certCode} limit 1
+	</select>
+	
+	<!-- 根据用户身份证号查询黑名单数据 -->
+	<select id="queryInfoByCertCode" resultType="com.shangyong.backend.entity.BuBlacklist" parameterType="com.shangyong.backend.entity.BuBlacklist">
+		 SELECT <include refid="Base_Column_List" /> FROM bu_blacklist where cert_code = #{certCode} limit 1
+	</select>
+
+	<!--删除：根据 主键ID 删除-->
+	<delete id="deleteObj" parameterType="java.lang.String">
+		 DELETE FROM bu_blacklist
+		 WHERE blacklist_id = #{blacklistId}
+	</delete>
+	<!-- 通过ID查询-->
+	<select id="queryObject" resultType="com.shangyong.backend.entity.BuBlacklist"  parameterType="java.lang.String" >
+		 SELECT
+		 <include refid="Base_Column_List" />
+		 FROM bu_blacklist  
+		 where blacklist_id = #{blacklistId} 
+	 
+	</select>
+	<!-- 统计 所有-->
+  	<select id="listAllSum" resultType="java.lang.Integer">
+  		select 
+  			count(1)
+  		from bu_blacklist t
+  	</select>
+  	<!-- 根据用户身份证号码，手机号码，设备ID单独去匹配是否存在 -->
+	<select id="queryCountByObj" resultType="java.lang.Integer" parameterType="com.shangyong.backend.entity.BuBlacklist">
+		 select count(1) from bu_blacklist t
+		 <include refid="propertitys_sql"></include>
+	</select>
+</mapper>

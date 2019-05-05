@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <!-- <title>Insert title here</title> -->
+    <META HTTP-EQUIV="pragma" CONTENT="no-cache">
+	<META HTTP-EQUIV="Cache-Control" CONTENT="no-cache, must-revalidate">
+	<META HTTP-EQUIV="expires" CONTENT="0">
+</head>
+<!-- css -->
+<link rel="stylesheet" href="../../plugins/layui/css/layui.css" media="all"/>
+<link rel="stylesheet" href="../../css/global.css" media="all">
+<link rel="stylesheet" href="../../plugins/font-awesome/css/font-awesome.min.css">
+<link rel="stylesheet" href="../../css/table.css"/>
+
+<!-- JS -->
+<script type="text/javascript" src="../../plugins/layui/layui.js"></script>
+<script src="../../jqery/jquery.js"></script>
+<script type="text/javascript" src="../../../commons/base.js"></script>
+<script type="text/javascript" src="../../js/alarm/alarm_edit.js"></script>
+
+
+<body>
+<div style="margin: 15px;">
+    <form class="layui-form" id="alarmForms">
+        <div class="layui-form-item">
+            <label class="layui-form-label" style="width: 110px;">错误码</label>
+            <div class="layui-input-inline">
+                <input id="alarmId" type="hidden" name="alarmId" autocomplete="off" class="layui-input">
+                <input id="alarmCode" type="text" name="alarmCode" lay-verify="required" placeholder="错误码"
+                       class="layui-input" required>
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label" style="width: 110px;">错误信息</label>
+            <div class="layui-input-block">
+                <textarea id="alarmMsg" style="width: 600px;resize:none" name="alarmMsg" placeholder="错误信息" class="layui-textarea" lay-verify="required" required></textarea>
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label" style="width: 110px;">平台</label>
+            <div class="layui-input-inline">
+                <select name="thirdPartyCreditInvestigation" required lay-verify="required"
+                        id="thirdPartyCreditInvestigation" required>
+                    <option value="">直接选择或搜索选择</option>
+                </select>
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label" style="width: 110px;">优先级</label>
+            <div class="layui-input-block" id="priority-div"></div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label" style="width: 110px;">报警方式</label>
+            <div class="layui-input-block" id="alarmType-div"></div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label" style="width: 110px;">钉钉链接</label>
+            <div class="layui-input-block">
+                <input id="dingdingUrl" style="width: 600px;" type="text" name="dingdingUrl" placeholder="钉钉链接" class="layui-input">
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label" style="width: 110px;">手机号</label>
+            <div class="layui-input-block">
+                <input id="phone" style="width: 600px;" type="text" name="phone" placeholder="多个用|||隔开" class="layui-input">
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label" style="width: 110px;">邮件</label>
+            <div class="layui-input-block">
+                <input id="email" style="width: 600px;" type="text" name="email" placeholder="多个用|||隔开" class="layui-input">
+            </div>
+        </div>
+        <button lay-submit lay-filter="save" class="layui-btn" id="save_bt"
+                style="margin-top: 45px;margin-left: 218px;">保存
+        </button>
+        <button class="layui-btn layui-btn-normal" id="off_bt" onclick="closeIfrname()"
+                style="margin-left: 70px;margin-top: 46px;">取消
+        </button>
+
+    </form>
+</div>
+</body>
+</html>

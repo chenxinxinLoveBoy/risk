@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+<meta charset="UTF-8">
+<title>方天画戟-大数据风控系统</title>
+<link rel="stylesheet" href="plugins/layui/css/layui.css" media="all" />
+<link rel="stylesheet" href="css/global.css" media="all">
+<link rel="stylesheet"
+	href="plugins/font-awesome/css/font-awesome.min.css">
+<!-- 		<link rel="stylesheet" href="css/table.css" /> -->
+<link rel="stylesheet" href="css/login.css" />
+
+<style type="text/css">
+.yidao_video {
+	width: 100%;
+	height: 100%;
+	position: absolute;
+	background: url("images/fengkong/Comp 1_00000.png");
+	background-size: 100% 100%;
+	opacity: 0;
+	top: 0px;
+	left: 0px;
+}
+
+.beg-login-boxs {
+	opacity: 0;
+	display: none;
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	background: url("images/login/login_bg.png");
+	background-size: 100% 100%;
+	margin: 0px;
+	padding: 0px;
+	overflow: auto;
+}
+
+#canvas {
+	position: absolute;
+}
+
+.beg-login-mains {
+	position: absolute;
+	left: 40%;
+	top: 26%;
+	width: 380px;
+	height: 460px;
+	background: #F7F7FA;
+	box-shadow: 0 10px 20px 0 rgba(0, 0, 0, 0.25);
+	border-radius: 4px;
+}
+
+.layui-form-item {
+	text-align: center;
+	padding: 4%;
+	margin-top: 2%
+}
+
+.layui-form-item p {
+	font-family: PingFangSC-Regular;
+	font-size: 18px;
+	color: #666666;
+	letter-spacing: 0;
+	margin-top: 4%
+}
+
+.layui-form-item1, .layui-form-item2 {
+	background: #FFFFFF;
+	border: 1px solid #E8E8ED;
+	position: relative;
+	height: 50px;
+	margin-left: 10%;
+	margin-right: 10%;
+	padding-left: 5%;
+}
+
+.beg-login-icon {
+	position: absolute;
+	height: 100%;
+	width: 12%;
+	line-height: 50px;
+	border-right: 1px solid #E8E8ED;
+}
+
+.layui-input {
+	position: absolute;
+	right: 0px;
+	height: 100%;
+	border: 0px;
+	width: 80%;
+}
+
+.btn_submit {
+	position: relative;
+	height: 50px;
+	margin-left: 7%;
+	margin-right: 10%;
+	background: #31B8F7;
+	border-radius: 3px;
+	width: 87%;
+	border: 0px;
+	font-weight: bold;
+	font-family: PingFangSC-Medium;
+	font-size: 16px;
+	color: #FFFFFF;
+	letter-spacing: 0;
+}
+
+.teall_ask {
+	font-family: PingFangSC-Regular;
+	font-size: 14px;
+	color: #666666;
+	letter-spacing: 0;
+	position: absolute;
+	bottom: 4%;
+	left: 35%;
+}
+</style>
+</head>
+
+<body class="beg-login-bg">
+	<div class="yidao_video">
+		<canvas id="canvas"></canvas>
+	</div>
+	<div class="beg-login-boxs">
+		<!-- <header>
+			<h1>洪澄科技后台登录</h1>
+		</header> -->
+		<div class="beg-login-mains">
+			<form class="layui-form" action="" method="post" id="form_id">
+				<!-- 				<input name="__RequestVerificationToken" type="hidden" value="fkfh8D89BFqTdrE2iiSdG_L781RSRtdWOH411poVUWhxzA5MzI8es07g6KPYQh9Log-xf84pIR2RIAEkOokZL3Ee3UKmX0Jc8bW8jOdhqo81" /> -->
+				<div class="layui-form-item">
+					<img alt="" src="images/login/lg_logo.png">
+					<p>方天画戟大数据风控系统登录</p>
+				</div>
+				<div class="layui-form-item1">
+					<label class="beg-login-icon"><img alt=""
+						src="images/login/user.png"></label> <input type="text"
+						name="userName" id="userName" lay-verify="userName"
+						autocomplete="off" placeholder="请输入登录账号" class="layui-input">
+				</div>
+				<div style="height: 15px;">&nbsp;</div>
+				<div class="layui-form-item2">
+					<label class="beg-login-icon"><img alt=""
+						src="images/login/keys.png"></label> <input id="password"
+						type="password" name="password" lay-verify="password"
+						autocomplete="off" placeholder="请输入登录密码" class="layui-input">
+				</div>
+				<div class="layui-form-item">
+					<!-- 						<div class="beg-pull-left beg-login-remember"> -->
+					<!-- 							<label>记住帐号？</label> -->
+					<!-- 							<input type="checkbox" name="rememberMe" value="true" lay-skin="switch" checked title="记住帐号"> -->
+					<!-- 						</div> -->
+					<div class="beg-pull-right1">
+						<button class="btn_submit" lay-submit lay-filter="login"
+							id="login_bt">登&nbsp;&nbsp;录</button>
+					</div>
+					<div class="beg-clear"></div>
+					<div class="teall_ask">洪澄科技 © 2017</div>
+				</div>
+			</form>
+		</div>
+	</div>
+
+	<!-- js -->
+	<script type="text/javascript" src="plugins/layui/layui.js"></script>
+	<script src="jqery/jquery.js"></script>
+	<script src="../commons/base.js"></script>
+	<!-- 日期控件 -->
+	<script language="javascript" type="text/javascript"
+		src="My97DatePicker/WdatePicker.js"></script>
+	<script type="text/javascript" src="plugins/layui/layui.js"></script>
+	<script type="text/javascript" src="jqery/jquery-2.1.4.min.js"></script>
+	<!-- 		http 前端密码加密 -->
+	<!-- 		<script type="text/javascript" src="js/base64/base64Encoe.js"></script> -->
+	<script type="text/javascript" src="js/login/login.js"></script>
+
+	<script type="text/javascript">
+		$(function() {
+			var hj_url= window.location.href;
+			if(hj_url.indexOf('https://sdai.xnsudai.com')<0){
+				loadShow();
+				return;
+			}
+			
+			var imgList = new Array();
+			for (var i = 0; i <= 100; i++) {
+				var imgsrc = "";
+				if (i <= 9) {
+					imgsrc = "00" + i;
+				} else if (i > 9 && i <= 99) {
+					imgsrc = "0" + i;
+				} else if (i > 99) {
+					imgsrc = i;
+				}
+				imgList.push("images/fengkong/Comp 1_00" + imgsrc + ".png");
+			}
+			//console.log(imgList);
+			$(window).resize(resizeCanvas);
+			
+			$(".yidao_video").animate({
+				opacity : 1
+			}, 1000);
+			var canvas = document.getElementById('canvas');
+			var ctx = canvas.getContext('2d');
+			var image = new Image();
+			var index = 0;
+			ctx.globalCompositeOperation = "source-over";
+			resizeCanvas();
+
+			var timer = setInterval(function() {
+				image.src = imgList[index];
+				loadImg(image);
+				index++;
+				if (index >= 100) {
+					clearInterval(timer);
+
+					loadShow();
+				}
+			},70);
+
+			/********************加载图片********************/
+			function loadImg(image) {
+				image.addEventListener('load', function() {
+					ctx.clearRect(0, 0, canvas.width, canvas.height);
+					ctx.drawImage(image, 0, 0, canvas.width, canvas.height);
+				});
+			}
+			/********************canvas适配********************/
+			function resizeCanvas() {
+				 $(canvas).attr("width", $(window).get(0).innerWidth);
+				 $(canvas).attr("height", $(window).get(0).innerHeight);
+				 ctx.fillRect(0, 0, canvas.width, canvas.height);
+			 };
+		});
+		
+		function loadShow(){
+			$(".beg-login-boxs").show();
+			$(".yidao_video").animate({
+				opacity : 0
+			}, 1000);
+			$(".beg-login-boxs").animate({
+				opacity : 1
+			}, 1000);
+			setTimeout(function() {
+				$(".yidao_video").hide();
+			}, 1000);
+		 }
+	</script>
+</body>
+
+</html>

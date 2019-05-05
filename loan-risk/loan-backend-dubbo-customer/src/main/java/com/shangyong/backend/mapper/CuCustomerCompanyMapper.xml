@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.shangyong.backend.dao.CuCustomerCompanyDao">
+ 	<resultMap type="com.shangyong.backend.entity.CuCustomerCompany" id="cuCustomerCompanyinfoMap">
+		<id property="customerCompanyId" column="customer_company_id" javaType="java.lang.String"></id>
+		<result property="platformCustomerId" column="platform_customer_id" javaType="java.lang.String"></result>
+		<result property="customerId" column="customer_id" javaType="java.lang.String"></result>
+		<result property="companyIndustry" column="company_industry" javaType="java.lang.String"></result>
+		<result property="companyName" column="company_name" javaType="java.lang.String"></result>
+		<result property="companyTel" column="company_tel" javaType="java.lang.String"></result>
+		<result property="companyAddress" column="company_address" javaType="java.lang.String"></result>
+		<result property="streetAddress" column="street_address" javaType="java.lang.String"></result>
+		<result property="workingHours" column="working_hours" javaType="java.lang.String"></result>
+		<result property="lng" column="lng" javaType="java.lang.String"></result>
+		<result property="lat" column="lat" javaType="java.lang.String"></result>
+		<result property="workPhoto" column="work_photo" javaType="java.lang.String"></result>
+		<result property="province" column="province" javaType="java.lang.String"></result>
+		<result property="city" column="city" javaType="java.lang.String"></result>
+		<result property="area" column="area" javaType="java.lang.String"></result>
+		<result property="createTime" column="create_time" javaType="java.lang.String"></result>
+		<result property="modifyTime" column="modify_time" javaType="java.lang.String"></result>
+		<result property="remark" column="remark" javaType="java.lang.String"></result>
+		<result property="professionId" column="profession_id" javaType="java.lang.String"></result>
+	</resultMap>
+
+	<!-- 通用查询结果列-->
+	<sql id="Base_Column_List">
+		customer_company_id,	platform_customer_id,	customer_id,	company_industry,	company_name,	company_tel,	company_address,	street_address,	working_hours,	lng,	lat,	work_photo,	province,	city,	area,	create_time,	modify_time,	remark,profession_id
+	</sql>
+
+ 	<select id="getEntityById" resultMap="cuCustomerCompanyinfoMap" parameterType="java.lang.String">
+		 SELECT
+		 <include refid="Base_Column_List" />
+		 FROM cu_customer_company
+		 WHERE platform_customer_id = #{platformCustomerId}
+	</select>
+
+  
+	<!-- 添加 -->
+	<insert id="saveEntity" parameterType="com.shangyong.backend.entity.CuCustomerCompany">
+		 INSERT INTO cu_customer_company
+ 		(customer_company_id,platform_customer_id,customer_id,company_industry,company_name,company_tel,company_address,street_address,working_hours,lng,lat,work_photo,province,city,area,create_time,modify_time,remark,profession_id) 
+		 VALUES 
+ 		(#{customerCompanyId},#{platformCustomerId},#{customerId},#{companyIndustry},#{companyName},#{companyTel},#{companyAddress},#{streetAddress},#{workingHours},#{lng},#{lat},#{workPhoto},#{province},#{city},#{area},now(),#{modifyTime},#{remark},#{professionId})
+	</insert>
+
+	<!-- 修 改-->
+	<update id="updateEntity" parameterType="com.shangyong.backend.entity.CuCustomerCompany">
+		 UPDATE cu_customer_company
+ 		 <set> 
+			<if test="platformCustomerId != null">
+				 platform_customer_id = #{platformCustomerId},
+			</if>
+			<if test="customerId != null">
+				 customer_id = #{customerId},
+			</if>
+			<if test="companyIndustry != null">
+				 company_industry = #{companyIndustry},
+			</if>
+			<if test="companyName != null">
+				 company_name = #{companyName},
+			</if>
+			<if test="companyTel != null">
+				 company_tel = #{companyTel},
+			</if>
+			<if test="companyAddress != null">
+				 company_address = #{companyAddress},
+			</if>
+			<if test="streetAddress != null">
+				 street_address = #{streetAddress},
+			</if>
+			<if test="workingHours != null">
+				 working_hours = #{workingHours},
+			</if>
+			<if test="lng != null">
+				 lng = #{lng},
+			</if>
+			<if test="lat != null">
+				 lat = #{lat},
+			</if>
+			<if test="workPhoto != null">
+				 work_photo = #{workPhoto},
+			</if>
+			<if test="province != null">
+				 province = #{province},
+			</if>
+			<if test="city != null">
+				 city = #{city},
+			</if>
+			<if test="area != null">
+				 area = #{area},
+			</if>
+			<if test="createTime != null">
+				 create_time = #{createTime},
+			</if>
+			<if test="modifyTime != null">
+				 modify_time = #{modifyTime},
+			</if>
+			<if test="remark != null">
+				 remark = #{remark},
+			</if>
+			<if test="professionId != null">
+				profession_id = #{professionId}
+			</if>
+
+ 		 </set>
+		  WHERE customer_company_id = #{customerCompanyId}
+	</update>
+
+</mapper>

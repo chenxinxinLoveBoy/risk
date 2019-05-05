@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.shangyong.backend.dao.approval.CuCustomerFewMessageDao">
+
+	<resultMap type="com.shangyong.backend.entity.approval.CuCustomerFewMessage" id="cuCustomerFewMessageMap">
+		<id property="customerFewMessageId" column="customer_few_message_id" javaType="java.lang.String"></id>
+		<result property="customerCollectMessageId" column="customer_collect_message_id" javaType="java.lang.Long"></result>
+		<result property="customerId" column="customer_id" javaType="java.lang.String"></result>
+		<result property="appName" column="app_name" javaType="java.lang.Integer"></result>
+		<result property="sendTime" column="send_time" javaType="java.lang.String"></result>
+		<result property="callName" column="call_name" javaType="java.lang.String"></result>
+		<result property="phone" column="phone" javaType="java.lang.String"></result>
+		<result property="context" column="context" javaType="java.lang.String"></result>
+		<result property="type" column="type" javaType="java.lang.Integer"></result>
+		<result property="extend" column="extend" javaType="java.lang.String"></result>
+		<result property="createTime" column="create_time" javaType="java.lang.String"></result>
+		<result property="modifyTime" column="modify_time" javaType="java.lang.String"></result>
+	</resultMap>
+
+	<!-- 通用查询结果列-->
+	<sql id="Base_Column_List">
+customer_few_message_id,	customer_collect_message_id,	customer_id,	app_name,	send_time,	call_name,	phone,	context,	type,	extend,	create_time,	modify_time
+	</sql>
+
+	<!-- 添加 -->
+	<insert id="saveAllEntity" parameterType="com.shangyong.backend.entity.approval.CuCustomerFewMessage">
+		 INSERT INTO cu_customer_few_message
+ 		(customer_few_message_id,customer_collect_message_id,customer_id,app_name,send_time,call_name,phone,context,type,extend,create_time,modify_time) 
+		 VALUES 
+		 <foreach collection="list" item="item" index="index" separator="," >
+ 			(#{item.customerFewMessageId},#{item.customerCollectMessageId},#{item.customerId},#{item.appName},#{item.sendTime},#{item.callName},#{item.phone},#{item.context},#{item.type},#{item.extend},#{item.createTime},#{item.modifyTime}) 
+		 </foreach>
+	</insert>
+	<!-- 查询客户手机短信记录（根据customerId和appName查询，只查询最近一条） -->
+	<select id="findlateEntity" resultMap="cuCustomerFewMessageMap">
+		 SELECT
+		 <include refid="Base_Column_List" />
+		 FROM cu_customer_few_message
+		 WHERE app_name = #{appName} and customer_id = #{customerId} ORDER BY create_time DESC LIMIT 1
+	</select>
+</mapper>

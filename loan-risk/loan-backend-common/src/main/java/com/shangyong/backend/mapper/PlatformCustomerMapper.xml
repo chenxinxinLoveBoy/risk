@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.shangyong.backend.dao.approval.PlatformCustomerDao">
+
+	<resultMap type="com.shangyong.backend.entity.CuPlatformCustomer"
+		id="cuPlatformCustomerinfoMap">
+		<id property="platformCustomerId" column="platform_customer_id"
+			javaType="java.lang.String"></id>
+		<result property="customerId" column="customer_id" javaType="java.lang.String"></result>
+		<result property="appName" column="app_name" javaType="java.lang.String"></result>
+		<result property="name" column="name" javaType="java.lang.String"></result>
+		<result property="phoneNum" column="phone_num" javaType="java.lang.String"></result>
+		<result property="certType" column="cert_type" javaType="java.lang.String"></result>
+		<result property="certCode" column="cert_code" javaType="java.lang.String"></result>
+		<result property="gender" column="gender" javaType="java.lang.String"></result>
+		<result property="email" column="email" javaType="java.lang.String"></result>
+		<result property="age" column="age" javaType="java.lang.Integer"></result>
+		<result property="educationId" column="education_id" javaType="java.lang.String"></result>
+		<result property="bankCard" column="bank_card" javaType="java.lang.String"></result>
+		<result property="ifMarriage" column="if_marriage" javaType="java.lang.String"></result>
+		<result property="homeAddress" column="home_address" javaType="java.lang.String"></result>
+		<result property="registeredAddress" column="registered_address"
+			javaType="java.lang.String"></result>
+		<result property="contactAddress" column="contact_address"
+			javaType="java.lang.String"></result>
+		<result property="bankName" column="bank_name" javaType="java.lang.String"></result>
+		<result property="nation" column="nation" javaType="java.lang.String"></result>
+		<result property="birth" column="birth" javaType="java.lang.String"></result>
+		<result property="createTime" column="create_time" javaType="java.lang.String"></result>
+		<result property="createMan" column="create_man" javaType="java.lang.String"></result>
+		<result property="modifyTime" column="modify_time" javaType="java.lang.String"></result>
+		<result property="modifyMan" column="modify_man" javaType="java.lang.String"></result>
+		<result property="remark" column="remark" javaType="java.lang.String"></result>
+		<result property="expirationDate" column="expiration_date" javaType="java.lang.String"></result>
+		<result property="issueInstitution" column="issue_institution" javaType="java.lang.String"></result>
+	</resultMap>
+
+	<!-- 通用查询结果列 -->
+	<sql id="Base_Column_List">
+		platform_customer_id, customer_id, app_name, name,
+		phone_num, cert_type, cert_code, gender,
+		email, age, education_id, bank_card, if_marriage,
+		home_address,
+		registered_address, contact_address,
+		bank_name, nation,
+		birth, create_time, create_man,
+		modify_time, modify_man, remark,expiration_date,issue_institution
+	</sql>
+
+    <!-- 查询所有客户信息 -->
+	<select id="getEntityById" resultMap="cuPlatformCustomerinfoMap" parameterType="com.shangyong.backend.entity.CuPlatformCustomer">
+		SELECT
+		<include refid="Base_Column_List" />
+ 		FROM cu_platform_customer
+ 		WHERE platform_customer_id = #{platformId} LIMIT 1
+	</select>
+</mapper>

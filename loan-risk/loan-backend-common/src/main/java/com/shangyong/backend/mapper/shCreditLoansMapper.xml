@@ -1,0 +1,202 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.shangyong.backend.dao.sh.ShCreditLoansDao">
+
+	<resultMap type="com.shangyong.backend.entity.sh.ShCreditLoans" id="shCreditLoansMap">
+		<id property="loansId" column="loans_id" javaType="java.lang.String"></id>
+		<result property="applicationId" column="application_id" javaType="java.lang.String"></result>
+		<result property="loansProject" column="loans_project" javaType="java.lang.String"></result>
+		<result property="organizationName" column="organization_name" javaType="java.lang.String"></result>
+		<result property="limitMoney" column="limit_money" javaType="java.lang.String"></result>
+		<result property="guaranteeType" column="guarantee_type" javaType="java.lang.String"></result>
+		<result property="openDate" column="open_date" javaType="java.lang.String"></result>
+		<result property="currency" column="currency" javaType="java.lang.String"></result>
+		<result property="locality" column="locality" javaType="java.lang.String"></result>
+		<result property="shareLimitMoney" column="share_limit_money" javaType="java.lang.String"></result>
+		<result property="maxLiabilitiesMoney" column="max_liabilities_money" javaType="java.lang.String"></result>
+		<result property="repaymentFrequency" column="repayment_frequency" javaType="java.lang.String"></result>
+		<result property="endingIoanBalance" column="ending_ioan_balance" javaType="java.lang.String"></result>
+		<result property="leftTermsLoan" column="left_terms_loan" javaType="java.lang.String"></result>
+		<result property="repaymentDateMonth" column="repayment_date_month" javaType="java.lang.String"></result>
+		<result property="repaymentAmountMonth" column="repayment_amount_month" javaType="java.lang.String"></result>
+		<result property="accountStatus" column="account_status" javaType="java.lang.String"></result>
+		<result property="actualDateRepayment" column="actual_date_repayment" javaType="java.lang.String"></result>
+		<result property="actualPaymentAmount" column="actual_payment_amount" javaType="java.lang.String"></result>
+		<result property="nowOverdueLimit" column="now_overdue_limit" javaType="java.lang.String"></result>
+		<result property="nowOverdueNumber" column="now_overdue_number" javaType="java.lang.String"></result>
+		<result property="totalOverdueNumber" column="total_overdue_number" javaType="java.lang.String"></result>
+		<result property="maxOverdueNumber" column="max_overdue_number" javaType="java.lang.String"></result>
+		<result property="paymentStatus" column="payment_status" javaType="java.lang.String"></result>
+		<result property="overdueTwoMonth" column="overdue_two_month" javaType="java.lang.String"></result>
+		<result property="overdueThreeMonth" column="overdue_three_month" javaType="java.lang.String"></result>
+		<result property="overdueSixMonth" column="overdue_six_month" javaType="java.lang.String"></result>
+		<result property="overdueYearMonth" column="overdue_year_month" javaType="java.lang.String"></result>
+		<result property="loansTime" column="loans_time" javaType="java.lang.String"></result>
+		<result property="createTime" column="create_time" javaType="java.lang.String"></result>
+		<result property="createMan" column="create_man" javaType="java.lang.String"></result>
+		<result property="modifyTime" column="modify_time" javaType="java.lang.String"></result>
+		<result property="modifyMan" column="modify_man" javaType="java.lang.String"></result>
+		<result property="remark" column="remark" javaType="java.lang.String"></result>
+	</resultMap>
+
+	<!-- 通用查询结果列-->
+	<sql id="Base_Column_List">
+loans_id,	application_id,	loans_project,	organization_name,	limit_money,	guarantee_type,	open_date,	currency,	locality,	share_limit_money,	max_liabilities_money,	repayment_frequency,	ending_ioan_balance,	left_terms_loan,	repayment_date_month,	repayment_amount_month,	account_status,	actual_date_repayment,	actual_payment_amount,	now_overdue_limit,	now_overdue_number,	total_overdue_number,	max_overdue_number,	payment_status,	overdue_two_month,	overdue_three_month,	overdue_six_month,	overdue_year_month,	loans_time,	create_time,	create_man,	modify_time,	modify_man,	remark
+	</sql>
+
+	<!-- 查询（根据主键ID查询） -->
+	<select id="getEntityById" resultMap="shCreditLoansMap" parameterType="java.lang.String">
+		 SELECT
+		 <include refid="Base_Column_List" />
+		 FROM sh_credit_loans
+		 WHERE loans_id = #{loansId}
+	</select>
+	<!-- 查询（根据ApplicationId查询） -->
+	<select id="queryByApplicationId" resultMap="shCreditLoansMap" parameterType="java.lang.String">
+		 SELECT
+		 <include refid="Base_Column_List" />
+		 FROM sh_credit_loans
+		 WHERE application_id = #{applicationId}
+	</select>
+
+	<!-- 查询（根据主键ID查询） -->
+	<select id="findAll" resultMap="shCreditLoansMap" parameterType="java.lang.String">
+		 SELECT
+		 <include refid="Base_Column_List" />
+		 FROM sh_credit_loans
+		 WHERE loans_id = #{loansId}
+	</select>
+
+	<!--删除：根据主键ID删除-->
+	<delete id="deleteEntity" parameterType="java.lang.String">
+		 DELETE FROM sh_credit_loans
+		 WHERE loans_id = #{loansId}
+	</delete>
+
+	<!-- 添加 -->
+	<insert id="saveEntity" parameterType="com.shangyong.backend.entity.sh.ShCreditLoans">
+		 INSERT INTO sh_credit_loans
+ 		(loans_id,application_id,loans_project,organization_name,limit_money,guarantee_type,open_date,currency,locality,share_limit_money,max_liabilities_money,repayment_frequency,ending_ioan_balance,left_terms_loan,repayment_date_month,repayment_amount_month,account_status,actual_date_repayment,actual_payment_amount,now_overdue_limit,now_overdue_number,total_overdue_number,max_overdue_number,payment_status,overdue_two_month,overdue_three_month,overdue_six_month,overdue_year_month,loans_time,create_time,create_man,modify_time,modify_man,remark) 
+		 VALUES 
+ 		(#{loansId},#{applicationId},#{loansProject},#{organizationName},#{limitMoney},#{guaranteeType},#{openDate},#{currency},#{locality},#{shareLimitMoney},#{maxLiabilitiesMoney},#{repaymentFrequency},#{endingIoanBalance},#{leftTermsLoan},#{repaymentDateMonth},#{repaymentAmountMonth},#{accountStatus},#{actualDateRepayment},#{actualPaymentAmount},#{nowOverdueLimit},#{nowOverdueNumber},#{totalOverdueNumber},#{maxOverdueNumber},#{paymentStatus},#{overdueTwoMonth},#{overdueThreeMonth},#{overdueSixMonth},#{overdueYearMonth},#{loansTime},#{createTime},#{createMan},#{modifyTime},#{modifyMan},#{remark}) 
+	</insert>
+		<!-- 批量插入 -->
+	<insert id="saveAllEntity" parameterType="java.util.List">
+		  INSERT INTO sh_credit_loans
+ 		(loans_id,application_id,loans_project,organization_name,limit_money,guarantee_type,open_date,currency,locality,share_limit_money,max_liabilities_money,repayment_frequency,ending_ioan_balance,left_terms_loan,repayment_date_month,repayment_amount_month,account_status,actual_date_repayment,actual_payment_amount,now_overdue_limit,now_overdue_number,total_overdue_number,max_overdue_number,payment_status,overdue_two_month,overdue_three_month,overdue_six_month,overdue_year_month,loans_time,create_time,create_man,modify_time,modify_man,remark) 
+		 VALUES 
+ 	    <foreach collection="list" item="item" index="index" separator="," >  
+ 		(#{item.loansId},#{item.applicationId},#{item.loansProject},#{item.organizationName},#{item.limitMoney},#{item.guaranteeType},#{item.openDate},#{item.currency},#{item.locality},#{item.shareLimitMoney},#{item.maxLiabilitiesMoney},#{item.repaymentFrequency},#{item.endingIoanBalance},#{item.leftTermsLoan},#{item.repaymentDateMonth},#{item.repaymentAmountMonth},#{item.accountStatus},#{item.actualDateRepayment},#{item.actualPaymentAmount},#{item.nowOverdueLimit},#{item.nowOverdueNumber},#{item.totalOverdueNumber},#{item.maxOverdueNumber},#{item.paymentStatus},#{item.overdueTwoMonth},#{item.overdueThreeMonth},#{item.overdueSixMonth},#{item.overdueYearMonth},#{item.loansTime},#{item.createTime},#{item.createMan},#{item.modifyTime},#{item.modifyMan},#{item.remark}) 
+	    </foreach>
+	</insert>
+
+	<!-- 修 改-->
+	<update id="updateEntity" parameterType="com.shangyong.backend.entity.sh.ShCreditLoans">
+		 UPDATE sh_credit_loans
+ 		 <set> 
+			<if test="applicationId != null">
+				 application_id = #{applicationId},
+			</if>
+			<if test="loansProject != null">
+				 loans_project = #{loansProject},
+			</if>
+			<if test="organizationName != null">
+				 organization_name = #{organizationName},
+			</if>
+			<if test="limitMoney != null">
+				 limit_money = #{limitMoney},
+			</if>
+			<if test="guaranteeType != null">
+				 guarantee_type = #{guaranteeType},
+			</if>
+			<if test="openDate != null">
+				 open_date = #{openDate},
+			</if>
+			<if test="currency != null">
+				 currency = #{currency},
+			</if>
+			<if test="locality != null">
+				 locality = #{locality},
+			</if>
+			<if test="shareLimitMoney != null">
+				 share_limit_money = #{shareLimitMoney},
+			</if>
+			<if test="maxLiabilitiesMoney != null">
+				 max_liabilities_money = #{maxLiabilitiesMoney},
+			</if>
+			<if test="repaymentFrequency != null">
+				 repayment_frequency = #{repaymentFrequency},
+			</if>
+			<if test="endingIoanBalance != null">
+				 ending_ioan_balance = #{endingIoanBalance},
+			</if>
+			<if test="leftTermsLoan != null">
+				 left_terms_loan = #{leftTermsLoan},
+			</if>
+			<if test="repaymentDateMonth != null">
+				 repayment_date_month = #{repaymentDateMonth},
+			</if>
+			<if test="repaymentAmountMonth != null">
+				 repayment_amount_month = #{repaymentAmountMonth},
+			</if>
+			<if test="accountStatus != null">
+				 account_status = #{accountStatus},
+			</if>
+			<if test="actualDateRepayment != null">
+				 actual_date_repayment = #{actualDateRepayment},
+			</if>
+			<if test="actualPaymentAmount != null">
+				 actual_payment_amount = #{actualPaymentAmount},
+			</if>
+			<if test="nowOverdueLimit != null">
+				 now_overdue_limit = #{nowOverdueLimit},
+			</if>
+			<if test="nowOverdueNumber != null">
+				 now_overdue_number = #{nowOverdueNumber},
+			</if>
+			<if test="totalOverdueNumber != null">
+				 total_overdue_number = #{totalOverdueNumber},
+			</if>
+			<if test="maxOverdueNumber != null">
+				 max_overdue_number = #{maxOverdueNumber},
+			</if>
+			<if test="paymentStatus != null">
+				 payment_status = #{paymentStatus},
+			</if>
+			<if test="overdueTwoMonth != null">
+				 overdue_two_month = #{overdueTwoMonth},
+			</if>
+			<if test="overdueThreeMonth != null">
+				 overdue_three_month = #{overdueThreeMonth},
+			</if>
+			<if test="overdueSixMonth != null">
+				 overdue_six_month = #{overdueSixMonth},
+			</if>
+			<if test="overdueYearMonth != null">
+				 overdue_year_month = #{overdueYearMonth},
+			</if>
+			<if test="loansTime != null">
+				 loans_time = #{loansTime},
+			</if>
+			<if test="createTime != null">
+				 create_time = #{createTime},
+			</if>
+			<if test="createMan != null">
+				 create_man = #{createMan},
+			</if>
+			<if test="modifyTime != null">
+				 modify_time = #{modifyTime},
+			</if>
+			<if test="modifyMan != null">
+				 modify_man = #{modifyMan},
+			</if>
+			<if test="remark != null">
+				 remark = #{remark},
+			</if>
+
+ 		 </set>
+		 WHERE loans_id = #{loansId}
+	</update>
+
+</mapper>

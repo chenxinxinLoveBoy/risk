@@ -1,0 +1,201 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.shangyong.backend.dao.MenuDao" >
+  <resultMap id="BaseResultMap" type="com.shangyong.backend.entity.Menu" >
+    <id column="Menu_id" property="menuId" jdbcType="INTEGER" />
+    <result column="Menu_name" property="menuName" jdbcType="VARCHAR" />
+    <result column="Parent_id" property="parentId" jdbcType="INTEGER" />
+    <result column="Icon" property="icon" jdbcType="VARCHAR" />
+    <result column="url" property="url" jdbcType="VARCHAR" />
+    <result column="Create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="State" property="state" jdbcType="INTEGER" />
+    <result column="remark" property="remark" jdbcType="VARCHAR" />
+    <result column="level" property="level" jdbcType="INTEGER" />
+  </resultMap>
+  
+   
+  <!-- 公用查询字段 --> 
+  <sql id="Base_Column_List" >
+    Menu_id as menuId, Menu_name as title, Parent_id as parentId, Icon, url as href, Create_time as createTime, State, remark, level,rownum
+  </sql>
+	
+  <!-- 公用查询条件 -->
+  <sql id="propertitys_sql">
+  		<where>
+  			<!-- 状态1： 可用 -->
+  			a.State = 1
+  			
+  			<!-- 菜单名称 -->
+  			<if test="title != null and title != ''">
+  				and instr(a.Menu_name, #{title}) > 0
+  			</if>
+  			<!-- 菜单级别 -->
+  			<if test="level != null ">
+  				and a.level = #{level}
+  			</if>
+  			
+  		</where>
+  </sql>	
+  
+   
+  <!-- 查询每个菜单对应的角色权限，用于权限初始化用 --> 
+  <select id="getMenuRoleAll" parameterType="com.shangyong.backend.bo.MenuBo" resultType="com.shangyong.backend.bo.MenuBo">
+  	select  distinct m.menu_id as menuId,m.menu_name as title, m.url as href, r.role_name as roleName
+  	from sc_menu m
+	left join sc_role_menu rm on m.menu_id = rm.menu_id
+	left join sc_role r on r.role_id = rm.role_id
+	where length(url) > 1 
+	and length(menu_name) > 0 
+	and length(role_name) > 0
+	<if test="roleId != null ">
+		and r.role_id = #{roleId}
+	</if>
+  </select>
+  
+  
+  <!-- 查询用户拥有的菜单  -->
+  <select id="getMenu1" parameterType="com.shangyong.backend.bo.MenuBo" resultType="com.shangyong.backend.bo.MenuBo">
+	select 
+		m.menu_Id as 'menuId',m.Menu_name as  'title',
+		m.Parent_id as  'parentId',m.url as 'href' ,m.icon as 'icon',
+		'false'  as 'spread'
+	from sc_user a               			   
+	inner join sc_user_role ur on  a.user_id = ur.user_id  
+	inner join sc_role c on ur.role_id = c.role_id		 
+	inner join sc_role_menu rm on c.role_id = rm.role_id 	 
+	inner join sc_menu  m on rm.menu_id = m.menu_id  		 
+	where a.user_id = #{userId}
+		and level = #{level}
+		<if test="level == 2"> <!-- 如果是查询2级菜单，需要根据父id查询 -->
+			and m.Parent_id = #{menuId}
+		</if>
+		ORDER BY rownum,m.create_time desc
+  </select>
+  
+  
+  <!--  查询所有List集合 -->
+  <select id="listAll" resultType="com.shangyong.backend.bo.MenuBo" parameterType="com.shangyong.backend.bo.MenuBo">
+	SELECT a.menu_Id as 'menuId',a.Menu_name as  'title',
+			a.Parent_id as  'parentId',a.url as 'href' ,a.icon as 'icon',
+			case a.Parent_id  when  0    then 'false'  else 'true' end  as 'spread'
+		    from sc_menu a
+    where 1=1
+    <if test="menuId != null">
+    	and  a.Menu_id = #{menuId,jdbcType=INTEGER}
+    </if>
+  </select>
+  
+  
+  <!-- 统计 -->
+  <select id="listAllCount" parameterType="com.shangyong.backend.bo.MenuBo" resultType="int">
+  		select 
+  			count(1)
+  		from sc_menu a
+  		<include refid="propertitys_sql"></include>
+  		<if test="parentId != null and parentId != ''">
+  			and a.Parent_id=#{parentId}
+  		</if>
+  		<if test="href != null and href != ''">
+  			and a.url=#{href}
+  		</if>
+  </select>
+  
+  <!-- 页面列表List -->
+  <select id="listViewAll" parameterType="com.shangyong.backend.bo.MenuBo" resultType="com.shangyong.backend.bo.MenuBo">
+  		select 
+			a.Menu_id as menuId, a.Menu_name as title, a.Parent_id as parentId, a.Icon, a.url as href, a.Create_time as createTime, a.State, a.remark,a.rownum
+			,b.Menu_name as  parentTile,a.level
+			, case 	when a.level = 1 then '一级菜单'
+		       		when a.level = 2 then  '二级菜单'
+		        	when a.level = 3 then  '三级菜单'
+		        	else ' '
+		  		end as levelName		  		  		
+		from sc_menu a
+		left join sc_menu b on a.parent_id=b.Menu_id
+  		<include refid="propertitys_sql"></include>
+  		<if test="parentId != null and parentId != ''">
+  			and a.Parent_id=#{parentId}
+  		</if>
+  		<if test="href != null and href != ''">
+  			and a.url=#{href}
+  		</if>
+  		order by a.menu_id desc 
+  		<if test="pageSize != -1">
+  			limit #{pageIndex}, #{pageSize}
+  		</if>
+  		
+  </select>
+  
+  <!-- 查询对象信息 -->
+  <select id="getObjectById" parameterType="com.shangyong.backend.bo.MenuBo" resultType="com.shangyong.backend.bo.MenuBo">
+  		select 
+  			<include refid="Base_Column_List"></include> 
+  		from 
+  		sc_menu a
+  		<include refid="propertitys_sql"></include>
+  		and  a.Menu_id = #{menuId,jdbcType=INTEGER}
+  </select>
+  
+  
+  <!-- 删除 -->
+  <delete id="delete" parameterType="com.shangyong.backend.bo.MenuBo" >
+    delete from sc_menu 
+    where Menu_id = #{menuId,jdbcType=INTEGER}
+  </delete>
+  
+  
+   
+   <!-- 保存 -->
+  <insert id="save" parameterType="com.shangyong.backend.bo.MenuBo" >
+    insert into sc_menu (Menu_name, Parent_id, 
+      Icon, url, Create_time, 
+      State, remark, level,rownum)
+    values (#{title,jdbcType=VARCHAR}, #{parentId,jdbcType=INTEGER}, 
+      #{icon,jdbcType=VARCHAR}, #{href,jdbcType=VARCHAR}, now(), 
+      #{state,jdbcType=INTEGER}, #{remark,jdbcType=VARCHAR}, #{level},#{rownum})
+  </insert>
+   
+ 
+  
+   <!-- 修改 -->
+  <update id="update" parameterType="com.shangyong.backend.bo.MenuBo" >
+    update sc_menu
+    <set >
+      <if test="title != null" >
+        Menu_name = #{title,jdbcType=VARCHAR},
+      </if>
+      <if test="parentId != null" >
+        Parent_id = #{parentId,jdbcType=INTEGER},
+      </if>
+       <if test="level != null" >
+        level = #{level,jdbcType=INTEGER},
+      </if>
+      <if test="icon != null" >
+        Icon = #{icon,jdbcType=VARCHAR},
+      </if>
+      <if test="href != null" >
+        url = #{href,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        Create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="state != null" >
+        State = #{state,jdbcType=INTEGER},
+      </if>
+      <if test="remark != null" >
+        remark = #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="rownum != null" >
+        rownum = #{rownum,jdbcType=INTEGER},
+      </if>
+    </set>
+    where Menu_id = #{menuId,jdbcType=INTEGER}
+  </update>
+   <select id="selectMenuMaximum" resultType="java.lang.Integer">
+	select  count(*) from sc_menu where  Parent_id = #{menuId}
+  </select>
+   
+    <select id="selectMenuSerialNumber" resultType="java.lang.Integer">
+		select  menu_id from sc_menu where menu_name=#{menuName} ORDER BY create_time LIMIT 1
+ 	</select>
+</mapper>

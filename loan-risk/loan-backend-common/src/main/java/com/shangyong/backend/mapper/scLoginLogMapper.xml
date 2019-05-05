@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.shangyong.backend.dao.ScLoginLogDao">
+	<resultMap type="com.shangyong.backend.entity.ScLoginLog" id="scLoginLogMap">
+		<id property="loginLogId" column="login_log_id" javaType="java.lang.Integer"></id>
+		<result property="userId" column="user_id" javaType="java.lang.Integer"></result>
+		<result property="loginTime" column="login_time" javaType="java.lang.String"></result>
+		<result property="loginOutTime" column="login_out_time" javaType="java.lang.String"></result>
+		<result property="ip" column="ip" javaType="java.lang.String"></result>
+		<result property="type" column="type" javaType="java.lang.Integer"></result>
+		<result property="remark" column="remark" javaType="java.lang.String"></result>
+	</resultMap>
+
+	<!-- 通用查询结果列 -->
+	<sql id="Base_Column_List">
+		login_log_id, user_id, login_time, login_out_time, ip, type, remark
+	</sql>
+
+	<!-- 查询条数 -->
+	<select id="listAllCount" resultType="java.lang.Integer">
+		SELECT count(1)
+		FROM sc_login_log
+		 <where>
+ 			<if test="loginLogId != null and loginLogId != '' ">
+				  login_log_id = #{loginLogId}
+			</if>
+			<if test="userId != null and userId != '' ">
+				  and user_id = #{userId}
+			</if>
+		</where>
+ 	</select>
+
+	<!-- 查询 -->
+	<select id="getAll" resultMap="scLoginLogMap" parameterType="java.lang.Integer">
+		SELECT
+		<include refid="Base_Column_List" />
+		FROM sc_login_log
+		<where>
+ 			<if test="loginLogId != null and loginLogId != '' ">
+				  login_log_id = #{loginLogId}
+			</if>
+			<if test="userId != null and userId != '' ">
+				  and user_id = #{userId}
+			</if>
+		</where>
+		order by login_log_id DESC
+		LIMIT
+		#{pageIndex},#{pageSize}
+	</select>
+	
+	<!-- 新增 -->
+	 <insert id="saveEntity" parameterType="com.shangyong.backend.entity.ScLoginLog" >
+	    insert into sc_login_log (user_id, login_time, 
+	      login_out_time, ip, type, 
+	      remark)
+	    values (#{userId,jdbcType=INTEGER}, #{loginTime,jdbcType=TIMESTAMP}, 
+	      #{loginOutTime,jdbcType=TIMESTAMP}, #{ip,jdbcType=VARCHAR}, #{type,jdbcType=INTEGER}, 
+	      #{remark,jdbcType=VARCHAR})
+  </insert>
+
+</mapper>

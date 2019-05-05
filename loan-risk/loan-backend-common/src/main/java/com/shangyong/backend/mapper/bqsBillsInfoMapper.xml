@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.shangyong.backend.dao.bqs.BqsBillsInfoServiceDao">
+
+	<resultMap type="com.shangyong.backend.entity.bqs.BqsBillsInfo" id="bqsBillsInfoinfoMap">
+		<id property="bqsBillsInfoId" column="bqs_bills_info_id" javaType="java.lang.String"></id>
+		<result property="bqsPersonalInfoId" column="bqs_personal_info_id" javaType="java.lang.String"></result>
+		<result property="allFee" column="all_fee" javaType="java.lang.String"></result>
+		<result property="dueFee" column="due_fee" javaType="java.lang.String"></result>
+		<result property="month" column="month" javaType="java.lang.String"></result>
+		<result property="remark" column="remark" javaType="java.lang.String"></result>
+		<result property="createTime" column="create_time" javaType="java.lang.String"></result>
+		<result property="modifyTime" column="modify_time" javaType="java.lang.String"></result>
+		<result property="createMan" column="create_man" javaType="java.lang.String"></result>
+		<result property="modifyMan" column="modify_man" javaType="java.lang.String"></result>
+	</resultMap>
+
+	<!-- 通用查询结果列-->
+	<sql id="Base_Column_List">
+	bqs_bills_info_id,	bqs_personal_info_id,	all_fee,	due_fee,	month,	remark,	create_time,	modify_time,	create_man,	modify_man
+	</sql>
+
+	<!-- 查询（根据主键ID查询） -->
+	<select id="getEntityById" resultMap="bqsBillsInfoinfoMap" parameterType="java.lang.String">
+		 SELECT
+		 <include refid="Base_Column_List" />
+		 FROM bqs_bills_info
+		 WHERE bqs_bills_info_id = #{bqsBillsInfoId}
+	</select>
+
+	<!-- 查询（根据主键ID查询） -->
+	<select id="getAll" resultMap="bqsBillsInfoinfoMap" parameterType="java.lang.String">
+		 SELECT
+		 <include refid="Base_Column_List" />
+		 FROM bqs_bills_info
+	</select>
+
+	<!--删除：根据主键ID删除-->
+	<delete id="deleteEntity" parameterType="java.lang.String">
+		 DELETE FROM bqs_bills_info
+		 WHERE bqs_bills_info_id = #{bqsBillsInfoId}
+	</delete>
+
+	<!-- 添加 -->
+	<insert id="saveEntity" parameterType="com.shangyong.backend.entity.bqs.BqsBillsInfo">
+		 INSERT INTO bqs_bills_info
+ 		(bqs_bills_info_id,bqs_personal_info_id,all_fee,due_fee,month,remark,create_time,modify_time,create_man,modify_man) 
+		 VALUES 
+ 		(#{bqsBillsInfoId},#{bqsPersonalInfoId},#{allFee},#{dueFee},#{month},#{remark},#{createTime},#{modifyTime},#{createMan},#{modifyMan}) 
+	</insert>
+
+	<!-- 修 改-->
+	<update id="updateEntity" parameterType="com.shangyong.backend.entity.bqs.BqsBillsInfo">
+		 UPDATE bqs_bills_info
+ 		 <set> 
+			<if test="bqsPersonalInfoId != null">
+				 bqs_personal_info_id = #{bqsPersonalInfoId},
+			</if>
+			<if test="allFee != null">
+				 all_fee = #{allFee},
+			</if>
+			<if test="dueFee != null">
+				 due_fee = #{dueFee},
+			</if>
+			<if test="month != null">
+				 month = #{month},
+			</if>
+			<if test="remark != null">
+				 remark = #{remark},
+			</if>
+			<if test="createTime != null">
+				 create_time = #{createTime},
+			</if>
+			<if test="modifyTime != null">
+				 modify_time = #{modifyTime},
+			</if>
+			<if test="createMan != null">
+				 create_man = #{createMan},
+			</if>
+			<if test="modifyMan != null">
+				 modify_man = #{modifyMan},
+			</if>
+
+ 		 </set>
+		 WHERE bqs_bills_info_id = #{bqsBillsInfoId}
+	</update>
+
+</mapper>

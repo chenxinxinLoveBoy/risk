@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<link rel="stylesheet" href="../../plugins/layui/css/layui.css" media="all" />
+		<link rel="stylesheet" href="../../css/global.css" media="all">
+		<link rel="stylesheet" href="../../plugins/font-awesome/css/font-awesome.min.css">
+		<link rel="stylesheet" href="../../css/table.css" />
+		<link rel="stylesheet" href="../../css/lzh_login.css" media="all" />
+		<style type="text/css">
+		.layui-form-select .layui-input {
+		    padding-right: 0px;
+		    cursor: pointer;
+		    margin-left: 0%;
+		}
+		</style>
+	</head>
+
+	<body>
+		<div class="admin-main">
+			<blockquote class="layui-elem-quote">
+				<form class="layui-form" action="" id="taskListQueryForm">
+					<div class="layui-form-item" style="height: 0px;">
+						<div class="layui-inline">
+							<a href="javascript:;" class="layui-btn layui-btn-small" id="add" style="margin-top: -40px;">
+								<i class="layui-icon">&#xe608;</i> 添加定时任务
+							</a>
+						</div>
+					</div>
+					<div class="layui-form-item">
+						<div class="layui-inline">
+							 <label class="layui-form-label">job group：</label>
+							 <div class="layui-input-inline">
+								<input id="jobGroup" type="text" name="jobGroup" placeholder="jobGroup" autocomplete="off" class="layui-input">
+							 </div>
+						</div>
+						<div class="layui-inline">
+							 <label class="layui-form-label">项目名称：</label>
+							 <div class="layui-input-inline">
+								<input id="artifactId" type="text" name="artifactId" placeholder="项目名称artifactId" autocomplete="off" class="layui-input">
+							 </div>
+						</div>
+						<div class="layui-inline">
+							 <label class="layui-form-label">类路径：</label>
+							 <div class="layui-input-inline">
+								<input type="text" name="beanClass" id="beanClass" placeholder="beanClass全路径" autocomplete="off" class="layui-input">
+							 </div>
+						</div>
+						<div class="layui-inline">
+							 <label class="layui-form-label">springbeanid：</label>
+							 <div class="layui-input-inline">
+								<input type="text" name="springId" id="springId" placeholder="springbeanid实现类别名" autocomplete="off" class="layui-input">
+							 </div>
+						</div>
+					</div>
+					<div class="layui-form-item">
+						<div class="layui-inline">
+							 <label class="layui-form-label">方法名：</label>
+							 <div class="layui-input-inline">
+								<input type="text" name="methodName" id="methodName" placeholder="methodName" autocomplete="off" class="layui-input">
+							 </div>
+						</div>
+						<div class="layui-inline">
+						      <label class="layui-form-label">运行状态：</label>
+						      <div class="layui-input-inline">
+						        <select name="jobStatus" id="jobStatus" lay-search="">
+						          <option value="2">全部</option>
+						          <option value="0">停止</option>
+						          <option value="1">运行</option>
+						        </select>
+						      </div>
+						</div>
+						<div class="layui-inline">
+							 <div class="layui-input-inline">
+								<a href="javascript:;" class="layui-btn layui-btn-small" id="search"><i class="layui-icon">&#xe615;</i>搜索</a>
+							 </div>
+						</div>
+					</div>
+					
+				</form>
+			</blockquote>
+			<fieldset class="layui-elem-field">
+				<legend>数据列表</legend>
+				<div class="layui-field-box layui-form">
+					<table class="layui-table admin-table" style="word-break: keep-all;overflow:auto;">
+						<thead>
+							<tr>
+								<th>job id</th>
+								<th>job name</th>
+								<th>job group</th>
+								<th>描述</th>
+								<th>项目名称</th>
+								<th>类路径</th>
+								<th>springbeanid</th>
+								<th>方法名</th>
+								<th>cron表达式</th>
+								<th>运行状态</th>
+								<th>是否同步</th>
+								<th>操作</th>
+							</tr>
+						</thead>
+						<tbody id="content">
+						</tbody>
+					</table>
+					<label>共<font color='red' id="count_page_number"></font>条记录</label>
+						<div id="paged" class="page" style="display:inline-block;"> </div> 
+				</div>
+			</fieldset>
+		</div>
+		<!--模板-->
+		<script type="text/html" id="tpl">
+			{{# layui.each(d.list, function(index, item){ }}
+			<tr>
+				<td>{{item.jobId}}</td>
+				<td>{{ item.jobName }}</td>
+				<td>{{ item.jobGroup }}</td>
+				<td>{{ item.description }}</td>
+				<td>{{ item.artifactId }}</td>
+				<td>{{ item.beanClass }}</td>
+				<td>{{ item.springId }}</td>
+				<td>{{ item.methodName }}</td>
+				<td>
+						<div class="layui-inline">
+							<div class="layui-input-inline" style="width:106px;">{{ item.cronExpression }}</div>
+						</div>
+				</td>
+				<td>
+						<div class="layui-inline">
+							<div class="layui-input-inline" style="width:106px;">
+								{{#	if(item.jobStatus=='1') { }}
+									{{item.jobStatus}}&nbsp;运行中&nbsp;
+									<a href="javascript:;" onclick="changeJobStatus('{{item.artifactId}}', '{{item.jobId}}', 'stop')" class="layui-btn layui-btn-normal layui-btn-mini">停止</a>
+                       			{{#  } }}
+								{{#	if(item.jobStatus=='0'){ }}
+									{{item.jobStatus}}&nbsp;已停止&nbsp;
+									<a href="javascript:;" onclick="changeJobStatus('{{item.artifactId}}', '{{item.jobId}}', 'start')" class="layui-btn layui-btn-normal layui-btn-mini">开启</a>
+								{{# } }}
+							</div>
+						</div>
+				</td>
+				<td>
+					{{ item.isConcurrent }} 
+					{{# if(item.isConcurrent == '1') { }}
+						无状态
+					{{# } }}
+					{{# if(item.isConcurrent == '0') { }}
+						有状态
+					{{# } }}
+				</td>
+				<td style="white-space: nowrap;">
+						<div class="layui-inline">
+							<div class="layui-input-inline" style="width:106px;">
+								<a href="javascript:;" data-id="{{item.jobId}}" data-artifactid="{{item.artifactId}}" data-cronexp="{{item.cronExpression}}" data-opt="edit" class="layui-btn layui-btn-normal layui-btn-mini">更新cron</a>
+						   		<a href="javascript:;" data-id="{{item.jobId}}" data-artifactid="{{item.artifactId}}" data-cronexp="{{item.cronExpression}}" data-opt="delete" class="layui-btn layui-btn-danger layui-btn-mini">删除</a>
+							</div>
+						</div>
+				</td>
+			</tr>
+			{{# }); }}
+		</script>
+		<script src="../../jqery/jquery.js"></script>
+		<script src="../../../commons/base.js"></script>
+		<script type="text/javascript" src="../../plugins/layui/layui.js"></script>
+		<script type="text/javascript" src="../../js/task/taskList.js"></script>
+	</body>
+
+</html>

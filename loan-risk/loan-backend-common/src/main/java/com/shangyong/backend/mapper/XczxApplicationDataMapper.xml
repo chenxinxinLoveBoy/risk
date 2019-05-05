@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.shangyong.backend.dao.xczx.XczxApplicationDataDao">
+
+	<resultMap type="com.shangyong.backend.entity.xczx.XczxApplicationData" id="xczxApplicationDataMap">
+		<id property="applicationDataId" column="application_data_id" javaType="java.lang.String"></id>
+		<result property="thirdpartyReportId" column="thirdparty_report_id" javaType="java.lang.String"></result>
+		<result property="buApplicationId" column="bu_application_id" javaType="java.lang.String"></result>
+		<result property="guid" column="guid" javaType="java.lang.String"></result>
+		<result property="borrowType" column="borrow_type" javaType="java.lang.String"></result>
+		<result property="borrowState" column="borrow_state" javaType="java.lang.String"></result>
+		<result property="borrowAmount" column="borrow_amount" javaType="java.lang.String"></result>
+		<result property="contractDate" column="contract_date" javaType="java.lang.String"></result>
+		<result property="loanPeriod" column="loan_period" javaType="java.lang.String"></result>
+		<result property="repayState" column="repay_state" javaType="java.lang.String"></result>
+		<result property="arrearsAmount" column="arrears_amount" javaType="java.lang.String"></result>
+		<result property="companyCode" column="company_code" javaType="java.lang.String"></result>
+		<result property="createTime" column="create_time" javaType="java.lang.String"></result>
+		<result property="createMan" column="create_man" javaType="java.lang.String"></result>
+		<result property="modifyTime" column="modify_time" javaType="java.lang.String"></result>
+		<result property="modifyMan" column="modify_man" javaType="java.lang.String"></result>
+		<result property="remark" column="remark" javaType="java.lang.String"></result>
+	</resultMap>
+
+	<!-- 通用查询结果列-->
+	<sql id="Base_Column_List">
+		application_data_id,	bu_application_id ,thirdparty_report_id,	guid,	borrow_type,	borrow_state,	borrow_amount,	contract_date,	loan_period,	repay_state,	arrears_amount,	company_code,	create_time,	create_man,	modify_time,	modify_man,	remark
+	</sql>
+
+	<select id="getDataInfo" resultMap="xczxApplicationDataMap" parameterType="com.shangyong.backend.entity.xczx.XczxApplicationData">
+		 SELECT	
+		 application_data_id,	bu_application_id ,thirdparty_report_id,	guid,	borrow_type,	borrow_state,	borrow_amount,	FROM_UNIXTIME(contract_date/1000) as contract_date,	loan_period,	repay_state,	arrears_amount,	company_code,	create_time,	create_man,	modify_time,	modify_man,	remark 
+		 FROM xczx_application_data where bu_application_id = #{buApplicationId}
+	   	 LIMIT #{pageIndex},#{pageSize}
+	</select>
+	
+	<select id="findAllCount" resultType="java.lang.Integer" parameterType="com.shangyong.backend.entity.xczx.XczxApplicationData">
+		 SELECT
+		 count(1)
+		 FROM xczx_application_data where bu_application_id = #{buApplicationId}
+	</select>
+
+	<!-- 添加 -->
+	<insert id="saveEntitys" parameterType="java.util.List">
+		 INSERT INTO xczx_application_data 
+ 		(application_data_id,bu_application_id,thirdparty_report_id,guid,borrow_type,borrow_state,borrow_amount,contract_date,loan_period,repay_state,arrears_amount,company_code,create_time,modify_time) 
+		 VALUES 
+		 <foreach collection="list" item="item" index="index" separator="," >
+ 		(
+	 		#{item.applicationDataId},
+	 		#{item.buApplicationId},
+	 		#{item.thirdpartyReportId},
+	 		#{item.guid},
+	 		#{item.borrowType},
+	 		#{item.borrowState},
+	 		#{item.borrowAmount},
+	 		#{item.contractDate},
+	 		#{item.loanPeriod},
+	 		#{item.repayState},
+	 		#{item.arrearsAmount},
+	 		#{item.companyCode},
+	 		#{item.createTime},
+	 		#{item.modifyTime}
+ 		) 
+		</foreach> 
+	</insert>
+</mapper>

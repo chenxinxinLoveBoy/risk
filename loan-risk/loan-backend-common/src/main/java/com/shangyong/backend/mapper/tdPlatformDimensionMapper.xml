@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.shangyong.backend.dao.td.TdPlatformDimensionServiceDao">
+
+	<resultMap type="com.shangyong.backend.entity.td.TdPlatformDimension" id="tdPlatformDimensioninfoMap">
+		<id property="tdPlatformDimensionId" column="td_platform_dimension_id" javaType="java.lang.String"></id>
+		<result property="tdPlatfromId" column="td_platfrom_id" javaType="java.lang.String"></result>
+		<result property="dimension" column="dimension" javaType="java.lang.String"></result>
+		<result property="count" column="count" javaType="java.lang.String"></result>
+	</resultMap>
+
+	<!-- 通用查询结果列-->
+	<sql id="Base_Column_List">
+	td_platform_dimension_id,	td_platfrom_id,	dimension,	count
+	</sql>
+
+	<!-- 查询（根据主键ID查询） -->
+	<select id="getEntityById" resultMap="tdPlatformDimensioninfoMap" parameterType="java.lang.String">
+		 SELECT
+		 <include refid="Base_Column_List" />
+		 FROM td_platform_dimension
+		 WHERE td_platform_dimension_id = #{tdPlatformDimensionId}
+	</select>
+
+	<!-- 查询（根据主键ID查询） -->
+	<select id="getAll" resultMap="tdPlatformDimensioninfoMap" parameterType="java.lang.String">
+		 SELECT
+		 <include refid="Base_Column_List" />
+		 FROM td_platform_dimension
+	</select>
+	<!-- 查询（根据主键tdPlatfromId查询） -->
+	<select id="queryByFormId" resultMap="tdPlatformDimensioninfoMap" parameterType="java.lang.String">
+		 SELECT
+		 <include refid="Base_Column_List" />
+		 FROM td_platform_dimension
+		 WHERE td_platfrom_id = #{tdPlatfromId}
+	</select>
+
+
+	<!--删除：根据主键ID删除-->
+	<delete id="deleteEntity" parameterType="java.lang.String">
+		 DELETE FROM td_platform_dimension
+		 WHERE td_platform_dimension_id = #{tdPlatformDimensionId}
+	</delete>
+
+	<!-- 添加 -->
+	<insert id="saveEntity" parameterType="com.shangyong.backend.entity.td.TdPlatformDimension">
+		 INSERT INTO td_platform_dimension
+ 		(td_platform_dimension_id,td_platfrom_id,dimension,count) 
+		 VALUES 
+ 		(#{tdPlatformDimensionId},#{tdPlatfromId},#{dimension},#{count}) 
+	</insert>
+
+	<!-- 修 改-->
+	<update id="updateEntity" parameterType="com.shangyong.backend.entity.td.TdPlatformDimension">
+		 UPDATE td_platform_dimension
+ 		 <set> 
+			<if test="tdPlatfromId != null">
+				 td_platfrom_id = #{tdPlatfromId},
+			</if>
+			<if test="dimension != null">
+				 dimension = #{dimension},
+			</if>
+			<if test="count != null">
+				 count = #{count},
+			</if>
+
+ 		 </set>
+		 WHERE td_platform_dimension_id = #{tdPlatformDimensionId}
+	</update>
+
+</mapper>

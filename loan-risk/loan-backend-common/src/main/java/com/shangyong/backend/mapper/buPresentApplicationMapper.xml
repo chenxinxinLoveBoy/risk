@@ -1,0 +1,349 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.shangyong.backend.dao.BuPresentApplicationDao">
+
+	<resultMap type="com.shangyong.backend.entity.BuPresentApplication" id="buPresentApplicationMap">
+		<id property="presentApplicationId" column="present_application_id" javaType="java.lang.String"></id>
+		<result property="appSerialNumber" column="app_serial_number" javaType="java.lang.String"></result>
+		<result property="presentApplicationBuId" column="present_application_bu_id" javaType="java.lang.String"></result>
+		<result property="appName" column="app_name" javaType="java.lang.Integer"></result>
+		<result property="customerId" column="customer_id" javaType="java.lang.String"></result>
+		<result property="name" column="name" javaType="java.lang.String"></result>
+		<result property="certType" column="cert_type" javaType="java.lang.String"></result>
+		<result property="certCode" column="cert_code" javaType="java.lang.String"></result>
+		<result property="phoneNum" column="phone_num" javaType="java.lang.String"></result>
+		<result property="days" column="days" javaType="java.lang.Integer"></result>
+		<result property="loanIp" column="loan_ip" javaType="java.lang.String"></result>
+		<result property="auditingTime" column="auditing_time" javaType="java.lang.String"></result>
+		<result property="auditingState" column="auditing_state" javaType="java.lang.String"></result>
+		<result property="source" column="source" javaType="java.lang.String"></result>
+		<result property="banCode" column="ban_code" javaType="java.lang.String"></result>
+		<result property="auditResult" column="audit_result" javaType="java.lang.String"></result>
+		<result property="isPushApp" column="is_push_app" javaType="java.lang.String"></result>
+		<result property="isStep" column="is_step" javaType="java.lang.String"></result>
+		<result property="errorDescription" column="error_description" javaType="java.lang.String"></result>
+		<result property="createTime" column="create_time" javaType="java.lang.String"></result>
+		<result property="createMan" column="create_man" javaType="java.lang.String"></result>
+		<result property="modifyTime" column="modify_time" javaType="java.lang.String"></result>
+		<result property="modifyMan" column="modify_man" javaType="java.lang.String"></result>
+		<result property="remark" column="remark" javaType="java.lang.String"></result>
+		<result property="failureTimes" column="failure_times" javaType="java.lang.Integer"></result>
+		<result property="presentDistributionTime" column="present_distribution_time" javaType="java.lang.String"></result>
+		<result property="presentRuleId" column="present_rule_id" javaType="java.lang.Integer"></result>
+		<result property="appLevel" column="app_level" javaType="java.lang.Integer"></result>
+		<result property="appChannel" column="app_channel" javaType="java.lang.String"></result>
+		<result property="presentType" column="present_type" javaType="java.lang.Integer"></result>
+		<result property="appVersion" column="app_version" javaType="java.lang.String"></result>
+		<result property="zhiMaOpenId" column="zhima_openId" javaType="java.lang.String"></result>
+		<result property="tongdunToken" column="tongdun_token" javaType="java.lang.String"></result>
+        <result property="rechargeInfo" column="recharge_info" javaType="java.lang.String"></result>
+		<result property="presentSort" column="present_sort" javaType="java.lang.String"></result>
+		<result property="jxlToken" column="jxl_token" javaType="java.lang.String"></result>
+		<result property="actionType" column="action_type" javaType="java.lang.Integer"></result>
+
+	</resultMap>
+
+	<!-- 通用查询结果列-->
+	<sql id="Base_Column_List">
+present_application_id,	app_serial_number,	present_application_bu_id,	app_name,	customer_id,	name,	cert_type,	cert_code,	phone_num,	days,	loan_ip,	auditing_time,
+	auditing_state,	source,	ban_code,	audit_result,	is_push_app,	is_step,	error_description,	create_time,	create_man,	modify_time,	modify_man,	remark,	failure_times,
+	present_distribution_time,	present_rule_id,	app_level,	app_channel,	app_version,	present_type,zhima_openId,tongdun_token,jxl_token,recharge_info,present_sort,action_type
+	</sql>
+
+	<!-- 查询（根据主键ID查询） -->
+	<select id="getEntityById" resultMap="buPresentApplicationMap" parameterType="java.lang.String">
+		 SELECT
+		 <include refid="Base_Column_List" />
+		 FROM bu_present_application
+		 WHERE present_application_id = #{presentApplicationId}
+	</select>
+
+	<!-- 查询（根据主键ID查询） -->
+	<select id="findAll" resultMap="buPresentApplicationMap"  parameterType="com.shangyong.backend.entity.BuPresentApplication">
+		 SELECT
+		<include refid="Base_Column_List" />
+		 FROM bu_present_application
+		<where>
+			<if test="source != '' and source != null" >
+				source = #{source}
+			</if>
+			<if test="presentRuleId != '' and presentRuleId != null" >
+				and present_rule_id = #{presentRuleId}
+			</if>
+			<if test="presentApplicationId != '' and presentApplicationId != null" >
+				and present_application_id = #{presentApplicationId}
+			</if>
+			<if test="banCode != '' and banCode != null" >
+				and ban_code = #{banCode}
+			</if>
+			<if test="certCode != '' and certCode != null" >
+				and cert_code = #{certCode}
+			</if>
+			<if test="isStep != '' and isStep != null" >
+				and is_step = #{isStep}
+			</if>
+			<if test="isPushApp != '' and isPushApp != null" >
+				and is_push_app = #{isPushApp}
+			</if>
+			<if test="startTime != '' and startTime != null" >
+				<![CDATA[ and create_time >= #{startTime} ]]>
+			</if>
+			<if test="endTime != '' and endTime != null" >
+				<![CDATA[ and create_time <= #{endTime} ]]>
+			</if>
+			<if test="appSerialNumber != '' and appSerialNumber != null" >
+				and app_serial_number = #{appSerialNumber}
+			</if>
+			<if test="name != '' and name != null" >
+				and instr(name, #{name}) > 0
+			</if>
+			<if test="phoneNum != '' and phoneNum != null" >
+				and phone_num = #{phoneNum}
+			</if>
+			<if test="auditingState != '' and auditingState != null and auditingState != 1 " >
+				and auditing_state = #{auditingState}
+			</if>
+			<if test="auditingState == 1 ">
+				and auditing_state = 1
+			</if>
+			<if test="auditingState == 4 ">
+				and auditing_state = 4
+			</if>
+			<if test="auditingState == 23">
+				and (auditing_state = 2 or auditing_state = 3)
+			</if>
+			<if test="errorDescription == 1" >
+				and auditing_state = 1 and error_description is not null and error_description != ''
+			</if>
+
+			<if test="appName != '' and appName != null" >
+				and app_name = #{appName}
+			</if>
+			<if test="auditResult != '' and auditResult != null" >
+				and audit_result = #{auditResult}
+			</if>
+			<if test="failureTimes != null and failureTimes != '' ">
+				and failure_times &gt; #{failureTimes}
+			</if>
+
+			<if test="failureTimesMin != null and failureTimesMin != '' ">
+				and failure_times &gt; #{failureTimesMin}
+			</if>
+
+			<if test="failureTimesMax != null and failureTimesMax != '' ">
+				and failure_times &lt; #{failureTimesMax}
+			</if>
+
+			<if test="appLevel != null" >
+				and app_level = #{appLevel}
+			</if>
+			<if test="appChannel != '' and appChannel != null" >
+				and app_channel = #{appChannel}
+			</if>
+			<if test="modifyMan == 1 ">
+				and (modify_man != '' and modify_man is not null)
+			</if>
+			<if test="modifyMan == 2 ">
+				and (modify_man = '' or modify_man is  null)
+			</if>
+			<if test="modifyMan == '' ">
+				and (modify_man != '' or modify_man is  null)
+			</if>
+		</where>
+		order by create_time desc
+		<!-- LIMIT #{pageIndex},#{pageSize} -->
+	</select>
+
+	<!--删除：根据主键ID删除-->
+	<delete id="deleteEntity" parameterType="java.lang.String">
+		 DELETE FROM bu_present_application
+		 WHERE present_application_id = #{presentApplicationId}
+	</delete>
+
+	<!-- 添加 -->
+	<insert id="saveEntity" parameterType="com.shangyong.backend.entity.BuPresentApplication">
+		 INSERT INTO bu_present_application
+ 		(present_application_id,app_serial_number,present_application_bu_id,app_name,customer_id,name,cert_type,cert_code,phone_num,days,loan_ip,auditing_time,auditing_state,source,ban_code,audit_result,is_push_app,is_step,error_description,create_time,create_man,modify_time,modify_man,remark,failure_times,present_distribution_time,present_rule_id,app_level,app_channel,app_version,recharge_info,present_sort,present_type,zhima_openId,tongdun_token,jxl_token,action_type)
+		 VALUES 
+ 		(#{presentApplicationId},#{appSerialNumber},#{presentApplicationBuId},#{appName},#{customerId},#{name},#{certType},#{certCode},#{phoneNum},#{days},#{loanIp},#{auditingTime},#{auditingState},#{source},#{banCode},#{auditResult},#{isPushApp},#{isStep},#{errorDescription},#{createTime},#{createMan},#{modifyTime},#{modifyMan},#{remark},#{failureTimes},#{presentDistributionTime},#{presentRuleId},#{appLevel},#{appChannel},#{appVersion},#{rechargeInfo},#{presentSort},#{presentType},#{zhiMaOpenId},#{tongdunToken},#{jxlToken},#{actionType})
+	</insert>
+
+	<!-- 修 改-->
+	<update id="updateEntity" parameterType="com.shangyong.backend.entity.BuPresentApplication">
+		 UPDATE bu_present_application
+ 		 <set> 
+			<if test="appSerialNumber != null">
+				 app_serial_number = #{appSerialNumber},
+			</if>
+			<if test="presentApplicationBuId != null">
+				 present_application_bu_id = #{presentApplicationBuId},
+			</if>
+			<if test="appName != null">
+				 app_name = #{appName},
+			</if>
+			<if test="customerId != null">
+				 customer_id = #{customerId},
+			</if>
+			<if test="name != null">
+				 name = #{name},
+			</if>
+			<if test="certType != null">
+				 cert_type = #{certType},
+			</if>
+			<if test="certCode != null">
+				 cert_code = #{certCode},
+			</if>
+			<if test="phoneNum != null">
+				 phone_num = #{phoneNum},
+			</if>
+			<if test="days != null">
+				 days = #{days},
+			</if>
+			<if test="loanIp != null">
+				 loan_ip = #{loanIp},
+			</if>
+			<if test="auditingTime != null">
+				 auditing_time = #{auditingTime},
+			</if>
+			<if test="auditingState != null">
+				 auditing_state = #{auditingState},
+			</if>
+			<if test="source != null">
+				 source = #{source},
+			</if>
+			<if test="banCode != null">
+				 ban_code = #{banCode},
+			</if>
+			<if test="auditResult != null">
+				 audit_result = #{auditResult},
+			</if>
+			<if test="isPushApp != null">
+				 is_push_app = #{isPushApp},
+			</if>
+			<if test="isStep != null">
+				 is_step = #{isStep},
+			</if>
+			<if test="errorDescription != null">
+				 error_description = #{errorDescription},
+			</if>
+			<if test="createTime != null">
+				 create_time = #{createTime},
+			</if>
+			<if test="createMan != null">
+				 create_man = #{createMan},
+			</if>
+			<if test="modifyTime != null">
+				 modify_time = #{modifyTime},
+			</if>
+			<if test="modifyMan != null">
+				 modify_man = #{modifyMan},
+			</if>
+			<if test="remark != null">
+				 remark = #{remark},
+			</if>
+			<if test="failureTimes != null">
+				 failure_times = #{failureTimes},
+			</if>
+			<if test="presentDistributionTime != null">
+				 present_distribution_time = #{presentDistributionTime},
+			</if>
+			<if test="presentRuleId != null">
+				 present_rule_id = #{presentRuleId},
+			</if>
+			<if test="appLevel != null">
+				 app_level = #{appLevel},
+			</if>
+			<if test="appChannel != null">
+				 app_channel = #{appChannel},
+			</if>
+			<if test="appVersion != null">
+				 app_version = #{appVersion},
+			</if>
+
+ 		 </set>
+		 WHERE present_application_id = #{presentApplicationId}
+	</update>
+
+	<!-- 修 改-->
+	<update id="updateEntityFailureTimes" parameterType="com.shangyong.backend.entity.BuPresentApplication">
+		UPDATE bu_present_application
+		set  failure_times = failure_times+1,error_description = #{errorDescription}
+		WHERE present_application_id = #{presentApplicationId}
+	</update>
+
+
+	<!-- 修 改-->
+	<update id="updateFailureTimesZero" parameterType="com.shangyong.backend.entity.BuPresentApplication">
+		UPDATE bu_present_application
+		set  failure_times = 0,error_description = ''
+		WHERE present_application_id = #{presentApplicationId}
+	</update>
+
+
+
+
+	<!-- 统计报表 -->
+	<select id="queryPresentResult" resultType="com.shangyong.backend.entity.PresentRiskCheckCount" parameterType="com.shangyong.backend.entity.PresentRiskCheckCount">
+		SELECT
+		ban_code itemId,
+		audit_result itemName,
+		COUNT(1) count
+		FROM  bu_present_application a
+		where auditing_state != 2
+		<if test="startTime != '' and startTime != null" >
+			<![CDATA[ and create_time >= #{startTime} ]]>
+		</if>
+		<if test="endTime != '' and endTime != null" >
+			<![CDATA[ and create_time <= #{endTime} ]]>
+		</if>
+		<if test="itemName != null and itemName != '' ">
+			and instr(audit_result, #{itemName}) > 0
+		</if>
+		GROUP BY
+		ban_code
+		ORDER BY count desc, ban_code asc
+	</select>
+
+	<!-- 统计报表 -->
+	<select id="queryPresentResultCount" resultType="java.lang.Integer" parameterType="com.shangyong.backend.entity.PresentRiskCheckCount">
+		SELECT count(1) FROM
+		(
+		SELECT
+		ban_code
+		FROM
+		bu_present_application a
+		where auditing_state != 2
+		<if test="startTime != '' and startTime != null" >
+			<![CDATA[ and create_time >= #{startTime} ]]>
+		</if>
+		<if test="endTime != '' and endTime != null" >
+			<![CDATA[ and create_time <= #{endTime} ]]>
+		</if>
+		<if test="itemName != null and itemName != '' ">
+			and instr(audit_result, #{itemName}) > 0
+		</if>
+		GROUP BY
+		ban_code ) as temp
+	</select>
+
+	<!--统计命中项次数（柱形图） -->
+	<select id="getPresentHistogram" resultType="com.shangyong.backend.entity.PresentRiskCheckCount" parameterType="com.shangyong.backend.entity.PresentRiskCheckCount">
+		select
+		ban_code itemId,
+		audit_result itemName,
+		COUNT(1) count
+		from
+		bu_present_application a
+		where auditing_state != 2
+		<if test="startTime != '' and startTime != null" >
+			<![CDATA[ and create_time >= #{startTime} ]]>
+		</if>
+		<if test="endTime != '' and endTime != null" >
+			<![CDATA[ and create_time <= #{endTime} ]]>
+		</if>
+		GROUP BY
+		ban_code
+		ORDER BY count desc, ban_code asc
+	</select>
+</mapper>

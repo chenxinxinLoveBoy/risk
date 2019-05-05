@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.shangyong.backend.dao.ZhiMaIndustryDetailsDao">
+
+	<resultMap type="com.shangyong.backend.entity.ZhiMaIndustryDetails" id="ZhiMaIndustryDetailsListMap">
+		<result property="id" column="id" ></result>
+		<result property="applicationId" column="application_id" ></result>
+		<result property="customerId" column="customer_id" ></result>
+		<result property="bizCode" column="biz_code" ></result>
+		<result property="zhiMaLevel" column="zhi_ma_level" ></result>
+		<result property="zhiMaType" column="zhi_ma_type" ></result>
+		<result property="zhiMaCode" column="zhi_ma_code" ></result>
+		<result property="createTime" column="create_time" ></result>
+		<result property="createMan" column="create_man" ></result>
+		<result property="modifyTime" column="modify_time" ></result>
+		<result property="modifyMan" column="modify_man" ></result>
+	</resultMap>
+
+	<!-- 通用查询结果列-->
+	<sql id="Base_Column_List">
+		id,application_id,customer_id,biz_code,zhi_ma_level,zhi_ma_type,zhi_ma_code, create_time, create_man, modify_time, modify_man
+	</sql>
+	
+	<!--查询（根据主键ID查询）-->
+	<select id="getEntityById" resultMap="ZhiMaIndustryDetailsListMap" parameterType="java.lang.String">
+		 SELECT
+		 <include refid="Base_Column_List" />
+		 FROM zm_industry_details
+		 WHERE application_id = #{applicationId}
+	</select>
+
+	<!-- 查询所有（根据主键ID查询） -->
+	<select id="findAll" resultMap="ZhiMaIndustryDetailsListMap" parameterType="java.lang.String">
+		 SELECT
+		 <include refid="Base_Column_List" />
+		 FROM zm_industry_details
+		 WHERE application_id = #{applicationId}
+	</select>
+
+	
+	<!-- 查询所有（根据应用客户编号查询） -->
+	<select id="getCustomerId" resultMap="ZhiMaIndustryDetailsListMap" parameterType="java.lang.String">
+		 SELECT
+		 <include refid="Base_Column_List" />
+		 FROM zm_industry_details
+		 WHERE customer_id = #{customerId}
+	</select>
+
+	<!--删除：根据主键ID删除-->
+	<delete id="deleteEntity" parameterType="java.lang.String">
+		 DELETE FROM zm_industry_details
+		 WHERE application_id = #{applicationId}
+	</delete>
+
+	<insert id="saveEntityAll" parameterType="java.util.HashMap">
+		INSERT INTO zm_industry_details(
+			id, application_id, customer_id, biz_code, zhi_ma_level,zhi_ma_type,zhi_ma_code,create_time,create_man,	modify_time,modify_man
+		) VALUES
+		<foreach collection="params" item="elem" separator=",">
+			(
+				#{elem.id},
+				#{elem.applicationId},
+				#{elem.customerId},
+				#{elem.bizCode},
+				#{elem.zhiMaLevel},
+				#{elem.zhiMaType},
+				#{elem.zhiMaCode},
+				now(),
+				#{elem.createMan},
+				#{elem.modifyTime},
+				#{elem.modifyMan}
+			)
+		</foreach>
+	</insert>
+	
+</mapper>

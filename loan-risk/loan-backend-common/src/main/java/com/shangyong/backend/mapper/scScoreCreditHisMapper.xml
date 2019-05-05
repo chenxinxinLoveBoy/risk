@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.shangyong.backend.dao.ScScoreCreditHisDao">
+
+	<resultMap type="com.shangyong.backend.entity.ScScoreCredit" id="scScoreCreditHisinfoMap">
+		<result property="scoreCreditId" column="score_credit_id" javaType="java.lang.Integer"></result>
+		<result property="scoreMax" column="score_max" javaType="java.lang.String"></result>
+		<result property="scoreMin" column="score_min" javaType="java.lang.String"></result>
+		<result property="creditMoney" column="credit_money" javaType="java.lang.String"></result>
+		<result property="state" column="state" javaType="java.lang.String"></result>
+		<result property="version" column="version" javaType="java.lang.Integer"></result>
+		<result property="createTime" column="create_time" javaType="java.lang.String"></result>
+		<result property="createMan" column="create_man" javaType="java.lang.String"></result>
+		<result property="modifyTime" column="modify_time" javaType="java.lang.String"></result>
+		<result property="modifyMan" column="modify_man" javaType="java.lang.String"></result>
+		<result property="remark" column="remark" javaType="java.lang.String"></result>
+		<result property="createName" column="create_name" javaType="java.lang.String"></result>
+		<result property="modifyName" column="modify_name" javaType="java.lang.String"></result> 
+		<result property="scoreTplId" column="score_tpl_id" javaType="java.lang.String"></result>
+		<result property="scoreTplName" column="score_tpl_name" javaType="java.lang.String"></result>
+		<result property="promoteCreditMoney" column="promote_credit_money" javaType="java.lang.String"></result>
+	</resultMap>
+	
+	<sql id="Base_Column_List">
+		score_tpl_id,score_credit_id,	score_max,	score_min,	credit_money,	state,	version,	create_time,	create_man,	modify_time,	modify_man,	remark,create_name,modify_name ,record_newtime,promote_credit_money
+	</sql>
+	
+	<!-- 查询（根据条件查询） -->
+	<select id="listAll" resultMap="scScoreCreditHisinfoMap" parameterType="com.shangyong.backend.entity.ScScoreCredit">
+	SELECT
+	b.score_tpl_name as scoreTplName,
+	a.score_credit_id as
+	scoreCreditId,
+	a.score_max as scoreMax,
+	a.score_min as scoreMin,
+	a.credit_money as creditMoney,
+	a.state as state,
+	a.version as version,
+	a.create_time as createTime,
+	a.create_man as createMan,
+	a.modify_time as
+	modifyTime,
+	a.modify_man as modifyMan,
+	a.remark as remark,
+	a.create_name
+	as createName,
+	a.modify_name as modifyName,
+	a.promote_credit_money as
+	promoteCreditMoney
+	FROM
+	sc_score_credit_his a
+	LEFT JOIN sc_score_tpl b ON a.score_tpl_id = b.score_tpl_id
+	<where>
+		<if test="score != null and score != '' ">
+				 <![CDATA[ a.score_min <= #{score} and  a.score_max > #{score} ]]>
+		</if>
+		<if test="creditMoney != null and creditMoney != '' ">
+			and a.credit_money = #{creditMoney}
+		</if>
+		<if test="scoreCreditId != null and scoreCreditId != '' ">
+			and a.score_credit_id = #{scoreCreditId}
+		</if>
+		<if test="startTimeInterval != null and startTimeInterval != '' ">
+			and <![CDATA[  a.record_newtime > #{startTimeInterval}  ]]>
+		</if>
+		<if test="endTimeInterval != null and endTimeInterval != '' ">
+			and <![CDATA[  a.record_newtime < #{endTimeInterval} ]]>
+		</if>
+		<if test="scoreTplId != null and scoreTplId != '' ">
+			and a.score_tpl_id = #{scoreTplId}
+		</if>
+	</where>
+	order by a.modify_time
+	LIMIT #{pageIndex},#{pageSize}
+	</select>
+		
+	<!-- 查询（根据条件查询） -->
+	<select id="listAllCount" resultType="java.lang.Integer" parameterType="com.shangyong.backend.entity.ScScoreCredit">
+		 SELECT
+		 count(1)
+		 FROM sc_score_credit_his
+		 <where>
+		 	<if test="score != null and score != '' ">
+				 <![CDATA[ score_min <= #{score} and score_max >= #{score} ]]>
+			</if>
+			<if test="creditMoney != null and creditMoney != '' ">
+				 and credit_money = #{creditMoney}
+			</if>
+			<if test="scoreCreditId != null and scoreCreditId != '' ">
+				 and score_credit_id = #{scoreCreditId}
+			</if>
+			<if test="startTimeInterval != null and startTimeInterval != '' ">
+				and <![CDATA[ record_newtime > #{startTimeInterval}  ]]>
+			</if>
+			<if test="endTimeInterval != null and endTimeInterval != '' ">
+				and <![CDATA[ record_newtime < #{endTimeInterval} ]]>
+			</if>
+			<if test="scoreTplId != null and scoreTplId != '' ">
+				 and score_tpl_id = #{scoreTplId}
+			</if>
+		 </where>
+	</select>
+
+	<!-- 添加 -->
+	<insert id="insert" parameterType="com.shangyong.backend.entity.ScScoreCredit">
+		 INSERT INTO sc_score_credit_his
+ 		(score_tpl_id,score_credit_id,score_max,score_min,credit_money,state,version,create_time,create_man,modify_time,modify_man,remark,create_name,modify_name,record_newtime,promote_credit_money ) 
+		 VALUES 
+ 		(#{scoreTplId},#{scoreCreditId},#{scoreMax},#{scoreMin},#{creditMoney},#{state},#{version},#{createTime},#{createMan},#{modifyTime},#{modifyMan},#{remark},#{createName},#{modifyName},NOW(),#{promoteCreditMoney}) 
+	</insert>
+
+</mapper>

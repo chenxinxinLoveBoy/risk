@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<link rel="stylesheet" href="../../plugins/layui/css/layui.css"
+	media="all" />
+<link rel="stylesheet" href="../../css/global.css" media="all">
+<link rel="stylesheet"
+	href="../../plugins/font-awesome/css/font-awesome.min.css">
+<link rel="stylesheet" href="../../css/table.css" />
+<!-- js -->
+
+<script src="../../jqery/jquery.js"></script>
+<script src="../../../commons/base.js"></script>
+<script type="text/javascript" src="../../plugins/layui/layui.js"></script>
+<script type="text/javascript" src="../../js/whitelist/white_edit.js"></script>
+</head>
+
+<body>
+	<div style="margin: 30px;">
+		<div class="layui-form-item">
+			<label class="layui-form-label">用户姓名</label>
+			<div class="layui-input-block">
+				<input id="name" type="text" name="name" placeholder="用户姓名" maxlength="25" autocomplete="off" class="layui-input" onkeyup="this.value=this.value.replace(/\s+/g,'')" >
+			</div>
+		</div>
+		<div class="layui-form-item">
+			<label class="layui-form-label">用户证件号</label>
+			<div class="layui-input-block">
+				<input id="certCode" type="text" name="certCode" placeholder="用户证件号" maxlength="18" onKeyUp="value=value.replace(/[\W]/g,'')"
+					class="layui-input">
+			</div>
+		</div>
+
+		<div class="layui-form-item">
+			<label class="layui-form-label">用户手机号</label>
+			<div class="layui-input-block">
+				<input id="phoneNum" type="text" name="phoneNum" placeholder="用户手机号" maxlength="11" onkeyup="this.value=this.value.replace(/\D/g,'')"  onafterpaste="this.value=this.value.replace(/\D/g,'')"  class="layui-input">
+			</div>
+		</div>
+
+		<div class="layui-inline">
+			<label class="layui-form-label">证件类型</label>
+			<div class="layui-input-inline">
+				<select name="certType" id="certType" class="layui-input">
+					<option value="1">身份证</option>
+					<option value="2">护照</option>
+					<option value="3">其他</option>
+				</select>
+			</div>
+		</div>
+
+		<div class="layui-inline">
+			<label class="layui-form-label">APP名称</label>
+			<div class="layui-input-inline">
+				<select name="appName" id="appName" class="layui-input"> 
+					<option value="1">洪澄</option>
+					<option value="2">速贷</option>
+				</select>
+			</div>
+		</div>
+
+		<div class="layui-inline">
+			<label class="layui-form-label">状态</label>
+			<div class="layui-input-inline">
+				<select name="state" id="state" class="layui-input">
+					<option value="01">正常</option>
+					<option value="02">失效</option>
+				</select>
+			</div>
+		</div>
+	</div>
+	<input type="button" class="layui-btn" value="保存" onclick="save()"
+		id="save_bt" style="margin-top: 30px; margin-left: 248px;" />
+	<button class="layui-btn layui-btn-normal" id="closeIframe"
+		onclick="closeIfrname()" style="margin-left: 70px; margin-top: 29px;">取消</button>
+</body>
+</html>

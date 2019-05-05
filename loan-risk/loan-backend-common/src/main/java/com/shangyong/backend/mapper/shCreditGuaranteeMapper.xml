@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.shangyong.backend.dao.sh.ShCreditGuaranteeDao">
+
+	<resultMap type="com.shangyong.backend.entity.sh.ShCreditGuarantee" id="shCreditGuaranteeMap">
+		<id property="guaranteeId" column="guarantee_id" javaType="java.lang.String"></id>
+		<result property="applicationId" column="application_id" javaType="java.lang.String"></result>
+		<result property="guaranteeProject" column="guarantee_project" javaType="java.lang.String"></result>
+		<result property="guaranteeDate" column="guarantee_date" javaType="java.lang.String"></result>
+		<result property="guaranteeMoney" column="guarantee_money" javaType="java.lang.String"></result>
+		<result property="guaranteeRelation" column="guarantee_relation" javaType="java.lang.String"></result>
+		<result property="guaranteeTime" column="guarantee_time" javaType="java.lang.String"></result>
+		<result property="createTime" column="create_time" javaType="java.lang.String"></result>
+		<result property="createMan" column="create_man" javaType="java.lang.String"></result>
+		<result property="modifyTime" column="modify_time" javaType="java.lang.String"></result>
+		<result property="modifyMan" column="modify_man" javaType="java.lang.String"></result>
+		<result property="remark" column="remark" javaType="java.lang.String"></result>
+	</resultMap>
+
+	<!-- 通用查询结果列-->
+	<sql id="Base_Column_List">
+guarantee_id,	application_id,	guarantee_project,	guarantee_date,	guarantee_money,	guarantee_relation,	guarantee_time,	create_time,	create_man,	modify_time,	modify_man,	remark
+	</sql>
+
+	<!-- 查询（根据主键ID查询） -->
+	<select id="getEntityById" resultMap="shCreditGuaranteeMap" parameterType="java.lang.String">
+		 SELECT
+		 <include refid="Base_Column_List" />
+		 FROM sh_credit_guarantee
+		 WHERE guarantee_id = #{guaranteeId}
+	</select>
+	<!-- 查询（根据applicationId查询） -->
+	<select id="queryByApplicationId" resultMap="shCreditGuaranteeMap" parameterType="java.lang.String">
+		 SELECT
+		 <include refid="Base_Column_List" />
+		 FROM sh_credit_guarantee
+		 WHERE application_id = #{applicationId}
+	</select>
+
+	<!-- 查询（根据主键ID查询） -->
+	<select id="findAll" resultMap="shCreditGuaranteeMap" parameterType="java.lang.String">
+		 SELECT
+		 <include refid="Base_Column_List" />
+		 FROM sh_credit_guarantee
+		 WHERE guarantee_id = #{guaranteeId}
+	</select>
+
+	<!--删除：根据主键ID删除-->
+	<delete id="deleteEntity" parameterType="java.lang.String">
+		 DELETE FROM sh_credit_guarantee
+		 WHERE guarantee_id = #{guaranteeId}
+	</delete>
+
+	<!-- 添加 -->
+	<insert id="saveEntity" parameterType="com.shangyong.backend.entity.sh.ShCreditGuarantee">
+		 INSERT INTO sh_credit_guarantee
+ 		(guarantee_id,application_id,guarantee_project,guarantee_date,guarantee_money,guarantee_relation,guarantee_time,create_time,create_man,modify_time,modify_man,remark) 
+		 VALUES 
+ 		(#{guaranteeId},#{applicationId},#{guaranteeProject},#{guaranteeDate},#{guaranteeMoney},#{guaranteeRelation},#{guaranteeTime},#{createTime},#{createMan},#{modifyTime},#{modifyMan},#{remark}) 
+	</insert>
+		<!-- 批量插入 -->
+	<insert id="saveAllEntity" parameterType="java.util.List">
+		 INSERT INTO sh_credit_guarantee
+ 		(guarantee_id,application_id,guarantee_project,guarantee_date,guarantee_money,guarantee_relation,guarantee_time,create_time,create_man,modify_time,modify_man,remark) 
+		 VALUES 
+ 	    <foreach collection="list" item="item" index="index" separator="," >  
+ 		(#{item.guaranteeId},#{item.applicationId},#{item.guaranteeProject},#{item.guaranteeDate},#{item.guaranteeMoney},#{item.guaranteeRelation},#{item.guaranteeTime},#{item.createTime},#{item.createMan},#{item.modifyTime},#{item.modifyMan},#{item.remark}) 
+	    </foreach>
+	</insert>
+
+	<!-- 修 改-->
+	<update id="updateEntity" parameterType="com.shangyong.backend.entity.sh.ShCreditGuarantee">
+		 UPDATE sh_credit_guarantee
+ 		 <set> 
+			<if test="applicationId != null">
+				 application_id = #{applicationId},
+			</if>
+			<if test="guaranteeProject != null">
+				 guarantee_project = #{guaranteeProject},
+			</if>
+			<if test="guaranteeDate != null">
+				 guarantee_date = #{guaranteeDate},
+			</if>
+			<if test="guaranteeMoney != null">
+				 guarantee_money = #{guaranteeMoney},
+			</if>
+			<if test="guaranteeRelation != null">
+				 guarantee_relation = #{guaranteeRelation},
+			</if>
+			<if test="guaranteeTime != null">
+				 guarantee_time = #{guaranteeTime},
+			</if>
+			<if test="createTime != null">
+				 create_time = #{createTime},
+			</if>
+			<if test="createMan != null">
+				 create_man = #{createMan},
+			</if>
+			<if test="modifyTime != null">
+				 modify_time = #{modifyTime},
+			</if>
+			<if test="modifyMan != null">
+				 modify_man = #{modifyMan},
+			</if>
+			<if test="remark != null">
+				 remark = #{remark},
+			</if>
+
+ 		 </set>
+		 WHERE guarantee_id = #{guaranteeId}
+	</update>
+
+</mapper>

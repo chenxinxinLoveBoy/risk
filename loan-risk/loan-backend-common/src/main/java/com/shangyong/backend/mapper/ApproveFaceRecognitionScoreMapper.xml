@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.shangyong.backend.dao.approval.ApproveFaceRecognitionScoreDao">
+
+	<resultMap type="com.shangyong.backend.entity.FaceRecognitionScore" id="faceRecognitionScoreMap">
+		<id property="authenticationNumber" column="authentication_number" javaType="java.lang.String"></id>
+		<result property="platformCustomerId" column="platform_customer_id" javaType="java.lang.String"></result>
+		<result property="faceAuthenticationScore" column="face_authentication_score" javaType="java.lang.String"></result>
+		<result property="faceThresholdScore" column="face_threshold_score" javaType="java.lang.String"></result>
+		<result property="frontofIdCardScore" column="frontofId_card_score" javaType="java.lang.String"></result>
+		<result property="frontofIdCardThresholdScore" column="frontofId_card_threshold_score" javaType="java.lang.String"></result>
+		<result property="idcardNegativeScore" column="idcard_negative_score" javaType="java.lang.String"></result>
+		<result property="idcardNegativeThresholdScore" column="idcard_negative_threshold_score" javaType="java.lang.String"></result>
+		<result property="comprehensiveScore" column="comprehensive_score" javaType="java.lang.String"></result>
+		<result property="comprehensiveThresholdScore" column="comprehensive_threshold_score" javaType="java.lang.String"></result>
+		<result property="aliveUrl" column="alive_url" javaType="java.lang.String"></result>
+		<result property="faceUrl" column="face_url" javaType="java.lang.String"></result>
+		<result property="backUrl" column="back_url" javaType="java.lang.String"></result>
+		<result property="frontUrl" column="front_url" javaType="java.lang.String"></result>
+		<result property="createTime" column="create_time" javaType="java.lang.String"></result>
+		<result property="modifyTime" column="modify_time" javaType="java.lang.String"></result>
+	</resultMap>
+
+	<!-- 通用查询结果列-->
+	<sql id="Base_Column_List">
+authentication_number,	platform_customer_id,	face_authentication_score,	face_threshold_score,	frontofId_card_score,	frontofId_card_threshold_score,	idcard_negative_score,	idcard_negative_threshold_score,	comprehensive_score,	comprehensive_threshold_score,	alive_url,	face_url,	back_url,	front_url,	create_time,	modify_time
+	</sql>
+
+	<!-- 查询（根据主键ID查询） -->
+	<select id="getEntityById" resultMap="faceRecognitionScoreMap" parameterType="java.lang.String">
+		 SELECT
+		 <include refid="Base_Column_List" />
+		 FROM face_recognition_score
+		 WHERE platform_customer_id = #{platformCustomerId} LIMIT 1
+	</select>
+
+</mapper>

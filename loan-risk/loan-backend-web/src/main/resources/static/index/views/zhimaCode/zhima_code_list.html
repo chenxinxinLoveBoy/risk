@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+<!-- 		<title>Table</title> -->
+		<link rel="stylesheet" href="../../plugins/layui/css/layui.css" media="all" />
+		<link rel="stylesheet" href="../../css/global.css" media="all">
+		<link rel="stylesheet" href="../../plugins/font-awesome/css/font-awesome.min.css">
+		<link rel="stylesheet" href="../../css/table.css" />
+		<link rel="stylesheet" href="../../css/lzh_login.css" media="all" />
+	</head>
+
+	<body>
+		<div class="admin-main">
+		
+
+			<blockquote class="layui-elem-quote">
+				<a href="javascript:;" class="layui-btn layui-btn-small" id="add">
+					<i class="layui-icon">&#xe608;</i> 添加
+				</a>
+
+				<!-- 查询条件 -->
+				<div class="layui-inline">
+			      <label class="layui-form-label">芝麻编码：</label>
+			      <div class="layui-input-inline">
+			        <input name="code" lay-verify="info" id="code"  autocomplete="off" placeholder="支持模糊查询" class="layui-input"  id="info" >
+			      </div>
+			    </div>
+			    
+			    <div class="layui-inline">
+			      <label class="layui-form-label">中文说明：</label>
+			      <div class="layui-input-inline">
+			        <input name="explain" lay-verify="code" id="explain" autocomplete="off" placeholder="支持模糊查询" class="layui-input"  id="code" >
+			      </div>
+			    </div>
+			    <div class="layui-inline">
+			      <label class="layui-form-label">备注：</label>
+			      <div class="layui-input-inline">
+			        <input name="remark" lay-verify="code" id="remark" autocomplete="off" placeholder="支持模糊查询" class="layui-input"  id="code" >
+			      </div>
+			    </div>
+				<a href="javascript:;" class="layui-btn layui-btn-small" id="search">
+						<i class="layui-icon">&#xe615;</i> 搜索
+				</a>		
+			</blockquote>
+			<fieldset class="layui-elem-field">
+				<legend>数据列表</legend>
+				<div class="layui-field-box layui-form">
+					<table class="layui-table admin-table">
+						<thead>
+							<tr>
+								
+								<th>芝麻编码</th>
+								<th>中文说明</th>
+								<th>备注</th>
+								<th>操作</th>
+							</tr>
+						</thead>
+						<tbody id="content">
+						</tbody>
+					</table>
+					<label>共<font color='red' id="count_page_number"></font>条记录</label>
+					<div id="paged" class="page" style="display:inline-block;">
+					</div>
+				</div>
+			</fieldset>
+
+		</div>
+		<!--模板-->
+		<script type="text/html" id="tpl"> 
+{{# layui.each(d.list, function(index, item){ 
+}}	
+			<tr>
+				<td>{{ item.udc_code }}</td>
+				<td>{{ item.udc_name }}</td>
+				<td>{{ item.remarks }}</td>
+				<td>
+					<a href="javascript:;" data-id="{{ item.udc_code }}" data-opt="find" class="layui-btn layui-btn-normal layui-btn-mini">预览</a>
+					<a href="javascript:;" data-id="{{ item.udc_code }}" data-opt="edit" class="layui-btn layui-btn-mini">编辑</a>
+					<a href="javascript:;" data-id="{{ item.udc_code }}" data-opt="del" class="layui-btn layui-btn-danger layui-btn-mini">删除</a>
+				</td> 
+			</tr>
+			{{# }); }}
+		</script>
+		
+		<!-- js -->
+		<script src="../../jqery/jquery.js"></script>
+		<script src="../../../commons/base.js"></script>
+		<script type="text/javascript" src="../../plugins/layui/layui.js"></script>
+		<script type="text/javascript" src="../../js/zhimaCode/zhima_code_list.js"></script>
+	</body>
+
+</html>

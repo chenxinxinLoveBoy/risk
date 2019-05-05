@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="zh">
+	<head>
+    	<meta charset="utf-8" />
+    	<title>上海资信报告</title>
+        <link href="../../css/shCredit.css" type="text/css" rel="stylesheet" />
+        <link rel="stylesheet" href="../../plugins/layui/css/layui.css"
+		media="all" />
+		<link rel="stylesheet" href="../../css/global.css" media="all">
+		<link rel="stylesheet"
+		href="../../plugins/font-awesome/css/font-awesome.min.css">
+		<link rel="stylesheet" href="../../css/table.css" />
+    </head>
+    <body>
+    	<div class="z_content">
+        	<!-- 头部信息 -->
+        	<div class="zc_title">
+            	<h2><strong>上海资信网络金融版个人信用报告</strong></h2>
+                <p class="mgt-10">
+                	报告编号：<span style="margin-right:30px;" id ="reportNumber"></span>
+                    报告时间：<time id = "reportTime"></time>
+                </p>
+            </div>
+            <!-- 用户信息 -->
+            <div class="zc_userMessage">
+            	<span class="ds zcm_title">
+            		<strong>用户信息</strong>
+            	</span>
+                <p>
+                	<span style="margin-right:10px;">
+                    	姓名:
+                    </span>
+                    <span style="margin-right:30px;" id = "name"></span>
+                    <span>
+                    	证件号码：
+                    </span>
+                    <span style="margin-right:30px;" id = "certCode"></span>
+                    性别：<span style="margin-right:30px;" id = "sex"></span>
+                    出生日期：<span style="margin-right:30px;" id = "birthTime"></span>
+                </p>
+                <table class="zc_table" style="width:100%; border:1px solid #d7d7d7; text-align:center;">
+                	<thead>
+                    	<tr>
+                    		<th scope="col">基本信息</th>
+                            <th scope="col">信息填写</th>
+                            <th scope="col">信息获取日期</th>
+                    	</tr>
+                    </thead>
+                    <tbody>
+                    	<tr>
+                            <td>婚姻状况</td>
+                            <td id = "marriageDetail"></td>
+                            <td id = "marriageTime"></td>
+                      	</tr>
+                      	<tr>
+                            <td>最高学历</td>
+                            <td id = "education"></td>
+                            <td id = "educationTime"></td>
+                      	</tr>
+                      	<tr>
+                            <td>职称</td>
+                            <td id = "titleDetail"></td>
+                            <td id = "titleTime"></td>
+                      	</tr>
+                      	<tr>
+                            <td>住宅电话</td>
+                            <td id = "residencePhone"></td>
+                            <td id = "residenceTime"></td>
+                      	</tr>
+                      	<tr>
+                            <td>手机号码</td>
+                            <td id = "phoneNumber"></td>
+                            <td id = "phoneTime"></td>
+                      	</tr>
+                      	<tr>
+                            <td>电子邮箱</td>
+                            <td id = "emailAddress"></td>
+                            <td id = "emailTime"></td>
+                      	</tr>
+                    </tbody>
+                </table>
+            </div>
+            <span class="ds zcm_title">
+            	<strong>住址信息</strong>
+            </span>
+            <table class="zc_table" style="width:100%; border:1px solid #d7d7d7; text-align:center;">
+                	<thead>
+                    	<tr>
+                    		<th scope="col">地址序号</th>
+                            <th scope="col">地址明细</th>
+                            <th scope="col">信息获取日期</th>
+                    	</tr>
+                    </thead>
+                    <tbody id="address">
+                    </tbody>
+                </table>
+            <span class="ds zcm_title">
+            	<strong>职业信息</strong>
+            	</span>
+            <table class="zc_table" style="width:100%; border:1px solid #d7d7d7; text-align:center;">
+                	<thead>
+                    	<tr>
+                    		<th scope="col">工作单位</th>
+                            <th scope="col">职业</th>
+                            <th scope="col">信息获取日期</th>
+                    	</tr>
+                    </thead>
+                    <tbody id="works">
+                    </tbody>
+                </table>
+             <span class="ds zcm_title">
+             	<strong>配偶信息</strong>
+             </span>
+             <table class="zc_table" style="width:100%; border:1px solid #d7d7d7; text-align:center;">
+                	<thead>
+                    	<tr>
+                    		<th scope="col">基础信息</th>
+                            <th scope="col">信息填写</th>
+                            <th scope="col">信息获取日期</th>
+                    	</tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                            <td>配偶姓名</td>
+                            <td id = "mateName"></td>
+                            <td class = "mateWorkTime"></td>
+                      	</tr>
+                      	<tr>
+                            <td>证件号码</td>
+                            <td id = "mateCertCode"></td>
+                            <td class = "mateWorkTime"></td>
+                      	</tr>
+                      	<tr>
+                            <td>配偶性别</td>
+                            <td id = "mateSex"></td>
+                            <td class = "mateWorkTime"></td>
+                      	</tr>
+                      	<tr>
+                            <td>配偶出生日期</td>
+                            <td id = "mateBirthTime"></td>
+                            <td class = "mateWorkTime"></td>
+                      	</tr>
+                      	<tr>
+                            <td>配偶工作单位</td>
+                            <td id = "mateWork"></td>
+                            <td calss = "mateWorkTime"></td>
+                      	</tr>
+                      	<tr>
+                            <td>配偶联系电话</td>
+                            <td id = "matePhone"></td>
+                            <td class = "matePhoneTime"></td>
+                      	</tr>
+                    </tbody>
+                </table>
+                 <span class="ds zcm_title">
+                 	<strong>紧急联系人</strong>
+                 </span>
+            <table class="zc_table" style="width:100%; border:1px solid #d7d7d7; text-align:center;">
+                	<thead>
+                    	<tr>
+                    		<th scope="col">第一联系人</th>
+                            <th scope="col">联系人关系</th>
+                            <th scope="col">联系电话</th>
+                            <th scope="col">信息获取日期</th>
+                    	</tr>
+                    </thead>
+                    <tbody id = "contact1">
+                    </tbody>
+                </table>
+                <table class="zc_table" style="width:100%; border:1px solid #d7d7d7; text-align:center;">
+                	<thead>
+                    	<tr>
+                    		<th scope="col">第二联系人</th>
+                            <th scope="col">联系人关系</th>
+                            <th scope="col">联系电话</th>
+                            <th scope="col">信息获取日期</th>
+                    	</tr>
+                    </thead>
+                    <tbody id = "contact2">
+                    </tbody>
+                </table>
+                <span class="ds zcm_title">
+                	<strong>查询记录</strong>
+                </span>
+            <table class="zc_table" style="width:100%; border:1px solid #d7d7d7; text-align:center;">
+                	<thead>
+                    	<tr>
+                    		<th scope="col">查询者类型</th>
+                            <th scope="col">查询原因</th>
+                            <th scope="col">查询日期日期</th>
+                    	</tr>
+                    </thead>
+                    <tbody id="searchInformation">
+                    </tbody>
+                </table>
+                <span class="ds zcm_title">
+                	<strong>贷款交易信息</strong>
+                </span>
+                 <p class="mgt-10" style="height:40px; line-height:40px;">
+                 	首贷日:
+                 	<span style="margin-right:30px;" id ="loansTemps"></span>
+                 	<a href="javascript:;" id="allDeals" class="allDeals"> 
+                		查看全部详细交易信息
+					</a>	
+                 </p>
+                 
+            	 <table class="zc_table" style="width:100%; border:1px solid #d7d7d7; text-align:center;">
+                	<thead>
+                    	<tr>
+                    		<th scope="col">未结算贷款笔数</th>
+                            <th scope="col">最大授信额度</th>
+                            <th scope="col">贷款总额</th>
+                            <th scope="col">贷款余额</th>
+                            <th scope="col">协定月还款</th>
+                            <th scope="col">当前逾期总额</th>
+                            <th scope="col">最高逾期金额</th>
+                            <th scope="col">最高逾期期数</th>
+                    	</tr>
+                    </thead>
+                    <tbody id="loansDeal">
+                    </tbody>
+                </table>
+                <br></br>
+               <table class="zc_table" style="width:100%; border:1px solid #d7d7d7; text-align:center;">
+                	<thead>
+                    </thead>
+                    <tbody id="deals">
+                    </tbody>
+                </table>
+                <p class="mgt-10">
+                	<strong>担保信息:</strong> 
+                 	<span style="margin-right:30px;" id ="loansTemps"></span>
+                 	<a href="javascript:;" id="allGuarantee" class="allDeals"> 
+                		查看全部担保信息
+					</a>	
+                 </p>
+            <table class="zc_table" style="width:100%; border:1px solid #d7d7d7; text-align:center;">
+                	<thead>
+                    	<tr>
+                    		<th scope="col">担保项目</th>
+                            <th scope="col">担保日期</th>
+                            <th scope="col">担保金额</th>
+                            <th scope="col">担保关系</th>
+                            <th scope="col">信息获取日期</th>
+                    	</tr>
+                    </thead>
+                    <tbody id="guarantee">
+                    </tbody>
+                </table>
+                <p class="mgt-10">
+                	<strong>特殊交易: </strong>
+                 	<span style="margin-right:30px;" id ="loansTemps"></span>
+                 	<a href="javascript:;" id="allSpecialDeal" class="allDeals"> 
+                		查看全部特殊交易信息
+					</a>	
+                 </p>
+            <table class="zc_table" style="width:100%; border:1px solid #d7d7d7; text-align:center;">
+                	<thead>
+                    	<tr>
+                    		<th scope="col">记录来源</th>
+                            <th scope="col">记录类型</th>
+                            <th scope="col">发生日期</th>
+                            <th scope="col">变更月数</th>
+                            <th scope="col">发生金额</th>
+                            <th scope="col">明细信息</th>
+                            <th scope="col">信息获取日期</th>
+                    	</tr>
+                    </thead>
+                    <tbody id="specialDeal">
+                    </tbody>
+                </table>
+               <span class="ds zcm_title">
+               		<strong>资信提示</strong>
+               	</span>
+            <table class="zc_table" style="width:100%; border:1px solid #d7d7d7; text-align:center;">
+                	<thead>
+                    	<tr>
+                    		<th scope="col">项目</th>
+                            <th scope="col">提示内容</th>
+                            <th scope="col">提示时间</th>
+                    	</tr>
+                    </thead>
+                    <tbody id="prompt">
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    <script src="../../jqery/jquery.js"></script>
+	<script src="../../../commons/base.js"></script>
+	<script type="text/javascript" src="../../plugins/layui/layui.js"></script>
+	<script type="text/javascript" src="../../js/customerManager/shCredit.js"></script>
+    </body>
+</html>

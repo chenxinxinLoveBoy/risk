@@ -1,0 +1,181 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.shangyong.backend.dao.ScThresholdHistoryDao">
+
+	<resultMap type="com.shangyong.backend.entity.ScThresholdHistory" id="scThresholdHistoryMap">
+		<id property="historySerialnumber" column="history_serialnumber" javaType="java.lang.Integer"></id>
+		<result property="serialnumber" column="serialnumber" javaType="java.lang.Integer"></result>
+		<result property="minimum" column="minimum" javaType="java.lang.String"></result>
+		<result property="maximum" column="maximum" javaType="java.lang.String"></result>
+		<result property="mum" column="mum" javaType="java.lang.String"></result>
+		<result property="mumType" column="mum_type" javaType="java.lang.String"></result>
+		<result property="resultsTab" column="results_tab" javaType="java.lang.String"></result>
+		<result property="state" column="state" javaType="java.lang.Integer"></result>
+		<result property="version" column="version" javaType="java.lang.Integer"></result>
+		<result property="createNo" column="create_no" javaType="java.lang.String"></result>
+		<result property="createMan" column="create_man" javaType="java.lang.String"></result>
+		<result property="modifyNo" column="modify_no" javaType="java.lang.String"></result>
+		<result property="modifyMan" column="modify_man" javaType="java.lang.String"></result>
+		<result property="createTime" column="create_time" javaType="java.lang.String"></result>
+		<result property="modifyTime" column="modify_time" javaType="java.lang.String"></result>
+		<result property="remark" column="remark" javaType="java.lang.String"></result>
+		<result property="recordNewtime" column="record_newtime" javaType="java.lang.String"></result>
+			<result property="fraudRuleTplId" column="fraud_rule_tpl_id" javaType="java.lang.String"></result>
+		<result property="fraudRuleTplName" column="fraud_rule_tpl_name" javaType="java.lang.String"></result>
+ 	</resultMap>
+  
+	<!-- 通用查询结果列-->
+	<sql id="Base_Column_List">
+history_serialnumber,	fraud_rule_tpl_id,serialnumber,	minimum,	maximum,mum, mum_type,	results_tab,	state,	version,	create_no,	create_man,	modify_no,	modify_man,	create_time,	modify_time,	remark,	record_newtime
+	</sql>
+
+	<!-- 查询（根据主键ID查询） -->
+	<select id="getEntityById" resultMap="scThresholdHistoryMap" parameterType="java.lang.Integer">
+		 SELECT
+		 <include refid="Base_Column_List" />
+		 FROM sc_threshold_history
+		 WHERE history_serialnumber = #{historySerialnumber}
+	</select>
+
+	<!-- 查询 -->
+	<select id="findAll" resultMap="scThresholdHistoryMap" parameterType="com.shangyong.backend.entity.ScThresholdHistory">
+	SELECT
+	b.fraud_rule_tpl_name as fraudRuleTplName,
+	a.history_serialnumber
+	as historySerialnumber,
+	a.serialnumber as serialnumber,
+	a.minimum as minimum,
+	a.maximum as maximum,
+	a.mum as mum,
+	a.mum_type as mumType,
+	a.results_tab as resultsTab,
+	a.state as
+	state,
+	a.version as version,
+	a.create_time as createTime,
+	a.create_man as
+	createMan,
+	a.modify_time as modifyTime,
+	a.modify_man as modifyMan,
+	a.remark as remark,
+	a.create_no as createNo,
+	a.modify_no as modifyNo
+	FROM
+	sc_threshold_history a
+	LEFT JOIN sc_fraud_rule_tpl b ON a.fraud_rule_tpl_id = b.fraud_rule_tpl_id
+	order by a.modify_time DESC
+	LIMIT #{pageIndex},#{pageSize}
+	</select>
+	
+	<!-- 查询所有 -->
+	<select id="listAllCount" resultType="java.lang.Integer" parameterType="com.shangyong.backend.entity.ScThresholdHistory"> 
+		select 
+  			count(1)
+  		from sc_threshold_history 
+  		 <where>
+		 	<if test="score != null and score != '' ">
+				<![CDATA[ minimum <= #{score} and maximum > #{score} ]]>
+			</if> 
+			<if test="startTimeInterval != null and startTimeInterval != '' ">
+				and <![CDATA[ record_newtime > #{startTimeInterval}  ]]>
+			</if>
+			<if test="endTimeInterval != null and endTimeInterval != '' ">
+				and <![CDATA[ record_newtime < #{endTimeInterval} ]]>
+			</if>
+			<if test="fraudRuleTplId != null and fraudRuleTplId != '' ">
+				and  fraud_rule_tpl_id = #{fraudRuleTplId}
+			</if>
+		 </where>
+	</select>
+
+	<!--删除：根据主键ID删除-->
+	<delete id="deleteEntity" parameterType="java.lang.Integer">
+		 DELETE FROM sc_threshold_history
+		 WHERE history_serialnumber = #{historySerialnumber}
+	</delete>
+
+	<!-- 添加 -->
+	<insert id="saveEntity" parameterType="com.shangyong.backend.entity.ScThresholdHistory">
+		 INSERT INTO sc_threshold_history
+ 		(history_serialnumber,fraud_rule_tpl_id,serialnumber,minimum,maximum,mum,mum_type,results_tab,state,version,create_no,create_man,modify_no,modify_man,create_time,modify_time,remark,record_newtime) 
+		 VALUES 
+ 		(#{historySerialnumber},#{fraudRuleTplId},#{serialnumber},#{minimum},#{maximum},#{mum},#{mumType},#{resultsTab},#{state},#{version},#{createNo},#{createMan},#{modifyNo},#{modifyMan},#{createTime},#{modifyTime},#{remark},#{recordNewtime}) 
+	</insert>
+
+	<!-- 修 改-->
+	<update id="updateEntity" parameterType="com.shangyong.backend.entity.ScThresholdHistory">
+		 UPDATE sc_threshold_history
+ 		 <set> 
+ 		 <if test="serialnumber != null">
+				 fraud_rule_tpl_id = #{fraudRuleTplId},
+			</if>
+			<if test="serialnumber != null">
+				 serialnumber = #{serialnumber},
+			</if>
+			<if test="minimum != null">
+				 minimum = #{minimum},
+			</if>
+			<if test="maximum != null">
+				 maximum = #{maximum},
+			</if>
+			<if test="mum != null">
+				 mum = #{mum},
+			</if>
+			<if test="mumType != null">
+				 mum_type = #{mumType},
+			</if>
+			<if test="resultsTab != null">
+				 results_tab = #{resultsTab},
+			</if>
+			<if test="state != null">
+				 state = #{state},
+			</if>
+			<if test="version != null">
+				 version = #{version},
+			</if>
+			<if test="createNo != null">
+				 create_no = #{createNo},
+			</if>
+			<if test="createMan != null">
+				 create_man = #{createMan},
+			</if>
+			<if test="modifyNo != null">
+				 modify_no = #{modifyNo},
+			</if>
+			<if test="modifyMan != null">
+				 modify_man = #{modifyMan},
+			</if>
+			<if test="createTime != null">
+				 create_time = #{createTime},
+			</if>
+			<if test="modifyTime != null">
+				 modify_time = #{modifyTime},
+			</if>
+			<if test="remark != null">
+				 remark = #{remark},
+			</if>
+			<if test="recordNewtime != null">
+				 record_newtime = #{recordNewtime},
+			</if>
+
+ 		 </set>
+		 WHERE history_serialnumber = #{historySerialnumber}
+	</update>
+	
+<!-- 查询所有 -->
+	<select id="getEntityByObj" resultMap="scThresholdHistoryMap" parameterType="com.shangyong.backend.entity.ScThresholdHistory"> 
+		select 
+  		 <include refid="Base_Column_List" />
+  		from sc_threshold_history
+  		 WHERE history_serialnumber = #{historySerialnumber}
+	</select> 
+
+	<!-- 添加 -->
+	<insert id="insert" parameterType="com.shangyong.backend.entity.ScThreshold">
+		 INSERT INTO sc_threshold_history
+ 		(fraud_rule_tpl_id,serialnumber,minimum,maximum,mum,mum_type,results_tab,state,version,create_no,create_man,modify_no,modify_man,create_time,modify_time,remark,record_newtime) 
+		 VALUES 
+ 		(#{fraudRuleTplId},#{serialnumber},#{minimum},#{maximum},#{mum},#{mumType},#{resultsTab},#{state},#{version},#{createNo},#{createMan},#{modifyNo},#{modifyMan},#{createTime},#{modifyTime},#{remark},NOW()) 
+	</insert>
+</mapper>

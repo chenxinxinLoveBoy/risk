@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<!-- <title>Insert title here</title> -->
+</head>
+		<!-- css -->
+		<link rel="stylesheet" href="../../plugins/layui/css/layui.css" media="all" />
+		<link rel="stylesheet" href="../../css/global.css" media="all">
+		<link rel="stylesheet" href="../../plugins/font-awesome/css/font-awesome.min.css">
+		<link rel="stylesheet" href="../../css/table.css" />
+
+		<!-- JS -->
+		<script type="text/javascript" src="../../plugins/layui/layui.js"></script>
+		<script src="../../jqery/jquery.js"></script>
+		<script type="text/javascript" src="../../../commons/base.js"></script>
+		<script type="text/javascript" src="../../js/zhimaRiskCode/zhima_risk_code_edit.js"></script>
+		
+		
+<body>
+	<div style="margin: 15px;">
+	<form class="layui-form" id="userForms" >
+		 
+		<div class="layui-form-item">
+			<label class="layui-form-label">信息项</label>
+			<div class="layui-input-inline">
+				<input id="riskCodeId" type="hidden" name="riskCodeId"  autocomplete="off" class="layui-input" >
+				<input id="info" type="text" name="info"  lay-verify="info"  placeholder="信息项"  class="layui-input" >
+			</div>
+			<div class="layui-form-mid layui-word-aux"><font color='red'>*</font></div>
+		</div>
+	
+		<div class="layui-form-item">
+			<label class="layui-form-label">风险代码</label>
+			<div class="layui-input-inline">
+				<input id="code" type="text" name="code"  lay-verify="code"  placeholder="风险代码"  class="layui-input" >
+			</div>
+			<div class="layui-form-mid layui-word-aux"><font color='red'>*</font></div>
+		</div>
+		
+		<div class="layui-form-item">
+			<label class="layui-form-label">风险类型</label>
+			<div class="layui-input-inline">
+				<input id="suggestType" type="text" name="suggestType"  lay-verify="suggestType"  placeholder="风险类型"  class="layui-input" >
+			</div>
+			<div class="layui-form-mid layui-word-aux"><font color='red'>*</font></div>
+		</div>
+		
+		<div class="layui-form-item">
+			<label class="layui-form-label">中文说明</label>
+			<div class="layui-input-block">
+				<input id="remark" type="text" name="remark"  lay-verify="remark"  placeholder="中文说明" autocomplete="off" class="layui-input">
+			</div>
+		</div>
+		
+		 <div class="layui-form-item">
+			<label class="layui-form-label">类型</label>
+			<div class="layui-input-inline">
+				<select name="type" lay-verify="type"  id="type">
+					<option value="-1">请选择</option>
+					<option value="1">欺诈关注清单</option>
+					<option value="2">欺诈信息验证</option>
+				</select>		        
+
+			</div>
+			<div class="layui-form-mid layui-word-aux"><font color='red'>*</font></div>
+		</div>
+ 	  
+		<button lay-submit lay-filter="save"  class="layui-btn" id="save_bt"  style="margin-top: 45px;margin-left: 218px;">保存</button>
+		<button class="layui-btn layui-btn-normal" id="off_bt" onclick="closeIfrname()" style="margin-left: 70px;margin-top: 46px;">取消</button>
+		
+	</form>
+</div>
+</body>
+</html>

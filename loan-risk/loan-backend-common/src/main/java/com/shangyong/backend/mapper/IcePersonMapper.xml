@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.shangyong.backend.dao.approval.IcePersonDao">
+
+	<resultMap type="com.shangyong.backend.entity.CuIcePerson" id="cuIcePersoninfoMap">
+		<id property="icePersonId" column="ice_person_id" javaType="java.lang.String"></id>
+		<result property="platformCustomerId" column="platform_customer_id" javaType="java.lang.String"></result>
+		<result property="customerId" column="customer_id" javaType="java.lang.String"></result>
+		<result property="type" column="type" javaType="java.lang.String"></result>
+		<result property="trueName" column="true_name" javaType="java.lang.String"></result>
+		<result property="phoneNum" column="phone_num" javaType="java.lang.String"></result>
+		<result property="createTime" column="create_time" javaType="java.lang.String"></result>
+		<result property="createMan" column="create_man" javaType="java.lang.String"></result>
+		<result property="modifyTime" column="modify_time" javaType="java.lang.String"></result>
+		<result property="modifyMan" column="modify_man" javaType="java.lang.String"></result>
+		<result property="remark" column="remark" javaType="java.lang.String"></result>
+	</resultMap>
+
+	<!-- 通用查询结果列-->
+	<sql id="Base_Column_List">
+ice_person_id,	platform_customer_id,	customer_id,	type,	true_name,	phone_num,	create_time,	create_man,	modify_time,	modify_man,	remark
+	</sql>
+
+ 	<select id="getEntityById" resultMap="cuIcePersoninfoMap" parameterType="java.lang.String">
+		 SELECT
+		 <include refid="Base_Column_List" />
+		 FROM cu_ice_person
+		 WHERE platform_customer_id = #{platformCustomerId}
+	</select>
+
+</mapper>

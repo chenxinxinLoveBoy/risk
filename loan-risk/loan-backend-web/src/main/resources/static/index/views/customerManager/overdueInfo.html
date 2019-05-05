@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+<meta charset="UTF-8">
+<title>用户信息</title>
+<link rel="stylesheet" href="../../plugins/layui/css/layui.css"
+	media="all" />
+<link rel="stylesheet" href="../../css/global.css" media="all">
+<link rel="stylesheet"
+	href="../../plugins/font-awesome/css/font-awesome.min.css">
+<link rel="stylesheet" href="../../css/table.css" />
+</head>
+<body>
+	<div class="admin-main">
+		<a href="javascript:getmysqldata();" class="layui-btn layui-btn-small" id="search">
+				<i class="layui-icon">&#xe615;</i> 数据查询
+		</a>
+		<a href="javascript:infoQuery();" class="layui-btn layui-btn-small" id="oss">
+				<i class="layui-icon">&#xe615;</i> 阿里云数据查询
+		</a>
+		<fieldset class="layui-elem-field">
+			<div class="layui-field-box layui-form">
+				<table class="layui-table">
+				<caption style="text-align: left; font-weight: bold; margin-bottom: 10px;">银行逾期信息</caption>
+					<colgroup>
+						<col width="200">
+						<col width="200">
+						<col>
+					</colgroup>
+					<thead>
+						<tr>
+							<td><strong>逾期单号</strong></td>
+							<td><strong>申请单号</strong></td>
+							<td><strong>客户姓名</strong></td>
+							<td><strong>手机号</strong></td>
+							<td><strong>证件号码</strong></td>
+							<td><strong>查询平台</strong></td>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<td width="200px"><font id="boverdueListId"></font></td>
+							<td><font id="bapplicationId"></font></td>
+							<td><font id="bname"></font></td>
+							<td><font id="bmobile"></font></td>
+							<td><font id="bidCard"></font></td>
+							<td><font id="bplatformType"></font></td>
+						</tr>
+						<tr>
+							<td><strong>结果说明:</strong></td> 
+							<td colspan="5" id="bmessage"></td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+			<hr/>
+			<div class="layui-field-box layui-form" id="bankyq"></div>
+			<hr/>
+			<div class="layui-field-box layui-form">
+				 <table class="layui-table">
+				 	<caption style="text-align: left; font-weight: bold; margin-bottom: 10px;">网贷逾期信息</caption>
+					<colgroup>
+						<col width="200">
+						<col width="200">
+						<col>
+					</colgroup>
+					<thead>
+						<tr>
+							<td><strong>逾期单号</strong></td>
+							<td><strong>申请单号</strong></td>
+							<td><strong>客户姓名</strong></td>
+							<td><strong>手机号</strong></td>
+							<td><strong>证件号码</strong></td>
+							<td><strong>查询平台</strong></td>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<td width="200px"><font id="nloverdueListId"></font></td>
+							<td><font id="nlapplicationId"></font></td>
+							<td><font id="nlname"></font></td>
+							<td><font id="nlmobile"></font></td>
+							<td><font id="nlidCard"></font></td>
+							<td><font id="nlplatformType"></font></td>
+						</tr>
+						<tr>
+							<td><strong>结果说明:</strong></td> 
+							<td colspan="5" id="nlmessage"></td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+			<hr/>
+			<div class="layui-field-box layui-form" id="netLoanyq"></div>
+		</fieldset>
+		<div class="admin-table-page">
+			<div id="paged" class="page"></div>
+		</div>
+	</div>
+
+	<!-- js -->
+	<script src="../../jqery/jquery.js"></script>
+	<script src="../../../commons/base.js"></script>
+	<script type="text/javascript" src="../../plugins/layui/layui.js"></script>
+	<script type="text/javascript" src="../../js/customerManager/overdueInfo_test.js"></script>
+	<script type="text/javascript" src="../../js/customerManager/overdueInfo.js"></script>
+</body>
+
+</html>

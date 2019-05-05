@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.shangyong.backend.dao.tdReport.TdReportMobileInfoDao">
+
+	<resultMap type="com.shangyong.backend.entity.tdReport.TdReportMobileInfo" id="tdReportMobileInfoMap">
+		<id property="mobileInfoId" column="mobile_info_id" javaType="java.lang.String"></id>
+		<result property="applicationId" column="application_id" javaType="java.lang.String"></result>
+		<result property="userMobile" column="user_mobile" javaType="java.lang.String"></result>
+		<result property="mobileNetAddr" column="mobile_net_addr" javaType="java.lang.String"></result>
+		<result property="mobileCarrier" column="mobile_carrier" javaType="java.lang.String"></result>
+		<result property="realName" column="real_name" javaType="java.lang.String"></result>
+		<result property="identityCode" column="identity_code" javaType="java.lang.String"></result>
+		<result property="accountStatus" column="account_status" javaType="java.lang.String"></result>
+		<result property="packageType" column="package_type" javaType="java.lang.String"></result>
+		<result property="accountBalance" column="account_balance" javaType="java.lang.String"></result>
+		<result property="mobileNetTime" column="mobile_net_time" javaType="java.lang.String"></result>
+		<result property="mobileNetAge" column="mobile_net_age" javaType="java.lang.String"></result>
+		<result property="email" column="email" javaType="java.lang.String"></result>
+		<result property="contactAddr" column="contact_addr" javaType="java.lang.String"></result>
+		<result property="realNameCheckYys" column="real_name_check_yys" javaType="java.lang.String"></result>
+		<result property="identityCodeCheckYys" column="identity_code_check_yys" javaType="java.lang.String"></result>
+		<result property="homeAddrCheckYys" column="home_addr_check_yys" javaType="java.lang.String"></result>
+		<result property="emailCheckYys" column="email_check_yys" javaType="java.lang.String"></result>
+		<result property="createTime" column="create_time" javaType="java.lang.String"></result>
+		<result property="createMan" column="create_man" javaType="java.lang.String"></result>
+		<result property="modifyTime" column="modify_time" javaType="java.lang.String"></result>
+		<result property="modifyMan" column="modify_man" javaType="java.lang.String"></result>
+		<result property="remark" column="remark" javaType="java.lang.String"></result>
+	</resultMap>
+
+	<!-- 通用查询结果列-->
+	<sql id="Base_Column_List">
+mobile_info_id,	application_id,	user_mobile,	mobile_net_addr,	mobile_carrier,	real_name,	identity_code,	account_status,	package_type,	account_balance,	mobile_net_time,	mobile_net_age,	email,	contact_addr,	real_name_check_yys,	identity_code_check_yys,	home_addr_check_yys,	email_check_yys,	create_time,	create_man,	modify_time,	modify_man,	remark
+	</sql>
+
+	<!-- 查询（根据主键ID查询） -->
+	<select id="getEntityById" resultMap="tdReportMobileInfoMap" parameterType="java.lang.String">
+		 SELECT
+		 <include refid="Base_Column_List" />
+		 FROM td_report_mobile_info
+		 WHERE mobile_info_id = #{mobileInfoId}
+	</select>
+	<!-- 查询（根据主键applicationId查询） -->
+	<select id="queryRWById" resultMap="tdReportMobileInfoMap" parameterType="java.lang.String">
+		 SELECT
+		 <include refid="Base_Column_List" />
+		 FROM td_report_mobile_info
+		 WHERE application_id = #{applicationId}
+	</select>
+
+	<!-- 查询（根据主键ID查询） -->
+	<select id="findAll" resultMap="tdReportMobileInfoMap" parameterType="java.lang.String">
+		 SELECT
+		 <include refid="Base_Column_List" />
+		 FROM td_report_mobile_info
+		 WHERE mobile_info_id = #{mobileInfoId}
+	</select>
+
+	<!--删除：根据主键ID删除-->
+	<delete id="deleteEntity" parameterType="java.lang.String">
+		 DELETE FROM td_report_mobile_info
+		 WHERE mobile_info_id = #{mobileInfoId}
+	</delete>
+
+	<!-- 添加 -->
+	<insert id="saveEntity" parameterType="com.shangyong.backend.entity.tdReport.TdReportMobileInfo">
+		 INSERT INTO td_report_mobile_info
+ 		(mobile_info_id,application_id,user_mobile,mobile_net_addr,mobile_carrier,real_name,identity_code,account_status,package_type,account_balance,mobile_net_time,mobile_net_age,email,contact_addr,real_name_check_yys,identity_code_check_yys,home_addr_check_yys,email_check_yys,create_time,create_man,modify_time,modify_man,remark) 
+		 VALUES 
+ 		(#{mobileInfoId},#{applicationId},#{userMobile},#{mobileNetAddr},#{mobileCarrier},#{realName},#{identityCode},#{accountStatus},#{packageType},#{accountBalance},#{mobileNetTime},#{mobileNetAge},#{email},#{contactAddr},#{realNameCheckYys},#{identityCodeCheckYys},#{homeAddrCheckYys},#{emailCheckYys},#{createTime},#{createMan},#{modifyTime},#{modifyMan},#{remark}) 
+	</insert>
+
+	<!-- 修 改-->
+	<update id="updateEntity" parameterType="com.shangyong.backend.entity.tdReport.TdReportMobileInfo">
+		 UPDATE td_report_mobile_info
+ 		 <set> 
+			<if test="applicationId != null">
+				 application_id = #{applicationId},
+			</if>
+			<if test="userMobile != null">
+				 user_mobile = #{userMobile},
+			</if>
+			<if test="mobileNetAddr != null">
+				 mobile_net_addr = #{mobileNetAddr},
+			</if>
+			<if test="mobileCarrier != null">
+				 mobile_carrier = #{mobileCarrier},
+			</if>
+			<if test="realName != null">
+				 real_name = #{realName},
+			</if>
+			<if test="identityCode != null">
+				 identity_code = #{identityCode},
+			</if>
+			<if test="accountStatus != null">
+				 account_status = #{accountStatus},
+			</if>
+			<if test="packageType != null">
+				 package_type = #{packageType},
+			</if>
+			<if test="accountBalance != null">
+				 account_balance = #{accountBalance},
+			</if>
+			<if test="mobileNetTime != null">
+				 mobile_net_time = #{mobileNetTime},
+			</if>
+			<if test="mobileNetAge != null">
+				 mobile_net_age = #{mobileNetAge},
+			</if>
+			<if test="email != null">
+				 email = #{email},
+			</if>
+			<if test="contactAddr != null">
+				 contact_addr = #{contactAddr},
+			</if>
+			<if test="realNameCheckYys != null">
+				 real_name_check_yys = #{realNameCheckYys},
+			</if>
+			<if test="identityCodeCheckYys != null">
+				 identity_code_check_yys = #{identityCodeCheckYys},
+			</if>
+			<if test="homeAddrCheckYys != null">
+				 home_addr_check_yys = #{homeAddrCheckYys},
+			</if>
+			<if test="emailCheckYys != null">
+				 email_check_yys = #{emailCheckYys},
+			</if>
+			<if test="createTime != null">
+				 create_time = #{createTime},
+			</if>
+			<if test="createMan != null">
+				 create_man = #{createMan},
+			</if>
+			<if test="modifyTime != null">
+				 modify_time = #{modifyTime},
+			</if>
+			<if test="modifyMan != null">
+				 modify_man = #{modifyMan},
+			</if>
+			<if test="remark != null">
+				 remark = #{remark},
+			</if>
+
+ 		 </set>
+		 WHERE mobile_info_id = #{mobileInfoId}
+	</update>
+
+</mapper>

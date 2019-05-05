@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.shangyong.backend.dao.td.TdDiscreditServiceDao">
+
+	<resultMap type="com.shangyong.backend.entity.td.TdDiscredit" id="tdDiscreditinfoMap">
+		<id property="tdDiscreditId" column="td_discredit_id" javaType="java.lang.String"></id>
+		<result property="tdRiskItemsId" column="td_risk_items_id" javaType="java.lang.String"></result>
+		<result property="description" column="description" javaType="java.lang.String"></result>
+		<result property="discreditTimes" column="discredit_times" javaType="java.lang.String"></result>
+		<result property="overdueTime" column="overdue_time" javaType="java.lang.String"></result>
+		<result property="overdueAmountRange" column="overdue_amount_range" javaType="java.lang.String"></result>
+		<result property="overdueDayRange" column="overdue_day_range" javaType="java.lang.String"></result>
+		<result property="overdueCount" column="overdue_count" javaType="java.lang.String"></result>
+	</resultMap>
+
+	<!-- 通用查询结果列-->
+	<sql id="Base_Column_List">
+	td_discredit_id,	td_risk_items_id,	description,	discredit_times,	overdue_time,	overdue_amount_range,	overdue_day_range,	overdue_count
+	</sql>
+
+	<!-- 查询（根据主键ID查询） -->
+	<select id="getEntityById" resultMap="tdDiscreditinfoMap" parameterType="java.lang.String">
+		 SELECT
+		 <include refid="Base_Column_List" />
+		 FROM td_discredit
+		 WHERE td_discredit_id = #{tdDiscreditId}
+	</select>
+	
+	<!-- 查询（根据tdRiskItemsId查询） -->
+	<select id="queryById" resultMap="tdDiscreditinfoMap" parameterType="java.lang.String">
+		 SELECT
+		 <include refid="Base_Column_List" />
+		 FROM td_discredit
+		 WHERE td_risk_items_id = #{tdRiskItemsId}
+	</select>
+
+	<!-- 查询（根据主键ID查询） -->
+	<select id="getAll" resultMap="tdDiscreditinfoMap" parameterType="java.lang.String">
+		 SELECT
+		 <include refid="Base_Column_List" />
+		 FROM td_discredit
+	</select>
+
+	<!--删除：根据主键ID删除-->
+	<delete id="deleteEntity" parameterType="java.lang.String">
+		 DELETE FROM td_discredit
+		 WHERE td_discredit_id = #{tdDiscreditId}
+	</delete>
+
+	<!-- 添加 -->
+	<insert id="saveEntity" parameterType="com.shangyong.backend.entity.td.TdDiscredit">
+		 INSERT INTO td_discredit
+ 		(td_discredit_id,td_risk_items_id,description,discredit_times,overdue_time,overdue_amount_range,overdue_day_range,overdue_count) 
+		 VALUES 
+ 		(#{tdDiscreditId},#{tdRiskItemsId},#{description},#{discreditTimes},#{overdueTime},#{overdueAmountRange},#{overdueDayRange},#{overdueCount}) 
+	</insert>
+
+	<!-- 修 改-->
+	<update id="updateEntity" parameterType="com.shangyong.backend.entity.td.TdDiscredit">
+		 UPDATE td_discredit
+ 		 <set> 
+			<if test="tdRiskItemsId != null">
+				 td_risk_items_id = #{tdRiskItemsId},
+			</if>
+			<if test="description != null">
+				 description = #{description},
+			</if>
+			<if test="discreditTimes != null">
+				 discredit_times = #{discreditTimes},
+			</if>
+			<if test="overdueTime != null">
+				 overdue_time = #{overdueTime},
+			</if>
+			<if test="overdueAmountRange != null">
+				 overdue_amount_range = #{overdueAmountRange},
+			</if>
+			<if test="overdueDayRange != null">
+				 overdue_day_range = #{overdueDayRange},
+			</if>
+			<if test="overdueCount != null">
+				 overdue_count = #{overdueCount},
+			</if>
+
+ 		 </set>
+		 WHERE td_discredit_id = #{tdDiscreditId}
+	</update>
+
+</mapper>

@@ -1,0 +1,217 @@
+﻿<!DOCTYPE html>
+<html>
+
+<head>
+<meta charset="UTF-8">
+<META HTTP-EQUIV="pragma" CONTENT="no-cache">
+<META HTTP-EQUIV="Cache-Control" CONTENT="no-cache, must-revalidate">
+<META HTTP-EQUIV="expires" CONTENT="0">
+<title>禁止项列表管理</title>
+<link rel="stylesheet" href="../../plugins/layui/css/layui.css"
+	media="all" />
+<link rel="stylesheet" href="../../css/global.css" media="all">
+<link rel="stylesheet"
+	href="../../plugins/font-awesome/css/font-awesome.min.css">
+<link rel="stylesheet" href="../../css/table.css" /> 
+	<!-- js -->
+	<script src="../../jqery/jquery.js"></script>
+	<script src="../../../commons/base.js"></script>
+	<script type="text/javascript" src="../../plugins/layui/layui.js"></script>
+	<script type="text/javascript" src="../../js/template/templatelist.js"></script> 
+</head>
+
+<body>
+	<div class="admin-main"> 
+		 <blockquote>
+			 <a href="javascript:void(0);" class="layui-btn layui-btn-small" id="getSelected">
+						<i class="fa fa-shopping-cart" aria-hidden="true"></i> 确认添加关联
+			 </a>
+			<!-- 查询条件 -->
+				<div class="layui-inline">
+			      <label class="layui-form-label" style="width: auto;">禁止项规则对应编号：</label>
+			      <div class="layui-input-inline">
+			        <input name="banCode" lay-verify="banCode" id="banCode" autocomplete="off" class="layui-input" >
+			      </div>
+			    </div>
+			    
+			    <div class="layui-inline">
+			      <label class="layui-form-label" style="width: auto;">禁止项规则名称：</label>
+			      <div class="layui-input-inline">
+			        <input name="ruleName" lay-verify="ruleName" id="ruleName" autocomplete="off" class="layui-input" >
+			      </div>
+			    </div>
+ 
+ 			    <div class="layui-inline" >
+					<label class="layui-form-label" style="width: auto;">征信机构类型：</label>
+					<div class="layui-input-inline">
+					        <select name="creditType" lay-filter="creditType" class="layui-input" lay-search="" id="creditType" lay-verify="creditType" autocomplete="off">
+					        <option value="">--请选择--</option>
+					         <option value="01">同盾</option>
+					          <option value="02">白骑士</option>
+					          <option value="03">极光</option>
+					          <option value="04">91征信</option>
+					          <option value="05">腾讯云</option>
+					          <option value="06">易极付</option>
+					          <option value="13">网洪</option>
+					        </select>
+					</div>
+				</div>
+
+				  <div class="layui-inline" >
+					<label class="layui-form-label" style="width: auto;">是否添加拒绝名单：</label>
+					<div class="layui-input-inline" style="width:160px;">
+					        <select name="ifRefuse" lay-filter="ifRefuse" class="layui-input" lay-search="" id="ifRefuse" lay-verify="state" autocomplete="off">
+					          <option value="">--请选择--</option>
+					          <option value="0">否</option>
+					          <option value="1">是</option>
+					        </select>
+					</div>
+				</div>
+				
+				<div class="layui-inline" >
+					<label class="layui-form-label" style="width: auto;">状态：</label>
+					<div class="layui-input-inline" style="width:160px;">
+					        <select name="state" lay-filter="state" class="layui-input" lay-search="" id="state" lay-verify="state" autocomplete="off">
+					          <option value="">--请选择--</option>
+					          <option value="01">生效</option>
+					          <option value="02">失效</option>
+					        </select>
+					</div>
+				</div>
+					<a href="javascript:;" class="layui-btn layui-btn-small" id="search">
+						<i class="layui-icon">&#xe615;</i> 搜索
+					</a>
+		 </blockquote>
+		<fieldset class="layui-elem-field">
+			<legend>禁止项列表</legend>
+			<div class="layui-field-box layui-form">
+				<table class="layui-table admin-table"  style="word-break: keep-all;overflow:auto;">
+					<thead>
+						<tr>
+							<th style="width: 30px;"><input type="checkbox" lay-filter="allselector" lay-skin="primary"></th>
+							<th>禁止项规则编号</th>
+							<th style="min-width: 180px;">禁止项规则名称</th>
+							<th>征信机构类型</th>
+							<th style="min-width: 260px;">禁止项规则明细</th>
+							<th>禁止项规则技术比对值</th>
+							<th>技术比对值类型</th>
+							<th>状态</th>
+							<th style="min-width: 150px;">技术校验规则</th>
+							<th>添加拒绝名单</th>
+ 							<th style="min-width: 300px;">备注</th>
+						</tr>
+					</thead>
+					<tbody id="content">
+					</tbody>
+				</table>
+				</div>
+				<!-- <label>共<font color='red' id="count_page_number"></font>条记录</label>  -->
+				<!-- <div id="paged" class="page" style="display:inline-block;"> -->
+			</div>
+		</fieldset>
+	</div>
+	<!--模板-->
+	<script type="text/html" id="tpl">
+			{{# layui.each(d.list, function(index, item){  }}
+			<tr>
+				<td><input type="checkbox" lay-skin="primary"  data-id="{{ item.banControlId }}"></td>
+                <td>{{ item.banCode }}</td>
+				<td><p style="white-space: normal!important;text-overflow: ellipsis;word-wrap: break-word;-webkit-line-clamp: 2;-webkit-box-orient: vertical;">{{ item.ruleName }}</p></td>
+
+                {{# if(item.creditType == '01'){ }}
+				<td>同盾</td>
+				{{# } else  if(item.creditType == '02') { }}
+				<td>白骑士</td>
+                {{# } else  if(item.creditType == '03') { }}
+                <td>极光</td>
+                {{# } else  if(item.creditType == '04') { }}
+                <td> 91征信</td>
+                {{# } else  if(item.creditType == '05') { }}
+                <td> 腾讯云</td>
+                {{# } else  if(item.creditType == '06') { }}
+                <td> 易极付</td>
+				{{# } else  if(item.creditType == '13') { }}
+                <td> 网洪 </td>
+                {{# } else  { }}
+				<td>&nbsp;&nbsp;</td>
+				{{# } }}
+
+                <td><p style="white-space: normal!important;text-overflow: ellipsis;word-wrap: break-word;-webkit-line-clamp: 2;-webkit-box-orient: vertical;">{{ item.ruleDetail}}</p></td>
+				<td><p style="width:300px;white-space: normal!important;text-overflow: ellipsis;word-wrap: break-word;-webkit-line-clamp: 2;-webkit-box-orient: vertical;">{{ item.ruleComparisonValue }}</p></td>
+
+                {{# if(item.ruleComparisonType == '01'){ }}
+				<td>数值</td>
+				{{# } else  if(item.ruleComparisonType == '02') { }}
+				<td>字符</td>
+                {{# } else  if(item.ruleComparisonType == '03') { }}
+                <td>集合</td>
+                {{# } else  { }}
+				<td> &nbsp;&nbsp;</td>
+				{{# } }}
+
+                {{# if(item.state == '01'){ }}
+				<td>生效</td>
+                {{# } else if(item.state == '02') { }}
+                <td>失效</td>
+				{{# } else  { }}
+				<td>&nbsp;&nbsp;</td>
+				{{# } }}
+
+                {{# if(item.validateRule == '0101'){ }}
+				<td>0101-（数值）小于</td>
+				{{# } else  if(item.validateRule == '0102') { }}
+				<td>0102-（数值）小于等于</td>
+                {{# } else  if(item.validateRule == '0103') { }}
+                <td>0103-（数值）等于</td>
+                {{# } else  if(item.validateRule == '0104') { }}
+                <td>0104-（数值）大于</td>
+                {{# } else  if(item.validateRule == '0105') { }}
+                <td>0105-（数值）大于等于</td>
+                {{# } else  if(item.validateRule == '0106') { }}
+                <td>0106-（数值）大于开始值小于结束值</td>
+                {{# } else  if(item.validateRule == '0107') { }}
+                <td>0107-（数值）大于等于开始值小于等于结束值</td>
+                {{# } else  if(item.validateRule == '0108') { }}
+                <td>0108-（数值）大于等于开始值小于结束值</td>
+                {{# } else  if(item.validateRule == '0109') { }}
+                <td>0109-（数值）大于开始值小于等于结束值</td>
+                {{# } else  if(item.validateRule == '0201') { }}
+				<td>0201-（字符）数据一致</td>
+                {{# } else  if(item.validateRule == '0202') { }}
+                <td>0202-（字符）不为空且不为null</td>
+                {{# } else  if(item.validateRule == '0203') { }}
+                <td>0203-（字符）为空或为null</td>
+                {{# } else  if(item.validateRule == '0204') { }}
+                <td>0204-（字符）规则在结果中存在</td>
+                {{# } else  if(item.validateRule == '0205') { }}
+                <td>0205-（字符）规则在结果中不存在</td>
+                {{# } else  if(item.validateRule == '0206') { }}
+                <td>0206-（字符）数据不一致</td>
+                {{# } else  if(item.validateRule == '0301') { }}
+                <td>0301-（集合）条数大于</td>
+                {{# } else  if(item.validateRule == '0302') { }}
+                <td>0302-（集合）条数大于等于</td>
+                {{# } else  if(item.validateRule == '0302') { }}
+                <td>0303-（集合）条数小于</td>
+                {{# } else  if(item.validateRule == '0302') { }}
+                <td>0304-（集合）条数小于等于</td>
+                {{# } else  if(item.validateRule == '0302') { }}
+                <td>0305-（集合）条数等于</td>
+                {{# } else  { }}
+				<td>&nbsp;&nbsp; </td>
+				{{# } }}
+
+                {{# if(item.ifRefuse == '0'){ }}
+				<td>否</td>
+                {{# } else if(item.ifRefuse == '1') { }}
+                <td>是</td>
+				{{# } else  { }}
+				<td>&nbsp;&nbsp;</td>
+				{{# } }} 
+
+				<td> <p style="white-space: normal!important;text-overflow: ellipsis;word-wrap: break-word;-webkit-line-clamp: 2;-webkit-box-orient: vertical;"> {{ item.remark }} </p></td>
+			</tr>
+			{{# }); }}
+		</script> 
+</body> 
+</html>

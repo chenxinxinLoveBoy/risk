@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+<meta charset="UTF-8">
+<title>公积金数据报告</title>
+<link rel="stylesheet" href="../../plugins/layui/css/layui.css"
+	media="all" />
+<link rel="stylesheet" href="../../css/global.css" media="all">
+<link rel="stylesheet"
+	href="../../plugins/font-awesome/css/font-awesome.min.css"> 
+	<script src="../../jqery/jquery.js"></script>
+	<script src="../../../commons/base.js"></script>
+	<script type="text/javascript" src="../../plugins/layui/layui.js"></script>
+<script type="text/javascript" src="../../js/customerManager/gjjReport_test.js"></script>
+<!-- <script type="text/javascript" src="../../js/customerManager/gjjBillRecord.js"></script>
+<script type="text/javascript" src="../../js/customerManager/gjjLoanInfo.js"></script> -->
+<link rel="stylesheet" href="../../css/lzh_login.css" media="all" />
+</head>
+<body>
+	<div class="admin-main" id="gjj">
+		<div style="height: 10px"></div>
+		<fieldset class="layui-elem-field">
+			<div class="layui-field-box layui-form">
+				<legend style="width: auto;">公积金基础信息 </legend>
+				<table class="layui-table">
+					<tbody>
+						<!-- js取值id -->
+						<tr>
+							<th>个人客户号</th>
+							<td><font id="custNo"></font></td>
+							<th>姓名</th>
+							<td><font id="name"></font></td>
+							<th>性别</th>
+							<td><font id="gender"></font></td>
+						</tr>
+
+						<tr>
+							<th>出生日期</th>
+							<td><font id="birthday"></font></td>
+							<th>身份证号</th>
+							<td><font id="certNo"></font></td>
+							<th>移动电话</th>
+							<td><font id="mobile"></font></td>
+						</tr>
+
+						<tr>
+							<th>电子邮箱</th>
+							<td><font id="email"></font></td>
+							<th>缴存状态</th>
+							<td><font id="state"></font></td>
+							<th>邮政编码</th>
+							<td><font id="postNo"></font></td>
+						</tr>
+
+						<tr>
+							<th>单位缴存</th>
+							<td><font id="monthlyCorpIncome"></font></td>
+							<th>个人缴存</th>
+							<td><font id="monthlyCustIncome"></font></td>
+							<th>月缴额度</th>
+							<td><font id="monthlyTotalIncome"></font></td>
+						</tr>
+
+						<tr>
+							<th>公积金余额</th>
+							<td><font id="balance"></font></td>
+							<th>所在单位</th>
+							<td colspan="3"><font id="corpName"></font></td>
+						</tr>
+						<tr>
+							<th>家庭住址</th>
+							<td colspan="5"><font id="homeAddress"></font></td>
+						</tr>
+					</tbody>
+				</table>
+				<br><br>
+				<legend>公积金缴存状态</legend>
+				<table class="layui-table">
+					<thead>
+						<!-- js取值id -->
+						<tr>
+							<th>单位名称</th>
+							<th>缴存状态</th>
+							<th>缴存状态码</th>
+						</tr>
+					</thead>
+					<tbody id="content">
+					</tbody>
+				</table>
+				<br><br>
+				<legend>公积金缴存明细</legend>
+				<table class="layui-table">
+					<thead>
+						<!-- js取值id -->
+						<tr>
+							<th>发生时间</th>
+							<th>描述</th>
+							<th>缴存金额(分)</th>
+							<th>取出金额(分)</th>
+							<th>余额(分)</th>
+							<th>缴存单位</th>
+						</tr>
+					</thead>
+					<tbody id="content1">
+					</tbody>
+				</table>
+				<br><br>
+				<legend>公积金贷款信息</legend>
+					<table class="layui-table">
+					<thead>
+						<!-- js取值id -->
+						<tr>
+							<th>合同号</th>
+							<th>借款状态</th>
+							<th>委托银行</th>
+							<th>借贷金额(元)</th>
+							<th>借款期限(年)</th>
+							<th>借款放款日</th>
+							<th>借款到期日</th>
+							<th>约定扣款日(每月)</th>
+							<th>还款方式</th>
+							<th>借款利率(%)</th>
+							<th>罚息利率(%)</th>
+							<th>签约日期</th>
+							<th>购房地址</th>
+						</tr>
+					</thead>
+					<tbody id="content2">
+					</tbody>
+				</table>
+				<br><br>
+				<legend>公积金贷款还款明细</legend>
+				<table class="layui-table">
+					<thead>
+						<!-- js取值id -->
+						<tr>
+							<th>记账日期</th>
+							<th>扣还合计（元）</th>
+							<th>本金（元）</th>
+							<th>利息（元）</th>
+							<th>罚息（元）</th>
+							<th>银行扣款日期</th>
+						</tr>
+					</thead>
+					<tbody id="content3">
+					</tbody>
+				</table>
+			</div> 
+		</fieldset>
+		<div class="admin-table-page">
+			<div id="paged" class="page"></div>
+		</div>
+	</div>
+	
+		<!--模板-->
+		<script type="text/html" id="tpl">
+			{{# layui.each(d.list, function(index, item){ }}
+			<tr>
+				<td>{{ item.corpName }}</td>
+				<td>{{ item.payStatusDesc }}</td>
+				<td>{{ item.payStatus }}</td>
+			</tr>
+			{{# }); }}
+		</script>
+</body>
+</html>

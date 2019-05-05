@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<META HTTP-EQUIV="pragma" CONTENT="no-cache">
+		<META HTTP-EQUIV="Cache-Control" CONTENT="no-cache, must-revalidate">
+		<META HTTP-EQUIV="expires" CONTENT="0">
+		<title>Table</title>
+		<link rel="stylesheet" href="../../plugins/layui/css/layui.css" media="all" />
+		<link rel="stylesheet" href="../../css/global.css" media="all">
+		<link rel="stylesheet" href="../../plugins/font-awesome/css/font-awesome.min.css">
+		<link rel="stylesheet" href="../../css/table.css" />
+	</head>
+	<body>
+		<div class="admin-main">
+			<blockquote class="layui-elem-quote">
+				 <form class="layui-form" action="">
+					  <div class="layui-form-item">
+						  <label class="layui-form-label">身份证：</label>
+						  <div class="layui-input-inline">
+							<input id="idCard" type="text" name="idCard" id="idCard" placeholder="请输入用户身份证号" autocomplete="off" class="layui-input">
+						  </div>
+					      <label class="layui-form-label">时间：</label>
+					      <div class="layui-inline">
+						      <div class="layui-input-inline" style="width: 100px;">
+									<input name="startTime" onFocus="WdatePicker({dateFmt:'yyyy-MM-dd',maxDate:'#F{$dp.$D(\'endTime\')}'})" lay-verify="startTime" id="startTime" autocomplete="off" class="layui-input" >
+							  </div>
+						      <div class="layui-form-mid">-</div>
+						      <div class="layui-input-inline" style="width: 100px;">
+							   		<input name="endTime" onFocus="WdatePicker({dateFmt:'yyyy-MM-dd',minDate:'#F{$dp.$D(\'startTime\')}'})" lay-verify="endTime" id="endTime" autocomplete="off" class="layui-input" >	
+							  </div>
+					      </div>
+						  <div class="layui-inline">
+						      <label class="layui-form-label">APP名称：</label>
+						      <div class="layui-input-inline">
+						        <select name="appChannel" id="appChannel">
+<!-- 						          <option value="0">全部</option> -->
+						          <option value="1">洪澄</option>
+						          <option value="2">速贷</option>
+						        </select>
+						      </div>
+						  </div>
+					      <a href="javascript:;" class="layui-btn layui-btn-small" id="search">
+								<i class="layui-icon">&#xe615;</i>搜索
+						  </a>
+				    	</div>
+				  </form>
+			</blockquote>
+			<fieldset class="layui-elem-field">
+				<legend>数据列表</legend>
+				<div class="layui-field-box layui-form">
+					<table class="layui-table admin-table">
+						<thead>
+							<tr>
+								<th>用户账号</th>
+								<th>姓名</th>
+								<th>手机号</th>
+								<th>成功借款总金额（元）</th>
+								<th>成功借款笔数（次）</th>
+								<th>待还款金额（元）</th>
+								<th>逾期金额（元）</th>
+								<th>逾期次数（次）</th>
+								<th>操作</th>
+							</tr>
+						</thead>
+						<tbody id="content">
+						</tbody>
+					</table>
+				</div>
+			</fieldset>
+			<div class="admin-table-page">
+				<div id="paged" class="page">
+				</div>
+			</div>
+		</div>
+		
+		<!--模板-->
+		<script type="text/html" id="tpl">
+			{{# layui.each(d.list, function(index, item){ }}
+			<tr>
+				<td>{{ item.customerId }}</td>
+				<td>{{ item.customerName }}</td>
+				<td>{{ item.mobile }}</td>
+				<td>{{ fmoney(item.loanSumMoney) }}</td>
+				<td>{{ item.loanSumCount }}</td>
+				<td>{{ fmoney(item.readyRepaySumMoney) }}</td>
+				<td>{{ fmoney(item.overdueMoney) }}</td>
+				<td>{{ item.overdueCount }}</td>
+				<td>
+					<a href="javascript:;" data-id="{{ item.platformId }}" data-opt="del" class="layui-btn layui-btn-danger layui-btn-mini">查看详情</a>
+				</td>
+			</tr>
+			{{# }); }}
+		</script>
+		
+		<!-- js -->
+		<script src="../../jqery/jquery.js"></script>
+		<script src="../../../commons/base.js"></script>
+		<!-- 日期控件 -->
+	   <script language="javascript" type="text/javascript" src="../../My97DatePicker/WdatePicker.js"></script>
+	   <script type="text/javascript" src="../../plugins/layui/layui.js"></script>
+	   <script type="text/javascript" src="../../js/analysis/custLoanSummary.js"></script>
+	</body>
+
+</html>

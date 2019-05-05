@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+<meta charset="UTF-8">
+<title>宜信报告信息</title>
+<link rel="stylesheet" href="../../plugins/layui/css/layui.css"
+	media="all" />
+<link rel="stylesheet" href="../../css/global.css" media="all">
+<link rel="stylesheet"
+	href="../../plugins/font-awesome/css/font-awesome.min.css">
+<!-- <link rel="stylesheet" href="../../css/table.css" /> -->
+</head>
+<body>
+	<div class="admin-main">
+		<!-- 宜信被查询历史 -->
+		<fieldset class="layui-elem-field"> 
+				<div class="layui-field-box layui-form">
+					<table class="layui-table admin-table">
+						<thead>
+							<tr> 
+								<th>查询申请单</th>
+								<th>提供查询的机构代码</th>
+								<th>命中项编码</th>
+								<th>命中项内容 </th>
+								<th>命中风险项类别 </th>
+								<th>风险明细</th>
+								<th>风险最近时间</th>
+								<th>创建时间</th>
+								<th>备注信息</th>
+							</tr>
+						</thead>
+						<tbody id="content">
+						</tbody>
+					</table>
+					<label>共<font color='red' id="count_page_number"></font>条记录</label>
+					<div id="paged" class="page" style="display:inline-block;">
+					</div>
+				</div>
+			</fieldset> 
+	<script src="../../jqery/jquery.js"></script>
+	<script src="../../../commons/base.js"></script>
+	<script type="text/javascript" src="../../plugins/layui/layui.js"></script>
+	<script type="text/javascript" src="../../js/customerManager/yxReport_risk.js"></script>
+	<!--模板-->
+	<script type="text/html" id="tpl">
+			{{# layui.each(d.list, function(index, item){
+			if(item==null||item=='undefined') return; 
+			var buApplicationId = item.buApplicationId; 
+			var orgName = item.orgName; 
+			var riskItemTypeCode = item.riskItemTypeCode; 
+			var riskItemValue = item.riskItemValue;
+			var riskTypeCode=item.riskTypeCode;
+			var riskDetail = item.riskDetail;
+			var riskTime = item.riskTime.substring(0,19);
+			var createTime = item.createTime.substring(0,19);
+			var remark = item.remark; 
+			if(riskItemTypeCode=='101010') riskItemTypeCode='证件号码';
+			if(riskTypeCode=='11'){
+				riskTypeCode='伪冒类';
+			}else if(riskTypeCode=='12'){
+				riskTypeCode='资料虚假类';
+			}else if(riskTypeCode=='10'){
+				riskTypeCode='丧失还款类';
+			}else if(riskTypeCode=='13'){
+				riskTypeCode='用途虚假类';
+			}else if(riskTypeCode=='19'){
+				riskTypeCode='其他';
+			}
+ 			}}	
+			<tr>
+				<td>{{ buApplicationId }}</td>
+				<td>{{ orgName }}</td>
+				<td>{{ riskItemTypeCode }}</td> 
+				<td>{{ riskItemValue }}</td> 
+				<td>{{ riskTypeCode }}</td>
+				<td>{{ riskDetail }}</td>
+				<td>{{ riskTime }}</td>
+				<td>{{ createTime }}</td>
+				<td>{{ remark }}</td>
+			</tr>
+			{{# }); }}
+		</script>
+</body>
+
+</html>

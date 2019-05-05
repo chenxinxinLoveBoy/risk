@@ -1,0 +1,347 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.shangyong.backend.dao.ScBanControlDao">
+
+	<resultMap type="com.shangyong.backend.entity.ScBanControl" id="scBanControlinfoMap">
+		<id property="banControlId" column="ban_control_id" javaType="java.lang.Integer"></id>
+		<result property="banCode" column="ban_code" javaType="java.lang.String"></result>
+		<result property="ruleName" column="rule_name" javaType="java.lang.String"></result>
+		<result property="creditType" column="credit_type" javaType="java.lang.String"></result>
+		<result property="banControlTplId" column="ban_control_tpl_id" javaType="java.lang.String"></result>
+		<result property="banTplName" column="ban_tpl_name" javaType="java.lang.String"></result>
+		<result property="ruleDetail" column="rule_detail" javaType="java.lang.String"></result>
+		<result property="ruleComparisonValue" column="rule_comparison_value" javaType="java.lang.String"></result>
+		<result property="ruleComparisonType" column="rule_comparison_type" javaType="java.lang.String"></result>
+	    <result property="ifRefuse" column="if_refuse" javaType="java.lang.String"></result>
+		<result property="state" column="state" javaType="java.lang.String"></result>
+		<result property="validateRule" column="validate_rule" javaType="java.lang.String"></result>
+		<result property="version" column="version" javaType="java.lang.Integer"></result>
+		<result property="createTime" column="create_time" javaType="java.lang.String"></result>
+		<result property="createMan" column="create_man" javaType="java.lang.String"></result>
+		<result property="modifyTime" column="modify_time" javaType="java.lang.String"></result>
+		<result property="modifyMan" column="modify_man" javaType="java.lang.String"></result>
+		<result property="remark" column="remark" javaType="java.lang.String"></result>
+		<result property="createName" column="create_name" javaType="java.lang.String"></result>
+		<result property="modifyName" column="modify_name" javaType="java.lang.String"></result>
+	</resultMap>
+
+	<!-- 通用查询结果列-->
+	<sql id="Base_Column_List">
+		ban_control_id,	ban_code,	rule_name,ban_control_tpl_id,	credit_type, rule_detail,	rule_comparison_value,	rule_comparison_type,	if_refuse,state,	validate_rule,	version,	create_time,	create_man,	modify_time,	modify_man,	remark,create_name,modify_name
+	</sql>
+
+	<!-- 查询（根据主键ID查询） -->
+	<select id="selectByPrimaryKey" resultMap="scBanControlinfoMap" parameterType="java.lang.Integer">
+		 SELECT
+		 <include refid="Base_Column_List" />
+		 FROM sc_ban_control
+		 WHERE ban_control_id = #{banControlId}
+	</select>
+
+    <select id="queryByBanCode" resultMap="scBanControlinfoMap" parameterType="java.lang.String">
+		 SELECT
+		 <include refid="Base_Column_List" />
+		 FROM sc_ban_control
+		 WHERE ban_code = #{banCode}
+	</select>
+	
+	<select id="queryByBanCodeAndId" resultMap="scBanControlinfoMap" >
+		 SELECT
+		 <include refid="Base_Column_List" />
+		 FROM sc_ban_control
+		 WHERE ban_code = #{banCode}
+		 and ban_control_tpl_id=#{defaultFraudTemplateId} limit 1
+	</select>
+
+    <select id="queryByBanCodeAndTplId" resultMap="scBanControlinfoMap">
+		 SELECT
+		 <include refid="Base_Column_List" />
+		 FROM sc_ban_control
+		 WHERE ban_code = #{banCode} and ban_control_tpl_id = #{tplId}
+	</select>
+
+	<!-- 查询  -->
+	<select id="getAll" resultMap="scBanControlinfoMap"  parameterType="com.shangyong.backend.entity.ScBanControl">
+		 SELECT
+		ban.ban_control_id
+		 ,ban.ban_code
+		 ,ban.rule_name
+		 ,ban.ban_control_tpl_id
+		 ,ban.credit_type
+		 ,ban.rule_detail
+		 ,ban.rule_comparison_value
+		 ,ban.rule_comparison_type
+		 ,ban.if_refuse
+		 ,ban.state
+		 ,ban.validate_rule
+		 ,ban.version
+		 ,ban.create_time
+		 ,ban.create_man
+		 ,ban.modify_time
+		 ,ban.modify_man
+		 ,ban.remark
+		 ,ban.create_name
+		 ,ban.modify_name 
+		 ,tpl.ban_tpl_name
+		 FROM sc_ban_control ban left join sc_ban_control_tpl tpl on ban.ban_control_tpl_id = tpl.ban_control_tpl_id
+		  <where>
+ 			<if test="banCode != null and banCode != '' ">
+				  ban.ban_code = #{banCode}
+			</if>
+			<if test="ruleName != null and ruleName != '' ">
+			 	and instr(ban.rule_name, #{ruleName}) > 0
+			</if>
+			<if test="creditType != null and creditType != '' ">
+				and ban.credit_type = #{creditType}
+			</if>
+			<if test="state != null and state != '' ">
+				and ban.state = #{state}
+			</if>
+			<if test="ifRefuse != null and ifRefuse != '' ">
+				and ban.if_refuse = #{ifRefuse}
+			</if>
+			<if test="banControlTplId != null and banControlTplId != '' ">
+				and ban.ban_control_tpl_id = #{banControlTplId}
+			</if>
+		</where>
+		order by ban.ban_code ASC
+<!-- 		LIMIT #{pageIndex},#{pageSize} -->
+	</select>
+	
+	<!-- 查询  -->
+	<select id="queryAll" resultMap="scBanControlinfoMap"  parameterType="java.lang.Integer">
+		 SELECT
+		 <include refid="Base_Column_List" />
+		 FROM sc_ban_control
+	</select>
+	
+	<!-- 查询  -->
+	<select id="listAllCount" resultType="java.lang.Integer">
+		 SELECT count(1)
+		 FROM sc_ban_control ban left join sc_ban_control_tpl tpl on ban.ban_control_tpl_id = tpl.ban_control_tpl_id
+		  <where>
+ 			<if test="banCode != null and banCode != '' ">
+				  ban.ban_code = #{banCode}
+			</if>
+			<if test="ruleName != null and ruleName != '' ">
+			 	and instr(ban.rule_name, #{ruleName}) > 0
+			</if>
+			<if test="creditType != null and creditType != '' ">
+				and ban.credit_type = #{creditType}
+			</if>
+			<if test="state != null and state != '' ">
+				and ban.state = #{state}
+			</if>
+			<if test="ifRefuse != null and ifRefuse != '' ">
+				and ban.if_refuse = #{ifRefuse}
+			</if>
+			<if test="banControlTplId != null and banControlTplId != '' ">
+				and ban.ban_control_tpl_id = #{banControlTplId}
+			</if>
+		</where>
+ 	</select>
+
+
+	<!--删除：根据主键ID删除-->
+	<delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+		 DELETE FROM sc_ban_control
+		 WHERE ban_control_id = #{banControlId}
+	</delete>
+
+	<!-- 添加 -->
+	<insert id="insertSelective" parameterType="com.shangyong.backend.entity.ScBanControl"  useGeneratedKeys="true" keyProperty="banControlId">
+		 INSERT INTO sc_ban_control
+ 		(ban_control_id,ban_code,ban_control_tpl_id,rule_name,credit_type,rule_detail,rule_comparison_value,rule_comparison_type,if_refuse,state,validate_rule,version,create_time,create_man,modify_time,modify_man,remark,create_name,modify_name ) 
+		 VALUES 
+ 		(#{banControlId},#{banCode},#{banControlTplId},#{ruleName},#{creditType},#{ruleDetail},#{ruleComparisonValue},#{ruleComparisonType},#{ifRefuse},#{state},#{validateRule},#{version},#{createTime},#{createMan},#{modifyTime},#{modifyMan},#{remark},#{createName},#{modifyName}) 
+	</insert>
+
+	<!-- 修 改-->
+	<update id="updateByPrimaryKeySelective" parameterType="com.shangyong.backend.entity.ScBanControl">
+		 UPDATE sc_ban_control
+ 		 <set> 
+				 version = version+1,
+			<if test="banCode != null">
+				 ban_code = #{banCode},
+			</if>
+			<if test="ruleName != null">
+				 rule_name = #{ruleName},
+			</if>
+			<if test="creditType != null">
+				 credit_type = #{creditType},
+			</if>
+			<if test="ruleDetail != null">
+				 rule_detail = #{ruleDetail},
+			</if>
+			<if test="ruleComparisonValue != null">
+				 rule_comparison_value = #{ruleComparisonValue},
+			</if>
+			<if test="ruleComparisonType != null">
+				 rule_comparison_type = #{ruleComparisonType},
+			</if>
+			<if test="ifRefuse != null">
+				 if_refuse = #{ifRefuse},
+			</if>
+			<if test="state != null">
+				 state = #{state},
+			</if>
+			<if test="validateRule != null">
+				 validate_rule = #{validateRule},
+			</if>
+			<if test="createTime != null">
+				 create_time = #{createTime},
+			</if>
+			<if test="createMan != null">
+				 create_man = #{createMan},
+			</if>
+			<if test="modifyTime != null">
+				 modify_time = #{modifyTime},
+			</if>
+			<if test="modifyMan != null">
+				 modify_man = #{modifyMan},
+			</if>
+			<if test="remark != null">
+				 remark = #{remark},
+			</if>
+            <if test="createName != null">
+				 create_name = #{createName},
+			</if>
+			<if test="modifyName != null">
+				 modify_name = #{modifyName}
+			</if>
+ 		 </set>
+		 WHERE ban_control_id = #{banControlId} 
+		 		and version = #{version}
+
+	</update>
+	
+	<!-- 循环添加 -->
+	<insert id="saveListEntity" parameterType="java.util.List">
+	 INSERT INTO sc_ban_control
+ 		(ban_code,rule_name,credit_type,ban_control_tpl_id,rule_detail,rule_comparison_value,rule_comparison_type,if_refuse,state,validate_rule,version,create_time,create_man,modify_time,modify_man,remark,create_name,modify_name ) 
+		 VALUES 
+		  <foreach collection="list" item="item" index="index" separator="," >
+ 		(#{item.banCode},#{item.ruleName},#{item.creditType},#{item.banControlTplId},#{item.ruleDetail},#{item.ruleComparisonValue},#{item.ruleComparisonType},#{item.ifRefuse},#{item.state},#{item.validateRule},#{item.version},#{item.createTime},#{item.createMan},#{item.modifyTime},#{item.modifyMan},#{item.remark},#{item.createName},#{item.modifyName})
+		</foreach> 
+	</insert>
+	
+	<!-- 查询模板  --> 
+ 	<select id="listAllTemplateCount" resultType="java.lang.Integer" parameterType="java.util.Map">
+		 SELECT count(1)  
+ 		 FROM sc_ban_control
+		  <where>
+		  	ban_control_tpl_id = #{defaultTemplates}
+				and ban_code not in (
+				select ban_code
+				from
+				sc_ban_control
+				where ban_control_tpl_id = #{banControlTplId}
+			)
+		  
+ 			<if test="banCode != null and banCode != '' ">
+				and ban_code = #{banCode}
+			</if>
+			<if test="ruleName != null and ruleName != '' ">
+			 	and instr(rule_name, #{ruleName}) > 0
+			</if>
+			<if test="creditType != null and creditType != '' ">
+				and credit_type = #{creditType}
+			</if>
+			<if test="state != null and state != '' ">
+				and state = #{state}
+			</if>
+			<if test="ifRefuse != null and ifRefuse != '' ">
+				and if_refuse = #{ifRefuse}
+			</if>
+
+		</where>
+ 	</select>
+ 	
+ 	<!-- 查询模板 分页 -->  
+ 	 <select id="findAllTemplate" resultMap="scBanControlinfoMap" 	parameterType="java.util.Map">
+		SELECT
+		<include refid="Base_Column_List" />
+		FROM sc_ban_control
+		  <where>
+		  	ban_control_tpl_id = #{defaultTemplates}
+				and ban_code not in (
+				select ban_code
+				from
+				sc_ban_control
+				where ban_control_tpl_id = #{banControlTplId}
+			)
+		  
+ 			<if test="banCode != null and banCode != '' ">
+				and ban_code = #{banCode}
+			</if>
+			<if test="ruleName != null and ruleName != '' ">
+			 	and instr(rule_name, #{ruleName}) > 0
+			</if>
+			<if test="creditType != null and creditType != '' ">
+				and credit_type = #{creditType}
+			</if>
+			<if test="state != null and state != '' ">
+				and state = #{state}
+			</if>
+			<if test="ifRefuse != null and ifRefuse != '' ">
+				and if_refuse = #{ifRefuse}
+			</if>
+
+		</where>
+
+	 </select>
+	 
+	 <!-- 查询当前模板信息 分页 -->  
+ 	 <select id="findTemplate" resultMap="scBanControlinfoMap" 	parameterType="com.shangyong.backend.entity.ScBanControl">
+		SELECT
+		<include refid="Base_Column_List" />
+		FROM sc_ban_control
+		  <where>
+				  ban_control_tpl_id = #{banControlTplId}
+ 			<if test="banCode != null and banCode != '' ">
+				and ban_code = #{banCode}
+			</if>
+			<if test="ruleName != null and ruleName != '' ">
+			 	and instr(rule_name, #{ruleName}) > 0
+			</if>
+			<if test="creditType != null and creditType != '' ">
+				and credit_type = #{creditType}
+			</if>
+			<if test="state != null and state != '' ">
+				and state = #{state}
+			</if>
+			<if test="ifRefuse != null and ifRefuse != '' ">
+				and if_refuse = #{ifRefuse}
+			</if>
+		</where>
+		
+		order by create_time desc 
+   		<!-- LIMIT #{pageIndex},#{pageSize}  -->
+	 </select>
+		 
+	<!-- 查询当前模板信息  --> 
+ 	<select id="listTemplateCount" resultType="java.lang.Integer" parameterType="com.shangyong.backend.entity.ScBanControl">
+		 SELECT count(1)  
+	 		 FROM sc_ban_control 
+		  <where>
+				  ban_control_tpl_id = #{banControlTplId}
+ 			<if test="banCode != null and banCode != '' ">
+				and ban_code = #{banCode}
+			</if>
+			<if test="ruleName != null and ruleName != '' ">
+			 	and instr(rule_name, #{ruleName}) > 0
+			</if>
+			<if test="creditType != null and creditType != '' ">
+				and credit_type = #{creditType}
+			</if>
+			<if test="state != null and state != '' ">
+				and state = #{state}
+			</if>
+			<if test="ifRefuse != null and ifRefuse != '' ">
+				and if_refuse = #{ifRefuse}
+			</if>
+		</where>
+ 	</select>
+  
+</mapper>

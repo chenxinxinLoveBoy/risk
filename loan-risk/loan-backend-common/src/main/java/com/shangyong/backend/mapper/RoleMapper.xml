@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.shangyong.backend.dao.RoleDao" >
+  <resultMap id="BaseResultMap" type="com.shangyong.backend.entity.Role" >
+    <id column="Role_id" property="roleId" jdbcType="INTEGER" />
+    <result column="Role_name" property="roleName" jdbcType="VARCHAR" />
+    <result column="state" property="state" jdbcType="INTEGER" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="create_man" property="createMan" jdbcType="VARCHAR" />
+    <result column="modify_time" property="modifyTime" jdbcType="TIMESTAMP" />
+    <result column="modify_man" property="modifyMan" jdbcType="VARCHAR" />
+    <result column="remark" property="remark" jdbcType="VARCHAR" />
+  </resultMap>
+   
+  <!-- 公用查询字段 --> 
+  <sql id="Base_Column_List" >
+    Role_id as roleId, Role_name as roleName, state, create_time, create_man, modify_time, modify_man, remark
+  </sql>
+  
+  <!-- 公用查询条件 -->
+  <sql id="propertitys_sql">
+  		<where>
+  			<!-- 状态1： 可用 -->
+  			a.state = 1
+  			
+  			<!-- 角色名称 -->
+  			<if test="roleName != null and roleName != ''">
+  				and instr(a.Role_name, #{roleName}) > 0
+  			</if>
+  			<!-- id -->
+  			<if test="roleId != null ">
+  				and a.Role_id = #{roleId}
+  			</if>
+  			
+  		</where>
+  </sql>	
+  
+  
+  
+  <!-- 加载树菜单 -->
+  <select id="getTree" parameterType="com.shangyong.backend.bo.RoleBo" resultType="com.shangyong.backend.bo.ZTree">
+		select 
+			a.Menu_id as id, a.Parent_id as pId, a.Menu_name as name
+			,case when c.role_id =#{roleId} then true else false  end as checked
+			, case when c.role_id =#{roleId} then true else false  end as open
+		from sc_menu a
+		left join sc_menu b on a.parent_id=b.Menu_id
+		left join (select * from sc_role_menu role_menu where role_menu.role_id = #{roleId} ) c on c.menu_id = a.Menu_id
+		where a.Parent_id >=0 
+  </select>
+  
+  <!-- 删除角色拥有的菜单 -->
+  <delete id="deleteTree" parameterType="com.shangyong.backend.bo.RoleBo">
+  	delete from sc_role_menu
+	where role_id = #{roleId}
+  </delete>
+  
+  <!-- 保存所选树节点 -->
+  <insert id="saveTree" parameterType="java.util.Map" >
+  		insert into sc_role_menu (Role_id, Menu_id)
+	    	values (#{roleId,jdbcType=INTEGER}, #{menuId,jdbcType=INTEGER})
+  </insert>
+  
+  
+  <!-- 统计, 用于分页 -->
+  <select id="findAllCount" parameterType="com.shangyong.backend.bo.RoleBo" resultType="int">
+  		select 
+  			count(1)
+  		from sc_role a
+  		<include refid="propertitys_sql"></include>
+  </select>
+  
+  <!-- 统计，统计角色名是否有重复  -->
+  <select id="findRoleNameAllCount" parameterType="com.shangyong.backend.bo.RoleBo" resultType="int">
+  		select 
+  			count(1)
+  		from sc_role a
+  		where   a.Role_name = #{roleName}
+  </select>
+  
+  <!-- 查询所有list -->
+  <select id="findAll" resultType="com.shangyong.backend.bo.RoleBo" parameterType="com.shangyong.backend.bo.RoleBo" >
+    select
+    	<include refid="Base_Column_List" />
+    from sc_role a
+    <include refid="propertitys_sql"></include>
+     order by create_time desc 
+     <if test="pageSize != -1">
+    	 limit #{pageIndex}, #{pageSize}
+     </if>
+  </select>
+  
+  <!-- 查询对象信息 -->
+  <select id="getEntityById" resultType="com.shangyong.backend.bo.RoleBo" parameterType="com.shangyong.backend.bo.RoleBo" >
+    select 
+    	<include refid="Base_Column_List" />
+    from sc_role a
+    <include refid="propertitys_sql"></include>
+  </select>
+  
+  <!-- 删除 -->
+  <delete id="deleteEntity" parameterType="com.shangyong.backend.bo.RoleBo" >
+    delete from sc_role
+    where Role_id = #{roleId,jdbcType=INTEGER}
+  </delete>
+  
+  
+  <!-- 保存 -->
+  <insert id="saveEntity" parameterType="com.shangyong.backend.bo.RoleBo" >
+    insert into sc_role ( Role_name, state, 
+      create_time, create_man, modify_time, 
+      modify_man, remark)
+    values (#{roleName,jdbcType=VARCHAR}, #{state,jdbcType=INTEGER}, 
+     now(), #{createMan,jdbcType=VARCHAR}, now(), 
+      #{modifyMan,jdbcType=VARCHAR}, #{remark,jdbcType=VARCHAR})
+  </insert>
+    
+   
+   <!-- 修改 -->
+  <update id="updateEntity" parameterType="com.shangyong.backend.bo.RoleBo" >
+    update sc_role
+    <set >
+      <if test="roleName != null" >
+        Role_name = #{roleName,jdbcType=VARCHAR},
+      </if>
+      <if test="state != null" >
+        state = #{state,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createMan != null" >
+        create_man = #{createMan,jdbcType=VARCHAR},
+      </if>
+      	<!--  修改时间 -->
+        modify_time = now(),
+        
+      <if test="modifyMan != null" >
+        modify_man = #{modifyMan,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null" >
+        remark = #{remark,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where Role_id = #{roleId,jdbcType=INTEGER}
+  </update>
+ 
+
+</mapper>

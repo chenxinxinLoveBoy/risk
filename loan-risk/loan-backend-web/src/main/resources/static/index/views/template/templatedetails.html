@@ -1,0 +1,167 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<META HTTP-EQUIV="pragma" CONTENT="no-cache">
+<META HTTP-EQUIV="Cache-Control" CONTENT="no-cache, must-revalidate">
+<META HTTP-EQUIV="expires" CONTENT="0">
+<link rel="stylesheet" href="../../plugins/layui/css/layui.css"
+	media="all" />
+<link rel="stylesheet" href="../../css/global.css" media="all">
+<link rel="stylesheet"
+	href="../../plugins/font-awesome/css/font-awesome.min.css">
+<link rel="stylesheet" href="../../css/table.css" />
+<!-- js -->
+
+<script src="../../jqery/jquery.js"></script>
+<script src="../../../commons/base.js"></script>
+<script type="text/javascript" src="../../plugins/layui/layui.js"></script>
+<script type="text/javascript"
+	src="../../js/template/templatedetails.js"></script>
+</head>
+
+<body>
+	<div style="margin: 30px;">
+		<form class="layui-form" id="userForms">
+		<input type="hidden" id="banControlId" name="banControlId" value="">
+			<div class="layui-form-item">
+				<label class="layui-form-label" style="width: 150px">禁止项规则对应编号</label>
+				<div class="layui-input-block">
+					<input id="banCode" type="text" name="banCode"
+						placeholder="禁止项模板名称 " style="width: 200px" autocomplete="off"
+						class="layui-input">
+				</div>
+			</div>
+
+			<div class="layui-form-item">
+				<label class="layui-form-label" style="width: 150px">禁止项规则名称</label>
+				<div class="layui-input-block">
+					<input id="ruleName" type="text" name="ruleName"
+						placeholder="禁止项规则名称" style="width: 200px" class="layui-input">
+				</div>
+			</div>
+
+			<div class="layui-form-item">
+				<label class="layui-form-label" style="width: 150px">征信机构类型</label>
+				<div class="layui-input-block">
+					<input id="creditType" type="text" name="creditType"
+						placeholder="征信机构类型" style="width: 200px" class="layui-input">
+				</div>
+			</div>
+
+			<div class="layui-form-item">
+				<label class="layui-form-label" style="width: 150px">禁止项规则明细</label>
+				<div class="layui-input-block">
+					<input id="ruleDetail" type="text" name="ruleDetail"
+						placeholder="禁止项规则明细" style="width: 200px" class="layui-input">
+				</div>
+			</div>
+
+			<div class="layui-form-item">
+				<label class="layui-form-label" style="width: 150px">禁止项规则技术比对值</label>
+				<div class="layui-input-block">
+					<input id="ruleDetail" type="text" name="ruleDetail"
+						placeholder="禁止项规则技术比对值" style="width: 200px" class="layui-input">
+				</div>
+			</div>
+
+			<div class="layui-form-item">
+				<label class="layui-form-label" style="width: 150px">技术比对值类型</label>
+				<div class="layui-input-block">
+					<input id="ruleComparisonType" type="text"
+						name="ruleComparisonType" placeholder="技术比对值类型"
+						style="width:200px" class="layui-input">
+				</div>
+			</div>
+			 
+			<div class="layui-form-item">
+			    <label class="layui-form-label" style="width:150px">是否添加拒绝名单</label>
+			    <div class="layui-input-block" style="width:200px">
+			    	<input name="ifRefuse" value="0" title="有效" type="radio"    lay-filter="radio_filter" id="ifRefuse" />
+			    	<input name="ifRefuse" value="1" title="失效" type="radio"    lay-filter="radio_filter" id="ifRefuse2" />
+			    </div>
+			  </div>
+			  
+			  <div class="layui-form-item">
+			    <label class="layui-form-label" style="width:150px">状态</label>
+			    <div class="layui-input-block" style="width:200px">
+			    	<input name="state" value="01" title="有效" type="radio"    lay-filter="radio_filter" id="state" />
+			    	<input name="state" value="02" title="失效" type="radio"    lay-filter="radio_filter" id="state2" />
+			    </div>
+			  </div>
+
+			<div class="layui-form-item">
+				<label class="layui-form-label" style="width: 150px">技术校验规则</label>
+				<div class="layui-input-block">
+					<input id="validateRule" type="text" name="validateRule"
+						placeholder="技术校验规则" style="width: 200px" class="layui-input">
+				</div>
+			</div>
+
+			<div class="layui-form-item">
+				<label class="layui-form-label" style="width: 150px">版本编号</label>
+				<div class="layui-input-block">
+					<input id="version" type="text" name="version" placeholder="版本编号"
+						style="width: 500px" class="layui-input">
+				</div>
+			</div>
+
+			<div class="layui-form-item">
+				<label class="layui-form-label" style="width: 150px">创建时间</label>
+				<div class="layui-input-block">
+					<input id="createTime" type="text" name="createTime"
+						placeholder="创建时间" style="width: 200px" class="layui-input">
+				</div>
+			</div>
+
+			<div class="layui-form-item">
+				<label class="layui-form-label" style="width: 150px">创建人</label>
+				<div class="layui-input-block">
+					<input id="createMan" type="text" name="createMan"
+						placeholder="创建人" style="width: 200px" class="layui-input">
+				</div>
+			</div>
+
+			<div class="layui-form-item">
+				<label class="layui-form-label" style="width: 150px">创建人姓名</label>
+				<div class="layui-input-block">
+					<input id="createName" type="text" name="createName"
+						placeholder="创建人姓名" style="width: 200px" class="layui-input">
+				</div>
+			</div>
+
+			<div class="layui-form-item">
+				<label class="layui-form-label" style="width: 150px">修改时间</label>
+				<div class="layui-input-block">
+					<input id="modifyTime" type="text" name="modifyTime"
+						placeholder="修改时间" style="width: 200px" class="layui-input">
+				</div>
+			</div>
+
+			<div class="layui-form-item">
+				<label class="layui-form-label" style="width: 150px">修改人</label>
+				<div class="layui-input-block">
+					<input id="modifyMan" type="text" name="modifyMan"
+						placeholder="修改人" style="width: 300px" class="layui-input">
+				</div>
+			</div>
+
+			<div class="layui-form-item">
+				<label class="layui-form-label" style="width: 150px">修改人姓名</label>
+				<div class="layui-input-block">
+					<input id="modifyName" type="text" name="modifyName"
+						placeholder="修改人姓名" style="width: 300px" class="layui-input">
+				</div>
+			</div>
+
+			<div class="layui-form-item">
+				<label class="layui-form-label" style="width: 150px">备注</label>
+				<div class="layui-input-block">
+					<input id="remark" type="text" name="remark" placeholder="备注"
+						style="width: 300px" class="layui-input">
+				</div>
+			</div>   
+		</form>
+	</div>
+</body>
+</html>

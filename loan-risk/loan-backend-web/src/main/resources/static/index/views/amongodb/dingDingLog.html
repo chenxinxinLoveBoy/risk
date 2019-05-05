@@ -1,0 +1,94 @@
+﻿<!DOCTYPE html>
+<html>
+	<head>
+	<base target="_Self">
+		<meta charset="UTF-8">
+		<title>钉钉监控平台</title>
+		<link rel="stylesheet" href="../../plugins/layui/css/layui.css" media="all" />
+		<link rel="stylesheet" href="../../css/global.css" media="all">
+		<link rel="stylesheet" href="../../plugins/font-awesome/css/font-awesome.min.css">
+		<link rel="stylesheet" href="../../css/table.css" />
+		<link rel="stylesheet" href="../../css/lzh_login.css" media="all">
+		<script type="text/javascript" src="../../plugins/layui/layui.js"></script>
+		<!-- js -->
+		<script src="../../jqery/jquery.js"></script>
+		<script src="../../../commons/base.js"></script>
+		<!-- 日期控件 -->
+	    <script type="text/javascript" src="../../js/amongodb/dingDingLog.js"></script>
+	    <style type="text/css">
+	    .layui-inline {
+			margin-top:0%;
+		}
+	    </style>
+	</head>
+	<body> 
+			<fieldset class="layui-elem-field">
+				<legend>钉钉消息池</legend><br />
+				<div class="layui-inline">
+				  <label class="layui-form-label" >发送时间:</label>
+		          <div class="layui-input-inline">
+			      <input name="startTime"  lay-verify="startTime" id="startTime" autocomplete="off" class="layui-input"  style="width: 200px; display:inline;">
+			      &nbsp;<span>-</span>&nbsp;
+			      <input name="endTime"  lay-verify="endTime" id="endTime" autocomplete="off" class="layui-input"  style="width: 200px; display:inline;">
+			      </div>
+		        </div>
+		       <!-- <div class="layui-inline">
+			      <label class="layui-form-label" >平台:</label>
+				     <div class="layui-input-inline" style="width:155px;">
+				      <select name="thirdPartyCreditInvestigation" id="thirdPartyCreditInvestigation" class="layui-input">
+				          <option value="0" selected="selected">全部</option>
+				          <option value="1">芝麻信用评分</option>
+				          <option value="2">芝麻信用欺诈清单</option>
+				          <option value="3">同盾贷前审核</option>
+				          <option value="4">聚信立蜜蜂</option>
+				          <option value="5">聚信立蜜罐</option>
+				          <option value="6">芝麻行业清单</option>
+				          <option value="7">白骑士</option>
+				          <option value="8">91征信</option>
+				          <option value="9">91征信回调</option>
+				          <option value="10">索伦</option>
+				          <option value="11">宜信</option>
+				          <option value="12">小视科技</option>
+				          <option value="13">数聚魔盒</option>
+				          <option value="83">MQ其它</option>
+				          <option value="84">JSON文件上传</option>
+				          <option value="85">大数据</option>
+				          <option value="86">客户短信</option>
+				          <option value="87">app应用列表推送</option>
+				          <option value="88">客户通讯录信息</option>
+				          <option value="89">客户通话记录</option>
+				          <option value="90">风控配置项</option>
+				          <option value="91">系统配置项</option>
+				          <option value="92">定时任务配置管理</option>
+				          <option value="93">催收对接</option>
+				          <option value="94">客户信息对接</option>
+				          <option value="95">app对接</option>
+				          <option value="96">审批状态变更</option>
+				          <option value="97">APP状态同步告警</option>
+				          <option value="98">潘多拉后台管理报警</option>
+				          <option value="99">其他报警</option>
+				       </select> 
+			      	</div>
+			    </div> -->
+			 	<a href="#" class="layui-btn layui-btn-small" onclick="findMessage()" style="margin-left: 18px; margin-left: 5%" >搜索</a>
+				<div class="layui-field-box layui-form">
+					<table class="layui-table admin-table">
+						<thead>
+							<tr>
+								<th width="100px" style="text-align: center;">错误信息流水号</th>
+								<th width="70px" style="text-align: center;">IP</th>
+								<th width="50px" style="text-align: center;">错误码</th>
+								<th width="140px" style="text-align: center;">发送时间</th>
+								<th style="text-align: center;">错误信息</th>
+								<th width="60px" style="text-align: center;">级别</th>
+								<th width="70px" style="text-align: center;">发送方式</th>
+								<th width="140px" style="text-align: center;">平台</th>
+							</tr>
+						</thead>
+						<tbody id="content">
+						</tbody>
+					</table>
+				</div>
+			</fieldset> 
+	</body>
+</html>

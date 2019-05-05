@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.shangyong.backend.dao.bqs.BqsSmsInfoServiceDao">
+
+	<resultMap type="com.shangyong.backend.entity.bqs.BqsSmsInfo" id="bqsSmsInfoinfoMap">
+		<id property="bqsSmsInfoId" column="bqs_sms_info_id" javaType="java.lang.String"></id>
+		<result property="bqsPersonalInfoId" column="bqs_personal_info_id" javaType="java.lang.String"></result>
+		<result property="beginTime" column="begin_time" javaType="java.lang.String"></result>
+		<result property="smsType" column="sms_type" javaType="java.lang.String"></result>
+		<result property="amount" column="amount" javaType="java.lang.String"></result>
+		<result property="otherNum" column="other_num" javaType="java.lang.String"></result>
+		<result property="remark" column="remark" javaType="java.lang.String"></result>
+		<result property="createTime" column="create_time" javaType="java.lang.String"></result>
+		<result property="modifyTime" column="modify_time" javaType="java.lang.String"></result>
+		<result property="createMan" column="create_man" javaType="java.lang.String"></result>
+		<result property="modifyMan" column="modify_man" javaType="java.lang.String"></result>
+	</resultMap>
+
+	<!-- 通用查询结果列-->
+	<sql id="Base_Column_List">
+	bqs_sms_info_id,	bqs_personal_info_id,	begin_time,	sms_type,	amount,	other_num,	remark,	create_time,	modify_time,	create_man,	modify_man
+	</sql>
+
+	<!-- 查询（根据主键ID查询） -->
+	<select id="getEntityById" resultMap="bqsSmsInfoinfoMap" parameterType="java.lang.String">
+		 SELECT
+		 <include refid="Base_Column_List" />
+		 FROM bqs_sms_info
+		 WHERE bqs_sms_info_id = #{bqsSmsInfoId}
+	</select>
+
+	<!-- 查询（根据主键ID查询） -->
+	<select id="getAll" resultMap="bqsSmsInfoinfoMap" parameterType="java.lang.String">
+		 SELECT
+		 <include refid="Base_Column_List" />
+		 FROM bqs_sms_info
+	</select>
+
+	<!--删除：根据主键ID删除-->
+	<delete id="deleteEntity" parameterType="java.lang.String">
+		 DELETE FROM bqs_sms_info
+		 WHERE bqs_sms_info_id = #{bqsSmsInfoId}
+	</delete>
+
+	<!-- 添加 -->
+	<insert id="saveEntity" parameterType="com.shangyong.backend.entity.bqs.BqsSmsInfo">
+		 INSERT INTO bqs_sms_info
+ 		(bqs_sms_info_id,bqs_personal_info_id,begin_time,sms_type,amount,other_num,remark,create_time,modify_time,create_man,modify_man) 
+		 VALUES 
+ 		(#{bqsSmsInfoId},#{bqsPersonalInfoId},#{beginTime},#{smsType},#{amount},#{otherNum},#{remark},#{createTime},#{modifyTime},#{createMan},#{modifyMan}) 
+	</insert>
+
+	<!-- 修 改-->
+	<update id="updateEntity" parameterType="com.shangyong.backend.entity.bqs.BqsSmsInfo">
+		 UPDATE bqs_sms_info
+ 		 <set> 
+			<if test="bqsPersonalInfoId != null">
+				 bqs_personal_info_id = #{bqsPersonalInfoId},
+			</if>
+			<if test="beginTime != null">
+				 begin_time = #{beginTime},
+			</if>
+			<if test="smsType != null">
+				 sms_type = #{smsType},
+			</if>
+			<if test="amount != null">
+				 amount = #{amount},
+			</if>
+			<if test="otherNum != null">
+				 other_num = #{otherNum},
+			</if>
+			<if test="remark != null">
+				 remark = #{remark},
+			</if>
+			<if test="createTime != null">
+				 create_time = #{createTime},
+			</if>
+			<if test="modifyTime != null">
+				 modify_time = #{modifyTime},
+			</if>
+			<if test="createMan != null">
+				 create_man = #{createMan},
+			</if>
+			<if test="modifyMan != null">
+				 modify_man = #{modifyMan},
+			</if>
+
+ 		 </set>
+		 WHERE bqs_sms_info_id = #{bqsSmsInfoId}
+	</update>
+
+</mapper>

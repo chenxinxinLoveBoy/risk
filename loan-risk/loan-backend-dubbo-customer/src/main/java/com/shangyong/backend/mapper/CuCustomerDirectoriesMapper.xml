@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.shangyong.backend.dao.CuCustomerDirectoriesDao">
+
+	<resultMap type="com.shangyong.backend.entity.CuCustomerDirectories" id="cuCustomerDirectoriesMap">
+		<id property="directoriesId" column="directories_id" javaType="java.lang.String"></id>
+		<result property="appName" column="app_name" javaType="java.lang.Integer"></result>
+		<result property="customerId" column="customer_id" javaType="java.lang.String"></result>
+		<result property="contactName" column="contact_name" javaType="java.lang.String"></result>
+		<result property="contactPhone" column="contact_phone" javaType="java.lang.String"></result>
+		<result property="createTime" column="create_time" javaType="java.lang.String"></result>
+		<result property="modifyTime" column="modify_time" javaType="java.lang.String"></result>
+		<result property="ifMobile" column="if_mobile" javaType="java.lang.Integer"></result>
+		<result property="districtNumber" column="district_number" javaType="java.lang.String"></result>
+		<result property="directoriesState" column="directories_state" javaType="java.lang.Integer"></result>
+		<result property="extend" column="extend" javaType="java.lang.String"></result>
+	</resultMap>
+
+	<!-- 通用查询结果列-->
+	<sql id="Base_Column_List">
+directories_id,	app_name,	customer_id,	contact_name,	contact_phone,	create_time,	modify_time,	if_mobile,	district_number,	directories_state,	extend
+	</sql>
+
+	<!-- 查询（根据根据customerId和appName查询） -->
+	<select id="findCustomerDirectories" resultMap="cuCustomerDirectoriesMap" parameterType="com.shangyong.backend.entity.CuCustomerDirectories">
+		 SELECT
+		 <include refid="Base_Column_List" />
+		 FROM cu_customer_directories
+		 WHERE app_name = #{appName} and customer_id = #{customerId}
+	</select>
+
+	<!-- 查询（根据主键ID查询） -->
+	<select id="getEntityById" resultMap="cuCustomerDirectoriesMap" parameterType="java.lang.String">
+		 SELECT
+		 <include refid="Base_Column_List" />
+		 FROM cu_customer_directories
+		 WHERE directories_id = #{directoriesId}
+	</select>
+
+	<!-- 查询（根据主键ID查询） -->
+	<select id="findAll" resultMap="cuCustomerDirectoriesMap" parameterType="java.lang.String">
+		 SELECT
+		 <include refid="Base_Column_List" />
+		 FROM cu_customer_directories
+		 WHERE directories_id = #{id}
+	</select>
+
+	<!--删除：根据主键ID删除-->
+	<delete id="deleteEntity" parameterType="java.lang.String">
+		 DELETE FROM cu_customer_directories
+		 WHERE directories_id = #{directoriesId}
+	</delete>
+	
+	<!-- 批量添加 -->
+	<insert id="saveAllEntity">
+		 INSERT INTO cu_customer_directories
+ 		(directories_id,app_name,customer_id,contact_name,contact_phone,create_time,modify_time,if_mobile,district_number,directories_state,extend) 
+		 VALUES 
+ 	    <foreach collection="list" item="item" index="index" separator="," >  
+ 		(#{item.directoriesId},#{item.appName},#{item.customerId},#{item.contactName},#{item.contactPhone},#{item.createTime},#{item.modifyTime},#{item.ifMobile},#{item.districtNumber},#{item.directoriesState},#{item.extend}) 
+	    </foreach>  
+	</insert>
+	
+	<!-- 添加 -->
+	<insert id="saveEntity" parameterType="com.shangyong.backend.entity.CuCustomerDirectories">
+		 INSERT INTO cu_customer_directories
+ 		(directories_id,app_name,customer_id,contact_name,contact_phone,create_time,modify_time,if_mobile,district_number,directories_state,extend) 
+		 VALUES 
+ 		(#{directoriesId},#{appName},#{customerId},#{contactName},#{contactPhone},#{createTime},#{modifyTime},#{ifMobile},#{districtNumber},#{directoriesState},#{extend}) 
+	</insert>
+
+	<!-- 修 改-->
+	<update id="updateEntity" parameterType="com.shangyong.backend.entity.CuCustomerDirectories">
+		 UPDATE cu_customer_directories
+ 		 <set> 
+			<if test="appName != null">
+				 app_name = #{appName},
+			</if>
+			<if test="customerId != null">
+				 customer_id = #{customerId},
+			</if>
+			<if test="contactName != null">
+				 contact_name = #{contactName},
+			</if>
+			<if test="contactPhone != null">
+				 contact_phone = #{contactPhone},
+			</if>
+			<if test="createTime != null">
+				 create_time = #{createTime},
+			</if>
+			<if test="modifyTime != null">
+				 modify_time = #{modifyTime},
+			</if>
+			<if test="ifMobile != null">
+				 if_mobile = #{ifMobile},
+			</if>
+			<if test="districtNumber != null">
+				 district_number = #{districtNumber},
+			</if>
+			<if test="directoriesState != null">
+				 directories_state = #{directoriesState},
+			</if>
+			<if test="extend != null">
+				 extend = #{extend},
+			</if>
+ 		 </set>
+		 WHERE directories_id = #{directoriesId}
+	</update>
+
+</mapper>

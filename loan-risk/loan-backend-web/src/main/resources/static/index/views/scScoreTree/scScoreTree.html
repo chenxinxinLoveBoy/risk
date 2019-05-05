@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<HTML>
+<HEAD>
+	<TITLE>欺诈分树形图</TITLE>
+	<META HTTP-EQUIV="pragma" CONTENT="no-cache">
+	<META HTTP-EQUIV="Cache-Control" CONTENT="no-cache, must-revalidate">
+	<META HTTP-EQUIV="expires" CONTENT="0">
+	<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+	<!-- ztree   start-->
+	<link rel="stylesheet" href="../../zTree_v3/css/demo.css" type="text/css">
+	<link rel="stylesheet" href="../../zTree_v3/css/zTreeStyle/zTreeStyle.css" type="text/css">
+	<script type="text/javascript" src="../../zTree_v3/js/jquery-1.4.4.min.js"></script>
+	<script type="text/javascript" src="../../zTree_v3/js/jquery.ztree.core.js"></script>
+	<script type="text/javascript" src="../../zTree_v3/js/jquery.ztree.excheck.js"></script>
+	<!-- ztree   end-->
+	
+	
+	
+	<link rel="stylesheet" href="../../plugins/layui/css/layui.css" media="all" />
+	<link rel="stylesheet" href="../../css/global.css" media="all">
+	<link rel="stylesheet" href="../../plugins/font-awesome/css/font-awesome.min.css">
+	<link rel="stylesheet" href="../../css/table.css" />
+	<link rel="stylesheet" href="../../css/lzh_xy_gl.css" media="all" />
+	<!-- JS -->
+	<script type="text/javascript" src="../../plugins/layui/layui.js"></script>
+	<script src="../../../commons/base.js"></script>
+	<script type="text/javascript" src="../../js/scScoreTree/scScoreTree.js"></script>
+</HEAD>
+
+<BODY>
+<h1><font id="roleName" color="#FF0033"></font></h1>
+<!-- <h6>[ 文件路径: excheck/checkbox.html ]</h6> -->
+<div style="position:relative;">
+	<div class="zTreeDemoBackground left" style="width:200px;float:left;padding:0 200px 0 0">
+	   <font style="margin-left: 30px;">信用评分树形图列表</font>
+		<ul id="treeDemo" class="ztree" style="height:700px;width:360px;margin-left: 30px;margin-top: -2px;"></ul>
+	</div>
+	
+	<div class="admin-main" style="width:800px;float:left;" id="getScScoreBig">
+		<fieldset class="layui-elem-field">
+ 			<div class="layui-field-box layui-form">
+				<table class="layui-table admin-table"  style="word-break: keep-all;overflow:auto;">
+					<thead>
+						<tr>
+						    <th>评分卡大类序号</th>
+							<th>评分项名称</th>
+							<th>评分项规则大类编号</th>
+							<th>征信机构类型</th>
+							<th>评分项规则明细</th>
+							<th>状态</th>
+							<th>权重</th>
+							<th>版本编号</th>
+							<th>创建人姓名</th>
+							<th>修改人姓名</th>
+							<th style="min-width: 150px;">创建时间</th>
+							<th style="min-width: 150px;">修改时间</th>
+ 							<th style="min-width: 150px;">备注</th>
+							<th>操作</th>
+						</tr>
+					</thead>
+					<tbody id="content">
+					</tbody>
+				</table>
+				<label>共<font color='red' id="count_page_number"></font>条记录</label>
+ 			</div>
+		</fieldset>
+	</div>
+	
+	
+	
+  <div class="admin-main" style="width:800px;float:left;" id="getScScore">
+		<fieldset class="layui-elem-field">
+ 			<div class="layui-field-box layui-form">
+				<table class="layui-table admin-table"  style="word-break: keep-all;overflow:auto;">
+					<thead>
+						<tr>
+							<th>评分模板名称</th>
+							<th>评分卡小类序号</th>
+							<th>评分卡大类编号</th>
+							<th>评分卡大类规则名称</th>
+							<th>评分项小类规则名称</th>
+							<th>评分项规则小类编号</th>
+							<th>评分项规则技术比对值</th>
+							<th>分值</th>
+							<th>权重</th>
+							<th>技术比对值类型</th>
+							<th>技术校验规则</th>
+							<th>状态</th>
+							<th>版本编号</th>
+							<th>创建人姓名</th>
+							<th>修改人姓名</th>
+							<th style="min-width: 150px;">创建时间</th>
+							<th style="min-width: 150px;">修改时间</th>
+ 							<th>备注</th>
+							<th>操作</th>
+ 						</tr>
+					</thead>
+					<tbody id="content1">
+					</tbody>
+				</table>
+				<label>共<font color='red' id="count_page_number1"></font>条记录</label>
+			</div>
+		</fieldset>
+	</div>
+	
+</div>
+
+
+	<!--模板-->
+	<script type="text/html" id="tpl">
+			{{# layui.each(d.list, function(index, item){ }}
+			<tr>
+				 <td>{{ item.scoreBigId }}</td>
+                <td><p style="white-space: normal!important;text-overflow: ellipsis;word-wrap: break-word;-webkit-line-clamp: 2;-webkit-box-orient: vertical;">{{ item.scoreName }}</p></td>
+				<td>{{ item.scoreBigCode }}</td>
+
+                {{# if(item.creditType == '01'){ }}
+				<td>同盾</td>
+				{{# } else  if(item.creditType == '02') { }}
+				<td>聚信立蜜蜂</td>
+                {{# } else  if(item.creditType == '03') { }}
+                <td>聚信立蜜罐</td>
+                {{# } else  if(item.creditType == '04') { }}
+                <td> 芝麻信用</td>
+                {{# } else  if(item.creditType == '05') { }}
+                <td> 91征信</td>
+                {{# } else  if(item.creditType == '06') { }}
+                <td> 宜信</td>
+                {{# } else  if(item.creditType == '07') { }}
+                <td> 中智诚</td>
+                {{# } else  { }}
+				<td> </td>
+				{{# } }}
+
+                <td><p style="white-space: normal!important;text-overflow: ellipsis;word-wrap: break-word;-webkit-line-clamp: 2;-webkit-box-orient: vertical;">{{ item.scoreRuleDetail}}</p></td>
+
+                {{# if(item.state == '01'){ }}
+				<td>生效</td>
+                {{# } else if(item.state == '02') { }}
+                <td>失效</td>
+				{{# } else  { }}
+				<td></td>
+				{{# } }}
+<td>{{ item.percent }}</td>
+                <td>{{ item.version }}</td>
+				<td>{{ item.createName }}</td>
+                <td>{{ item.modifyName }}</td>
+ 				<td>{{ item.createTime.substring(0, 19) }}</td>
+                <td>{{ item.modifyTime.substring(0, 19) }}</td>
+				<td><p style="white-space: normal!important;text-overflow: ellipsis;word-wrap: break-word;-webkit-line-clamp: 2;-webkit-box-orient: vertical;">{{ item.remark }}</p></td>
+				<td style="white-space: nowrap;">
+					<a href="javascript:;" data-id="{{ item.scoreBigId }}" data-opt="add" class="layui-btn layui-btn-mini">新增小类</a>
+                    <a href="javascript:;" data-id="{{ item.scoreBigId }}" data-opt="get" class="layui-btn layui-btn-mini">查看小类</a>
+ 					<a href="javascript:;" data-id="{{ item.scoreBigId }}" data-opt="edit" class="layui-btn layui-btn-mini">编辑</a>
+ 				</td>
+			</tr>
+			{{# }); }}
+		</script>
+		
+		
+		
+		
+		<!--模板-->
+	<script type="text/html" id="tpll">
+			 {{# layui.each(d.list, function(index, item){ }}
+			<tr>
+				<td>{{ item.score_tpl_name }}</td>
+				<td>{{ item.score_small_id }}</td>
+                <td>{{ item.score_big_code }}</td>
+                <td><p style="white-space: normal!important;text-overflow: ellipsis;word-wrap: break-word;-webkit-line-clamp: 2;-webkit-box-orient: vertical;">{{ item.score_name }}</p></td>
+				<td><p style="white-space: normal!important;text-overflow: ellipsis;word-wrap: break-word;-webkit-line-clamp: 2;-webkit-box-orient: vertical;">{{ item.score_rule_name }}</p></td>
+                <td>{{ item.score_small_code}}</td>
+
+				<td><p style="white-space: normal!important;text-overflow: ellipsis;word-wrap: break-word;-webkit-line-clamp: 2;-webkit-box-orient: vertical;">{{ item.rule_score_value }}</p></td>
+				<td>{{ item.score }}</td>	
+<td>{{ item.percent}}</td>
+                {{# if(item.rule_comparison_type == '01'){ }}
+				<td>数值</td>
+				{{# } else  if(item.rule_comparison_type == '02') { }}
+				<td>字符</td>
+                {{# } else  if(item.rule_comparison_type == '03') { }}
+                <td>集合</td>
+                {{# } else  { }}
+				<td> </td>
+				{{# } }}
+
+                {{# if(item.validate_rule == '0101'){ }}
+				<td>小于</td>
+				{{# } else  if(item.validate_rule == '0102') { }}
+				<td>小于等于</td>
+                {{# } else  if(item.validate_rule == '0103') { }}
+                <td>等于</td>
+                {{# } else  if(item.validate_rule == '0104') { }}
+                <td>大于</td>
+                {{# } else  if(item.validate_rule == '0105') { }}
+                <td>大于等于</td>
+                {{# } else  if(item.validate_rule == '0106') { }}
+                <td>大于开始值小于结束值</td>
+                {{# } else  if(item.validate_rule == '0107') { }}
+                <td>大于等于开始值小于等于结束值</td>
+                {{# } else  if(item.validate_rule == '0108') { }}
+                <td>大于等于开始值小于结束值</td>
+                {{# } else  if(item.validateRule == '0109') { }}
+                <td>大于开始值小于等于结束值</td>
+                {{# } else  if(item.validate_rule == '0201') { }}
+				<td>数据一致</td>
+                {{# } else  if(item.validate_rule == '0202') { }}
+                <td>不为空且不为null</td>
+                {{# } else  if(item.validate_rule == '0203') { }}
+                <td>为空或为null</td>
+                {{# } else  if(item.validate_rule == '0204') { }}
+                <td>规则在结果中存在</td>
+                {{# } else  if(item.validate_rule == '0205') { }}
+                <td>规则在结果中不存在</td>
+                {{# } else  if(item.validate_rule == '0206') { }}
+                <td>数据不一致</td>
+                {{# } else  if(item.validate_rule == '0301') { }}
+                <td>集合不为null且size大于0</td>
+                {{# } else  if(item.validate_rule == '0302') { }}
+                <td>集合为null或size小于1）</td>
+                {{# } else  { }}
+				<td> </td>
+				{{# } }}
+
+                {{# if(item.state == '01'){ }}
+				<td>生效</td>
+                {{# } else if(item.state == '02') { }}
+                <td>失效</td>
+				{{# } else  { }}
+				<td></td>
+				{{# } }}
+
+                <td>{{ item.version }}</td>
+
+                {{# if(item.create_name != null || item.create_name != undefined){ }}
+  				<td>{{ item.create_name }}</td>
+				{{# } else  { }}
+				<td></td>
+				{{# } }}
+
+  				{{# if(item.modify_name != null || item.modify_name != undefined){ }}
+  				<td>{{ item.modify_name }}</td>
+				{{# } else  { }}
+				<td></td>
+				{{# } }}
+ 
+				{{# if(item.create_time != null || item.create_time != undefined){ }}
+				{{# var createTime = (item.create_time.year+1900)+" - "+(item.create_time.month+1)+" - "+item.create_time.date +" "+item.create_time.hours+":"+item.create_time.minutes+":"+item.create_time.seconds }}
+ 				<td>{{ createTime }}</td>
+				{{# } else  { }}
+				<td></td>
+				{{# } }}
+
+				{{# if(item.modify_time != null || item.modify_time != undefined){ }}
+				{{# var modifyTime = (item.modify_time.year+1900)+" - "+(item.modify_time.month+1)+" - "+item.modify_time.date +" "+item.modify_time.hours+":"+item.modify_time.minutes+":"+item.modify_time.seconds }}
+ 				<td>{{ modifyTime }}</td>
+				{{# } else  { }}
+				<td></td>
+				{{# } }}
+
+				<td><p style="white-space: normal!important;text-overflow: ellipsis;word-wrap: break-word;-webkit-line-clamp: 2;-webkit-box-orient: vertical;">{{ item.remark }}</p></td>
+				<td  style="white-space: nowrap;">
+ 					<a href="javascript:;" data-id="{{ item.score_small_id }}" data-opt="edit" class="layui-btn layui-btn-mini">编辑</a>
+ 					<a href="javascript:;" data-id="{{ item.score_small_id }}" data-tplid="{{ item.score_tpl_id }}"data-state="{{ item.state }}" data-version="{{ item.version }}"  data-opt="update" class="layui-btn layui-btn-mini">修改状态</a>
+ 				</td>
+ 			</tr>
+			{{# }); }}
+		</script>
+</BODY>
+</HTML>

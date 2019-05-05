@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<META HTTP-EQUIV="pragma" CONTENT="no-cache">
+<META HTTP-EQUIV="Cache-Control" CONTENT="no-cache, must-revalidate">
+<META HTTP-EQUIV="expires" CONTENT="0">
+<!-- <title>Insert title here</title> -->
+</head>
+		<!-- css -->
+		<link rel="stylesheet" href="../../plugins/layui/css/layui.css" media="all" />
+		<link rel="stylesheet" href="../../css/global.css" media="all">
+		<link rel="stylesheet" href="../../plugins/font-awesome/css/font-awesome.min.css">
+		<link rel="stylesheet" href="../../css/table.css" />
+
+		<!-- JS -->
+		<script type="text/javascript" src="../../plugins/layui/layui.js"></script>
+		<script src="../../jqery/jquery.js"></script>
+		<script type="text/javascript" src="../../../commons/base.js"></script>
+		<script type="text/javascript" src="../../js/scScoreSmall/scScoreSmall_add.js"></script>
+		<!-- 日期控件 -->
+	<script language="javascript" type="text/javascript" src="../../My97DatePicker/WdatePicker.js"></script>
+		
+<body>
+	<div style="margin: 15px;">
+	<form class="layui-form" id="userForms" >
+		<div class="layui-form-item" >
+			<label class="layui-form-label" style="width:150px">评分卡大类序号</label>
+			<div class="layui-input-inline" style="width:500px"> 
+				<input id="scoreSmallId" type="hidden" name="scoreSmallId"  autocomplete="off" class="layui-input" >
+				<input id="version" type="hidden" name="version"  autocomplete="off" class="layui-input" >
+				<input id="createMan" type="hidden" name="createMan"  autocomplete="off" class="layui-input" >
+				<input id="createTime" type="hidden" name="createTime"  autocomplete="off" class="layui-input" >
+				<input id="scoreTplId" type="hidden" name="scoreTplId"  autocomplete="off" class="layui-input" >
+				<input id="scoreBigId" type="text" name="scoreBigId" disabled="disabled"  placeholder="评分卡大类序号"  autocomplete="off" class="layui-input">
+			</div>
+		</div>	
+		
+		<div class="layui-form-item">
+			<label class="layui-form-label" style="width:150px">评分项规则名称</label>
+			<div class="layui-input-inline" style="width:500px">
+				<input id="scoreRuleName" type="text" name="scoreRuleName"   placeholder="评分项规则名称" autocomplete="off" class="layui-input">
+			</div>
+		</div>
+		
+		<div class="layui-form-item">
+			<label class="layui-form-label" style="width:150px">评分项规则小类编号</label>
+			<div class="layui-input-inline" style="width:500px">
+				<input id="scoreSmallCode" type="text" name="scoreSmallCode"   placeholder="评分项规则小类编号" autocomplete="off" class="layui-input">
+			</div>
+		</div>
+	
+		
+		
+		<div class="layui-form-item">
+			<label class="layui-form-label" style="width:150px">分值 </label>
+			<div class="layui-input-inline" style="width:500px">
+				<input id="score" type="text" name="score"   placeholder="分值" autocomplete="off" class="layui-input">
+			</div>
+		</div>
+    
+    
+    <div class="layui-form-item">
+		    <label class="layui-form-label" style="width:150px">权重值</label>
+		    <div class="layui-input-inline" style="width:500px">
+		    	<input id="percent"  type="text" name="percent"   placeholder="权重值（小于1）" autocomplete="off" class="layui-input">
+		    </div>
+		</div>
+		
+		<div class="layui-form-item" id="status_ruleComparisonType">
+			<label class="layui-form-label" style="width:150px">技术比对值类型</label>
+			<div class="layui-input-inline" style="width:500px">
+			        <select name="ruleComparisonType" lay-filter="ruleComparisonType"  lay-search="" id="select_ruleComparisonType" lay-verify="ruleComparisonType" >
+			          <option value="">直接选择</option>
+				          <option value="01">01-数值</option>
+				          <option value="02">02-字符</option>
+				          <option value="03">03-集合</option>
+			        </select>
+			</div>
+		 </div>
+		
+		<div class="layui-form-item" id="status_validateRule">
+			<label class="layui-form-label" style="width:150px">技术校验规则</label>
+			<div class="layui-input-inline" style="width:500px">
+			        <select name="validateRule" lay-filter="validateRule"  lay-search="" id="select_validateRule" lay-verify="validateRule" >
+			          <option value="">直接选择</option>
+				          <option value="0101">0101-（数值）小于</option>
+				          <option value="0102">0102-（数值）小于等于</option>
+				          <option value="0103">0103-（数值）等于</option>
+				          <option value="0104">0104-（数值）大于</option>
+				          <option value="0105">0105-（数值）大于等于</option>
+				          <option value="0106">0106-（数值）大于开始值小于结束值</option>
+				          <option value="0107">0107-（数值）大于等于开始值小于等于结束值</option>
+				          <option value="0108">0108-（数值）大于等于开始值小于结束值</option>
+				          <option value="0109">0109-（数值）大于开始值小于等于结束值</option>
+
+				          <option value="0201">0201-（字符）数据一致</option>
+				          <option value="0202">0202-（字符）不为空且不为null</option>
+				          <option value="0203">0203-（字符）为空或为null</option>
+				          <option value="0204">0204-（字符）规则在结果中存在</option>
+				          <option value="0205">0205-（字符）规则在结果中不存在</option>
+				          <option value="0206">0206-（字符）数据不一致</option>
+
+				          <option value="0301">0301-（集合）集合不为null且size大于0</option>
+				          <option value="0302">03020-（集合）集合为null或size小于1</option>
+ 			        </select>
+			</div>
+		 </div>
+		
+		
+		<div class="layui-form-item">
+			<label class="layui-form-label" style="width:150px">评分项规则技术比对值</label>
+			<div class="layui-input-inline" style="width:500px">
+			    <textarea rows="3" cols="76" id="ruleScoreValue"   name="ruleScoreValue"   placeholder="评分项规则技术比对值"></textarea> 
+ 			</div>
+		</div>
+		
+		<div class="layui-form-item">
+			<label class="layui-form-label" style="width:150px">备注</label>
+			<div class="layui-input-inline" style="width:500px">
+				<textarea rows="2" cols="76" id="remark"   name="remark"   placeholder="备注"></textarea> 
+ 			</div>
+		</div>
+		
+		 <div class="layui-form-item">
+		    <label class="layui-form-label" style="width:150px">状态</label>
+		    <div class="layui-input-block" style="width:500px">
+		    	<input name="level1" value="01" title="生效" type="radio"    lay-filter="radio_filter1" id="level_id1" />
+		    	<input name="level1" value="02" title="失效" type="radio"    lay-filter="radio_filter1" id="level_id2" />
+		    </div>
+		  </div>
+		
+		<button lay-submit lay-filter="save"  class="layui-btn" id="save_bt" >保存</button>
+ 		<button class="layui-btn layui-btn-normal" id="closeIframe" onclick="closeIfrname()" >取消</button>
+		
+	</form>
+</div>
+</body>
+</html>

@@ -1,0 +1,101 @@
+﻿<!DOCTYPE html>
+<html>
+
+<head>
+<meta charset="UTF-8">
+<META HTTP-EQUIV="pragma" CONTENT="no-cache">
+<META HTTP-EQUIV="Cache-Control" CONTENT="no-cache, must-revalidate">
+<META HTTP-EQUIV="expires" CONTENT="0">
+<title>数据测试明细表</title>
+<link rel="stylesheet" href="../../plugins/layui/css/layui.css"
+	media="all" />
+<link rel="stylesheet" href="../../css/global.css" media="all">
+<link rel="stylesheet"
+	href="../../plugins/font-awesome/css/font-awesome.min.css">
+<link rel="stylesheet" href="../../css/table.css" />
+	<!-- js -->
+	<script src="../../jqery/jquery.js"></script>
+	<script src="../../../commons/base.js"></script>
+	<script type="text/javascript" src="../../plugins/layui/layui.js"></script>
+	<script type="text/javascript" src="../../js/blacklist/blacklistImportInfo.js"></script>
+</head>
+
+<body>
+	<div class="admin-main"> 
+			<blockquote class="layui-elem-quote"> 
+				<!-- 查询条件 -->
+			<form action="" class="layui-form" >
+			<!-- 查询条件 -->
+			    <div class="layui-inline">
+			      <label class="layui-form-label" style="width: auto;">批次号：</label>
+			      <div class="layui-input-inline">
+			        <input name="blacklistCodeId"   id="blacklistCodeId" placeholder="批次号"    autocomplete="off" class="layui-input" >
+			      </div>
+			    </div> 
+			    <div class="layui-inline">
+			      <label class="layui-form-label" style="width: auto;">证件号码：</label>
+			      <div class="layui-input-inline">
+			        <input name="certCode"   id="certCode" placeholder="证件号码"    autocomplete="off" class="layui-input" >
+			      </div>
+			    </div> 
+			    
+			     <div class="layui-inline">
+			      <label class="layui-form-label" style="width: auto;">设备ID：</label>
+			      <div class="layui-input-inline">
+			        <input name="deviceId"   id="deviceId" placeholder="设备ID"    autocomplete="off" class="layui-input" >
+			      </div>
+			    </div>
+			    
+			    <div class="layui-inline">
+			      <label class="layui-form-label" style="width: auto;">手机号：</label>
+			      <div class="layui-input-inline">
+			        <input name="phoneNum"   placeholder="手机号 " id="phoneNum"  autocomplete="off" class="layui-input" >
+			      </div>
+			    </div>
+					
+			    <div class="layui-inline">
+					<a href="javascript:;" class="layui-btn layui-btn-small"  onclick="sel()">
+					<i class="layui-icon">&#xe615;</i>搜索 </a>
+				</div>
+			</form> 
+		</blockquote>
+		</div> 	 
+		
+		<fieldset class="layui-elem-field">
+			<legend>导入黑名单数据明细</legend>
+			<div class="layui-field-box layui-form">
+				<table class="layui-table admin-table"  style="word-break: keep-all;overflow:auto;">
+					<thead>
+						<tr>  
+ 							<th>批次号</th>
+							<th>证件号码</th>
+							<th>手机号</th> 
+							<th>设备ID</th> 
+  							<th>创建时间</th>
+						</tr>
+					</thead>
+					<tbody id="content">
+					</tbody>
+				</table>
+					<label>共<font color='red' id="count_page_number"></font>条记录</label>
+					<div id="paged" class="page" style="display:inline-block;">
+					</div>
+			</div>
+		</fieldset> 
+	<!--模板-->
+	<script type="text/html" id="tpl">
+			{{# layui.each(d.list, function(index, item){
+ 			
+			}}
+			<tr>
+ 				<td>{{ item.sNumber }} </td>
+				<td>{{ item.certCode }}  </td>  
+				<td>{{ item.phoneNum }}  </td>  
+				<td >{{ item.deviceId  }}  </td>
+				<td style="white-space: nowrap;">{{ item.createTime.substring(0,19)  }}  </td>
+			</tr>
+			{{# }); }}
+		</script>
+</body>
+
+</html>

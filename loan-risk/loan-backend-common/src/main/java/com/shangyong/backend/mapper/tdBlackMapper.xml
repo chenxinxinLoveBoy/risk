@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.shangyong.backend.dao.td.TdBlackServiceDao">
+
+	<resultMap type="com.shangyong.backend.entity.td.TdBlack" id="tdBlackinfoMap">
+		<id property="tdBlackId" column="td_black_id" javaType="java.lang.String"></id>
+		<result property="tdRiskItemsId" column="td_risk_items_id" javaType="java.lang.String"></result>
+		<result property="hitTypeDisplayName" column="hit_type_display_name" javaType="java.lang.String"></result>
+		<result property="fraudTypeDisplayName" column="fraud_type_display_name" javaType="java.lang.String"></result>
+		<result property="description" column="description" javaType="java.lang.String"></result>
+		<result property="value" column="value" javaType="java.lang.String"></result>
+		<result property="fraudType" column="fraud_type" javaType="java.lang.String"></result>
+		<result property="executedName" column="executed_name" javaType="java.lang.String"></result>
+		<result property="age" column="age" javaType="java.lang.String"></result>
+		<result property="gender" column="gender" javaType="java.lang.String"></result>
+		<result property="province" column="province" javaType="java.lang.String"></result>
+		<result property="caseDate" column="case_date" javaType="java.lang.String"></result>
+		<result property="executeCourt" column="execute_court" javaType="java.lang.String"></result>
+		<result property="termDuty" column="term_duty" javaType="java.lang.String"></result>
+		<result property="executeSubject" column="execute_subject" javaType="java.lang.String"></result>
+		<result property="executeStatus" column="execute_status" javaType="java.lang.String"></result>
+		<result property="evidenceCourt" column="evidence_court" javaType="java.lang.String"></result>
+		<result property="carryOut" column="carry_out" javaType="java.lang.String"></result>
+		<result property="specificCircumstances" column="specific_circumstances" javaType="java.lang.String"></result>
+		<result property="executeCode" column="execute_code" javaType="java.lang.String"></result>
+		<result property="caseCode" column="case_code" javaType="java.lang.String"></result>
+		<result property="evidenceTime" column="evidence_time" javaType="java.lang.String"></result>
+	</resultMap>
+
+	<!-- 通用查询结果列-->
+	<sql id="Base_Column_List">
+	td_black_id,	td_risk_items_id,	hit_type_display_name,	fraud_type_display_name,	description,	value,	fraud_type,	executed_name,	age,	gender,	province,	case_date,	execute_court,	term_duty,	execute_subject,	execute_status,	evidence_court,	carry_out,	specific_circumstances,	execute_code,	case_code,	evidence_time
+	</sql>
+
+	<!-- 查询（根据主键ID查询） -->
+	<select id="getEntityById" resultMap="tdBlackinfoMap" parameterType="java.lang.String">
+		 SELECT
+		 <include refid="Base_Column_List" />
+		 FROM td_black
+		 WHERE td_black_id = #{tdBlackId}
+	</select>
+	
+	<!-- 查询（根据tdRiskItemsId查询） -->
+	<select id="queryById" resultMap="tdBlackinfoMap" parameterType="java.lang.String">
+		 SELECT
+		 <include refid="Base_Column_List" />
+		 FROM td_black
+		 WHERE td_risk_items_id = #{tdRiskItemsId}
+	</select>
+
+	<!-- 查询（根据主键ID查询） -->
+	<select id="getAll" resultMap="tdBlackinfoMap" parameterType="java.lang.String">
+		 SELECT
+		 <include refid="Base_Column_List" />
+		 FROM td_black
+	</select>
+
+	<!--删除：根据主键ID删除-->
+	<delete id="deleteEntity" parameterType="java.lang.String">
+		 DELETE FROM td_black
+		 WHERE td_black_id = #{tdBlackId}
+	</delete>
+
+	<!-- 添加 -->
+	<insert id="saveEntity" parameterType="com.shangyong.backend.entity.td.TdBlack">
+		 INSERT INTO td_black
+ 		(td_black_id,td_risk_items_id,hit_type_display_name,fraud_type_display_name,description,value,fraud_type,executed_name,age,gender,province,case_date,execute_court,term_duty,execute_subject,execute_status,evidence_court,carry_out,specific_circumstances,execute_code,case_code,evidence_time) 
+		 VALUES 
+ 		(#{tdBlackId},#{tdRiskItemsId},#{hitTypeDisplayName},#{fraudTypeDisplayName},#{description},#{value},#{fraudType},#{executedName},#{age},#{gender},#{province},#{caseDate},#{executeCourt},#{termDuty},#{executeSubject},#{executeStatus},#{evidenceCourt},#{carryOut},#{specificCircumstances},#{executeCode},#{caseCode},#{evidenceTime}) 
+	</insert>
+
+	<!-- 修 改-->
+	<update id="updateEntity" parameterType="com.shangyong.backend.entity.td.TdBlack">
+		 UPDATE td_black
+ 		 <set> 
+			<if test="tdRiskItemsId != null">
+				 td_risk_items_id = #{tdRiskItemsId},
+			</if>
+			<if test="hitTypeDisplayName != null">
+				 hit_type_display_name = #{hitTypeDisplayName},
+			</if>
+			<if test="fraudTypeDisplayName != null">
+				 fraud_type_display_name = #{fraudTypeDisplayName},
+			</if>
+			<if test="description != null">
+				 description = #{description},
+			</if>
+			<if test="value != null">
+				 value = #{value},
+			</if>
+			<if test="fraudType != null">
+				 fraud_type = #{fraudType},
+			</if>
+			<if test="executedName != null">
+				 executed_name = #{executedName},
+			</if>
+			<if test="age != null">
+				 age = #{age},
+			</if>
+			<if test="gender != null">
+				 gender = #{gender},
+			</if>
+			<if test="province != null">
+				 province = #{province},
+			</if>
+			<if test="caseDate != null">
+				 case_date = #{caseDate},
+			</if>
+			<if test="executeCourt != null">
+				 execute_court = #{executeCourt},
+			</if>
+			<if test="termDuty != null">
+				 term_duty = #{termDuty},
+			</if>
+			<if test="executeSubject != null">
+				 execute_subject = #{executeSubject},
+			</if>
+			<if test="executeStatus != null">
+				 execute_status = #{executeStatus},
+			</if>
+			<if test="evidenceCourt != null">
+				 evidence_court = #{evidenceCourt},
+			</if>
+			<if test="carryOut != null">
+				 carry_out = #{carryOut},
+			</if>
+			<if test="specificCircumstances != null">
+				 specific_circumstances = #{specificCircumstances},
+			</if>
+			<if test="executeCode != null">
+				 execute_code = #{executeCode},
+			</if>
+			<if test="caseCode != null">
+				 case_code = #{caseCode},
+			</if>
+			<if test="evidenceTime != null">
+				 evidence_time = #{evidenceTime},
+			</if>
+
+ 		 </set>
+		 WHERE td_black_id = #{tdBlackId}
+	</update>
+
+</mapper>

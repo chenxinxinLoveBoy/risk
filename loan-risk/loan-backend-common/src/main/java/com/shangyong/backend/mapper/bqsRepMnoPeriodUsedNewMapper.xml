@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.shangyong.backend.dao.bqsrep.BqsRepMnoPeriodUsedNewServiceDao">
+
+	<resultMap type="com.shangyong.backend.entity.bqsrep.BqsRepMnoPeriodUsedNew" id="bqsRepMnoPeriodUsedNewinfoMap">
+		<id property="bqsMnoPeriodUsedNewId" column="bqs_mno_period_used_new_id" javaType="java.lang.String"></id>
+		<result property="bqsPetitionerId" column="bqs_petitioner_id" javaType="java.lang.String"></result>
+		<result property="mobile" column="mobile" javaType="java.lang.String"></result>
+		<result property="periodType" column="period_type" javaType="java.lang.String"></result>
+		<result property="mnoType" column="mno_type" javaType="java.lang.String"></result>
+		<result property="belongTo" column="belong_to" javaType="java.lang.String"></result>
+		<result property="originatingCallCount" column="originating_call_count" javaType="java.lang.String"></result>
+		<result property="originatingCallTime" column="originating_call_time" javaType="java.lang.String"></result>
+		<result property="terminatingCallCount" column="terminating_call_count" javaType="java.lang.String"></result>
+		<result property="terminatingCallTime" column="terminating_call_time" javaType="java.lang.String"></result>
+		<result property="msgCount" column="msg_count" javaType="java.lang.String"></result>
+	</resultMap>
+
+	<!-- 通用查询结果列-->
+	<sql id="Base_Column_List">
+	bqs_mno_period_used_new_id,	bqs_petitioner_id,	mobile,	period_type,	mno_type,	belong_to,	originating_call_count,	originating_call_time,	terminating_call_count,	terminating_call_time,	msg_count
+	</sql>
+
+	<!-- 查询（根据主键ID查询） -->
+	<select id="getEntityById" resultMap="bqsRepMnoPeriodUsedNewinfoMap" parameterType="java.lang.String">
+		 SELECT
+		 <include refid="Base_Column_List" />
+		 FROM bqs_rep_mno_period_used_new
+		 WHERE bqs_mno_period_used_new_id = #{bqsMnoPeriodUsedNewId}
+	</select>
+	
+	<!-- 查询（根据主键bqsPetitionerId查询） -->
+	<select id="queryListById" resultMap="bqsRepMnoPeriodUsedNewinfoMap" parameterType="java.lang.String">
+		 SELECT
+		 <include refid="Base_Column_List" />
+		  FROM bqs_rep_mno_period_used_new
+		 WHERE bqs_petitioner_id = #{bqsPetitionerId}
+	</select>
+
+	<!-- 查询（根据主键ID查询） -->
+	<select id="getAll" resultMap="bqsRepMnoPeriodUsedNewinfoMap" parameterType="java.lang.String">
+		 SELECT
+		 <include refid="Base_Column_List" />
+		 FROM bqs_rep_mno_period_used_new
+	</select>
+
+	<!--删除：根据主键ID删除-->
+	<delete id="deleteEntity" parameterType="java.lang.String">
+		 DELETE FROM bqs_rep_mno_period_used_new
+		 WHERE bqs_mno_period_used_new_id = #{bqsMnoPeriodUsedNewId}
+	</delete>
+
+	<!-- 添加 -->
+	<insert id="saveEntity" parameterType="com.shangyong.backend.entity.bqsrep.BqsRepMnoPeriodUsedNew">
+		 INSERT INTO bqs_rep_mno_period_used_new
+ 		(bqs_mno_period_used_new_id,bqs_petitioner_id,mobile,period_type,mno_type,belong_to,originating_call_count,originating_call_time,terminating_call_count,terminating_call_time,msg_count) 
+		 VALUES 
+ 		(#{bqsMnoPeriodUsedNewId},#{bqsPetitionerId},#{mobile},#{periodType},#{mnoType},#{belongTo},#{originatingCallCount},#{originatingCallTime},#{terminatingCallCount},#{terminatingCallTime},#{msgCount}) 
+	</insert>
+	<!-- 批量插入 -->
+	<insert id="saveAllEntity" parameterType="java.util.List">
+		  INSERT INTO bqs_rep_mno_period_used_new
+ 		(bqs_mno_period_used_new_id,bqs_petitioner_id,mobile,period_type,mno_type,belong_to,originating_call_count,originating_call_time,terminating_call_count,terminating_call_time,msg_count) 
+		 VALUES 
+ 	    <foreach collection="list" item="item" index="index" separator="," > 
+ 		(#{item.bqsMnoPeriodUsedNewId},#{item.bqsPetitionerId},#{item.mobile},#{item.periodType},#{item.mnoType},#{item.belongTo},#{item.originatingCallCount},#{item.originatingCallTime},#{item.terminatingCallCount},#{item.terminatingCallTime},#{item.msgCount}) 
+ 		</foreach>
+	</insert>
+
+	<!-- 修 改-->
+	<update id="updateEntity" parameterType="com.shangyong.backend.entity.bqsrep.BqsRepMnoPeriodUsedNew">
+		 UPDATE bqs_rep_mno_period_used_new
+ 		 <set> 
+			<if test="bqsPetitionerId != null">
+				 bqs_petitioner_id = #{bqsPetitionerId},
+			</if>
+			<if test="mobile != null">
+				 mobile = #{mobile},
+			</if>
+			<if test="periodType != null">
+				 period_type = #{periodType},
+			</if>
+			<if test="mnoType != null">
+				 mno_type = #{mnoType},
+			</if>
+			<if test="belongTo != null">
+				 belong_to = #{belongTo},
+			</if>
+			<if test="originatingCallCount != null">
+				 originating_call_count = #{originatingCallCount},
+			</if>
+			<if test="originatingCallTime != null">
+				 originating_call_time = #{originatingCallTime},
+			</if>
+			<if test="terminatingCallCount != null">
+				 terminating_call_count = #{terminatingCallCount},
+			</if>
+			<if test="terminatingCallTime != null">
+				 terminating_call_time = #{terminatingCallTime},
+			</if>
+			<if test="msgCount != null">
+				 msg_count = #{msgCount},
+			</if>
+
+ 		 </set>
+		 WHERE bqs_mno_period_used_new_id = #{bqsMnoPeriodUsedNewId}
+	</update>
+
+</mapper>

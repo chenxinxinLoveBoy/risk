@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+	<META HTTP-EQUIV="pragma" CONTENT="no-cache">
+	<META HTTP-EQUIV="Cache-Control" CONTENT="no-cache, must-revalidate">
+	<META HTTP-EQUIV="expires" CONTENT="0">
+</head>
+		<!-- css -->
+		<link rel="stylesheet" href="../../plugins/layui/css/layui.css" media="all" />
+		<link rel="stylesheet" href="../../css/global.css" media="all">
+		<link rel="stylesheet" href="../../plugins/font-awesome/css/font-awesome.min.css">
+		<link rel="stylesheet" href="../../css/table.css" />
+
+		<!-- JS -->
+		<script type="text/javascript" src="../../plugins/layui/layui.js"></script>
+		<script src="../../jqery/jquery.js"></script>
+		<script type="text/javascript" src="../../../commons/base.js"></script>
+		 <script type="text/javascript" src="../../js/redisManage/redisManage.js"></script>
+		<!-- 日期控件 -->
+	<script language="javascript" type="text/javascript" src="../../My97DatePicker/WdatePicker.js"></script>
+	<link rel="stylesheet" href="../../css/lzh_login.css" media="all" />	
+<body>
+	<div style="margin: 15px;">
+	<form class="layui-form" id="redisForm" >
+			<blockquote class="layui-elem-quote"> 
+			<div class="layui-inline">
+			      <label class="layui-form-label" style="width: 100px;">缓存名称：</label>
+			      <div class="layui-input-inline" >
+			       <input id="keyName" type="text" name="name" placeholder="缓存名称"  class="layui-input" >
+			      </div>
+			</div> 
+			<div class="layui-inline">
+			    <label class="layui-form-label" style="width:70px">缓存类型：</label>
+			    <div class="layui-input-block" style="width:260px">
+			    	<input name="type" value="hash" title="hash" type="radio" checked="checked"   lay-filter="radio_filter0" id="type1" />
+			    	<input name="type" value="list" title="list" type="radio"    lay-filter="radio_filter0" id="type2" />
+			    	<input name="type" value="String" title="String" type="radio"    lay-filter="radio_filter0" id="type3" />
+		   		</div>
+		  	</div>
+			<div class="layui-inline">
+					<a href="javascript:;" class="layui-btn layui-btn-small"  onclick="sel()">
+					<i class="layui-icon">&#xe615;</i>搜索
+					</a>
+			</div>
+		</blockquote>
+		  <fieldset class="layui-elem-field">
+				<div class="layui-field-box layui-form">
+					<table class="layui-table admin-table">
+						<thead>
+							<tr> 
+								<th style="width:30%">key</th>
+								<th style="width:70%">value</th>
+							</tr>
+						</thead>
+						<tbody id="content">
+							<tr> 
+								<td id="redisKey"></td>
+								<td id="redisValue"></td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+			</fieldset> 
+		
+	</form>
+</div>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

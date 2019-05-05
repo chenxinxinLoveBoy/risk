@@ -1,0 +1,182 @@
+﻿<!DOCTYPE html>
+<html>
+
+<head>
+<meta charset="UTF-8">
+<META HTTP-EQUIV="pragma" CONTENT="no-cache">
+<META HTTP-EQUIV="Cache-Control" CONTENT="no-cache, must-revalidate">
+<META HTTP-EQUIV="expires" CONTENT="0">
+<title>小类历史列表</title>
+<link rel="stylesheet" href="../../plugins/layui/css/layui.css"
+	media="all" />
+<link rel="stylesheet" href="../../css/global.css" media="all">
+<link rel="stylesheet"
+	href="../../plugins/font-awesome/css/font-awesome.min.css">
+<link rel="stylesheet" href="../../css/table.css" />
+<link rel="stylesheet" href="../../css/lzh_xy_gl.css" media="all" />
+</head>
+
+<body>
+	<div class="admin-main">
+		<fieldset class="layui-elem-field">
+			<blockquote class="layui-elem-quote">
+			<!-- 查询条件 -->
+				<div class="layui-inline">
+			      <label class="layui-form-label" style="width: auto;">评分卡大类编号：</label>
+			      <div class="layui-input-inline">
+			        <input name="scoreBigId" lay-verify="scoreBigCode" id="scoreBigCode" autocomplete="off" class="layui-input" >
+			      </div>
+			    </div>
+ 
+ 		        <div class="layui-inline">
+			      <label class="layui-form-label" style="width: auto;">评分项规则小类编号：</label>
+			      <div class="layui-input-inline">
+			        <input name="scoreSmallCode" lay-verify="scoreSmallCode" id="scoreSmallCode" autocomplete="off" class="layui-input" >
+			      </div>
+			    </div>
+			    
+			    <div class="layui-inline">
+			      <label class="layui-form-label" style="width: auto;">评分项小类规则名称：</label>
+			      <div class="layui-input-inline">
+			        <input name="scoreRuleName" lay-verify="scoreRuleName" id="scoreRuleName" autocomplete="off" class="layui-input" >
+			      </div>
+			    </div>
+			    
+			    <div class="layui-inline">
+			      <label class="layui-form-label" style="width: auto;">时间区间</label>
+			      <div class="layui-input-inline">
+			      <input name="startTime"  lay-verify="startTime" id="startTime" autocomplete="off" class="layui-input"  style="width: auto; display:inline;">
+			      &nbsp;至&nbsp;
+			      <input name="endTime"  lay-verify="endTime" id="endTime" autocomplete="off" class="layui-input"  style="width: auto; display:inline;">
+			      </div>
+			    </div>
+					<a href="javascript:;" class="layui-btn layui-btn-small" id="search">
+						<i class="layui-icon">&#xe615;</i> 搜索
+					</a>
+		</blockquote>
+		
+			<legend>数据列表</legend>
+			<div class="layui-field-box layui-form">
+				<table class="layui-table admin-table"  style="word-break: keep-all;overflow:auto;">
+					<thead>
+						<tr>
+						<th>评分模板id</th>
+						    <th>评分卡大类序号</th>
+							<th>评分卡小类序号</th>
+							<th>评分项小类规则名称</th>
+							<th>评分项规则小类编号</th>
+							<th>评分项规则技术比对值</th>
+							<th>分值</th>
+							<th>权重</th>
+							<th>技术比对值类型</th>
+							<th>技术校验规则</th>
+							<th>状态</th>
+							<th>版本编号</th>
+							<th>创建人姓名</th>
+							<th>修改人姓名</th>
+							<th style="min-width: 135px;">创建时间</th>
+							<th style="min-width: 135px;">修改时间</th>
+ 							<th>备注</th>
+ 							<th>操作</th>
+ 						</tr>
+					</thead>
+					<tbody id="content">
+					</tbody>
+				</table>
+					<label>共<font color='red' id="count_page_number"></font>条记录</label>
+					<div id="paged" class="page" style="display:inline-block;">
+					</div>
+			</div>
+		</fieldset>
+	</div>
+	<!--模板-->
+	<script type="text/html" id="tpl">
+			{{# layui.each(d.list, function(index, item){ }}
+			<tr>
+	<td>{{ item.scoreTplId }}</td>
+                <td>{{ item.scoreBigId }}</td>
+				<td>{{ item.scoreSmallId }}</td>
+ 				<td>{{ item.scoreRuleName }}</td>
+                <td>{{ item.scoreSmallCode}}</td>
+				<td>{{ item.ruleScoreValue }}</td>
+				<td>{{ item.score }}</td>	
+<td>{{ item.percent}}</td>
+                {{# if(item.ruleComparisonType == '01'){ }}
+				<td>数值</td>
+				{{# } else  if(item.ruleComparisonType == '02') { }}
+				<td>字符</td>
+                {{# } else  if(item.ruleComparisonType == '03') { }}
+                <td>集合</td>
+                {{# } else  { }}
+				<td> </td>
+				{{# } }}
+
+                {{# if(item.validateRule == '0101'){ }}
+				<td>小于</td>
+				{{# } else  if(item.validateRule == '0102') { }}
+				<td>小于等于</td>
+                {{# } else  if(item.validateRule == '0103') { }}
+                <td>等于</td>
+                {{# } else  if(item.validateRule == '0104') { }}
+                <td>大于</td>
+                {{# } else  if(item.validateRule == '0105') { }}
+                <td>大于等于</td>
+                {{# } else  if(item.validateRule == '0106') { }}
+                <td>大于开始值小于结束值</td>
+                {{# } else  if(item.validateRule == '0107') { }}
+                <td>大于等于开始值小于等于结束值</td>
+                {{# } else  if(item.validateRule == '0108') { }}
+                <td>大于等于开始值小于结束值</td>
+                {{# } else  if(item.validateRule == '0109') { }}
+                <td>大于开始值小于等于结束值</td>
+                {{# } else  if(item.validateRule == '0201') { }}
+				<td>数据一致</td>
+                {{# } else  if(item.validateRule == '0202') { }}
+                <td>不为空且不为null</td>
+                {{# } else  if(item.validateRule == '0203') { }}
+                <td>为空或为null</td>
+                {{# } else  if(item.validateRule == '0204') { }}
+                <td>规则在结果中存在</td>
+                {{# } else  if(item.validateRule == '0205') { }}
+                <td>规则在结果中不存在</td>
+                {{# } else  if(item.validateRule == '0206') { }}
+                <td>数据不一致</td>
+                {{# } else  if(item.validateRule == '0301') { }}
+                <td>集合不为null且size大于0</td>
+                {{# } else  if(item.validateRule == '0302') { }}
+                <td>集合为null或size小于1）</td>
+                {{# } else  { }}
+				<td> </td>
+				{{# } }}
+
+                {{# if(item.state == '01'){ }}
+				<td>生效</td>
+                {{# } else if(item.state == '02') { }}
+                <td>失效</td>
+				{{# } else  { }}
+				<td></td>
+				{{# } }}
+
+                <td>{{ item.version }}</td>
+				<td>{{ item.createName }}</td>
+  				<td>{{ item.modifyName }}</td>
+  				<td>{{ item.createTime.substring(0, 19) }}</td>
+  				<td>{{ item.modifyTime.substring(0, 19) }}</td>
+				<td>{{ item.remark }}</td>
+                <td>
+ 					<a href="javascript:;" data-id="{{ item.smallHisId }}" data-opt="edit" class="layui-btn layui-btn-mini">预览</a>
+ 				</td>
+			</tr>
+			{{# }); }}
+		</script>
+
+	<!-- js -->
+	<script src="../../jqery/jquery.js"></script>
+	<script src="../../../commons/base.js"></script>
+	<script type="text/javascript" src="../../plugins/layui/layui.js"></script>
+	<script type="text/javascript" src="../../js/scScoreSmall/scScoreSmallHis.js"></script>
+	<!-- 日期控件 -->
+	<script language="javascript" type="text/javascript" src="../../My97DatePicker/WdatePicker.js"></script>
+</body>
+
+</html>

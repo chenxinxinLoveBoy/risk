@@ -1,0 +1,179 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.shangyong.backend.dao.ScDictSmallDao">
+
+	<resultMap type="com.shangyong.backend.entity.ScDictSmall" id="scDictSmallinfoMap">
+		<id property="id" column="id" javaType="java.lang.Integer"></id>
+		<result property="dictBigId" column="dict_big_id" javaType="java.lang.Integer"></result>
+		<result property="dicSmallCode" column="dic_small_code" javaType="java.lang.String"></result>
+		<result property="dicSmallValue" column="dic_small_value" javaType="java.lang.String"></result>
+		<result property="dicSmallStaues" column="dic_small_staues" javaType="java.lang.String"></result>
+		<result property="createMan" column="create_man" javaType="java.lang.String"></result>
+		<result property="modifyMan" column="modify_man" javaType="java.lang.String"></result>
+		<result property="createTime" column="create_time" javaType="java.lang.String"></result>
+		<result property="modifyTime" column="modify_time" javaType="java.lang.String"></result>
+		<result property="version" column="version" javaType="java.lang.Integer"></result>
+	</resultMap>
+
+	<!-- 通用查询结果列-->
+	<sql id="Base_Column_List">
+		t.id as id,	
+		t.dict_big_id as dictBigId,	
+		t.dic_small_code as dicSmallCode,	
+		t.dic_small_value as dicSmallValue,	
+		t.dic_small_staues as dicSmallStaues,	
+		t.create_man as createMan,	
+		t.modify_man as modifyMan,	
+		t.create_time as createTime,	
+		t.modify_time as modifyTime,	
+		t.version as version
+	</sql>
+	
+	<!-- add: xiajiyun, 根据大类编号查询对应的所有小类 -->
+	<select id="getRedisScDictSmall" resultType="com.shangyong.backend.entity.ScDictSmall" parameterType="java.lang.String">
+		select 
+		<include refid="Base_Column_List"></include>
+		from sc_dict_big a 
+		inner join  sc_dict_small t on a.id= t.dict_big_id
+		where a.dic_big_code = #{dicBigCode}
+		and a.dic_big_staues = '1'
+		and t.dic_small_staues = '1'
+	</select>
+
+	<!-- add: xiajiyun, 根据大类编号查询对应的所有小类 -->
+	<select id="getRedisScDictSmallStatus" resultType="com.shangyong.backend.entity.ScDictSmall" parameterType="java.lang.String">
+		select
+		<include refid="Base_Column_List"></include>
+		from sc_dict_big a
+		inner join  sc_dict_small t on a.id= t.dict_big_id
+		where a.dic_big_code = #{dicBigCode}
+	</select>
+
+  	<!-- 统计 -->
+  	<select id="listAllCount" resultType="java.lang.Integer">
+  		select 
+  			count(1)
+  		from sc_dict_small t
+  		where  
+  		  t.dict_big_id= #{dictBigId}
+  		 order by t.create_time desc  
+  	</select>
+  	
+  		<!-- 统计小字典编号-->
+  <select id="getCountDicSmsCodde" parameterType="com.shangyong.backend.entity.ScDictSmall" resultType="java.lang.Integer">
+  	select count(1) from sc_dict_small t
+		where t.dic_small_code = #{dicSmallCode}
+		and t.dict_big_id= #{dictBigId}
+  </select>
+    
+  
+   <!-- 查询-->
+	<select id="listViewAll" resultType="com.shangyong.backend.entity.ScDictSmall" parameterType="java.lang.String">
+		 SELECT 
+		  <include refid="Base_Column_List" />
+		 FROM sc_dict_small t 
+		 order by t.create_time desc 
+   		 LIMIT #{pageIndex},#{pageSize}
+	</select>
+  
+  
+	<!-- 查询（根据主键ID查询） -->
+	<select id="getEntityById" resultType="com.shangyong.backend.entity.ScDictSmall" parameterType="java.lang.Integer">
+		 SELECT
+		 <include refid="Base_Column_List" />
+		 FROM sc_dict_small
+		 WHERE id = #{id}
+	</select>
+
+	<insert id="save" parameterType="com.shangyong.backend.entity.ScDictSmall" 
+  			useGeneratedKeys="true" keyProperty="id">
+			    insert into sc_dict_small (
+			    dict_big_id,
+			    dic_small_code,
+			    dic_small_value,
+			    dic_small_staues,
+			    create_man,
+			    modify_man,
+			    create_time,
+			    modify_time,
+			    version
+			     )
+			    values ( 
+			    #{dictBigId},
+			    #{dicSmallCode},
+			    #{dicSmallValue},
+			    #{dicSmallStaues},
+			    #{createMan},
+			    #{modifyMan},
+			    #{createTime},
+			    #{modifyTime},
+			    #{version}
+			    )
+			  </insert>
+
+	<!-- 修 改-->
+	<update id="update" parameterType="com.shangyong.backend.entity.ScDictSmall">
+		 UPDATE sc_dict_small
+ 		 <set> 
+			<if test="dictBigId != null">
+				 dict_big_id = #{dictBigId},
+			</if>
+			<if test="dicSmallCode != null">
+				 dic_small_code = #{dicSmallCode},
+			</if>
+			<if test="dicSmallValue != null">
+				 dic_small_value = #{dicSmallValue},
+			</if>
+			<if test="dicSmallStaues != null">
+				 dic_small_staues = #{dicSmallStaues},
+			</if>
+			<if test="createMan != null">
+				 create_man = #{createMan},
+			</if>
+			<if test="modifyMan != null">
+				 modify_man = #{modifyMan},
+			</if>
+			<if test="createTime != null">
+				 create_time = #{createTime},
+			</if>
+			<if test="modifyTime != null">
+				 modify_time = #{modifyTime},
+			</if>
+			<if test="version != null">
+				 version = #{version},
+			</if>
+
+ 		 </set>
+		 WHERE id = #{id}
+	</update>
+ 
+  
+   <!-- 根据id获取对象信息 -->
+   <select id="findById" parameterType="com.shangyong.backend.entity.ScDictSmall" resultType="java.util.Map">
+	SELECT 
+	s.id as sid,
+	<include refid="Base_Column_List" />
+	FROM sc_dict_small t left join sc_dict_big s on
+	t.dict_big_id = s.id
+	where t.dict_big_id= #{dictBigId}
+	order by t.create_time desc 
+   		 LIMIT #{pageIndex},#{pageSize}
+   </select>
+ 
+   <!-- 根据id获取对象信息 -->
+   <select id="getObjectById" parameterType="com.shangyong.backend.entity.ScDictSmall" resultType="com.shangyong.backend.entity.ScDictSmall">
+	select  
+		<include refid="Base_Column_List"></include> 
+	from sc_dict_small t
+	where t.id = #{id}
+   </select>
+   
+   <select id="queryBySmallCode" resultMap="scDictSmallinfoMap" parameterType="java.lang.String">
+		 SELECT
+		 <include refid="Base_Column_List" />
+		 FROM sc_dict_small t
+		 WHERE t.dic_small_code = #{dicSmallCode}
+	</select>
+	
+</mapper>

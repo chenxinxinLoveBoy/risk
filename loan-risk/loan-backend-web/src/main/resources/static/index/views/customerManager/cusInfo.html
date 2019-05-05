@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+<meta charset="UTF-8">
+<title>用户信息</title>
+<link rel="stylesheet" href="../../plugins/layui/css/layui.css"
+	media="all" />
+<link rel="stylesheet" href="../../css/global.css" media="all">
+<link rel="stylesheet"
+	href="../../plugins/font-awesome/css/font-awesome.min.css">
+<link rel="stylesheet" href="../../css/table.css" />
+</head>
+<body>
+	<div class="admin-main">
+
+<!-- 		<blockquote class="layui-elem-quote"> -->
+<!-- 			<a href="javascript:;" class="layui-btn layui-btn-small" id="getJxl">查看用户聚信力信息 </a> -->
+<!-- 		    <a href="javascript:;" class="layui-btn layui-btn-small" id="getTd"> 查看用户同盾贷前审核报告  </a> -->
+<!-- 		    <a href="javascript:;" class="layui-btn layui-btn-small" id="getJxlMg"> 查看用户聚信力蜜罐产品报告</a> -->
+<!-- 		</blockquote> -->
+
+		<fieldset class="layui-elem-field">
+<!-- 			<legend>用户上传信息</legend> -->
+			<div class="layui-field-box layui-form">
+				<table class="layui-table">
+					<colgroup>
+						<col width="150">
+						<col width="200">
+						<col>
+					</colgroup>
+					<thead>
+						<tr>
+							<th>用户属性</th>
+							<th>用户信息</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<td>用户账号</td>
+							<td ><font id="platformCustomerId"></font></td>
+						</tr>
+						<tr>
+							<td>用户姓名</td>
+							<td><font id="name"></font></td>
+						</tr>
+						<tr>
+							<td>用户手机号</td>
+							<td><font id="phoneNum"></font></td>
+						</tr>
+						<tr>
+							<td>婚姻状况</td>
+							<td><font id="ifMarriage"></font></td>
+						</tr>
+						<tr>
+							<td>性别</td>
+							<td><font id="gender"></font></td>
+						</tr>
+						<tr>
+							<td>年龄</td>
+							<td><font id="age"></font></td>
+						</tr>
+							<tr>
+							<td>民族</td>
+							<td><font id="nation"></font></td>
+						</tr>
+						<tr>
+							<td>学历</td>
+							<td><font id="educationId"></font></td>
+						</tr>
+						<tr>
+							<td>签发机构</td>
+							<td><font id="issueInstitution"></font></td>
+						</tr>
+						<tr>
+							<td>身份证有效期限</td>
+							<td><font id="expirationDate"></font></td>
+						</tr>
+						<tr>
+							<td>身份证户籍地址</td>
+							<td><font id="registeredAddress"></font></td>
+						</tr>
+						<tr>
+							<td>现居地址</td>
+							<td><font id="homeAddress"></font></td>
+						</tr>
+						<tr>
+							<td><font id="certType"></font></td>
+							<td><font id="certCode"></font></td>
+						</tr>
+						<tr>
+							<td>紧急联系人及联系方式</td>
+							<td><font id="typeAndTrueNameAndPhoneNum"></font></td>
+						</tr>
+<!-- 						<tr> -->
+<!-- 							<td>收款银行卡</td> -->
+<!-- 							<td><font id="bankCardAndBankName"></font></td> -->
+<!-- 						</tr> -->
+						<tr>
+							<td>单位名称</td>
+							<td><font id="companyName"></font></td>
+						</tr>
+						<tr>
+							<td>单位电话</td>
+							<td><font id="companyTel"></font></td>
+						</tr>
+						<tr>
+							<td>人脸识别图</td>
+							<td><img alt="" src="" id="faceUrl"/></td>
+ 						</tr>	
+						<tr>
+							<td>身份证正面照</td>
+ 							<td><img alt="" src="" id="frontUrl"/></td>
+ 						</tr>	
+						<tr>
+							<td>身份证反面照</td>
+							<td><img alt="" src="" id="backUrl"/></td>
+ 						</tr>	
+					</tbody>
+				</table>
+			</div>
+		</fieldset>
+		<div class="admin-table-page">
+			<div id="paged" class="page"></div>
+		</div>
+	</div>
+
+	<!-- js -->
+	<script src="../../jqery/jquery.js"></script>
+	<script src="../../../commons/base.js"></script>
+	<script type="text/javascript" src="../../plugins/layui/layui.js"></script>
+	<script type="text/javascript" src="../../js/customerManager/cusInfo.js"></script>
+</body>
+
+</html>

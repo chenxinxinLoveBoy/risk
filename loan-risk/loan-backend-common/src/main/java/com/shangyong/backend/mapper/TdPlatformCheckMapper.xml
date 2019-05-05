@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.shangyong.backend.dao.approval.TdPlatformCheckDao">
+
+	<resultMap type="com.shangyong.backend.entity.approval.TdPlatformCheck" id="TdPlatformCheckMap">
+		<result property="buApplicationId" column="bu_application_id" javaType="java.lang.String"></result>
+		<result property="reportId" column="report_id" javaType="java.lang.String"></result>
+		<result property="seqRiskId" column="seq_risk_id" javaType="java.lang.String"></result>
+		<result property="backup1" column="backup1" javaType="java.lang.String"></result>
+		<result property="itemName" column="item_name" javaType="java.lang.String"></result>
+		<result property="riskLevel" column="risk_level" javaType="java.lang.String"></result>
+		<result property="platformCount" column="platform_count" javaType="java.lang.String"></result>
+		<result property="descrition" column="description" javaType="java.lang.String"></result>
+		<result property="fraudType" column="fraud_type" javaType="java.lang.String"></result>
+	</resultMap>
+
+	<select id="getListById" resultMap="TdPlatformCheckMap" parameterType="java.lang.String">
+		 select
+		 c.item_name,c.risk_level,d.platform_count,d.description,d.fraud_type
+		 FROM td_risk_check c,td_risk_check_detail d
+		 WHERE c.report_id=d.report_id and c.item_id=d.item_id
+		 and c.report_id = (
+		 select
+			report_id
+		 from
+			td_audit_report
+		 where
+			td_audit_report.application_number=#{buApplicationId}
+		 limit 1
+		)		
+		 and c.`group` ='多平台借贷申请检测'
+		 group by d.item_id limit 5
+	</select>
+</mapper> 

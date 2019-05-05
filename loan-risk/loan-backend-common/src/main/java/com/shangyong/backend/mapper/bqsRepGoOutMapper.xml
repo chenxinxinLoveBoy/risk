@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.shangyong.backend.dao.bqsrep.BqsRepGoOutServiceDao">
+
+	<resultMap type="com.shangyong.backend.entity.bqsrep.BqsRepGoOut" id="bqsRepGoOutinfoMap">
+		<id property="bqsRepGoOutId" column="bqs_rep_go_out_id" javaType="java.lang.String"></id>
+		<result property="bqsPetitionerId" column="bqs_petitioner_id" javaType="java.lang.String"></result>
+		<result property="departure" column="departure" javaType="java.lang.String"></result>
+		<result property="destination" column="destination" javaType="java.lang.String"></result>
+		<result property="beginTime" column="begin_time" javaType="java.lang.String"></result>
+		<result property="arriveTime" column="arrive_time" javaType="java.lang.String"></result>
+		<result property="endTime" column="end_time" javaType="java.lang.String"></result>
+		<result property="period" column="period" javaType="java.lang.String"></result>
+	</resultMap>
+
+	<!-- 通用查询结果列-->
+	<sql id="Base_Column_List">
+	bqs_rep_go_out_id,	bqs_petitioner_id,	departure,	destination,	begin_time,	arrive_time,	end_time,	period
+	</sql>
+
+	<!-- 查询（根据主键ID查询） -->
+	<select id="getEntityById" resultMap="bqsRepGoOutinfoMap" parameterType="java.lang.String">
+		 SELECT
+		 <include refid="Base_Column_List" />
+		 FROM bqs_rep_go_out
+		 WHERE bqs_rep_go_out_id = #{bqsRepGoOutId}
+	</select>
+	
+	<!-- 查询（根据主键bqsPetitionerId查询） -->
+	<select id="queryListById" resultMap="bqsRepGoOutinfoMap" parameterType="java.lang.String">
+		 SELECT
+		 <include refid="Base_Column_List" />
+		 FROM bqs_rep_go_out
+		 WHERE bqs_petitioner_id = #{bqsPetitionerId}
+	</select>
+
+	<!-- 查询（根据主键ID查询） -->
+	<select id="getAll" resultMap="bqsRepGoOutinfoMap" parameterType="java.lang.String">
+		 SELECT
+		 <include refid="Base_Column_List" />
+		 FROM bqs_rep_go_out
+	</select>
+
+	<!--删除：根据主键ID删除-->
+	<delete id="deleteEntity" parameterType="java.lang.String">
+		 DELETE FROM bqs_rep_go_out
+		 WHERE bqs_rep_go_out_id = #{bqsRepGoOutId}
+	</delete>
+
+	<!-- 添加 -->
+	<insert id="saveEntity" parameterType="com.shangyong.backend.entity.bqsrep.BqsRepGoOut">
+		 INSERT INTO bqs_rep_go_out
+ 		(bqs_rep_go_out_id,bqs_petitioner_id,departure,destination,begin_time,arrive_time,end_time,period) 
+		 VALUES 
+ 		(#{bqsRepGoOutId},#{bqsPetitionerId},#{departure},#{destination},#{beginTime},#{arriveTime},#{endTime},#{period}) 
+	</insert>
+	<!-- 批量插入 -->
+	<insert id="saveAllEntity" parameterType="java.util.List">
+		   INSERT INTO bqs_rep_go_out
+ 		(bqs_rep_go_out_id,bqs_petitioner_id,departure,destination,begin_time,arrive_time,end_time,period) 
+		 VALUES 
+ 	    <foreach collection="list" item="item" index="index" separator="," > 
+ 		(#{item.bqsRepGoOutId},#{item.bqsPetitionerId},#{item.departure},#{item.destination},#{item.beginTime},#{item.arriveTime},#{item.endTime},#{item.period}) 
+	    </foreach>
+	</insert>
+
+	<!-- 修 改-->
+	<update id="updateEntity" parameterType="com.shangyong.backend.entity.bqsrep.BqsRepGoOut">
+		 UPDATE bqs_rep_go_out
+ 		 <set> 
+			<if test="bqsPetitionerId != null">
+				 bqs_petitioner_id = #{bqsPetitionerId},
+			</if>
+			<if test="departure != null">
+				 departure = #{departure},
+			</if>
+			<if test="destination != null">
+				 destination = #{destination},
+			</if>
+			<if test="beginTime != null">
+				 begin_time = #{beginTime},
+			</if>
+			<if test="arriveTime != null">
+				 arrive_time = #{arriveTime},
+			</if>
+			<if test="endTime != null">
+				 end_time = #{endTime},
+			</if>
+			<if test="period != null">
+				 period = #{period},
+			</if>
+
+ 		 </set>
+		 WHERE bqs_rep_go_out_id = #{bqsRepGoOutId}
+	</update>
+
+</mapper>

@@ -1,0 +1,2899 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.shangyong.backend.dao.ApplicationDao">
+
+	<resultMap type="com.shangyong.backend.entity.Application" id="applicationinfoMap">
+		<id property="applicationId" column="application_id" javaType="java.lang.String"></id>
+		<result property="appSerialNumber" column="app_serial_number" javaType="java.lang.String"></result>
+		<result property="platformId" column="platform_id" javaType="java.lang.String"></result>
+		<result property="applicationBuId" column="application_bu_id" javaType="java.lang.String"></result>
+		<result property="appName" column="app_name" javaType="java.lang.String"></result>
+		<result property="customerId" column="customer_id" javaType="java.lang.String"></result>
+		<result property="name" column="name" javaType="java.lang.String"></result>
+		<result property="certType" column="cert_type" javaType="java.lang.String"></result>
+		<result property="certCode" column="cert_code" javaType="java.lang.String"></result>
+		<result property="phoneNum" column="phone_num" javaType="java.lang.String"></result>
+		<result property="appraiseMoney" column="appraise_money" javaType="java.lang.String"></result>
+		<result property="productQuota" column="product_quota" javaType="java.lang.String"></result>
+		<result property="days" column="days" javaType="java.lang.Integer"></result>
+		<result property="creditMoney" column="credit_money" javaType="java.lang.String"></result>
+		<result property="loanIp" column="loan_ip" javaType="java.lang.String"></result>
+		<result property="auditingTime" column="auditing_time" javaType="java.lang.String"></result>
+		<result property="auditingState" column="auditing_state" javaType="java.lang.String"></result>
+		<result property="source" column="source" javaType="java.lang.String"></result>
+		<result property="banCode" column="ban_code" javaType="java.lang.String"></result>
+		<result property="auditResult" column="audit_result" javaType="java.lang.String"></result>
+		<result property="isPushApp" column="is_push_app" javaType="java.lang.String"></result>
+		<result property="isStep" column="is_step" javaType="java.lang.String"></result>
+		<result property="errorDescription" column="error_description" javaType="java.lang.String"></result>
+		<result property="auditMan" column="audit_man" javaType="java.lang.String"></result>
+		<result property="createTime" column="create_time" javaType="java.lang.String"></result>
+		<result property="createMan" column="create_man" javaType="java.lang.String"></result>
+		<result property="modifyTime" column="modify_time" javaType="java.lang.String"></result>
+		<result property="modifyMan" column="modify_man" javaType="java.lang.String"></result>
+		<result property="remark" column="remark" javaType="java.lang.String"></result>
+		<result property="scoreSmallId" column="score_small_id" javaType="java.lang.String"></result>
+		<result property="banCodeTplId" column="ban_code_tpl_id" javaType="java.lang.String"></result>
+		<result property="fraudTplId" column="fraud_tpl_id" javaType="java.lang.String"></result>
+		<result property="scoreTplId" column="score_tpl_id" javaType="java.lang.String"></result>
+		<result property="decisionTreeId" column="decision_tree_id" javaType="java.lang.String"></result>
+		<result property="failureTimes" column="failure_times" javaType="java.lang.String"></result>
+		<result property="distributionTime" column="distribution_time" javaType="java.lang.String"></result>
+		<result property="appLevel" column="app_level" javaType="java.lang.String"></result>
+		<result property="appChannel" column="app_channel" javaType="java.lang.String"></result> 
+		<result property="isHbaseSyn" column="is_hbase_syn" javaType="java.lang.String"></result> 
+		<result property="rgAuditingTime" column="rg_auditing_time" javaType="java.lang.String"></result> 
+  		<result property="appVersion" column="app_version" javaType="java.lang.String"></result>
+  		<result property="isCallSucess" column="is_call_sucess" javaType="java.lang.Integer"></result>
+  		<result property="ycNumber" column="yc_number" javaType="java.lang.String"></result>
+  		<result property="auditingRejectCode" column="auditing_reject_code" javaType="java.lang.String"></result>
+  		<result property="mobileWebsite" column="mobile_website" javaType="java.lang.String"></result>
+  		<result property="zhiMaScore" column="zhi_ma_score" javaType="java.lang.String"></result>
+  		<result property="blacklistDsSource" column="blacklist_ds_source" javaType="java.lang.String"></result>
+  		<result property="banClassCode" column="ban_class_code" javaType="java.lang.String"></result>
+	</resultMap>
+
+	<!-- 通用查询结果列-->
+	<sql id="Base_Column_List">
+		  application_id,
+		  app_serial_number,
+		  platform_id,	
+		  application_bu_id,	
+		  app_name,	customer_id,	
+		  `name`,
+		  cert_type,	
+		  cert_code,	
+		  phone_num,	
+		  product_quota,	
+		  days,	loan_ip,	
+		  auditing_time,	
+		  auditing_state,	
+		  credit_money,
+		  appraise_money,	
+		  source,	
+		  ban_code,	
+		  audit_result,	
+		  is_push_app,	
+		  is_step,	
+		  error_description,	
+		  audit_man,	
+		  create_time,	
+		  create_man,	
+		  modify_time,	
+		  modify_man,	
+		  remark,	
+		  ban_code_tpl_id,	
+		  fraud_tpl_id,	
+		  score_tpl_id, 
+		  failure_times, 
+		  distribution_time, 
+		  app_level, 
+		  app_channel, 
+		  decision_tree_id,
+		  is_hbase_syn,
+		  app_version,
+		  audit_man,
+		  distribution_time,
+		  modify_time,
+		  refund_conut,
+		  overdue_count,
+		  is_call_sucess,
+		  yc_number,
+		  auditing_reject_code,
+		  mobile_website,
+		  zhi_ma_score,
+		  blacklist_ds_source,
+		  ban_class_code
+	</sql>
+	
+	<!-- 通用查询结果列-->
+	<sql id="Query_Column_List">
+		 application_id,	
+		 app_serial_number,	
+		 platform_id,	
+		 application_bu_id,	
+		 app_name,	
+		 ban_code,
+		 customer_id,  	
+		 name,	
+		 cert_type,	
+		 cert_code,	
+		 phone_num,	
+		 credit_money,	
+		 is_step,    
+		 is_push_app,   
+		 auditing_time,	
+		 auditing_state,	
+		 source,	
+		 audit_result, 
+		 create_time, 
+		 error_description, 
+		 failure_times, 
+		 app_level, 
+		 app_channel,
+		 decision_tree_id,
+		 is_hbase_syn,
+		 app_version,
+		 audit_man,
+		 distribution_time,
+		 modify_time,
+		 refund_conut,
+		 overdue_count,
+		 mobile_website,
+		 auditing_reject_code,
+		 zhi_ma_score,
+		  blacklist_ds_source,
+		  ban_class_code
+	</sql>
+	
+	<!-- 根据申请单编号查询对应欺诈模板编号 -->
+	<select id="getFraudTplIdByApplicationId" resultType="java.lang.String" parameterType="java.lang.String">
+		 SELECT
+	     fraud_tpl_id 
+		 FROM bu_application 
+		 WHERE application_id = #{applicationId}
+	</select>
+
+	<!-- 查询（根据流水号查询） -->
+	<select id="getEntityByPlatformId" resultMap="applicationinfoMap" parameterType="java.lang.String">
+		 SELECT
+		 <include refid="Base_Column_List" />
+		 FROM bu_application
+		 WHERE platform_id = #{platformId}
+	</select>
+	<!-- 查询（根据流水号查询） -->
+	<select id="getByCustomerId" resultMap="applicationinfoMap" parameterType="java.lang.String">
+		 SELECT
+		 <include refid="Base_Column_List" />
+		 FROM bu_application
+		 WHERE customer_id = #{customerId}
+	</select>
+
+	<!-- 通过customerId 查询用户所有申请单 -->
+	<select id="getApplicationListByCustomerId" resultMap="applicationinfoMap" parameterType="java.lang.String">
+		 SELECT
+		 <include refid="Base_Column_List" />
+		 FROM bu_application
+		 WHERE customer_id = #{customerId}
+	</select>
+
+
+	<!-- 查询（根据流水号查询） -->
+	<select id="getEntityById" resultMap="applicationinfoMap" parameterType="java.lang.String">
+		 SELECT
+		 <include refid="Base_Column_List" />
+		 FROM bu_application
+		 WHERE app_serial_number = #{id}
+	</select>
+	<!-- 查询（根据申请单号查询） -->
+	<select id="getById" resultMap="applicationinfoMap" parameterType="java.lang.String">
+		 SELECT
+		 <include refid="Base_Column_List" />
+		 FROM bu_application
+		 WHERE application_id = #{id}
+	</select>
+
+	<!-- 查询（根据流水号查询申请单相关信息） -->
+	<select id="getEntityByIds" resultMap="applicationinfoMap" parameterType="java.lang.String">
+		SELECT
+			app.application_id,
+			app.app_serial_number,
+			app.platform_id,
+			app.application_bu_id,
+			app.app_name,
+			app.customer_id,
+			app.name,
+			app.cert_type,
+			app.cert_code,
+			app.phone_num,
+			app.product_quota,
+			app.days,
+			app.loan_ip,
+			app.auditing_time,
+			app.auditing_state,
+			app.credit_money,
+			app.appraise_money,
+			app.source,
+			app.ban_code,
+			app.audit_result,
+			app.is_push_app,
+			app.is_step,
+			app.error_description,
+			app.audit_man,
+			app.create_time,
+			app.create_man,
+			app.modify_time,
+			app.modify_man,
+			app.remark,
+			app.ban_code_tpl_id,
+			app.fraud_tpl_id,
+			app.score_tpl_id,
+			app.failure_times,
+			app.distribution_time,
+			app.app_level,
+			app.app_channel,
+			app.decision_tree_id,
+			app.is_hbase_syn,
+			app.app_version,
+			app.distribution_time,
+			app.refund_conut,
+			app.auditing_reject_code,
+			app.overdue_count,
+			app.zhi_ma_score,
+			sp.rg_auditing_state as rgAuditingState,
+			sp.receive_code as receiveCode
+		FROM bu_application app
+		LEFT JOIN
+			bu_sp_approval sp
+		ON app.application_id = sp.application_id
+		WHERE app.app_serial_number = #{appSerialNumber}
+	</select>
+
+
+	<!-- 查询（根据主键ID查询） -->
+	<select id="findAll" resultMap="applicationinfoMap" parameterType="com.shangyong.backend.entity.Application">
+		 SELECT
+		 <include refid="Query_Column_List" />
+		 FROM bu_application
+		<where> 
+	    <if test="source != '' and source != null" >
+	    	source = #{source}
+	    </if>
+	    <if test="banCodeTplId != '' and banCodeTplId != null" >
+	    	and ban_code_tpl_id = #{banCodeTplId}
+	    </if>
+	    <if test="fraudTplId != '' and fraudTplId != null" >
+	    	and fraud_tpl_id = #{fraudTplId}
+	    </if>
+	    <if test="scoreTplId != '' and scoreTplId != null" >
+	    	and score_tpl_id = #{scoreTplId}
+	    </if>
+	    <if test="decisionTreeId != '' and decisionTreeId != null" >
+	    	and decision_tree_id = #{decisionTreeId}
+	    </if>
+	    <if test="applicationId != '' and applicationId != null" >
+	    	and application_id = #{applicationId}
+	    </if>
+	    <if test="banCode != '' and banCode != null" >
+	    	and ban_code = #{banCode}
+	    </if>
+	    <if test="certCode != '' and certCode != null" >
+	    	and cert_code = #{certCode}
+	    </if>
+	    <if test="isStep != '' and isStep != null" >
+	    	and is_step = #{isStep}
+	    </if>
+	    <if test="isPushApp != '' and isPushApp != null" >
+	    	and is_push_app = #{isPushApp}
+	    </if>
+	    <if test="startTime != '' and startTime != null" >
+	    	<![CDATA[ and create_time >= #{startTime} ]]>
+	    </if>
+	    <if test="endTime != '' and endTime != null" >
+	    	<![CDATA[ and create_time <= #{endTime} ]]>
+	    </if>
+	    <if test="appSerialNumber != '' and appSerialNumber != null" >
+	    	and app_serial_number = #{appSerialNumber}
+	    </if>
+	    <if test="name != '' and name != null" >
+	    	and instr(name, #{name}) > 0
+	    </if>
+	    <if test="phoneNum != '' and phoneNum != null" >
+	    	and phone_num = #{phoneNum}
+	    </if>
+	    <if test="auditingState != '' and auditingState != null and auditingState != 1 " >
+	    	and auditing_state = #{auditingState}
+	    </if>
+	    <if test="auditingState == 1 ">
+	    	and auditing_state = 1
+	    </if>
+	     <if test="auditingState == 4 ">
+	    	and auditing_state = 4
+	    </if>
+	    <if test="errorDescription == 1" >
+	    	and auditing_state = 1 and error_description is not null and error_description != ''
+	    </if>
+	    <if test="auditingRejectCode != '' and auditingRejectCode != null"  >
+	    	and auditing_reject_code = #{auditingRejectCode}
+	   	</if>
+	    <if test="appName != '' and appName != null" >
+	    	and app_name = #{appName}
+	    </if> 
+	    <if test="auditResult != '' and auditResult != null" >
+	    	and audit_result = #{auditResult}
+	    </if>
+	    <if test="failureTimes != null and failureTimes != '' "> 
+	    	and failure_times &gt; #{failureTimes}
+	    </if>
+	    <if test="appLevel != '' and appLevel != null" >
+	    	and app_level = #{appLevel}
+	    </if>
+	    <if test="appChannel != '' and appChannel != null" >
+	    	and app_channel = #{appChannel}
+	    </if>
+	    <if test="isHbaseSyn != '' and isHbaseSyn != null" >
+	    	and is_hbase_syn = #{isHbaseSyn}
+	    </if>
+	    <if test="auditMan == 1 ">
+	    	and (audit_man != '' and audit_man is not null)
+	    </if>
+	    <if test="auditMan == 2 ">
+	    	and (audit_man = '' or audit_man is  null)
+	    </if>
+	    <if test="zhiMaScore != '' and zhiMaScore != null ">
+	    	and zhi_ma_score = #{zhiMaScore}
+	    </if>
+		</where>
+	    order by application_bu_id desc 
+	    LIMIT #{pageIndex},#{pageSize}
+	</select>
+	
+		<!-- 查询（根据主键ID查询） -->
+	<select id="findAllCount" resultType="java.lang.Integer" parameterType="com.shangyong.backend.entity.Application">
+		SELECT
+			count(1)
+		FROM bu_application
+		<where>
+	    <if test="source != '' and source != null" >
+	    	source = #{source}
+	    </if>
+	    <if test="banCode != '' and banCode != null" >
+	    	and ban_code = #{banCode}
+	    </if>
+	    <if test="certCode != '' and certCode != null" >
+	    	and cert_code = #{certCode}
+	    </if>
+	    <if test="isStep != '' and isStep != null" >
+	    	and is_step = #{isStep}
+	    </if>
+	    <if test="isPushApp != '' and isPushApp != null" >
+	    	and is_push_app = #{isPushApp}
+	    </if>
+	    <if test="startTime != '' and startTime != null" >
+	    	<![CDATA[ and create_time >= #{startTime} ]]>
+	    </if>
+	    <if test="endTime != '' and endTime != null" >
+	    	<![CDATA[ and create_time <= #{endTime} ]]>
+	    </if>
+	    <if test="appSerialNumber != '' and appSerialNumber != null" >
+	    	and app_serial_number = #{appSerialNumber}
+	    </if>
+	    <if test="name != '' and name != null" >
+	    	and instr(name, #{name}) > 0
+	    </if>
+	    <if test="phoneNum != '' and phoneNum != null" >
+	    	and phone_num = #{phoneNum}
+	    </if>
+	    <if test="auditingState != '' and auditingState != null and auditingState != 1" >
+	    	and auditing_state = #{auditingState}
+	    </if>
+	    <if test="auditingState == 1 ">
+	    	and auditing_state =1 
+	    </if>
+	      <if test="auditingState == 4 ">
+	    	and auditing_state =4 
+	    </if>
+	    <if test="errorDescription == 1" >
+	       and auditing_state =1  and error_description is not null and error_description != ''
+	    </if>
+	     
+	    <if test="appName != '' and appName != null" >
+	    	and app_name = #{appName}
+	    </if>
+	    <if test="auditResult != '' and auditResult != null" >
+	    	and audit_result = #{auditResult}
+	    </if>
+	    <if test="banCodeTplId != '' and banCodeTplId != null" >
+	    	and ban_code_tpl_id = #{banCodeTplId}
+	    </if>
+	     <if test="fraudTplId != '' and fraudTplId != null" >
+	    	and fraud_tpl_id = #{fraudTplId}
+	    </if>
+	    <if test="scoreTplId != '' and scoreTplId != null" >
+	    	and score_tpl_id = #{scoreTplId}
+	    </if>
+	    <if test="decisionTreeId != '' and decisionTreeId != null" >
+	    	and decision_tree_id = #{decisionTreeId}
+	    </if>
+	    <if test="appLevel != '' and appLevel != null" >
+	    	and app_level = #{appLevel}
+	    </if>
+	    <if test="appChannel != '' and appChannel != null" >
+	    	and app_channel = #{appChannel}
+	    </if> 
+	    <if test="isHbaseSyn != '' and isHbaseSyn != null" >
+	    	and is_hbase_syn = #{isHbaseSyn}
+	    </if>
+		<if test="failureTimes != '' and failureTimes != null" >
+			<![CDATA[ and failure_times >= #{failureTimes} ]]>
+		</if>
+	    <if test="auditMan == 1 ">
+	    	and (audit_man != '' and audit_man is not null)
+	    </if>
+	    <if test="auditMan == 2 ">
+	    	and (audit_man = '' or audit_man is  null)
+	    </if> 
+	    <if test="auditingRejectCode != '' and auditingRejectCode != null"  >
+	    	and auditing_reject_code = #{auditingRejectCode}
+	   	</if>
+	    <if test="zhiMaScore != '' and zhiMaScore != null ">
+	    	and zhi_ma_score = #{zhiMaScore}
+	    </if>
+	    </where>
+	</select>
+
+
+	<!-- 添加 -->
+	<insert id="saveEntity" parameterType="com.shangyong.backend.entity.Application">
+		INSERT INTO bu_application (
+			application_id,app_serial_number,platform_id,application_bu_id,app_name,customer_id,name,cert_type,cert_code,
+			phone_num,appraise_money,product_quota,days,credit_money,loan_ip,auditing_state,source,ban_code,modify_time,
+			is_step,app_level,app_channel,app_version,refund_conut,overdue_count,auditing_reject_code,zhi_ma_score,
+			blacklist_ds_source,ban_class_code
+		) VALUES (#{applicationId},#{appSerialNumber},#{platformId},getApplicationId(),#{appName},#{customerId},#{name},
+			#{certType},#{certCode},#{phoneNum},#{appraiseMoney},#{productQuota},#{days},#{creditMoney},#{loanIp},#{auditingState},
+			#{source},#{banCode},now(),#{isStep},#{appLevel},#{appChannel},#{appVersion},#{refundConut},#{overdueCount},
+			#{auditingRejectCode},#{zhiMaScore},#{blacklistDsSource},#{banClassCode}
+		)
+	</insert>
+	
+	<!-- 添加风险 -->
+	<insert id="saveRiskyApplication" parameterType="com.shangyong.backend.entity.Application">
+		INSERT INTO bu_application (application_id,app_serial_number,platform_id,application_bu_id,app_name,customer_id,
+			name,cert_type,cert_code,phone_num,appraise_money,product_quota,days,credit_money,loan_ip,auditing_time,
+			auditing_state,source,ban_code,is_push_app,audit_result,remark,is_step,modify_time,auditing_reject_code,
+			zhi_ma_score,blacklist_ds_source,ban_class_code
+		) VALUES (#{applicationId},#{appSerialNumber},#{platformId},getApplicationId(),#{appName},#{customerId},#{name},
+			#{certType},#{certCode},#{phoneNum},#{appraiseMoney},#{productQuota},#{days},#{creditMoney},#{loanIp},now(),
+			#{auditingState},#{source},#{banCode},#{isPushApp},#{auditResult},#{remark},#{isStep},now(),#{auditingRejectCode},
+			#{zhiMaScore},#{blacklistDsSource},#{banClassCode}
+		)
+	</insert>
+
+	<!-- 修 改-->
+	<update id="updateEntity" parameterType="com.shangyong.backend.entity.Application">
+		 UPDATE bu_application
+ 		 <set> 
+			<if test="appSerialNumber != null">
+				 app_serial_number = #{appSerialNumber},
+			</if>
+			<if test="platformId != null">
+				 platform_id = #{platformId},
+			</if>
+			<if test="appName != null">
+				 app_name = #{appName},
+			</if>
+			<if test="customerId != null">
+				 customer_id = #{customerId},
+			</if>
+			<if test="name != null">
+				 name = #{name},
+			</if>
+			<if test="certType != null">
+				 cert_type = #{certType},
+			</if>
+			<if test="certCode != null">
+				 cert_code = #{certCode},
+			</if>
+			<if test="phoneNum != null">
+				 phone_num = #{phoneNum},
+			</if>
+			<if test="appraiseMoney != null">
+				 appraise_money = #{appraiseMoney},
+			</if>
+			<if test="productQuota != null">
+				 product_quota = #{productQuota},
+			</if>
+			<if test="days != null">
+				 days = #{days},
+			</if>
+			<if test="creditMoney != null">
+				 credit_money = #{creditMoney},
+			</if>
+			<if test="loanIp != null">
+				 loan_ip = #{loanIp},
+			</if>
+			<if test="auditingTime != null">
+				 auditing_time = #{auditingTime},
+			</if>
+			<if test="auditingState != null">
+				 auditing_state = #{auditingState},
+			</if>
+			<if test="source != null">
+				 source = #{source},
+			</if>
+			<if test="banCode != null">
+				 ban_code = #{banCode},
+			</if>
+			<if test="auditResult != null">
+				 audit_result = #{auditResult},
+			</if>
+			<if test="auditMan != null">
+				 audit_man = #{auditMan},
+			</if>
+			<if test="createTime != null">
+				 create_time = #{createTime},
+			</if>
+			<if test="createMan != null">
+				 create_man = #{createMan},
+			</if>
+			<if test="modifyTime != null">
+				 modify_time = #{modifyTime},
+			</if>
+			<if test="modifyMan != null">
+				 modify_man = #{modifyMan},
+			</if>
+			<if test="remark != null">
+				 remark = #{remark},
+			</if>
+			<if test="errorDescription != null">
+				 error_description = #{errorDescription},
+			</if>
+			<if test="isStep != null">
+				 is_step = #{isStep},
+			</if>
+			<if test="banCodeTplId != null">
+				 ban_code_tpl_id = #{banCodeTplId},
+			</if>
+			<if test="fraudTplId != null">
+				 fraud_tpl_id = #{fraudTplId},
+			</if>
+			<if test="scoreTplId != null">
+				 score_tpl_id = #{scoreTplId},
+			</if>
+		    <if test="decisionTreeId != '' and decisionTreeId != null" >
+		    	decision_tree_id = #{decisionTreeId},
+		    </if>
+		    <if test="isHbaseSyn != '' and isHbaseSyn != null" >
+		    	is_hbase_syn = #{isHbaseSyn},
+		    </if>
+			<if test="distributionTime != null">
+				distribution_time = #{distributionTime},
+			</if>
+			<if test="failureTimes == 1">
+				failure_times = failure_times+1,
+			</if>
+			<if test="auditingRejectCode != '' and auditingRejectCode != null"  >
+				auditing_reject_code = #{auditingRejectCode},
+	   		</if>
+		    <if test="zhiMaScore != '' and zhiMaScore != null">
+				zhi_ma_score = #{zhiMaScore},
+		    </if>
+			<if test="blacklistDsSource != '' and blacklistDsSource != null">
+				blacklist_ds_source = #{blacklistDsSource},
+			</if>
+			<if test="banClassCode != '' and banClassCode != null">
+				ban_class_code = #{banClassCode},
+			</if>
+			modify_time =NOW()
+ 		 </set>
+		 WHERE application_id = #{applicationId}
+	</update>
+
+	<!-- 修 改-->
+	<update id="updateEntityByApplicationId" parameterType="com.shangyong.backend.entity.Application">
+		 UPDATE bu_application
+ 		 <set> 
+			<if test="appSerialNumber != null">
+				app_serial_number = #{appSerialNumber},
+			</if>
+			<if test="platformId != null">
+				platform_id = #{platformId},
+			</if>
+			<if test="appName != null">
+				app_name = #{appName},
+			</if>
+			<if test="customerId != null">
+				customer_id = #{customerId},
+			</if>
+			<if test="name != null">
+				name = #{name},
+			</if>
+			<if test="certType != null">
+				cert_type = #{certType},
+			</if>
+			<if test="certCode != null">
+				cert_code = #{certCode},
+			</if>
+			<if test="phoneNum != null">
+				phone_num = #{phoneNum},
+			</if>
+			<if test="appraiseMoney != null">
+				appraise_money = #{appraiseMoney},
+			</if>
+			<if test="productQuota != null">
+				product_quota = #{productQuota},
+			</if>
+			<if test="days != null">
+				days = #{days},
+			</if>
+			<if test="creditMoney != null">
+				 credit_money = #{creditMoney},
+			</if>
+			<if test="loanIp != null">
+				loan_ip = #{loanIp},
+			</if>
+			<if test="auditingTime != null">
+				auditing_time = #{auditingTime},
+			</if>
+			<if test="auditingState != null">
+				auditing_state = #{auditingState},
+			</if>
+			<if test="source != null">
+				source = #{source},
+			</if>
+			<if test="banCode != null">
+				ban_code = #{banCode},
+			</if>
+			<if test="auditResult != null">
+				audit_result = #{auditResult},
+			</if>
+			<if test="auditMan != null">
+				audit_man = #{auditMan},
+			</if>
+			<if test="createTime != null">
+				create_time = #{createTime},
+			</if>
+			<if test="createMan != null">
+				create_man = #{createMan},
+			</if>
+			<if test="modifyTime != null">
+				modify_time = #{modifyTime},
+			</if>
+			<if test="modifyMan != null">
+				modify_man = #{modifyMan},
+			</if>
+			<if test="remark != null">
+				remark = #{remark},
+			</if>
+			<if test="errorDescription != null">
+				error_description = #{errorDescription},
+			</if>
+			<if test="isStep != null">
+				is_step = #{isStep},
+			</if>
+			<if test="banCodeTplId != null">
+				ban_code_tpl_id = #{banCodeTplId},
+			</if>
+			<if test="fraudTplId != null">
+				fraud_tpl_id = #{fraudTplId},
+			</if>
+			<if test="scoreTplId != null">
+				score_tpl_id = #{scoreTplId},
+			</if>
+		    <if test="decisionTreeId != '' and decisionTreeId != null" >
+		    	decision_tree_id = #{decisionTreeId},
+		    </if>
+		    <if test="isHbaseSyn != '' and isHbaseSyn != null" >
+		    	is_hbase_syn = #{isHbaseSyn},
+		    </if>
+			<if test="distributionTime != null">
+				distribution_time = #{distributionTime},
+			</if>
+			<if test="failureTimes !=null">
+				failure_times = #{failureTimes},
+			</if>
+			<if test="auditingRejectCode != '' and auditingRejectCode != null">
+				auditing_reject_code = #{auditingRejectCode},
+	   		</if>
+			<if test="mobileWebsite !=null">
+				mobile_website = #{mobileWebsite},
+			</if>
+		    <if test="zhiMaScore != '' and zhiMaScore != null">
+				zhi_ma_score = #{zhiMaScore},
+		    </if>
+			<if test="blacklistDsSource != '' and blacklistDsSource != null">
+				blacklist_ds_source = #{blacklistDsSource},
+			</if>
+			<if test="banClassCode != '' and banClassCode != null">
+				ban_class_code = #{banClassCode},
+			</if>
+				modify_time =NOW()
+ 		 </set>
+		 WHERE application_id = #{applicationId}
+	</update>
+	
+<!-- 	根据审批状态和步骤标识查询借款申请表数据 -->
+	<select id="getInitAppLicationList" resultType="java.util.Map" parameterType="java.util.Map">
+		select 
+			application_id as applicationNumber,
+			platform_id as platformId,
+			app_serial_number as appSerialNumber,
+			customer_id as customerId,
+			app_name as appName,
+			source,
+			cert_code certCode,
+			`name`,
+			phone_num as phoneNum,
+			app_level as appLevel
+		FROM bu_application
+		<where> 
+	    <if test="auditingState != '' and auditingState != null" >
+	    	 auditing_state=#{auditingState, jdbcType=VARCHAR}
+	    </if>
+	    <if test="isStep != '' and isStep != null" >
+	    	AND is_step=#{isStep, jdbcType=VARCHAR}
+	    </if>
+	    </where>
+	    limit 100
+	</select>
+	
+<!-- 	根据审批状态和步骤标识查询借款申请表数据 -->
+	<select id="getAppLicationList" resultType="java.util.Map" parameterType="java.util.Map">
+		select 
+			bu.cert_type as certType,
+			bu.cert_code as certCode,
+			bu.phone_num as phoneNum,
+			bu.`name`,
+			bu.application_id as applicationNumber,
+			bu.app_serial_number as appSerialNumber,
+			bu.application_bu_id as applicationBuId,
+			bu.product_quota as productQuota,
+			bu.days as days,
+			bu.credit_money as creditMoney,
+			bu.platform_id as platformId,
+			bu.customer_id as customerId,
+			bu.app_name as appName,
+			bu.loan_ip as loanIp,
+			bu.source as source,
+			bu.ban_code_tpl_id as banCodeTplId,
+			bu.fraud_tpl_id as fraudTplId,
+			bu.score_tpl_id as scoreTplId,
+			bu.decision_tree_id as decisionTreeId,
+			bu.app_level as appLevel,
+			bu.app_version as appVersion,
+			bu.is_hbase_syn as isHbaseSyn,
+			bu.zhi_ma_score as zhiMaScore
+		FROM bu_application  bu
+		<where> 
+	    <if test="auditingState != '' and auditingState != null" >
+	    	AND bu.auditing_state=#{auditingState, jdbcType=VARCHAR}
+	    </if>
+	   	<if test="isPushApp != null and isPushApp!=''">
+			AND bu.is_push_app != #{isPushApp, jdbcType=VARCHAR}
+		</if>
+	    <if test="isStep != '' and isStep != null" >
+	    	AND bu.is_step=#{isStep, jdbcType=VARCHAR}
+	    </if>
+		<if test="failuretimes != null and failuretimes!=''">
+			<![CDATA[ AND bu.failure_times < #{failuretimes} ]]>
+		</if>
+	    </where>
+	    limit 100
+	</select>
+
+	
+	<!-- add: xjy	根据审批状态和步骤标识查询借款申请表数据 MQ用-->
+	<select id="getAppLicationObject" resultType="java.util.Map" parameterType="java.util.Map">
+		select 
+			 cu.email         email,
+			 cu.age 		  age,
+			 cu.education_id  educationId,
+			 cu.bank_card     bankCard,
+			 cu.if_marriage   ifMarriage,
+			 cu.home_address  homeAddress,
+			 cu.registered_address  registeredAddress,
+			 cu.contact_address  contactAddress,
+			 bu.cert_type	  certType,
+			 bu.cert_code     certCode,
+			 bu.phone_num     phoneNum,
+			 bu.`name`,
+			 bu.application_id applicationNumber,
+			 bu.app_serial_number	appSerialNumber,
+			 bu.application_bu_id	applicationBuId,
+			 bu.product_quota productQuota,
+			 bu.days 		  days,
+			 bu.credit_money  creditMoney,
+			 bu.platform_id   platformId,
+			 bu.customer_id   customerId,
+			 bu.app_name      appName,
+			 bu.loan_ip       loanIp,
+			 bu.source        source,
+			 bu.ban_code_tpl_id banCodeTplId,
+			 bu.fraud_tpl_id  fraudTplId,
+			 bu.score_tpl_id scoreTplId,
+			 bu.decision_tree_id decisionTreeId,
+			 bu.app_level 	  appLevel,
+			 bu.is_hbase_syn  isHbaseSyn,
+		 	 com.company_industry companyIndustry,
+			 com.company_name     companyName,
+			 com.company_tel      companyTel,
+			 com.company_address  companyAddress,
+			 com.profession_id 	  professionId,
+			 com.working_hours    workingHours
+		FROM bu_application  bu
+		LEFT JOIN
+		 	 cu_platform_customer cu 
+		ON   bu.platform_id = cu.platform_customer_id
+		LEFT JOIN
+			cu_customer_company com
+		ON   bu.platform_id = com.platform_customer_id
+		<where> 
+		<if test="isPushApp != null and isPushApp!=''">
+			AND bu.is_push_app != #{isPushApp, jdbcType=VARCHAR}
+		</if>
+	    <if test="isStep != '' and isStep != null" >
+	    	AND bu.is_step=#{isStep, jdbcType=VARCHAR}
+	    </if>
+	    </where>
+	</select>
+
+	<!-- 根据申请单编号修改借款申请表字段信息-->
+	<update id="updateApplicationByStep" parameterType="java.util.Map">
+		 UPDATE bu_application
+		  <set> 
+		 	<if test="isStep != null and isStep!=''">
+				is_step=#{isStep, jdbcType=VARCHAR},
+			</if>
+		 	<if test="reportId != null and reportId!=''">
+				report_id = #{reportId, jdbcType=VARCHAR},
+			</if>
+			<if test="auditResult != null and auditResult!=''">
+				audit_result = #{auditResult, jdbcType=VARCHAR},
+			</if>
+			<if test="auditingState != null and auditingState!=''">
+				auditing_state = #{auditingState, jdbcType=VARCHAR},
+			</if>
+			<if test="creditMoney != null and creditMoney!=''">
+				credit_money = #{creditMoney, jdbcType=VARCHAR},
+			</if>
+			<if test="appraiseMoney != null and appraiseMoney!=''">
+				appraise_money = #{appraiseMoney, jdbcType=VARCHAR},
+			</if>
+			<if test="banCode != null and banCode !=''">
+				ban_code = #{banCode, jdbcType=VARCHAR},
+			</if>
+			<if test="remark != null and remark!=''">
+				remark = #{remark, jdbcType=VARCHAR},
+			</if>
+			<if test="isPushApp != null and isPushApp!=''">
+				is_push_app = #{isPushApp, jdbcType=VARCHAR},
+			</if>
+			<if test="errorDescription != null">
+				 error_description = #{errorDescription},
+			</if>
+			<if test="ycNumber != null">
+				 yc_number = #{ycNumber},
+			</if>
+			<if test="auditingRejectCode != '' and auditingRejectCode != null"  >
+	    		 auditing_reject_code = #{auditingRejectCode},
+	   		</if>
+		    <if test="zhiMaScore != '' and zhiMaScore != null ">
+		    	 zhi_ma_score = #{zhiMaScore},
+		    </if>
+		    <if test="blacklistDsSource != '' and blacklistDsSource != null">
+				blacklist_ds_source = #{blacklistDsSource},
+			</if>
+			<if test="banClassCode != '' and banClassCode != null">
+				ban_class_code = #{banClassCode},
+			</if>
+			failure_times ='0',
+		 	auditing_time =NOW(),
+		 	modify_time =NOW()
+		 </set> 
+		 WHERE application_id = #{applicationId, jdbcType=VARCHAR} and is_step = #{currentStep, jdbcType=VARCHAR}
+	</update>
+	
+	<!-- 	查询申请表中不是处于"待审核"状态的客户信息 -->
+	<select id="getRiskAppList" resultType="java.util.Map">
+		select 
+			 bu.platform_id  platformId,
+			 bu.app_name     appName,
+			 bu.customer_id  customerId,
+			 bu.`name`,
+			 bu.cert_type   certType,
+			 bu.cert_code   certCode,
+			 bu.phone_num   phoneNum
+		FROM bu_application  bu
+		WHERE bu.auditing_state !='1'
+	</select>
+	
+	<!-- 	查询借款申请表中不是【待审核】和【待人工确认】状态，且未推送通知给App的数据 -->
+	<select id="getAppStatusByPush" resultMap="applicationinfoMap">
+		select 
+		 <include refid="Base_Column_List" />
+		FROM bu_application 
+		WHERE (auditing_state = '2' or auditing_state = '3') 
+		AND (is_push_app = '0' or is_push_app = '3')
+		GROUP BY create_time LIMIT 100
+	</select>
+	
+	<!-- 	成功通知App后，修改借款申请表的【是否通知App】字段is_push_app：0-否、1-是 -->
+	<update id="updateIsPushApp" parameterType="java.lang.String">
+		 UPDATE bu_application
+		 SET
+		 	is_push_app='1',
+		 	modify_time =NOW()
+		 WHERE app_serial_number = #{appSerialNumber, jdbcType=VARCHAR}
+	</update>
+	
+	<!-- 	调用发送大数据成功后，修改借款申请表的【是否通知App】字段is_push_app：0-否、1-是、2：已发送、3：已回调 -->
+	<update id="updateBigDataIsPushApp" parameterType="java.lang.String">
+		 UPDATE bu_application
+		 SET
+		 	is_push_app='2',
+		 	modify_time =NOW()
+		 WHERE application_id = #{applicationId, jdbcType=VARCHAR}
+	</update>
+	
+	<!-- 查询（审核结果统计） -->
+	<select id="queryResultCountInfo" resultType="com.shangyong.backend.entity.ApplicationCount" parameterType="com.shangyong.backend.entity.ApplicationCount">
+		SELECT
+			count(DISTINCT(bu.cert_code)) certCount,
+			count(1) AS count,
+			bu.ban_code banCode,
+			bu.source source,
+			bu.audit_result auditResult,
+			bu.is_step isStep,
+			bu.app_name appName,
+			bu.app_level appLevel,
+			ban.rule_name ruleName,
+			ban.credit_type creditType,
+			ban.modify_time modifyTime,
+			bu.ban_code_tpl_id banControlTplId,
+			bu.decision_tree_id decisionTreeId
+		FROM
+			bu_application bu  
+			LEFT JOIN sc_ban_control ban on bu.ban_code = ban.ban_code 
+			AND bu.ban_code_tpl_id = ban.ban_control_tpl_id
+		 <where> 
+			bu.auditing_state = 3
+	    <if test="startTime != '' and startTime != null" >
+	    	<![CDATA[ and bu.create_time >= #{startTime} ]]>
+	    </if>
+	    <if test="endTime != '' and endTime != null" >
+	    	<![CDATA[ and bu.create_time <= #{endTime}]]>
+	    </if>
+	    <if test="isStep != '' and isStep != null" >
+	    	and bu.is_step = #{isStep}
+	    </if>
+	    <if test="source != '' and source != null" >
+	    	and bu.source = #{source}
+	    </if>
+	    <if test="appName != '' and appName != null" >
+	    	and bu.app_name = #{appName}
+	    </if>
+	    <if test="banControlTplId != '' and banControlTplId != null" >
+	    	and bu.ban_code_tpl_id = #{banControlTplId}
+	    </if>
+	    <if test="decisionTreeId != '' and decisionTreeId != null" >
+	    	and bu.decision_tree_id = #{decisionTreeId}
+	    </if>
+	     <if test="appLevel != '' and appLevel != null" >
+	    	and bu.app_level  = #{appLevel}
+	    </if>
+	    </where>
+		GROUP BY
+			bu.ban_code, bu.is_step, bu.source, bu.app_name,bu.audit_result,bu.ban_code_tpl_id,bu.decision_tree_id 
+		ORDER BY
+			count DESC, certCount DESC, banCode asc
+	    LIMIT #{pageIndex},#{pageSize}
+	</select>
+	
+	<!-- 查询（审核结果统计） -->
+	<select id="listResultCount" resultType="java.lang.Integer" parameterType="com.shangyong.backend.entity.ApplicationCount">
+		 SELECT count(1) FROM
+			(SELECT
+				bu.ban_code
+			FROM
+				bu_application bu  
+			LEFT JOIN sc_ban_control ban on bu.ban_code = ban.ban_code
+			AND bu.ban_code_tpl_id = ban.ban_control_tpl_id
+		 <where> 
+			bu.auditing_state = 3
+	    <if test="startTime != '' and startTime != null" >
+	    	<![CDATA[ and bu.create_time >= #{startTime} ]]>
+	    </if>
+	    <if test="endTime != '' and endTime != null" >
+	    	<![CDATA[ and bu.create_time <= #{endTime}]]>
+	    </if>
+	    <if test="isStep != '' and isStep != null" >
+	    	and bu.is_step = #{isStep} 
+	    </if>
+	    <if test="source != '' and source != null" >
+	    	and bu.source = #{source}
+	    </if>
+	    <if test="appName != '' and appName != null" >
+	    	and bu.app_name = #{appName}
+	    </if>
+	    <if test="banControlTplId != '' and banControlTplId != null" >
+	    	and bu.ban_code_tpl_id = #{banControlTplId}
+	    </if>
+	    <if test="decisionTreeId != '' and decisionTreeId != null" >
+	    	and bu.decision_tree_id = #{decisionTreeId}
+	    </if>
+	     <if test="appLevel != '' and appLevel != null" >
+	    	and bu.app_level  = #{appLevel}
+	    </if>
+	    </where>
+   		GROUP BY
+			bu.ban_code, bu.is_step, bu.source,bu.app_name,bu.audit_result,bu.ban_code_tpl_id,bu.decision_tree_id ) as listResultCount
+	</select>
+	
+	<!-- 查询（审核结果统计） -->
+	<select id="queryResultCount" resultType="com.shangyong.backend.entity.ApplicationCount" parameterType="com.shangyong.backend.entity.ApplicationCount">
+		 SELECT
+			 count(DISTINCT(bu.cert_code)) certCount,
+			 count(1)  count,
+			 bu.auditing_state auditingState
+		 FROM bu_application bu
+		 LEFT JOIN sc_decision_tree tree on bu.decision_tree_id = tree.decision_tree_id
+		 <where> 
+	    <if test="startTime != '' and startTime != null" >
+	    	<![CDATA[ and bu.create_time >= #{startTime} ]]>
+	    </if>
+	    <if test="endTime != '' and endTime != null" >
+	    	<![CDATA[ and bu.create_time <= #{endTime} ]]>
+	    </if>
+	    <if test="isStep != '' and isStep != null" >
+	    	and bu.is_step = #{isStep}
+	    </if>
+	    <if test="source != '' and source != null" >
+	    	and bu.source = #{source}
+	    </if>
+	    <if test="appName != '' and appName != null" >
+	    	and bu.app_name = #{appName}
+	    </if>
+	    <if test="banControlTplId != '' and banControlTplId != null" >
+	    	and tree.ban_control_tpl_id = #{banControlTplId}
+	    </if>
+	    <if test="decisionTreeId != '' and decisionTreeId != null" >
+	    	and bu.decision_tree_id = #{decisionTreeId}
+	    </if>
+	     <if test="appLevel != '' and appLevel != null" >
+	    	and bu.app_level  = #{appLevel}
+	    </if>
+		<if test="isHbaseSyn != '' and isHbaseSyn != null" >
+			 and bu.is_hbase_syn = #{isHbaseSyn}
+		</if>
+		
+	    </where>
+	    group by bu.auditing_state
+	</select>
+	
+		<!-- 查询（根据主键ID查询） -->
+	<select id="findAllCustomer" resultMap="applicationinfoMap" parameterType="com.shangyong.backend.entity.Application">
+		 SELECT
+		 	<include refid="Base_Column_List" />
+		 FROM bu_application
+		 <where> 
+	    <if test="appName != '' and appName != null" >
+	    	app_name = #{appName}
+	    </if>
+	    <if test="source != '' and source != null" >
+	    	and source = #{source}
+	    </if>
+	    <if test="isStep != '' and isStep != null" >
+	    	and is_step = #{isStep}
+	    </if>
+	    <if test="banCode != '' and banCode != null" >
+	    	and ban_code = #{banCode}
+	    </if>
+	    <if test="startTime != '' and startTime != null" >
+	    	<![CDATA[ and create_time >= #{startTime} ]]>
+	    </if>
+	    <if test="endTime != '' and endTime != null" >
+	    	<![CDATA[ and create_time <= #{endTime} ]]>
+	    </if>
+	    <if test="name != '' and name != null" >
+	    	and instr(name, #{name}) > 0
+	    </if>
+	    <if test="phoneNum != '' and phoneNum != null" >
+	    	and phone_num = #{phoneNum}
+	    </if>
+	    <if test="certCode != '' and certCode != null" >
+	    	and cert_code = #{certCode}
+	    </if>
+	    <if test="1 == 1" >
+	    	and auditing_state = 3
+	    </if>
+	    </where>
+	    	group by cert_code
+		    order by application_bu_id desc 
+		    LIMIT #{pageIndex},#{pageSize}
+	</select>
+	
+		<!-- 查询（根据主键ID查询） -->
+	<select id="findAllCustomerCount" resultType="java.lang.Integer" parameterType="com.shangyong.backend.entity.Application">
+		 SELECT
+				count(DISTINCT(cert_code)) count
+		 FROM bu_application
+		 <where> 
+	    <if test="appName != '' and appName != null" >
+	    	app_name = #{appName}
+	    </if>
+	    <if test="source != '' and source != null" >
+	    	and source = #{source}
+	    </if>
+	    <if test="isStep != '' and isStep != null" >
+	    	and is_step = #{isStep}
+	    </if>
+	    <if test="banCode != '' and banCode != null" >
+	    	and ban_code = #{banCode}
+	    </if>
+	    <if test="startTime != '' and startTime != null" >
+	    	<![CDATA[ and create_time >= #{startTime} ]]>
+	    </if>
+	    <if test="endTime != '' and endTime != null" >
+	    	<![CDATA[ and create_time <= #{endTime} ]]>
+	    </if>
+	    <if test="name != '' and name != null" >
+	    	and instr(name, #{name}) > 0
+	    </if>
+	    <if test="phoneNum != '' and phoneNum != null" >
+	    	and phone_num = #{phoneNum}
+	    </if>
+	    <if test="certCode != '' and certCode != null" >
+	    	and cert_code = #{certCode}
+	    </if>
+	    <if test="1 == 1" >
+	    	and auditing_state = 3
+	    </if>
+	    <if test="decisionTreeId != '' and decisionTreeId != null" >
+	    	and decision_tree_id = #{decisionTreeId}
+	    </if>
+	    </where>
+	</select>
+
+	<sql id="timeType">
+		<if test="timeType == 0" >
+			SELECT DATE_FORMAT(create_time,'%Y-%m-%d %Hh') timeValue,
+	   	</if>
+	   	<if test="timeType == 1" >
+			SELECT DATE_FORMAT(create_time,'%Y-%m-%d') timeValue,
+	   	</if>
+	   	<if test="timeType == 2" >
+	    	SELECT DATE_FORMAT(create_time,'%Y年 第%u周') timeValue,
+	   	</if>
+	   	<if test="timeType == 3" >
+	    	SELECT DATE_FORMAT(create_time,'%Y-%m') timeValue,
+	   	</if>
+	   	<if test="timeType == 4" >
+	    	SELECT DATE_FORMAT(create_time,'%Y-%m-%d %Hh%im') timeValue,
+	   	</if>
+	</sql>
+	<sql id="timeQuery">
+		<if test="startTime != '' and startTime != null" >
+	    	<![CDATA[ and create_time >= #{startTime} ]]>
+	    </if>
+	    <if test="endTime != '' and endTime != null" >
+	    	<![CDATA[ and create_time <= #{endTime} ]]>
+	    </if>
+	</sql>
+	
+  
+	
+	<!-- 查询（通过率统计） -->
+	<select id="getPassingRate" resultType="com.shangyong.backend.entity.ApplicationPersonCount" parameterType="com.shangyong.backend.entity.ApplicationPersonCount">
+		 SELECT b.timeValue timeValue,IFNULL(FORMAT(a.count/b.sumCount*100,2),"0") count
+			FROM 
+			(
+					<include refid="timeType" />
+					count(1) sumCount
+				FROM
+					bu_application
+				<where> 
+				    <include refid="timeQuery" />
+				</where>
+				GROUP BY
+					timeValue
+			) b 
+			LEFT JOIN 
+			(
+					<include refid="timeType" />
+					count(1) count
+				FROM
+					bu_application
+				<where> 
+					auditing_state = '2'
+				    <include refid="timeQuery" />
+				    <if test="appLevel != '' and appLevel != null" >
+				    	and app_level = #{appLevel}
+				    </if>
+				</where>
+				GROUP BY
+					timeValue
+			) a 
+			ON a.timeValue = b.timeValue
+			ORDER BY timeValue
+	</select>
+
+	<!-- 查询（通过率统计） -->
+	<select id="getApplicationPersonByTime" resultType="com.shangyong.backend.entity.ApplicationPersonCount" parameterType="com.shangyong.backend.entity.ApplicationPersonCount">
+		<include refid="timeType" />
+		count(1) count,
+		count(DISTINCT cert_code) personCount
+		FROM
+		bu_application
+		<where>
+			<include refid="timeQuery" />
+		    <if test="treeId != '' and treeId != null" >
+		    	and decision_tree_id = #{treeId}
+		    </if>
+		     <if test="source != '' and source != null" >
+		    	and source = #{source}
+		    </if>
+		    <if test="appLevel != '' and appLevel != null" >
+		    	and app_level = #{appLevel}
+		    </if>
+		</where>
+		GROUP BY timeValue
+		ORDER BY timeValue
+	</select>
+	
+	<!-- 查询（通过率统计） -->
+	<select id="getPassApplicationPersonByTime" resultType="com.shangyong.backend.entity.ApplicationPersonCount" parameterType="com.shangyong.backend.entity.ApplicationPersonCount">
+		<include refid="timeType" />
+		count(1) count,
+		count(DISTINCT cert_code) personCount
+		FROM
+		bu_application
+		<where>
+			auditing_state = '2'
+			<include refid="timeQuery" />
+		    <if test="treeId != '' and treeId != null" >
+		    	and decision_tree_id = #{treeId}
+		    </if>
+		    <if test="source != '' and source != null" >
+		    	and source = #{source}
+		    </if>
+		    <if test="appLevel != '' and appLevel != null" >
+		    	and app_level = #{appLevel}
+		    </if>
+		</where>
+		GROUP BY timeValue
+		ORDER BY timeValue
+	</select>
+	
+	
+	
+	<!-- 	根据查询借款申请表前一天的所有数据 -->
+	<select id="getYesterdayApplicationList" resultType="java.util.Map" parameterType="java.util.Map">
+		<![CDATA[
+		SELECT 
+			 application.application_id	   applicationNumber,
+			 thirdparty.task_id    jxlUseToken
+		FROM bu_application application, bu_thirdparty_report thirdparty
+	    WHERE 
+	    	application.create_time >= #{yesterday, jdbcType=VARCHAR}
+	    AND application.create_time < #{today, jdbcType=VARCHAR}
+	    AND application.application_id = thirdparty.bu_application_id
+	    AND thirdparty.task_type = '04001'
+	    ]]>
+	</select>
+	
+	<!-- 	获取过往审批未通过，审批步骤小于4的申请数据 -->
+	<select id="getPreviouslyApplicationList" resultType="java.util.Map" parameterType="java.util.Map">
+		SELECT 
+			 application.application_id	   applicationNumber,
+			 thirdparty.task_id    jxlUseToken,
+			 application.cert_type    certType,
+			 application.cert_code    certCode,
+			 application.phone_num    phoneNum,
+			 application.`name`,
+			 application.app_serial_number    appSerialNumber,
+			 application.application_bu_id    applicationBuId,
+			 application.platform_id    platformId,
+			 application.customer_id    customerId,
+			 application.app_name    appName,
+			 application.loan_ip    loanIp,
+			 application.source    source
+		FROM bu_application application, bu_thirdparty_report thirdparty
+	    <where> 
+	    <![CDATA[ 
+		application.auditing_state = 3
+	    AND application.is_step < 4 
+	    ]]>
+	    AND thirdparty.task_type = '04001'
+	    <if test="endTime != '' and endTime != null" >
+	    	<![CDATA[ and application.create_time < #{endTime, jdbcType=VARCHAR} ]]>
+	    </if>
+	    <if test="startTime != '' and startTime != null" >
+	    	<![CDATA[ and application.create_time >= #{startTime, jdbcType=VARCHAR} ]]>
+	    </if>
+	    AND application.application_id = thirdparty.bu_application_id
+	    </where>
+	    limit 10000
+	</select>
+	
+	<!-- 	获取前一天审批未通过，审批步骤小于4的申请数据 -->
+	<select id="queryYesterdayApplicationList" resultType="java.util.Map" parameterType="java.util.Map">
+		<![CDATA[
+		SELECT 
+			 application.application_id	   applicationNumber,
+			 thirdparty.task_id    jxlUseToken,
+			 application.cert_type    certType,
+			 application.cert_code    certCode,
+			 application.phone_num    phoneNum,
+			 application.`name`,
+			 application.app_serial_number    appSerialNumber,
+			 application.application_bu_id    applicationBuId,
+			 application.platform_id    platformId,
+			 application.customer_id    customerId,
+			 application.app_name    appName,
+			 application.loan_ip    loanIp,
+			 application.source    source
+		FROM bu_application application, bu_thirdparty_report thirdparty
+	    WHERE 
+	    	application.create_time >= #{yesterday, jdbcType=VARCHAR}
+	    AND application.create_time < #{today, jdbcType=VARCHAR}
+	    AND application.is_step < 4 
+	    AND application.auditing_state = 3
+	    AND thirdparty.task_type = '04001'
+	    AND application.application_id = thirdparty.bu_application_id
+	    ]]>
+	</select>
+	
+		<!-- 总授信额度 -->
+	<select id="queryTotalCreditMoney" resultType="java.lang.Integer" parameterType="com.shangyong.backend.entity.ApplicationCount">
+		  select ifnull(sum(credit_money),0) from bu_application bu
+		<where> 
+		    <if test="startTime != '' and startTime != null" >
+		    	<![CDATA[ and bu.create_time >= #{startTime} ]]>
+		    </if>
+		    <if test="endTime != '' and endTime != null" >
+		    	<![CDATA[ and bu.create_time <= #{endTime} ]]>
+		    </if>
+		    <if test="isStep != '' and isStep != null" >
+		    	and bu.is_step = #{isStep}
+		    </if>
+		    <if test="source != '' and source != null" >
+		    	and bu.source = #{source}
+		    </if>
+		    <if test="appName != '' and appName != null" >
+		    	and bu.app_name = #{appName}
+		    </if>
+		    <if test="banControlTplId != '' and banControlTplId != null" >
+		    	and bu.ban_code_tpl_id = #{banControlTplId}
+		    </if>
+		    <if test="decisionTreeId != '' and decisionTreeId != null" >
+		    	and bu.decision_tree_id = #{decisionTreeId}
+		    </if>
+		    <if test="1 == 1" >
+		    	and bu.auditing_state = 2
+		    </if>
+		     <if test="appLevel != '' and appLevel != null" >
+	    	and bu.app_level  = #{appLevel}
+	    </if>
+			<if test="isHbaseSyn != '' and isHbaseSyn != null" >
+				and bu.is_hbase_syn = #{isHbaseSyn}
+			</if>
+		</where>
+		  
+	</select>
+	
+	<!-- 查询数量 -->
+	<select id="getApplicationFromScoreDetailSmallStatisticsCount" resultType="java.lang.Integer" parameterType="com.shangyong.backend.entity.Application">
+		SELECT count(b.platform_id) 
+		from sc_score_detail a,bu_application b
+		<where>
+		a.score_small_id=#{scoreSmallId} and a.application_id=b.application_id 
+			<if test="startTime != '' and startTime != null" >
+	    	    <![CDATA[ and a.create_time >= #{startTime} ]]>
+	         </if>
+	   	     <if test="endTime != '' and endTime != null" >
+	    	    <![CDATA[ and a.create_time <= #{endTime} ]]>
+	         </if>
+		</where>
+  	</select>
+	
+	
+	<!-- 查询（根据评分小类序号查询） -->
+	<select id="getApplicationFromScoreDetailSmallStatistics" resultMap="applicationinfoMap" parameterType="com.shangyong.backend.entity.Application">
+		SELECT b.application_id as applicationId, b.app_serial_number as
+		appSerialNumber, b.platform_id as platformId, b.application_bu_id as
+		applicationBuId, b.app_name as appName ,
+		b.customer_id as customerId, name,
+		b.cert_type as certType, b.cert_code as certCode , b.phone_num as phoneNum,
+		b.credit_money as creditMoney , b.is_step as isStep , b.is_push_app as
+		isPushApp ,
+		b.auditing_time as auditingTime , b.auditing_state as auditingState,
+		source, b.audit_result as auditResult , b.create_time as createTime ,
+		b.error_description as errorDescription
+		from sc_score_detail a,bu_application b
+		<where>
+		a.score_small_id=#{scoreSmallId} and a.application_id=b.application_id 
+			<if test="startTime != '' and startTime != null" >
+	    	    <![CDATA[ and a.create_time >= #{startTime} ]]>
+	         </if>
+	   	     <if test="endTime != '' and endTime != null" >
+	    	    <![CDATA[ and a.create_time <= #{endTime} ]]>
+	         </if>
+		</where>
+		order by b.application_bu_id DESC
+		LIMIT #{pageIndex},#{pageSize}
+	</select>
+	
+	
+	<!-- 查询数量 -->
+	<select id="getApplicationFromFraudDetailSmallStatisticsCount" resultType="java.lang.Integer" parameterType="com.shangyong.backend.entity.Application">
+		SELECT count(b.platform_id) 
+		from sc_fraud_score_detail a,bu_application b
+		<where>
+		a.fraud_rule_id=#{scoreSmallId} and a.application_id=b.application_id 
+			<if test="startTime != '' and startTime != null" >
+	    	    <![CDATA[ and a.create_time >= #{startTime} ]]>
+	         </if>
+	   	     <if test="endTime != '' and endTime != null" >
+	    	    <![CDATA[ and a.create_time <= #{endTime} ]]>
+	         </if>
+		</where>
+  	</select>
+	
+	<!-- 查询（根据欺诈分小类序号查询） -->
+	<select id="getApplicationFromFraudDetailSmallStatistics" resultMap="applicationinfoMap" parameterType="com.shangyong.backend.entity.Application">
+		SELECT b.application_id as applicationId, b.app_serial_number as
+		appSerialNumber, b.platform_id as platformId, b.application_bu_id as
+		applicationBuId, b.app_name as appName ,
+		b.customer_id as customerId, name,
+		b.cert_type as certType, b.cert_code as certCode , b.phone_num as phoneNum,
+		b.credit_money as creditMoney , b.is_step as isStep , b.is_push_app as
+		isPushApp ,
+		b.auditing_time as auditingTime , b.auditing_state as auditingState,
+		source, b.audit_result as auditResult , b.create_time as createTime ,
+		b.error_description as errorDescription
+		from sc_fraud_score_detail a,bu_application b
+		<where>
+		a.fraud_rule_id=#{scoreSmallId} and a.application_id=b.application_id 
+			<if test="startTime != '' and startTime != null" >
+	    	    <![CDATA[ and a.create_time >= #{startTime} ]]>
+	         </if>
+	   	     <if test="endTime != '' and endTime != null" >
+	    	    <![CDATA[ and a.create_time <= #{endTime} ]]>
+	         </if>
+		</where>
+		order by b.application_bu_id DESC
+		LIMIT #{pageIndex},#{pageSize}
+	</select>
+	
+	<!-- 查询总人数 -->
+	<select id="findPersonCount" resultType="java.lang.Integer" parameterType="com.shangyong.backend.entity.Application">
+		 SELECT 
+		count(DISTINCT cert_code) personCount
+		 FROM bu_application
+		<where> 
+	    <if test="source != '' and source != null" >
+	    	source = #{source}
+	    </if>
+	    <if test="banCodeTplId != '' and banCodeTplId != null" >
+	    	and ban_code_tpl_id = #{banCodeTplId}
+	    </if>
+	    <if test="fraudTplId != '' and fraudTplId != null" >
+	    	and fraud_tpl_id = #{fraudTplId}
+	    </if>
+	    <if test="scoreTplId != '' and scoreTplId != null" >
+	    	and score_tpl_id = #{scoreTplId}
+	    </if>
+	    <if test="decisionTreeId != '' and decisionTreeId != null" >
+	    	and decision_tree_id = #{decisionTreeId}
+	    </if>
+	    <if test="applicationId != '' and applicationId != null" >
+	    	application_id = #{applicationId}
+	    </if>
+	    <if test="banCode != '' and banCode != null" >
+	    	and ban_code = #{banCode}
+	    </if>
+	    <if test="certCode != '' and certCode != null" >
+	    	and cert_code = #{certCode}
+	    </if>
+	    <if test="isStep != '' and isStep != null" >
+	    	and is_step = #{isStep}
+	    </if>
+	    <if test="isPushApp != '' and isPushApp != null" >
+	    	and is_push_app = #{isPushApp}
+	    </if>
+	    <if test="startTime != '' and startTime != null" >
+	    	<![CDATA[ and create_time >= #{startTime} ]]>
+	    </if>
+	    <if test="endTime != '' and endTime != null" >
+	    	<![CDATA[ and create_time <= #{endTime} ]]>
+	    </if>
+	    <if test="appSerialNumber != '' and appSerialNumber != null" >
+	    	and app_serial_number = #{appSerialNumber}
+	    </if>
+	    <if test="name != '' and name != null" >
+	    	and instr(name, #{name}) > 0
+	    </if>
+	    <if test="phoneNum != '' and phoneNum != null" >
+	    	and phone_num = #{phoneNum}
+	    </if>
+	    <if test="auditingState != '' and auditingState != null and auditingState != 1 " >
+	    	and auditing_state = #{auditingState}
+	    </if>
+	    <if test="auditingState == 1 ">
+	    	and auditing_state = 1
+	    </if>
+	     <if test="auditingState == 4 ">
+	    	and auditing_state = 4
+	    </if>
+	    <if test="errorDescription == 1" >
+	    	and auditing_state = 1 	and error_description is not null and error_description != ''
+	    </if>
+	    <if test="auditingRejectCode != '' and auditingRejectCode != null"  >
+	    	and auditing_reject_code = #{auditingRejectCode},
+	   	</if>
+	    <if test="appName != '' and appName != null" >
+	    	and app_name = #{appName}
+	    </if> 
+	    <if test="auditResult != '' and auditResult != null" >
+	    	and audit_result = #{auditResult}
+	    </if>
+	    <if test="failureTimes != null and failureTimes != '' ">
+	    	and failure_times &gt; #{failureTimes}
+	    </if>
+	    <if test="appLevel != '' and appLevel != null" >
+	    	and app_level = #{appLevel}
+	    </if>
+	    <if test="appChannel != '' and appChannel != null" >
+	    	and app_channel = #{appChannel}
+	    </if>
+	    <if test="isHbaseSyn != '' and isHbaseSyn != null" >
+	    	and is_hbase_syn = #{isHbaseSyn}
+	    </if>
+	    <if test="auditMan == 1 ">
+	    	and (audit_man != '' and audit_man is not null)
+	    </if>
+	    <if test="auditMan == 2 ">
+	    	and (audit_man = '' or audit_man is  null)
+	    </if>
+		<if test="zhiMaScore != '' and zhiMaScore != null ">
+		    and	 bu.zhi_ma_score = #{zhiMaScore}
+		</if>
+		</where>
+	</select>
+	
+	<!-- 技术人员专用 查询（根据主键ID查询） -->
+	<select id="jsfindAll" resultMap="applicationinfoMap" parameterType="com.shangyong.backend.entity.Application">
+		 SELECT
+		 <include refid="Base_Column_List" />
+		 FROM bu_application
+		<where> 
+	    <if test="source != '' and source != null" >
+	    	source = #{source}
+	    </if> 
+	    <if test="decisionTreeId != '' and decisionTreeId != null" >
+	    	and decision_tree_id = #{decisionTreeId}
+	    </if>
+	    <if test="applicationId != '' and applicationId != null" >
+	    	and application_id = #{applicationId}
+	    </if>
+	    <if test="banCode != '' and banCode != null" >
+	    	and ban_code = #{banCode}
+	    </if>
+	    <if test="certCode != '' and certCode != null" >
+	    	and cert_code = #{certCode}
+	    </if>
+	    <if test="isStep != '' and isStep != null" >
+	    	and is_step = #{isStep}
+	    </if>
+	    <if test="isPushApp != '' and isPushApp != null" >
+	    	and is_push_app = #{isPushApp}
+	    </if>
+	    <if test="startTime != '' and startTime != null" >
+	    	<![CDATA[ and create_time >= #{startTime} ]]>
+	    </if>
+	    <if test="endTime != '' and endTime != null" >
+	    	<![CDATA[ and create_time <= #{endTime} ]]>
+	    </if>
+	    <if test="appSerialNumber != '' and appSerialNumber != null" >
+	    	and app_serial_number = #{appSerialNumber}
+	    </if>
+	    <if test="name != '' and name != null" >
+	    	and instr(name, #{name}) > 0
+	    </if>
+	    <if test="phoneNum != '' and phoneNum != null" >
+	    	and phone_num = #{phoneNum}
+	    </if>
+	    <if test="auditingState != '' and auditingState != null and auditingState != 1 " >
+	    	and auditing_state = #{auditingState}
+	    </if>
+	    <if test="auditingState == 1 ">
+	    	and auditing_state = 1
+	    </if>
+	    <if test="auditingState == 4 ">
+	    	and auditing_state = 4
+	    </if>
+	   <if test="errorDescription == 1" >
+	    	and error_description is not null and error_description != ''
+	    </if>
+	    <if test="errorDescription == 2" >
+	    	and error_description is null or error_description = ''
+	    </if>
+	    <if test="appName != '' and appName != null" >
+	    	and app_name = #{appName}
+	    </if> 
+	    <if test="auditResult != '' and auditResult != null" >
+	    	and audit_result = #{auditResult}
+	    </if>
+	    <if test="failureTimes != null and failureTimes != '' ">
+	    	and failure_times &gt; #{failureTimes}
+	    </if>
+	    <if test="appLevel != '' and appLevel != null" >
+	    	and app_level = #{appLevel}
+	    </if>
+	    <if test="appChannel != '' and appChannel != null" >
+	    	and app_channel = #{appChannel}
+	    </if>
+	    <if test="isHbaseSyn != '' and isHbaseSyn != null" >
+	    	and is_hbase_syn = #{isHbaseSyn}
+	    </if>
+	    <if test="auditMan == 1 ">
+	    	and (audit_man != '' and audit_man is not null)
+	    </if>
+	    <if test="auditMan == 2 ">
+	    	and (audit_man = '' or audit_man is  null)
+	    </if>
+	    <if test="auditingRejectCode != '' and auditingRejectCode != null"  >
+	    	and auditing_reject_code = #{auditingRejectCode},
+	   	</if>
+		<if test="zhiMaScore != '' and zhiMaScore != null">
+		    and	 bu.zhi_ma_score = #{zhiMaScore}
+		</if>
+		</where>
+		order by application_bu_id desc 
+	    LIMIT #{pageIndex},#{pageSize}
+	</select>
+
+
+	<!-- 技术人员专用 查询（根据主键ID查询） -->
+	<select id="jsfindAllCount" resultType="java.lang.Integer" parameterType="com.shangyong.backend.entity.Application">
+		 SELECT
+		 count(1)
+		 FROM bu_application
+		<where> 
+	    <if test="source != '' and source != null" >
+	    	source = #{source}
+	    </if> 
+	    <if test="decisionTreeId != '' and decisionTreeId != null" >
+	    	and  decision_tree_id = #{decisionTreeId}
+	    </if>
+	    <if test="applicationId != '' and applicationId != null" >
+	    	and application_id = #{applicationId}
+	    </if>
+	    <if test="banCode != '' and banCode != null" >
+	    	and ban_code = #{banCode}
+	    </if>
+	    <if test="certCode != '' and certCode != null" >
+	    	and cert_code = #{certCode}
+	    </if>
+	    <if test="isStep != '' and isStep != null" >
+	    	and is_step = #{isStep}
+	    </if>
+	    <if test="isPushApp != '' and isPushApp != null" >
+	    	and is_push_app = #{isPushApp}
+	    </if>
+	    <if test="startTime != '' and startTime != null" >
+	    	<![CDATA[ and create_time >= #{startTime} ]]>
+	    </if>
+	    <if test="endTime != '' and endTime != null" >
+	    	<![CDATA[ and create_time <= #{endTime} ]]>
+	    </if>
+	    <if test="appSerialNumber != '' and appSerialNumber != null" >
+	    	and app_serial_number = #{appSerialNumber}
+	    </if>
+	    <if test="auditingRejectCode != '' and auditingRejectCode != null"  >
+	    	and auditing_reject_code = #{auditingRejectCode},
+	   	</if>
+	    <if test="name != '' and name != null" >
+	    	and instr(name, #{name}) > 0
+	    </if>
+	    <if test="phoneNum != '' and phoneNum != null" >
+	    	and phone_num = #{phoneNum}
+	    </if>
+	    <if test="auditingState != '' and auditingState != null and auditingState != 1 " >
+	    	and auditing_state = #{auditingState}
+	    </if>
+	    <if test="auditingState == 1 ">
+	    	and auditing_state = 1
+	    </if>
+	     <if test="auditingState == 4 ">
+	    	and auditing_state = 4
+	    </if>
+	   <if test="errorDescription == 1" >
+	    	and error_description is not null and error_description != ''
+	    </if>
+	    <if test="errorDescription == 2" >
+	    	and error_description is null or error_description = ''
+	    </if>
+	    <if test="appName != '' and appName != null" >
+	    	and app_name = #{appName}
+	    </if> 
+	    <if test="auditResult != '' and auditResult != null" >
+	    	and audit_result = #{auditResult}
+	    </if>
+	    <if test="failureTimes != null and failureTimes != '' ">
+	    	and failure_times &gt; #{failureTimes}
+	    </if>
+	    <if test="appLevel != '' and appLevel != null" >
+	    	and app_level = #{appLevel}
+	    </if>
+	    <if test="appChannel != '' and appChannel != null" >
+	    	and app_channel = #{appChannel}
+	    </if>
+	    <if test="isHbaseSyn != '' and isHbaseSyn != null" >
+	    	and is_hbase_syn = #{isHbaseSyn}
+	    </if>
+	    <if test="auditMan == 1 ">
+	    	and (audit_man != '' and audit_man is not null)
+	    </if>
+	    <if test="auditMan == 2 ">
+	    	and (audit_man = '' or audit_man is  null)
+	    </if>
+		<if test="zhiMaScore != '' and zhiMaScore != null ">
+		    and	 bu.zhi_ma_score = #{zhiMaScore}
+		</if>
+		</where>
+	</select>
+
+	<select id="getObjectById" resultMap="applicationinfoMap" parameterType="java.lang.String">
+		 SELECT
+		 <include refid="Base_Column_List" />
+		 FROM bu_application
+		 WHERE application_id = #{applicationId}
+	</select> 
+	
+	<!-- 修 改-->
+	<update id="updatefailureTimes" parameterType="com.shangyong.backend.entity.Application">
+		 UPDATE bu_application
+ 		 <set>  
+			<if test="failureTimes != '' and  failureTimes != null ">
+				 failure_times = #{failureTimes},
+			</if>
+				modify_time =NOW()
+ 		 </set>
+		 WHERE application_id = #{applicationId}
+	</update> 
+	
+	<!-- 查询借款申请表、待人工确认状态且审批人编号为空的数据 -->
+	<select id="getRgApprovalCount" resultType="java.lang.Integer">
+		SELECT count(1) 
+		from bu_application a
+		where  a.auditing_state='4'   
+		and (audit_man is null  or audit_man ='')
+  	</select>
+  	 
+		<!--审批系统相关查询<案件一览>条数统计 -->
+	<select id="findApproveInfoCount" resultType="java.lang.Integer" parameterType="com.shangyong.backend.entity.Application">
+		 SELECT
+		 count(1) 
+		 FROM bu_application t LEFT join bu_sp_approval t2  on t.application_id = t2.application_id
+		 <where>  
+	    <if test="certCode != '' and certCode != null" >
+	    	AND t.cert_code LIKE CONCAT('%', #{certCode}, '%')
+	    </if> 
+	    <if test="startTime != '' and startTime != null" >
+	    	<![CDATA[ and t.create_time >= #{startTime} ]]>
+	    </if>
+	    <if test="endTime != '' and endTime != null" >
+	    	<![CDATA[ and t.create_time <= #{endTime} ]]>
+	    </if>
+	    <if test="rgAuditingTime != '' and rgAuditingTime != null" >
+	    	 and t2.rg_auditing_time <![CDATA[  >=  ]]> #{rgAuditingTime}  
+	    </if>
+	     <if test="endRgAuditingTime != '' and endRgAuditingTime != null" >
+	     
+	    	 and t2.rg_auditing_time <![CDATA[   <=  ]]> #{endRgAuditingTime}  
+	    </if>
+	    <if test="appSerialNumber != '' and appSerialNumber != null" >
+	    	and t.app_serial_number = #{appSerialNumber}
+	    </if>
+	    <if test="errorDescription != null and errorDescription != ''">
+			AND t.error_description LIKE CONCAT('%', #{errorDescription}, '%')
+		</if>
+	    <if test="name != '' and name != null" >
+	    	and instr(t.name, #{name}) > 0
+	    </if>
+	    <if test="phoneNum != '' and phoneNum != null" >
+	    	and t.phone_num = #{phoneNum}
+	    </if>
+	   	<if test="auditingState == 0"> 
+	    	and t.auditing_state in ('1','2','3','4') 
+	    </if>
+	     <if test="auditingState == 1"> 
+	    	and t.auditing_state = '1' and audit_man = ''
+	    </if>
+	    <if test="auditingState == 2"> 
+	    	and t.auditing_state = '2' and audit_man = ''
+	    </if>
+	    <if test="auditingState == 3"> 
+	    	and t.auditing_state = '3' and audit_man = ''
+	    </if> 
+	    <if test="auditingState == 4"> 
+	    	and t.auditing_state = '4' and audit_man = ''
+	    </if> 
+	    <if test="auditingState == 33">  
+	     and t2.rg_auditing_state = '1' and audit_man != ''
+	    </if> 
+	    <if test="auditingState == 66">  
+	     and t2.rg_auditing_state = '2' and audit_man != ''
+	    </if>
+	    <if test="auditingState == 99">  
+	     and t2.rg_auditing_state = '3' and audit_man != ''
+	    </if>
+	     <if test="auditMan != '' and auditMan != null" >
+	    	and instr(t2.receive_code, #{auditMan}) > 0
+	    </if>   
+	    <if test="customerId != '' and customerId != null" >
+	    	and t.customer_id = #{customerId}
+	    </if> 
+	    <if test="ycNumber == 3 ">
+			AND t.yc_number IS NOT NULL AND t.error_description IS NOT NULL
+		</if>
+		 <if test="ycNumber == 1 ">
+			AND t.yc_number IS NULL AND (t.error_description IS NULL OR t.error_description = '')
+		</if>
+		<if test="ycNumber == 2 ">
+		  AND t.error_description != '' AND t.yc_number IS NULL
+		</if>
+	    <if test="auditingRejectCode != '' and auditingRejectCode != null"  >
+	    	AND auditing_reject_code = #{auditingRejectCode}
+	   	</if>
+	   	<if test="source != -1"  >
+	    	AND source = #{source}
+	   	</if>
+	   		<if test="appLevel != -1"  >
+	    	AND t.app_level = #{appLevel}
+	   	</if>
+	    </where>
+	</select> 
+	
+	
+		<!-- 审批系统相关查询 <案件一览>--> 
+	<select id="findApproveInfo" resultType="com.shangyong.backend.entity.Application" parameterType="com.shangyong.backend.entity.Application">
+		 SELECT 
+		  t.app_serial_number as appSerialNumber,
+		  t.application_id  as applicationId, 
+		  t.name as name,
+		  t.customer_id as customerId,	 	 
+		  t.cert_code as certCode,	
+		  t.phone_num as phoneNum,	   
+		  t.auditing_state as auditingState,	
+		  t.credit_money as creditMoney,
+		  t.appraise_money as productQuota,	  
+		  t.audit_man as auditMan,	 
+		  t.create_time as createTime,
+		  t.create_man as createMan,
+		  t.source as source,
+		  t.app_level as appLevel,
+		  t.app_name as appName,
+		  t.yc_number as ycNumber,
+		  t.error_description as errorDescription,
+		  t2.rg_auditing_state as rgAuditingState,
+		  t2.rg_credit_money as rgCreditMoney,
+		  t2.refuse_name as refuseName,
+		  t2.refuse_code as refuseCode,
+		  t2.is_call_phone as isCallPhone,
+		  t2.netcheck_no_abnormal as netcheckNoAbnormal,
+		  t2.rg_auditing_remark as rgAuditingRemark,
+		  t2.receive_code as receiveCode,
+		  t2.receive_name as receiveName, 
+		  t2.rg_auditing_state as state,
+		  t2.rg_auditing_time as rgAuditingTime,
+		  t2.receive_name as receiveName,
+		  t2.receive_code as receiveCode
+		 FROM bu_application t LEFT join bu_sp_approval t2  on t.application_id = t2.application_id
+		 <where>  
+	     <if test="certCode != '' and certCode != null" >
+	     	  AND t.cert_code LIKE CONCAT('%', #{certCode}, '%')
+	    </if> 
+	    <if test="startTime != '' and startTime != null" >
+	    	<![CDATA[ and t.create_time >= #{startTime} ]]>
+	    </if>
+	    <if test="endTime != '' and endTime != null" >
+	    	<![CDATA[ and t.create_time <= #{endTime} ]]>
+	    </if>
+	    <if test="rgAuditingTime != '' and rgAuditingTime != null" >
+	    	 and t2.rg_auditing_time <![CDATA[  >=  ]]> #{rgAuditingTime} 
+	    </if>
+	     <if test="endRgAuditingTime != '' and endRgAuditingTime != null" >
+	    	 and t2.rg_auditing_time <![CDATA[  <=  ]]> #{endRgAuditingTime}  
+	    </if>
+	    <if test="appSerialNumber != '' and appSerialNumber != null" >
+	    	and t.app_serial_number = #{appSerialNumber}
+	    </if>
+	    <if test="name != '' and name != null" >
+	    	and instr(t.name, #{name}) > 0
+	    </if>
+	    <if test="phoneNum != '' and phoneNum != null" >
+	    	and t.phone_num = #{phoneNum}
+	    </if>
+	    <if test="auditingState == 0 "> 
+	    	and t.auditing_state in ('1','2','3','4') 
+	    </if>
+	    <if test="auditingState == 1"> 
+	    	and t.auditing_state = '1' and audit_man = ''
+	    </if>
+	    <if test="auditingState == 2"> 
+	    	and t.auditing_state = '2' and audit_man = ''
+	    </if>
+	    <if test="auditingState == 3"> 
+	    	and t.auditing_state = '3' and audit_man = ''
+	    </if> 
+	    <if test="auditingState == 4"> 
+	    	and t.auditing_state = '4' and audit_man = ''
+	    </if> 
+	     <if test="auditingState == 33">  
+	     	and t2.rg_auditing_state = '1' and audit_man != ''
+	    </if>
+	    <if test="auditingState == 66">  
+	     	and t2.rg_auditing_state = '2' and audit_man != ''
+	    </if>
+	    <if test="auditingState == 99">  
+	     	and t2.rg_auditing_state = '3' and audit_man != ''
+	    </if> 
+	     <if test="auditMan != '' and auditMan != null" > 
+	    	and instr(t2.receive_code, #{auditMan}) > 0
+	    </if> 
+	     <if test="customerId != '' and customerId != null" >
+	    	and t.customer_id = #{customerId}
+	    </if>
+	    <if test="ycNumber == 3 ">
+			AND t.yc_number IS NOT NULL AND t.error_description IS NOT NULL
+		</if>
+		 <if test="ycNumber == 1 ">
+			AND t.yc_number IS NULL AND (t.error_description IS NULL OR t.error_description = '')
+		</if>
+		<if test="ycNumber == 2 ">
+		  	AND t.error_description != '' AND t.yc_number IS NULL
+		</if>
+		<if test="errorDescription != null and errorDescription != ''">
+			AND t.error_description LIKE CONCAT('%', #{errorDescription}, '%')
+		</if>
+		<if test="source != -1 ">
+	    	AND t.source = #{source}
+	   	</if>
+	    <if test="auditingRejectCode != '' and auditingRejectCode != null"  >
+	    	AND t.auditing_reject_code = #{auditingRejectCode}
+	   	</if>
+	   		<if test="appLevel != -1 ">
+	    	AND t.app_level = #{appLevel}
+	   	</if>
+	    </where>
+	    order by t.create_time desc 
+	    LIMIT #{pageIndex},#{pageSize}
+	</select>
+	
+	
+	<!-- 审批系统公共案件池相关查询 -->
+	<select id="findPublicApprove" resultMap="applicationinfoMap" parameterType="com.shangyong.backend.entity.Application">
+		 SELECT
+		 <include refid="Base_Column_List" />
+		 FROM bu_application
+		<where>  
+	    <if test="startTime != '' and startTime != null" > 
+	    	  <![CDATA[   auditing_time >= #{startTime} ]]> 
+	    </if> 
+	       <if test="endTime != '' and endTime != null" >
+	       	<![CDATA[ and auditing_time <= #{endTime} ]]> 
+	    </if>
+	    <if test="errorDescription != null and errorDescription != ''">
+			AND error_description LIKE CONCAT('%', #{errorDescription}, '%')
+		</if>
+	   
+		 <if test="ycNumber == 1 ">
+			AND (yc_number IS NULL OR yc_number = '')
+			AND (error_description IS NULL OR error_description = '')
+			AND (audit_man ='' OR audit_man IS NULL)
+		</if>
+		<if test="ycNumber == 2 ">
+			AND (error_description != '' AND error_description IS NOT NULL)
+			AND (yc_number IS NOT NULL OR yc_number !='')
+			AND (audit_man !='' OR audit_man IS NOT NULL)
+		</if>
+		<if test="ycNumber == 3 ">
+			AND (yc_number IS NOT NULL AND yc_number != '')
+			AND (error_description IS NOT NULL AND error_description != '')
+			AND (audit_man ='' OR audit_man IS NULL)
+		</if>
+		 	AND auditing_state = '4'
+		 	AND (audit_man IS NULL OR audit_man = '')
+		 </where>  
+	    	order by application_id desc 
+	    	LIMIT #{pageIndex},#{pageSize}
+	</select>
+	
+	
+	<update id="updateAuditMan" parameterType="com.shangyong.backend.entity.Application">
+		 UPDATE bu_application
+ 		 <set>  
+			<if test="auditMan != '' and  auditMan != null ">
+				 audit_man = #{auditMan},
+			</if>
+				modify_time =NOW()
+ 		 </set>
+		 WHERE application_id = #{applicationId}
+	</update> 
+	
+	
+	<!-- 审批系统个人案件相关查询 -->
+	<select id="findPrivateApproveApprove" resultMap="applicationinfoMap" parameterType="com.shangyong.backend.entity.Application">
+		 SELECT
+		 <include refid="Base_Column_List" />
+		 FROM bu_application
+		<where>  
+	    <if test="startTime != '' and startTime != null" > 
+	    	  <![CDATA[   auditing_time >= #{startTime} ]]> 
+	    </if> 
+	       <if test="endTime != '' and endTime != null" >
+	       	<![CDATA[ and auditing_time <= #{endTime} ]]> 
+	    </if> 
+		  	and audit_man = #{auditMan}  
+		  	and auditing_state = '4'
+		  	</where>
+	    order by modify_time desc 
+	    LIMIT #{pageIndex},#{pageSize}
+	</select>
+	
+	
+	<!--审批系统个人案件池相关-->
+	<select id="findPrivateApproveCount" resultType="java.lang.Integer" parameterType="com.shangyong.backend.entity.Application">
+		 SELECT
+		 count(1)
+		 FROM bu_application
+		<where>  
+	    <if test="startTime != '' and startTime != null" > 
+	    	  <![CDATA[   auditing_time >= #{startTime} ]]> 
+	    </if> 
+	       <if test="endTime != '' and endTime != null" >
+	       	<![CDATA[ and auditing_time <= #{endTime} ]]> 
+	    </if> 
+		    and	audit_man = #{auditMan}
+		  	and auditing_state = '4'
+		  	</where>
+	</select> 
+	
+	<!-- 大于错误次数的聚信立数据 -->
+	<select id="getAppLicationListByJxl" resultType="java.util.Map" parameterType="java.util.Map">
+		select 
+			 cu.email         email,
+			 cu.age 		  age,
+			 cu.education_id  educationId,
+			 cu.bank_card     bankCard,
+			 cu.if_marriage   ifMarriage,
+			 cu.home_address  homeAddress,
+			 cu.registered_address  registeredAddress,
+			 cu.contact_address  contactAddress,
+			 bu.cert_type	  certType,
+			 bu.cert_code     certCode,
+			 bu.phone_num     phoneNum,
+			 bu.`name`,
+<!-- 			 bu.application_id applicationNumber, -->
+			 bu.application_id applicationId,
+			 bu.app_serial_number	appSerialNumber,
+			 bu.application_bu_id	applicationBuId,
+			 bu.product_quota productQuota,
+			 bu.days 		  days,
+			 bu.credit_money  creditMoney,
+			 bu.platform_id   platformId,
+			 bu.customer_id   customerId,
+			 bu.app_name      appName,
+			 bu.loan_ip       loanIp,
+			 bu.source        source,
+			 bu.ban_code_tpl_id banCodeTplId,
+			 bu.fraud_tpl_id  fraudTplId,
+			 bu.score_tpl_id scoreTplId,
+			 bu.decision_tree_id decisionTreeId,
+			 bu.app_level 	  appLevel,
+			 bu.is_hbase_syn  isHbaseSyn,
+		 	 com.company_industry companyIndustry,
+			 com.company_name     companyName,
+			 com.company_tel      companyTel,
+			 com.company_address  companyAddress,
+			 com.profession_id 	  professionId,
+			 com.working_hours    workingHours
+		FROM bu_application  bu
+		LEFT JOIN
+		 	 cu_platform_customer cu 
+		ON   bu.platform_id = cu.platform_customer_id
+		LEFT JOIN
+			cu_customer_company com
+		ON   bu.platform_id = com.platform_customer_id
+		<where> 
+		bu.failure_times >= #{failuretimes}
+	    <if test="auditingState != '' and auditingState != null" >
+	    	AND bu.auditing_state=#{auditingState, jdbcType=VARCHAR}
+	    </if>
+	    <if test="isStep != '' and isStep != null" >
+	    	AND bu.is_step=#{isStep, jdbcType=VARCHAR}
+	    </if>
+	    </where>
+	    limit 1000
+	</select>
+	
+	<!--正常总案件数数-->
+	<select id="findAjCount" resultType="java.lang.Integer" parameterType="com.shangyong.backend.entity.Application" >
+	SELECT 
+    COUNT(1) t 
+  	FROM
+    bu_application 
+  	<where>  
+	    <if test="startTime != '' and startTime != null" > 
+	    	  <![CDATA[   auditing_time >= #{startTime} ]]> 
+	    </if> 
+	       <if test="endTime != '' and endTime != null" >
+	       	<![CDATA[ and auditing_time <= #{endTime} ]]> 
+	    </if> 
+	AND (yc_number IS NULL OR yc_number = '')
+	AND (error_description IS NULL OR error_description = '')
+    AND (auditing_state = '4' OR 
+    (audit_man ='' AND audit_man IS NULL)
+    )  
+     </where>  
+	</select> 
+	<!--获取异常案件总数-->
+	<select id="findYcCount" resultType="java.lang.Integer" parameterType="com.shangyong.backend.entity.Application" >
+	SELECT 
+    COUNT(1) t 
+  	FROM
+    bu_application 
+  	<where>  
+	    <if test="startTime != '' and startTime != null" > 
+	    	  <![CDATA[   auditing_time >= #{startTime} ]]> 
+	    </if> 
+	       <if test="endTime != '' and endTime != null" >
+	       	<![CDATA[ and auditing_time <= #{endTime} ]]> 
+	    </if> 
+    AND (auditing_state = '4' OR 
+    (audit_man !='' AND audit_man IS NOT NULL)
+    )    <!-- 统计当天 客户借款申请记录表 -->
+    AND (error_description != '' AND error_description IS NOT NULL) 
+    AND (yc_number IS NULL OR yc_number = '')
+     </where>  
+	</select> 
+	<!--获取异类案件总数-->
+	<select id="findYlCount" resultType="java.lang.Integer" parameterType="com.shangyong.backend.entity.Application" >
+	SELECT 
+    COUNT(1) t 
+  	FROM
+    bu_application 
+  	<where>  
+	    <if test="startTime != '' and startTime != null" > 
+	    	  <![CDATA[   auditing_time >= #{startTime} ]]> 
+	    </if> 
+	       <if test="endTime != '' and endTime != null" >
+	       	<![CDATA[ and auditing_time <= #{endTime} ]]> 
+	    </if> 
+    AND (auditing_state = '4' OR 
+    (audit_man !='' AND audit_man IS NOT NULL)
+    )    
+    AND (yc_number IS NOT NULL AND yc_number != '')
+    AND (error_description IS NOT NULL AND error_description != '')
+     </where>  
+	</select> 
+	
+	<!--获取待人工确认的案件数-->
+	<select id="findAjUntrCount" resultType="java.lang.Integer" parameterType="com.shangyong.backend.entity.Application">
+	SELECT 
+    COUNT(1) 
+  	FROM
+    bu_application 
+   <where>  
+	    <if test="startTime != '' and startTime != null" > 
+	    	  <![CDATA[   auditing_time >= #{startTime} ]]> 
+	    </if> 
+	       <if test="endTime != '' and endTime != null" >
+	       	<![CDATA[ and auditing_time <= #{endTime} ]]> 
+	    </if>
+	AND (audit_man IS NULL OR audit_man = '')  
+	AND (yc_number IS NULL OR yc_number = '')
+	AND (error_description IS NULL OR error_description = '')
+    AND auditing_state = '4'  <!-- 统计当天待人工确认的案件数 -->
+     </where>  
+	</select>
+
+	<!--获取待人工确认异常案件数-->
+	<select id="findYcUntrCount" resultType="java.lang.Integer" parameterType="com.shangyong.backend.entity.Application">
+		SELECT
+		COUNT(1)
+		FROM
+		bu_application
+	   <where>
+			<if test="startTime != '' and startTime != null" >
+				  <![CDATA[   auditing_time >= #{startTime} ]]>
+			</if>
+			   <if test="endTime != '' and endTime != null" >
+				<![CDATA[ and auditing_time <= #{endTime} ]]>
+			</if>
+		AND (audit_man IS NULL OR audit_man = '')
+		AND auditing_state = '4'  <!-- 统计当天待人工确认的案件数 -->
+		AND (error_description != '' AND error_description IS NOT NULL)
+		 AND (yc_number IS NULL OR yc_number = '')
+		 </where>
+	</select>
+
+	<!--获取待人工确认异类案件数-->
+	<select id="findYlUntrCount" resultType="java.lang.Integer" parameterType="com.shangyong.backend.entity.Application">
+		SELECT
+		COUNT(1)
+		FROM
+		bu_application
+		<where>
+			<if test="startTime != '' and startTime != null" >
+				  <![CDATA[ auditing_time >= #{startTime} ]]>
+			</if>
+			   <if test="endTime != '' and endTime != null" >
+				<![CDATA[ and auditing_time <= #{endTime} ]]>
+			</if>
+		AND (audit_man IS NULL OR audit_man = '')
+		AND auditing_state = '4'  <!-- 统计当天待人工确认的案件数 -->
+		AND (yc_number IS NOT NULL AND yc_number != '')
+		AND (error_description IS NOT NULL AND error_description != '')
+		</where>
+	</select>
+
+	<!--获取人工已确认的案件数-->
+	<select id="findAjClCount" resultType="java.lang.Integer" parameterType="com.shangyong.backend.entity.Application">
+		SELECT
+			COUNT(1)
+		FROM
+			bu_application
+		<where>
+			<if test="startTime != '' and startTime != null" >
+				<![CDATA[ auditing_time >= #{startTime} ]]>
+			</if>
+			<if test="endTime != '' and endTime != null" >
+				<![CDATA[ and auditing_time <= #{endTime} ]]>
+			</if>
+			AND yc_number IS NULL
+			AND (error_description IS NULL OR error_description = '')
+			AND (audit_man !='' AND audit_man IS NOT NULL)
+			AND auditing_state IN ('2' ,'3')  <!-- 统计当天人工已确认的案件数 -->
+		</where>
+	</select>
+
+	<!--获取人工已确认的异常案件数-->
+	<select id="findYcClCount" resultType="java.lang.Integer" parameterType="com.shangyong.backend.entity.Application">
+		SELECT
+		COUNT(1)
+		FROM
+		bu_application
+		<where>
+			<if test="startTime != '' and startTime != null" >
+				  <![CDATA[ auditing_time >= #{startTime} ]]>
+			</if>
+			   <if test="endTime != '' and endTime != null" >
+				<![CDATA[ and auditing_time <= #{endTime} ]]>
+			</if>
+			 AND (audit_man !='' AND audit_man IS NOT NULL)
+			 AND auditing_state IN ('2' ,'3')  <!-- 统计当天人工已确认的案件数 -->
+			 AND (error_description != '' AND error_description IS NOT NULL)
+			 AND (yc_number IS NULL OR yc_number = '')
+		 </where>
+	</select>
+
+  <!--获取人工已确认的异类案件数-->
+	<select id="findYlClCount" resultType="java.lang.Integer" parameterType="com.shangyong.backend.entity.Application">
+		SELECT
+		COUNT(1)
+		FROM
+		bu_application
+		<where>
+			<if test="startTime != '' and startTime != null" >
+				  <![CDATA[ auditing_time >= #{startTime} ]]>
+			</if>
+			   <if test="endTime != '' and endTime != null" >
+				<![CDATA[ and auditing_time <= #{endTime} ]]>
+			</if>
+			 AND (audit_man !='' AND audit_man IS NOT NULL)
+			 AND auditing_state IN ('2' ,'3')  <!-- 统计当天人工已确认的案件数 -->
+			 AND (yc_number IS NOT NULL AND yc_number != '')
+			 AND (error_description IS NOT NULL AND error_description != '')
+		</where>
+	</select>
+  
+  	<!--获取个人领取的案件数-->
+	<select id="findGrCount" resultType="java.lang.Integer" parameterType="com.shangyong.backend.entity.Application">
+		SELECT
+		COUNT(1) t
+		FROM
+		bu_application
+		<where>
+			<if test="startTime != '' and startTime != null" >
+				  <![CDATA[ auditing_time >= #{startTime} ]]>
+			</if>
+			   <if test="endTime != '' and endTime != null" >
+				<![CDATA[ and auditing_time <= #{endTime} ]]>
+			</if>
+		AND audit_man =#{auditMan}
+		AND auditing_state = '4'
+		</where>
+	</select>
+	
+	
+	<!-- 根据APP应用客户编号获取最新申请单编号（用于客户信息入口处的第三方报告查询） -->
+	<select id="getApplicationIdByPlatformId" resultMap="applicationinfoMap" resultType="com.shangyong.backend.entity.Application" parameterType="java.lang.String">
+		 SELECT
+		 <include refid="Base_Column_List" />
+		 FROM bu_application
+		 WHERE platform_id = #{platformId}
+		 order by create_time desc
+		 limit 1
+	</select>
+	
+	<!-- 根据APP应用客户编号获取最新申请单编号 -->
+	<select id="selectApplicationByParam" resultMap="applicationinfoMap" resultType="com.shangyong.backend.entity.Application" parameterType="java.util.Map">
+		 SELECT
+		 <include refid="Base_Column_List" />
+		 FROM bu_application
+		 WHERE platform_id = #{platformId} or application_id = #{applicationId}
+		 order by create_time desc
+		 limit 1
+	</select>
+	
+	 <!--根据app客户编号和平台名称查询客户标识-->
+	<select id="getCustomerAppLevel" resultType="java.lang.String" parameterType="java.lang.String">
+	SELECT 
+    app_level
+  	FROM
+    bu_application 
+  	WHERE  customer_id =#{customerId}
+    AND app_name = #{appName} order by create_time DESC limit 1
+	</select>
+
+   <!--根据app客户编号和平台名称查询申请单编号-->
+	<select id="getApplicationIdByCustomerIdAndAppName" resultType="java.lang.String" parameterType="java.lang.String">
+	SELECT 
+    application_id 
+  	FROM
+    bu_application 
+  	WHERE  customer_id =#{customerId}
+    AND app_name = #{appName} order by create_time DESC limit 1
+	</select>
+	
+	
+	 <!--获取个人当日已处理案件数-->
+	<select id="findGrClAjCount" resultType="java.lang.Integer" parameterType="com.shangyong.backend.entity.Application">
+	SELECT 
+    COUNT(1) 
+  	FROM
+    bu_application 
+  <where>  
+	    <if test="startTime != '' and startTime != null" > 
+	    	  <![CDATA[ auditing_time >= #{startTime} ]]> 
+	    </if> 
+	       <if test="endTime != '' and endTime != null" >
+	       	<![CDATA[ and auditing_time <= #{endTime} ]]> 
+	    </if>  
+    AND audit_man =#{auditMan}
+    AND auditing_state in ('2','3')
+     </where>  
+	</select>
+ 
+	
+	<select id="findJsPersonCount" resultType="java.lang.Integer" parameterType="com.shangyong.backend.entity.Application">
+		 SELECT 
+		count(DISTINCT cert_code) personCount
+		 FROM bu_application
+		<where> 
+	    <if test="source != '' and source != null" >
+	    	source = #{source}
+	    </if> 
+	    <if test="decisionTreeId != '' and decisionTreeId != null" >
+	    	and decision_tree_id = #{decisionTreeId}
+	    </if>
+	    <if test="applicationId != '' and applicationId != null" >
+	    	and application_id = #{applicationId}
+	    </if>
+	    <if test="banCode != '' and banCode != null" >
+	    	and ban_code = #{banCode}
+	    </if>
+	    <if test="certCode != '' and certCode != null" >
+	    	and cert_code = #{certCode}
+	    </if>
+	    <if test="isStep != '' and isStep != null" >
+	    	and is_step = #{isStep}
+	    </if>
+	    <if test="isPushApp != '' and isPushApp != null" >
+	    	and is_push_app = #{isPushApp}
+	    </if>
+	    <if test="startTime != '' and startTime != null" >
+	    	<![CDATA[ and create_time >= #{startTime} ]]>
+	    </if>
+	    <if test="endTime != '' and endTime != null" >
+	    	<![CDATA[ and create_time <= #{endTime} ]]>
+	    </if>
+	    <if test="appSerialNumber != '' and appSerialNumber != null" >
+	    	and app_serial_number = #{appSerialNumber}
+	    </if>
+	    <if test="name != '' and name != null" >
+	    	and instr(name, #{name}) > 0
+	    </if>
+	    <if test="phoneNum != '' and phoneNum != null" >
+	    	and phone_num = #{phoneNum}
+	    </if>
+	    <if test="auditingState != '' and auditingState != null and auditingState != 1 " >
+	    	and auditing_state = #{auditingState}
+	    </if>
+	    <if test="auditingState == 1 ">
+	    	and auditing_state = 1
+	    </if>
+	     <if test="auditingState == 4 ">
+	    	and auditing_state = 4
+	    </if>
+	   <if test="errorDescription == 1" >
+	    	and error_description is not null and error_description != ''
+	    </if>
+	    <if test="errorDescription == 2" >
+	    	and error_description is null or error_description = ''
+	    </if>
+	    <if test="appName != '' and appName != null" >
+	    	and app_name = #{appName}
+	    </if> 
+	    <if test="auditResult != '' and auditResult != null" >
+	    	and audit_result = #{auditResult}
+	    </if>
+	    <if test="failureTimes != null and failureTimes != '' ">
+	    	and failure_times &gt; #{failureTimes}
+	    </if>
+	    <if test="appLevel != '' and appLevel != null" >
+	    	and app_level = #{appLevel}
+	    </if>
+	    <if test="appChannel != '' and appChannel != null" >
+	    	and app_channel = #{appChannel}
+	    </if>
+	    <if test="isHbaseSyn != '' and isHbaseSyn != null" >
+	    	and is_hbase_syn = #{isHbaseSyn}
+	    </if>
+	    <if test="auditMan == 1 ">
+	    	and (audit_man != '' and audit_man is not null)
+	    </if>
+	    <if test="auditMan == 2 ">
+	    	and (audit_man = '' or audit_man is  null)
+	    </if>
+	    <if test="auditingRejectCode != '' and auditingRejectCode != null"  >
+	    	and auditing_reject_code = #{auditingRejectCode},
+	   	</if>
+		<if test="zhiMaScore != '' and zhiMaScore != null">
+		    and	 bu.zhi_ma_score = #{zhiMaScore}
+		</if>
+		</where>
+	</select>
+
+	<select id="findApplicationIdByDate" resultMap="applicationinfoMap" parameterType="com.shangyong.backend.entity.Application">
+		select <include refid="Base_Column_List" /> from bu_application
+		<where>
+			<if test="source != '' and source != null" >
+				source = #{source}
+			</if>
+			<if test="banCodeTplId != '' and banCodeTplId != null" >
+				and ban_code_tpl_id = #{banCodeTplId}
+			</if>
+			<if test="fraudTplId != '' and fraudTplId != null" >
+				and fraud_tpl_id = #{fraudTplId}
+			</if>
+			<if test="scoreTplId != '' and scoreTplId != null" >
+				and score_tpl_id = #{scoreTplId}
+			</if>
+			<if test="decisionTreeId != '' and decisionTreeId != null" >
+				and decision_tree_id = #{decisionTreeId}
+			</if>
+			<if test="applicationId != '' and applicationId != null" >
+				and application_id = #{applicationId}
+			</if>
+			<if test="banCode != '' and banCode != null" >
+				and ban_code = #{banCode}
+			</if>
+			<if test="certCode != '' and certCode != null" >
+				and cert_code = #{certCode}
+			</if>
+			<if test="isStep != '' and isStep != null" >
+				and is_step = #{isStep}
+			</if>
+			<if test="isPushApp != '' and isPushApp != null" >
+				and is_push_app = #{isPushApp}
+			</if>
+			<if test="startTime != '' and startTime != null" >
+				<![CDATA[ and create_time >= #{startTime} ]]>
+			</if>
+			<if test="endTime != '' and endTime != null" >
+				<![CDATA[ and create_time <= #{endTime} ]]>
+			</if>
+			<if test="appSerialNumber != '' and appSerialNumber != null" >
+				and app_serial_number = #{appSerialNumber}
+			</if>
+			<if test="name != '' and name != null" >
+				and instr(name, #{name}) > 0
+			</if>
+			<if test="phoneNum != '' and phoneNum != null" >
+				and phone_num = #{phoneNum}
+			</if>
+			<if test="auditingState != '' and auditingState != null and auditingState != 1 " >
+				and auditing_state = #{auditingState}
+			</if>
+			<if test="auditingState == 1 ">
+				and auditing_state = 1
+			</if>
+			<if test="auditingState == 4 ">
+				and auditing_state = 4
+			</if>
+			<if test="errorDescription == 1" >
+				and error_description is not null and error_description != ''
+			</if>
+			<if test="errorDescription == 2" >
+				and error_description is null or error_description = ''
+			</if>
+			<if test="appName != '' and appName != null" >
+				and app_name = #{appName}
+			</if>
+			<if test="auditResult != '' and auditResult != null" >
+				and audit_result = #{auditResult}
+			</if>
+			<if test="failureTimes != null and failureTimes != '' ">
+				and failure_times &gt; #{failureTimes}
+			</if>
+			<if test="appLevel != '' and appLevel != null" >
+				and app_level = #{appLevel}
+			</if>
+			<if test="appChannel != '' and appChannel != null" >
+				and app_channel = #{appChannel}
+			</if>
+			<if test="isHbaseSyn != '' and isHbaseSyn != null" >
+				and is_hbase_syn = #{isHbaseSyn}
+			</if>
+	   		 <if test="auditingRejectCode != '' and auditingRejectCode != null"  >
+	    	    and auditing_reject_code = #{auditingRejectCode},
+	   		</if>
+			<if test="auditMan == 1 ">
+				and (audit_man != '' and audit_man is not null)
+			</if>
+			<if test="auditMan == 2 ">
+				and (audit_man = '' or audit_man is  null)
+			</if>
+			<if test="zhiMaScore != '' and zhiMaScore != null ">
+			    and	 bu.zhi_ma_score = #{zhiMaScore}
+			</if>
+		</where>
+	</select>
+
+	<select id="countHbaseMutual" resultType="java.lang.Integer" parameterType="com.shangyong.backend.entity.Application">
+		select count(1) from bu_application
+		<where>
+			<if test="auditingState != '' and auditingState != null">
+				 auditing_state = #{auditingState}
+			</if>
+			<if test="isHbaseSyn != '' and isHbaseSyn != null" >
+				and is_hbase_syn = #{isHbaseSyn}
+			</if>
+			<if test="startTime != '' and startTime != null" >
+				<![CDATA[ and create_time >= #{startTime} ]]>
+			</if>
+			<if test="endTime != '' and endTime != null" >
+				<![CDATA[ and create_time <= #{endTime} ]]>
+			</if>
+		</where>
+	</select>
+
+	<!-- 统计每个步骤待审批的单子 -->
+	<select id="countStepNumber" resultType="com.shangyong.backend.entity.ApplicationCount" parameterType="com.shangyong.backend.entity.ApplicationCount">
+		select is_step as isStep,ifnull(count(1),0) as count from bu_application
+		<include refid="countStepNumberCondition"/>
+		GROUP BY is_step
+		ORDER BY count DESC
+	</select>
+	<!-- 统计每个步骤待审批的单子中的异常单子数量 -->
+	<select id="countStepNumberDetail" resultType="com.shangyong.backend.entity.ApplicationCount" parameterType="com.shangyong.backend.entity.ApplicationCount">
+		select is_step as isStep, count(1) as countDetail from bu_application 
+		<include refid="countStepNumberCondition"/>
+ 		GROUP BY is_step
+		ORDER BY countDetail DESC
+	</select>
+	<!-- 统计hbase auditing_state = 1待审核-->
+	<select id="countHbasePendingeview" resultType="java.lang.Integer" parameterType="com.shangyong.backend.entity.ApplicationCount">
+		select count(1) from bu_application
+		<where>
+			<if test="startTime != '' and startTime != null" >
+				<![CDATA[ create_time >= #{startTime} ]]>
+			</if>
+			<if test="endTime != '' and endTime != null" >
+				<![CDATA[ and create_time <= #{endTime}]]>
+			</if>
+			and is_hbase_syn = 1 and auditing_state = '1'
+		</where>
+	</select>
+
+	<select id="countNumber" resultType="java.lang.Integer" parameterType="com.shangyong.backend.entity.Application">
+		select count(1) from bu_application
+		<where>
+			<if test="startTime != '' and startTime != null" >
+				<![CDATA[ create_time >= #{startTime} ]]>
+			</if>
+			<if test="endTime != '' and endTime != null" >
+				<![CDATA[ and create_time <= #{endTime}]]>
+			</if>
+			<if test="isPushApp != '' and isPushApp != null" >
+				and is_push_app = #{isPushApp}
+			</if>
+		</where>
+	</select>
+
+	<!-- 统计待人工审核 auditing_state=4-->
+	<select id="countToBeAuditedManually" resultType="java.lang.Integer" parameterType="com.shangyong.backend.entity.ApplicationCount">
+		select count(1) from bu_application
+		<where>
+			<if test="startTime != '' and startTime != null" >
+				<![CDATA[ create_time >= #{startTime} ]]>
+			</if>
+			<if test="endTime != '' and endTime != null" >
+				<![CDATA[ and create_time <= #{endTime}]]>
+			</if>
+			and auditing_state = '4'
+		</where>
+	</select>
+	
+	<!--  -->
+	<select id="getStatisticalAuditNumber" resultType="com.shangyong.backend.entity.ApplicationPersonCount" parameterType="com.shangyong.backend.entity.ApplicationPersonCount">
+		<include refid="timeType" />
+		count(1) count,
+		count(DISTINCT cert_code) personCount
+		FROM
+		bu_application
+		<where>
+		    auditing_state='4'
+			<include refid="timeQuery" />
+		    <if test="treeId != '' and treeId != null" >
+		    	and decision_tree_id = #{treeId}
+		    </if>
+		     <if test="source != '' and source != null" >
+		    	and source = #{source}
+		    </if>
+		    <if test="appLevel != '' and appLevel != null" >
+		    	and app_level = #{appLevel}
+		    </if>
+		    or
+		    (audit_man != '' and audit_man IS NOT NULL <include refid="timeQuery" /> )
+		    <!-- <include refid="timeQuery" /> -->
+		    <!--  <if test="startTime != '' and startTime != null" >
+	    	<![CDATA[ and create_time >= #{startTime} ]]>
+	    	</if>
+		    <if test="endTime != '' and endTime != null" >
+		    	<![CDATA[ and create_time <= #{endTime} ]]>
+		    </if> -->
+		    
+		</where>
+		GROUP BY timeValue
+	</select>
+
+	<sql id="countStepNumberCondition">
+		<where>
+			<if test="startTime != '' and startTime != null" >
+				<![CDATA[ and create_time >= #{startTime} ]]>
+			</if>
+			<if test="endTime != '' and endTime != null" >
+				<![CDATA[ and create_time <= #{endTime}]]>
+			</if>
+			<if test="auditingState != '' and auditingState != null" >
+				and auditing_state = #{auditingState}
+			</if>
+			<if test="failureTimes != '' and failureTimes != null" >
+				and failure_times >= #{failureTimes}
+			</if>
+			<if test="isHbaseSyn != '' and isHbaseSyn != null" >
+				and is_hbase_syn = #{isHbaseSyn}
+			</if>
+			<if test="source != '' and source != null" >
+				and source = #{source}
+			</if>
+			<if test="decisionTreeId != '' and decisionTreeId != null" >
+				and decision_tree_id = #{decisionTreeId}
+			</if>
+			<if test="appLevel != '' and appLevel != null" >
+				and app_level  = #{appLevel}
+			</if>
+			<if test="isHbaseSyn != '' and isHbaseSyn != null" >
+				and is_hbase_syn = #{isHbaseSyn}
+			</if>
+			<!--<if test="isPushApp != '' and isPushApp != null" >-->
+				<!--and is_push_app = #{isPushApp}-->
+			<!--</if>-->
+		</where>
+	</sql>
+	
+	
+	<!-- 人工审核查询（人工审批通过率统计） -->
+	<select id="getRgApprovePersonByTime" resultType="com.shangyong.backend.entity.ApplicationPersonCount" parameterType="com.shangyong.backend.entity.ApplicationPersonCount">
+		SELECT 
+			DATE_FORMAT(a.create_time,'%Y-%m-%d') timeValue,
+			b.nick_name nickName,
+			count(1) count,
+			COALESCE(c.count,0) passPersonCount,
+			count(DISTINCT cert_code) personCount
+		FROM
+			bu_application a
+		INNER JOIN sc_user b on a.audit_man=b.user_id
+		LEFT JOIN (
+			SELECT b.user_id userId,count(1) count 
+			FROM bu_application a,sc_user b 
+			WHERE a.audit_man=b.user_id 
+			AND a.auditing_state='2'
+			AND (audit_man != '' and audit_man is not null)
+			<if test="startTime != '' and startTime != null" >
+	    		<![CDATA[ and a.create_time >= #{startTime} ]]>
+	    	</if>
+	    	<if test="endTime != '' and endTime != null" >
+	    		<![CDATA[ and a.create_time <= #{endTime} ]]>
+	   	 	</if>
+			GROUP BY user_id
+		) c on a.audit_man=c.userId
+		WHERE a.auditing_state in ('2','3')
+		AND (a.audit_man != '' and a.audit_man is not null)
+			<if test="startTime != '' and startTime != null" >
+	    		<![CDATA[ and a.create_time >= #{startTime} ]]>
+	    	</if>
+	    	<if test="endTime != '' and endTime != null" >
+	    		<![CDATA[ and a.create_time <= #{endTime} ]]>
+	   	 	</if>
+		GROUP BY timeValue,nickName
+		ORDER BY timeValue
+	</select>
+	
+	<!-- 人工审核查询（人工审批通过率、审批通过统计） -->
+	<select id="getPassRgApprovePersonByTime" resultType="com.shangyong.backend.entity.ApplicationPersonCount" parameterType="com.shangyong.backend.entity.ApplicationPersonCount">
+		SELECT 
+			DATE_FORMAT(a.create_time,'%Y-%m-%d') timeValue,
+			b.nick_name nickName,
+			count(1) count,
+			count(DISTINCT cert_code) personCount
+		FROM
+			bu_application a,sc_user b
+		WHERE a.audit_man=b.user_id
+		AND a.auditing_state='2'
+		AND (audit_man != '' and audit_man is not null)
+			<if test="startTime != '' and startTime != null" >
+	    		<![CDATA[ and a.create_time >= #{startTime} ]]>
+	    	</if>
+	    	<if test="endTime != '' and endTime != null" >
+	    		<![CDATA[ and a.create_time <= #{endTime} ]]>
+	   	 	</if>
+		GROUP BY timeValue,nickName
+		ORDER BY timeValue
+	</select>
+	
+	<!-- 人工审核查询（人工审批通过率、审批未通过统计） -->
+	<select id="getNoPassRgApprovePersonByTime" resultType="com.shangyong.backend.entity.ApplicationPersonCount" parameterType="com.shangyong.backend.entity.ApplicationPersonCount">
+		SELECT 
+			DATE_FORMAT(a.create_time,'%Y-%m-%d') timeValue,
+			b.nick_name nickName,
+			count(1) count,
+			count(DISTINCT cert_code) personCount
+		FROM
+			bu_application a,sc_user b
+		WHERE a.audit_man=b.user_id
+		AND a.auditing_state='3'
+		AND (audit_man != '' and audit_man is not null)
+			<if test="startTime != '' and startTime != null" >
+	    		<![CDATA[ and a.create_time >= #{startTime} ]]>
+	    	</if>
+	    	<if test="endTime != '' and endTime != null" >
+	    		<![CDATA[ and a.create_time <= #{endTime} ]]>
+	   	 	</if>
+		GROUP BY timeValue,nickName
+		ORDER BY timeValue
+	</select>
+	
+	<sql id="TxCountStepNumberCondition">
+		<where>
+			<if test="startTime != '' and startTime != null" >
+				<![CDATA[ and create_time >= #{startTime} ]]>
+			</if>
+			<if test="endTime != '' and endTime != null" >
+				<![CDATA[ and create_time <= #{endTime}]]>
+			</if>
+			<if test="auditingState != '' and auditingState != null" >
+				and auditing_state = #{auditingState}
+			</if>
+			<if test="failureTimes != '' and failureTimes != null" >
+				and failure_times >= #{failureTimes}
+			</if>
+			<if test="source != '' and source != null" >
+				and source = #{source}
+			</if>
+			<if test="appLevel != '' and appLevel != null" >
+				and app_level  = #{appLevel}
+			</if>
+		</where>
+	</sql>
+	
+	<!-- 统计提现流程每个步骤待审批的单子 -->
+	<select id="txCountStepNumber" resultType="com.shangyong.backend.entity.ApplicationCount" parameterType="com.shangyong.backend.entity.ApplicationCount">
+		select is_step as isStep,ifnull(count(1),0) as count from bu_present_application
+		<include refid="TxCountStepNumberCondition"/>
+		GROUP BY is_step
+		ORDER BY count DESC
+	</select>
+	<!-- 统计提现流程每个步骤待审批的单子中的异常单子数量 -->
+	<select id="txCountStepNumberDetail" resultType="com.shangyong.backend.entity.ApplicationCount" parameterType="com.shangyong.backend.entity.ApplicationCount">
+		select is_step as isStep, count(1) as countDetail from bu_present_application 
+		<include refid="TxCountStepNumberCondition"/>
+		and failure_times > (select param_value_one from sc_param where param_value='APP_FAILURE_COUNT') 
+ 		GROUP BY is_step
+		ORDER BY countDetail DESC
+	</select>
+	
+	<!-- 查询（提现审核结果统计） -->
+	<select id="queryTxResultCount" resultType="com.shangyong.backend.entity.ApplicationCount" parameterType="com.shangyong.backend.entity.ApplicationCount">
+		 SELECT
+			 count(DISTINCT(bu.cert_code)) certCount,
+			 count(1)  count,
+			 bu.auditing_state auditingState
+		 FROM bu_present_application bu
+		 <where> 
+	    <if test="startTime != '' and startTime != null" >
+	    	<![CDATA[ and bu.create_time >= #{startTime} ]]>
+	    </if>
+	    <if test="endTime != '' and endTime != null" >
+	    	<![CDATA[ and bu.create_time <= #{endTime} ]]>
+	    </if>
+	    <if test="isStep != '' and isStep != null" >
+	    	and bu.is_step = #{isStep}
+	    </if>
+	    <if test="source != '' and source != null" >
+	    	and bu.source = #{source}
+	    </if>
+	    <if test="appName != '' and appName != null" >
+	    	and bu.app_name = #{appName}
+	    </if>
+	     <if test="appLevel != '' and appLevel != null" >
+	    	and bu.app_level  = #{appLevel}
+	    </if>
+	    </where>
+	    group by bu.auditing_state
+	</select>
+	
+	<select id="findOperatorInfoFailure" resultMap="applicationinfoMap">
+		select
+		<include refid="Base_Column_List" />
+		from bu_application where auditing_state = 5 and is_step =8  and is_call_sucess = 0
+	</select>
+	
+	<update id="updateIsCallSucess" parameterType="java.lang.String">
+		update bu_application set is_call_sucess = 1
+		WHERE application_id = #{applicationId}
+	</update>
+	
+	<!-- 根据app_serial_number查询application_id -->
+	<select id="findByAppSerialNumber" resultMap="applicationinfoMap" parameterType="java.util.Map">
+		select 
+		<include refid="Base_Column_List" />
+		from bu_application
+		where app_serial_number = #{appSerialNumber}
+	</select>
+	<!-- 通过customerId和auditing_state查询 -->
+	<select id="findByCustomerIdAndAuditingState" resultMap="applicationinfoMap" parameterType="java.util.Map">
+		select
+		<include refid="Base_Column_List" />
+		from bu_application
+		where customer_id = #{customerId} ORDER BY create_time DESC LIMIT 1
+	</select>
+	
+	<select id="findLast2ApplicationByCustomerId" resultMap="applicationinfoMap" parameterType="java.util.Map">
+		select
+		<include refid="Base_Column_List" />
+		from bu_application
+		where customer_id = #{customerId} ORDER BY create_time DESC LIMIT 2
+	</select>
+
+	<select id="selectFailureTimeMoreThanFourTimes" resultType="java.lang.Long">
+		select * from bu_application where failure_times > 4 and auditing_state = 1;
+	</select>
+</mapper>

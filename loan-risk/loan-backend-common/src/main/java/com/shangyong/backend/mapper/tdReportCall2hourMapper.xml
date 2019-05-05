@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.shangyong.backend.dao.tdReport.TdReportCall2hourDao">
+
+	<resultMap type="com.shangyong.backend.entity.tdReport.TdReportCall2hour" id="tdReportCall2hourMap">
+		<id property="call2hourId" column="call_2hour_id" javaType="java.lang.String"></id>
+		<result property="applicationId" column="application_id" javaType="java.lang.String"></result>
+		<result property="call2hourType" column="call_2hour_type" javaType="java.lang.String"></result>
+		<result property="t0" column="t_0" javaType="java.lang.String"></result>
+		<result property="t1" column="t_1" javaType="java.lang.String"></result>
+		<result property="t2" column="t_2" javaType="java.lang.String"></result>
+		<result property="t3" column="t_3" javaType="java.lang.String"></result>
+		<result property="t4" column="t_4" javaType="java.lang.String"></result>
+		<result property="t5" column="t_5" javaType="java.lang.String"></result>
+		<result property="t6" column="t_6" javaType="java.lang.String"></result>
+		<result property="t7" column="t_7" javaType="java.lang.String"></result>
+		<result property="t8" column="t_8" javaType="java.lang.String"></result>
+		<result property="t9" column="t_9" javaType="java.lang.String"></result>
+		<result property="t10" column="t_10" javaType="java.lang.String"></result>
+		<result property="t11" column="t_11" javaType="java.lang.String"></result>
+		<result property="createTime" column="create_time" javaType="java.lang.String"></result>
+		<result property="createMan" column="create_man" javaType="java.lang.String"></result>
+		<result property="modifyTime" column="modify_time" javaType="java.lang.String"></result>
+		<result property="modifyMan" column="modify_man" javaType="java.lang.String"></result>
+		<result property="remark" column="remark" javaType="java.lang.String"></result>
+	</resultMap>
+
+	<!-- 通用查询结果列-->
+	<sql id="Base_Column_List">
+call_2hour_id,	application_id,	call_2hour_type,	t_0,	t_1,	t_2,	t_3,	t_4,	t_5,	t_6,	t_7,	t_8,	t_9,	t_10,	t_11,	create_time,	create_man,	modify_time,	modify_man,	remark
+	</sql>
+
+	<!-- 查询（根据主键ID查询） -->
+	<select id="getEntityById" resultMap="tdReportCall2hourMap" parameterType="java.lang.String">
+		 SELECT
+		 <include refid="Base_Column_List" />
+		 FROM td_report_call_2hour
+		 WHERE call_2hour_id = #{call2hourId}
+	</select>
+
+	<!-- 查询（根据主键ID查询） -->
+	<select id="findAll" resultMap="tdReportCall2hourMap" parameterType="java.lang.String">
+		 SELECT
+		 <include refid="Base_Column_List" />
+		 FROM td_report_call_2hour
+		 WHERE call_2hour_id = #{call2hourId}
+	</select>
+
+	<!--删除：根据主键ID删除-->
+	<delete id="deleteEntity" parameterType="java.lang.String">
+		 DELETE FROM td_report_call_2hour
+		 WHERE call_2hour_id = #{call2hourId}
+	</delete>
+
+	<!-- 添加 -->
+	<insert id="saveEntity" parameterType="com.shangyong.backend.entity.tdReport.TdReportCall2hour">
+		 INSERT INTO td_report_call_2hour
+ 		(call_2hour_id,application_id,call_2hour_type,t_0,t_1,t_2,t_3,t_4,t_5,t_6,t_7,t_8,t_9,t_10,t_11,create_time,create_man,modify_time,modify_man,remark) 
+		 VALUES 
+ 		(#{call2hourId},#{applicationId},#{call2hourType},#{t0},#{t1},#{t2},#{t3},#{t4},#{t5},#{t6},#{t7},#{t8},#{t9},#{t10},#{t11},#{createTime},#{createMan},#{modifyTime},#{modifyMan},#{remark}) 
+	</insert>
+	<!-- 批量插入 -->
+	<insert id="saveAllEntity" parameterType="java.util.List">
+		 INSERT INTO td_report_call_2hour
+ 		(call_2hour_id,application_id,call_2hour_type,t_0,t_1,t_2,t_3,t_4,t_5,t_6,t_7,t_8,t_9,t_10,t_11,create_time,create_man,modify_time,modify_man,remark) 
+		 VALUES 
+ 	    <foreach collection="list" item="item" index="index" separator="," >  
+ 		(#{item.call2hourId},#{item.applicationId},#{item.call2hourType},#{item.t0},#{item.t1},#{item.t2},#{item.t3},#{item.t4},#{item.t5},#{item.t6},#{item.t7},#{item.t8},#{item.t9},#{item.t10},#{item.t11},#{item.createTime},#{item.createMan},#{item.modifyTime},#{item.modifyMan},#{item.remark}) 
+	    </foreach>
+	</insert>
+
+	<!-- 修 改-->
+	<update id="updateEntity" parameterType="com.shangyong.backend.entity.tdReport.TdReportCall2hour">
+		 UPDATE td_report_call_2hour
+ 		 <set> 
+			<if test="applicationId != null">
+				 application_id = #{applicationId},
+			</if>
+			<if test="call2hourType != null">
+				 call_2hour_type = #{call2hourType},
+			</if>
+			<if test="t0 != null">
+				 t_0 = #{t0},
+			</if>
+			<if test="t1 != null">
+				 t_1 = #{t1},
+			</if>
+			<if test="t2 != null">
+				 t_2 = #{t2},
+			</if>
+			<if test="t3 != null">
+				 t_3 = #{t3},
+			</if>
+			<if test="t4 != null">
+				 t_4 = #{t4},
+			</if>
+			<if test="t5 != null">
+				 t_5 = #{t5},
+			</if>
+			<if test="t6 != null">
+				 t_6 = #{t6},
+			</if>
+			<if test="t7 != null">
+				 t_7 = #{t7},
+			</if>
+			<if test="t8 != null">
+				 t_8 = #{t8},
+			</if>
+			<if test="t9 != null">
+				 t_9 = #{t9},
+			</if>
+			<if test="t10 != null">
+				 t_10 = #{t10},
+			</if>
+			<if test="t11 != null">
+				 t_11 = #{t11},
+			</if>
+			<if test="createTime != null">
+				 create_time = #{createTime},
+			</if>
+			<if test="createMan != null">
+				 create_man = #{createMan},
+			</if>
+			<if test="modifyTime != null">
+				 modify_time = #{modifyTime},
+			</if>
+			<if test="modifyMan != null">
+				 modify_man = #{modifyMan},
+			</if>
+			<if test="remark != null">
+				 remark = #{remark},
+			</if>
+
+ 		 </set>
+		 WHERE call_2hour_id = #{call2hourId}
+	</update>
+
+</mapper>

@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.shangyong.backend.dao.approval.CustomerEquipmentIosDao">
+
+	<resultMap type="com.shangyong.backend.entity.approval.CustomerEquipmentIos" id="cuCustomerEquipmentIosMap">
+		<id property="equipmentId" column="equipment_id" javaType="java.lang.String"></id>
+		<result property="customerId" column="customer_id" javaType="java.lang.String"></result>
+		<result property="appName" column="app_name" javaType="java.lang.Integer"></result>
+		<result property="sdkEdition" column="sdk_edition" javaType="java.lang.String"></result>
+		<result property="fingerprintTokenId" column="fingerprint_token_id" javaType="java.lang.String"></result>
+		<result property="deviceId" column="device_id" javaType="java.lang.String"></result>
+		<result property="idfa" column="idfa" javaType="java.lang.String"></result>
+		<result property="idfv" column="idfv" javaType="java.lang.String"></result>
+		<result property="uuid" column="uuid" javaType="java.lang.String"></result>
+		<result property="bootTime" column="boot_time" javaType="java.lang.String"></result>
+		<result property="sumRamStorage" column="sum_ram_storage" javaType="java.lang.String"></result>
+		<result property="availableRamStorage" column="available_ram_storage" javaType="java.lang.String"></result>
+		<result property="sumRomStorage" column="sum_rom_storage" javaType="java.lang.String"></result>
+		<result property="availableRomStorage" column="available_rom_storage" javaType="java.lang.String"></result>
+		<result property="screenBrightness" column="screen_brightness" javaType="java.lang.String"></result>
+		<result property="batteryState" column="battery_state" javaType="java.lang.String"></result>
+		<result property="cellularNetworkIp" column="cellular_network_ip" javaType="java.lang.String"></result>
+		<result property="wifiIp" column="wifi_ip" javaType="java.lang.String"></result>
+		<result property="wifiMask" column="wifi_mask" javaType="java.lang.String"></result>
+		<result property="vpnAddress" column="vpn_address" javaType="java.lang.String"></result>
+		<result property="vpnMask" column="vpn_mask" javaType="java.lang.String"></result>
+		<result property="macAddress" column="mac_address" javaType="java.lang.String"></result>
+		<result property="networkType" column="network_type" javaType="java.lang.String"></result>
+		<result property="wifiName" column="wifi_name" javaType="java.lang.String"></result>
+		<result property="wifiBssid" column="wifi_bssid" javaType="java.lang.String"></result>
+		<result property="agentType" column="agent_type" javaType="java.lang.String"></result>
+		<result property="agentAddress" column="agent_address" javaType="java.lang.String"></result>
+		<result property="dnsAddress" column="dns_address" javaType="java.lang.String"></result>
+		<result property="isRoot" column="is_root" javaType="java.lang.String"></result>
+		<result property="equipmentType" column="equipment_type" javaType="java.lang.String"></result>
+		<result property="systemEdition" column="system_edition" javaType="java.lang.String"></result>
+		<result property="equipmentName" column="equipment_name" javaType="java.lang.String"></result>
+		<result property="operator" column="operator" javaType="java.lang.String"></result>
+		<result property="countryCode" column="country_code" javaType="java.lang.String"></result>
+		<result property="moveCountryCode" column="move_country_code" javaType="java.lang.String"></result>
+		<result property="moveNetworkCode" column="move_network_code" javaType="java.lang.String"></result>
+		<result property="bundleId" column="bundle_id" javaType="java.lang.String"></result>
+		<result property="language" column="language" javaType="java.lang.String"></result>
+		<result property="realIp" column="real_ip" javaType="java.lang.String"></result>
+		<result property="ipPosition" column="ip_position" javaType="java.lang.String"></result>
+		<result property="openUdid" column="open_udid" javaType="java.lang.String"></result>
+		<result property="cpuNum" column="cpu_num" javaType="java.lang.Integer"></result>
+		<result property="cpuSubType" column="cpu_sub_type" javaType="java.lang.String"></result>
+		<result property="ipAddress" column="ip_address" javaType="java.lang.String"></result>
+		<result property="breakFlag" column="break_flag" javaType="java.lang.String"></result>
+		<result property="cpuModel" column="cpu_model" javaType="java.lang.String"></result>
+		<result property="createTime" column="create_time" javaType="java.lang.String"></result>
+		<result property="modifyTime" column="modify_time" javaType="java.lang.String"></result>
+		<result property="gprsIp" column="gprs_ip" javaType="java.lang.String"></result>
+	</resultMap>
+	
+	<resultMap type="com.shangyong.backend.entity.approval.CustomerEquipmentIos" id="customerEquipmentIosMap">
+		<result property="equipmentType" column="equipment_type" javaType="java.lang.String"></result>
+		<result property="createTime" column="create_time" javaType="java.lang.String"></result>
+		<result property="gprsIp" column="gprs_ip" javaType="java.lang.String"></result>
+	</resultMap>
+
+	<!-- 通用查询结果列-->
+	<sql id="Base_Column_List">
+equipment_id,	customer_id,	app_name,	sdk_edition,	fingerprint_token_id,	device_id,	idfa,	idfv,	uuid,	boot_time,	sum_ram_storage,	available_ram_storage,	sum_rom_storage,	available_rom_storage,	screen_brightness,	battery_state,	cellular_network_ip,	wifi_ip,	wifi_mask,	vpn_address,	vpn_mask,	mac_address,	network_type,	wifi_name,	wifi_bssid,	agent_type,	agent_address,	dns_address,	is_root,	equipment_type,	system_edition,	equipment_name,	operator,	country_code,	move_country_code,	move_network_code,	bundle_id,	language,	real_ip,	ip_position,	open_udid,	cpu_num,	cpu_sub_type,	ip_address,	break_flag,	cpu_model,	create_time,	modify_time, gprs_ip
+	</sql>
+
+	<select id="findEquipmentNameIos" resultMap="cuCustomerEquipmentIosMap" parameterType="java.lang.String">
+		 SELECT
+		 <include refid="Base_Column_List" />
+		 FROM cu_customer_equipment_ios
+		 WHERE customer_id = #{customerId} ORDER BY create_time ASC LIMIT 1
+	</select>
+
+	<!-- 统计 -->
+  	<select id="listAllCount" resultType="java.lang.Integer">
+  		select 
+  			count(1)
+  		from cu_customer_equipment_ios 
+		WHERE customer_id = #{customerId}
+  	</select>
+ 
+ 	<!--  查询最早的设备信息（根据APP客户编号customer_id查询gprs_ip,create_time,equipment_type） -->
+	<select id="findFirstOneByCustomerId" resultMap="customerEquipmentIosMap" parameterType="java.lang.String">
+		 SELECT
+		 gprs_ip,   create_time,    equipment_type
+		 FROM cu_customer_equipment_ios
+		 WHERE customer_id = #{customerId} and app_name = #{appName} ORDER BY create_time ASC LIMIT 1
+	</select>
+	<!-- 查询（根据APP客户编号customer_id查询） -->
+	<select id="findAllByCustomerId" resultMap="cuCustomerEquipmentIosMap" parameterType="java.lang.String">
+		 SELECT
+		 <include refid="Base_Column_List" />
+		 FROM cu_customer_equipment_ios
+		 WHERE customer_id = #{customerId} and app_name = #{appName} ORDER BY create_time ASC
+	</select>
+	<!-- 查询（根据APP客户编号device_id查询） -->
+	<select id="findAllByDeviceId" resultMap="cuCustomerEquipmentIosMap" >
+		 SELECT
+		 <include refid="Base_Column_List" />
+		 FROM cu_customer_equipment_ios
+		 WHERE device_id
+		 <foreach collection="deviceId" item="deviceId" open="in (" close=")" separator=",">
+			#{deviceId}
+		</foreach>
+	</select>
+	<!-- 查询（根据APP客户编号customer_id查询） -->
+	<select id="findListById" resultMap="cuCustomerEquipmentIosMap" parameterType="java.lang.String">
+		 SELECT
+		 <include refid="Base_Column_List" />
+		 FROM cu_customer_equipment_ios
+		 WHERE customer_id = #{customerId} ORDER BY create_time ASC
+	</select>
+	<select id="findEntityById" resultMap="cuCustomerEquipmentIosMap" parameterType="java.lang.String">
+		 SELECT
+		 <include refid="Base_Column_List" />
+		 FROM cu_customer_equipment_ios
+		 WHERE equipment_id = #{equipmentId}
+	</select>
+	<!-- 去除重复查询 -->
+	<select id="findByCustomerId" resultType="com.shangyong.backend.entity.approval.CustomerEquipmentIos" parameterType="java.lang.String">
+		 SELECT
+		<!-- count(DISTINCT(t.device_id)) count, -->
+		  t.device_id AS deviceId,
+		  t.customer_id AS customerId
+		 FROM cu_customer_equipment_ios t
+		 WHERE t.customer_id = #{customerId} and t.app_name = #{appName} ORDER BY t.create_time ASC
+	</select>
+</mapper>

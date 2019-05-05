@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.shangyong.backend.dao.approval.BuIcePersonDao">
+
+	<resultMap type="com.shangyong.backend.entity.approval.BuIcePerson" id="buIcePersonMap">
+		<id property="contactnId" column="contactn_id" javaType="java.lang.String"></id>
+		<result property="contactNum" column="contact_num" javaType="java.lang.String"></result>
+		<result property="contactMobile" column="contact_mobile" javaType="java.lang.String"></result>
+		<result property="orgName" column="org_name" javaType="java.lang.String"></result>
+		<result property="createTime" column="create_time" javaType="java.lang.String"></result>
+		<result property="createMan" column="create_man" javaType="java.lang.String"></result>
+		<result property="modifyTime" column="modify_time" javaType="java.lang.String"></result>
+		<result property="modifyMan" column="modify_man" javaType="java.lang.String"></result>
+		<result property="remark" column="remark" javaType="java.lang.String"></result>
+	</resultMap>
+
+	<!-- 通用查询结果列-->
+	<sql id="Base_Column_List">
+contactn_id,	contact_num,	contact_mobile,	org_name,	create_time,	create_man,	modify_time,	modify_man,	remark
+	</sql>
+
+	<!-- 查询所有的催收号码 -->
+	<select id="findAllEntity" resultMap="buIcePersonMap">
+		 SELECT
+		 <include refid="Base_Column_List" />
+		 FROM bu_ice_person
+	</select>
+</mapper>

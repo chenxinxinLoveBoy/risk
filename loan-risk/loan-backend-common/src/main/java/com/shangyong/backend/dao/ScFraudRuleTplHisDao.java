@@ -1,0 +1,66 @@
+package com.shangyong.backend.dao;
+
+import java.util.List;
+
+import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
+
+import com.shangyong.backend.entity.ScFraudRuleTpl;
+import com.shangyong.backend.entity.ScFraudRuleTplHis;
+
+/**
+ * ScFraudRuleTplHisDao数据库操作接口类bean
+ * 
+ * @author xiajiyun
+ * @date Wed Jul 19 11:24:24 CST 2017
+ **/
+@Mapper
+public interface ScFraudRuleTplHisDao {
+
+	/**
+	 * 
+	 * 查询（根据主键ID查询）
+	 * 
+	 **/
+	ScFraudRuleTplHis getEntityById(@Param("id") String id);
+
+	/**
+	 * 
+	 * 查询所有（根据主键ID查询）
+	 * 
+	 **/
+	List<ScFraudRuleTplHis> findAll(@Param("id") String id);
+
+	/**
+	 * 
+	 * 删除（根据主键ID删除）
+	 * 
+	 **/
+	int deleteEntity(@Param("id") String id);
+
+	/**
+	 * 
+	 * 添加
+	 * 
+	 **/
+	int saveEntity(ScFraudRuleTplHis record);
+
+	/**
+	 * 
+	 * 修改 （匹配有值的字段）
+	 * 
+	 **/
+	int updateEntity(ScFraudRuleTplHis record);
+
+	int insert(ScFraudRuleTpl scFraudRuleTpl);
+
+	/**
+	 * 分页查询信息
+	 * 
+	 */
+	int listAllCount(ScFraudRuleTplHis scFraudRuleTplHis);
+
+	List<ScFraudRuleTplHis> findAll(ScFraudRuleTplHis scFraudRuleTplHis);
+
+	ScFraudRuleTplHis getEntityById(ScFraudRuleTplHis scFraudRuleTplHis);
+}

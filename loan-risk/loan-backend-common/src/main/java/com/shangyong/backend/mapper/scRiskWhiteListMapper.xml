@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.shangyong.backend.dao.ScRiskWhiteListDao">
+
+	<resultMap type="com.shangyong.backend.entity.ScRiskWhiteList" id="scRiskWhiteListinfoMap">
+		<id property="whiteListId" column="white_list_id" javaType="java.lang.Integer"></id>
+		<result property="appName" column="app_name" javaType="java.lang.String"></result>
+		<result property="name" column="name" javaType="java.lang.String"></result>
+		<result property="certType" column="cert_type" javaType="java.lang.String"></result>
+		<result property="certCode" column="cert_code" javaType="java.lang.String"></result>
+		<result property="phoneNum" column="phone_num" javaType="java.lang.String"></result>
+		<result property="state" column="state" javaType="java.lang.String"></result>
+		<result property="createTime" column="create_time" javaType="java.lang.String"></result>
+		<result property="createMan" column="create_man" javaType="java.lang.String"></result>
+		<result property="modifyTime" column="modify_time" javaType="java.lang.String"></result>
+		<result property="modifyMan" column="modify_man" javaType="java.lang.String"></result>
+		<result property="remark" column="remark" javaType="java.lang.String"></result>
+	</resultMap>
+
+
+	<sql id="Base_Column_List">
+			white_list_id as whiteListId ,
+			app_name as appName,
+			name as name,  
+			cert_type as certType,
+			cert_code as certCode, 
+			phone_num as phoneNum, 
+			state as state,
+			create_time as createTime,
+			create_man as createMan, 
+			modify_time as modifyTime,
+			modify_man as modifyMan, 
+			remark as remark
+		</sql>
+
+	<!-- 公用查询条件 -->
+  	<sql id="propertitys_sql">
+  		<where> 
+  			<if test="appName != null and appName != '' ">
+				 app_name = #{appName}
+		   </if>
+		   <if test="certCode != null and certCode != '' ">
+				and  cert_code = #{certCode}
+		   </if>
+		   <if test="name != null and name != '' ">
+				and instr(name, #{name}) > 0
+		   </if>
+		   <if test="phoneNum != null and phoneNum != '' ">
+				and phone_num = #{phoneNum}
+		   </if>
+		   <if test="whiteListId != null and whiteListId != '' ">
+				and white_list_id = #{whiteListId}
+		   </if>
+  		</where>
+  	</sql>
+
+	<!-- 统计 -->
+  	<select id="findAllCount" resultType="java.lang.Integer">
+  		select 
+  			count(1)
+  		from sc_risk_white_list 
+  		 <include refid="propertitys_sql"></include>
+  	</select>
+  	
+  	<!-- 查询-->
+	<select id="findAll" resultType="com.shangyong.backend.entity.ScRiskWhiteList" parameterType="java.lang.String">
+		 SELECT
+		 <include refid="Base_Column_List" />
+		 FROM sc_risk_white_list 
+		 <include refid="propertitys_sql"></include>
+		 order by white_list_id desc 
+   		 LIMIT #{pageIndex},#{pageSize}
+	</select>
+
+	 <!-- 查询（根据主键ID查询） -->
+	<select id="findByid" resultMap="scRiskWhiteListinfoMap" parameterType="java.lang.Integer">
+		 SELECT
+		 <include refid="Base_Column_List" />
+		 FROM sc_risk_white_list
+		 WHERE white_list_id = #{whiteListId}
+	</select>
+	
+	<delete id="deleteById" parameterType="java.lang.Integer">
+         delete from sc_risk_white_list where white_list_id = #{whiteListId}
+     </delete>
+ 
+ 
+	<!-- 添加 -->
+	<insert id="saveEntity" parameterType="com.shangyong.backend.entity.ScRiskWhiteList" useGeneratedKeys="true" keyProperty="whiteListId">
+		 INSERT INTO sc_risk_white_list
+ 		(white_list_id,app_name,name,cert_type,cert_code,phone_num,state,create_time,create_man,modify_time,modify_man,remark) 
+		 VALUES 
+ 		(#{whiteListId},#{appName},#{name},#{certType},#{certCode},#{phoneNum},#{state},#{createTime},#{createMan},#{modifyTime},#{modifyMan},#{remark}) 
+	</insert>
+	   
+
+	<!-- 修 改-->
+	<update id="updateByPrimaryKeySelective" parameterType="com.shangyong.backend.entity.ScRiskWhiteList">
+		 UPDATE sc_risk_white_list
+ 		 <set> 
+			<if test="appName != null">
+				 app_name = #{appName},
+			</if>
+			<if test="name != null">
+				 name = #{name},
+			</if>
+			<if test="certType != null">
+				 cert_type = #{certType},
+			</if>
+			<if test="certCode != null">
+				 cert_code = #{certCode},
+			</if>
+			<if test="phoneNum != null">
+				 phone_num = #{phoneNum},
+			</if>
+			<if test="state != null">
+				 state = #{state},
+			</if>
+			<if test="createTime != null">
+				 create_time = #{createTime},
+			</if>
+			<if test="createMan != null">
+				 create_man = #{createMan},
+			</if>
+			<if test="modifyTime != null">
+				 modify_time = #{modifyTime},
+			</if>
+			<if test="modifyMan != null">
+				 modify_man = #{modifyMan},
+			</if>
+			<if test="remark != null">
+				 remark = #{remark},
+			</if>
+
+ 		 </set>
+		 WHERE white_list_id = #{whiteListId}
+	</update>
+
+	<!-- 统计 -->
+  	<select id="queryWhiteCount" resultType="java.lang.Integer" parameterType="com.shangyong.backend.entity.ScRiskWhiteList">
+  		select count(1) from sc_risk_white_list WHERE app_name = #{appName} and cert_code = #{certCode} and state = #{state}
+  	</select>
+
+	<!-- 根据身份证和appName查询 --> 
+	<select id="findByCodeAppName" resultMap="scRiskWhiteListinfoMap" parameterType="com.shangyong.backend.entity.ScRiskWhiteList">
+		 SELECT
+		 <include refid="Base_Column_List" />
+		 FROM sc_risk_white_list
+		 WHERE cert_code = #{certCode}
+		 AND  app_name = #{appName}
+	</select>
+
+</mapper>

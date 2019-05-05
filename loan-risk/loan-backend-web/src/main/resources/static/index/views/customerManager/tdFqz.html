@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+<meta charset="UTF-8">
+<title>同盾反欺诈报告信息</title>
+<link rel="stylesheet" href="../../plugins/layui/css/layui.css"
+	media="all" />
+<link rel="stylesheet" href="../../css/global.css" media="all">
+<link rel="stylesheet"
+	href="../../plugins/font-awesome/css/font-awesome.min.css">
+<link rel="stylesheet" href="../../css/table.css" />
+</head>
+<body>
+	<div class="admin-main">
+		<fieldset class="layui-elem-field">
+			<br>
+			<br>
+			<!-- &nbsp;&nbsp;&nbsp;&nbsp;<a href="javascript:getMysqlData();" class="layui-btn layui-btn-small">
+			<i class="layui-icon">&#xe615;</i> Mysql数据查询 -->
+			<a href="javascript:getMongoData();" class="layui-btn layui-btn-small" >
+			<i class="layui-icon">&#xe615;</i> Mongo数据查询
+			</a>
+			<div class="layui-field-box layui-form">
+				<legend  style="margin-left:40%">风险群体规则 </legend>
+				<table class="layui-table"> 
+					<thead>
+						<tr>
+							<th>疑似风险群体编号</th>
+							<th>匹配字段名称</th>
+							<th>匹配字段值</th>
+							<th>成员分布</th>
+							<th>风险名单分布</th>
+							<th>风险名单占比</th>
+							<th>关注名单占比</th>
+							<th>一度关联节点个数</th>
+							<th>疑似风险群体成员数</th>
+							<th>风险名单成员数</th>
+							<th>关注名单成员数</th>
+							<th>核心节点距离</th>
+							<th>风险节点距离</th>
+							<th>二度关联节点个数</th>
+							<th>一度风险名单个数</th>
+							<th>二度风险名单个数</th>
+							<th>一度风险名单分布</th>
+							<th>二度风险名单分布</th>
+						</tr>
+					</thead>
+					<tbody id="suspectedTeam">
+					
+					</tbody>
+				</table>
+				<legend  style="margin-left:40%">关注名单规则 </legend>
+				<table class="layui-table"> 
+					<thead>
+						<tr>
+							<th>匹配类型</th>
+							<th>风险类型显示名</th>
+							<th>证据时间</th>
+							<th>风险等级</th>
+							<th>风险类型</th>
+							<th>命中关注名单的属性值</th>
+							<th>描述</th>
+						</tr>
+					</thead>
+					<tbody id="greyList">
+					
+					</tbody>
+				</table>
+				
+				<legend  style="margin-left:40%">信贷逾期统计 </legend>
+				<table class="layui-table"> 
+					<thead>
+						<tr>
+							<th>规则描述</th>
+							<th>逾期入库时间</th>
+							<th>逾期金额区间</th>
+							<th>逾期时间区间</th>
+							<th>逾期笔数</th>
+						</tr>
+					</thead>
+					<tbody id="discreditCount">
+					
+					</tbody>
+				</table>
+				<!-- <legend  style="margin-left:40%">自定义列表规则 </legend>
+				<table class="layui-table"> 
+					<thead>
+						<tr>
+							<th>名单类型</th>
+							<th>击中方式</th>
+							<th>第一级分类</th>
+							<th>第二级分类</th>
+						</tr>
+					</thead>
+					<tbody id="customList">
+					
+					</tbody>
+				</table> -->
+				<legend  style="margin-left:40%">各维度关联多平台(多投) </legend>
+				<table class="layui-table"> 
+					<thead>
+						<tr>
+							<th>维度名称</th>
+							<th>多投次数</th>
+							<th>描述</th>
+						</tr>
+					</thead>
+					<tbody id="platformDimensionDetail">
+					
+					</tbody>
+				</table>
+				<legend  style="margin-left:40%">不分维度关联多平台(多投明细) </legend>
+				<table class="layui-table"> 
+					<thead>
+						<tr>
+							<th>行业名称</th>
+							<th>多投个数</th>
+							<th>描述</th>
+						</tr>
+					</thead>
+					<tbody id="platformDetail">
+					
+					</tbody>
+				</table>
+				<legend  style="margin-left:40%">风险名单规则 </legend>
+				<table class="layui-table"> 
+					<thead>
+						<tr>
+							<th>匹配类型显示名</th>
+							<th>风险类型显示名</th>
+							<th>规则描述</th>
+							<th>命中的属性值</th>
+							<th>风险类型</th>
+							<th>被执行人姓名</th>
+							<th>年龄</th>
+							<th>性别</th>
+							<th>省份</th>
+							<th>立案时间</th>
+							<th>执行法院</th>
+							<th>生效法律文书确定的义务</th>
+							<th>执行标的</th>
+							<th>执行状态</th>
+							<th>做出依据执行法院</th>
+							<th>被执行人履行情况</th>
+							<th>信贷逾期被执行人行为具体情形</th>
+							<th>执行依据文号</th>
+							<th>案号</th>
+							<th>证据时间</th>
+							
+						</tr>
+					</thead>
+					<tbody id="blackList">
+					
+					</tbody>
+				</table>
+			</div>
+		</fieldset>
+	</div>
+
+	<!-- js -->
+	<script src="../../jqery/jquery.js"></script>
+	<script src="../../../commons/base.js"></script>
+	<script type="text/javascript" src="../../plugins/layui/layui.js"></script>
+	<script type="text/javascript" src="../../js/customerManager/tdFqz.js"></script>
+</body>
+
+</html>

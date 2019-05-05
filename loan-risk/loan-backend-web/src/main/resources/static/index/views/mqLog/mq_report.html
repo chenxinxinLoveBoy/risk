@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <!-- 		<title>Table</title> -->
+    <link rel="stylesheet" href="../../plugins/layui/css/layui.css" media="all"/>
+    <link rel="stylesheet" href="../../css/global.css" media="all">
+    <link rel="stylesheet" href="../../plugins/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="../../css/table.css"/>
+</head>
+
+<body>
+<div class="admin-main">
+
+    <blockquote class="layui-elem-quote">
+        <form class="layui-form">
+            <div class="layui-inline">
+                <label class="layui-form-label" style="width: 75px;">创建时间：</label>
+                <div class="layui-input-inline" style="width: 394px;">
+                    <input name="optTimeBigen" lay-verify="optTimeBigen" id="optTimeBigen" autocomplete="off"
+                           class="layui-input" style="width: 180px; display:inline;">
+                    &nbsp;至&nbsp;
+                    <input name="optTimeEnd" lay-verify="optTimeEnd" id="optTimeEnd" autocomplete="off"
+                           class="layui-input" style="width: 180px; display:inline;">
+                </div>
+            </div>
+            <a href="javascript:;" class="layui-btn layui-btn-small" id="search">
+                <i class="layui-icon">&#xe615;</i> 搜索
+            </a>
+        </form>
+    </blockquote>
+    <fieldset class="layui-elem-field">
+        <div class="layui-inline">
+            <label class="layui-form-label" style="width: 120px;">MQ与大数据交互总数：</label>
+            <label name="hbaseMutualCount" id="hbaseMutualCount" class="layui-form-label" style="width: 120px;"></label>
+        </div>
+        <div class="layui-inline">
+            <label class="layui-form-label" style="width: 120px;"> 大数据待审批数：</label>
+            <label name="pendingCount" id="pendingCount" class="layui-form-label" style="width: 80px;"></label>
+        </div>
+        <div class="layui-inline">
+            <label class="layui-form-label" style="width: 120px;"> 审批通过数：</label>
+            <label name="approvalOkCount" id="approvalOkCount" class="layui-form-label" style="width: 80px;"></label>
+        </div>
+        <div class="layui-inline">
+            <label class="layui-form-label" style="width: 120px;"> 审批不通过数：</label>
+            <label name="approvalNoCount" id="approvalNoCount" class="layui-form-label" style="width: 80px;"></label>
+        </div>
+        <br><br>
+        <div class="layui-inline">
+            <label class="layui-form-label" style="width: 120px;"> 根据申请单去重的发送数：</label>
+            <label name="sendCount" id="sendCount" class="layui-form-label" style="width: 120px;"></label>
+        </div>
+        <div class="layui-inline">
+            <label class="layui-form-label" style="width: 120px;"> 根据申请单去重的接收数：</label>
+            <label name="receiveCount" id="receiveCount" class="layui-form-label" style="width: 80px;"></label>
+        </div>
+        <br><br>
+        <br>
+        <!--<a href="javascript:;" id="resend" class="layui-btn layui-btn-small" style="margin-left: 18px">重发</a>-->
+        <!--<a href="javascript:;" id="showBody" class="layui-btn layui-btn-small">查看消息内容</a>-->
+        <!--<a href="javascript:;" id="showInfo" class="layui-btn layui-btn-small">查看消息信息</a>-->
+        <!--<br>-->
+        <!--<legend>数据列表</legend>-->
+        <!--<div class="layui-field-box layui-form">-->
+            <!--<table class="layui-table admin-table" style="word-break: keep-all;overflow:auto;">-->
+                <!--<thead>-->
+                <!--<tr>-->
+                    <!--<th style="width: 30px;"><input type="checkbox" lay-filter="allselector" lay-skin="primary"></th>-->
+                    <!--<th>序号</th>-->
+                    <!--<th>消息管道类型</th>-->
+                    <!--<th>消息编号</th>-->
+                    <!--<th>申请单号</th>-->
+                    <!--<th>消息交换机</th>-->
+                    <!--<th>消息路由键</th>-->
+                    <!--<th>消息队列名称</th>-->
+                    <!--<th>消息类型</th>-->
+                    <!--<th>消息所属业务</th>-->
+                    <!--<th>IP地址</th>-->
+                    <!--<th style="min-width: 144px;">创建时间</th>-->
+                    <!--&lt;!&ndash;<th>修改人</th>&ndash;&gt;-->
+                    <!--&lt;!&ndash;<th style="min-width: 150px;">修改时间</th>&ndash;&gt;-->
+                <!--</tr>-->
+                <!--</thead>-->
+                <!--<tbody id="content">-->
+                <!--</tbody>-->
+            <!--</table>-->
+            <!--<label>共<font color='red' id="count_page_number"></font>条记录</label>-->
+            <!--<div id="paged" class="page" style="display:inline-block;">-->
+            <!--</div>-->
+        <!--</div>-->
+    </fieldset>
+
+</div>
+<!--模板-->
+<!--<script type="text/html" id="tpl">-->
+    <!--{{# layui.each(d.list, function(index, item){ }}-->
+    <!--<tr>-->
+        <!--<td><input type="checkbox" lay-skin="primary"></td>-->
+        <!--<td>{{ index+1 }}-->
+            <!--<div style="display: none" name="show1">{{ item.messageBody }}</div>-->
+            <!--<div style="display: none" name="show2">{{ item.messageInfo }}</div>-->
+        <!--</td>-->
+        <!--<td>-->
+            <!--{{# if(item.messageChannelType === 0){ }}-->
+            <!--发送-->
+            <!--{{# } }}-->
+            <!--{{# if(item.messageChannelType === 1){ }}-->
+            <!--接收-->
+            <!--{{# } }}-->
+        <!--</td>-->
+        <!--<td>{{ item.messageId }}</td>-->
+        <!--<td>{{ item.applicationId }}</td>-->
+        <!--<td>{{ item.messageExchange }}</td>-->
+        <!--<td>{{ item.messageRoutingkey }}</td>-->
+        <!--<td>{{ item.messageQueue }}</td>-->
+        <!--<td>-->
+            <!--{{# if(item.messageType === 1){ }}-->
+            <!--转发-->
+            <!--{{# } }}-->
+            <!--{{# if(item.messageType === 2){ }}-->
+            <!--广播-->
+            <!--{{# } }}-->
+            <!--{{# if(item.messageType === 3){ }}-->
+            <!--模糊匹配-->
+            <!--{{# } }}-->
+        <!--</td>-->
+        <!--<td>{{ item.messageService }}</td>-->
+        <!--<td>{{ item.ip }}</td>-->
+        <!--&lt;!&ndash;<td>{{ item.modifyMan }}</td>&ndash;&gt;-->
+        <!--&lt;!&ndash;<td>{{ item.modifyTime }}</td>&ndash;&gt;-->
+        <!--&lt;!&ndash;<td>{{ item.createMan }}</td>&ndash;&gt;-->
+        <!--<td>{{ item.createTime }}</td>-->
+    <!--</tr>-->
+    <!--{{# }); }}-->
+<!--</script>-->
+
+<!-- js -->
+<script src="../../jqery/jquery.js"></script>
+<script src="../../../commons/base.js"></script>
+<script type="text/javascript" src="../../plugins/layui/layui.js"></script>
+<script type="text/javascript" src="../../js/mqLog/mq_report.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.shangyong.backend.dao.td.TdAntiFraudServiceDao">
+
+	<resultMap type="com.shangyong.backend.entity.td.TdAntiFraud" id="tdAntiFraudinfoMap">
+		<id property="tdAntiFraudId" column="td_anti_fraud_id" javaType="java.lang.String"></id>
+		<result property="applicationId" column="application_id" javaType="java.lang.String"></result>
+		<result property="state" column="state" javaType="java.lang.String"></result>
+		<result property="tdId" column="td_id" javaType="java.lang.String"></result>
+		<result property="finalScore" column="final_score" javaType="java.lang.String"></result>
+		<result property="finalDecision" column="final_decision" javaType="java.lang.String"></result>
+		<result property="remark" column="remark" javaType="java.lang.String"></result>
+		<result property="createTime" column="create_time" javaType="java.lang.String"></result>
+		<result property="createMan" column="create_man" javaType="java.lang.String"></result>
+		<result property="modifyTime" column="modify_time" javaType="java.lang.String"></result>
+		<result property="modifyMan" column="modify_man" javaType="java.lang.String"></result>
+	</resultMap>
+
+	<!-- 通用查询结果列-->
+	<sql id="Base_Column_List">
+	td_anti_fraud_id,	application_id,	state,	td_id,	final_score,	final_decision,	remark,	create_time,	create_man,	modify_time,	modify_man
+	</sql>
+
+	<!-- 查询（根据主键ID查询） -->
+	<select id="getEntityById" resultMap="tdAntiFraudinfoMap" parameterType="java.lang.String">
+		 SELECT
+		 <include refid="Base_Column_List" />
+		 FROM td_anti_fraud
+		 WHERE td_anti_fraud_id = #{tdAntiFraudId}
+	</select>
+	<!-- 查询（根据applicationId查询） -->
+	<select id="queryById" resultMap="tdAntiFraudinfoMap" parameterType="java.lang.String">
+		 SELECT
+		 <include refid="Base_Column_List" />
+		 FROM td_anti_fraud
+		 WHERE application_id = #{applicationId}
+	</select>
+
+	<!-- 查询（根据主键ID查询） -->
+	<select id="getAll" resultMap="tdAntiFraudinfoMap" parameterType="java.lang.String">
+		 SELECT
+		 <include refid="Base_Column_List" />
+		 FROM td_anti_fraud
+	</select>
+
+	<!--删除：根据主键ID删除-->
+	<delete id="deleteEntity" parameterType="java.lang.String">
+		 DELETE FROM td_anti_fraud
+		 WHERE td_anti_fraud_id = #{tdAntiFraudId}
+	</delete>
+
+	<!-- 添加 -->
+	<insert id="saveEntity" parameterType="com.shangyong.backend.entity.td.TdAntiFraud">
+		 INSERT INTO td_anti_fraud
+ 		(td_anti_fraud_id,application_id,state,td_id,final_score,final_decision,remark,create_time,create_man,modify_time,modify_man) 
+		 VALUES 
+ 		(#{tdAntiFraudId},#{applicationId},#{state},#{tdId},#{finalScore},#{finalDecision},#{remark},#{createTime},#{createMan},#{modifyTime},#{modifyMan}) 
+	</insert>
+
+	<!-- 修 改-->
+	<update id="updateEntity" parameterType="com.shangyong.backend.entity.td.TdAntiFraud">
+		 UPDATE td_anti_fraud
+ 		 <set> 
+			<if test="applicationId != null">
+				 application_id = #{applicationId},
+			</if>
+			<if test="state != null">
+				 state = #{state},
+			</if>
+			<if test="tdId != null">
+				 td_id = #{tdId},
+			</if>
+			<if test="finalScore != null">
+				 final_score = #{finalScore},
+			</if>
+			<if test="finalDecision != null">
+				 final_decision = #{finalDecision},
+			</if>
+			<if test="remark != null">
+				 remark = #{remark},
+			</if>
+			<if test="createTime != null">
+				 create_time = #{createTime},
+			</if>
+			<if test="createMan != null">
+				 create_man = #{createMan},
+			</if>
+			<if test="modifyTime != null">
+				 modify_time = #{modifyTime},
+			</if>
+			<if test="modifyMan != null">
+				 modify_man = #{modifyMan},
+			</if>
+
+ 		 </set>
+		 WHERE td_anti_fraud_id = #{tdAntiFraudId}
+	</update>
+
+</mapper>
